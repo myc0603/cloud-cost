@@ -1,0 +1,27 @@
+{
+  "provider": "azure",
+  "region": "us-east",
+  "freeGb": 100,
+  "tiers": [
+    {
+      "upToGb": 100,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": 10100,
+      "pricePerGb": 0.08
+    },
+    {
+      "upToGb": 50100,
+      "pricePerGb": 0.065
+    },
+    {
+      "upToGb": 150100,
+      "pricePerGb": 0.06
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.04
+    }
+  ]
+}

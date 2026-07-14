@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "azure",
+    "region": "seoul",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.09125
+  },
+  {
+    "provider": "azure",
+    "region": "seoul",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.02
+  }
+]

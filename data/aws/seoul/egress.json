@@ -1,0 +1,27 @@
+{
+  "provider": "aws",
+  "region": "seoul",
+  "freeGb": 100,
+  "tiers": [
+    {
+      "upToGb": 100,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": 10340,
+      "pricePerGb": 0.126
+    },
+    {
+      "upToGb": 51300,
+      "pricePerGb": 0.122
+    },
+    {
+      "upToGb": 153700,
+      "pricePerGb": 0.117
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.108
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "provider": "aws",
+  "region": "us-east",
+  "freeGb": 100,
+  "tiers": [
+    {
+      "upToGb": 100,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": 10340,
+      "pricePerGb": 0.09
+    },
+    {
+      "upToGb": 51300,
+      "pricePerGb": 0.085
+    },
+    {
+      "upToGb": 153700,
+      "pricePerGb": 0.07
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.05
+    }
+  ]
+}

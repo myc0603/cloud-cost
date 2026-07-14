@@ -1,0 +1,23 @@
+{
+  "provider": "gcp",
+  "region": "seoul",
+  "freeGb": 200,
+  "tiers": [
+    {
+      "upToGb": 200,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": 10240,
+      "pricePerGb": 0.119
+    },
+    {
+      "upToGb": 153600,
+      "pricePerGb": 0.109
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.097
+    }
+  ]
+}

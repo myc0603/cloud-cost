@@ -1,0 +1,23 @@
+{
+  "provider": "gcp",
+  "region": "us-east",
+  "freeGb": 200,
+  "tiers": [
+    {
+      "upToGb": 200,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": 10240,
+      "pricePerGb": 0.085
+    },
+    {
+      "upToGb": 153600,
+      "pricePerGb": 0.065
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.045
+    }
+  ]
+}

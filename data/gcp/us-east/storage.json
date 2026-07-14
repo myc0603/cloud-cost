@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.1
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.02
+  }
+]

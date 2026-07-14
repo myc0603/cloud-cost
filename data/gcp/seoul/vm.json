@@ -1,0 +1,612 @@
+[
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "generation": "e2",
+    "pricePerHour": 0.010746
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "generation": "e2",
+    "pricePerHour": 0.021491
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "generation": "e2",
+    "pricePerHour": 0.042983
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.085966
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.171931
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.343863
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.687726
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 1.375452
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.115879
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.231757
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.463514
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.927029
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.063531
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.127062
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.254124
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.508248
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "e2-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 1.016497
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.124718
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.249436
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.498872
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.997744
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 1.995488
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.168246
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.336492
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.672984
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 1.345968
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.092072
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.184144
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.368288
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.736576
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 1.473152
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "n2d",
+    "pricePerHour": 0.108508
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "n2d",
+    "pricePerHour": 0.217016
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "n2d",
+    "pricePerHour": 0.434032
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "n2d",
+    "pricePerHour": 0.868064
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "n2d",
+    "pricePerHour": 1.736128
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n1-standard-1",
+    "vcpu": 1,
+    "ramGb": 3.75,
+    "burstable": false,
+    "generation": "n1",
+    "pricePerHour": 0.060939
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n1-standard-2",
+    "vcpu": 2,
+    "ramGb": 7.5,
+    "burstable": false,
+    "generation": "n1",
+    "pricePerHour": 0.121879
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n1-standard-4",
+    "vcpu": 4,
+    "ramGb": 15,
+    "burstable": false,
+    "generation": "n1",
+    "pricePerHour": 0.243757
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n1-standard-8",
+    "vcpu": 8,
+    "ramGb": 30,
+    "burstable": false,
+    "generation": "n1",
+    "pricePerHour": 0.487514
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "n1-standard-16",
+    "vcpu": 16,
+    "ramGb": 60,
+    "burstable": false,
+    "generation": "n1",
+    "pricePerHour": 0.975028
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c2",
+    "pricePerHour": 0.267856
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c2",
+    "pricePerHour": 0.535712
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c2",
+    "pricePerHour": 1.071424
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c2-standard-30",
+    "vcpu": 30,
+    "ramGb": 120,
+    "burstable": false,
+    "generation": "c2",
+    "pricePerHour": 2.00892
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c2-standard-60",
+    "vcpu": 60,
+    "ramGb": 240,
+    "burstable": false,
+    "generation": "c2",
+    "pricePerHour": 4.01784
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c2d",
+    "pricePerHour": 0.1166
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c2d",
+    "pricePerHour": 0.2332
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c2d",
+    "pricePerHour": 0.4664
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c2d",
+    "pricePerHour": 0.9328
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "c2d",
+    "pricePerHour": 1.8656
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c3-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c3",
+    "pricePerHour": 0.258905
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c3-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c3",
+    "pricePerHour": 0.51781
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c3-standard-22",
+    "vcpu": 22,
+    "ramGb": 88,
+    "burstable": false,
+    "generation": "c3",
+    "pricePerHour": 1.423977
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "c3-standard-44",
+    "vcpu": 44,
+    "ramGb": 176,
+    "burstable": false,
+    "generation": "c3",
+    "pricePerHour": 2.847955
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "t2d-standard-1",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 0.054254
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "t2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 0.108508
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "t2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 0.217016
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "t2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 0.434032
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "t2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 0.868064
+  },
+  {
+    "provider": "gcp",
+    "region": "seoul",
+    "sku": "t2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 1.736128
+  }
+]

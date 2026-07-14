@@ -1,0 +1,612 @@
+[
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "generation": "e2",
+    "pricePerHour": 0.008376
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "generation": "e2",
+    "pricePerHour": 0.016753
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "generation": "e2",
+    "pricePerHour": 0.033506
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.067011
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.134023
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.268046
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.536091
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 1.072183
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.0904
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.180799
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.361599
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.723197
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.04947
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.09894
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.197881
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.395762
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "e2-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "e2",
+    "pricePerHour": 0.791524
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.097118
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.194236
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.388472
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.776944
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 1.553888
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.131014
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.262028
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.524056
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 1.048112
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.071696
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.143392
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.286784
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 0.573568
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "n2",
+    "pricePerHour": 1.147136
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "n2d",
+    "pricePerHour": 0.084492
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "n2d",
+    "pricePerHour": 0.168984
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "n2d",
+    "pricePerHour": 0.337968
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "n2d",
+    "pricePerHour": 0.675936
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "n2d",
+    "pricePerHour": 1.351872
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n1-standard-1",
+    "vcpu": 1,
+    "ramGb": 3.75,
+    "burstable": false,
+    "generation": "n1",
+    "pricePerHour": 0.0475
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n1-standard-2",
+    "vcpu": 2,
+    "ramGb": 7.5,
+    "burstable": false,
+    "generation": "n1",
+    "pricePerHour": 0.095
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n1-standard-4",
+    "vcpu": 4,
+    "ramGb": 15,
+    "burstable": false,
+    "generation": "n1",
+    "pricePerHour": 0.189999
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n1-standard-8",
+    "vcpu": 8,
+    "ramGb": 30,
+    "burstable": false,
+    "generation": "n1",
+    "pricePerHour": 0.379998
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "n1-standard-16",
+    "vcpu": 16,
+    "ramGb": 60,
+    "burstable": false,
+    "generation": "n1",
+    "pricePerHour": 0.759996
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c2",
+    "pricePerHour": 0.208808
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c2",
+    "pricePerHour": 0.417616
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c2",
+    "pricePerHour": 0.835232
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c2-standard-30",
+    "vcpu": 30,
+    "ramGb": 120,
+    "burstable": false,
+    "generation": "c2",
+    "pricePerHour": 1.56606
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c2-standard-60",
+    "vcpu": 60,
+    "ramGb": 240,
+    "burstable": false,
+    "generation": "c2",
+    "pricePerHour": 3.13212
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c2d",
+    "pricePerHour": 0.090798
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c2d",
+    "pricePerHour": 0.181596
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c2d",
+    "pricePerHour": 0.363192
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c2d",
+    "pricePerHour": 0.726384
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "c2d",
+    "pricePerHour": 1.452768
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c3-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c3",
+    "pricePerHour": 0.201608
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c3-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c3",
+    "pricePerHour": 0.403216
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c3-standard-22",
+    "vcpu": 22,
+    "ramGb": 88,
+    "burstable": false,
+    "generation": "c3",
+    "pricePerHour": 1.108844
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "c3-standard-44",
+    "vcpu": 44,
+    "ramGb": 176,
+    "burstable": false,
+    "generation": "c3",
+    "pricePerHour": 2.217688
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2d-standard-1",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 0.042246
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 0.084492
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 0.168984
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 0.337968
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 0.675936
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "t2d",
+    "pricePerHour": 1.351872
+  }
+]

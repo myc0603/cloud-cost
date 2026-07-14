@@ -6,8 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "collect:gcp": "tsx collector/main.ts",
-    "test": "node --import tsx --test src/lib/estimator/estimator.test.ts src/lib/scenario-url.test.ts && npm run test:collector",
+    "collect": "tsx collector/main.ts all",
+    "collect:gcp": "tsx collector/main.ts gcp",
+    "collect:aws": "tsx collector/main.ts aws",
+    "test": "node --import tsx --test src/lib/estimator/estimator.test.ts src/lib/scenario-url.test.ts collector/providers/aws.test.ts && npm run test:collector",
     "test:collector": "tsx collector/providers/gcp.test.ts",
     "typecheck": "tsc --noEmit"
   },

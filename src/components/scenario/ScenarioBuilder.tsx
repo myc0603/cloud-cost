@@ -1,0 +1,111 @@
+'use client';
+
+import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { estimate, type Scenario, type VmSpec } from '@/lib/estimator';
+import type { Provider, Region, VmSku } from '@/lib/schema';
+import { decodeScenario, encodeScenario } from '@/lib/scenario-url';
+import EstimateResult from './EstimateResult';
+import ResourceCard from './ResourceCard';
+
+const DEFAULT_SCENARIO: Scenario = {
+  region: 'seoul',
+  vms: [{ vcpu: 2, ramGb: 4, count: 1 }],
+};
+
+const REGION_LABEL: Record<Region, string> = { seoul: '서울', 'us-east': '미국 동부 (버지니아)' };
+
+interface Props {
+  /** 리전별 × 플랫폼별 VM 요금표 — 서버(page.tsx)에서 로드해 내려준다 */
+  pricing: Record<Region, Record<Provider, VmSku[]>>;
+}
+
+export default function ScenarioBuilder({ pricing }: Props) {
+  const searchParams = useSearchParams();
+  const [scenario, setScenario] = useState<Scenario>(
+    () => decodeScenario(searchParams) ?? DEFAULT_SCENARIO,
+  );
+  const [includeBurstable, setIncludeBurstable] = useState(true);
+  const [copied, setCopied] = useState(false);
+
+  // 현재 주소 = 현재 시나리오 유지 (주소 복사가 곧 공유)
+  useEffect(() => {
+    window.history.replaceState(null, '', `?${encodeScenario(scenario)}`);
+  }, [scenario]);
+
+  const estimates = useMemo(
+    () => estimate(scenario, pricing[scenario.region], { includeBurstable }),
+    [scenario, pricing, includeBurstable],
+  );
+
+  const updateVm = (i: number, spec: VmSpec) =>
+    setScenario((s) => ({ ...s, vms: s.vms.map((v, j) => (j === i ? spec : v)) }));
+  const removeVm = (i: number) =>
+    setScenario((s) => ({ ...s, vms: s.vms.filter((_, j) => j !== i) }));
+  const addVm = () =>
+    setScenario((s) => ({ ...s, vms: [...s.vms, { vcpu: 2, ramGb: 4, count: 1 }] }));
+
+  const copyShareLink = async () => {
+    await navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  return (
+    <div className="grid gap-8 lg:grid-cols-2">
+      <section className="flex flex-col gap-4">
+        <div className="flex flex-wrap items-center gap-4">
+          <label className="flex items-center gap-2 text-sm">
+            리전
+            <select
+              value={scenario.region}
+              onChange={(e) => setScenario((s) => ({ ...s, region: e.target.value as Region }))}
+              className="rounded border border-slate-300 bg-white px-2 py-1"
+            >
+              {(Object.keys(REGION_LABEL) as Region[]).map((r) => (
+                <option key={r} value={r}>{REGION_LABEL[r]}</option>
+              ))}
+            </select>
+          </label>
+          <label className="flex items-center gap-1.5 text-sm">
+            <input
+              type="checkbox"
+              checked={includeBurstable}
+              onChange={(e) => setIncludeBurstable(e.target.checked)}
+            />
+            버스트 인스턴스 포함
+          </label>
+        </div>
+
+        {scenario.vms.map((spec, i) => (
+          <ResourceCard
+            key={i}
+            index={i}
+            spec={spec}
+            onChange={(next) => updateVm(i, next)}
+            onRemove={() => removeVm(i)}
+          />
+        ))}
+
+        <div className="flex gap-2">
+          <button
+            onClick={addVm}
+            className="rounded-lg border border-dashed border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 hover:text-slate-900"
+          >
+            + VM 추가
+          </button>
+          <button
+            onClick={copyShareLink}
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 hover:text-slate-900"
+          >
+            {copied ? '복사됨 ✓' : '공유 링크 복사'}
+          </button>
+        </div>
+      </section>
+
+      <section>
+        <EstimateResult estimates={estimates} />
+      </section>
+    </div>
+  );
+}

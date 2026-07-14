@@ -1,0 +1,4302 @@
+[
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c4.2xlarge",
+    "vcpu": 8,
+    "ramGb": 15,
+    "burstable": false,
+    "generation": "c4",
+    "pricePerHour": 0.454
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c4.4xlarge",
+    "vcpu": 16,
+    "ramGb": 30,
+    "burstable": false,
+    "generation": "c4",
+    "pricePerHour": 0.907
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c4.8xlarge",
+    "vcpu": 36,
+    "ramGb": 60,
+    "burstable": false,
+    "generation": "c4",
+    "pricePerHour": 1.815
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c4.large",
+    "vcpu": 2,
+    "ramGb": 3.75,
+    "burstable": false,
+    "generation": "c4",
+    "pricePerHour": 0.114
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c4.xlarge",
+    "vcpu": 4,
+    "ramGb": 7.5,
+    "burstable": false,
+    "generation": "c4",
+    "pricePerHour": 0.227
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c5",
+    "pricePerHour": 2.304
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5.18xlarge",
+    "vcpu": 72,
+    "ramGb": 144,
+    "burstable": false,
+    "generation": "c5",
+    "pricePerHour": 3.456
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "c5",
+    "pricePerHour": 4.608
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c5",
+    "pricePerHour": 0.384
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c5",
+    "pricePerHour": 0.768
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5.9xlarge",
+    "vcpu": 36,
+    "ramGb": 72,
+    "burstable": false,
+    "generation": "c5",
+    "pricePerHour": 1.728
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "c5",
+    "pricePerHour": 0.096
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c5",
+    "pricePerHour": 0.192
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c5a",
+    "pricePerHour": 2.064
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "c5a",
+    "pricePerHour": 2.752
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "c5a",
+    "pricePerHour": 4.128
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c5a",
+    "pricePerHour": 0.344
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c5a",
+    "pricePerHour": 0.688
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c5a",
+    "pricePerHour": 1.376
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5a.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "c5a",
+    "pricePerHour": 0.086
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5a.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c5a",
+    "pricePerHour": 0.172
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5d.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c5d",
+    "pricePerHour": 2.64
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5d.18xlarge",
+    "vcpu": 72,
+    "ramGb": 144,
+    "burstable": false,
+    "generation": "c5d",
+    "pricePerHour": 3.96
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5d.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "c5d",
+    "pricePerHour": 5.28
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5d.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c5d",
+    "pricePerHour": 0.44
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5d.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c5d",
+    "pricePerHour": 0.88
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5d.9xlarge",
+    "vcpu": 36,
+    "ramGb": 72,
+    "burstable": false,
+    "generation": "c5d",
+    "pricePerHour": 1.98
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5d.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "c5d",
+    "pricePerHour": 0.11
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5d.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c5d",
+    "pricePerHour": 0.22
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5n.18xlarge",
+    "vcpu": 72,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "c5n",
+    "pricePerHour": 4.392
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5n.2xlarge",
+    "vcpu": 8,
+    "ramGb": 21,
+    "burstable": false,
+    "generation": "c5n",
+    "pricePerHour": 0.488
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5n.4xlarge",
+    "vcpu": 16,
+    "ramGb": 42,
+    "burstable": false,
+    "generation": "c5n",
+    "pricePerHour": 0.976
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5n.9xlarge",
+    "vcpu": 36,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c5n",
+    "pricePerHour": 2.196
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5n.large",
+    "vcpu": 2,
+    "ramGb": 5.25,
+    "burstable": false,
+    "generation": "c5n",
+    "pricePerHour": 0.122
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c5n.xlarge",
+    "vcpu": 4,
+    "ramGb": 10.5,
+    "burstable": false,
+    "generation": "c5n",
+    "pricePerHour": 0.244
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c6i",
+    "pricePerHour": 2.304
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "c6i",
+    "pricePerHour": 3.072
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "c6i",
+    "pricePerHour": 4.608
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c6i",
+    "pricePerHour": 0.384
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "c6i",
+    "pricePerHour": 6.144
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c6i",
+    "pricePerHour": 0.768
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c6i",
+    "pricePerHour": 1.536
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6i.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "c6i",
+    "pricePerHour": 0.096
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6i.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c6i",
+    "pricePerHour": 0.192
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6id.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c6id",
+    "pricePerHour": 2.772
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6id.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "c6id",
+    "pricePerHour": 3.696
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6id.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "c6id",
+    "pricePerHour": 5.544
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6id.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c6id",
+    "pricePerHour": 0.462
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6id.32xlarge",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "c6id",
+    "pricePerHour": 7.392
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6id.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c6id",
+    "pricePerHour": 0.924
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6id.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c6id",
+    "pricePerHour": 1.848
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6id.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "c6id",
+    "pricePerHour": 0.1155
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6id.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c6id",
+    "pricePerHour": 0.231
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6in.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c6in",
+    "pricePerHour": 3.0744
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6in.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "c6in",
+    "pricePerHour": 4.0992
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6in.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "c6in",
+    "pricePerHour": 6.1488
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6in.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c6in",
+    "pricePerHour": 0.5124
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6in.32xlarge",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "c6in",
+    "pricePerHour": 8.1984
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6in.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c6in",
+    "pricePerHour": 1.0248
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6in.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c6in",
+    "pricePerHour": 2.0496
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6in.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "c6in",
+    "pricePerHour": 0.1281
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c6in.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c6in",
+    "pricePerHour": 0.2562
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i-flex.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c7i-flex",
+    "pricePerHour": 2.29824
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i-flex.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "c7i-flex",
+    "pricePerHour": 3.06432
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i-flex.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c7i-flex",
+    "pricePerHour": 0.38304
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i-flex.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c7i-flex",
+    "pricePerHour": 0.76608
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i-flex.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c7i-flex",
+    "pricePerHour": 1.53216
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i-flex.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "c7i-flex",
+    "pricePerHour": 0.09576
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i-flex.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c7i-flex",
+    "pricePerHour": 0.19152
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c7i",
+    "pricePerHour": 2.4192
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "c7i",
+    "pricePerHour": 3.2256
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "c7i",
+    "pricePerHour": 4.8384
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c7i",
+    "pricePerHour": 0.4032
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "c7i",
+    "pricePerHour": 9.6768
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c7i",
+    "pricePerHour": 0.8064
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c7i",
+    "pricePerHour": 1.6128
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "c7i",
+    "pricePerHour": 0.1008
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c7i.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c7i",
+    "pricePerHour": 0.2016
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i-flex.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c8i-flex",
+    "pricePerHour": 2.4132
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i-flex.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "c8i-flex",
+    "pricePerHour": 3.2176
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i-flex.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c8i-flex",
+    "pricePerHour": 0.4022
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i-flex.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c8i-flex",
+    "pricePerHour": 0.8044
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i-flex.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c8i-flex",
+    "pricePerHour": 1.6088
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i-flex.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "c8i-flex",
+    "pricePerHour": 0.10055
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i-flex.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c8i-flex",
+    "pricePerHour": 0.2011
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 2.54016
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 3.38688
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 5.08032
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 0.42336
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 6.77376
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 10.16064
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 0.84672
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 1.69344
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.96xlarge",
+    "vcpu": 384,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 20.32128
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 0.10584
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "c8i.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "c8i",
+    "pricePerHour": 0.21168
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "f2.12xlarge",
+    "vcpu": 48,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "f2",
+    "pricePerHour": 4.752
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "f2.48xlarge",
+    "vcpu": 192,
+    "ramGb": 2048,
+    "burstable": false,
+    "generation": "f2",
+    "pricePerHour": 19.008
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "f2.6xlarge",
+    "vcpu": 24,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "f2",
+    "pricePerHour": 2.376
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3.16xlarge",
+    "vcpu": 64,
+    "ramGb": 488,
+    "burstable": false,
+    "generation": "i3",
+    "pricePerHour": 5.856
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3.2xlarge",
+    "vcpu": 8,
+    "ramGb": 61,
+    "burstable": false,
+    "generation": "i3",
+    "pricePerHour": 0.732
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3.4xlarge",
+    "vcpu": 16,
+    "ramGb": 122,
+    "burstable": false,
+    "generation": "i3",
+    "pricePerHour": 1.464
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3.8xlarge",
+    "vcpu": 32,
+    "ramGb": 244,
+    "burstable": false,
+    "generation": "i3",
+    "pricePerHour": 2.928
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3.large",
+    "vcpu": 2,
+    "ramGb": 15.25,
+    "burstable": false,
+    "generation": "i3",
+    "pricePerHour": 0.183
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3.xlarge",
+    "vcpu": 4,
+    "ramGb": 30.5,
+    "burstable": false,
+    "generation": "i3",
+    "pricePerHour": 0.366
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3en.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "i3en",
+    "pricePerHour": 6.384
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3en.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "i3en",
+    "pricePerHour": 12.768
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3en.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "i3en",
+    "pricePerHour": 1.064
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3en.3xlarge",
+    "vcpu": 12,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "i3en",
+    "pricePerHour": 1.596
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3en.6xlarge",
+    "vcpu": 24,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "i3en",
+    "pricePerHour": 3.192
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3en.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "i3en",
+    "pricePerHour": 0.266
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i3en.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "i3en",
+    "pricePerHour": 0.532
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i4i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "i4i",
+    "pricePerHour": 4.831
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i4i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "i4i",
+    "pricePerHour": 6.442
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i4i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "i4i",
+    "pricePerHour": 9.6624
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i4i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "i4i",
+    "pricePerHour": 0.805
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i4i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "generation": "i4i",
+    "pricePerHour": 12.8832
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i4i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "i4i",
+    "pricePerHour": 1.61
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i4i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "i4i",
+    "pricePerHour": 3.221
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i4i.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "i4i",
+    "pricePerHour": 0.201
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i4i.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "i4i",
+    "pricePerHour": 0.403
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "i7i",
+    "pricePerHour": 5.3143
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "i7i",
+    "pricePerHour": 7.0858
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "i7i",
+    "pricePerHour": 10.6286
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "i7i",
+    "pricePerHour": 0.8857
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "generation": "i7i",
+    "pricePerHour": 21.2573
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "i7i",
+    "pricePerHour": 1.7714
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "i7i",
+    "pricePerHour": 3.5429
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7i.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "i7i",
+    "pricePerHour": 0.2214
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7i.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "i7i",
+    "pricePerHour": 0.4429
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7ie.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "i7ie",
+    "pricePerHour": 7.3416
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7ie.18xlarge",
+    "vcpu": 72,
+    "ramGb": 576,
+    "burstable": false,
+    "generation": "i7ie",
+    "pricePerHour": 11.0124
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7ie.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "i7ie",
+    "pricePerHour": 14.6832
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7ie.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "i7ie",
+    "pricePerHour": 1.2236
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7ie.3xlarge",
+    "vcpu": 12,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "i7ie",
+    "pricePerHour": 1.8354
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7ie.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "generation": "i7ie",
+    "pricePerHour": 29.3664
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7ie.6xlarge",
+    "vcpu": 24,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "i7ie",
+    "pricePerHour": 3.6708
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7ie.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "i7ie",
+    "pricePerHour": 0.3059
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "i7ie.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "i7ie",
+    "pricePerHour": 0.6118
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m4.10xlarge",
+    "vcpu": 40,
+    "ramGb": 160,
+    "burstable": false,
+    "generation": "m4",
+    "pricePerHour": 2.46
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m4.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m4",
+    "pricePerHour": 3.936
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m4.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m4",
+    "pricePerHour": 0.492
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m4.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m4",
+    "pricePerHour": 0.984
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m4.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m4",
+    "pricePerHour": 0.123
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m4.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m4",
+    "pricePerHour": 0.246
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m5",
+    "pricePerHour": 2.832
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m5",
+    "pricePerHour": 3.776
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "m5",
+    "pricePerHour": 5.664
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m5",
+    "pricePerHour": 0.472
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m5",
+    "pricePerHour": 0.944
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m5",
+    "pricePerHour": 1.888
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m5",
+    "pricePerHour": 0.118
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m5",
+    "pricePerHour": 0.236
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m5a",
+    "pricePerHour": 2.544
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m5a",
+    "pricePerHour": 3.392
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "m5a",
+    "pricePerHour": 5.088
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m5a",
+    "pricePerHour": 0.424
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m5a",
+    "pricePerHour": 0.848
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m5a",
+    "pricePerHour": 1.696
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5a.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m5a",
+    "pricePerHour": 0.106
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5a.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m5a",
+    "pricePerHour": 0.212
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5ad.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m5ad",
+    "pricePerHour": 3.048
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5ad.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m5ad",
+    "pricePerHour": 4.064
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5ad.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "m5ad",
+    "pricePerHour": 6.096
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5ad.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m5ad",
+    "pricePerHour": 0.508
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5ad.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m5ad",
+    "pricePerHour": 1.016
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5ad.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m5ad",
+    "pricePerHour": 2.032
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5ad.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m5ad",
+    "pricePerHour": 0.127
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5ad.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m5ad",
+    "pricePerHour": 0.254
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5d.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m5d",
+    "pricePerHour": 3.336
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5d.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m5d",
+    "pricePerHour": 4.448
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5d.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "m5d",
+    "pricePerHour": 6.672
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5d.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m5d",
+    "pricePerHour": 0.556
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5d.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m5d",
+    "pricePerHour": 1.112
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5d.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m5d",
+    "pricePerHour": 2.224
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5d.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m5d",
+    "pricePerHour": 0.139
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5d.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m5d",
+    "pricePerHour": 0.278
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5zn.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m5zn",
+    "pricePerHour": 4.872
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5zn.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m5zn",
+    "pricePerHour": 0.812
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5zn.3xlarge",
+    "vcpu": 12,
+    "ramGb": 48,
+    "burstable": false,
+    "generation": "m5zn",
+    "pricePerHour": 1.218
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5zn.6xlarge",
+    "vcpu": 24,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "m5zn",
+    "pricePerHour": 2.436
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5zn.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m5zn",
+    "pricePerHour": 0.203
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m5zn.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m5zn",
+    "pricePerHour": 0.406
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m6i",
+    "pricePerHour": 2.832
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m6i",
+    "pricePerHour": 3.776
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "m6i",
+    "pricePerHour": 5.664
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m6i",
+    "pricePerHour": 0.472
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "m6i",
+    "pricePerHour": 7.552
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m6i",
+    "pricePerHour": 0.944
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m6i",
+    "pricePerHour": 1.888
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6i.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m6i",
+    "pricePerHour": 0.118
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6i.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m6i",
+    "pricePerHour": 0.236
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6id.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m6id",
+    "pricePerHour": 3.5028
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6id.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m6id",
+    "pricePerHour": 4.6704
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6id.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "m6id",
+    "pricePerHour": 7.0056
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6id.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m6id",
+    "pricePerHour": 0.5838
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6id.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "m6id",
+    "pricePerHour": 9.3408
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6id.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m6id",
+    "pricePerHour": 1.1676
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6id.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m6id",
+    "pricePerHour": 2.3352
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6id.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m6id",
+    "pricePerHour": 0.14595
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6id.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m6id",
+    "pricePerHour": 0.2919
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6idn.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m6idn",
+    "pricePerHour": 4.6332
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6idn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m6idn",
+    "pricePerHour": 6.1776
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6idn.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "m6idn",
+    "pricePerHour": 9.2664
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6idn.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m6idn",
+    "pricePerHour": 0.7722
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6idn.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "m6idn",
+    "pricePerHour": 12.3552
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6idn.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m6idn",
+    "pricePerHour": 1.5444
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6idn.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m6idn",
+    "pricePerHour": 3.0888
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6idn.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m6idn",
+    "pricePerHour": 0.19305
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6idn.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m6idn",
+    "pricePerHour": 0.3861
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6in.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m6in",
+    "pricePerHour": 4.04352
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6in.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m6in",
+    "pricePerHour": 5.39136
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6in.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "m6in",
+    "pricePerHour": 8.08704
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6in.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m6in",
+    "pricePerHour": 0.67392
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6in.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "m6in",
+    "pricePerHour": 10.78272
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6in.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m6in",
+    "pricePerHour": 1.34784
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6in.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m6in",
+    "pricePerHour": 2.69568
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6in.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m6in",
+    "pricePerHour": 0.16848
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m6in.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m6in",
+    "pricePerHour": 0.33696
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i-flex.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m7i-flex",
+    "pricePerHour": 2.82504
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i-flex.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m7i-flex",
+    "pricePerHour": 3.76672
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i-flex.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m7i-flex",
+    "pricePerHour": 0.47084
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i-flex.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m7i-flex",
+    "pricePerHour": 0.94168
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i-flex.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m7i-flex",
+    "pricePerHour": 1.88336
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i-flex.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m7i-flex",
+    "pricePerHour": 0.11771
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i-flex.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m7i-flex",
+    "pricePerHour": 0.23542
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m7i",
+    "pricePerHour": 2.9736
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m7i",
+    "pricePerHour": 3.9648
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "m7i",
+    "pricePerHour": 5.9472
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m7i",
+    "pricePerHour": 0.4956
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "m7i",
+    "pricePerHour": 11.8944
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m7i",
+    "pricePerHour": 0.9912
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m7i",
+    "pricePerHour": 1.9824
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m7i",
+    "pricePerHour": 0.1239
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m7i.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m7i",
+    "pricePerHour": 0.2478
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i-flex.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m8i-flex",
+    "pricePerHour": 2.9664
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i-flex.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m8i-flex",
+    "pricePerHour": 3.9552
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i-flex.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m8i-flex",
+    "pricePerHour": 0.4944
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i-flex.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m8i-flex",
+    "pricePerHour": 0.9888
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i-flex.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m8i-flex",
+    "pricePerHour": 1.9776
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i-flex.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m8i-flex",
+    "pricePerHour": 0.1236
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i-flex.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m8i-flex",
+    "pricePerHour": 0.2472
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 3.12216
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 4.16288
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 6.24432
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 0.52036
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 8.32576
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 12.48864
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 1.04072
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 2.08144
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.96xlarge",
+    "vcpu": 384,
+    "ramGb": 1536,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 24.97728
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 0.13009
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "m8i.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "m8i",
+    "pricePerHour": 0.26018
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r4.16xlarge",
+    "vcpu": 64,
+    "ramGb": 488,
+    "burstable": false,
+    "generation": "r4",
+    "pricePerHour": 5.12
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r4.2xlarge",
+    "vcpu": 8,
+    "ramGb": 61,
+    "burstable": false,
+    "generation": "r4",
+    "pricePerHour": 0.64
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r4.4xlarge",
+    "vcpu": 16,
+    "ramGb": 122,
+    "burstable": false,
+    "generation": "r4",
+    "pricePerHour": 1.28
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r4.8xlarge",
+    "vcpu": 32,
+    "ramGb": 244,
+    "burstable": false,
+    "generation": "r4",
+    "pricePerHour": 2.56
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r4.large",
+    "vcpu": 2,
+    "ramGb": 15.25,
+    "burstable": false,
+    "generation": "r4",
+    "pricePerHour": 0.16
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r4.xlarge",
+    "vcpu": 4,
+    "ramGb": 30.5,
+    "burstable": false,
+    "generation": "r4",
+    "pricePerHour": 0.32
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r5",
+    "pricePerHour": 3.648
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r5",
+    "pricePerHour": 4.864
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r5",
+    "pricePerHour": 7.296
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r5",
+    "pricePerHour": 0.608
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r5",
+    "pricePerHour": 1.216
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r5",
+    "pricePerHour": 2.432
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r5",
+    "pricePerHour": 0.152
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r5",
+    "pricePerHour": 0.304
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r5a",
+    "pricePerHour": 3.264
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r5a",
+    "pricePerHour": 4.352
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r5a",
+    "pricePerHour": 6.528
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r5a",
+    "pricePerHour": 0.544
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r5a",
+    "pricePerHour": 1.088
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r5a",
+    "pricePerHour": 2.176
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5a.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r5a",
+    "pricePerHour": 0.136
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5a.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r5a",
+    "pricePerHour": 0.272
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5ad.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r5ad",
+    "pricePerHour": 3.792
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5ad.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r5ad",
+    "pricePerHour": 5.056
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5ad.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r5ad",
+    "pricePerHour": 7.584
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5ad.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r5ad",
+    "pricePerHour": 0.632
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5ad.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r5ad",
+    "pricePerHour": 1.264
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5ad.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r5ad",
+    "pricePerHour": 2.528
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5ad.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r5ad",
+    "pricePerHour": 0.158
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5ad.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r5ad",
+    "pricePerHour": 0.316
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5b.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r5b",
+    "pricePerHour": 4.272
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5b.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r5b",
+    "pricePerHour": 5.696
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5b.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r5b",
+    "pricePerHour": 8.544
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5b.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r5b",
+    "pricePerHour": 0.712
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5b.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r5b",
+    "pricePerHour": 1.424
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5b.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r5b",
+    "pricePerHour": 2.848
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5b.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r5b",
+    "pricePerHour": 0.178
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5b.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r5b",
+    "pricePerHour": 0.356
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5d.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r5d",
+    "pricePerHour": 4.152
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5d.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r5d",
+    "pricePerHour": 5.536
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5d.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r5d",
+    "pricePerHour": 8.304
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5d.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r5d",
+    "pricePerHour": 0.692
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5d.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r5d",
+    "pricePerHour": 1.384
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5d.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r5d",
+    "pricePerHour": 2.768
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5d.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r5d",
+    "pricePerHour": 0.173
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5d.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r5d",
+    "pricePerHour": 0.346
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5dn.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r5dn",
+    "pricePerHour": 4.776
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5dn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r5dn",
+    "pricePerHour": 6.368
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5dn.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r5dn",
+    "pricePerHour": 9.552
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5dn.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r5dn",
+    "pricePerHour": 0.796
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5dn.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r5dn",
+    "pricePerHour": 1.592
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5dn.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r5dn",
+    "pricePerHour": 3.184
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5dn.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r5dn",
+    "pricePerHour": 0.199
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5dn.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r5dn",
+    "pricePerHour": 0.398
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5n.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r5n",
+    "pricePerHour": 4.272
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5n.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r5n",
+    "pricePerHour": 5.696
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5n.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r5n",
+    "pricePerHour": 8.544
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5n.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r5n",
+    "pricePerHour": 0.712
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5n.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r5n",
+    "pricePerHour": 1.424
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5n.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r5n",
+    "pricePerHour": 2.848
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5n.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r5n",
+    "pricePerHour": 0.178
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r5n.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r5n",
+    "pricePerHour": 0.356
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r6i",
+    "pricePerHour": 3.648
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r6i",
+    "pricePerHour": 4.864
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r6i",
+    "pricePerHour": 7.296
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r6i",
+    "pricePerHour": 0.608
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "generation": "r6i",
+    "pricePerHour": 9.728
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r6i",
+    "pricePerHour": 1.216
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r6i",
+    "pricePerHour": 2.432
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6i.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r6i",
+    "pricePerHour": 0.152
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6i.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r6i",
+    "pricePerHour": 0.304
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6id.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r6id",
+    "pricePerHour": 4.3608
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6id.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r6id",
+    "pricePerHour": 5.8144
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6id.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r6id",
+    "pricePerHour": 8.7216
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6id.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r6id",
+    "pricePerHour": 0.7268
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6id.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "generation": "r6id",
+    "pricePerHour": 11.6288
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6id.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r6id",
+    "pricePerHour": 1.4536
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6id.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r6id",
+    "pricePerHour": 2.9072
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6id.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r6id",
+    "pricePerHour": 0.1817
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r6id.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r6id",
+    "pricePerHour": 0.3634
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r7i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r7i",
+    "pricePerHour": 3.8304
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r7i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r7i",
+    "pricePerHour": 5.1072
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r7i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r7i",
+    "pricePerHour": 7.6608
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r7i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r7i",
+    "pricePerHour": 0.6384
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r7i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "generation": "r7i",
+    "pricePerHour": 15.3216
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r7i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r7i",
+    "pricePerHour": 1.2768
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r7i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r7i",
+    "pricePerHour": 2.5536
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r7i.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r7i",
+    "pricePerHour": 0.1596
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r7i.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r7i",
+    "pricePerHour": 0.3192
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i-flex.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r8i-flex",
+    "pricePerHour": 3.8208
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i-flex.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r8i-flex",
+    "pricePerHour": 5.0944
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i-flex.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r8i-flex",
+    "pricePerHour": 0.6368
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i-flex.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r8i-flex",
+    "pricePerHour": 1.2736
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i-flex.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r8i-flex",
+    "pricePerHour": 2.5472
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i-flex.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r8i-flex",
+    "pricePerHour": 0.1592
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i-flex.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r8i-flex",
+    "pricePerHour": 0.3184
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 4.02192
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 5.36256
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 8.04384
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 0.67032
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 10.72512
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 16.08768
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 1.34064
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 2.68128
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.96xlarge",
+    "vcpu": 384,
+    "ramGb": 3072,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 32.17536
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 0.16758
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "r8i.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "r8i",
+    "pricePerHour": 0.33516
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t2.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "generation": "t2",
+    "pricePerHour": 0.4608
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t2.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "generation": "t2",
+    "pricePerHour": 0.1152
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t2.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "generation": "t2",
+    "pricePerHour": 0.0576
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t2.micro",
+    "vcpu": 1,
+    "ramGb": 1,
+    "burstable": true,
+    "generation": "t2",
+    "pricePerHour": 0.0144
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t2.nano",
+    "vcpu": 1,
+    "ramGb": 0.5,
+    "burstable": true,
+    "generation": "t2",
+    "pricePerHour": 0.0072
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t2.small",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": true,
+    "generation": "t2",
+    "pricePerHour": 0.0288
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t2.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "generation": "t2",
+    "pricePerHour": 0.2304
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "generation": "t3",
+    "pricePerHour": 0.416
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "generation": "t3",
+    "pricePerHour": 0.104
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "generation": "t3",
+    "pricePerHour": 0.052
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "generation": "t3",
+    "pricePerHour": 0.013
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "generation": "t3",
+    "pricePerHour": 0.0065
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "generation": "t3",
+    "pricePerHour": 0.026
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "generation": "t3",
+    "pricePerHour": 0.208
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "generation": "t3a",
+    "pricePerHour": 0.3744
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3a.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "generation": "t3a",
+    "pricePerHour": 0.0936
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3a.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "generation": "t3a",
+    "pricePerHour": 0.0468
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3a.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "generation": "t3a",
+    "pricePerHour": 0.0117
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3a.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "generation": "t3a",
+    "pricePerHour": 0.0059
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3a.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "generation": "t3a",
+    "pricePerHour": 0.0234
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t3a.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "generation": "t3a",
+    "pricePerHour": 0.1872
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "u-6tb1.112xlarge",
+    "vcpu": 448,
+    "ramGb": 6144,
+    "burstable": false,
+    "generation": "u-6tb1",
+    "pricePerHour": 65.867
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "u-6tb1.56xlarge",
+    "vcpu": 224,
+    "ramGb": 6144,
+    "burstable": false,
+    "generation": "u-6tb1",
+    "pricePerHour": 55.9796
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "u7i-12tb.224xlarge",
+    "vcpu": 896,
+    "ramGb": 12288,
+    "burstable": false,
+    "generation": "u7i-12tb",
+    "pricePerHour": 151.49759
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "u7i-6tb.112xlarge",
+    "vcpu": 448,
+    "ramGb": 6144,
+    "burstable": false,
+    "generation": "u7i-6tb",
+    "pricePerHour": 75.74705
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "u7i-8tb.112xlarge",
+    "vcpu": 448,
+    "ramGb": 8192,
+    "burstable": false,
+    "generation": "u7i-8tb",
+    "pricePerHour": 100.99606
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "u7in-16tb.224xlarge",
+    "vcpu": 896,
+    "ramGb": 16384,
+    "burstable": false,
+    "generation": "u7in-16tb",
+    "pricePerHour": 217.71638
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "u7in-24tb.224xlarge",
+    "vcpu": 896,
+    "ramGb": 24576,
+    "burstable": false,
+    "generation": "u7in-24tb",
+    "pricePerHour": 326.6006
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x1.16xlarge",
+    "vcpu": 64,
+    "ramGb": 976,
+    "burstable": false,
+    "generation": "x1",
+    "pricePerHour": 9.671
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x1.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1952,
+    "burstable": false,
+    "generation": "x1",
+    "pricePerHour": 19.341
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x1e.16xlarge",
+    "vcpu": 64,
+    "ramGb": 1952,
+    "burstable": false,
+    "generation": "x1e",
+    "pricePerHour": 19.344
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x1e.2xlarge",
+    "vcpu": 8,
+    "ramGb": 244,
+    "burstable": false,
+    "generation": "x1e",
+    "pricePerHour": 2.418
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x1e.32xlarge",
+    "vcpu": 128,
+    "ramGb": 3904,
+    "burstable": false,
+    "generation": "x1e",
+    "pricePerHour": 38.688
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x1e.4xlarge",
+    "vcpu": 16,
+    "ramGb": 488,
+    "burstable": false,
+    "generation": "x1e",
+    "pricePerHour": 4.836
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x1e.8xlarge",
+    "vcpu": 32,
+    "ramGb": 976,
+    "burstable": false,
+    "generation": "x1e",
+    "pricePerHour": 9.672
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x1e.xlarge",
+    "vcpu": 4,
+    "ramGb": 122,
+    "burstable": false,
+    "generation": "x1e",
+    "pricePerHour": 1.209
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x2idn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 1024,
+    "burstable": false,
+    "generation": "x2idn",
+    "pricePerHour": 9.6705
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x2idn.24xlarge",
+    "vcpu": 96,
+    "ramGb": 1536,
+    "burstable": false,
+    "generation": "x2idn",
+    "pricePerHour": 14.50575
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x2idn.32xlarge",
+    "vcpu": 128,
+    "ramGb": 2048,
+    "burstable": false,
+    "generation": "x2idn",
+    "pricePerHour": 19.341
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x2iedn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 2048,
+    "burstable": false,
+    "generation": "x2iedn",
+    "pricePerHour": 19.341
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x2iedn.24xlarge",
+    "vcpu": 96,
+    "ramGb": 3072,
+    "burstable": false,
+    "generation": "x2iedn",
+    "pricePerHour": 29.0115
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x2iedn.2xlarge",
+    "vcpu": 8,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "x2iedn",
+    "pricePerHour": 2.41763
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x2iedn.32xlarge",
+    "vcpu": 128,
+    "ramGb": 4096,
+    "burstable": false,
+    "generation": "x2iedn",
+    "pricePerHour": 38.682
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x2iedn.4xlarge",
+    "vcpu": 16,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "x2iedn",
+    "pricePerHour": 4.83525
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x2iedn.8xlarge",
+    "vcpu": 32,
+    "ramGb": 1024,
+    "burstable": false,
+    "generation": "x2iedn",
+    "pricePerHour": 9.6705
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x2iedn.xlarge",
+    "vcpu": 4,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "x2iedn",
+    "pricePerHour": 1.20881
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8aedz.12xlarge",
+    "vcpu": 48,
+    "ramGb": 1536,
+    "burstable": false,
+    "generation": "x8aedz",
+    "pricePerHour": 20.02056
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8aedz.24xlarge",
+    "vcpu": 96,
+    "ramGb": 3072,
+    "burstable": false,
+    "generation": "x8aedz",
+    "pricePerHour": 40.04112
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8aedz.3xlarge",
+    "vcpu": 12,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "x8aedz",
+    "pricePerHour": 5.00514
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8aedz.6xlarge",
+    "vcpu": 24,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "x8aedz",
+    "pricePerHour": 10.01028
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8aedz.large",
+    "vcpu": 2,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "x8aedz",
+    "pricePerHour": 0.83419
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8aedz.xlarge",
+    "vcpu": 4,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "x8aedz",
+    "pricePerHour": 1.66838
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 768,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 7.61544
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 1024,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 10.15392
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 1536,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 15.23088
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 1.26924
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 2048,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 20.30784
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 3072,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 30.46176
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 256,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 2.53848
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.64xlarge",
+    "vcpu": 256,
+    "ramGb": 4096,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 40.61568
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 512,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 5.07696
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.96xlarge",
+    "vcpu": 384,
+    "ramGb": 6144,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 58.70235
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.large",
+    "vcpu": 2,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 0.31731
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "x8i.xlarge",
+    "vcpu": 4,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "x8i",
+    "pricePerHour": 0.63462
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "z1d.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "generation": "z1d",
+    "pricePerHour": 5.4
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "z1d.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "z1d",
+    "pricePerHour": 0.9
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "z1d.3xlarge",
+    "vcpu": 12,
+    "ramGb": 96,
+    "burstable": false,
+    "generation": "z1d",
+    "pricePerHour": 1.35
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "z1d.6xlarge",
+    "vcpu": 24,
+    "ramGb": 192,
+    "burstable": false,
+    "generation": "z1d",
+    "pricePerHour": 2.7
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "z1d.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "z1d",
+    "pricePerHour": 0.225
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "z1d.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "z1d",
+    "pricePerHour": 0.45
+  }
+]

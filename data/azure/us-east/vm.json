@@ -1,0 +1,202 @@
+[
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_B1s",
+    "vcpu": 1,
+    "ramGb": 1,
+    "burstable": true,
+    "generation": "b",
+    "pricePerHour": 0.0104
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_B1ms",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": true,
+    "generation": "b",
+    "pricePerHour": 0.0207
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_B2s",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "generation": "b",
+    "pricePerHour": 0.0416
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_B2ms",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "generation": "b",
+    "pricePerHour": 0.0832
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_B4ms",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "generation": "b",
+    "pricePerHour": 0.166
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_B8ms",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "generation": "b",
+    "pricePerHour": 0.333
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_D2s_v5",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "dsv5",
+    "pricePerHour": 0.096
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_D4s_v5",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "dsv5",
+    "pricePerHour": 0.192
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_D8s_v5",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "dsv5",
+    "pricePerHour": 0.384
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_D16s_v5",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "dsv5",
+    "pricePerHour": 0.768
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_D32s_v5",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "dsv5",
+    "pricePerHour": 1.536
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_E2s_v5",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "esv5",
+    "pricePerHour": 0.126
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_E4s_v5",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "esv5",
+    "pricePerHour": 0.252
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_E8s_v5",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "esv5",
+    "pricePerHour": 0.504
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_E16s_v5",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "generation": "esv5",
+    "pricePerHour": 1.008
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_F2s_v2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "generation": "fsv2",
+    "pricePerHour": 0.0846
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_F4s_v2",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "generation": "fsv2",
+    "pricePerHour": 0.169
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_F8s_v2",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "generation": "fsv2",
+    "pricePerHour": 0.338
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_F16s_v2",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "generation": "fsv2",
+    "pricePerHour": 0.677
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_F32s_v2",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "generation": "fsv2",
+    "pricePerHour": 1.353
+  }
+]

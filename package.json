@@ -1,0 +1,15 @@
+{
+  "name": "cloud-cost",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "collect:gcp": "tsx collector/main.ts",
+    "test:collector": "tsx collector/providers/gcp.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24",
+    "tsx": "^4",
+    "typescript": "^5"
+  }
+}

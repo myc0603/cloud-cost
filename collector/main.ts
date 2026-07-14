@@ -7,6 +7,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import type { Region, VmSku } from '../src/lib/schema';
 import { collectAwsVm } from './providers/aws';
+import { collectAzureVm } from './providers/azure';
 import { GCP_REGION, buildVmSkus, fetchComputeSkus, parseUnitPrices } from './providers/gcp';
 
 // 최소 .env 로더 (의존성 없이)
@@ -59,10 +60,20 @@ async function collectAws() {
   }
 }
 
+async function collectAzure() {
+  for (const region of REGIONS) {
+    console.log(`\n━━━ azure / ${region} ━━━`);
+    console.log('[azure] Retail Prices API 수집 중...');
+    const vms = await collectAzureVm(region);
+    writeVmSnapshot('azure', region, vms, ['Standard_B2s', 'Standard_D2s_v5', 'Standard_F4s_v2']);
+  }
+}
+
 const target = process.argv[2] ?? 'all';
 if (target === 'gcp' || target === 'all') await collectGcp();
 if (target === 'aws' || target === 'all') await collectAws();
-if (!['gcp', 'aws', 'all'].includes(target)) {
-  console.error(`알 수 없는 대상: ${target} (all | gcp | aws)`);
+if (target === 'azure' || target === 'all') await collectAzure();
+if (!['gcp', 'aws', 'azure', 'all'].includes(target)) {
+  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure)`);
   process.exit(1);
 }

@@ -6,10 +6,11 @@
  * 파이프라인: fetchComputeSkus → parseUnitPrices → buildVmSkus
  */
 
-import type { Region, VmSku } from '../../src/lib/schema';
+import type { EgressTier, Region, StorageSku, VmSku } from '../../src/lib/schema';
 import { GCP_MACHINE_TYPES } from './gcp-machine-types';
 
 const COMPUTE_SERVICE_ID = '6F81-5844-456A'; // Compute Engine
+const GCS_SERVICE_ID = '95FF-2EF5-5EA1'; // Cloud Storage
 
 export const GCP_REGION: Record<Region, string> = {
   seoul: 'asia-northeast3',
@@ -37,7 +38,7 @@ const FAMILY_LABELS: Record<string, string> = {
 export interface RawSku {
   skuId: string;
   description: string;
-  category?: { usageType?: string };
+  category?: { usageType?: string; resourceGroup?: string };
   serviceRegions?: string[];
   pricingInfo?: {
     pricingExpression?: {
@@ -53,11 +54,14 @@ export interface RawSku {
 /** 패밀리 키 → vCPU/RAM 시간 단가 (USD) */
 export type UnitPrices = Record<string, { corePerHour?: number; ramGbPerHour?: number }>;
 
-export async function fetchComputeSkus(apiKey: string): Promise<RawSku[]> {
+export const fetchComputeSkus = (apiKey: string) => fetchServiceSkus(apiKey, COMPUTE_SERVICE_ID);
+export const fetchGcsSkus = (apiKey: string) => fetchServiceSkus(apiKey, GCS_SERVICE_ID);
+
+async function fetchServiceSkus(apiKey: string, serviceId: string): Promise<RawSku[]> {
   const all: RawSku[] = [];
   let pageToken = '';
   do {
-    const url = new URL(`https://cloudbilling.googleapis.com/v1/services/${COMPUTE_SERVICE_ID}/skus`);
+    const url = new URL(`https://cloudbilling.googleapis.com/v1/services/${serviceId}/skus`);
     url.searchParams.set('key', apiKey);
     url.searchParams.set('pageSize', '5000');
     if (pageToken) url.searchParams.set('pageToken', pageToken);
@@ -122,6 +126,66 @@ export function parseUnitPrices(
 }
 
 const round6 = (x: number) => +x.toFixed(6);
+
+const isOnDemandIn = (sku: RawSku, gcpRegion: string) =>
+  sku.category?.usageType === 'OnDemand' && !!sku.serviceRegions?.includes(gcpRegion);
+
+/**
+ * 스토리지 단가 추출.
+ * - block-ssd: Compute의 "Balanced PD Capacity ..." (gp3/Premium SSD v2와 동급인 범용 SSD)
+ * - object-standard: GCS의 "Standard Storage ..." (RegionalStorage 그룹, Autoclass 변형 제외)
+ */
+export function parseGcpStorage(
+  computeSkus: RawSku[],
+  gcsSkus: RawSku[],
+  gcpRegion: string,
+  region: Region,
+): StorageSku[] {
+  const out: StorageSku[] = [];
+
+  const pd = computeSkus.find(
+    (s) => isOnDemandIn(s, gcpRegion) && s.category?.resourceGroup === 'SSD' && /^Balanced PD Capacity/.test(s.description),
+  );
+  const pdPrice = pd && unitPriceOf(pd);
+  if (pdPrice) out.push({ provider: 'gcp', region, kind: 'block-ssd', pricePerGbMonth: round6(pdPrice) });
+
+  const gcs = gcsSkus.find(
+    (s) => isOnDemandIn(s, gcpRegion) && s.category?.resourceGroup === 'RegionalStorage' && /^Standard Storage /.test(s.description),
+  );
+  const gcsPrice = gcs && unitPriceOf(gcs);
+  if (gcsPrice) out.push({ provider: 'gcp', region, kind: 'object-standard', pricePerGbMonth: round6(gcsPrice) });
+
+  return out;
+}
+
+/**
+ * 인터넷 egress 구간 요금 — Standard 네트워크 티어 기준.
+ * (Premium 티어는 목적지별 SKU라 단일 가격이 없어 비교 지표로 쓰지 않는다)
+ * tieredRates의 무료 선두 구간(예: 서울 0~200GB $0)이 그대로 tiers에 들어간다.
+ */
+export function parseGcpEgress(computeSkus: RawSku[], gcpRegion: string, region: Region): EgressTier | null {
+  const sku = computeSkus.find(
+    (s) =>
+      isOnDemandIn(s, gcpRegion) &&
+      s.category?.resourceGroup === 'StandardInternetEgress' &&
+      s.description.startsWith('Network Standard Data Transfer Out to Internet from'),
+  );
+  const rates = sku?.pricingInfo?.[0]?.pricingExpression?.tieredRates;
+  if (!rates || rates.length === 0) return null;
+
+  const sorted = [...rates].sort((a, b) => (a.startUsageAmount ?? 0) - (b.startUsageAmount ?? 0));
+  const tiers = sorted.map((r, i) => ({
+    upToGb: sorted[i + 1]?.startUsageAmount ?? null,
+    pricePerGb: round6(Number(r.unitPrice?.units ?? 0) + (r.unitPrice?.nanos ?? 0) / 1e9),
+  }));
+
+  let freeGb = 0;
+  for (const t of tiers) {
+    if (t.pricePerGb !== 0 || t.upToGb === null) break;
+    freeGb = t.upToGb;
+  }
+  return { provider: 'gcp', region, freeGb, tiers };
+}
 
 /** 패밀리 단가 × 머신 타입 카탈로그 → VmSku[]. 단가가 불완전한 패밀리는 건너뛴다. */
 export function buildVmSkus(unitPrices: UnitPrices, region: Region): VmSku[] {

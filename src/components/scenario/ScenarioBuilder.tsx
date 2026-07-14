@@ -3,21 +3,25 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { estimate, type Scenario, type VmSpec } from '@/lib/estimator';
-import type { Provider, Region, VmSku } from '@/lib/schema';
+import type { Provider, ProviderPricing, Region } from '@/lib/schema';
 import { decodeScenario, encodeScenario } from '@/lib/scenario-url';
 import EstimateResult from './EstimateResult';
 import ResourceCard from './ResourceCard';
+import StorageTrafficCard from './StorageTrafficCard';
 
 const DEFAULT_SCENARIO: Scenario = {
   region: 'seoul',
   vms: [{ vcpu: 2, ramGb: 4, count: 1 }],
+  blockGb: 0,
+  objectGb: 0,
+  egressGb: 0,
 };
 
 const REGION_LABEL: Record<Region, string> = { seoul: '서울', 'us-east': '미국 동부 (버지니아)' };
 
 interface Props {
-  /** 리전별 × 플랫폼별 VM 요금표 — 서버(page.tsx)에서 로드해 내려준다 */
-  pricing: Record<Region, Record<Provider, VmSku[]>>;
+  /** 리전별 × 플랫폼별 요금 데이터 — 서버(page.tsx)에서 로드해 내려준다 */
+  pricing: Record<Region, Record<Provider, ProviderPricing>>;
 }
 
 export default function ScenarioBuilder({ pricing }: Props) {
@@ -86,6 +90,11 @@ export default function ScenarioBuilder({ pricing }: Props) {
             onRemove={() => removeVm(i)}
           />
         ))}
+
+        <StorageTrafficCard
+          scenario={scenario}
+          onChange={(next) => setScenario((s) => ({ ...s, ...next }))}
+        />
 
         <div className="flex gap-2">
           <button

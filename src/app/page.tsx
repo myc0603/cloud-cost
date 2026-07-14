@@ -1,12 +1,12 @@
 import { Suspense } from 'react';
 import ScenarioBuilder from '@/components/scenario/ScenarioBuilder';
-import { loadVmSkus } from '@/lib/pricing';
+import { loadPricing } from '@/lib/pricing';
 
 export default function Home() {
   // 빌드 시점에 스냅샷을 읽어 클라이언트로 내려보낸다 — 데이터 갱신 = 재빌드
   const pricing = {
-    seoul: loadVmSkus('seoul'),
-    'us-east': loadVmSkus('us-east'),
+    seoul: loadPricing('seoul'),
+    'us-east': loadPricing('us-east'),
   };
 
   return (

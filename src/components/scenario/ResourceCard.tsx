@@ -1,38 +1,13 @@
 'use client';
 
 import type { VmSpec } from '@/lib/estimator';
+import NumberField from './NumberField';
 
 interface Props {
   index: number;
   spec: VmSpec;
   onChange: (spec: VmSpec) => void;
   onRemove: () => void;
-}
-
-function NumberField({
-  label,
-  value,
-  onChange,
-}: {
-  label: string;
-  value: number;
-  onChange: (n: number) => void;
-}) {
-  return (
-    <label className="flex flex-col gap-1 text-xs text-slate-500">
-      {label}
-      <input
-        type="number"
-        min={1}
-        value={value}
-        onChange={(e) => {
-          const n = parseInt(e.target.value, 10);
-          if (!Number.isNaN(n) && n >= 1) onChange(n);
-        }}
-        className="w-20 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900"
-      />
-    </label>
-  );
 }
 
 export default function ResourceCard({ index, spec, onChange, onRemove }: Props) {
@@ -49,9 +24,9 @@ export default function ResourceCard({ index, spec, onChange, onRemove }: Props)
         </button>
       </div>
       <div className="flex gap-4">
-        <NumberField label="vCPU" value={spec.vcpu} onChange={(vcpu) => onChange({ ...spec, vcpu })} />
-        <NumberField label="RAM (GB)" value={spec.ramGb} onChange={(ramGb) => onChange({ ...spec, ramGb })} />
-        <NumberField label="대수" value={spec.count} onChange={(count) => onChange({ ...spec, count })} />
+        <NumberField label="vCPU" value={spec.vcpu} min={1} onChange={(vcpu) => onChange({ ...spec, vcpu })} />
+        <NumberField label="RAM (GB)" value={spec.ramGb} min={1} onChange={(ramGb) => onChange({ ...spec, ramGb })} />
+        <NumberField label="대수" value={spec.count} min={1} onChange={(count) => onChange({ ...spec, count })} />
       </div>
     </div>
   );

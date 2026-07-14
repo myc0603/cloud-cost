@@ -4,7 +4,8 @@
  * 상세: docs/ARCHITECTURE.md §5
  */
 
-import type { Provider, Region, VmSku } from '../schema';
+import type { EgressTier, Provider, ProviderPricing, StorageSku, VmSku } from '../schema';
+import type { Region } from '../schema';
 
 export interface VmSpec {
   vcpu: number;
@@ -15,6 +16,9 @@ export interface VmSpec {
 export interface Scenario {
   region: Region;
   vms: VmSpec[];
+  blockGb: number; // 0 = 미사용
+  objectGb: number;
+  egressGb: number; // 월 아웃바운드 전송량
 }
 
 export interface MatchOptions {
@@ -22,19 +26,17 @@ export interface MatchOptions {
   includeBurstable: boolean;
 }
 
-export interface VmLineItem {
-  spec: VmSpec;
-  /** 스펙을 만족하는 최저가 인스턴스. null = 조건 만족하는 인스턴스 없음 */
-  matched: VmSku | null;
-  monthlyUsd: number | null;
-}
+export type EstimateLine =
+  | { kind: 'vm'; spec: VmSpec; matched: VmSku | null; monthlyUsd: number | null }
+  | { kind: 'storage'; storageKind: StorageSku['kind']; sizeGb: number; pricePerGbMonth: number | null; monthlyUsd: number | null }
+  | { kind: 'egress'; gb: number; freeGb: number | null; monthlyUsd: number | null };
 
 export interface ProviderEstimate {
   provider: Provider;
-  /** 요금 데이터 존재 여부 — false면 "데이터 준비 중" */
+  /** VM 요금 데이터 존재 여부 — false면 "데이터 준비 중" */
   available: boolean;
-  lines: VmLineItem[];
-  /** 모든 항목이 매칭됐을 때만 총액. 불완전 견적에 총액을 보여주면 오해를 부른다 */
+  lines: EstimateLine[];
+  /** 모든 항목이 계산됐을 때만 총액. 불완전 견적에 총액을 보여주면 오해를 부른다 */
   totalMonthlyUsd: number | null;
 }
 
@@ -60,25 +62,62 @@ export function matchVm(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmSku 
   );
 }
 
+/** 구간 요금 누적 계산 — tiers는 0GB부터의 절대 사용량 구간(무료 구간 포함) */
+export function calcEgressUsd(egress: EgressTier, gb: number): number {
+  let cost = 0;
+  let prev = 0;
+  for (const tier of egress.tiers) {
+    const cap = tier.upToGb ?? Infinity;
+    const qty = Math.min(gb, cap) - prev;
+    if (qty > 0) cost += qty * tier.pricePerGb;
+    if (gb <= cap) break;
+    prev = cap;
+  }
+  return cost;
+}
+
 export function estimate(
   scenario: Scenario,
-  skusByProvider: Record<Provider, VmSku[]>,
+  pricing: Record<Provider, ProviderPricing>,
   opts: MatchOptions,
 ): ProviderEstimate[] {
-  return (Object.keys(skusByProvider) as Provider[]).map((provider) => {
-    const skus = skusByProvider[provider];
-    if (skus.length === 0) {
+  return (Object.keys(pricing) as Provider[]).map((provider) => {
+    const { vm: vmSkus, storage, egress } = pricing[provider];
+    if (vmSkus.length === 0) {
       return { provider, available: false, lines: [], totalMonthlyUsd: null };
     }
 
-    const lines: VmLineItem[] = scenario.vms.map((spec) => {
-      const matched = matchVm(skus, spec, opts);
+    const lines: EstimateLine[] = scenario.vms.map((spec) => {
+      const matched = matchVm(vmSkus, spec, opts);
       return {
+        kind: 'vm' as const,
         spec,
         matched,
         monthlyUsd: matched ? round2(matched.pricePerHour * HOURS_PER_MONTH * spec.count) : null,
       };
     });
+
+    const storageLine = (storageKind: StorageSku['kind'], sizeGb: number): EstimateLine => {
+      const sku = storage.find((s) => s.kind === storageKind);
+      return {
+        kind: 'storage',
+        storageKind,
+        sizeGb,
+        pricePerGbMonth: sku?.pricePerGbMonth ?? null,
+        monthlyUsd: sku ? round2(sizeGb * sku.pricePerGbMonth) : null,
+      };
+    };
+    if (scenario.blockGb > 0) lines.push(storageLine('block-ssd', scenario.blockGb));
+    if (scenario.objectGb > 0) lines.push(storageLine('object-standard', scenario.objectGb));
+
+    if (scenario.egressGb > 0) {
+      lines.push({
+        kind: 'egress',
+        gb: scenario.egressGb,
+        freeGb: egress?.freeGb ?? null,
+        monthlyUsd: egress ? round2(calcEgressUsd(egress, scenario.egressGb)) : null,
+      });
+    }
 
     const complete = lines.length > 0 && lines.every((l) => l.monthlyUsd !== null);
     return {

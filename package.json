@@ -3,13 +3,27 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "collect:gcp": "tsx collector/main.ts",
+    "test": "node --import tsx --test src/lib/estimator/estimator.test.ts src/lib/scenario-url.test.ts && npm run test:collector",
     "test:collector": "tsx collector/providers/gcp.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.2",
     "@types/node": "^24",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.19",
+    "tailwindcss": "^4.3.2",
     "tsx": "^4",
     "typescript": "^5"
+  },
+  "dependencies": {
+    "next": "^16.2.10",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   }
 }

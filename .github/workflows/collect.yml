@@ -1,0 +1,46 @@
+# 가격 데이터 자동 수집 — 상세: docs/ARCHITECTURE.md §2
+#
+# 사전 준비 (GitHub에 레포 올린 뒤 1회):
+#   레포 Settings → Secrets and variables → Actions → New repository secret
+#   이름 GCP_API_KEY, 값은 GCP 콘솔에서 발급한 API 키
+#
+# 흐름: 매일 수집 → 검증(급변·건수 급감 시 잡 실패 = 커밋 없음 + GitHub 이메일 알림)
+#       → 변경분 커밋 & push → push가 Vercel 자동 재배포를 트리거 (배포 = 데이터 갱신)
+name: collect-prices
+
+on:
+  schedule:
+    - cron: '0 20 * * *' # 매일 20:00 UTC = 한국시간 새벽 5시
+  workflow_dispatch: # 수동 실행 버튼 (Actions 탭) — 디버깅용
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # GITHUB_TOKEN으로 push 하기 위해 필요
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: 3사 가격 수집 + 검증
+        run: npm run collect
+        env:
+          GCP_API_KEY: ${{ secrets.GCP_API_KEY }}
+
+      - name: 변경분 커밋 & push
+        run: |
+          git config user.name "price-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "가격 변경 없음 — 커밋 생략"
+          else
+            git commit -m "data: 가격 스냅샷 갱신 ($(date -u +%Y-%m-%d))"
+            git push
+          fi

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { estimate, type Scenario, type VmSpec } from '@/lib/estimator';
 import type { Provider, ProviderPricing, Region } from '@/lib/schema';
 import { decodeScenario, encodeScenario } from '@/lib/scenario-url';
@@ -17,7 +18,7 @@ const DEFAULT_SCENARIO: Scenario = {
   egressGb: 0,
 };
 
-const REGION_LABEL: Record<Region, string> = { seoul: '서울', 'us-east': '미국 동부 (버지니아)' };
+const REGIONS: Region[] = ['seoul', 'us-east'];
 
 interface Props {
   /** 리전별 × 플랫폼별 요금 데이터 — 서버(page.tsx)에서 로드해 내려준다 */
@@ -25,6 +26,7 @@ interface Props {
 }
 
 export default function ScenarioBuilder({ pricing }: Props) {
+  const t = useTranslations('scenario');
   const searchParams = useSearchParams();
   const [scenario, setScenario] = useState<Scenario>(
     () => decodeScenario(searchParams) ?? DEFAULT_SCENARIO,
@@ -60,14 +62,14 @@ export default function ScenarioBuilder({ pricing }: Props) {
       <section className="flex flex-col gap-4">
         <div className="flex flex-wrap items-center gap-4">
           <label className="flex items-center gap-2 text-sm">
-            리전
+            {t('region')}
             <select
               value={scenario.region}
               onChange={(e) => setScenario((s) => ({ ...s, region: e.target.value as Region }))}
               className="rounded border border-slate-300 bg-white px-2 py-1"
             >
-              {(Object.keys(REGION_LABEL) as Region[]).map((r) => (
-                <option key={r} value={r}>{REGION_LABEL[r]}</option>
+              {REGIONS.map((r) => (
+                <option key={r} value={r}>{t(`regionLabel.${r}`)}</option>
               ))}
             </select>
           </label>
@@ -77,7 +79,7 @@ export default function ScenarioBuilder({ pricing }: Props) {
               checked={includeBurstable}
               onChange={(e) => setIncludeBurstable(e.target.checked)}
             />
-            버스트 인스턴스 포함
+            {t('includeBurstable')}
           </label>
         </div>
 
@@ -101,13 +103,13 @@ export default function ScenarioBuilder({ pricing }: Props) {
             onClick={addVm}
             className="rounded-lg border border-dashed border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 hover:text-slate-900"
           >
-            + VM 추가
+            {t('addVm')}
           </button>
           <button
             onClick={copyShareLink}
             className="rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 hover:text-slate-900"
           >
-            {copied ? '복사됨 ✓' : '공유 링크 복사'}
+            {copied ? t('copied') : t('copyShareLink')}
           </button>
         </div>
       </section>

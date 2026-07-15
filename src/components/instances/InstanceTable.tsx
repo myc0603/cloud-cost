@@ -1,11 +1,12 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { HOURS_PER_MONTH } from '@/lib/estimator';
 import type { Provider, Region, VmSku } from '@/lib/schema';
 
 const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
-const REGION_LABEL: Record<Region, string> = { seoul: '서울', 'us-east': '미국 동부' };
+const REGIONS: Region[] = ['seoul', 'us-east'];
 
 type SortKey = 'provider' | 'sku' | 'vcpu' | 'ramGb' | 'pricePerHour';
 
@@ -13,6 +14,7 @@ const usd = (x: number, digits: number) =>
   '$' + x.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
 
 export default function InstanceTable({ skus }: { skus: VmSku[] }) {
+  const t = useTranslations('instances');
   const [region, setRegion] = useState<Region>('seoul');
   const [providers, setProviders] = useState<Set<Provider>>(new Set(['aws', 'azure', 'gcp']));
   const [minVcpu, setMinVcpu] = useState(0);
@@ -62,14 +64,14 @@ export default function InstanceTable({ skus }: { skus: VmSku[] }) {
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-end gap-4 text-sm">
         <label className="flex items-center gap-2">
-          리전
+          {t('region')}
           <select
             value={region}
             onChange={(e) => setRegion(e.target.value as Region)}
             className="rounded border border-slate-300 bg-white px-2 py-1"
           >
-            {(Object.keys(REGION_LABEL) as Region[]).map((r) => (
-              <option key={r} value={r}>{REGION_LABEL[r]}</option>
+            {REGIONS.map((r) => (
+              <option key={r} value={r}>{t(`regionLabel.${r}`)}</option>
             ))}
           </select>
         </label>
@@ -80,7 +82,7 @@ export default function InstanceTable({ skus }: { skus: VmSku[] }) {
           </label>
         ))}
         <label className="flex items-center gap-2">
-          vCPU ≥
+          {t('vcpuMin')}
           <input
             type="number"
             min={0}
@@ -90,7 +92,7 @@ export default function InstanceTable({ skus }: { skus: VmSku[] }) {
           />
         </label>
         <label className="flex items-center gap-2">
-          RAM(GB) ≥
+          {t('ramMin')}
           <input
             type="number"
             min={0}
@@ -101,22 +103,22 @@ export default function InstanceTable({ skus }: { skus: VmSku[] }) {
         </label>
         <label className="flex items-center gap-1.5">
           <input type="checkbox" checked={includeBurstable} onChange={(e) => setIncludeBurstable(e.target.checked)} />
-          버스트 포함
+          {t('includeBurstable')}
         </label>
-        <span className="text-xs text-slate-400">{rows.length}개 표시</span>
+        <span className="text-xs text-slate-400">{t('shown', { count: rows.length })}</span>
       </div>
 
       <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
         <table className="w-full text-sm">
           <thead className="border-b border-slate-200 text-xs text-slate-500">
             <tr>
-              <th className={th} onClick={() => sortBy('provider')}>플랫폼{arrow('provider')}</th>
-              <th className={th} onClick={() => sortBy('sku')}>인스턴스{arrow('sku')}</th>
-              <th className={th} onClick={() => sortBy('vcpu')}>vCPU{arrow('vcpu')}</th>
-              <th className={th} onClick={() => sortBy('ramGb')}>RAM (GB){arrow('ramGb')}</th>
-              <th className={th} onClick={() => sortBy('pricePerHour')}>시간당{arrow('pricePerHour')}</th>
-              <th className="px-3 py-2 text-left font-semibold">월 (730h)</th>
-              <th className="px-3 py-2 text-left font-semibold">버스트</th>
+              <th className={th} onClick={() => sortBy('provider')}>{t('colProvider')}{arrow('provider')}</th>
+              <th className={th} onClick={() => sortBy('sku')}>{t('colSku')}{arrow('sku')}</th>
+              <th className={th} onClick={() => sortBy('vcpu')}>{t('colVcpu')}{arrow('vcpu')}</th>
+              <th className={th} onClick={() => sortBy('ramGb')}>{t('colRam')}{arrow('ramGb')}</th>
+              <th className={th} onClick={() => sortBy('pricePerHour')}>{t('colHourly')}{arrow('pricePerHour')}</th>
+              <th className="px-3 py-2 text-left font-semibold">{t('colMonthly')}</th>
+              <th className="px-3 py-2 text-left font-semibold">{t('colBurstable')}</th>
             </tr>
           </thead>
           <tbody>

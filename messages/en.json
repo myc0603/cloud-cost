@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "siteTitle": "How Much Cloud — Cloud Cost Comparison",
+    "siteDescription": "Compare estimated monthly costs for your workload across AWS, Azure, and GCP — side by side.",
+    "instancesTitle": "AWS vs Azure vs GCP Instance Price Comparison | How Much Cloud",
+    "instancesDescription": "Compare vCPU/RAM specs and hourly/monthly prices of AWS EC2, Azure VM, and GCP Compute Engine instances in one table. Linux on-demand list prices, Seoul and US East regions.",
+    "methodologyTitle": "Data Sources & Methodology | How Much Cloud",
+    "methodologyDescription": "How we collect prices from the official cloud pricing APIs, validate them daily, and compute estimates — including comparison rules and limitations."
+  },
+  "nav": {
+    "brand": "How Much Cloud",
+    "scenario": "Cost estimator",
+    "instances": "Instance comparison",
+    "methodology": "Methodology"
+  },
+  "home": {
+    "title": "Cloud cost comparison",
+    "subtitle": "Enter the specs you need and compare estimated monthly costs across AWS · Azure · GCP side by side."
+  },
+  "freshness": {
+    "collected": "Prices collected {date}",
+    "methodology": "Methodology"
+  },
+  "scenario": {
+    "region": "Region",
+    "regionLabel": {
+      "seoul": "Seoul",
+      "us-east": "US East (Virginia)"
+    },
+    "includeBurstable": "Include burstable instances",
+    "addVm": "+ Add VM",
+    "copyShareLink": "Copy share link",
+    "copied": "Copied ✓",
+    "vmTitle": "Virtual machine #{index}",
+    "remove": "Remove",
+    "removeAria": "Remove this resource",
+    "vcpu": "vCPU",
+    "ram": "RAM (GB)",
+    "count": "Count",
+    "storageTraffic": "Storage · Traffic",
+    "zeroUnused": "0 = not used",
+    "blockStorage": "Block storage (GB)",
+    "objectStorage": "Object storage (GB)",
+    "egress": "Outbound traffic (GB/mo)"
+  },
+  "estimate": {
+    "storageLabel": {
+      "block-ssd": "Block storage",
+      "object-standard": "Object storage"
+    },
+    "noMatch": "No instance meets the specs",
+    "noData": "No data",
+    "egressLine": "Outbound traffic {gb}GB",
+    "freeApplied": "({gb}GB free tier applied)",
+    "cheapest": "Cheapest",
+    "dataPending": "Data coming soon",
+    "unavailable": "Not available",
+    "perMonth": " /mo",
+    "footnote": "Linux on-demand list prices × 730 hours/month. Discounts and free tiers not included. The arrow (→) marks the cheapest instance that satisfies your specs, matched automatically. Storage compares general-purpose SSDs (gp3 · Premium SSD v2 · Balanced PD) and standard object tiers; traffic uses tiered internet-routing rates."
+  },
+  "instances": {
+    "title": "Instance price comparison",
+    "subtitle": "{count, number} AWS · Azure · GCP instances — Linux on-demand list prices (USD).",
+    "region": "Region",
+    "regionLabel": {
+      "seoul": "Seoul",
+      "us-east": "US East"
+    },
+    "vcpuMin": "vCPU ≥",
+    "ramMin": "RAM (GB) ≥",
+    "includeBurstable": "Include burstable",
+    "shown": "{count, number} shown",
+    "colProvider": "Provider",
+    "colSku": "Instance",
+    "colVcpu": "vCPU",
+    "colRam": "RAM (GB)",
+    "colHourly": "Hourly",
+    "colMonthly": "Monthly (730h)",
+    "colBurstable": "Burst"
+  },
+  "methodology": {
+    "title": "Data sources & methodology"
+  }
+}

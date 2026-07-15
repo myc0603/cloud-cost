@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "siteTitle": "클라우드 비용 비교",
+    "siteDescription": "AWS · Azure · GCP 시나리오 기반 월 비용 비교",
+    "instancesTitle": "AWS·Azure·GCP 인스턴스 가격 비교표 | 클라우드 비용 비교",
+    "instancesDescription": "AWS EC2, Azure VM, GCP Compute Engine 인스턴스의 vCPU/RAM 스펙과 시간당·월 가격을 한 표에서 비교합니다. Linux 온디맨드 정가, 서울·미국 동부 리전.",
+    "methodologyTitle": "데이터 출처와 산정 방식 | 클라우드 비용 비교",
+    "methodologyDescription": "가격 데이터의 출처(3사 공식 API), 수집 주기, 견적 계산 방식, 비교 기준과 한계를 투명하게 공개합니다."
+  },
+  "nav": {
+    "brand": "클라우드 비용 비교",
+    "scenario": "시나리오 견적",
+    "instances": "인스턴스 비교표",
+    "methodology": "산정 방식"
+  },
+  "home": {
+    "title": "클라우드 비용 비교",
+    "subtitle": "원하는 스펙을 입력하면 AWS · Azure · GCP의 월 예상 비용을 나란히 비교합니다."
+  },
+  "freshness": {
+    "collected": "가격 기준: {date} 수집",
+    "methodology": "산정 방식"
+  },
+  "scenario": {
+    "region": "리전",
+    "regionLabel": {
+      "seoul": "서울",
+      "us-east": "미국 동부 (버지니아)"
+    },
+    "includeBurstable": "버스트 인스턴스 포함",
+    "addVm": "+ VM 추가",
+    "copyShareLink": "공유 링크 복사",
+    "copied": "복사됨 ✓",
+    "vmTitle": "가상 머신 #{index}",
+    "remove": "삭제",
+    "removeAria": "이 리소스 삭제",
+    "vcpu": "vCPU",
+    "ram": "RAM (GB)",
+    "count": "대수",
+    "storageTraffic": "스토리지 · 트래픽",
+    "zeroUnused": "0 = 미사용",
+    "blockStorage": "블록 스토리지 (GB)",
+    "objectStorage": "오브젝트 스토리지 (GB)",
+    "egress": "아웃바운드 트래픽 (GB/월)"
+  },
+  "estimate": {
+    "storageLabel": {
+      "block-ssd": "블록 스토리지",
+      "object-standard": "오브젝트 스토리지"
+    },
+    "noMatch": "조건 만족 인스턴스 없음",
+    "noData": "데이터 없음",
+    "egressLine": "아웃바운드 트래픽 {gb}GB",
+    "freeApplied": "(무료 {gb}GB 반영)",
+    "cheapest": "최저가",
+    "dataPending": "데이터 준비 중",
+    "unavailable": "견적 불가",
+    "perMonth": " /월",
+    "footnote": "Linux 온디맨드 정가 × 월 730시간 기준. 할인·프리티어 미반영. 화살표(→)는 스펙을 만족하는 최저가 인스턴스로 자동 매칭된 결과입니다. 스토리지는 범용 SSD(gp3 · Premium SSD v2 · Balanced PD)와 표준 오브젝트 티어, 트래픽은 인터넷 라우팅 기준 구간 요금입니다."
+  },
+  "instances": {
+    "title": "인스턴스 가격 비교표",
+    "subtitle": "AWS · Azure · GCP 인스턴스 {count, number}종 — Linux 온디맨드 정가(USD) 기준.",
+    "region": "리전",
+    "regionLabel": {
+      "seoul": "서울",
+      "us-east": "미국 동부"
+    },
+    "vcpuMin": "vCPU ≥",
+    "ramMin": "RAM(GB) ≥",
+    "includeBurstable": "버스트 포함",
+    "shown": "{count, number}개 표시",
+    "colProvider": "플랫폼",
+    "colSku": "인스턴스",
+    "colVcpu": "vCPU",
+    "colRam": "RAM (GB)",
+    "colHourly": "시간당",
+    "colMonthly": "월 (730h)",
+    "colBurstable": "버스트"
+  },
+  "methodology": {
+    "title": "데이터 출처와 산정 방식"
+  }
+}

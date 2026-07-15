@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
+import DataFreshness from '@/components/DataFreshness';
 import InstanceTable from '@/components/instances/InstanceTable';
-import { loadPricing } from '@/lib/pricing';
+import { loadMeta, loadPricing } from '@/lib/pricing';
 import type { Region } from '@/lib/schema';
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function InstancesPage() {
         <p className="mt-1 text-sm text-slate-600">
           AWS · Azure · GCP 인스턴스 {skus.length.toLocaleString()}종 — Linux 온디맨드 정가(USD) 기준.
         </p>
+        <DataFreshness meta={loadMeta()} />
       </header>
       <InstanceTable skus={skus} />
     </main>

@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
+import DataFreshness from '@/components/DataFreshness';
 import ScenarioBuilder from '@/components/scenario/ScenarioBuilder';
-import { loadPricing } from '@/lib/pricing';
+import { loadMeta, loadPricing } from '@/lib/pricing';
 
 export default function Home() {
   // 빌드 시점에 스냅샷을 읽어 클라이언트로 내려보낸다 — 데이터 갱신 = 재빌드
@@ -16,6 +17,7 @@ export default function Home() {
         <p className="mt-1 text-sm text-slate-600">
           원하는 스펙을 입력하면 AWS · Azure · GCP의 월 예상 비용을 나란히 비교합니다.
         </p>
+        <DataFreshness meta={loadMeta()} />
       </header>
       <Suspense>
         <ScenarioBuilder pricing={pricing} />

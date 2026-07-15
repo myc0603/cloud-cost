@@ -15,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span className="font-bold">클라우드 비용 비교</span>
             <a href="/" className="text-slate-600 hover:text-slate-900">시나리오 견적</a>
             <a href="/instances" className="text-slate-600 hover:text-slate-900">인스턴스 비교표</a>
+            <a href="/methodology" className="text-slate-600 hover:text-slate-900">산정 방식</a>
           </div>
         </nav>
         {children}

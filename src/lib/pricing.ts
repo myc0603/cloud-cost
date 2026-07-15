@@ -5,13 +5,19 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
-import type { EgressTier, Provider, ProviderPricing, Region, StorageSku, VmSku } from './schema';
+import type { EgressTier, Meta, Provider, ProviderPricing, Region, StorageSku, VmSku } from './schema';
 
 export const PROVIDERS: Provider[] = ['aws', 'azure', 'gcp'];
 
 function readJson<T>(provider: Provider, region: Region, file: string, fallback: T): T {
   const p = path.join(process.cwd(), 'data', provider, region, file);
   return existsSync(p) ? (JSON.parse(readFileSync(p, 'utf8')) as T) : fallback;
+}
+
+/** 수집 시각·환율 메타 — 배지 표시용 */
+export function loadMeta(): Meta | null {
+  const p = path.join(process.cwd(), 'data', 'meta.json');
+  return existsSync(p) ? (JSON.parse(readFileSync(p, 'utf8')) as Meta) : null;
 }
 
 /** 리전의 플랫폼별 요금 데이터. 스냅샷이 아직 없는 항목은 빈 값 */

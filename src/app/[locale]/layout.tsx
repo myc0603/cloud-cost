@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import FeedbackWidget from '@/components/FeedbackWidget';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
@@ -50,6 +51,7 @@ export default async function RootLayout({
               <Link href="/instances" className="text-slate-600 hover:text-slate-900">{t('instances')}</Link>
               <Link href="/methodology" className="text-slate-600 hover:text-slate-900">{t('methodology')}</Link>
               <div className="ml-auto flex items-center gap-4">
+                <FeedbackWidget />
                 <LocaleSwitcher />
               </div>
             </div>

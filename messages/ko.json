@@ -80,5 +80,18 @@
   },
   "methodology": {
     "title": "데이터 출처와 산정 방식"
+  },
+  "feedback": {
+    "button": "피드백",
+    "title": "피드백 보내기",
+    "description": "원하는 기능, 불편한 점, 잘못된 데이터 — 무엇이든 알려주세요.",
+    "messageLabel": "내용",
+    "placeholder": "예: 관리형 DB(RDS 등) 비교도 지원해주세요",
+    "emailLabel": "이메일 (선택 — 답변받을 주소)",
+    "submit": "보내기",
+    "sending": "보내는 중…",
+    "sent": "전달됐어요. 감사합니다!",
+    "error": "전송에 실패했어요. 잠시 후 다시 시도해주세요.",
+    "close": "닫기"
   }
 }

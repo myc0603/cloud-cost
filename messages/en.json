@@ -80,5 +80,18 @@
   },
   "methodology": {
     "title": "Data sources & methodology"
+  },
+  "feedback": {
+    "button": "Feedback",
+    "title": "Send feedback",
+    "description": "Feature requests, problems, wrong data — we want to hear it all.",
+    "messageLabel": "Message",
+    "placeholder": "e.g. Please add managed database (RDS etc.) comparison",
+    "emailLabel": "Email (optional — if you'd like a reply)",
+    "submit": "Send",
+    "sending": "Sending…",
+    "sent": "Sent — thank you!",
+    "error": "Failed to send. Please try again in a moment.",
+    "close": "Close"
   }
 }

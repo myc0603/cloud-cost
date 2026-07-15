@@ -51,5 +51,5 @@ export interface ProviderPricing {
 /** data/meta.json */
 export interface Meta {
   collectedAt: string; // ISO 8601
-  usdKrw: { rate: number; at: string };
+  usdKrw: { rate: number; at: string } | null; // 환율 조회 실패 시 null 가능
 }

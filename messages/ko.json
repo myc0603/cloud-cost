@@ -28,6 +28,12 @@
       "us-east": "미국 동부 (버지니아)"
     },
     "includeBurstable": "버스트 인스턴스 포함",
+    "arch": "아키텍처",
+    "archLabel": {
+      "both": "둘 다",
+      "x86": "x86",
+      "arm": "ARM"
+    },
     "addVm": "+ VM 추가",
     "copyShareLink": "공유 링크 복사",
     "copied": "복사됨 ✓",
@@ -50,6 +56,7 @@
     },
     "noMatch": "조건 만족 인스턴스 없음",
     "instanceSelect": "인스턴스 선택 (조건 이상)",
+    "armNotice": "ARM(Graviton·Ampere) 인스턴스는 앱이 ARM(aarch64) 호환이어야 실행됩니다 — 재컴파일·의존성 확인이 필요할 수 있어요.",
     "noData": "데이터 없음",
     "egressLine": "아웃바운드 트래픽 {gb}GB",
     "freeApplied": "(무료 {gb}GB 반영)",

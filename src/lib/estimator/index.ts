@@ -21,9 +21,14 @@ export interface Scenario {
   egressGb: number; // 월 아웃바운드 전송량
 }
 
+/** 매칭할 CPU 아키텍처. both = x86·arm 통틀어 최저가 */
+export type ArchFilter = 'x86' | 'arm' | 'both';
+
 export interface MatchOptions {
   /** 버스트 인스턴스(t계열/B계열/E2 공유 코어)를 매칭 후보에 포함할지 */
   includeBurstable: boolean;
+  /** 매칭할 아키텍처. 생략 시 both */
+  arch?: ArchFilter;
 }
 
 /** 플랫폼 × VM 인덱스 → 사용자가 고른 SKU명. 조건 미충족·미존재 SKU는 무시하고 최저가로 self-heal */
@@ -53,8 +58,15 @@ const round2 = (x: number) => +x.toFixed(2);
  * 동가면 vCPU가 작은 것 우선 → 과잉 프로비저닝 최소화. 첫 항목이 곧 최저가.
  */
 export function qualifyingVms(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmSku[] {
+  const arch = opts.arch ?? 'both';
   return skus
-    .filter((s) => s.vcpu >= spec.vcpu && s.ramGb >= spec.ramGb && (opts.includeBurstable || !s.burstable))
+    .filter(
+      (s) =>
+        s.vcpu >= spec.vcpu &&
+        s.ramGb >= spec.ramGb &&
+        (opts.includeBurstable || !s.burstable) &&
+        (arch === 'both' || s.arch === arch),
+    )
     .sort((a, b) => a.pricePerHour - b.pricePerHour || a.vcpu - b.vcpu);
 }
 

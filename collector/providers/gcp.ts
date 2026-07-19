@@ -32,6 +32,7 @@ const FAMILY_LABELS: Record<string, string> = {
   'C2D AMD Instance': 'c2d',
   'C3 Instance': 'c3',
   'T2D AMD Instance': 't2d',
+  'T2A Arm Instance': 't2a', // ARM (Ampere Altra) — us-east1 등 일부 리전
 };
 
 /** Billing Catalog API 응답에서 우리가 쓰는 필드만 */
@@ -199,6 +200,7 @@ export function buildVmSkus(unitPrices: UnitPrices, region: Region): VmSku[] {
       vcpu: mt.vcpu,
       ramGb: mt.ramGb,
       burstable: mt.burstable,
+      arch: mt.arch,
       generation: mt.family,
       pricePerHour: round6(mt.billedCores * p.corePerHour + mt.ramGb * p.ramGbPerHour),
     }];

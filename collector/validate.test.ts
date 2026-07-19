@@ -10,6 +10,7 @@ const vm = (sku: string, pricePerHour: number): VmSku => ({
   vcpu: 2,
   ramGb: 4,
   burstable: false,
+  arch: 'x86',
   generation: 'x',
   pricePerHour,
 });

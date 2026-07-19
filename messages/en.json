@@ -28,6 +28,12 @@
       "us-east": "US East (Virginia)"
     },
     "includeBurstable": "Include burstable instances",
+    "arch": "Architecture",
+    "archLabel": {
+      "both": "Both",
+      "x86": "x86",
+      "arm": "ARM"
+    },
     "addVm": "+ Add VM",
     "copyShareLink": "Copy share link",
     "copied": "Copied ✓",
@@ -50,6 +56,7 @@
     },
     "noMatch": "No instance meets the specs",
     "instanceSelect": "Choose instance (spec minimum or higher)",
+    "armNotice": "ARM (Graviton · Ampere) instances require your app to be ARM (aarch64) compatible — you may need to recompile and verify dependencies.",
     "noData": "No data",
     "egressLine": "Outbound traffic {gb}GB",
     "freeApplied": "({gb}GB free tier applied)",

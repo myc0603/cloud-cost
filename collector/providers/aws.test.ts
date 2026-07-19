@@ -46,7 +46,7 @@ test('parseEc2OfferCsv: VM 파싱 + 제외 필터', async () => {
     row({ 'Instance Type': 'm5.large', vCPU: '2', Memory: '8 GiB', PricePerUnit: '0.118', 'Physical Processor': 'Intel Xeon' }), // ✔
     row({ 'Operating System': 'SUSE' }), // ✘ Linux 아님
     row({ CapacityStatus: 'UnusedCapacityReservation' }), // ✘ 미사용 예약
-    row({ 'Instance Type': 'm7g.large', 'Physical Processor': 'AWS Graviton3 Processor' }), // ✘ ARM
+    row({ 'Instance Type': 'm7g.large', 'Physical Processor': 'AWS Graviton3 Processor' }), // ✔ ARM(Graviton) — 이제 포함, arch 태깅
     row({ 'Instance Type': 'g5.xlarge', GPU: '1' }), // ✘ GPU
     row({ 'Instance Type': 'm5.metal', vCPU: '96', Memory: '384 GiB' }), // ✘ 베어메탈
     row({ 'Instance Type': 'm4.large', 'Current Generation': 'No' }), // ✘ 구세대
@@ -54,14 +54,16 @@ test('parseEc2OfferCsv: VM 파싱 + 제외 필터', async () => {
   ];
   const { vms } = await parseEc2OfferCsv(lines, 'seoul');
 
-  assert.deepEqual(vms.map((s) => s.sku), ['m5.large', 't3.medium']);
+  assert.deepEqual(vms.map((s) => s.sku), ['m5.large', 'm7g.large', 't3.medium']);
   const t3 = vms.find((s) => s.sku === 't3.medium')!;
   assert.equal(t3.pricePerHour, 0.052);
   assert.equal(t3.vcpu, 2);
   assert.equal(t3.ramGb, 4);
   assert.equal(t3.burstable, true);
   assert.equal(t3.generation, 't3');
+  assert.equal(t3.arch, 'x86');
   assert.equal(vms.find((s) => s.sku === 'm5.large')!.burstable, false);
+  assert.equal(vms.find((s) => s.sku === 'm7g.large')!.arch, 'arm'); // Graviton → arm
 });
 
 test('parseEc2OfferCsv: 쉼표 포함 메모리("3,904 GiB") 파싱', async () => {

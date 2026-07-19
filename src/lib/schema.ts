@@ -5,6 +5,9 @@
 
 export type Provider = 'aws' | 'azure' | 'gcp';
 
+/** CPU 아키텍처. arm = Graviton(AWS)·Ampere(Azure/GCP) 계열 */
+export type Arch = 'x86' | 'arm';
+
 /** 정규화 리전 키. seoul = ap-northeast-2 / koreacentral / asia-northeast3 */
 export type Region = 'seoul' | 'us-east';
 
@@ -16,6 +19,7 @@ export interface VmSku {
   vcpu: number;
   ramGb: number;
   burstable: boolean; // 매칭 시 포함/제외 옵션
+  arch: Arch; // x86 | arm — 매칭 필터 + 표시 배지
   generation: string; // 구세대 필터용 (패밀리 키)
   pricePerHour: number;
 }

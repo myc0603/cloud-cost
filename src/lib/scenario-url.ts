@@ -5,7 +5,7 @@
  *       (vm: vCPU c RAM g : 대수 / blk·obj·eg: GB, 0이면 생략)
  */
 
-import type { Overrides, Scenario, VmSpec } from './estimator';
+import type { ArchFilter, Overrides, Scenario, VmSpec } from './estimator';
 import type { Provider } from './schema';
 
 const PROVIDERS = new Set<string>(['aws', 'azure', 'gcp']);
@@ -60,6 +60,26 @@ export function encodeOverrides(overrides: Overrides): string {
     for (const [idx, sku] of Object.entries(perVm)) tokens.push(`${provider}:${idx}:${sku}`);
   }
   return tokens.join(',');
+}
+
+/**
+ * 매칭 옵션(아키텍처·버스트) ↔ URL. arch=arm|x86 (both는 기본이라 생략), burst=0 (기본 포함이라 끌 때만).
+ * 총액을 바꾸는 시나리오 성격이라 공유 링크에 함께 저장한다.
+ */
+export function encodeMatchOptions(opts: { arch: ArchFilter; includeBurstable: boolean }): string {
+  const params = new URLSearchParams();
+  if (opts.arch !== 'both') params.set('arch', opts.arch);
+  if (!opts.includeBurstable) params.set('burst', '0');
+  return params.toString();
+}
+
+export function decodeMatchOptions(query: string | URLSearchParams): { arch: ArchFilter; includeBurstable: boolean } {
+  const params = typeof query === 'string' ? new URLSearchParams(query) : query;
+  const arch = params.get('arch');
+  return {
+    arch: arch === 'x86' || arch === 'arm' ? arch : 'both',
+    includeBurstable: params.get('burst') !== '0',
+  };
 }
 
 /** 깨진 토큰·모르는 플랫폼은 버린다. 조건 미충족 SKU는 estimate가 최저가로 self-heal */

@@ -3,9 +3,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { estimate, type Overrides, type Scenario, type VmSpec } from '@/lib/estimator';
+import { estimate, type ArchFilter, type Overrides, type Scenario, type VmSpec } from '@/lib/estimator';
 import type { Provider, ProviderPricing, Region } from '@/lib/schema';
-import { decodeOverrides, decodeScenario, encodeOverrides, encodeScenario } from '@/lib/scenario-url';
+import {
+  decodeMatchOptions,
+  decodeOverrides,
+  decodeScenario,
+  encodeMatchOptions,
+  encodeOverrides,
+  encodeScenario,
+} from '@/lib/scenario-url';
 import EstimateResult from './EstimateResult';
 import ResourceCard from './ResourceCard';
 import StorageTrafficCard from './StorageTrafficCard';
@@ -60,20 +67,24 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
     () => decodeScenario(searchParams) ?? DEFAULT_SCENARIO,
   );
   const [overrides, setOverrides] = useState<Overrides>(() => decodeOverrides(searchParams));
-  const [includeBurstable, setIncludeBurstable] = useState(true);
+  const [{ arch, includeBurstable }, setMatchOpts] = useState(() => decodeMatchOptions(searchParams));
   const [copied, setCopied] = useState(false);
 
-  // 현재 주소 = 현재 시나리오 + 커스텀 선택 유지 (주소 복사가 곧 공유)
+  const setArch = (next: ArchFilter) => setMatchOpts((o) => ({ ...o, arch: next }));
+  const setIncludeBurstable = (next: boolean) => setMatchOpts((o) => ({ ...o, includeBurstable: next }));
+
+  // 현재 주소 = 현재 시나리오 + 커스텀 선택 + 매칭 옵션 유지 (주소 복사가 곧 공유)
   useEffect(() => {
     const params = new URLSearchParams(encodeScenario(scenario));
     const pick = encodeOverrides(overrides);
     if (pick) params.set('pick', pick);
+    for (const [k, v] of new URLSearchParams(encodeMatchOptions({ arch, includeBurstable }))) params.set(k, v);
     window.history.replaceState(null, '', `?${params}`);
-  }, [scenario, overrides]);
+  }, [scenario, overrides, arch, includeBurstable]);
 
   const estimates = useMemo(
-    () => estimate(scenario, pricing[scenario.region], { includeBurstable }, overrides),
-    [scenario, pricing, includeBurstable, overrides],
+    () => estimate(scenario, pricing[scenario.region], { includeBurstable, arch }, overrides),
+    [scenario, pricing, includeBurstable, arch, overrides],
   );
 
   const updateVm = (i: number, spec: VmSpec) => {
@@ -128,6 +139,18 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
               onChange={(e) => setIncludeBurstable(e.target.checked)}
             />
             {t('includeBurstable')}
+          </label>
+          <label className="flex items-center gap-2 text-sm">
+            {t('arch')}
+            <select
+              value={arch}
+              onChange={(e) => setArch(e.target.value as ArchFilter)}
+              className="rounded border border-slate-300 bg-white px-2 py-1"
+            >
+              {(['both', 'x86', 'arm'] as ArchFilter[]).map((a) => (
+                <option key={a} value={a}>{t(`archLabel.${a}`)}</option>
+              ))}
+            </select>
           </label>
         </div>
 

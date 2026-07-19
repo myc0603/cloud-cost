@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { HOURS_PER_MONTH, type EstimateLine, type ProviderEstimate } from '@/lib/estimator';
 import { formatMoney, type Currency, type Period } from '@/lib/display';
-import type { Provider } from '@/lib/schema';
+import type { Arch, Provider } from '@/lib/schema';
 
 const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
 
@@ -13,6 +13,20 @@ type SelectInstance = (provider: Provider, vmIndex: number, sku: string, isDefau
 
 const PERIODS: Period[] = ['hour', 'day', 'week', 'month'];
 const PERIOD_SUFFIX: Record<Period, string> = { hour: 'perHour', day: 'perDay', week: 'perWeek', month: 'perMonth' };
+
+/** 아키텍처 식별 배지 — ARM은 보라, x86은 중립색 */
+function ArchBadge({ arch }: { arch: Arch }) {
+  const arm = arch === 'arm';
+  return (
+    <span
+      className={`ml-1 rounded px-1 py-0.5 align-middle text-[10px] font-medium ${
+        arm ? 'bg-violet-100 text-violet-700' : 'bg-slate-100 text-slate-600'
+      }`}
+    >
+      {arm ? 'ARM' : 'x86'}
+    </span>
+  );
+}
 
 function Segmented<T extends string>({
   value,
@@ -78,10 +92,12 @@ function LineLabel({
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
                 {c.sku} · {c.vcpu}/{c.ramGb}GB · {money(c.pricePerHour * HOURS_PER_MONTH * line.spec.count)}
+                {c.arch === 'arm' ? ' · ARM' : ''}
               </option>
             ))}
           </select>
         )}
+        {line.matched && <ArchBadge arch={line.matched.arch} />}
       </span>
     );
   }
@@ -124,6 +140,10 @@ export default function EstimateResult({
 
   const totals = estimates.map((e) => e.totalMonthlyUsd).filter((x): x is number => x !== null);
   const cheapest = totals.length > 0 ? Math.min(...totals) : null;
+  // 매칭된 인스턴스 중 ARM이 하나라도 있으면 호환성 고지
+  const hasArm = estimates.some((e) =>
+    e.lines.some((l) => l.kind === 'vm' && l.matched?.arch === 'arm'),
+  );
 
   return (
     <div className="flex flex-col gap-4">
@@ -189,6 +209,9 @@ export default function EstimateResult({
           </div>
         );
       })}
+      {hasArm && (
+        <p className="rounded-md bg-violet-50 px-3 py-2 text-xs text-violet-700">{t('armNotice')}</p>
+      )}
       {currency === 'krw' && rate !== null && (
         <p className="text-xs text-slate-400">
           {td('fxNote', { rate: rate.toLocaleString('ko-KR', { maximumFractionDigits: 2 }) })}

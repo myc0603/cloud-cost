@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { calcEgressUsd, cheapestPerSize, estimate, matchVm, qualifyingVms, HOURS_PER_MONTH, type Scenario } from './index';
+import { calcEgressUsd, cheapestPerSize, estimate, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
 import type { EgressTier, Provider, ProviderPricing, VmSku } from '../schema';
 
 const sku = (over: Partial<VmSku>): VmSku => ({
@@ -11,6 +11,7 @@ const sku = (over: Partial<VmSku>): VmSku => ({
   vcpu: 2,
   ramGb: 4,
   burstable: false,
+  arch: 'x86',
   generation: 'e2',
   pricePerHour: 0.1,
   ...over,
@@ -79,6 +80,18 @@ test('matchVm: 만족 불가 시 null', () => {
 test('qualifyingVms: 스펙 만족 후보를 가격 오름차순으로 (동가면 vCPU 작은 순)', () => {
   const q = qualifyingVms(FIXTURE, { vcpu: 2, ramGb: 4, count: 1 }, { includeBurstable: true });
   assert.deepEqual(q.map((s) => s.sku), ['cheap-burst', 'fit', 'same-price-bigger', 'big']);
+});
+
+test('qualifyingVms: arch 필터 — both는 통틀어 최저가, x86/arm은 해당만', () => {
+  const skus = [
+    sku({ sku: 'x86-cheap', vcpu: 2, ramGb: 4, arch: 'x86', pricePerHour: 0.05 }),
+    sku({ sku: 'arm-cheaper', vcpu: 2, ramGb: 4, arch: 'arm', pricePerHour: 0.03 }),
+  ];
+  const pick = (arch: ArchFilter) =>
+    qualifyingVms(skus, { vcpu: 2, ramGb: 4, count: 1 }, { includeBurstable: true, arch });
+  assert.equal(pick('both')[0].sku, 'arm-cheaper'); // 통틀어 최저가 = ARM
+  assert.deepEqual(pick('x86').map((s) => s.sku), ['x86-cheap']);
+  assert.deepEqual(pick('arm').map((s) => s.sku), ['arm-cheaper']);
 });
 
 test('cheapestPerSize: 같은 (vCPU,RAM)는 최저가 1개만 (열등 SKU 제거)', () => {

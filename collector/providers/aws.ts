@@ -9,7 +9,7 @@
 
 import { createInterface } from 'node:readline';
 import { Readable } from 'node:stream';
-import type { EgressTier, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type { Arch, EgressTier, Region, StorageSku, VmSku } from '../../src/lib/schema';
 
 export const AWS_REGION: Record<Region, string> = {
   seoul: 'ap-northeast-2',
@@ -98,7 +98,7 @@ export interface AwsEc2Offer {
 /**
  * EC2 오퍼 CSV 단일 패스 → VM + gp3.
  * VM 필터: Linux 온디맨드 / 공유 테넌시 / 실사용(Used) / 현세대 / 사전 설치 SW 없음
- *          / x86만(ARM·Graviton 제외, 사용자 결정) / GPU 없음 / 베어메탈 제외
+ *          / x86·ARM(Graviton) 모두 — arch 태깅 / GPU 없음 / 베어메탈 제외
  */
 export async function parseEc2OfferCsv(
   lines: AsyncIterable<string> | Iterable<string>,
@@ -122,8 +122,6 @@ export async function parseEc2OfferCsv(
 
       const gpu = get('GPU');
       if (gpu !== '' && gpu !== '0') return;
-      if (/graviton/i.test(get('Physical Processor'))) return;
-      if (/arm/i.test(get('Processor Architecture'))) return;
 
       const instanceType = get('Instance Type');
       if (!instanceType || instanceType.includes('.metal')) return;
@@ -133,6 +131,8 @@ export async function parseEc2OfferCsv(
       const ramGb = parseMemoryGb(get('Memory'));
       if (!(price > 0) || !(vcpu > 0) || ramGb === null) return;
 
+      const arch: Arch =
+        /graviton/i.test(get('Physical Processor')) || /arm/i.test(get('Processor Architecture')) ? 'arm' : 'x86';
       const fam = instanceType.split('.')[0];
       const sku: VmSku = {
         provider: 'aws',
@@ -141,6 +141,7 @@ export async function parseEc2OfferCsv(
         vcpu,
         ramGb,
         burstable: /^t\d/.test(fam),
+        arch,
         generation: fam,
         pricePerHour: +price.toFixed(6),
       };

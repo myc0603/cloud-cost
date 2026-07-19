@@ -79,6 +79,7 @@ export function buildAzureVmSkus(items: AzurePriceItem[], region: Region): VmSku
       vcpu: size.vcpu,
       ramGb: size.ramGb,
       burstable: size.burstable,
+      arch: size.arch,
       generation: size.generation,
       pricePerHour: +price.toFixed(6),
     }];

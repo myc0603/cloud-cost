@@ -1,6 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { decodeOverrides, decodeScenario, encodeOverrides, encodeScenario } from './scenario-url';
+import {
+  decodeMatchOptions,
+  decodeOverrides,
+  decodeScenario,
+  encodeMatchOptions,
+  encodeOverrides,
+  encodeScenario,
+} from './scenario-url';
 import type { Overrides, Scenario } from './estimator';
 
 test('인코딩 → 디코딩 왕복 보존', () => {
@@ -51,4 +58,16 @@ test('overrides: 비어있으면 pick 없음 → 빈 객체', () => {
 test('overrides: 깨진 토큰·모르는 플랫폼은 버린다', () => {
   const out = decodeOverrides('pick=aws:0:t3.large,mars:0:x,gcp:abc:y,azure:1:');
   assert.deepEqual(out, { aws: { 0: 't3.large' } });
+});
+
+test('matchOptions: 기본값(both·버스트 포함)은 URL에 안 남는다', () => {
+  assert.equal(encodeMatchOptions({ arch: 'both', includeBurstable: true }), '');
+  assert.deepEqual(decodeMatchOptions(''), { arch: 'both', includeBurstable: true });
+});
+
+test('matchOptions: arch·burst 왕복', () => {
+  const opts = { arch: 'arm' as const, includeBurstable: false };
+  assert.deepEqual(decodeMatchOptions(encodeMatchOptions(opts)), opts);
+  assert.equal(decodeMatchOptions('arch=x86').arch, 'x86');
+  assert.equal(decodeMatchOptions('arch=mips').arch, 'both'); // 모르는 값 → both
 });

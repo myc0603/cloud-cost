@@ -24,7 +24,8 @@ export function loadMeta(): Meta | null {
 export function loadPricing(region: Region): Record<Provider, ProviderPricing> {
   const entries = PROVIDERS.map((provider) => {
     const pricing: ProviderPricing = {
-      vm: readJson<VmSku[]>(provider, region, 'vm.json', []),
+      // arch 도입 이전 스냅샷 호환 — 당시 데이터는 전부 x86이므로 누락 시 x86로 간주
+      vm: readJson<VmSku[]>(provider, region, 'vm.json', []).map((v) => ({ ...v, arch: v.arch ?? 'x86' })),
       storage: readJson<StorageSku[]>(provider, region, 'storage.json', []),
       egress: readJson<EgressTier | null>(provider, region, 'egress.json', null),
     };

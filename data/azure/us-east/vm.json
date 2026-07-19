@@ -6,6 +6,7 @@
     "vcpu": 1,
     "ramGb": 1,
     "burstable": true,
+    "arch": "x86",
     "generation": "b",
     "pricePerHour": 0.0104
   },
@@ -16,6 +17,7 @@
     "vcpu": 1,
     "ramGb": 2,
     "burstable": true,
+    "arch": "x86",
     "generation": "b",
     "pricePerHour": 0.0207
   },
@@ -26,6 +28,7 @@
     "vcpu": 2,
     "ramGb": 4,
     "burstable": true,
+    "arch": "x86",
     "generation": "b",
     "pricePerHour": 0.0416
   },
@@ -36,6 +39,7 @@
     "vcpu": 2,
     "ramGb": 8,
     "burstable": true,
+    "arch": "x86",
     "generation": "b",
     "pricePerHour": 0.0832
   },
@@ -46,6 +50,7 @@
     "vcpu": 4,
     "ramGb": 16,
     "burstable": true,
+    "arch": "x86",
     "generation": "b",
     "pricePerHour": 0.166
   },
@@ -56,6 +61,7 @@
     "vcpu": 8,
     "ramGb": 32,
     "burstable": true,
+    "arch": "x86",
     "generation": "b",
     "pricePerHour": 0.333
   },
@@ -66,6 +72,7 @@
     "vcpu": 2,
     "ramGb": 8,
     "burstable": false,
+    "arch": "x86",
     "generation": "dsv5",
     "pricePerHour": 0.096
   },
@@ -76,6 +83,7 @@
     "vcpu": 4,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "dsv5",
     "pricePerHour": 0.192
   },
@@ -86,6 +94,7 @@
     "vcpu": 8,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "dsv5",
     "pricePerHour": 0.384
   },
@@ -96,6 +105,7 @@
     "vcpu": 16,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "dsv5",
     "pricePerHour": 0.768
   },
@@ -106,6 +116,7 @@
     "vcpu": 32,
     "ramGb": 128,
     "burstable": false,
+    "arch": "x86",
     "generation": "dsv5",
     "pricePerHour": 1.536
   },
@@ -116,6 +127,7 @@
     "vcpu": 2,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "esv5",
     "pricePerHour": 0.126
   },
@@ -126,6 +138,7 @@
     "vcpu": 4,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "esv5",
     "pricePerHour": 0.252
   },
@@ -136,6 +149,7 @@
     "vcpu": 8,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "esv5",
     "pricePerHour": 0.504
   },
@@ -146,6 +160,7 @@
     "vcpu": 16,
     "ramGb": 128,
     "burstable": false,
+    "arch": "x86",
     "generation": "esv5",
     "pricePerHour": 1.008
   },
@@ -156,6 +171,7 @@
     "vcpu": 2,
     "ramGb": 4,
     "burstable": false,
+    "arch": "x86",
     "generation": "fsv2",
     "pricePerHour": 0.0846
   },
@@ -166,6 +182,7 @@
     "vcpu": 4,
     "ramGb": 8,
     "burstable": false,
+    "arch": "x86",
     "generation": "fsv2",
     "pricePerHour": 0.169
   },
@@ -176,6 +193,7 @@
     "vcpu": 8,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "fsv2",
     "pricePerHour": 0.338
   },
@@ -186,6 +204,7 @@
     "vcpu": 16,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "fsv2",
     "pricePerHour": 0.677
   },
@@ -196,7 +215,107 @@
     "vcpu": 32,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "fsv2",
     "pricePerHour": 1.353
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_D2ps_v6",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.0702
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_D4ps_v6",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.14
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_D8ps_v6",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.281
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_D16ps_v6",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.562
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_D32ps_v6",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 1.123
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_E2ps_v6",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.0922
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_E4ps_v6",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.184
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_E8ps_v6",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.369
+  },
+  {
+    "provider": "azure",
+    "region": "us-east",
+    "sku": "Standard_E16ps_v6",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.738
   }
 ]

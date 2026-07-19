@@ -26,8 +26,11 @@ export interface MatchOptions {
   includeBurstable: boolean;
 }
 
+/** 플랫폼 × VM 인덱스 → 사용자가 고른 SKU명. 조건 미충족·미존재 SKU는 무시하고 최저가로 self-heal */
+export type Overrides = Partial<Record<Provider, Record<number, string>>>;
+
 export type EstimateLine =
-  | { kind: 'vm'; spec: VmSpec; matched: VmSku | null; monthlyUsd: number | null }
+  | { kind: 'vm'; vmIndex: number; spec: VmSpec; matched: VmSku | null; candidates: VmSku[]; monthlyUsd: number | null }
   | { kind: 'storage'; storageKind: StorageSku['kind']; sizeGb: number; pricePerGbMonth: number | null; monthlyUsd: number | null }
   | { kind: 'egress'; gb: number; freeGb: number | null; monthlyUsd: number | null };
 
@@ -46,20 +49,33 @@ export const HOURS_PER_MONTH = 730;
 const round2 = (x: number) => +x.toFixed(2);
 
 /**
- * 요구 스펙을 만족하는(vCPU·RAM 최소 충족) 후보 중 최저가 선택.
- * 동가면 vCPU가 작은 것 → 과잉 프로비저닝 최소화.
+ * 요구 스펙을 만족하는(vCPU·RAM 최소 충족) 후보를 가격 오름차순으로.
+ * 동가면 vCPU가 작은 것 우선 → 과잉 프로비저닝 최소화. 첫 항목이 곧 최저가.
  */
+export function qualifyingVms(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmSku[] {
+  return skus
+    .filter((s) => s.vcpu >= spec.vcpu && s.ramGb >= spec.ramGb && (opts.includeBurstable || !s.burstable))
+    .sort((a, b) => a.pricePerHour - b.pricePerHour || a.vcpu - b.vcpu);
+}
+
+/** 스펙 만족 후보 중 최저가 (자동 선택 기본값) */
 export function matchVm(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmSku | null {
-  const candidates = skus.filter(
-    (s) => s.vcpu >= spec.vcpu && s.ramGb >= spec.ramGb && (opts.includeBurstable || !s.burstable),
-  );
-  if (candidates.length === 0) return null;
-  return candidates.reduce((best, s) =>
-    s.pricePerHour < best.pricePerHour ||
-    (s.pricePerHour === best.pricePerHour && s.vcpu < best.vcpu)
-      ? s
-      : best,
-  );
+  return qualifyingVms(skus, spec, opts)[0] ?? null;
+}
+
+/**
+ * 사이즈(vCPU·RAM)별 최저가 1개만 남긴다 — 드롭다운 후보용.
+ * 같은 스펙에 더 비싼 SKU는 열등(strictly dominated)하므로 노이즈.
+ * 입력이 가격 오름차순이면 각 사이즈의 첫 항목이 곧 최저가.
+ */
+export function cheapestPerSize(sorted: VmSku[]): VmSku[] {
+  const seen = new Set<string>();
+  return sorted.filter((s) => {
+    const key = `${s.vcpu}/${s.ramGb}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 /** 구간 요금 누적 계산 — tiers는 0GB부터의 절대 사용량 구간(무료 구간 포함) */
@@ -80,6 +96,7 @@ export function estimate(
   scenario: Scenario,
   pricing: Record<Provider, ProviderPricing>,
   opts: MatchOptions,
+  overrides: Overrides = {},
 ): ProviderEstimate[] {
   return (Object.keys(pricing) as Provider[]).map((provider) => {
     const { vm: vmSkus, storage, egress } = pricing[provider];
@@ -87,12 +104,17 @@ export function estimate(
       return { provider, available: false, lines: [], totalMonthlyUsd: null };
     }
 
-    const lines: EstimateLine[] = scenario.vms.map((spec) => {
-      const matched = matchVm(vmSkus, spec, opts);
+    const lines: EstimateLine[] = scenario.vms.map((spec, i) => {
+      const candidates = cheapestPerSize(qualifyingVms(vmSkus, spec, opts));
+      const picked = overrides[provider]?.[i];
+      // 고른 SKU가 조건 충족 후보에 있으면 그걸, 아니면 최저가로 self-heal
+      const matched = candidates.find((c) => c.sku === picked) ?? candidates[0] ?? null;
       return {
         kind: 'vm' as const,
+        vmIndex: i,
         spec,
         matched,
+        candidates,
         monthlyUsd: matched ? round2(matched.pricePerHour * HOURS_PER_MONTH * spec.count) : null,
       };
     });

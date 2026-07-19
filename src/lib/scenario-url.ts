@@ -5,7 +5,10 @@
  *       (vm: vCPU c RAM g : 대수 / blk·obj·eg: GB, 0이면 생략)
  */
 
-import type { Scenario, VmSpec } from './estimator';
+import type { Overrides, Scenario, VmSpec } from './estimator';
+import type { Provider } from './schema';
+
+const PROVIDERS = new Set<string>(['aws', 'azure', 'gcp']);
 
 export function encodeScenario(scenario: Scenario): string {
   const params = new URLSearchParams();
@@ -44,4 +47,33 @@ export function decodeScenario(query: string | URLSearchParams): Scenario | null
     objectGb: gb('obj'),
     egressGb: gb('eg'),
   };
+}
+
+/**
+ * 커스텀 인스턴스 선택 ↔ pick 파라미터. 형식: pick=aws:0:t3.large,gcp:1:n2-standard-2
+ * (provider:vmIndex:sku). 자동(최저가) 선택은 저장 안 함 → 비지 않은 override만 담긴다.
+ */
+export function encodeOverrides(overrides: Overrides): string {
+  const tokens: string[] = [];
+  for (const [provider, perVm] of Object.entries(overrides)) {
+    if (!perVm) continue;
+    for (const [idx, sku] of Object.entries(perVm)) tokens.push(`${provider}:${idx}:${sku}`);
+  }
+  return tokens.join(',');
+}
+
+/** 깨진 토큰·모르는 플랫폼은 버린다. 조건 미충족 SKU는 estimate가 최저가로 self-heal */
+export function decodeOverrides(query: string | URLSearchParams): Overrides {
+  const params = typeof query === 'string' ? new URLSearchParams(query) : query;
+  const raw = params.get('pick');
+  if (!raw) return {};
+  const out: Overrides = {};
+  for (const token of raw.split(',')) {
+    const [provider, idxStr, sku] = token.split(':');
+    if (!PROVIDERS.has(provider) || !sku) continue;
+    const idx = Number(idxStr);
+    if (!Number.isInteger(idx) || idx < 0) continue;
+    (out[provider as Provider] ??= {})[idx] = sku;
+  }
+  return out;
 }

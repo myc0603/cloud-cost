@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { estimate, type Scenario, type VmSpec } from '@/lib/estimator';
+import { estimate, type Overrides, type Scenario, type VmSpec } from '@/lib/estimator';
 import type { Provider, ProviderPricing, Region } from '@/lib/schema';
-import { decodeScenario, encodeScenario } from '@/lib/scenario-url';
+import { decodeOverrides, decodeScenario, encodeOverrides, encodeScenario } from '@/lib/scenario-url';
 import EstimateResult from './EstimateResult';
 import ResourceCard from './ResourceCard';
 import StorageTrafficCard from './StorageTrafficCard';
@@ -20,6 +20,32 @@ const DEFAULT_SCENARIO: Scenario = {
 
 const REGIONS: Region[] = ['seoul', 'us-east'];
 
+/** VM 스펙이 바뀌면 후보 집합이 달라지므로 그 인덱스의 커스텀 선택을 초기화 */
+function clearVmIndex(overrides: Overrides, i: number): Overrides {
+  const out: Overrides = {};
+  for (const [p, perVm] of Object.entries(overrides)) {
+    const next = { ...perVm };
+    delete next[i];
+    out[p as Provider] = next;
+  }
+  return out;
+}
+
+/** VM 삭제 시 뒤 인덱스를 당겨 엉뚱한 VM에 선택이 적용되는 것을 막는다 */
+function reindexAfterRemove(overrides: Overrides, removed: number): Overrides {
+  const out: Overrides = {};
+  for (const [p, perVm] of Object.entries(overrides)) {
+    const next: Record<number, string> = {};
+    for (const [k, sku] of Object.entries(perVm)) {
+      const idx = Number(k);
+      if (idx === removed) continue;
+      next[idx > removed ? idx - 1 : idx] = sku;
+    }
+    out[p as Provider] = next;
+  }
+  return out;
+}
+
 interface Props {
   /** 리전별 × 플랫폼별 요금 데이터 — 서버(page.tsx)에서 로드해 내려준다 */
   pricing: Record<Region, Record<Provider, ProviderPricing>>;
@@ -33,25 +59,45 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
   const [scenario, setScenario] = useState<Scenario>(
     () => decodeScenario(searchParams) ?? DEFAULT_SCENARIO,
   );
+  const [overrides, setOverrides] = useState<Overrides>(() => decodeOverrides(searchParams));
   const [includeBurstable, setIncludeBurstable] = useState(true);
   const [copied, setCopied] = useState(false);
 
-  // 현재 주소 = 현재 시나리오 유지 (주소 복사가 곧 공유)
+  // 현재 주소 = 현재 시나리오 + 커스텀 선택 유지 (주소 복사가 곧 공유)
   useEffect(() => {
-    window.history.replaceState(null, '', `?${encodeScenario(scenario)}`);
-  }, [scenario]);
+    const params = new URLSearchParams(encodeScenario(scenario));
+    const pick = encodeOverrides(overrides);
+    if (pick) params.set('pick', pick);
+    window.history.replaceState(null, '', `?${params}`);
+  }, [scenario, overrides]);
 
   const estimates = useMemo(
-    () => estimate(scenario, pricing[scenario.region], { includeBurstable }),
-    [scenario, pricing, includeBurstable],
+    () => estimate(scenario, pricing[scenario.region], { includeBurstable }, overrides),
+    [scenario, pricing, includeBurstable, overrides],
   );
 
-  const updateVm = (i: number, spec: VmSpec) =>
+  const updateVm = (i: number, spec: VmSpec) => {
+    const prev = scenario.vms[i];
+    // vCPU·RAM이 바뀌면 후보가 달라지므로 선택 초기화 (대수만 바뀌면 유지)
+    if (prev && (prev.vcpu !== spec.vcpu || prev.ramGb !== spec.ramGb)) {
+      setOverrides((o) => clearVmIndex(o, i));
+    }
     setScenario((s) => ({ ...s, vms: s.vms.map((v, j) => (j === i ? spec : v)) }));
-  const removeVm = (i: number) =>
+  };
+  const removeVm = (i: number) => {
     setScenario((s) => ({ ...s, vms: s.vms.filter((_, j) => j !== i) }));
+    setOverrides((o) => reindexAfterRemove(o, i));
+  };
   const addVm = () =>
     setScenario((s) => ({ ...s, vms: [...s.vms, { vcpu: 2, ramGb: 4, count: 1 }] }));
+
+  const selectInstance = (provider: Provider, vmIndex: number, sku: string, isDefault: boolean) =>
+    setOverrides((o) => {
+      const perVm = { ...(o[provider] ?? {}) };
+      if (isDefault) delete perVm[vmIndex];
+      else perVm[vmIndex] = sku;
+      return { ...o, [provider]: perVm };
+    });
 
   const copyShareLink = async () => {
     await navigator.clipboard.writeText(window.location.href);
@@ -117,7 +163,7 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
       </section>
 
       <section>
-        <EstimateResult estimates={estimates} rate={usdKrwRate} />
+        <EstimateResult estimates={estimates} rate={usdKrwRate} onSelectInstance={selectInstance} />
       </section>
     </div>
   );

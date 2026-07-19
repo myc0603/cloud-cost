@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { calcEgressUsd, estimate, matchVm, HOURS_PER_MONTH, type Scenario } from './index';
+import { calcEgressUsd, cheapestPerSize, estimate, matchVm, qualifyingVms, HOURS_PER_MONTH, type Scenario } from './index';
 import type { EgressTier, Provider, ProviderPricing, VmSku } from '../schema';
 
 const sku = (over: Partial<VmSku>): VmSku => ({
@@ -74,6 +74,41 @@ test('matchVm: 동가면 vCPU 작은 것 (과잉 프로비저닝 최소화)', ()
 test('matchVm: 만족 불가 시 null', () => {
   const m = matchVm(FIXTURE, { vcpu: 64, ramGb: 4, count: 1 }, { includeBurstable: true });
   assert.equal(m, null);
+});
+
+test('qualifyingVms: 스펙 만족 후보를 가격 오름차순으로 (동가면 vCPU 작은 순)', () => {
+  const q = qualifyingVms(FIXTURE, { vcpu: 2, ramGb: 4, count: 1 }, { includeBurstable: true });
+  assert.deepEqual(q.map((s) => s.sku), ['cheap-burst', 'fit', 'same-price-bigger', 'big']);
+});
+
+test('cheapestPerSize: 같은 (vCPU,RAM)는 최저가 1개만 (열등 SKU 제거)', () => {
+  const skus = [
+    sku({ sku: 'big-4c8-pricey', vcpu: 4, ramGb: 8, pricePerHour: 0.2 }),
+    sku({ sku: 'big-4c8-cheap', vcpu: 4, ramGb: 8, pricePerHour: 0.1 }),
+    sku({ sku: 'small-2c4', vcpu: 2, ramGb: 4, pricePerHour: 0.05 }),
+  ];
+  const sorted = qualifyingVms(skus, { vcpu: 2, ramGb: 4, count: 1 }, { includeBurstable: true });
+  assert.deepEqual(cheapestPerSize(sorted).map((s) => s.sku), ['small-2c4', 'big-4c8-cheap']);
+});
+
+test('estimate: override로 조건 만족하는 더 큰 인스턴스 선택', () => {
+  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+  const gcp = estimate(s, PRICING, { includeBurstable: true }, { gcp: { 0: 'fit' } }).find((e) => e.provider === 'gcp')!;
+  const vm = gcp.lines[0];
+  assert.ok(vm.kind === 'vm' && vm.matched?.sku === 'fit');
+  assert.equal(vm.monthlyUsd, +(0.08 * HOURS_PER_MONTH).toFixed(2));
+});
+
+test('estimate: 존재하지 않는 override는 최저가로 self-heal', () => {
+  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+  const gcp = estimate(s, PRICING, { includeBurstable: true }, { gcp: { 0: 'no-such-sku' } }).find((e) => e.provider === 'gcp')!;
+  assert.ok(gcp.lines[0].kind === 'vm' && gcp.lines[0].matched?.sku === 'cheap-burst');
+});
+
+test('estimate: vm 라인에 vmIndex와 후보 목록이 실린다 (드롭다운용)', () => {
+  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+  const vm = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines[0];
+  assert.ok(vm.kind === 'vm' && vm.vmIndex === 0 && vm.candidates.length === 4);
 });
 
 test('calcEgressUsd: 무료 구간 내 = 0', () => {

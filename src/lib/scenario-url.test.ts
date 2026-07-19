@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { decodeScenario, encodeScenario } from './scenario-url';
-import type { Scenario } from './estimator';
+import { decodeOverrides, decodeScenario, encodeOverrides, encodeScenario } from './scenario-url';
+import type { Overrides, Scenario } from './estimator';
 
 test('인코딩 → 디코딩 왕복 보존', () => {
   const scenario: Scenario = {
@@ -35,4 +35,20 @@ test('깨진 토큰은 버리고 정상 토큰만 살린다', () => {
 
 test('모르는 리전은 seoul로 폴백', () => {
   assert.equal(decodeScenario('r=mars&vm=2c4g:1')?.region, 'seoul');
+});
+
+test('overrides: 인코딩 → 디코딩 왕복 보존 (SKU의 . _ - 포함)', () => {
+  const overrides: Overrides = { aws: { 0: 't3.large' }, gcp: { 0: 'n2-standard-2', 1: 'e2-medium' } };
+  const q = new URLSearchParams({ pick: encodeOverrides(overrides) });
+  assert.deepEqual(decodeOverrides(q), overrides);
+});
+
+test('overrides: 비어있으면 pick 없음 → 빈 객체', () => {
+  assert.equal(encodeOverrides({}), '');
+  assert.deepEqual(decodeOverrides(''), {});
+});
+
+test('overrides: 깨진 토큰·모르는 플랫폼은 버린다', () => {
+  const out = decodeOverrides('pick=aws:0:t3.large,mars:0:x,gcp:abc:y,azure:1:');
+  assert.deepEqual(out, { aws: { 0: 't3.large' } });
 });

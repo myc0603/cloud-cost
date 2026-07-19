@@ -55,8 +55,22 @@
     "cheapest": "Cheapest",
     "dataPending": "Data coming soon",
     "unavailable": "Not available",
-    "perMonth": " /mo",
     "footnote": "Linux on-demand list prices × 730 hours/month. Discounts and free tiers not included. The arrow (→) marks the cheapest instance that satisfies your specs, matched automatically. Storage compares general-purpose SSDs (gp3 · Premium SSD v2 · Balanced PD) and standard object tiers; traffic uses tiered internet-routing rates."
+  },
+  "display": {
+    "currency": "Currency",
+    "period": "Period",
+    "usd": "USD",
+    "krw": "KRW",
+    "hour": "Hour",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "perHour": " /hr",
+    "perDay": " /day",
+    "perWeek": " /wk",
+    "perMonth": " /mo",
+    "fxNote": "Converted at ₩{rate}/USD"
   },
   "instances": {
     "title": "Instance price comparison",

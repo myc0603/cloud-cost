@@ -14,16 +14,17 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     seoul: loadPricing('seoul'),
     'us-east': loadPricing('us-east'),
   };
+  const meta = loadMeta();
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-10">
       <header className="mb-8">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
         <p className="mt-1 text-sm text-slate-600">{t('subtitle')}</p>
-        <DataFreshness meta={loadMeta()} />
+        <DataFreshness meta={meta} />
       </header>
       <Suspense>
-        <ScenarioBuilder pricing={pricing} />
+        <ScenarioBuilder pricing={pricing} usdKrwRate={meta?.usdKrw?.rate ?? null} />
       </Suspense>
     </main>
   );

@@ -23,9 +23,11 @@ const REGIONS: Region[] = ['seoul', 'us-east'];
 interface Props {
   /** 리전별 × 플랫폼별 요금 데이터 — 서버(page.tsx)에서 로드해 내려준다 */
   pricing: Record<Region, Record<Provider, ProviderPricing>>;
+  /** USD당 원 환율 — 표시 통화 전환용. 조회 실패 시 null */
+  usdKrwRate: number | null;
 }
 
-export default function ScenarioBuilder({ pricing }: Props) {
+export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
   const t = useTranslations('scenario');
   const searchParams = useSearchParams();
   const [scenario, setScenario] = useState<Scenario>(
@@ -115,7 +117,7 @@ export default function ScenarioBuilder({ pricing }: Props) {
       </section>
 
       <section>
-        <EstimateResult estimates={estimates} />
+        <EstimateResult estimates={estimates} rate={usdKrwRate} />
       </section>
     </div>
   );

@@ -10,7 +10,7 @@
     "collect:gcp": "tsx collector/main.ts gcp",
     "collect:aws": "tsx collector/main.ts aws",
     "collect:azure": "tsx collector/main.ts azure",
-    "test": "node --import tsx --test src/lib/estimator/estimator.test.ts src/lib/scenario-url.test.ts collector/providers/aws.test.ts collector/providers/azure.test.ts collector/validate.test.ts && npm run test:collector",
+    "test": "node --import tsx --test src/lib/estimator/estimator.test.ts src/lib/scenario-url.test.ts src/lib/display.test.ts collector/providers/aws.test.ts collector/providers/azure.test.ts collector/validate.test.ts && npm run test:collector",
     "test:collector": "tsx collector/providers/gcp.test.ts",
     "typecheck": "tsc --noEmit"
   },

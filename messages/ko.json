@@ -55,8 +55,22 @@
     "cheapest": "최저가",
     "dataPending": "데이터 준비 중",
     "unavailable": "견적 불가",
-    "perMonth": " /월",
     "footnote": "Linux 온디맨드 정가 × 월 730시간 기준. 할인·프리티어 미반영. 화살표(→)는 스펙을 만족하는 최저가 인스턴스로 자동 매칭된 결과입니다. 스토리지는 범용 SSD(gp3 · Premium SSD v2 · Balanced PD)와 표준 오브젝트 티어, 트래픽은 인터넷 라우팅 기준 구간 요금입니다."
+  },
+  "display": {
+    "currency": "통화",
+    "period": "기간",
+    "usd": "USD",
+    "krw": "원",
+    "hour": "시간",
+    "day": "일",
+    "week": "주",
+    "month": "월",
+    "perHour": " /시간",
+    "perDay": " /일",
+    "perWeek": " /주",
+    "perMonth": " /월",
+    "fxNote": "환율 ₩{rate}/USD 기준"
   },
   "instances": {
     "title": "인스턴스 가격 비교표",

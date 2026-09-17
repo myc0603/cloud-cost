@@ -11464,6 +11464,50 @@
   {
     "provider": "aws",
     "region": "us-east",
+    "sku": "t8i.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.04992
+  },
+  {
+    "provider": "aws",
+    "region": "us-east",
+    "sku": "t8i.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.01248
+  },
+  {
+    "provider": "aws",
+    "region": "us-east",
+    "sku": "t8i.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.00624
+  },
+  {
+    "provider": "aws",
+    "region": "us-east",
+    "sku": "t8i.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.02496
+  },
+  {
+    "provider": "aws",
+    "region": "us-east",
     "sku": "u-3tb1.56xlarge",
     "vcpu": 224,
     "ramGb": 3072,

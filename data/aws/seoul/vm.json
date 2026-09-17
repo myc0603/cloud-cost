@@ -6162,6 +6162,50 @@
   {
     "provider": "aws",
     "region": "seoul",
+    "sku": "t8i.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.0624
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t8i.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.0156
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t8i.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.0078
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
+    "sku": "t8i.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.0312
+  },
+  {
+    "provider": "aws",
+    "region": "seoul",
     "sku": "u-6tb1.112xlarge",
     "vcpu": 448,
     "ramGb": 6144,

@@ -6,6 +6,7 @@
     "vcpu": 2,
     "ramGb": 1,
     "burstable": true,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.008376
   },
@@ -16,6 +17,7 @@
     "vcpu": 2,
     "ramGb": 2,
     "burstable": true,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.016753
   },
@@ -26,6 +28,7 @@
     "vcpu": 2,
     "ramGb": 4,
     "burstable": true,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.033506
   },
@@ -36,6 +39,7 @@
     "vcpu": 2,
     "ramGb": 8,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.067011
   },
@@ -46,6 +50,7 @@
     "vcpu": 4,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.134023
   },
@@ -56,6 +61,7 @@
     "vcpu": 8,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.268046
   },
@@ -66,6 +72,7 @@
     "vcpu": 16,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.536091
   },
@@ -76,6 +83,7 @@
     "vcpu": 32,
     "ramGb": 128,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 1.072183
   },
@@ -86,6 +94,7 @@
     "vcpu": 2,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.0904
   },
@@ -96,6 +105,7 @@
     "vcpu": 4,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.180799
   },
@@ -106,6 +116,7 @@
     "vcpu": 8,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.361599
   },
@@ -116,6 +127,7 @@
     "vcpu": 16,
     "ramGb": 128,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.723197
   },
@@ -126,6 +138,7 @@
     "vcpu": 2,
     "ramGb": 2,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.04947
   },
@@ -136,6 +149,7 @@
     "vcpu": 4,
     "ramGb": 4,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.09894
   },
@@ -146,6 +160,7 @@
     "vcpu": 8,
     "ramGb": 8,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.197881
   },
@@ -156,6 +171,7 @@
     "vcpu": 16,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.395762
   },
@@ -166,6 +182,7 @@
     "vcpu": 32,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "e2",
     "pricePerHour": 0.791524
   },
@@ -176,6 +193,7 @@
     "vcpu": 2,
     "ramGb": 8,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.097118
   },
@@ -186,6 +204,7 @@
     "vcpu": 4,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.194236
   },
@@ -196,6 +215,7 @@
     "vcpu": 8,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.388472
   },
@@ -206,6 +226,7 @@
     "vcpu": 16,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.776944
   },
@@ -216,6 +237,7 @@
     "vcpu": 32,
     "ramGb": 128,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 1.553888
   },
@@ -226,6 +248,7 @@
     "vcpu": 2,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.131014
   },
@@ -236,6 +259,7 @@
     "vcpu": 4,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.262028
   },
@@ -246,6 +270,7 @@
     "vcpu": 8,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.524056
   },
@@ -256,6 +281,7 @@
     "vcpu": 16,
     "ramGb": 128,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 1.048112
   },
@@ -266,6 +292,7 @@
     "vcpu": 2,
     "ramGb": 2,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.071696
   },
@@ -276,6 +303,7 @@
     "vcpu": 4,
     "ramGb": 4,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.143392
   },
@@ -286,6 +314,7 @@
     "vcpu": 8,
     "ramGb": 8,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.286784
   },
@@ -296,6 +325,7 @@
     "vcpu": 16,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 0.573568
   },
@@ -306,6 +336,7 @@
     "vcpu": 32,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2",
     "pricePerHour": 1.147136
   },
@@ -316,6 +347,7 @@
     "vcpu": 2,
     "ramGb": 8,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2d",
     "pricePerHour": 0.084492
   },
@@ -326,6 +358,7 @@
     "vcpu": 4,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2d",
     "pricePerHour": 0.168984
   },
@@ -336,6 +369,7 @@
     "vcpu": 8,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2d",
     "pricePerHour": 0.337968
   },
@@ -346,6 +380,7 @@
     "vcpu": 16,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2d",
     "pricePerHour": 0.675936
   },
@@ -356,6 +391,7 @@
     "vcpu": 32,
     "ramGb": 128,
     "burstable": false,
+    "arch": "x86",
     "generation": "n2d",
     "pricePerHour": 1.351872
   },
@@ -366,6 +402,7 @@
     "vcpu": 1,
     "ramGb": 3.75,
     "burstable": false,
+    "arch": "x86",
     "generation": "n1",
     "pricePerHour": 0.0475
   },
@@ -376,6 +413,7 @@
     "vcpu": 2,
     "ramGb": 7.5,
     "burstable": false,
+    "arch": "x86",
     "generation": "n1",
     "pricePerHour": 0.095
   },
@@ -386,6 +424,7 @@
     "vcpu": 4,
     "ramGb": 15,
     "burstable": false,
+    "arch": "x86",
     "generation": "n1",
     "pricePerHour": 0.189999
   },
@@ -396,6 +435,7 @@
     "vcpu": 8,
     "ramGb": 30,
     "burstable": false,
+    "arch": "x86",
     "generation": "n1",
     "pricePerHour": 0.379998
   },
@@ -406,6 +446,7 @@
     "vcpu": 16,
     "ramGb": 60,
     "burstable": false,
+    "arch": "x86",
     "generation": "n1",
     "pricePerHour": 0.759996
   },
@@ -416,6 +457,7 @@
     "vcpu": 4,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "c2",
     "pricePerHour": 0.208808
   },
@@ -426,6 +468,7 @@
     "vcpu": 8,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "c2",
     "pricePerHour": 0.417616
   },
@@ -436,6 +479,7 @@
     "vcpu": 16,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "c2",
     "pricePerHour": 0.835232
   },
@@ -446,6 +490,7 @@
     "vcpu": 30,
     "ramGb": 120,
     "burstable": false,
+    "arch": "x86",
     "generation": "c2",
     "pricePerHour": 1.56606
   },
@@ -456,6 +501,7 @@
     "vcpu": 60,
     "ramGb": 240,
     "burstable": false,
+    "arch": "x86",
     "generation": "c2",
     "pricePerHour": 3.13212
   },
@@ -466,6 +512,7 @@
     "vcpu": 2,
     "ramGb": 8,
     "burstable": false,
+    "arch": "x86",
     "generation": "c2d",
     "pricePerHour": 0.090798
   },
@@ -476,6 +523,7 @@
     "vcpu": 4,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "c2d",
     "pricePerHour": 0.181596
   },
@@ -486,6 +534,7 @@
     "vcpu": 8,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "c2d",
     "pricePerHour": 0.363192
   },
@@ -496,6 +545,7 @@
     "vcpu": 16,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "c2d",
     "pricePerHour": 0.726384
   },
@@ -506,6 +556,7 @@
     "vcpu": 32,
     "ramGb": 128,
     "burstable": false,
+    "arch": "x86",
     "generation": "c2d",
     "pricePerHour": 1.452768
   },
@@ -516,6 +567,7 @@
     "vcpu": 4,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "c3",
     "pricePerHour": 0.201608
   },
@@ -526,6 +578,7 @@
     "vcpu": 8,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "c3",
     "pricePerHour": 0.403216
   },
@@ -536,6 +589,7 @@
     "vcpu": 22,
     "ramGb": 88,
     "burstable": false,
+    "arch": "x86",
     "generation": "c3",
     "pricePerHour": 1.108844
   },
@@ -546,6 +600,7 @@
     "vcpu": 44,
     "ramGb": 176,
     "burstable": false,
+    "arch": "x86",
     "generation": "c3",
     "pricePerHour": 2.217688
   },
@@ -556,6 +611,7 @@
     "vcpu": 1,
     "ramGb": 4,
     "burstable": false,
+    "arch": "x86",
     "generation": "t2d",
     "pricePerHour": 0.042246
   },
@@ -566,6 +622,7 @@
     "vcpu": 2,
     "ramGb": 8,
     "burstable": false,
+    "arch": "x86",
     "generation": "t2d",
     "pricePerHour": 0.084492
   },
@@ -576,6 +633,7 @@
     "vcpu": 4,
     "ramGb": 16,
     "burstable": false,
+    "arch": "x86",
     "generation": "t2d",
     "pricePerHour": 0.168984
   },
@@ -586,6 +644,7 @@
     "vcpu": 8,
     "ramGb": 32,
     "burstable": false,
+    "arch": "x86",
     "generation": "t2d",
     "pricePerHour": 0.337968
   },
@@ -596,6 +655,7 @@
     "vcpu": 16,
     "ramGb": 64,
     "burstable": false,
+    "arch": "x86",
     "generation": "t2d",
     "pricePerHour": 0.675936
   },
@@ -606,7 +666,85 @@
     "vcpu": 32,
     "ramGb": 128,
     "burstable": false,
+    "arch": "x86",
     "generation": "t2d",
     "pricePerHour": 1.351872
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2a-standard-1",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 0.0385
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2a-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 0.077
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2a-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 0.154
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2a-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 0.308
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2a-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 0.616
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2a-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 1.232
+  },
+  {
+    "provider": "gcp",
+    "region": "us-east",
+    "sku": "t2a-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 1.848
   }
 ]

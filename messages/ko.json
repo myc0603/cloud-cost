@@ -55,6 +55,8 @@
       "object-standard": "오브젝트 스토리지"
     },
     "noMatch": "조건 만족 인스턴스 없음",
+    "noMatchArch": "이 리전엔 선택한 아키텍처의 인스턴스가 없음",
+    "noMatchSize": "최대 {vcpu}vCPU · {ramGb}GB",
     "instanceSelect": "인스턴스 선택 (조건 이상)",
     "armNotice": "ARM(Graviton·Ampere) 인스턴스는 앱이 ARM(aarch64) 호환이어야 실행됩니다 — 재컴파일·의존성 확인이 필요할 수 있어요.",
     "noData": "데이터 없음",

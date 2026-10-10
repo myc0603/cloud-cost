@@ -55,6 +55,8 @@
       "object-standard": "Object storage"
     },
     "noMatch": "No instance meets the specs",
+    "noMatchArch": "no instances of the selected architecture in this region",
+    "noMatchSize": "max {vcpu} vCPU · {ramGb} GB",
     "instanceSelect": "Choose instance (spec minimum or higher)",
     "armNotice": "ARM (Graviton · Ampere) instances require your app to be ARM (aarch64) compatible — you may need to recompile and verify dependencies.",
     "noData": "No data",

@@ -75,7 +75,18 @@ function LineLabel({
       <span>
         VM {line.spec.vcpu}vCPU/{line.spec.ramGb}GB ×{line.spec.count}
         {!line.matched ? (
-          <span className="ml-1 text-red-500">{t('noMatch')}</span>
+          <span className="ml-1 text-red-500">
+            {t('noMatch')}
+            {line.noMatch && (
+              <span className="ml-1 text-slate-400">
+                (
+                {line.noMatch.reason === 'arch'
+                  ? t('noMatchArch')
+                  : t('noMatchSize', { vcpu: line.noMatch.maxVcpu, ramGb: line.noMatch.maxRamGb })}
+                )
+              </span>
+            )}
+          </span>
         ) : line.candidates.length < 2 ? (
           <span className="ml-1 font-mono text-slate-900">
             → {line.matched.sku} ({line.matched.vcpu}vCPU/{line.matched.ramGb}GB)

@@ -34,8 +34,24 @@ export interface MatchOptions {
 /** 플랫폼 × VM 인덱스 → 사용자가 고른 SKU명. 조건 미충족·미존재 SKU는 무시하고 최저가로 self-heal */
 export type Overrides = Partial<Record<Provider, Record<number, string>>>;
 
+/**
+ * 매칭 실패 이유 — "견적 불가"를 버그로 오해하지 않게 화면에 같이 보여준다.
+ * arch: 버스트·아키텍처 조건을 만족하는 인스턴스가 이 리전에 아예 없음 (예: 서울 GCP ARM)
+ * size: 인스턴스는 있지만 요구 스펙이 조건 내 최대치를 넘음 (vCPU·RAM 최대는 각각 따로 집계)
+ */
+export type NoMatchReason = { reason: 'arch' } | { reason: 'size'; maxVcpu: number; maxRamGb: number };
+
 export type EstimateLine =
-  | { kind: 'vm'; vmIndex: number; spec: VmSpec; matched: VmSku | null; candidates: VmSku[]; monthlyUsd: number | null }
+  | {
+      kind: 'vm';
+      vmIndex: number;
+      spec: VmSpec;
+      matched: VmSku | null;
+      candidates: VmSku[];
+      /** matched가 null일 때만 값이 있다 */
+      noMatch: NoMatchReason | null;
+      monthlyUsd: number | null;
+    }
   | { kind: 'storage'; storageKind: StorageSku['kind']; sizeGb: number; pricePerGbMonth: number | null; monthlyUsd: number | null }
   | { kind: 'egress'; gb: number; freeGb: number | null; monthlyUsd: number | null };
 
@@ -58,16 +74,26 @@ const round2 = (x: number) => +x.toFixed(2);
  * 동가면 vCPU가 작은 것 우선 → 과잉 프로비저닝 최소화. 첫 항목이 곧 최저가.
  */
 export function qualifyingVms(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmSku[] {
-  const arch = opts.arch ?? 'both';
-  return skus
-    .filter(
-      (s) =>
-        s.vcpu >= spec.vcpu &&
-        s.ramGb >= spec.ramGb &&
-        (opts.includeBurstable || !s.burstable) &&
-        (arch === 'both' || s.arch === arch),
-    )
+  return eligibleVms(skus, opts)
+    .filter((s) => s.vcpu >= spec.vcpu && s.ramGb >= spec.ramGb)
     .sort((a, b) => a.pricePerHour - b.pricePerHour || a.vcpu - b.vcpu);
+}
+
+/** 스펙과 무관한 매칭 조건(버스트·아키텍처)만 적용한 후보 */
+function eligibleVms(skus: VmSku[], opts: MatchOptions): VmSku[] {
+  const arch = opts.arch ?? 'both';
+  return skus.filter((s) => (opts.includeBurstable || !s.burstable) && (arch === 'both' || s.arch === arch));
+}
+
+/** 후보가 없을 때 이유 — 조건 내 SKU가 0개면 arch, 아니면 최대 사이즈 안내 */
+export function noMatchReason(skus: VmSku[], opts: MatchOptions): NoMatchReason {
+  const pool = eligibleVms(skus, opts);
+  if (pool.length === 0) return { reason: 'arch' };
+  return {
+    reason: 'size',
+    maxVcpu: Math.max(...pool.map((s) => s.vcpu)),
+    maxRamGb: Math.max(...pool.map((s) => s.ramGb)),
+  };
 }
 
 /** 스펙 만족 후보 중 최저가 (자동 선택 기본값) */
@@ -127,6 +153,7 @@ export function estimate(
         spec,
         matched,
         candidates,
+        noMatch: matched ? null : noMatchReason(vmSkus, opts),
         monthlyUsd: matched ? round2(matched.pricePerHour * HOURS_PER_MONTH * spec.count) : null,
       };
     });

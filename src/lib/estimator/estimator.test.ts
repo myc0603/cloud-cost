@@ -175,6 +175,26 @@ test('estimate: 한 항목이라도 계산 실패면 총액은 null', () => {
   assert.equal(gcp.totalMonthlyUsd, null);
 });
 
+test('estimate: 매칭 실패 이유 — 사이즈 초과면 조건 내 최대 vCPU·RAM', () => {
+  const s = scenario({ vms: [{ vcpu: 64, ramGb: 4, count: 1 }] });
+  const vm = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines[0];
+  assert.ok(vm.kind === 'vm');
+  assert.deepEqual(vm.noMatch, { reason: 'size', maxVcpu: 8, maxRamGb: 32 });
+});
+
+test('estimate: 매칭 실패 이유 — 조건(아키텍처)에 맞는 SKU가 아예 없으면 arch', () => {
+  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+  const vm = estimate(s, PRICING, { includeBurstable: true, arch: 'arm' }).find((e) => e.provider === 'gcp')!.lines[0];
+  assert.ok(vm.kind === 'vm');
+  assert.deepEqual(vm.noMatch, { reason: 'arch' });
+});
+
+test('estimate: 매칭 성공이면 noMatch는 null', () => {
+  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+  const vm = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines[0];
+  assert.ok(vm.kind === 'vm' && vm.noMatch === null);
+});
+
 test('실데이터 스모크: 3사 스냅샷에서 통합 시나리오 견적', () => {
   const load = (p: string, f: string) => JSON.parse(readFileSync(`data/${p}/seoul/${f}`, 'utf8'));
   const pricing: Record<Provider, ProviderPricing> = {

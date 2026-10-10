@@ -39,7 +39,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
       <h2 className={H2}>비교 기준 (공정성을 위한 통일)</h2>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}><b>Linux 온디맨드 정가</b>, 공유 테넌시, 현세대 인스턴스만.</li>
-        <li className={LI}><b>x86과 ARM</b>(AWS Graviton, Azure Dpsv6·Epsv6, GCP T2A)을 기본으로 함께 비교합니다. ARM은 대개 저렴하지만 앱 호환성 확인이 필요해 결과에 배지로 표시하며, 아키텍처 토글로 x86 또는 ARM만 볼 수 있습니다.</li>
+        <li className={LI}><b>x86과 ARM</b>(AWS Graviton, Azure Dpsv6·Epsv6, GCP T2A·C4A)을 기본으로 함께 비교합니다. ARM은 대개 저렴하지만 앱 호환성 확인이 필요해 결과에 배지로 표시하며, 아키텍처 토글로 x86 또는 ARM만 볼 수 있습니다.</li>
         <li className={LI}>블록 스토리지는 3사의 <b>범용 SSD</b>끼리: AWS gp3 · GCP Balanced PD · Azure Premium SSD v2 (기본 성능 제공분 기준).</li>
         <li className={LI}>오브젝트 스토리지는 표준 티어 첫 구간(50TB 이하) 단가.</li>
         <li className={LI}>
@@ -53,7 +53,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}>약정 할인(Savings Plans, CUD, RI), 프리티어, 협상 할인 미반영 — 실제 청구액은 더 낮을 수 있습니다.</li>
         <li className={LI}>스토리지 IOPS 추가분, API 요청 수, 스냅샷, 로드밸런서 등 부가 요금 미포함.</li>
-        <li className={LI}>Azure는 주력 4개 시리즈(B/Dsv5/Esv5/Fsv2)만 수록되어 있어 매칭 폭이 좁을 수 있습니다.</li>
+        <li className={LI}>Azure·GCP는 가격 API에 스펙이 없어 주력 시리즈만 수록합니다 (Azure: B·Bsv2/Dsv5·Dsv6/Esv5·Esv6/Fsv2/Dpsv6·Epsv6, GCP: E2/N1/N2/N2D/N4/N4D/C2/C2D/C3/C3D/C4/C4D/T2D/T2A/C4A). Azure AMD 변형(Dasv6 등) 등 일부 시리즈는 빠져 있어 실제 최저가와 다를 수 있습니다.</li>
         <li className={LI}>이 서비스의 견적은 <b>구조 비교와 규모 감 잡기</b>를 위한 것이며, 계약·정산의 근거 자료가 아닙니다.</li>
       </ul>
     </>
@@ -95,7 +95,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
       <h2 className={H2}>Comparison basis (unified for fairness)</h2>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}><b>Linux on-demand list prices</b>, shared tenancy, current-generation instances only.</li>
-        <li className={LI}><b>x86 and ARM</b> (AWS Graviton, Azure Dpsv6·Epsv6, GCP T2A) are compared together by default. ARM is usually cheaper but needs app compatibility, so it is marked with a badge, and the architecture toggle lets you limit results to x86 or ARM.</li>
+        <li className={LI}><b>x86 and ARM</b> (AWS Graviton, Azure Dpsv6·Epsv6, GCP T2A·C4A) are compared together by default. ARM is usually cheaper but needs app compatibility, so it is marked with a badge, and the architecture toggle lets you limit results to x86 or ARM.</li>
         <li className={LI}>Block storage compares the three general-purpose SSDs: AWS gp3 · GCP Balanced PD · Azure Premium SSD v2 (baseline performance included in the price).</li>
         <li className={LI}>Object storage uses the standard tier, first pricing band (up to 50TB).</li>
         <li className={LI}>
@@ -109,7 +109,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}>Commitment discounts (Savings Plans, CUD, RI), free tiers, and negotiated discounts are not reflected — your actual bill may be lower.</li>
         <li className={LI}>Extra storage IOPS, API request counts, snapshots, load balancers, and other add-on charges are not included.</li>
-        <li className={LI}>Azure coverage is limited to four main series (B/Dsv5/Esv5/Fsv2), so matching options may be narrower.</li>
+        <li className={LI}>Azure and GCP pricing APIs carry no specs, so only main series are cataloged (Azure: B·Bsv2/Dsv5·Dsv6/Esv5·Esv6/Fsv2/Dpsv6·Epsv6; GCP: E2/N1/N2/N2D/N4/N4D/C2/C2D/C3/C3D/C4/C4D/T2D/T2A/C4A). Some series such as Azure AMD variants (Dasv6, etc.) are not included, so the true cheapest option may differ.</li>
         <li className={LI}>These estimates are meant for <b>structural comparison and ballparking</b>, not as a basis for contracts or billing.</li>
       </ul>
     </>

@@ -33,6 +33,12 @@ const FAMILY_LABELS: Record<string, string> = {
   'C3 Instance': 'c3',
   'T2D AMD Instance': 't2d',
   'T2A Arm Instance': 't2a', // ARM (Ampere Altra) — us-east1 등 일부 리전
+  'N4 Instance': 'n4',
+  'N4D Instance': 'n4d',
+  'C3D Instance': 'c3d',
+  'C4 Instance': 'c4',
+  'C4D Instance': 'c4d',
+  'C4A Arm Instance': 'c4a', // ARM (Axion) — 서울 미제공
 };
 
 /** Billing Catalog API 응답에서 우리가 쓰는 필드만 */

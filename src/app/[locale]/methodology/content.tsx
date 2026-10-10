@@ -39,7 +39,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
       <h2 className={H2}>비교 기준 (공정성을 위한 통일)</h2>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}><b>Linux 온디맨드 정가</b>, 공유 테넌시, 현세대 인스턴스만.</li>
-        <li className={LI}><b>x86 아키텍처만</b> 비교합니다 (ARM — AWS Graviton, GCP T2A — 제외. 아키텍처가 다르면 동일 스펙 비교가 공정하지 않습니다).</li>
+        <li className={LI}><b>x86과 ARM</b>(AWS Graviton, Azure Dpsv6·Epsv6, GCP T2A)을 기본으로 함께 비교합니다. ARM은 대개 저렴하지만 앱 호환성 확인이 필요해 결과에 배지로 표시하며, 아키텍처 토글로 x86 또는 ARM만 볼 수 있습니다.</li>
         <li className={LI}>블록 스토리지는 3사의 <b>범용 SSD</b>끼리: AWS gp3 · GCP Balanced PD · Azure Premium SSD v2 (기본 성능 제공분 기준).</li>
         <li className={LI}>오브젝트 스토리지는 표준 티어 첫 구간(50TB 이하) 단가.</li>
         <li className={LI}>
@@ -95,7 +95,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
       <h2 className={H2}>Comparison basis (unified for fairness)</h2>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}><b>Linux on-demand list prices</b>, shared tenancy, current-generation instances only.</li>
-        <li className={LI}><b>x86 only</b> (ARM — AWS Graviton, GCP T2A — excluded: comparing identical specs across architectures would not be fair).</li>
+        <li className={LI}><b>x86 and ARM</b> (AWS Graviton, Azure Dpsv6·Epsv6, GCP T2A) are compared together by default. ARM is usually cheaper but needs app compatibility, so it is marked with a badge, and the architecture toggle lets you limit results to x86 or ARM.</li>
         <li className={LI}>Block storage compares the three general-purpose SSDs: AWS gp3 · GCP Balanced PD · Azure Premium SSD v2 (baseline performance included in the price).</li>
         <li className={LI}>Object storage uses the standard tier, first pricing band (up to 50TB).</li>
         <li className={LI}>

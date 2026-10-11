@@ -3,7 +3,7 @@
  * 실행: tsx collector/main.ts [all|gcp|aws|azure] [--force]
  *   - gcp: GCP_API_KEY 환경변수 또는 .env 필요
  *   - --force: 검증 실패를 무시하고 기록 (실제 대규모 가격 개편일 때만)
- * 산출: data/{provider}/{region}/vm.json · storage.json · egress.json + data/meta.json
+ * 산출: data/{provider}/{region}/vm.json · storage.json · egress.json · k8s.json + data/meta.json
  *
  * 흐름: 전부 수집 → 기존 스냅샷과 검증 → 하나라도 이상하면 아무것도 쓰지 않고
  * 실패 종료(exit 1) → CI가 실패하면 커밋이 없고 GitHub이 알림을 보낸다.
@@ -12,14 +12,16 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import type { Meta, Region } from '../src/lib/schema';
 import { collectAws } from './providers/aws';
-import { collectAzureEgress, collectAzureStorage, collectAzureVm } from './providers/azure';
+import { collectAzureEgress, collectAzureK8s, collectAzureStorage, collectAzureVm } from './providers/azure';
 import {
   GCP_REGION,
   buildVmSkus,
   fetchComputeSkus,
   fetchGcsSkus,
+  fetchGkeSkus,
   parseGcpEgress,
   parseGcpStorage,
+  parseGkeCluster,
   parseUnitPrices,
 } from './providers/gcp';
 import { validateSnapshot, type Snapshot } from './validate';
@@ -46,7 +48,7 @@ function readOldSnapshot(provider: string, region: Region): Snapshot | null {
   if (!existsSync(`${dir}/vm.json`)) return null;
   const read = <T>(file: string, fallback: T): T =>
     existsSync(`${dir}/${file}`) ? JSON.parse(readFileSync(`${dir}/${file}`, 'utf8')) : fallback;
-  return { vms: read('vm.json', []), storage: read('storage.json', []), egress: read('egress.json', null) };
+  return { vms: read('vm.json', []), storage: read('storage.json', []), egress: read('egress.json', null), k8s: read('k8s.json', null) };
 }
 
 function writeSnapshot({ provider, region, snap, vmSamples }: Job) {
@@ -55,6 +57,7 @@ function writeSnapshot({ provider, region, snap, vmSamples }: Job) {
   writeFileSync(`${dir}/vm.json`, JSON.stringify(snap.vms, null, 2) + '\n');
   writeFileSync(`${dir}/storage.json`, JSON.stringify(snap.storage, null, 2) + '\n');
   writeFileSync(`${dir}/egress.json`, JSON.stringify(snap.egress, null, 2) + '\n');
+  writeFileSync(`${dir}/k8s.json`, JSON.stringify(snap.k8s, null, 2) + '\n');
 
   console.log(`\n━━━ ${provider} / ${region} ━━━`);
   console.log(`VmSku ${snap.vms.length}건 · 스토리지 ${snap.storage.length}종 · egress ${snap.egress ? `구간 ${snap.egress.tiers.length}개(무료 ${snap.egress.freeGb}GB)` : '없음'} → ${dir}/`);
@@ -63,6 +66,7 @@ function writeSnapshot({ provider, region, snap, vmSamples }: Job) {
     if (vm) console.log(`  ${name.padEnd(16)} $${vm.pricePerHour}/h (${vm.vcpu}vCPU/${vm.ramGb}GB)`);
   }
   for (const s of snap.storage) console.log(`  ${s.kind.padEnd(16)} $${s.pricePerGbMonth}/GB·월`);
+  console.log(`  ${'k8s-cluster'.padEnd(16)} ${snap.k8s ? `$${snap.k8s.clusterPerHour}/h` : '없음'}`);
 }
 
 /** 환율(USD→KRW) — 무료 API, 실패해도 수집을 막지 않는다 (기존 값 유지) */
@@ -87,9 +91,9 @@ async function collectGcpJobs(): Promise<Job[]> {
     console.error('GCP_API_KEY가 없습니다. .env에 GCP_API_KEY=<키>를 설정하세요.');
     process.exit(1);
   }
-  console.log('[gcp] Compute Engine + Cloud Storage SKU 수집 중... (수만 건, 수십 초 소요)');
-  const [compute, gcs] = await Promise.all([fetchComputeSkus(apiKey), fetchGcsSkus(apiKey)]);
-  console.log(`[gcp] 원본 SKU ${(compute.length + gcs.length).toLocaleString()}건 수신`);
+  console.log('[gcp] Compute Engine + Cloud Storage + GKE SKU 수집 중... (수만 건, 수십 초 소요)');
+  const [compute, gcs, gke] = await Promise.all([fetchComputeSkus(apiKey), fetchGcsSkus(apiKey), fetchGkeSkus(apiKey)]);
+  console.log(`[gcp] 원본 SKU ${(compute.length + gcs.length + gke.length).toLocaleString()}건 수신`);
 
   return REGIONS.map((region) => {
     const gcpRegion = GCP_REGION[region];
@@ -102,6 +106,7 @@ async function collectGcpJobs(): Promise<Job[]> {
         vms: buildVmSkus(unitPrices, region),
         storage: parseGcpStorage(compute, gcs, gcpRegion, region),
         egress: parseGcpEgress(compute, gcpRegion, region),
+        k8s: parseGkeCluster(gke, region),
       },
       vmSamples: ['e2-micro', 'e2-standard-2', 'n2-standard-4'],
     };
@@ -111,7 +116,7 @@ async function collectGcpJobs(): Promise<Job[]> {
 async function collectAwsJobs(): Promise<Job[]> {
   const jobs: Job[] = [];
   for (const region of REGIONS) {
-    console.log(`[aws/${region}] EC2 + S3 + DataTransfer 오퍼 CSV 스트리밍 파싱 중... (수백 MB)`);
+    console.log(`[aws/${region}] EC2 + S3 + DataTransfer + EKS 오퍼 CSV 스트리밍 파싱 중... (수백 MB)`);
     jobs.push({ provider: 'aws', region, snap: await collectAws(region), vmSamples: ['t3.medium', 'm5.large', 'c5.xlarge'] });
   }
   return jobs;
@@ -121,12 +126,13 @@ async function collectAzureJobs(): Promise<Job[]> {
   const jobs: Job[] = [];
   for (const region of REGIONS) {
     console.log(`[azure/${region}] Retail Prices API 수집 중...`);
-    const [vms, storage, egress] = await Promise.all([
+    const [vms, storage, egress, k8s] = await Promise.all([
       collectAzureVm(region),
       collectAzureStorage(region),
       collectAzureEgress(region),
+      collectAzureK8s(region),
     ]);
-    jobs.push({ provider: 'azure', region, snap: { vms, storage, egress }, vmSamples: ['Standard_B2s', 'Standard_D2s_v5', 'Standard_F4s_v2'] });
+    jobs.push({ provider: 'azure', region, snap: { vms, storage, egress, k8s }, vmSamples: ['Standard_B2s', 'Standard_D2s_v5', 'Standard_F4s_v2'] });
   }
   return jobs;
 }

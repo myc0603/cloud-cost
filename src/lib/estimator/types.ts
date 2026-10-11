@@ -16,7 +16,9 @@ export type Resource =
   | ({ type: 'vm' } & VmSpec)
   | { type: 'block'; gb: number }
   | { type: 'object'; gb: number }
-  | { type: 'egress'; gb: number }; // 월 아웃바운드 전송량
+  | { type: 'egress'; gb: number } // 월 아웃바운드 전송량
+  /** 관리형 K8s — 클러스터 수 + 클러스터당 워커 노드(VM 매칭 재사용) */
+  | { type: 'k8s'; clusters: number; node: VmSpec };
 
 export type ResourceType = Resource['type'];
 
@@ -50,6 +52,8 @@ export type NoMatchReason = { reason: 'arch' } | { reason: 'size'; maxVcpu: numb
 export type EstimateLine = { resourceIndex: number } & (
   | {
       kind: 'vm';
+      /** vm = VM 카드, k8s-node = K8s 카드의 워커 노드 (표시 라벨만 다르고 매칭은 동일) */
+      role: 'vm' | 'k8s-node';
       spec: VmSpec;
       matched: VmSku | null;
       candidates: VmSku[];
@@ -59,6 +63,7 @@ export type EstimateLine = { resourceIndex: number } & (
     }
   | { kind: 'storage'; storageKind: StorageSku['kind']; sizeGb: number; pricePerGbMonth: number | null; monthlyUsd: number | null }
   | { kind: 'egress'; gb: number; freeGb: number | null; monthlyUsd: number | null }
+  | { kind: 'k8s-control'; clusters: number; clusterPerHour: number | null; monthlyUsd: number | null }
 );
 
 export interface ProviderEstimate {

@@ -81,7 +81,8 @@ cloud-cost/
 │   └── {provider}/{region}/
 │       ├── vm.json
 │       ├── storage.json     # block-ssd + object-standard
-│       └── egress.json
+│       ├── egress.json
+│       └── k8s.json         # 관리형 K8s 표준 클러스터 시간당 요금
 ├── messages/                # UI 문구 (en.json / ko.json) — next-intl
 ├── src/
 │   ├── app/                 # 라우트 (§6)
@@ -132,6 +133,7 @@ src/
         ├── vm.ts                 # VM — 매칭(최저가·후보·실패 이유) + URL 토큰
         ├── storage.ts            # 블록·오브젝트 스토리지
         ├── egress.ts             # 아웃바운드 트래픽 — 구간 요금
+        ├── k8s.ts                # 관리형 K8s — 컨트롤 플레인 + 워커 노드(VM 매칭 재사용)
         └── estimator.test.ts     # 견적 정확성 = 테스트로 보장
 ```
 
@@ -175,6 +177,13 @@ interface EgressTier {
   region: Region;
   freeGb: number;           // 월 무료 구간
   tiers: { upToGb: number | null; pricePerGb: number }[];  // null = 무제한
+}
+
+/** 관리형 K8s 컨트롤 플레인 — 표준(SLA 포함) 티어. EKS 기본 / AKS Standard / GKE Regional */
+interface K8sClusterPrice {
+  provider: Provider;
+  region: Region;
+  clusterPerHour: number;
 }
 
 /** data/meta.json */
@@ -244,3 +253,4 @@ flowchart TD
 | 피드백 창구 | 폼 → `/api/feedback` → GitHub 이슈 | DB 없는 구조 유지 |
 | 블록 스토리지 지표 | 범용 SSD: gp3 / Balanced PD / **Premium SSD v2** | Azure 관리 디스크는 고정 크기 과금이라 per-GB 모델과 불일치 → 유일한 per-GB 디스크인 SSD v2 사용 |
 | egress 지표 | 3사 모두 **인터넷 라우팅** 기준 | GCP Premium 티어는 목적지별 SKU라 단일 가격이 없음 → GCP Standard 티어 / Azure Routing Preference: Internet / AWS 기본으로 통일 |
+| K8s 컨트롤 플레인 지표 (2026-10-11) | **표준(SLA 포함) 티어**: EKS 기본 / AKS Standard / GKE Regional (수집 시점 3사 모두 $0.10/h) | 운영 서비스 기준 + 기존 "프리티어 미반영" 원칙. AKS Free 티어·GKE 월 크레딧은 고지만. 연장 지원·Provisioned·AKS Automatic·GKE Autopilot(파드 단위 과금)은 제외 |

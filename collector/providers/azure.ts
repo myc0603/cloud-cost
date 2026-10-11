@@ -5,7 +5,7 @@
  * 파이프라인: fetchVmPriceItems → buildAzureVmSkus
  */
 
-import type { EgressTier, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type { EgressTier, K8sClusterPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
 import { AZURE_VM_SIZES } from './azure-vm-sizes';
 
 export const AZURE_REGION: Record<Region, string> = {
@@ -27,12 +27,24 @@ export interface AzurePriceItem {
   type: string;
 }
 
+/** 429(요청 과다)는 잠깐 기다렸다 재시도 — 리전당 병렬 요청이 여럿이라 간헐적으로 걸린다 */
+async function fetchWithRetry(url: string, attempts = 4): Promise<Response> {
+  for (let i = 1; ; i++) {
+    const res = await fetch(url);
+    if (res.status !== 429 || i >= attempts) return res;
+    const retryAfter = Number(res.headers.get('retry-after'));
+    const waitMs = (retryAfter > 0 ? retryAfter : 5 * i) * 1000;
+    console.warn(`⚠ azure 429 — ${waitMs / 1000}초 후 재시도 (${i}/${attempts - 1})`);
+    await new Promise((r) => setTimeout(r, waitMs));
+  }
+}
+
 async function fetchPriceItems(filter: string): Promise<AzurePriceItem[]> {
   let url: string | null = `https://prices.azure.com/api/retail/prices?$filter=${encodeURIComponent(filter)}`;
   const items: AzurePriceItem[] = [];
 
   while (url) {
-    const res: Response = await fetch(url);
+    const res: Response = await fetchWithRetry(url);
     if (!res.ok) throw new Error(`Azure Retail Prices API 오류 ${res.status}: ${await res.text()}`);
     const body = (await res.json()) as { Items?: AzurePriceItem[]; NextPageLink?: string | null };
     items.push(...(body.Items ?? []));
@@ -179,4 +191,27 @@ export async function collectAzureEgress(region: Region): Promise<EgressTier | n
     `armRegionName eq '${armRegion}' and priceType eq 'Consumption' and serviceName eq 'Bandwidth' and productName eq 'Bandwidth - Routing Preference: Internet'`,
   );
   return buildAzureEgress(items, region);
+}
+
+/**
+ * AKS Standard 티어(SLA 포함) 클러스터 시간당 요금 — "Standard Uptime SLA" 미터.
+ * Free 티어(SLA 없음)·LTS·Automatic 모드는 비교 대상 아님.
+ */
+export function buildAzureK8s(items: AzurePriceItem[], region: Region): K8sClusterPrice | null {
+  const sla = items.find(
+    (i) =>
+      i.productName === 'Azure Kubernetes Service' &&
+      i.meterName === 'Standard Uptime SLA' &&
+      i.unitOfMeasure === '1 Hour' &&
+      i.type === 'Consumption' &&
+      i.retailPrice > 0,
+  );
+  return sla ? { provider: 'azure', region, clusterPerHour: +sla.retailPrice.toFixed(6) } : null;
+}
+
+export async function collectAzureK8s(region: Region): Promise<K8sClusterPrice | null> {
+  const items = await fetchPriceItems(
+    `armRegionName eq '${AZURE_REGION[region]}' and priceType eq 'Consumption' and serviceName eq 'Azure Kubernetes Service'`,
+  );
+  return buildAzureK8s(items, region);
 }

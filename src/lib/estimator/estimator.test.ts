@@ -37,8 +37,8 @@ const EGRESS: EgressTier = {
 };
 
 const PRICING: Record<Provider, ProviderPricing> = {
-  aws: { vm: [], storage: [], egress: null },
-  azure: { vm: [], storage: [], egress: null },
+  aws: { vm: [], storage: [], egress: null, k8s: null },
+  azure: { vm: [], storage: [], egress: null, k8s: null },
   gcp: {
     vm: FIXTURE,
     storage: [
@@ -46,6 +46,7 @@ const PRICING: Record<Provider, ProviderPricing> = {
       { provider: 'gcp', region: 'seoul', kind: 'object-standard', pricePerGbMonth: 0.023 },
     ],
     egress: EGRESS,
+    k8s: { provider: 'gcp', region: 'seoul', clusterPerHour: 0.1 },
   },
 };
 
@@ -197,12 +198,39 @@ test('estimate: 매칭 성공이면 noMatch는 null', () => {
   assert.ok(vm.kind === 'vm' && vm.noMatch === null);
 });
 
+test('estimate: K8s 카드 = 컨트롤 플레인 + 노드 두 줄, 노드 수는 클러스터 × 클러스터당 노드', () => {
+  const s = scenario([{ type: 'k8s', clusters: 2, node: { vcpu: 2, ramGb: 8, count: 3 } }]);
+  const gcp = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!;
+  const [control, node] = gcp.lines;
+  assert.ok(control.kind === 'k8s-control' && control.resourceIndex === 0);
+  assert.equal(control.monthlyUsd, +(0.1 * HOURS_PER_MONTH * 2).toFixed(2));
+  assert.ok(node.kind === 'vm' && node.role === 'k8s-node' && node.resourceIndex === 0);
+  assert.equal(node.spec.count, 6);
+  assert.equal(node.matched?.sku, 'fit');
+  assert.equal(node.monthlyUsd, +(0.08 * HOURS_PER_MONTH * 6).toFixed(2));
+});
+
+test('estimate: K8s 노드도 카드 인덱스 override로 인스턴스 변경', () => {
+  const s = scenario([vmRes(2, 4), { type: 'k8s', clusters: 1, node: { vcpu: 2, ramGb: 8, count: 1 } }]);
+  const gcp = estimate(s, PRICING, { includeBurstable: true }, { gcp: { 1: 'big' } }).find((e) => e.provider === 'gcp')!;
+  const node = gcp.lines.find((l) => l.kind === 'vm' && l.role === 'k8s-node')!;
+  assert.ok(node.kind === 'vm' && node.matched?.sku === 'big');
+});
+
+test('estimate: K8s 요금 데이터가 없으면 컨트롤 플레인 줄이 null → 총액 null', () => {
+  const s = scenario([{ type: 'k8s', clusters: 1, node: { vcpu: 2, ramGb: 4, count: 1 } }]);
+  const pricing = { ...PRICING, gcp: { ...PRICING.gcp, k8s: null } };
+  const gcp = estimate(s, pricing, { includeBurstable: true }).find((e) => e.provider === 'gcp')!;
+  assert.equal(gcp.lines[0].monthlyUsd, null);
+  assert.equal(gcp.totalMonthlyUsd, null);
+});
+
 test('실데이터 스모크: 3사 스냅샷에서 통합 시나리오 견적', () => {
   const load = (p: string, f: string) => JSON.parse(readFileSync(`data/${p}/seoul/${f}`, 'utf8'));
   const pricing: Record<Provider, ProviderPricing> = {
-    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json') },
-    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json') },
-    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json') },
+    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json'), k8s: load('aws', 'k8s.json') },
+    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json'), k8s: load('azure', 'k8s.json') },
+    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json'), k8s: load('gcp', 'k8s.json') },
   };
   const s = scenario([vmRes(2, 4, 2), { type: 'block', gb: 100 }, { type: 'object', gb: 500 }, { type: 'egress', gb: 1024 }]);
   const results = estimate(s, pricing, { includeBurstable: true });

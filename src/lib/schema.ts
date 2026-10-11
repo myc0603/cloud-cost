@@ -45,11 +45,22 @@ export interface EgressTier {
   tiers: { upToGb: number | null; pricePerGb: number }[];
 }
 
+/**
+ * 관리형 Kubernetes 컨트롤 플레인 — 표준(SLA 포함) 티어 클러스터 시간당 요금.
+ * EKS 기본 / AKS Standard / GKE Regional. 무료 옵션(AKS Free·GKE 크레딧)·연장 지원은 비교 대상 아님.
+ */
+export interface K8sClusterPrice {
+  provider: Provider;
+  region: Region;
+  clusterPerHour: number;
+}
+
 /** 한 플랫폼의 리전별 요금 데이터 묶음 — pricing 로더가 반환하는 단위 */
 export interface ProviderPricing {
   vm: VmSku[];
   storage: StorageSku[];
   egress: EgressTier | null;
+  k8s: K8sClusterPrice | null;
 }
 
 /** data/meta.json */

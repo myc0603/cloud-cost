@@ -64,12 +64,20 @@ export function cheapestPerSize(sorted: VmSku[]): VmSku[] {
 }
 
 /** VM 스펙 하나의 견적 줄 — 고른 SKU가 조건 충족 후보에 있으면 그걸, 아니면 최저가로 self-heal */
-export function vmLine(index: number, spec: VmSpec, skus: VmSku[], opts: MatchOptions, pick?: string): EstimateLine {
+export function vmLine(
+  index: number,
+  spec: VmSpec,
+  skus: VmSku[],
+  opts: MatchOptions,
+  pick?: string,
+  role: 'vm' | 'k8s-node' = 'vm',
+): EstimateLine {
   const candidates = cheapestPerSize(qualifyingVms(skus, spec, opts));
   const matched = candidates.find((c) => c.sku === pick) ?? candidates[0] ?? null;
   return {
     resourceIndex: index,
     kind: 'vm',
+    role,
     spec,
     matched,
     candidates,

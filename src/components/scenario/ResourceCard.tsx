@@ -30,12 +30,19 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
           {t('remove')}
         </button>
       </div>
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         {r.type === 'vm' ? (
           <>
             <NumberField label={t('vcpu')} value={r.vcpu} min={1} onChange={(vcpu) => onChange({ ...r, vcpu })} />
             <NumberField label={t('ram')} value={r.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, ramGb })} />
             <NumberField label={t('count')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
+          </>
+        ) : r.type === 'k8s' ? (
+          <>
+            <NumberField label={t('clusters')} value={r.clusters} min={1} onChange={(clusters) => onChange({ ...r, clusters })} />
+            <NumberField label={t('nodeVcpu')} value={r.node.vcpu} min={1} onChange={(vcpu) => onChange({ ...r, node: { ...r.node, vcpu } })} />
+            <NumberField label={t('nodeRam')} value={r.node.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, node: { ...r.node, ramGb } })} />
+            <NumberField label={t('nodesPerCluster')} value={r.node.count} min={1} onChange={(count) => onChange({ ...r, node: { ...r.node, count } })} />
           </>
         ) : (
           <NumberField

@@ -73,7 +73,7 @@ function LineLabel({
   if (line.kind === 'vm') {
     return (
       <span>
-        VM {line.spec.vcpu}vCPU/{line.spec.ramGb}GB ×{line.spec.count}
+        {line.role === 'k8s-node' ? t('k8sNode') : 'VM'} {line.spec.vcpu}vCPU/{line.spec.ramGb}GB ×{line.spec.count}
         {!line.matched ? (
           <span className="ml-1 text-red-500">
             {t('noMatch')}
@@ -117,6 +117,14 @@ function LineLabel({
       <span>
         {t(`storageLabel.${line.storageKind}`)} {line.sizeGb}GB
         {line.pricePerGbMonth === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
+      </span>
+    );
+  }
+  if (line.kind === 'k8s-control') {
+    return (
+      <span>
+        {t('k8sControl', { clusters: line.clusters })}
+        {line.clusterPerHour === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
       </span>
     );
   }

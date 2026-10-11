@@ -40,6 +40,14 @@ test('깨진 토큰·모르는 리소스는 버리고 정상 토큰만 살린다
   ]);
 });
 
+test('K8s 토큰 왕복 + 깨진 본문은 버린다', () => {
+  const scenario: Scenario = { region: 'seoul', resources: [{ type: 'k8s', clusters: 2, node: { vcpu: 4, ramGb: 16, count: 3 } }] };
+  const encoded = encodeScenario(scenario);
+  assert.equal(new URLSearchParams(encoded).get('res'), 'k8s:2:4c16g:3');
+  assert.deepEqual(decodeScenario(encoded), scenario);
+  assert.deepEqual(decodeScenario('res=k8s:0:4c16g:3,k8s:1:4c16g')?.resources, []);
+});
+
 test('singleton(트래픽)은 첫 카드만 살린다', () => {
   const s = decodeScenario('res=eg:100,eg:200');
   assert.deepEqual(s?.resources, [{ type: 'egress', gb: 100 }]);

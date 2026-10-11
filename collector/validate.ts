@@ -6,12 +6,13 @@
  * 전에 차단하고 기존 스냅샷을 유지한다. 상세: docs/ARCHITECTURE.md §2
  */
 
-import type { EgressTier, StorageSku, VmSku } from '../src/lib/schema';
+import type { EgressTier, K8sClusterPrice, StorageSku, VmSku } from '../src/lib/schema';
 
 export interface Snapshot {
   vms: VmSku[];
   storage: StorageSku[];
   egress: EgressTier | null;
+  k8s: K8sClusterPrice | null;
 }
 
 /** 전일 스냅샷 대비 이상 징후 목록을 반환. 빈 배열 = 통과. 이전 데이터가 없으면(첫 수집) 통과 */
@@ -59,6 +60,13 @@ export function validateSnapshot(label: string, prev: Snapshot | null, next: Sna
   // 4. egress 소실 (있던 게 없어지면 파싱 실패 의심)
   if (prev.egress && !next.egress) {
     errors.push(`${label}: egress 요금표 소실`);
+  }
+
+  // 5. K8s 컨트롤 플레인 — 소실 또는 ±30% 급변
+  if (prev.k8s && !next.k8s) {
+    errors.push(`${label}: K8s 클러스터 요금 소실`);
+  } else if (prev.k8s && next.k8s && Math.abs(next.k8s.clusterPerHour - prev.k8s.clusterPerHour) / prev.k8s.clusterPerHour > 0.3) {
+    errors.push(`${label}: K8s 클러스터 요금 급변 $${prev.k8s.clusterPerHour} → $${next.k8s.clusterPerHour}`);
   }
 
   return errors;

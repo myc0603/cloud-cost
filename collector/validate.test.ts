@@ -19,6 +19,7 @@ const snap = (over: Partial<Snapshot>): Snapshot => ({
   vms: [],
   storage: [],
   egress: null,
+  k8s: null,
   ...over,
 });
 
@@ -62,4 +63,11 @@ test('스토리지 소실·단가 급변 → 실패', () => {
 test('egress 소실 → 실패', () => {
   const prev = snap({ egress: EGRESS });
   assert.match(validateSnapshot('t', prev, snap({}))[0], /egress.*소실/);
+});
+
+test('K8s 클러스터 요금 소실·급변은 실패, 소폭 변화는 통과', () => {
+  const k8s = (clusterPerHour: number) => ({ provider: 'aws' as const, region: 'seoul' as const, clusterPerHour });
+  assert.equal(validateSnapshot('t', snap({ k8s: k8s(0.1) }), snap({ k8s: null })).length, 1);
+  assert.equal(validateSnapshot('t', snap({ k8s: k8s(0.1) }), snap({ k8s: k8s(0.6) })).length, 1);
+  assert.deepEqual(validateSnapshot('t', snap({ k8s: k8s(0.1) }), snap({ k8s: k8s(0.11) })), []);
 });

@@ -9,7 +9,7 @@
 
 import { createInterface } from 'node:readline';
 import { Readable } from 'node:stream';
-import type { Arch, EgressTier, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type { Arch, EgressTier, K8sClusterPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
 
 export const AWS_REGION: Record<Region, string> = {
   seoul: 'ap-northeast-2',
@@ -234,6 +234,27 @@ export async function parseS3OfferCsv(
   return price !== null ? { provider: 'aws', region, kind: 'object-standard', pricePerGbMonth: price } : null;
 }
 
+/**
+ * AmazonEKS 오퍼 CSV → 표준 클러스터 시간당 요금 (usageType "{리전접두}-AmazonEKS-Hours:perCluster").
+ * Outposts 로컬 클러스터·연장 지원·Provisioned 티어는 usageType이 달라 자연 제외.
+ */
+export async function parseEksCsv(
+  lines: AsyncIterable<string> | Iterable<string>,
+  region: Region,
+): Promise<K8sClusterPrice | null> {
+  let price: number | null = null;
+
+  await scanOfferCsv(lines, (get) => {
+    if (get('TermType') !== 'OnDemand' || get('Currency') !== 'USD') return;
+    if (get('Location') !== AWS_LOCATION[region]) return;
+    if (!/^[A-Z0-9]+-AmazonEKS-Hours:perCluster$/.test(get('usageType'))) return;
+    const p = Number(get('PricePerUnit'));
+    if (p > 0 && price === null) price = +p.toFixed(6);
+  });
+
+  return price !== null ? { provider: 'aws', region, clusterPerHour: price } : null;
+}
+
 async function streamOffer(offer: string, awsRegion: string) {
   const res = await fetch(offerCsvUrl(offer, awsRegion));
   if (!res.ok || !res.body) throw new Error(`AWS Price List API 오류 ${res.status} (${offer}/${awsRegion})`);
@@ -242,10 +263,11 @@ async function streamOffer(offer: string, awsRegion: string) {
 
 export async function collectAws(
   region: Region,
-): Promise<{ vms: VmSku[]; storage: StorageSku[]; egress: EgressTier | null }> {
+): Promise<{ vms: VmSku[]; storage: StorageSku[]; egress: EgressTier | null; k8s: K8sClusterPrice | null }> {
   const awsRegion = AWS_REGION[region];
   const ec2 = await parseEc2OfferCsv(await streamOffer('AmazonEC2', awsRegion), region);
   const s3 = await parseS3OfferCsv(await streamOffer('AmazonS3', awsRegion), region);
   const egress = await parseDataTransferCsv(await streamOffer('AWSDataTransfer', awsRegion), region);
-  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress };
+  const k8s = await parseEksCsv(await streamOffer('AmazonEKS', awsRegion), region);
+  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s };
 }

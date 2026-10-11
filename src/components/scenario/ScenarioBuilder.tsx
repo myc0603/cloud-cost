@@ -85,8 +85,9 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
 
   const updateResource = (i: number, next: Resource) => {
     const prev = scenario.resources[i];
-    // vCPU·RAM이 바뀌면 후보가 달라지므로 선택 초기화 (대수만 바뀌면 유지)
-    if (prev?.type === 'vm' && next.type === 'vm' && (prev.vcpu !== next.vcpu || prev.ramGb !== next.ramGb)) {
+    // VM·K8s 노드의 vCPU·RAM이 바뀌면 후보가 달라지므로 선택 초기화 (대수만 바뀌면 유지)
+    const spec = (r?: Resource) => (r?.type === 'vm' ? `${r.vcpu}/${r.ramGb}` : r?.type === 'k8s' ? `${r.node.vcpu}/${r.node.ramGb}` : null);
+    if (spec(prev) !== spec(next)) {
       setOverrides((o) => clearIndex(o, i));
     }
     setScenario((s) => ({ ...s, resources: s.resources.map((r, j) => (j === i ? next : r)) }));

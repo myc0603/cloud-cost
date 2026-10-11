@@ -4,7 +4,7 @@
  */
 
 import assert from 'node:assert/strict';
-import { parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
+import { parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
 
 function fx(
   description: string,
@@ -67,5 +67,15 @@ assert.equal(micro.burstable, true);
 
 // 단가가 없는 패밀리(n2 등)는 머신이 생성되지 않아야
 assert.ok(!vms.some((v) => v.sku.startsWith('n2-')), '단가 없는 패밀리는 제외');
+
+// GKE: Regional 클러스터(global SKU)만 — Zonal·연장 지원은 비교 대상 아님
+const gke = [
+  fx('Zonal Kubernetes Clusters', 'OnDemand', 90_000_000, ['global']),
+  fx('Extended Period Kubernetes Clusters', 'OnDemand', 500_000_000, ['global']),
+  fx('Regional Kubernetes Clusters', 'Commit1Yr', 50_000_000, ['global']),
+  fx('Regional Kubernetes Clusters', 'OnDemand', 100_000_000, ['global']),
+];
+assert.deepEqual(parseGkeCluster(gke, 'seoul'), { provider: 'gcp', region: 'seoul', clusterPerHour: 0.1 });
+assert.equal(parseGkeCluster([], 'seoul'), null);
 
 console.log(`gcp.test: 모든 검증 통과 ✔ (VmSku ${vms.length}건 생성)`);

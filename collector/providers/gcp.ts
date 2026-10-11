@@ -6,11 +6,12 @@
  * 파이프라인: fetchComputeSkus → parseUnitPrices → buildVmSkus
  */
 
-import type { EgressTier, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type { EgressTier, K8sClusterPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
 import { GCP_MACHINE_TYPES } from './gcp-machine-types';
 
 const COMPUTE_SERVICE_ID = '6F81-5844-456A'; // Compute Engine
 const GCS_SERVICE_ID = '95FF-2EF5-5EA1'; // Cloud Storage
+const GKE_SERVICE_ID = 'CCD8-9BF1-090E'; // Kubernetes Engine
 
 export const GCP_REGION: Record<Region, string> = {
   seoul: 'asia-northeast3',
@@ -63,6 +64,7 @@ export type UnitPrices = Record<string, { corePerHour?: number; ramGbPerHour?: n
 
 export const fetchComputeSkus = (apiKey: string) => fetchServiceSkus(apiKey, COMPUTE_SERVICE_ID);
 export const fetchGcsSkus = (apiKey: string) => fetchServiceSkus(apiKey, GCS_SERVICE_ID);
+export const fetchGkeSkus = (apiKey: string) => fetchServiceSkus(apiKey, GKE_SERVICE_ID);
 
 async function fetchServiceSkus(apiKey: string, serviceId: string): Promise<RawSku[]> {
   const all: RawSku[] = [];
@@ -192,6 +194,21 @@ export function parseGcpEgress(computeSkus: RawSku[], gcpRegion: string, region:
     freeGb = t.upToGb;
   }
   return { provider: 'gcp', region, freeGb, tiers };
+}
+
+/**
+ * GKE 클러스터 관리 요금 — "Regional Kubernetes Clusters"(컨트롤 플레인 이중화, EKS·AKS Standard와 동급).
+ * 전 리전 공통 global SKU. 결제 계정당 월 크레딧(Zonal·Autopilot 1개분)은 무료 혜택이라 미반영.
+ */
+export function parseGkeCluster(gkeSkus: RawSku[], region: Region): K8sClusterPrice | null {
+  const sku = gkeSkus.find(
+    (s) =>
+      s.category?.usageType === 'OnDemand' &&
+      !!s.serviceRegions?.includes('global') &&
+      s.description === 'Regional Kubernetes Clusters',
+  );
+  const price = sku && unitPriceOf(sku);
+  return price ? { provider: 'gcp', region, clusterPerHour: round6(price) } : null;
 }
 
 /** 패밀리 단가 × 머신 타입 카탈로그 → VmSku[]. 단가가 불완전한 패밀리는 건너뛴다. */

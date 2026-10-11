@@ -5,7 +5,7 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
-import type { EgressTier, Meta, Provider, ProviderPricing, Region, StorageSku, VmSku } from './schema';
+import type { EgressTier, K8sClusterPrice, Meta, Provider, ProviderPricing, Region, StorageSku, VmSku } from './schema';
 
 export const PROVIDERS: Provider[] = ['aws', 'azure', 'gcp'];
 
@@ -28,6 +28,7 @@ export function loadPricing(region: Region): Record<Provider, ProviderPricing> {
       vm: readJson<VmSku[]>(provider, region, 'vm.json', []).map((v) => ({ ...v, arch: v.arch ?? 'x86' })),
       storage: readJson<StorageSku[]>(provider, region, 'storage.json', []),
       egress: readJson<EgressTier | null>(provider, region, 'egress.json', null),
+      k8s: readJson<K8sClusterPrice | null>(provider, region, 'k8s.json', null),
     };
     return [provider, pricing] as const;
   });

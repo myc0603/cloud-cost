@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildAzureEgress, buildAzureStorage, buildAzureVmSkus, type AzurePriceItem } from './azure';
+import { buildAzureEgress, buildAzureK8s, buildAzureStorage, buildAzureVmSkus, type AzurePriceItem } from './azure';
 
 const item = (over: Partial<AzurePriceItem>): AzurePriceItem => ({
   currencyCode: 'USD',
@@ -74,4 +74,16 @@ test('buildAzureEgress: tierMinimumUnits → 구간 변환 + 무료 100GB', () =
     { upToGb: 10100, pricePerGb: 0.11 },
     { upToGb: null, pricePerGb: 0.075 },
   ]);
+});
+
+test('buildAzureK8s: Standard 티어(SLA) 미터만 — Free 인프라·LTS·Automatic 제외', () => {
+  const k = (productName: string, meterName: string, retailPrice: number) => item({ productName, meterName, retailPrice, skuName: 'Standard' });
+  const items = [
+    k('Azure Kubernetes Service', 'FreeTierInfrastructureCost Uptime SLA', 0.05),
+    k('Azure Kubernetes Service', 'Standard Long Term Support', 0.6),
+    k('Azure Kubernetes Service - Automatic', 'Automatic Hosted Control Plane', 0.16),
+    k('Azure Kubernetes Service', 'Standard Uptime SLA', 0.1),
+  ];
+  assert.deepEqual(buildAzureK8s(items, 'seoul'), { provider: 'azure', region: 'seoul', clusterPerHour: 0.1 });
+  assert.equal(buildAzureK8s([], 'seoul'), null);
 });

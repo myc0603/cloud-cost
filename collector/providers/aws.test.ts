@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseCsvLine, parseDataTransferCsv, parseEc2OfferCsv, parseS3OfferCsv } from './aws';
+import { parseCsvLine, parseDataTransferCsv, parseEc2OfferCsv, parseEksCsv, parseS3OfferCsv } from './aws';
 
 test('parseCsvLine: 따옴표·이스케이프·빈 필드', () => {
   assert.deepEqual(parseCsvLine('"a","b,c","d""e",,"f"'), ['a', 'b,c', 'd"e', '', 'f']);
@@ -129,4 +129,20 @@ test('parseS3OfferCsv: Standard 첫 구간 단가', async () => {
 
 test('parseEc2OfferCsv: 헤더가 없으면 형식 변경 의심 에러', async () => {
   await assert.rejects(() => parseEc2OfferCsv(['"FormatVersion","v1.0"'], 'seoul'), /형식 변경/);
+});
+
+test('parseEksCsv: 표준 클러스터만 (Outposts·연장 지원·Provisioned·다른 리전 제외)', async () => {
+  const H = '"SKU","TermType","Unit","PricePerUnit","Currency","Location","usageType"';
+  const r = (price: string, usageType: string, location = 'Asia Pacific (Seoul)') =>
+    `"X","OnDemand","Hours","${price}","USD","${location}","${usageType}"`;
+  const lines = [
+    H,
+    r('0.5000000000', 'APN2-AmazonEKS-Hours:extendedSupport'),
+    r('1.6500000000', 'APN2-AmazonEKS-Hours:XL-ProvisionedTier'),
+    r('0.2000000000', 'APN2-AmazonEKS-Local-Outposts-Hours:perCluster'),
+    r('0.3000000000', 'USE1-AmazonEKS-Hours:perCluster', 'US East (N. Virginia)'),
+    r('0.1000000000', 'APN2-AmazonEKS-Hours:perCluster'),
+  ];
+  assert.deepEqual(await parseEksCsv(lines, 'seoul'), { provider: 'aws', region: 'seoul', clusterPerHour: 0.1 });
+  assert.equal(await parseEksCsv([H], 'seoul'), null);
 });

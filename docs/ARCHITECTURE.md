@@ -112,8 +112,7 @@ src/
 ├── components/
 │   ├── scenario/
 │   │   ├── ScenarioBuilder.tsx   # 'use client' — 시나리오 상태 + URL 동기화
-│   │   ├── ResourceCard.tsx      # VM 입력 카드
-│   │   ├── StorageTrafficCard.tsx # 스토리지·트래픽 입력 카드
+│   │   ├── ResourceCard.tsx      # 리소스 카드 (공통 틀 + 타입별 입력 필드)
 │   │   ├── NumberField.tsx
 │   │   └── EstimateResult.tsx    # 3사 견적 카드 + 비용 분해 + 인스턴스 드롭다운
 │   ├── instances/
@@ -128,7 +127,11 @@ src/
     ├── display.ts                # 통화(USD/KRW)·기간(시간/일/주/월) 표시 변환
     ├── seo.ts                    # canonical·hreflang
     └── estimator/
-        ├── index.ts              # estimate() 진입점 + VM 매칭·egress 구간 계산
+        ├── index.ts              # 리소스 레지스트리(RESOURCES) + estimate() 진입점
+        ├── types.ts              # 공통 타입 (Scenario·Resource·EstimateLine·ResourceDef)
+        ├── vm.ts                 # VM — 매칭(최저가·후보·실패 이유) + URL 토큰
+        ├── storage.ts            # 블록·오브젝트 스토리지
+        ├── egress.ts             # 아웃바운드 트래픽 — 구간 요금
         └── estimator.test.ts     # 견적 정확성 = 테스트로 보장
 ```
 
@@ -203,11 +206,16 @@ flowchart TD
 ```
 
 - 순수 함수로 작성 (`estimate(scenario, priceData) → Estimate[]`) — 테스트가 곧 검증 수단
+- **시나리오 = 리소스 카드 목록** (`resources: Resource[]`, 카드 순서 그대로). 리소스 타입마다 `ResourceDef`(기본값 · URL 토큰 인코딩/디코딩 · 견적 줄 계산)를 구현한 모듈 하나가 있고, `index.ts`의 `RESOURCES` 레지스트리에 등록한다. `estimate()`는 카드를 돌며 각 정의에 위임하고 합산만 한다
+  - 새 리소스 추가 = 모듈 1개 + 레지스트리 1줄 + `Resource` 유니온 1줄 + `ResourceCard` 입력 필드 + 문구
+  - 견적 줄마다 `resourceIndex`(만든 카드)가 붙는다 — 카드 하나가 여러 줄을 낼 수 있음 (예: K8s = 컨트롤 플레인 + 노드)
+  - `singleton` 타입은 시나리오에 하나만: 트래픽은 구간 요금이 전체 전송량 기준이라 카드를 나누면 무료 구간이 중복 적용됨
+  - 리소스 모듈은 `types.ts`만 import (`index.ts`를 import하면 순환 참조)
 - 월 환산: 시간당 가격 × **730시간** 고정
 - 매칭 옵션: 버스트 포함(기본 포함), 아키텍처 `both`(기본) / `x86` / `arm`. 현세대 한정은 수집 단계에서 걸러짐(엔진에 세대 필터 없음)
-- 커스텀 선택: 드롭다운 후보 = 조건 충족 SKU 중 사이즈(vCPU·RAM)별 최저가 1개. 고른 SKU가 조건에서 벗어나면 최저가로 self-heal
+- 커스텀 선택: 드롭다운 후보 = 조건 충족 SKU 중 사이즈(vCPU·RAM)별 최저가 1개. 고른 SKU가 조건에서 벗어나면 최저가로 self-heal. 선택은 카드 인덱스 기준으로 저장
 - 매칭 실패 시 이유(`noMatch`)를 함께 반환: `arch`(버스트·아키텍처 조건에 맞는 SKU가 리전에 없음) / `size`(조건 내 최대 vCPU·RAM 안내) — "견적 불가"가 버그로 보이지 않게
-- 시나리오 상태는 URL 쿼리에 인코딩 → 저장 기능 없이 공유 가능. 예: `/?r=seoul&vm=2c4g:2&blk=100&obj=500&eg=1024&arch=x86&burst=0&pick=aws:0:t3.large` — URL 자체가 시나리오 데이터라서 열면 같은 화면이 재구성됨 (`arch`·`burst`·`pick`은 기본값이면 생략)
+- 시나리오 상태는 URL 쿼리에 인코딩 → 저장 기능 없이 공유 가능. 예: `/?r=seoul&res=vm:2c4g:2,blk:100,obj:500,eg:1024&arch=x86&burst=0&pick=aws:0:t3.large` — URL 자체가 시나리오 데이터라서 열면 같은 화면이 재구성됨. `res`는 카드 순서대로 `토큰:본문`(본문 형식은 리소스 모듈이 정함), `pick`의 숫자는 카드 인덱스 (`arch`·`burst`·`pick`은 기본값이면 생략). v0.3 이전 형식(`vm=`·`blk=` …)은 지원 안 함 — 열면 기본 시나리오
 - 통화·기간 전환은 엔진 밖 표시 계층(`display.ts`)에서 월 USD에 곱셈만 — 엔진 출력은 항상 월 USD
 
 ## 6. 라우트

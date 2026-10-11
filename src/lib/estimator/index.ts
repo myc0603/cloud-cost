@@ -2,133 +2,40 @@
  * 견적 엔진 — 순수 함수. 시나리오 × 요금표 → 플랫폼별 월 견적.
  * I/O·UI 의존 없음: 입력이 같으면 출력이 항상 같다 (테스트로 정확성 보장).
  * 상세: docs/ARCHITECTURE.md §5
+ *
+ * 리소스 타입별 계산·URL 토큰은 각 모듈(vm·storage·egress)에 있고, 여기는 레지스트리와 합산만 한다.
  */
 
-import type { EgressTier, Provider, ProviderPricing, StorageSku, VmSku } from '../schema';
-import type { Region } from '../schema';
+import type { Provider, ProviderPricing } from '../schema';
+import { EGRESS } from './egress';
+import { BLOCK, OBJECT } from './storage';
+import {
+  round2,
+  type EstimateLine,
+  type MatchOptions,
+  type Overrides,
+  type ProviderEstimate,
+  type Resource,
+  type ResourceDef,
+  type ResourceType,
+  type Scenario,
+} from './types';
+import { VM } from './vm';
 
-export interface VmSpec {
-  vcpu: number;
-  ramGb: number;
-  count: number;
-}
+export * from './types';
+export { calcEgressUsd } from './egress';
+export { cheapestPerSize, matchVm, noMatchReason, qualifyingVms } from './vm';
 
-export interface Scenario {
-  region: Region;
-  vms: VmSpec[];
-  blockGb: number; // 0 = 미사용
-  objectGb: number;
-  egressGb: number; // 월 아웃바운드 전송량
-}
+/** 리소스 타입 레지스트리 — 키 순서가 "+ 추가" 버튼 순서 */
+export const RESOURCES: { [K in ResourceType]: ResourceDef<Extract<Resource, { type: K }>> } = {
+  vm: VM,
+  block: BLOCK,
+  object: OBJECT,
+  egress: EGRESS,
+};
 
-/** 매칭할 CPU 아키텍처. both = x86·arm 통틀어 최저가 */
-export type ArchFilter = 'x86' | 'arm' | 'both';
-
-export interface MatchOptions {
-  /** 버스트 인스턴스(t계열/B계열/E2 공유 코어)를 매칭 후보에 포함할지 */
-  includeBurstable: boolean;
-  /** 매칭할 아키텍처. 생략 시 both */
-  arch?: ArchFilter;
-}
-
-/** 플랫폼 × VM 인덱스 → 사용자가 고른 SKU명. 조건 미충족·미존재 SKU는 무시하고 최저가로 self-heal */
-export type Overrides = Partial<Record<Provider, Record<number, string>>>;
-
-/**
- * 매칭 실패 이유 — "견적 불가"를 버그로 오해하지 않게 화면에 같이 보여준다.
- * arch: 버스트·아키텍처 조건을 만족하는 인스턴스가 이 리전에 아예 없음 (예: 서울 GCP ARM)
- * size: 인스턴스는 있지만 요구 스펙이 조건 내 최대치를 넘음 (vCPU·RAM 최대는 각각 따로 집계)
- */
-export type NoMatchReason = { reason: 'arch' } | { reason: 'size'; maxVcpu: number; maxRamGb: number };
-
-export type EstimateLine =
-  | {
-      kind: 'vm';
-      vmIndex: number;
-      spec: VmSpec;
-      matched: VmSku | null;
-      candidates: VmSku[];
-      /** matched가 null일 때만 값이 있다 */
-      noMatch: NoMatchReason | null;
-      monthlyUsd: number | null;
-    }
-  | { kind: 'storage'; storageKind: StorageSku['kind']; sizeGb: number; pricePerGbMonth: number | null; monthlyUsd: number | null }
-  | { kind: 'egress'; gb: number; freeGb: number | null; monthlyUsd: number | null };
-
-export interface ProviderEstimate {
-  provider: Provider;
-  /** VM 요금 데이터 존재 여부 — false면 "데이터 준비 중" */
-  available: boolean;
-  lines: EstimateLine[];
-  /** 모든 항목이 계산됐을 때만 총액. 불완전 견적에 총액을 보여주면 오해를 부른다 */
-  totalMonthlyUsd: number | null;
-}
-
-/** 월 환산 시간 — 3사 계산기 관례(365d × 24h ÷ 12) */
-export const HOURS_PER_MONTH = 730;
-
-const round2 = (x: number) => +x.toFixed(2);
-
-/**
- * 요구 스펙을 만족하는(vCPU·RAM 최소 충족) 후보를 가격 오름차순으로.
- * 동가면 vCPU가 작은 것 우선 → 과잉 프로비저닝 최소화. 첫 항목이 곧 최저가.
- */
-export function qualifyingVms(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmSku[] {
-  return eligibleVms(skus, opts)
-    .filter((s) => s.vcpu >= spec.vcpu && s.ramGb >= spec.ramGb)
-    .sort((a, b) => a.pricePerHour - b.pricePerHour || a.vcpu - b.vcpu);
-}
-
-/** 스펙과 무관한 매칭 조건(버스트·아키텍처)만 적용한 후보 */
-function eligibleVms(skus: VmSku[], opts: MatchOptions): VmSku[] {
-  const arch = opts.arch ?? 'both';
-  return skus.filter((s) => (opts.includeBurstable || !s.burstable) && (arch === 'both' || s.arch === arch));
-}
-
-/** 후보가 없을 때 이유 — 조건 내 SKU가 0개면 arch, 아니면 최대 사이즈 안내 */
-export function noMatchReason(skus: VmSku[], opts: MatchOptions): NoMatchReason {
-  const pool = eligibleVms(skus, opts);
-  if (pool.length === 0) return { reason: 'arch' };
-  return {
-    reason: 'size',
-    maxVcpu: Math.max(...pool.map((s) => s.vcpu)),
-    maxRamGb: Math.max(...pool.map((s) => s.ramGb)),
-  };
-}
-
-/** 스펙 만족 후보 중 최저가 (자동 선택 기본값) */
-export function matchVm(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmSku | null {
-  return qualifyingVms(skus, spec, opts)[0] ?? null;
-}
-
-/**
- * 사이즈(vCPU·RAM)별 최저가 1개만 남긴다 — 드롭다운 후보용.
- * 같은 스펙에 더 비싼 SKU는 열등(strictly dominated)하므로 노이즈.
- * 입력이 가격 오름차순이면 각 사이즈의 첫 항목이 곧 최저가.
- */
-export function cheapestPerSize(sorted: VmSku[]): VmSku[] {
-  const seen = new Set<string>();
-  return sorted.filter((s) => {
-    const key = `${s.vcpu}/${s.ramGb}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}
-
-/** 구간 요금 누적 계산 — tiers는 0GB부터의 절대 사용량 구간(무료 구간 포함) */
-export function calcEgressUsd(egress: EgressTier, gb: number): number {
-  let cost = 0;
-  let prev = 0;
-  for (const tier of egress.tiers) {
-    const cap = tier.upToGb ?? Infinity;
-    const qty = Math.min(gb, cap) - prev;
-    if (qty > 0) cost += qty * tier.pricePerGb;
-    if (gb <= cap) break;
-    prev = cap;
-  }
-  return cost;
-}
+/** 타입별 정의 조회 — 유니온을 좁히지 못하는 호출부용 */
+export const resourceDef = (r: Resource) => RESOURCES[r.type] as ResourceDef<Resource>;
 
 export function estimate(
   scenario: Scenario,
@@ -137,48 +44,14 @@ export function estimate(
   overrides: Overrides = {},
 ): ProviderEstimate[] {
   return (Object.keys(pricing) as Provider[]).map((provider) => {
-    const { vm: vmSkus, storage, egress } = pricing[provider];
-    if (vmSkus.length === 0) {
+    const p = pricing[provider];
+    if (p.vm.length === 0) {
       return { provider, available: false, lines: [], totalMonthlyUsd: null };
     }
 
-    const lines: EstimateLine[] = scenario.vms.map((spec, i) => {
-      const candidates = cheapestPerSize(qualifyingVms(vmSkus, spec, opts));
-      const picked = overrides[provider]?.[i];
-      // 고른 SKU가 조건 충족 후보에 있으면 그걸, 아니면 최저가로 self-heal
-      const matched = candidates.find((c) => c.sku === picked) ?? candidates[0] ?? null;
-      return {
-        kind: 'vm' as const,
-        vmIndex: i,
-        spec,
-        matched,
-        candidates,
-        noMatch: matched ? null : noMatchReason(vmSkus, opts),
-        monthlyUsd: matched ? round2(matched.pricePerHour * HOURS_PER_MONTH * spec.count) : null,
-      };
-    });
-
-    const storageLine = (storageKind: StorageSku['kind'], sizeGb: number): EstimateLine => {
-      const sku = storage.find((s) => s.kind === storageKind);
-      return {
-        kind: 'storage',
-        storageKind,
-        sizeGb,
-        pricePerGbMonth: sku?.pricePerGbMonth ?? null,
-        monthlyUsd: sku ? round2(sizeGb * sku.pricePerGbMonth) : null,
-      };
-    };
-    if (scenario.blockGb > 0) lines.push(storageLine('block-ssd', scenario.blockGb));
-    if (scenario.objectGb > 0) lines.push(storageLine('object-standard', scenario.objectGb));
-
-    if (scenario.egressGb > 0) {
-      lines.push({
-        kind: 'egress',
-        gb: scenario.egressGb,
-        freeGb: egress?.freeGb ?? null,
-        monthlyUsd: egress ? round2(calcEgressUsd(egress, scenario.egressGb)) : null,
-      });
-    }
+    const lines: EstimateLine[] = scenario.resources.flatMap((r, index) =>
+      resourceDef(r).estimate(r, { index, pricing: p, opts, pick: overrides[provider]?.[index] }),
+    );
 
     const complete = lines.length > 0 && lines.every((l) => l.monthlyUsd !== null);
     return {

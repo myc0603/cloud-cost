@@ -8,8 +8,8 @@ import type { Arch, Provider } from '@/lib/schema';
 
 const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
 
-/** (provider, vmIndex)의 인스턴스 선택 변경. isDefault(=최저가)면 override 해제 */
-type SelectInstance = (provider: Provider, vmIndex: number, sku: string, isDefault: boolean) => void;
+/** (provider, 카드 인덱스)의 인스턴스 선택 변경. isDefault(=최저가)면 override 해제 */
+type SelectInstance = (provider: Provider, resourceIndex: number, sku: string, isDefault: boolean) => void;
 
 const PERIODS: Period[] = ['hour', 'day', 'week', 'month'];
 const PERIOD_SUFFIX: Record<Period, string> = { hour: 'perHour', day: 'perDay', week: 'perWeek', month: 'perMonth' };
@@ -96,7 +96,7 @@ function LineLabel({
             aria-label={t('instanceSelect')}
             value={line.matched.sku}
             onChange={(e) =>
-              onSelect(provider, line.vmIndex, e.target.value, e.target.value === line.candidates[0].sku)
+              onSelect(provider, line.resourceIndex, e.target.value, e.target.value === line.candidates[0].sku)
             }
             className="ml-1 rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
           >

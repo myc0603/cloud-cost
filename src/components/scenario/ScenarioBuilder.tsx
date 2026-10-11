@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { estimate, type ArchFilter, type Overrides, type Scenario, type VmSpec } from '@/lib/estimator';
+import { estimate, RESOURCES, type ArchFilter, type Overrides, type Resource, type ResourceType, type Scenario } from '@/lib/estimator';
 import type { Provider, ProviderPricing, Region } from '@/lib/schema';
 import {
   decodeMatchOptions,
@@ -15,20 +15,16 @@ import {
 } from '@/lib/scenario-url';
 import EstimateResult from './EstimateResult';
 import ResourceCard from './ResourceCard';
-import StorageTrafficCard from './StorageTrafficCard';
 
 const DEFAULT_SCENARIO: Scenario = {
   region: 'seoul',
-  vms: [{ vcpu: 2, ramGb: 4, count: 1 }],
-  blockGb: 0,
-  objectGb: 0,
-  egressGb: 0,
+  resources: [{ type: 'vm', vcpu: 2, ramGb: 4, count: 1 }],
 };
 
 const REGIONS: Region[] = ['seoul', 'us-east'];
 
-/** VM 스펙이 바뀌면 후보 집합이 달라지므로 그 인덱스의 커스텀 선택을 초기화 */
-function clearVmIndex(overrides: Overrides, i: number): Overrides {
+/** VM 스펙이 바뀌면 후보 집합이 달라지므로 그 카드의 커스텀 선택을 초기화 */
+function clearIndex(overrides: Overrides, i: number): Overrides {
   const out: Overrides = {};
   for (const [p, perVm] of Object.entries(overrides)) {
     const next = { ...perVm };
@@ -38,7 +34,7 @@ function clearVmIndex(overrides: Overrides, i: number): Overrides {
   return out;
 }
 
-/** VM 삭제 시 뒤 인덱스를 당겨 엉뚱한 VM에 선택이 적용되는 것을 막는다 */
+/** 카드 삭제 시 뒤 인덱스를 당겨 엉뚱한 카드에 선택이 적용되는 것을 막는다 */
 function reindexAfterRemove(overrides: Overrides, removed: number): Overrides {
   const out: Overrides = {};
   for (const [p, perVm] of Object.entries(overrides)) {
@@ -87,27 +83,30 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
     [scenario, pricing, includeBurstable, arch, overrides],
   );
 
-  const updateVm = (i: number, spec: VmSpec) => {
-    const prev = scenario.vms[i];
+  const updateResource = (i: number, next: Resource) => {
+    const prev = scenario.resources[i];
     // vCPU·RAM이 바뀌면 후보가 달라지므로 선택 초기화 (대수만 바뀌면 유지)
-    if (prev && (prev.vcpu !== spec.vcpu || prev.ramGb !== spec.ramGb)) {
-      setOverrides((o) => clearVmIndex(o, i));
+    if (prev?.type === 'vm' && next.type === 'vm' && (prev.vcpu !== next.vcpu || prev.ramGb !== next.ramGb)) {
+      setOverrides((o) => clearIndex(o, i));
     }
-    setScenario((s) => ({ ...s, vms: s.vms.map((v, j) => (j === i ? spec : v)) }));
+    setScenario((s) => ({ ...s, resources: s.resources.map((r, j) => (j === i ? next : r)) }));
   };
-  const removeVm = (i: number) => {
-    setScenario((s) => ({ ...s, vms: s.vms.filter((_, j) => j !== i) }));
+  const removeResource = (i: number) => {
+    setScenario((s) => ({ ...s, resources: s.resources.filter((_, j) => j !== i) }));
     setOverrides((o) => reindexAfterRemove(o, i));
   };
-  const addVm = () =>
-    setScenario((s) => ({ ...s, vms: [...s.vms, { vcpu: 2, ramGb: 4, count: 1 }] }));
+  const addResource = (type: ResourceType) =>
+    setScenario((s) => ({ ...s, resources: [...s.resources, RESOURCES[type].create()] }));
+  /** singleton 타입은 이미 있으면 추가 불가 */
+  const canAdd = (type: ResourceType) =>
+    !RESOURCES[type].singleton || !scenario.resources.some((r) => r.type === type);
 
-  const selectInstance = (provider: Provider, vmIndex: number, sku: string, isDefault: boolean) =>
+  const selectInstance = (provider: Provider, resourceIndex: number, sku: string, isDefault: boolean) =>
     setOverrides((o) => {
-      const perVm = { ...(o[provider] ?? {}) };
-      if (isDefault) delete perVm[vmIndex];
-      else perVm[vmIndex] = sku;
-      return { ...o, [provider]: perVm };
+      const perResource = { ...(o[provider] ?? {}) };
+      if (isDefault) delete perResource[resourceIndex];
+      else perResource[resourceIndex] = sku;
+      return { ...o, [provider]: perResource };
     });
 
   const copyShareLink = async () => {
@@ -154,28 +153,31 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
           </label>
         </div>
 
-        {scenario.vms.map((spec, i) => (
-          <ResourceCard
-            key={i}
-            index={i}
-            spec={spec}
-            onChange={(next) => updateVm(i, next)}
-            onRemove={() => removeVm(i)}
-          />
-        ))}
+        {scenario.resources.map((r, i) => {
+          const sameType = scenario.resources.filter((x) => x.type === r.type);
+          return (
+            <ResourceCard
+              key={i}
+              resource={r}
+              ordinal={scenario.resources.slice(0, i + 1).filter((x) => x.type === r.type).length}
+              numbered={r.type === 'vm' || sameType.length > 1}
+              onChange={(next) => updateResource(i, next)}
+              onRemove={() => removeResource(i)}
+            />
+          );
+        })}
 
-        <StorageTrafficCard
-          scenario={scenario}
-          onChange={(next) => setScenario((s) => ({ ...s, ...next }))}
-        />
-
-        <div className="flex gap-2">
-          <button
-            onClick={addVm}
-            className="rounded-lg border border-dashed border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 hover:text-slate-900"
-          >
-            {t('addVm')}
-          </button>
+        <div className="flex flex-wrap gap-2">
+          {(Object.keys(RESOURCES) as ResourceType[]).map((type) => (
+            <button
+              key={type}
+              onClick={() => addResource(type)}
+              disabled={!canAdd(type)}
+              className="rounded-lg border border-dashed border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              + {t(`resourceTitle.${type}`)}
+            </button>
+          ))}
           <button
             onClick={copyShareLink}
             className="rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 hover:text-slate-900"

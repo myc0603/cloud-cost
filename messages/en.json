@@ -34,20 +34,21 @@
       "x86": "x86",
       "arm": "ARM"
     },
-    "addVm": "+ Add VM",
     "copyShareLink": "Copy share link",
     "copied": "Copied ✓",
-    "vmTitle": "Virtual machine #{index}",
+    "resourceTitle": {
+      "vm": "Virtual machine",
+      "block": "Block storage",
+      "object": "Object storage",
+      "egress": "Outbound traffic"
+    },
+    "sizeGb": "Size (GB)",
+    "egressGb": "Monthly transfer (GB)",
     "remove": "Remove",
     "removeAria": "Remove this resource",
     "vcpu": "vCPU",
     "ram": "RAM (GB)",
-    "count": "Count",
-    "storageTraffic": "Storage · Traffic",
-    "zeroUnused": "0 = not used",
-    "blockStorage": "Block storage (GB)",
-    "objectStorage": "Object storage (GB)",
-    "egress": "Outbound traffic (GB/mo)"
+    "count": "Count"
   },
   "estimate": {
     "storageLabel": {

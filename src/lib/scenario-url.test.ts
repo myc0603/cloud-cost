@@ -10,34 +10,39 @@ import {
 } from './scenario-url';
 import type { Overrides, Scenario } from './estimator';
 
-test('인코딩 → 디코딩 왕복 보존', () => {
+test('인코딩 → 디코딩 왕복 보존 (카드 순서 포함)', () => {
   const scenario: Scenario = {
     region: 'us-east',
-    vms: [{ vcpu: 2, ramGb: 4, count: 2 }, { vcpu: 8, ramGb: 32, count: 1 }],
-    blockGb: 100,
-    objectGb: 500,
-    egressGb: 1024,
+    resources: [
+      { type: 'vm', vcpu: 2, ramGb: 4, count: 2 },
+      { type: 'block', gb: 100 },
+      { type: 'vm', vcpu: 8, ramGb: 32, count: 1 },
+      { type: 'object', gb: 500 },
+      { type: 'egress', gb: 1024 },
+    ],
   };
-  assert.deepEqual(decodeScenario(encodeScenario(scenario)), scenario);
-});
-
-test('0인 리소스는 인코딩에서 생략되고 디코딩 시 0으로 복원', () => {
-  const scenario: Scenario = { region: 'seoul', vms: [{ vcpu: 2, ramGb: 4, count: 1 }], blockGb: 0, objectGb: 0, egressGb: 0 };
   const encoded = encodeScenario(scenario);
-  assert.ok(!encoded.includes('blk=') && !encoded.includes('obj=') && !encoded.includes('eg='));
+  assert.equal(new URLSearchParams(encoded).get('res'), 'vm:2c4g:2,blk:100,vm:8c32g:1,obj:500,eg:1024');
   assert.deepEqual(decodeScenario(encoded), scenario);
 });
 
-test('파라미터 없으면 null (기본 시나리오 위임)', () => {
+test('파라미터 없으면 null (기본 시나리오 위임) — v0.3 이전 형식도 null', () => {
   assert.equal(decodeScenario(''), null);
   assert.equal(decodeScenario('foo=bar'), null);
+  assert.equal(decodeScenario('vm=2c4g:1&blk=100'), null);
 });
 
-test('깨진 토큰은 버리고 정상 토큰만 살린다', () => {
-  const s = decodeScenario('r=seoul&vm=2c4g:1,garbage,0c4g:1,4c8g:2&blk=abc&eg=-5');
-  assert.deepEqual(s?.vms, [{ vcpu: 2, ramGb: 4, count: 1 }, { vcpu: 4, ramGb: 8, count: 2 }]);
-  assert.equal(s?.blockGb, 0); // 숫자 아님 → 0
-  assert.equal(s?.egressGb, 0); // 음수 → 0
+test('깨진 토큰·모르는 리소스는 버리고 정상 토큰만 살린다', () => {
+  const s = decodeScenario('r=seoul&res=vm:2c4g:1,garbage,vm:0c4g:1,lb:1,blk:abc,eg:-5,vm:4c8g:2');
+  assert.deepEqual(s?.resources, [
+    { type: 'vm', vcpu: 2, ramGb: 4, count: 1 },
+    { type: 'vm', vcpu: 4, ramGb: 8, count: 2 },
+  ]);
+});
+
+test('singleton(트래픽)은 첫 카드만 살린다', () => {
+  const s = decodeScenario('res=eg:100,eg:200');
+  assert.deepEqual(s?.resources, [{ type: 'egress', gb: 100 }]);
 });
 
 test('모르는 리전은 seoul로 폴백', () => {

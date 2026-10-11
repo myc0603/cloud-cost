@@ -34,20 +34,21 @@
       "x86": "x86",
       "arm": "ARM"
     },
-    "addVm": "+ VM 추가",
     "copyShareLink": "공유 링크 복사",
     "copied": "복사됨 ✓",
-    "vmTitle": "가상 머신 #{index}",
+    "resourceTitle": {
+      "vm": "가상 머신",
+      "block": "블록 스토리지",
+      "object": "오브젝트 스토리지",
+      "egress": "아웃바운드 트래픽"
+    },
+    "sizeGb": "용량 (GB)",
+    "egressGb": "월 전송량 (GB)",
     "remove": "삭제",
     "removeAria": "이 리소스 삭제",
     "vcpu": "vCPU",
     "ram": "RAM (GB)",
-    "count": "대수",
-    "storageTraffic": "스토리지 · 트래픽",
-    "zeroUnused": "0 = 미사용",
-    "blockStorage": "블록 스토리지 (GB)",
-    "objectStorage": "오브젝트 스토리지 (GB)",
-    "egress": "아웃바운드 트래픽 (GB/월)"
+    "count": "대수"
   },
   "estimate": {
     "storageLabel": {

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { calcEgressUsd, cheapestPerSize, estimate, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
 import type { EgressTier, Provider, ProviderPricing, VmSku } from '../schema';
+import type { Resource } from './types';
 
 const sku = (over: Partial<VmSku>): VmSku => ({
   provider: 'gcp',
@@ -48,14 +49,8 @@ const PRICING: Record<Provider, ProviderPricing> = {
   },
 };
 
-const scenario = (over: Partial<Scenario>): Scenario => ({
-  region: 'seoul',
-  vms: [],
-  blockGb: 0,
-  objectGb: 0,
-  egressGb: 0,
-  ...over,
-});
+const scenario = (resources: Resource[]): Scenario => ({ region: 'seoul', resources });
+const vmRes = (vcpu: number, ramGb: number, count = 1): Resource => ({ type: 'vm', vcpu, ramGb, count });
 
 test('matchVm: 스펙 만족 최저가 선택 (버스트 포함)', () => {
   const m = matchVm(FIXTURE, { vcpu: 2, ramGb: 4, count: 1 }, { includeBurstable: true });
@@ -105,7 +100,7 @@ test('cheapestPerSize: 같은 (vCPU,RAM)는 최저가 1개만 (열등 SKU 제거
 });
 
 test('estimate: override로 조건 만족하는 더 큰 인스턴스 선택', () => {
-  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+  const s = scenario([vmRes(2, 4)]);
   const gcp = estimate(s, PRICING, { includeBurstable: true }, { gcp: { 0: 'fit' } }).find((e) => e.provider === 'gcp')!;
   const vm = gcp.lines[0];
   assert.ok(vm.kind === 'vm' && vm.matched?.sku === 'fit');
@@ -113,15 +108,15 @@ test('estimate: override로 조건 만족하는 더 큰 인스턴스 선택', ()
 });
 
 test('estimate: 존재하지 않는 override는 최저가로 self-heal', () => {
-  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+  const s = scenario([vmRes(2, 4)]);
   const gcp = estimate(s, PRICING, { includeBurstable: true }, { gcp: { 0: 'no-such-sku' } }).find((e) => e.provider === 'gcp')!;
   assert.ok(gcp.lines[0].kind === 'vm' && gcp.lines[0].matched?.sku === 'cheap-burst');
 });
 
-test('estimate: vm 라인에 vmIndex와 후보 목록이 실린다 (드롭다운용)', () => {
-  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+test('estimate: vm 라인에 resourceIndex와 후보 목록이 실린다 (드롭다운용)', () => {
+  const s = scenario([vmRes(2, 4)]);
   const vm = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines[0];
-  assert.ok(vm.kind === 'vm' && vm.vmIndex === 0 && vm.candidates.length === 4);
+  assert.ok(vm.kind === 'vm' && vm.resourceIndex === 0 && vm.candidates.length === 4);
 });
 
 test('calcEgressUsd: 무료 구간 내 = 0', () => {
@@ -137,7 +132,7 @@ test('calcEgressUsd: 구간 누적 계산', () => {
 });
 
 test('estimate: VM+스토리지+egress 통합, 데이터 없는 플랫폼은 available=false', () => {
-  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 2 }], blockGb: 100, objectGb: 500, egressGb: 1024 });
+  const s = scenario([vmRes(2, 4, 2), { type: 'block', gb: 100 }, { type: 'object', gb: 500 }, { type: 'egress', gb: 1024 }]);
   const results = estimate(s, PRICING, { includeBurstable: true });
 
   const aws = results.find((e) => e.provider === 'aws')!;
@@ -163,34 +158,41 @@ test('estimate: VM+스토리지+egress 통합, 데이터 없는 플랫폼은 ava
   );
 });
 
-test('estimate: 사용량 0인 리소스는 항목 자체가 없다', () => {
-  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+test('estimate: 카드 순서대로 줄이 나오고 resourceIndex가 카드 인덱스', () => {
+  const s = scenario([{ type: 'egress', gb: 100 }, vmRes(2, 4), { type: 'block', gb: 10 }]);
   const gcp = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!;
-  assert.equal(gcp.lines.length, 1);
+  assert.deepEqual(gcp.lines.map((l) => [l.kind, l.resourceIndex]), [['egress', 0], ['vm', 1], ['storage', 2]]);
+});
+
+test('estimate: override는 VM 순번이 아니라 카드 인덱스로 적용', () => {
+  const s = scenario([{ type: 'block', gb: 10 }, vmRes(2, 4)]);
+  const gcp = estimate(s, PRICING, { includeBurstable: true }, { gcp: { 1: 'fit' } }).find((e) => e.provider === 'gcp')!;
+  const line = gcp.lines[1];
+  assert.ok(line.kind === 'vm' && line.matched?.sku === 'fit');
 });
 
 test('estimate: 한 항목이라도 계산 실패면 총액은 null', () => {
-  const s = scenario({ vms: [{ vcpu: 64, ramGb: 4, count: 1 }] });
+  const s = scenario([vmRes(64, 4)]);
   const gcp = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!;
   assert.equal(gcp.totalMonthlyUsd, null);
 });
 
 test('estimate: 매칭 실패 이유 — 사이즈 초과면 조건 내 최대 vCPU·RAM', () => {
-  const s = scenario({ vms: [{ vcpu: 64, ramGb: 4, count: 1 }] });
+  const s = scenario([vmRes(64, 4)]);
   const vm = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines[0];
   assert.ok(vm.kind === 'vm');
   assert.deepEqual(vm.noMatch, { reason: 'size', maxVcpu: 8, maxRamGb: 32 });
 });
 
 test('estimate: 매칭 실패 이유 — 조건(아키텍처)에 맞는 SKU가 아예 없으면 arch', () => {
-  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+  const s = scenario([vmRes(2, 4)]);
   const vm = estimate(s, PRICING, { includeBurstable: true, arch: 'arm' }).find((e) => e.provider === 'gcp')!.lines[0];
   assert.ok(vm.kind === 'vm');
   assert.deepEqual(vm.noMatch, { reason: 'arch' });
 });
 
 test('estimate: 매칭 성공이면 noMatch는 null', () => {
-  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 1 }] });
+  const s = scenario([vmRes(2, 4)]);
   const vm = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines[0];
   assert.ok(vm.kind === 'vm' && vm.noMatch === null);
 });
@@ -202,7 +204,7 @@ test('실데이터 스모크: 3사 스냅샷에서 통합 시나리오 견적', 
     azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json') },
     gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json') },
   };
-  const s = scenario({ vms: [{ vcpu: 2, ramGb: 4, count: 2 }], blockGb: 100, objectGb: 500, egressGb: 1024 });
+  const s = scenario([vmRes(2, 4, 2), { type: 'block', gb: 100 }, { type: 'object', gb: 500 }, { type: 'egress', gb: 1024 }]);
   const results = estimate(s, pricing, { includeBurstable: true });
 
   for (const r of results) {

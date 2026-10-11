@@ -1,0 +1,420 @@
+{
+  "provider": "azure",
+  "region": "seoul",
+  "engines": {
+    "mysql": {
+      "instances": [
+        {
+          "sku": "Standard_B1ms",
+          "vcpu": 1,
+          "ramGb": 2,
+          "burstable": true,
+          "perHour": 0.026,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B2s",
+          "vcpu": 2,
+          "ramGb": 4,
+          "burstable": true,
+          "perHour": 0.104,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B2ms",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": true,
+          "perHour": 0.208,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B4ms",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": true,
+          "perHour": 0.416,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B8ms",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": true,
+          "perHour": 0.832,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B12ms",
+          "vcpu": 12,
+          "ramGb": 48,
+          "burstable": true,
+          "perHour": 1.248,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B16ms",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": true,
+          "perHour": 1.664,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B20ms",
+          "vcpu": 20,
+          "ramGb": 80,
+          "burstable": true,
+          "perHour": 2.08,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_D2ads_v5",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.236,
+          "haPerHour": 0.472
+        },
+        {
+          "sku": "Standard_D4ads_v5",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.472,
+          "haPerHour": 0.944
+        },
+        {
+          "sku": "Standard_D8ads_v5",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.944,
+          "haPerHour": 1.888
+        },
+        {
+          "sku": "Standard_D16ads_v5",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.888,
+          "haPerHour": 3.776
+        },
+        {
+          "sku": "Standard_D32ads_v5",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.776,
+          "haPerHour": 7.552
+        },
+        {
+          "sku": "Standard_D48ads_v5",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.664,
+          "haPerHour": 11.328
+        },
+        {
+          "sku": "Standard_D64ads_v5",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.552,
+          "haPerHour": 15.104
+        },
+        {
+          "sku": "Standard_D96ads_v5",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 11.328,
+          "haPerHour": 22.656
+        },
+        {
+          "sku": "Standard_E2ads_v5",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.2836,
+          "haPerHour": 0.5672
+        },
+        {
+          "sku": "Standard_E4ads_v5",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.5672,
+          "haPerHour": 1.1344
+        },
+        {
+          "sku": "Standard_E8ads_v5",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.1344,
+          "haPerHour": 2.2688
+        },
+        {
+          "sku": "Standard_E16ads_v5",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.2688,
+          "haPerHour": 4.5376
+        },
+        {
+          "sku": "Standard_E20ads_v5",
+          "vcpu": 20,
+          "ramGb": 160,
+          "burstable": false,
+          "perHour": 2.836,
+          "haPerHour": 5.672
+        },
+        {
+          "sku": "Standard_E32ads_v5",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.5376,
+          "haPerHour": 9.0752
+        },
+        {
+          "sku": "Standard_E48ads_v5",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 6.8064,
+          "haPerHour": 13.6128
+        },
+        {
+          "sku": "Standard_E64ads_v5",
+          "vcpu": 64,
+          "ramGb": 504,
+          "burstable": false,
+          "perHour": 9.0752,
+          "haPerHour": 18.1504
+        },
+        {
+          "sku": "Standard_E96ads_v5",
+          "vcpu": 96,
+          "ramGb": 672,
+          "burstable": false,
+          "perHour": 13.6128,
+          "haPerHour": 27.2256
+        }
+      ],
+      "custom": null,
+      "storageGbMonth": 0.131,
+      "haStorageGbMonth": 0.262
+    },
+    "postgres": {
+      "instances": [
+        {
+          "sku": "Standard_B1ms",
+          "vcpu": 1,
+          "ramGb": 2,
+          "burstable": true,
+          "perHour": 0.026,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B2s",
+          "vcpu": 2,
+          "ramGb": 4,
+          "burstable": true,
+          "perHour": 0.104,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B2ms",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": true,
+          "perHour": 0.208,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B4ms",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": true,
+          "perHour": 0.416,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B8ms",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": true,
+          "perHour": 0.832,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B12ms",
+          "vcpu": 12,
+          "ramGb": 48,
+          "burstable": true,
+          "perHour": 1.248,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B16ms",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": true,
+          "perHour": 1.664,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B20ms",
+          "vcpu": 20,
+          "ramGb": 80,
+          "burstable": true,
+          "perHour": 2.08,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_D2ads_v5",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.246,
+          "haPerHour": 0.492
+        },
+        {
+          "sku": "Standard_D4ads_v5",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.492,
+          "haPerHour": 0.984
+        },
+        {
+          "sku": "Standard_D8ads_v5",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.984,
+          "haPerHour": 1.968
+        },
+        {
+          "sku": "Standard_D16ads_v5",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.968,
+          "haPerHour": 3.936
+        },
+        {
+          "sku": "Standard_D32ads_v5",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.936,
+          "haPerHour": 7.872
+        },
+        {
+          "sku": "Standard_D48ads_v5",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.904,
+          "haPerHour": 11.808
+        },
+        {
+          "sku": "Standard_D64ads_v5",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.872,
+          "haPerHour": 15.744
+        },
+        {
+          "sku": "Standard_D96ads_v5",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 11.808,
+          "haPerHour": 23.616
+        },
+        {
+          "sku": "Standard_E2ads_v5",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.3,
+          "haPerHour": 0.6
+        },
+        {
+          "sku": "Standard_E4ads_v5",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.6,
+          "haPerHour": 1.2
+        },
+        {
+          "sku": "Standard_E8ads_v5",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.2,
+          "haPerHour": 2.4
+        },
+        {
+          "sku": "Standard_E16ads_v5",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.4,
+          "haPerHour": 4.8
+        },
+        {
+          "sku": "Standard_E20ads_v5",
+          "vcpu": 20,
+          "ramGb": 160,
+          "burstable": false,
+          "perHour": 3,
+          "haPerHour": 6
+        },
+        {
+          "sku": "Standard_E32ads_v5",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.8,
+          "haPerHour": 9.6
+        },
+        {
+          "sku": "Standard_E48ads_v5",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.2,
+          "haPerHour": 14.4
+        },
+        {
+          "sku": "Standard_E64ads_v5",
+          "vcpu": 64,
+          "ramGb": 504,
+          "burstable": false,
+          "perHour": 9.6,
+          "haPerHour": 19.2
+        },
+        {
+          "sku": "Standard_E96ads_v5",
+          "vcpu": 96,
+          "ramGb": 672,
+          "burstable": false,
+          "perHour": 14.4,
+          "haPerHour": 28.8
+        }
+      ],
+      "custom": null,
+      "storageGbMonth": 0.131,
+      "haStorageGbMonth": 0.262
+    }
+  }
+}

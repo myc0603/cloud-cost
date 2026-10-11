@@ -1,0 +1,28 @@
+{
+  "provider": "gcp",
+  "region": "us-east",
+  "engines": {
+    "mysql": {
+      "instances": [],
+      "custom": {
+        "vcpuPerHour": 0.0413,
+        "ramGbPerHour": 0.007,
+        "haVcpuPerHour": 0.0826,
+        "haRamGbPerHour": 0.014
+      },
+      "storageGbMonth": 0.17,
+      "haStorageGbMonth": 0.34
+    },
+    "postgres": {
+      "instances": [],
+      "custom": {
+        "vcpuPerHour": 0.0413,
+        "ramGbPerHour": 0.007,
+        "haVcpuPerHour": 0.0826,
+        "haRamGbPerHour": 0.014
+      },
+      "storageGbMonth": 0.17,
+      "haStorageGbMonth": 0.34
+    }
+  }
+}

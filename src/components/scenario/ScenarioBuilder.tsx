@@ -13,6 +13,7 @@ import {
   encodeOverrides,
   encodeScenario,
 } from '@/lib/scenario-url';
+import { TEMPLATES, type TemplateId } from '@/lib/templates';
 import EstimateResult from './EstimateResult';
 import ResourceCard from './ResourceCard';
 
@@ -102,6 +103,16 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
   const canAdd = (type: ResourceType) =>
     !RESOURCES[type].singleton || !scenario.resources.some((r) => r.type === type);
 
+  /** 템플릿 적용 — 사용자가 편집한 구성(기본값·템플릿 그대로가 아닌 것)을 덮을 때만 확인 */
+  const applyTemplate = (id: TemplateId) => {
+    const same = (resources: Resource[]) => JSON.stringify(resources) === JSON.stringify(scenario.resources);
+    const untouched = same(DEFAULT_SCENARIO.resources) || TEMPLATES.some((tpl) => same(tpl.resources));
+    if (!untouched && !window.confirm(t('templateConfirm'))) return;
+    const tpl = TEMPLATES.find((x) => x.id === id)!;
+    setScenario((s) => ({ ...s, resources: structuredClone(tpl.resources) }));
+    setOverrides({});
+  };
+
   const selectInstance = (provider: Provider, resourceIndex: number, sku: string, isDefault: boolean) =>
     setOverrides((o) => {
       const perResource = { ...(o[provider] ?? {}) };
@@ -152,6 +163,19 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
               ))}
             </select>
           </label>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2 text-sm">
+          <span className="text-slate-500">{t('templateStart')}</span>
+          {TEMPLATES.map(({ id }) => (
+            <button
+              key={id}
+              onClick={() => applyTemplate(id)}
+              className="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs text-slate-600 hover:border-slate-400 hover:text-slate-900"
+            >
+              {t(`templateName.${id}`)}
+            </button>
+          ))}
         </div>
 
         {scenario.resources.map((r, i) => {

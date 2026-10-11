@@ -129,6 +129,7 @@ src/
     ├── scenario-url.ts           # 시나리오·매칭 옵션·커스텀 선택 ↔ URL 코덱
     ├── display.ts                # 통화(USD/KRW)·기간(시간/일/주/월) 표시 변환
     ├── seo.ts                    # canonical·hreflang
+    ├── templates.ts              # 시나리오 템플릿 (프리셋 구성도 = resources 배열)
     └── estimator/
         ├── index.ts              # 리소스 레지스트리(RESOURCES) + estimate() 진입점
         ├── types.ts              # 공통 타입 (Scenario·Resource·EstimateLine·ResourceDef)

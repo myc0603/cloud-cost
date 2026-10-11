@@ -8,6 +8,7 @@ import {
   encodeOverrides,
   encodeScenario,
 } from './scenario-url';
+import { TEMPLATES } from './templates';
 import type { Overrides, Scenario } from './estimator';
 
 test('인코딩 → 디코딩 왕복 보존 (카드 순서 포함)', () => {
@@ -91,4 +92,11 @@ test('matchOptions: arch·burst 왕복', () => {
   assert.deepEqual(decodeMatchOptions(encodeMatchOptions(opts)), opts);
   assert.equal(decodeMatchOptions('arch=x86').arch, 'x86');
   assert.equal(decodeMatchOptions('arch=mips').arch, 'both'); // 모르는 값 → both
+});
+
+test('템플릿: 전부 URL 왕복 보존 (토큰 형식·singleton 규칙에 맞는 데이터)', () => {
+  for (const tpl of TEMPLATES) {
+    const scenario: Scenario = { region: 'seoul', resources: tpl.resources };
+    assert.deepEqual(decodeScenario(encodeScenario(scenario)), scenario, tpl.id);
+  }
 });

@@ -34,6 +34,14 @@
       "x86": "x86",
       "arm": "ARM"
     },
+    "templateStart": "Start from a template:",
+    "templateName": {
+      "web": "Small web service",
+      "k8sApi": "K8s-based API service",
+      "static": "Static site & file serving",
+      "batch": "Batch & data processing"
+    },
+    "templateConfirm": "This will replace your current setup with the template. Continue?",
     "copyShareLink": "Copy share link",
     "copied": "Copied ✓",
     "resourceTitle": {

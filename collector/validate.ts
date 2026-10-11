@@ -6,13 +6,15 @@
  * 전에 차단하고 기존 스냅샷을 유지한다. 상세: docs/ARCHITECTURE.md §2
  */
 
-import type { EgressTier, K8sClusterPrice, StorageSku, VmSku } from '../src/lib/schema';
+import type { EgressTier, K8sClusterPrice, LbPrice, NatPrice, StorageSku, VmSku } from '../src/lib/schema';
 
 export interface Snapshot {
   vms: VmSku[];
   storage: StorageSku[];
   egress: EgressTier | null;
   k8s: K8sClusterPrice | null;
+  lb: LbPrice | null;
+  nat: NatPrice | null;
 }
 
 /** 전일 스냅샷 대비 이상 징후 목록을 반환. 빈 배열 = 통과. 이전 데이터가 없으면(첫 수집) 통과 */
@@ -62,11 +64,18 @@ export function validateSnapshot(label: string, prev: Snapshot | null, next: Sna
     errors.push(`${label}: egress 요금표 소실`);
   }
 
-  // 5. K8s 컨트롤 플레인 — 소실 또는 ±30% 급변
-  if (prev.k8s && !next.k8s) {
-    errors.push(`${label}: K8s 클러스터 요금 소실`);
-  } else if (prev.k8s && next.k8s && Math.abs(next.k8s.clusterPerHour - prev.k8s.clusterPerHour) / prev.k8s.clusterPerHour > 0.3) {
-    errors.push(`${label}: K8s 클러스터 요금 급변 $${prev.k8s.clusterPerHour} → $${next.k8s.clusterPerHour}`);
+  // 5. 단가 하나짜리 요금(K8s·LB·NAT) — 소실 또는 ±30% 급변
+  const checks: [string, number | undefined, number | undefined][] = [
+    ['K8s 클러스터 요금', prev.k8s?.clusterPerHour, next.k8s?.clusterPerHour],
+    ['LB 시간당', prev.lb?.perHour, next.lb?.perHour],
+    ['LB GB당', prev.lb?.perGb, next.lb?.perGb],
+    ['NAT 시간당', prev.nat?.hourly.usd, next.nat?.hourly.usd],
+    ['NAT GB당', prev.nat?.perGb, next.nat?.perGb],
+  ];
+  for (const [name, before, after] of checks) {
+    if (before === undefined) continue;
+    if (after === undefined) errors.push(`${label}: ${name} 소실`);
+    else if (Math.abs(after - before) / before > 0.3) errors.push(`${label}: ${name} 급변 $${before} → $${after}`);
   }
 
   return errors;

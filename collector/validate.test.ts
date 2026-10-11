@@ -20,6 +20,8 @@ const snap = (over: Partial<Snapshot>): Snapshot => ({
   storage: [],
   egress: null,
   k8s: null,
+  lb: null,
+  nat: null,
   ...over,
 });
 
@@ -70,4 +72,13 @@ test('K8s 클러스터 요금 소실·급변은 실패, 소폭 변화는 통과'
   assert.equal(validateSnapshot('t', snap({ k8s: k8s(0.1) }), snap({ k8s: null })).length, 1);
   assert.equal(validateSnapshot('t', snap({ k8s: k8s(0.1) }), snap({ k8s: k8s(0.6) })).length, 1);
   assert.deepEqual(validateSnapshot('t', snap({ k8s: k8s(0.1) }), snap({ k8s: k8s(0.11) })), []);
+});
+
+test('LB·NAT 단가 소실·급변은 실패', () => {
+  const lb = (perHour: number, perGb: number) => ({ provider: 'aws' as const, region: 'seoul' as const, perHour, perGb });
+  const nat = (usd: number) => ({ provider: 'aws' as const, region: 'seoul' as const, hourly: { per: 'gateway' as const, usd }, perGb: 0.059 });
+  assert.equal(validateSnapshot('t', snap({ lb: lb(0.0225, 0.008) }), snap({ lb: null })).length, 2); // 시간당·GB당 둘 다 소실
+  assert.equal(validateSnapshot('t', snap({ lb: lb(0.0225, 0.008) }), snap({ lb: lb(0.0225, 0.02) })).length, 1);
+  assert.equal(validateSnapshot('t', snap({ nat: nat(0.059) }), snap({ nat: nat(0.1) })).length, 1);
+  assert.deepEqual(validateSnapshot('t', snap({ nat: nat(0.059) }), snap({ nat: nat(0.06) })), []);
 });

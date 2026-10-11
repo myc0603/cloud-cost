@@ -37,8 +37,8 @@ const EGRESS: EgressTier = {
 };
 
 const PRICING: Record<Provider, ProviderPricing> = {
-  aws: { vm: [], storage: [], egress: null, k8s: null },
-  azure: { vm: [], storage: [], egress: null, k8s: null },
+  aws: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null },
+  azure: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null },
   gcp: {
     vm: FIXTURE,
     storage: [
@@ -47,6 +47,8 @@ const PRICING: Record<Provider, ProviderPricing> = {
     ],
     egress: EGRESS,
     k8s: { provider: 'gcp', region: 'seoul', clusterPerHour: 0.1 },
+    lb: { provider: 'gcp', region: 'seoul', perHour: 0.038, perGb: 0.012 },
+    nat: { provider: 'gcp', region: 'seoul', hourly: { per: 'vm', usd: 0.0014, maxVms: 32 }, perGb: 0.045 },
   },
 };
 
@@ -225,12 +227,42 @@ test('estimate: K8s 요금 데이터가 없으면 컨트롤 플레인 줄이 nul
   assert.equal(gcp.totalMonthlyUsd, null);
 });
 
+test('estimate: LB = 시간당 × 대수 + GB당 × 처리량', () => {
+  const s = scenario([{ type: 'lb', count: 2, gb: 1000 }]);
+  const line = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines[0];
+  assert.ok(line.kind === 'lb');
+  assert.equal(line.monthlyUsd, +(0.038 * HOURS_PER_MONTH * 2 + 0.012 * 1000).toFixed(2));
+});
+
+test('estimate: NAT(VM당 과금) = 시나리오 VM 대수 + K8s 노드 수, 게이트웨이당 32대 상한', () => {
+  const nat = (resources: Resource[]) => {
+    const line = estimate(scenario(resources), PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines.find((l) => l.kind === 'nat')!;
+    assert.ok(line.kind === 'nat');
+    return line;
+  };
+  // VM 2대 + 노드 2×3=6대 = 8대
+  const small = nat([vmRes(2, 4, 2), { type: 'k8s', clusters: 2, node: { vcpu: 2, ramGb: 4, count: 3 } }, { type: 'nat', count: 1, gb: 100 }]);
+  assert.equal(small.billedVms, 8);
+  assert.equal(small.monthlyUsd, +(0.0014 * 8 * HOURS_PER_MONTH + 0.045 * 100).toFixed(2));
+  // 100대지만 게이트웨이 1개 → 32대 상한, 2개 → 64대
+  assert.equal(nat([vmRes(2, 4, 100), { type: 'nat', count: 1, gb: 1 }]).billedVms, 32);
+  assert.equal(nat([vmRes(2, 4, 100), { type: 'nat', count: 2, gb: 1 }]).billedVms, 64);
+});
+
+test('estimate: NAT(게이트웨이당 과금)는 VM 수와 무관, billedVms null', () => {
+  const pricing = { ...PRICING, gcp: { ...PRICING.gcp, nat: { provider: 'gcp' as const, region: 'seoul' as const, hourly: { per: 'gateway' as const, usd: 0.045 }, perGb: 0.045 } } };
+  const line = estimate(scenario([vmRes(2, 4, 50), { type: 'nat', count: 2, gb: 100 }]), pricing, { includeBurstable: true })
+    .find((e) => e.provider === 'gcp')!.lines.find((l) => l.kind === 'nat')!;
+  assert.ok(line.kind === 'nat' && line.billedVms === null);
+  assert.equal(line.monthlyUsd, +(0.045 * 2 * HOURS_PER_MONTH + 0.045 * 100).toFixed(2));
+});
+
 test('실데이터 스모크: 3사 스냅샷에서 통합 시나리오 견적', () => {
   const load = (p: string, f: string) => JSON.parse(readFileSync(`data/${p}/seoul/${f}`, 'utf8'));
   const pricing: Record<Provider, ProviderPricing> = {
-    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json'), k8s: load('aws', 'k8s.json') },
-    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json'), k8s: load('azure', 'k8s.json') },
-    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json'), k8s: load('gcp', 'k8s.json') },
+    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json'), k8s: load('aws', 'k8s.json'), lb: load('aws', 'lb.json'), nat: load('aws', 'nat.json') },
+    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json'), k8s: load('azure', 'k8s.json'), lb: load('azure', 'lb.json'), nat: load('azure', 'nat.json') },
+    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json'), k8s: load('gcp', 'k8s.json'), lb: load('gcp', 'lb.json'), nat: load('gcp', 'nat.json') },
   };
   const s = scenario([vmRes(2, 4, 2), { type: 'block', gb: 100 }, { type: 'object', gb: 500 }, { type: 'egress', gb: 1024 }]);
   const results = estimate(s, pricing, { includeBurstable: true });

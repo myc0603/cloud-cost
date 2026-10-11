@@ -9,7 +9,7 @@
 
 import { createInterface } from 'node:readline';
 import { Readable } from 'node:stream';
-import type { Arch, EgressTier, K8sClusterPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type { Arch, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
 
 export const AWS_REGION: Record<Region, string> = {
   seoul: 'ap-northeast-2',
@@ -93,10 +93,13 @@ async function scanOfferCsv(
 export interface AwsEc2Offer {
   vms: VmSku[];
   storage: StorageSku[]; // gp3 (block-ssd)
+  nat: NatPrice | null;
 }
 
 /**
- * EC2 오퍼 CSV 단일 패스 → VM + gp3.
+ * EC2 오퍼 CSV 단일 패스 → VM + gp3 + NAT 게이트웨이.
+ * NAT: 기존 NAT 게이트웨이 usageType("{리전접두}-NatGateway-Hours/Bytes"). Regional NAT 변형은 제외.
+ * us-east-1은 usageType에 리전 접두사가 없다(예: "NatGateway-Hours") — 접두사는 선택, 형태는 "대문자+숫자-"로 한정.
  * VM 필터: Linux 온디맨드 / 공유 테넌시 / 실사용(Used) / 현세대 / 사전 설치 SW 없음
  *          / x86·ARM(Graviton) 모두 — arch 태깅 / GPU 없음 / 베어메탈 제외
  */
@@ -106,6 +109,8 @@ export async function parseEc2OfferCsv(
 ): Promise<AwsEc2Offer> {
   const byType = new Map<string, VmSku>();
   let gp3PerGbMonth: number | null = null;
+  let natPerHour: number | null = null;
+  let natPerGb: number | null = null;
 
   await scanOfferCsv(lines, (get, preInstalledKey) => {
     if (get('TermType') !== 'OnDemand' || get('Currency') !== 'USD') return;
@@ -159,6 +164,16 @@ export async function parseEc2OfferCsv(
       if (get('Unit') !== 'GB-Mo') return;
       const price = Number(get('PricePerUnit'));
       if (price > 0 && gp3PerGbMonth === null) gp3PerGbMonth = +price.toFixed(6);
+      return;
+    }
+
+    if (family === 'NAT Gateway') {
+      if (get('Location') !== AWS_LOCATION[region]) return;
+      const m = get('usageType').match(/^(?:[A-Z]+\d-)?NatGateway-(Hours|Bytes)$/);
+      const price = Number(get('PricePerUnit'));
+      if (!m || !(price > 0)) return;
+      if (m[1] === 'Hours' && natPerHour === null) natPerHour = +price.toFixed(6);
+      if (m[1] === 'Bytes' && natPerGb === null) natPerGb = +price.toFixed(6);
     }
   });
 
@@ -168,6 +183,10 @@ export async function parseEc2OfferCsv(
       gp3PerGbMonth !== null
         ? [{ provider: 'aws', region, kind: 'block-ssd', pricePerGbMonth: gp3PerGbMonth }]
         : [],
+    nat:
+      natPerHour !== null && natPerGb !== null
+        ? { provider: 'aws', region, hourly: { per: 'gateway', usd: natPerHour }, perGb: natPerGb }
+        : null,
   };
 }
 
@@ -255,6 +274,31 @@ export async function parseEksCsv(
   return price !== null ? { provider: 'aws', region, clusterPerHour: price } : null;
 }
 
+/**
+ * AWSELB 오퍼 CSV → ALB 시간당 + LCU-시간당. LCU는 "시간당 1GB 처리"라 GB당 단가로 쓴다.
+ * Trust Store("TS-")·Outposts·예약 LCU는 usageType이 달라 자연 제외. us-east-1은 리전 접두사가 없다.
+ */
+export async function parseAlbCsv(
+  lines: AsyncIterable<string> | Iterable<string>,
+  region: Region,
+): Promise<LbPrice | null> {
+  let perHour: number | null = null;
+  let perGb: number | null = null;
+
+  await scanOfferCsv(lines, (get) => {
+    if (get('TermType') !== 'OnDemand' || get('Currency') !== 'USD') return;
+    if (get('Product Family') !== 'Load Balancer-Application') return;
+    if (get('Location') !== AWS_LOCATION[region]) return;
+    const m = get('usageType').match(/^(?:[A-Z]+\d-)?(LoadBalancerUsage|LCUUsage)$/);
+    const price = Number(get('PricePerUnit'));
+    if (!m || !(price > 0)) return;
+    if (m[1] === 'LoadBalancerUsage' && perHour === null) perHour = +price.toFixed(6);
+    if (m[1] === 'LCUUsage' && perGb === null) perGb = +price.toFixed(6);
+  });
+
+  return perHour !== null && perGb !== null ? { provider: 'aws', region, perHour, perGb } : null;
+}
+
 async function streamOffer(offer: string, awsRegion: string) {
   const res = await fetch(offerCsvUrl(offer, awsRegion));
   if (!res.ok || !res.body) throw new Error(`AWS Price List API 오류 ${res.status} (${offer}/${awsRegion})`);
@@ -263,11 +307,19 @@ async function streamOffer(offer: string, awsRegion: string) {
 
 export async function collectAws(
   region: Region,
-): Promise<{ vms: VmSku[]; storage: StorageSku[]; egress: EgressTier | null; k8s: K8sClusterPrice | null }> {
+): Promise<{
+  vms: VmSku[];
+  storage: StorageSku[];
+  egress: EgressTier | null;
+  k8s: K8sClusterPrice | null;
+  lb: LbPrice | null;
+  nat: NatPrice | null;
+}> {
   const awsRegion = AWS_REGION[region];
   const ec2 = await parseEc2OfferCsv(await streamOffer('AmazonEC2', awsRegion), region);
   const s3 = await parseS3OfferCsv(await streamOffer('AmazonS3', awsRegion), region);
   const egress = await parseDataTransferCsv(await streamOffer('AWSDataTransfer', awsRegion), region);
   const k8s = await parseEksCsv(await streamOffer('AmazonEKS', awsRegion), region);
-  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s };
+  const lb = await parseAlbCsv(await streamOffer('AWSELB', awsRegion), region);
+  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat };
 }

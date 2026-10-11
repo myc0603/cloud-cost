@@ -4,7 +4,7 @@
  */
 
 import assert from 'node:assert/strict';
-import { parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
+import { parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
 
 function fx(
   description: string,
@@ -77,5 +77,29 @@ const gke = [
 ];
 assert.deepEqual(parseGkeCluster(gke, 'seoul'), { provider: 'gcp', region: 'seoul', clusterPerHour: 0.1 });
 assert.equal(parseGkeCluster([], 'seoul'), null);
+
+// LB: 리전 외부 ALB — 포워딩 규칙 최소 + 처리(인/아웃 중 큰 값). 다른 리전·다른 LB 종류 제외
+const lbSkus = [
+  fx('Regional External Application Load Balancer Forwarding Rule Minimum for South Carolina (us-east1)', 'OnDemand', 25_000_000, ['us-east1']),
+  fx('Regional Internal Application Load Balancer Inbound Data Processing for Seoul (asia-northeast3)', 'OnDemand', 8_000_000),
+  fx('Regional External Application Load Balancer Forwarding Rule Minimum for Seoul (asia-northeast3)', 'OnDemand', 38_000_000),
+  fx('Regional External Application Load Balancer Inbound Data Processing for Seoul (asia-northeast3)', 'OnDemand', 12_000_000),
+  fx('Regional External Application Load Balancer Outbound Data Processing for Seoul (asia-northeast3)', 'OnDemand', 12_000_000),
+];
+assert.deepEqual(parseGcpLb(lbSkus, 'asia-northeast3', 'seoul'), { provider: 'gcp', region: 'seoul', perHour: 0.038, perGb: 0.012 });
+assert.equal(parseGcpLb(lbSkus.slice(0, 3), 'asia-northeast3', 'seoul'), null); // 처리 단가 없으면 null
+
+// NAT: Cloud NAT 가동(VM당) + 처리 — Private NAT 제외, 상한 32대
+const natSkus = [
+  fx('Networking Private Nat Gateway Uptime', 'OnDemand', 45_000_000, ['global']),
+  fx('Networking Cloud Nat Gateway Uptime', 'OnDemand', 1_400_000, ['global']),
+  fx('Networking Cloud Nat Data Processing', 'OnDemand', 45_000_000, ['global']),
+];
+assert.deepEqual(parseGcpNat(natSkus, 'seoul'), {
+  provider: 'gcp',
+  region: 'seoul',
+  hourly: { per: 'vm', usd: 0.0014, maxVms: 32 },
+  perGb: 0.045,
+});
 
 console.log(`gcp.test: 모든 검증 통과 ✔ (VmSku ${vms.length}건 생성)`);

@@ -6,12 +6,13 @@
  * 파이프라인: fetchComputeSkus → parseUnitPrices → buildVmSkus
  */
 
-import type { EgressTier, K8sClusterPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type { EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
 import { GCP_MACHINE_TYPES } from './gcp-machine-types';
 
 const COMPUTE_SERVICE_ID = '6F81-5844-456A'; // Compute Engine
 const GCS_SERVICE_ID = '95FF-2EF5-5EA1'; // Cloud Storage
 const GKE_SERVICE_ID = 'CCD8-9BF1-090E'; // Kubernetes Engine
+const NETWORKING_SERVICE_ID = 'E505-1604-58F8'; // Networking (Cloud Load Balancing·Cloud NAT)
 
 export const GCP_REGION: Record<Region, string> = {
   seoul: 'asia-northeast3',
@@ -65,6 +66,7 @@ export type UnitPrices = Record<string, { corePerHour?: number; ramGbPerHour?: n
 export const fetchComputeSkus = (apiKey: string) => fetchServiceSkus(apiKey, COMPUTE_SERVICE_ID);
 export const fetchGcsSkus = (apiKey: string) => fetchServiceSkus(apiKey, GCS_SERVICE_ID);
 export const fetchGkeSkus = (apiKey: string) => fetchServiceSkus(apiKey, GKE_SERVICE_ID);
+export const fetchNetworkingSkus = (apiKey: string) => fetchServiceSkus(apiKey, NETWORKING_SERVICE_ID);
 
 async function fetchServiceSkus(apiKey: string, serviceId: string): Promise<RawSku[]> {
   const all: RawSku[] = [];
@@ -209,6 +211,42 @@ export function parseGkeCluster(gkeSkus: RawSku[], region: Region): K8sClusterPr
   );
   const price = sku && unitPriceOf(sku);
   return price ? { provider: 'gcp', region, clusterPerHour: round6(price) } : null;
+}
+
+/**
+ * 리전 외부 애플리케이션 LB — 포워딩 규칙 최소 요금(시간당, 규칙 5개까지 포함) + 처리 GB당.
+ * GCP는 인바운드·아웃바운드 처리량을 각각 과금하므로 "총 처리 GB × 단가"가 된다 (두 단가 중 큰 값 사용).
+ */
+export function parseGcpLb(netSkus: RawSku[], gcpRegion: string, region: Region): LbPrice | null {
+  const price = (pattern: RegExp) => {
+    const sku = netSkus.find((s) => isOnDemandIn(s, gcpRegion) && pattern.test(s.description));
+    return sku && unitPriceOf(sku);
+  };
+  const perHour = price(/^Regional External Application Load Balancer Forwarding Rule Minimum /);
+  const inbound = price(/^Regional External Application Load Balancer Inbound Data Processing /);
+  const outbound = price(/^Regional External Application Load Balancer Outbound Data Processing /);
+  if (!perHour || !inbound || !outbound) return null;
+  return { provider: 'gcp', region, perHour: round6(perHour), perGb: round6(Math.max(inbound, outbound)) };
+}
+
+/** Cloud NAT 시간당 요금 상한 VM 수 — 가격 API에 없어 공식 문서(cloud.google.com/vpc/network-pricing)값 */
+const CLOUD_NAT_MAX_BILLED_VMS = 32;
+
+/** Cloud NAT — 게이트웨이 가동(VM 1대당 시간당, 32대 상한) + 처리 GB당. 전 리전 공통 global SKU */
+export function parseGcpNat(netSkus: RawSku[], region: Region): NatPrice | null {
+  const price = (description: string) => {
+    const sku = netSkus.find((s) => isOnDemandIn(s, 'global') && s.description === description);
+    return sku && unitPriceOf(sku);
+  };
+  const perVmHour = price('Networking Cloud Nat Gateway Uptime');
+  const perGb = price('Networking Cloud Nat Data Processing');
+  if (!perVmHour || !perGb) return null;
+  return {
+    provider: 'gcp',
+    region,
+    hourly: { per: 'vm', usd: round6(perVmHour), maxVms: CLOUD_NAT_MAX_BILLED_VMS },
+    perGb: round6(perGb),
+  };
 }
 
 /** 패밀리 단가 × 머신 타입 카탈로그 → VmSku[]. 단가가 불완전한 패밀리는 건너뛴다. */

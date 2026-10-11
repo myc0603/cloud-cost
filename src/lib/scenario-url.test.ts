@@ -48,6 +48,14 @@ test('K8s 토큰 왕복 + 깨진 본문은 버린다', () => {
   assert.deepEqual(decodeScenario('res=k8s:0:4c16g:3,k8s:1:4c16g')?.resources, []);
 });
 
+test('LB·NAT 토큰 왕복 + 깨진 본문은 버린다', () => {
+  const scenario: Scenario = { region: 'seoul', resources: [{ type: 'lb', count: 2, gb: 500 }, { type: 'nat', count: 1, gb: 1000 }] };
+  const encoded = encodeScenario(scenario);
+  assert.equal(new URLSearchParams(encoded).get('res'), 'lb:2:500,nat:1:1000');
+  assert.deepEqual(decodeScenario(encoded), scenario);
+  assert.deepEqual(decodeScenario('res=lb:0:500,lb:1,nat:1:2:3')?.resources, []);
+});
+
 test('singleton(트래픽)은 첫 카드만 살린다', () => {
   const s = decodeScenario('res=eg:100,eg:200');
   assert.deepEqual(s?.resources, [{ type: 'egress', gb: 100 }]);

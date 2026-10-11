@@ -45,6 +45,16 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
           Kubernetes는 <b>SLA가 있는 표준 티어</b> 컨트롤 플레인끼리: EKS 기본 · AKS Standard · GKE Regional. 워커 노드는 일반 VM과
           같은 방식으로 매칭합니다. AKS Free 티어(SLA 없음, 컨트롤 플레인 무료)와 GKE 결제 계정당 월 크레딧(클러스터 1개분)은 반영하지 않습니다.
         </li>
+        <li className={LI}>
+          로드밸런서는 <b>L7(HTTP)</b>끼리: AWS ALB · Azure Application Gateway Standard v2 · GCP 리전 외부 애플리케이션 LB. 시간당 고정비 +
+          처리 트래픽 GB당 요금으로 계산합니다(AWS LCU·Azure CU는 공식 정의상 시간당 1GB). 연결 수·규칙 수가 아주 많은 서비스는 실제보다
+          낮게 나올 수 있습니다.
+        </li>
+        <li className={LI}>
+          NAT 게이트웨이는 시간당 + 처리 GB당 요금입니다. GCP Cloud NAT는 시간 요금이 VM 1대당이라 시나리오의 VM 대수와 K8s 노드 수를
+          합산해 계산합니다(게이트웨이당 32대 상한). NAT 처리 요금은 아웃바운드 트래픽 요금과 별도로 더해집니다.
+        </li>
+        <li className={LI}>공인 IP 주소 시간 요금(3사 모두 시간당 약 $0.005)은 포함하지 않습니다.</li>
         <li className={LI}>오브젝트 스토리지는 표준 티어 첫 구간(50TB 이하) 단가.</li>
         <li className={LI}>
           아웃바운드 트래픽은 3사 모두 <b>인터넷 라우팅 기준</b>으로 통일: GCP Standard 네트워크 티어,
@@ -107,6 +117,16 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           are matched the same way as regular VMs. The AKS Free tier (no SLA, free control plane) and GKE&apos;s monthly per-billing-account
           credit (one cluster) are not applied.
         </li>
+        <li className={LI}>
+          Load balancers compare <b>L7 (HTTP)</b> offerings: AWS ALB · Azure Application Gateway Standard v2 · GCP regional external
+          Application LB. Cost = hourly fixed fee + per-GB processed (AWS LCU and Azure CU are officially defined as 1 GB per hour).
+          Services with very high connection or rule counts may be underestimated.
+        </li>
+        <li className={LI}>
+          NAT gateways are hourly + per-GB processed. GCP Cloud NAT bills hourly per VM, so we count the VMs and K8s nodes in your
+          scenario (capped at 32 per gateway). NAT processing is charged in addition to outbound traffic.
+        </li>
+        <li className={LI}>Public IP address hourly fees (about $0.005/hour on all three) are not included.</li>
         <li className={LI}>Object storage uses the standard tier, first pricing band (up to 50TB).</li>
         <li className={LI}>
           Outbound traffic is unified on <b>internet routing</b> across all three: GCP Standard network

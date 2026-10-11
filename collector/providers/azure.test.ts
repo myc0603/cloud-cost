@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildAzureEgress, buildAzureK8s, buildAzureStorage, buildAzureVmSkus, type AzurePriceItem } from './azure';
+import { buildAzureEgress, buildAzureK8s, buildAzureLb, buildAzureNat, buildAzureStorage, buildAzureVmSkus, type AzurePriceItem } from './azure';
 
 const item = (over: Partial<AzurePriceItem>): AzurePriceItem => ({
   currencyCode: 'USD',
@@ -86,4 +86,30 @@ test('buildAzureK8s: Standard 티어(SLA) 미터만 — Free 인프라·LTS·Aut
   ];
   assert.deepEqual(buildAzureK8s(items, 'seoul'), { provider: 'azure', region: 'seoul', clusterPerHour: 0.1 });
   assert.equal(buildAzureK8s([], 'seoul'), null);
+});
+
+test('buildAzureLb: Application Gateway Standard v2 고정비 + CU(=GB당) — WAF·Basic 제외', () => {
+  const g = (productName: string, meterName: string, retailPrice: number) => item({ productName, meterName, retailPrice, unitOfMeasure: '1/Hour' });
+  const items = [
+    g('Application Gateway WAF v2', 'Standard Fixed Cost', 0.486),
+    g('Application Gateway Basic v2', 'Basic Fixed Cost', 0.0225),
+    g('Application Gateway Standard v2', 'Standard Fixed Cost', 0.27),
+    g('Application Gateway Standard v2', 'Standard Capacity Units', 0.008),
+  ];
+  assert.deepEqual(buildAzureLb(items, 'seoul'), { provider: 'azure', region: 'seoul', perHour: 0.27, perGb: 0.008 });
+  assert.equal(buildAzureLb(items.slice(0, 3), 'seoul'), null); // CU 없으면 불완전 → null
+});
+
+test('buildAzureNat: Standard 게이트웨이 시간당 + 처리 GB당 — StandardV2 로그 제외', () => {
+  const items = [
+    item({ productName: 'NAT Gateway', meterName: 'StandardV2 Log Enabled', unitOfMeasure: '1/Month', retailPrice: 4 }),
+    item({ productName: 'NAT Gateway', meterName: 'Standard Gateway', unitOfMeasure: '1 Hour', retailPrice: 0.045 }),
+    item({ productName: 'NAT Gateway', meterName: 'Standard Data Processed', unitOfMeasure: '1 GB', retailPrice: 0.045 }),
+  ];
+  assert.deepEqual(buildAzureNat(items, 'seoul'), {
+    provider: 'azure',
+    region: 'seoul',
+    hourly: { per: 'gateway', usd: 0.045 },
+    perGb: 0.045,
+  });
 });

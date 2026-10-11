@@ -1,13 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseCsvLine, parseDataTransferCsv, parseEc2OfferCsv, parseEksCsv, parseS3OfferCsv } from './aws';
+import { parseAlbCsv, parseCsvLine, parseDataTransferCsv, parseEc2OfferCsv, parseEksCsv, parseS3OfferCsv } from './aws';
 
 test('parseCsvLine: 따옴표·이스케이프·빈 필드', () => {
   assert.deepEqual(parseCsvLine('"a","b,c","d""e",,"f"'), ['a', 'b,c', 'd"e', '', 'f']);
 });
 
 const HEADER =
-  '"SKU","TermType","StartingRange","EndingRange","Unit","PricePerUnit","Currency","Product Family","Instance Type","Current Generation","vCPU","Physical Processor","Memory","Processor Architecture","Storage Media","Volume Type","Volume API Name","Tenancy","Operating System","License Model","Pre Installed S/W","Transfer Type","From Location","To Location","usageType","CapacityStatus","GPU"';
+  '"SKU","TermType","StartingRange","EndingRange","Unit","PricePerUnit","Currency","Product Family","Instance Type","Current Generation","vCPU","Physical Processor","Memory","Processor Architecture","Storage Media","Volume Type","Volume API Name","Tenancy","Operating System","License Model","Pre Installed S/W","Transfer Type","From Location","To Location","usageType","CapacityStatus","GPU","Location"';
 
 const HEADER_NAMES = parseCsvLine(HEADER);
 
@@ -84,6 +84,21 @@ test('parseEc2OfferCsv: gp3 블록 스토리지 추출', async () => {
   assert.deepEqual(storage, [{ provider: 'aws', region: 'seoul', kind: 'block-ssd', pricePerGbMonth: 0.0912 }]);
 });
 
+test('parseEc2OfferCsv: NAT 게이트웨이 시간당·GB당 (Regional NAT·다른 리전 제외)', async () => {
+  const natRow = (usageType: string, price: string, location = 'Asia Pacific (Seoul)') =>
+    row({ 'Product Family': 'NAT Gateway', 'Instance Type': '', usageType, PricePerUnit: price, Location: location });
+  const lines = [
+    HEADER,
+    natRow('APN2-RegionalNatGateway-Hours', '0.07'),
+    natRow('USE1-NatGateway-Hours', '0.045', 'US East (N. Virginia)'),
+    natRow('APN2-NatGateway-Hours', '0.059'),
+    natRow('APN2-NatGateway-Bytes', '0.059'),
+  ];
+  const { nat } = await parseEc2OfferCsv(lines, 'seoul');
+  assert.deepEqual(nat, { provider: 'aws', region: 'seoul', hourly: { per: 'gateway', usd: 0.059 }, perGb: 0.059 });
+  assert.equal((await parseEc2OfferCsv([HEADER], 'seoul')).nat, null);
+});
+
 test('parseDataTransferCsv: 글로벌 무료 100GB + 리전 구간 시프트', async () => {
   const dtRow = (over: Record<string, string>) =>
     row({
@@ -145,4 +160,33 @@ test('parseEksCsv: 표준 클러스터만 (Outposts·연장 지원·Provisioned�
   ];
   assert.deepEqual(await parseEksCsv(lines, 'seoul'), { provider: 'aws', region: 'seoul', clusterPerHour: 0.1 });
   assert.equal(await parseEksCsv([H], 'seoul'), null);
+});
+
+test('parseAlbCsv: ALB 시간당 + LCU(=GB당) — Trust Store·Outposts·예약 LCU·NLB 제외', async () => {
+  const H = '"SKU","TermType","Unit","PricePerUnit","Currency","Product Family","Location","usageType"';
+  const r = (family: string, usageType: string, price: string) =>
+    `"X","OnDemand","Hrs","${price}","USD","${family}","Asia Pacific (Seoul)","${usageType}"`;
+  const lines = [
+    H,
+    r('Load Balancer-Application', 'APN2-TS-LoadBalancerUsage', '0.005'),
+    r('Load Balancer-Application', 'APN2-Outposts-LoadBalancerUsage', '0.0225'),
+    r('Load Balancer-Application', 'APN2-ReservedLCUUsage', '0.008'),
+    r('Load Balancer-Network', 'APN2-LoadBalancerUsage', '0.0225'),
+    r('Load Balancer-Application', 'APN2-LoadBalancerUsage', '0.0225'),
+    r('Load Balancer-Application', 'APN2-LCUUsage', '0.008'),
+  ];
+  assert.deepEqual(await parseAlbCsv(lines, 'seoul'), { provider: 'aws', region: 'seoul', perHour: 0.0225, perGb: 0.008 });
+});
+
+test('parseAlbCsv·NAT: us-east-1은 usageType에 리전 접두사가 없다', async () => {
+  const H = '"SKU","TermType","Unit","PricePerUnit","Currency","Product Family","Location","usageType"';
+  const r = (usageType: string, price: string) =>
+    `"X","OnDemand","Hrs","${price}","USD","Load Balancer-Application","US East (N. Virginia)","${usageType}"`;
+  const lb = await parseAlbCsv([H, r('TS-LoadBalancerUsage', '0.005'), r('LoadBalancerUsage', '0.0225'), r('LCUUsage', '0.008')], 'us-east');
+  assert.deepEqual(lb, { provider: 'aws', region: 'us-east', perHour: 0.0225, perGb: 0.008 });
+
+  const natRow = (usageType: string, price: string) =>
+    row({ 'Product Family': 'NAT Gateway', 'Instance Type': '', usageType, PricePerUnit: price, Location: 'US East (N. Virginia)' });
+  const { nat } = await parseEc2OfferCsv([HEADER, natRow('RegionalNatGateway-Hours', '0.07'), natRow('NatGateway-Hours', '0.045'), natRow('NatGateway-Bytes', '0.045')], 'us-east');
+  assert.deepEqual(nat, { provider: 'aws', region: 'us-east', hourly: { per: 'gateway', usd: 0.045 }, perGb: 0.045 });
 });

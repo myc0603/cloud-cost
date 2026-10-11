@@ -3,12 +3,14 @@
  * I/O·UI 의존 없음: 입력이 같으면 출력이 항상 같다 (테스트로 정확성 보장).
  * 상세: docs/ARCHITECTURE.md §5
  *
- * 리소스 타입별 계산·URL 토큰은 각 모듈(vm·storage·egress·k8s)에 있고, 여기는 레지스트리와 합산만 한다.
+ * 리소스 타입별 계산·URL 토큰은 각 모듈(vm·storage·egress·k8s·lb·nat)에 있고, 여기는 레지스트리와 합산만 한다.
  */
 
 import type { Provider, ProviderPricing } from '../schema';
 import { EGRESS } from './egress';
 import { K8S } from './k8s';
+import { LB } from './lb';
+import { NAT } from './nat';
 import { BLOCK, OBJECT } from './storage';
 import {
   round2,
@@ -34,6 +36,8 @@ export const RESOURCES: { [K in ResourceType]: ResourceDef<Extract<Resource, { t
   object: OBJECT,
   egress: EGRESS,
   k8s: K8S,
+  lb: LB,
+  nat: NAT,
 };
 
 /** 타입별 정의 조회 — 유니온을 좁히지 못하는 호출부용 */
@@ -52,7 +56,7 @@ export function estimate(
     }
 
     const lines: EstimateLine[] = scenario.resources.flatMap((r, index) =>
-      resourceDef(r).estimate(r, { index, pricing: p, opts, pick: overrides[provider]?.[index] }),
+      resourceDef(r).estimate(r, { index, pricing: p, opts, pick: overrides[provider]?.[index], scenario }),
     );
 
     const complete = lines.length > 0 && lines.every((l) => l.monthlyUsd !== null);

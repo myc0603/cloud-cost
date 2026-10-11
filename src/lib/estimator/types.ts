@@ -18,7 +18,11 @@ export type Resource =
   | { type: 'object'; gb: number }
   | { type: 'egress'; gb: number } // 월 아웃바운드 전송량
   /** 관리형 K8s — 클러스터 수 + 클러스터당 워커 노드(VM 매칭 재사용) */
-  | { type: 'k8s'; clusters: number; node: VmSpec };
+  | { type: 'k8s'; clusters: number; node: VmSpec }
+  /** L7 로드밸런서 — 대수 + 월 처리 트래픽(전체 합계) */
+  | { type: 'lb'; count: number; gb: number }
+  /** NAT 게이트웨이 — 개수 + 월 처리 데이터(전체 합계) */
+  | { type: 'nat'; count: number; gb: number };
 
 export type ResourceType = Resource['type'];
 
@@ -64,6 +68,9 @@ export type EstimateLine = { resourceIndex: number } & (
   | { kind: 'storage'; storageKind: StorageSku['kind']; sizeGb: number; pricePerGbMonth: number | null; monthlyUsd: number | null }
   | { kind: 'egress'; gb: number; freeGb: number | null; monthlyUsd: number | null }
   | { kind: 'k8s-control'; clusters: number; clusterPerHour: number | null; monthlyUsd: number | null }
+  | { kind: 'lb'; count: number; gb: number; monthlyUsd: number | null }
+  /** billedVms: 시간당 요금이 VM 수 비례인 플랫폼(GCP)에서 과금 기준이 된 VM 수. 그 외 null */
+  | { kind: 'nat'; count: number; gb: number; billedVms: number | null; monthlyUsd: number | null }
 );
 
 export interface ProviderEstimate {
@@ -86,8 +93,14 @@ export interface ResourceDef<R extends Resource> {
   /** 접두사 뒤 본문 ↔ 리소스. 깨진 본문은 null */
   encode(r: R): string;
   decode(body: string): R | null;
-  /** 한 플랫폼에 대한 견적 줄. pick = 이 카드에 대해 사용자가 고른 SKU (VM류만 사용) */
-  estimate(r: R, ctx: { index: number; pricing: ProviderPricing; opts: MatchOptions; pick?: string }): EstimateLine[];
+  /**
+   * 한 플랫폼에 대한 견적 줄. pick = 이 카드에 대해 사용자가 고른 SKU (VM류만 사용).
+   * scenario = 시나리오 전체 — 다른 카드를 참조해야 하는 리소스용 (NAT: GCP 과금 VM 수)
+   */
+  estimate(
+    r: R,
+    ctx: { index: number; pricing: ProviderPricing; opts: MatchOptions; pick?: string; scenario: Scenario },
+  ): EstimateLine[];
 }
 
 /** 월 환산 시간 — 3사 계산기 관례(365d × 24h ÷ 12) */

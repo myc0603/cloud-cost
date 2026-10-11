@@ -82,7 +82,9 @@ cloud-cost/
 │       ├── vm.json
 │       ├── storage.json     # block-ssd + object-standard
 │       ├── egress.json
-│       └── k8s.json         # 관리형 K8s 표준 클러스터 시간당 요금
+│       ├── k8s.json         # 관리형 K8s 표준 클러스터 시간당 요금
+│       ├── lb.json          # L7 로드밸런서 시간당 + 처리 GB당
+│       └── nat.json         # NAT 게이트웨이 시간당(게이트웨이당 또는 VM당) + 처리 GB당
 ├── messages/                # UI 문구 (en.json / ko.json) — next-intl
 ├── src/
 │   ├── app/                 # 라우트 (§6)
@@ -134,6 +136,8 @@ src/
         ├── storage.ts            # 블록·오브젝트 스토리지
         ├── egress.ts             # 아웃바운드 트래픽 — 구간 요금
         ├── k8s.ts                # 관리형 K8s — 컨트롤 플레인 + 워커 노드(VM 매칭 재사용)
+        ├── lb.ts                 # L7 로드밸런서 — 시간당 × 대수 + GB당 × 처리량
+        ├── nat.ts                # NAT 게이트웨이 — GCP는 시나리오 VM 수 기준(32대/게이트웨이 상한)
         └── estimator.test.ts     # 견적 정확성 = 테스트로 보장
 ```
 
@@ -186,6 +190,22 @@ interface K8sClusterPrice {
   clusterPerHour: number;
 }
 
+/** L7 로드밸런서 — LCU·CU(공식 정의상 시간당 1GB)를 GB당 단가로 환산 */
+interface LbPrice {
+  provider: Provider;
+  region: Region;
+  perHour: number;
+  perGb: number;
+}
+
+/** NAT 게이트웨이 — GCP Cloud NAT만 시간당 요금이 VM 1대당 (maxVms대 상한) */
+interface NatPrice {
+  provider: Provider;
+  region: Region;
+  hourly: { per: 'gateway'; usd: number } | { per: 'vm'; usd: number; maxVms: number };
+  perGb: number;
+}
+
 /** data/meta.json */
 interface Meta {
   collectedAt: string;      // ISO 8601
@@ -220,6 +240,7 @@ flowchart TD
   - 견적 줄마다 `resourceIndex`(만든 카드)가 붙는다 — 카드 하나가 여러 줄을 낼 수 있음 (예: K8s = 컨트롤 플레인 + 노드)
   - `singleton` 타입은 시나리오에 하나만: 트래픽은 구간 요금이 전체 전송량 기준이라 카드를 나누면 무료 구간이 중복 적용됨
   - 리소스 모듈은 `types.ts`만 import (`index.ts`를 import하면 순환 참조)
+  - 다른 카드를 참조해야 하는 리소스는 `estimate` 컨텍스트의 `scenario`를 쓴다 (NAT: GCP 과금 VM 수 = VM 카드 대수 + K8s 노드 수)
 - 월 환산: 시간당 가격 × **730시간** 고정
 - 매칭 옵션: 버스트 포함(기본 포함), 아키텍처 `both`(기본) / `x86` / `arm`. 현세대 한정은 수집 단계에서 걸러짐(엔진에 세대 필터 없음)
 - 커스텀 선택: 드롭다운 후보 = 조건 충족 SKU 중 사이즈(vCPU·RAM)별 최저가 1개. 고른 SKU가 조건에서 벗어나면 최저가로 self-heal. 선택은 카드 인덱스 기준으로 저장
@@ -254,3 +275,5 @@ flowchart TD
 | 블록 스토리지 지표 | 범용 SSD: gp3 / Balanced PD / **Premium SSD v2** | Azure 관리 디스크는 고정 크기 과금이라 per-GB 모델과 불일치 → 유일한 per-GB 디스크인 SSD v2 사용 |
 | egress 지표 | 3사 모두 **인터넷 라우팅** 기준 | GCP Premium 티어는 목적지별 SKU라 단일 가격이 없음 → GCP Standard 티어 / Azure Routing Preference: Internet / AWS 기본으로 통일 |
 | K8s 컨트롤 플레인 지표 (2026-10-11) | **표준(SLA 포함) 티어**: EKS 기본 / AKS Standard / GKE Regional (수집 시점 3사 모두 $0.10/h) | 운영 서비스 기준 + 기존 "프리티어 미반영" 원칙. AKS Free 티어·GKE 월 크레딧은 고지만. 연장 지원·Provisioned·AKS Automatic·GKE Autopilot(파드 단위 과금)은 제외 |
+| 로드밸런서 지표 (2026-10-11) | **L7(HTTP)**: AWS ALB / Azure Application Gateway Standard v2 / GCP 리전 외부 애플리케이션 LB. 입력 = 대수 + 월 처리 GB | 3사 모두 "시간당 고정 + 처리량" 구조로 정리됨. LCU·CU는 공식 정의상 시간당 1GB라 GB당 단가로 환산 — 연결 수·규칙 평가 차원은 미반영(연결이 아주 많으면 과소 추정). GCP는 인/아웃 처리량을 각각 과금하므로 총 처리 GB × 단가. L4(NLB 등)는 범위 밖 |
+| NAT 지표 (2026-10-11) | 게이트웨이 시간당 + 처리 GB당. GCP Cloud NAT는 VM당 시간 요금이라 **시나리오의 VM 대수 + K8s 노드 수**를 과금 VM으로 자동 산정(게이트웨이당 32대 상한, 문서값) | 입력 중복 없이 구성도대로 계산. NAT 처리비는 인터넷 egress 요금과 별개로 더해짐(실제 청구와 동일). 공인 IP 시간 요금(3사 $0.004~0.005/h)은 LB·NAT·VM 공통이라 제외 |

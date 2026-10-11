@@ -55,12 +55,37 @@ export interface K8sClusterPrice {
   clusterPerHour: number;
 }
 
+/**
+ * L7(HTTP) 로드밸런서 — 시간당 고정 + 처리 GB당.
+ * AWS ALB / Azure Application Gateway Standard v2 / GCP 리전 외부 애플리케이션 LB.
+ * LCU·CU는 공식 정의상 "시간당 1GB 처리" 단위라 GB당 단가로 환산한다 (연결 수·규칙 평가 차원은 미반영).
+ */
+export interface LbPrice {
+  provider: Provider;
+  region: Region;
+  perHour: number;
+  perGb: number;
+}
+
+/**
+ * NAT 게이트웨이 — 시간당 + 처리 GB당.
+ * GCP Cloud NAT만 시간당 요금이 "NAT를 쓰는 VM 1대당"이고 maxVms대에서 상한.
+ */
+export interface NatPrice {
+  provider: Provider;
+  region: Region;
+  hourly: { per: 'gateway'; usd: number } | { per: 'vm'; usd: number; maxVms: number };
+  perGb: number;
+}
+
 /** 한 플랫폼의 리전별 요금 데이터 묶음 — pricing 로더가 반환하는 단위 */
 export interface ProviderPricing {
   vm: VmSku[];
   storage: StorageSku[];
   egress: EgressTier | null;
   k8s: K8sClusterPrice | null;
+  lb: LbPrice | null;
+  nat: NatPrice | null;
 }
 
 /** data/meta.json */

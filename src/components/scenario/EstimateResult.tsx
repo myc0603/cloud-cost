@@ -120,6 +120,23 @@ function LineLabel({
       </span>
     );
   }
+  if (line.kind === 'lb') {
+    return (
+      <span>
+        {t('lbLine', { count: line.count, gb: line.gb })}
+        {line.monthlyUsd === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
+      </span>
+    );
+  }
+  if (line.kind === 'nat') {
+    return (
+      <span>
+        {t('natLine', { count: line.count, gb: line.gb })}
+        {line.billedVms !== null && <span className="ml-1 text-slate-400">{t('natBilledVms', { vms: line.billedVms })}</span>}
+        {line.monthlyUsd === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
+      </span>
+    );
+  }
   if (line.kind === 'k8s-control') {
     return (
       <span>

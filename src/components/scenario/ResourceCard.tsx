@@ -44,6 +44,11 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
             <NumberField label={t('nodeRam')} value={r.node.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, node: { ...r.node, ramGb } })} />
             <NumberField label={t('nodesPerCluster')} value={r.node.count} min={1} onChange={(count) => onChange({ ...r, node: { ...r.node, count } })} />
           </>
+        ) : r.type === 'lb' || r.type === 'nat' ? (
+          <>
+            <NumberField label={t(r.type === 'lb' ? 'lbCount' : 'natCount')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
+            <NumberField label={t('processedGb')} value={r.gb} min={1} onChange={(gb) => onChange({ ...r, gb })} />
+          </>
         ) : (
           <NumberField
             label={t(r.type === 'egress' ? 'egressGb' : 'sizeGb')}

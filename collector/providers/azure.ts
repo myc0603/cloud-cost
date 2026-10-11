@@ -5,7 +5,7 @@
  * 파이프라인: fetchVmPriceItems → buildAzureVmSkus
  */
 
-import type { EgressTier, K8sClusterPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type { EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
 import { AZURE_VM_SIZES } from './azure-vm-sizes';
 
 export const AZURE_REGION: Record<Region, string> = {
@@ -214,4 +214,40 @@ export async function collectAzureK8s(region: Region): Promise<K8sClusterPrice |
     `armRegionName eq '${AZURE_REGION[region]}' and priceType eq 'Consumption' and serviceName eq 'Azure Kubernetes Service'`,
   );
   return buildAzureK8s(items, region);
+}
+
+const hourlyMeter = (items: AzurePriceItem[], productName: string, meterName: string, unit: string) =>
+  items.find(
+    (i) => i.productName === productName && i.meterName === meterName && i.unitOfMeasure === unit && i.type === 'Consumption' && i.retailPrice > 0,
+  )?.retailPrice;
+
+/**
+ * Application Gateway Standard v2 — 고정 시간당 + 용량 단위(CU) 시간당.
+ * CU는 공식 정의상 "시간당 1GB(2.22Mbps) 처리"라 GB당 단가로 쓴다. WAF·Basic·컨테이너용은 제외.
+ */
+export function buildAzureLb(items: AzurePriceItem[], region: Region): LbPrice | null {
+  const perHour = hourlyMeter(items, 'Application Gateway Standard v2', 'Standard Fixed Cost', '1/Hour');
+  const perGb = hourlyMeter(items, 'Application Gateway Standard v2', 'Standard Capacity Units', '1/Hour');
+  return perHour && perGb ? { provider: 'azure', region, perHour: +perHour.toFixed(6), perGb: +perGb.toFixed(6) } : null;
+}
+
+/** NAT Gateway Standard — 게이트웨이 시간당 + 처리 GB당 (전 세계 단일 가격, armRegionName 'Global') */
+export function buildAzureNat(items: AzurePriceItem[], region: Region): NatPrice | null {
+  const perHour = hourlyMeter(items, 'NAT Gateway', 'Standard Gateway', '1 Hour');
+  const perGb = hourlyMeter(items, 'NAT Gateway', 'Standard Data Processed', '1 GB');
+  return perHour && perGb
+    ? { provider: 'azure', region, hourly: { per: 'gateway', usd: +perHour.toFixed(6) }, perGb: +perGb.toFixed(6) }
+    : null;
+}
+
+export async function collectAzureLb(region: Region): Promise<LbPrice | null> {
+  const items = await fetchPriceItems(
+    `armRegionName eq '${AZURE_REGION[region]}' and priceType eq 'Consumption' and productName eq 'Application Gateway Standard v2'`,
+  );
+  return buildAzureLb(items, region);
+}
+
+export async function collectAzureNat(region: Region): Promise<NatPrice | null> {
+  const items = await fetchPriceItems(`armRegionName eq 'Global' and priceType eq 'Consumption' and productName eq 'NAT Gateway'`);
+  return buildAzureNat(items, region);
 }

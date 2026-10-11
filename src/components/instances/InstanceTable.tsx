@@ -20,8 +20,11 @@ export default function InstanceTable({ skus, usdKrwRate }: { skus: VmSku[]; usd
   const t = useTranslations('instances');
   const [region, setRegion] = useState<Region>('seoul');
   const [providers, setProviders] = useState<Set<Provider>>(new Set(['aws', 'azure', 'gcp']));
-  const [minVcpu, setMinVcpu] = useState(0);
-  const [minRam, setMinRam] = useState(0);
+  // 입력 칸 글자 그대로 보관 — 빈칸 허용(= 필터 없음 0), 숫자는 파생값
+  const [minVcpuText, setMinVcpuText] = useState('0');
+  const [minRamText, setMinRamText] = useState('0');
+  const minVcpu = Math.max(0, parseInt(minVcpuText, 10) || 0);
+  const minRam = Math.max(0, parseInt(minRamText, 10) || 0);
   const [includeBurstable, setIncludeBurstable] = useState(true);
   const [arch, setArch] = useState<ArchFilter>('both');
   const [currency, setCurrency] = useState<Currency>('usd');
@@ -102,8 +105,8 @@ export default function InstanceTable({ skus, usdKrwRate }: { skus: VmSku[]; usd
           <input
             type="number"
             min={0}
-            value={minVcpu}
-            onChange={(e) => setMinVcpu(Math.max(0, parseInt(e.target.value, 10) || 0))}
+            value={minVcpuText}
+            onChange={(e) => setMinVcpuText(e.target.value)}
             className="w-16 rounded border border-slate-300 bg-white px-2 py-1"
           />
         </label>
@@ -112,8 +115,8 @@ export default function InstanceTable({ skus, usdKrwRate }: { skus: VmSku[]; usd
           <input
             type="number"
             min={0}
-            value={minRam}
-            onChange={(e) => setMinRam(Math.max(0, parseInt(e.target.value, 10) || 0))}
+            value={minRamText}
+            onChange={(e) => setMinRamText(e.target.value)}
             className="w-16 rounded border border-slate-300 bg-white px-2 py-1"
           />
         </label>

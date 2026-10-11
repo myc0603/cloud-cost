@@ -78,6 +78,46 @@ export interface NatPrice {
   perGb: number;
 }
 
+/** 관리형 DB 엔진 */
+export type DbEngine = 'mysql' | 'postgres';
+
+/** 정해진 사이즈의 관리형 DB 인스턴스 — AWS RDS 클래스 / Azure Flexible Server SKU */
+export interface DbInstance {
+  sku: string;
+  vcpu: number;
+  ramGb: number;
+  burstable: boolean;
+  perHour: number;
+  /** 이중화(대기 서버 포함) 시간당. null = 이중화 미지원 (Azure 버스트 등급) */
+  haPerHour: number | null;
+}
+
+/** 커스텀 사이즈 관리형 DB 단가 — GCP Cloud SQL Enterprise. 사이즈 규칙은 estimator/db.ts */
+export interface DbCustomRates {
+  vcpuPerHour: number;
+  ramGbPerHour: number;
+  haVcpuPerHour: number;
+  haRamGbPerHour: number;
+}
+
+/** 엔진 하나의 요금 — instances(정해진 사이즈) 또는 custom(커스텀 사이즈) 중 하나를 쓴다 */
+export interface DbEnginePricing {
+  instances: DbInstance[];
+  custom: DbCustomRates | null;
+  storageGbMonth: number;
+  haStorageGbMonth: number;
+}
+
+/**
+ * 관리형 DB — AWS RDS / Azure Database Flexible Server / GCP Cloud SQL Enterprise.
+ * 엔진별 가격이 플랫폼마다 달라(AWS·Azure) 엔진 단위로 저장한다.
+ */
+export interface DbPrice {
+  provider: Provider;
+  region: Region;
+  engines: Record<DbEngine, DbEnginePricing | null>;
+}
+
 /** 한 플랫폼의 리전별 요금 데이터 묶음 — pricing 로더가 반환하는 단위 */
 export interface ProviderPricing {
   vm: VmSku[];
@@ -86,6 +126,7 @@ export interface ProviderPricing {
   k8s: K8sClusterPrice | null;
   lb: LbPrice | null;
   nat: NatPrice | null;
+  db: DbPrice | null;
 }
 
 /** data/meta.json */

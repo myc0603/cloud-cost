@@ -6,13 +6,14 @@
  * 파이프라인: fetchComputeSkus → parseUnitPrices → buildVmSkus
  */
 
-import type { EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type { DbEngine, DbEnginePricing, DbPrice, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
 import { GCP_MACHINE_TYPES } from './gcp-machine-types';
 
 const COMPUTE_SERVICE_ID = '6F81-5844-456A'; // Compute Engine
 const GCS_SERVICE_ID = '95FF-2EF5-5EA1'; // Cloud Storage
 const GKE_SERVICE_ID = 'CCD8-9BF1-090E'; // Kubernetes Engine
 const NETWORKING_SERVICE_ID = 'E505-1604-58F8'; // Networking (Cloud Load Balancing·Cloud NAT)
+const CLOUD_SQL_SERVICE_ID = '9662-B51E-5089'; // Cloud SQL
 
 export const GCP_REGION: Record<Region, string> = {
   seoul: 'asia-northeast3',
@@ -67,6 +68,7 @@ export const fetchComputeSkus = (apiKey: string) => fetchServiceSkus(apiKey, COM
 export const fetchGcsSkus = (apiKey: string) => fetchServiceSkus(apiKey, GCS_SERVICE_ID);
 export const fetchGkeSkus = (apiKey: string) => fetchServiceSkus(apiKey, GKE_SERVICE_ID);
 export const fetchNetworkingSkus = (apiKey: string) => fetchServiceSkus(apiKey, NETWORKING_SERVICE_ID);
+export const fetchCloudSqlSkus = (apiKey: string) => fetchServiceSkus(apiKey, CLOUD_SQL_SERVICE_ID);
 
 async function fetchServiceSkus(apiKey: string, serviceId: string): Promise<RawSku[]> {
   const all: RawSku[] = [];
@@ -247,6 +249,33 @@ export function parseGcpNat(netSkus: RawSku[], region: Region): NatPrice | null 
     hourly: { per: 'vm', usd: round6(perVmHour), maxVms: CLOUD_NAT_MAX_BILLED_VMS },
     perGb: round6(perGb),
   };
+}
+
+const CLOUD_SQL_ENGINE_LABEL: Record<DbEngine, string> = { mysql: 'MySQL', postgres: 'PostgreSQL' };
+
+/**
+ * Cloud SQL Enterprise 커스텀 사이즈 단가 — vCPU·RAM·SSD 스토리지, Zonal(단일)·Regional(이중화).
+ * 설명 예: "Cloud SQL for MySQL: Zonal - vCPU in Seoul". N4 시리즈·Enterprise Plus·공유 코어·HDD는 설명이 달라 제외.
+ */
+export function parseCloudSql(sqlSkus: RawSku[], gcpRegion: string, region: Region): DbPrice | null {
+  const engine = (e: DbEngine): DbEnginePricing | null => {
+    const price = (avail: 'Zonal' | 'Regional', item: 'vCPU' | 'RAM' | 'Standard storage') => {
+      const description = `Cloud SQL for ${CLOUD_SQL_ENGINE_LABEL[e]}: ${avail} - ${item} in `;
+      const sku = sqlSkus.find((s) => isOnDemandIn(s, gcpRegion) && s.description.startsWith(description));
+      return sku && unitPriceOf(sku);
+    };
+    const [vcpu, ram, storage] = (['vCPU', 'RAM', 'Standard storage'] as const).map((x) => price('Zonal', x));
+    const [haVcpu, haRam, haStorage] = (['vCPU', 'RAM', 'Standard storage'] as const).map((x) => price('Regional', x));
+    if (!vcpu || !ram || !storage || !haVcpu || !haRam || !haStorage) return null;
+    return {
+      instances: [],
+      custom: { vcpuPerHour: round6(vcpu), ramGbPerHour: round6(ram), haVcpuPerHour: round6(haVcpu), haRamGbPerHour: round6(haRam) },
+      storageGbMonth: round6(storage),
+      haStorageGbMonth: round6(haStorage),
+    };
+  };
+  const engines = { mysql: engine('mysql'), postgres: engine('postgres') };
+  return engines.mysql || engines.postgres ? { provider: 'gcp', region, engines } : null;
 }
 
 /** 패밀리 단가 × 머신 타입 카탈로그 → VmSku[]. 단가가 불완전한 패밀리는 건너뛴다. */

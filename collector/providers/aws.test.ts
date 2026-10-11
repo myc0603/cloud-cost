@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseAlbCsv, parseCsvLine, parseDataTransferCsv, parseEc2OfferCsv, parseEksCsv, parseS3OfferCsv } from './aws';
+import { parseAlbCsv, parseCsvLine, parseDataTransferCsv, parseEc2OfferCsv, parseEksCsv, parseRdsCsv, parseS3OfferCsv } from './aws';
 
 test('parseCsvLine: 따옴표·이스케이프·빈 필드', () => {
   assert.deepEqual(parseCsvLine('"a","b,c","d""e",,"f"'), ['a', 'b,c', 'd"e', '', 'f']);
@@ -189,4 +189,37 @@ test('parseAlbCsv·NAT: us-east-1은 usageType에 리전 접두사가 없다', a
     row({ 'Product Family': 'NAT Gateway', 'Instance Type': '', usageType, PricePerUnit: price, Location: 'US East (N. Virginia)' });
   const { nat } = await parseEc2OfferCsv([HEADER, natRow('RegionalNatGateway-Hours', '0.07'), natRow('NatGateway-Hours', '0.045'), natRow('NatGateway-Bytes', '0.045')], 'us-east');
   assert.deepEqual(nat, { provider: 'aws', region: 'us-east', hourly: { per: 'gateway', usd: 0.045 }, perGb: 0.045 });
+});
+
+test('parseRdsCsv: 엔진별 클래스(단일·Multi-AZ) + gp3 스토리지 — 구세대·읽기 가능 대기·연장 지원·다른 엔진 제외', async () => {
+  const H =
+    '"SKU","TermType","Unit","PricePerUnit","Currency","Product Family","Location","Instance Type","Current Generation","vCPU","Memory","Database Engine","Deployment Option","Volume Type","usageType","Extended Support Pricing Year"';
+  const r = (o: Record<string, string>) => {
+    const base: Record<string, string> = { TermType: 'OnDemand', Currency: 'USD', Location: 'Asia Pacific (Seoul)', 'Current Generation': 'Yes', 'Product Family': 'Database Instance', Unit: 'Hrs', ...o };
+    return parseCsvLine(H).map((k) => `"${base[k] ?? ''}"`).join(',');
+  };
+  const i = (sku: string, engine: string, deploy: string, price: string, extra: Record<string, string> = {}) =>
+    r({ 'Instance Type': sku, vCPU: '2', Memory: '4 GiB', 'Database Engine': engine, 'Deployment Option': deploy, PricePerUnit: price, usageType: `APN2-${deploy === 'Single-AZ' ? 'InstanceUsage' : 'Multi-AZUsage'}:${sku}`, ...extra });
+  const st = (engine: string, deploy: string, price: string, volume = 'General Purpose-GP3') =>
+    r({ 'Product Family': 'Database Storage', Unit: 'GB-Mo', 'Database Engine': engine, 'Deployment Option': deploy, 'Volume Type': volume, PricePerUnit: price });
+  const lines = [
+    H,
+    i('db.t4g.medium', 'MySQL', 'Single-AZ', '0.102'),
+    i('db.t4g.medium', 'MySQL', 'Multi-AZ', '0.203'),
+    i('db.t4g.medium', 'MySQL', 'Multi-AZ (readable standbys)', '0.5'),
+    i('db.m4.large', 'MySQL', 'Single-AZ', '0.2', { 'Current Generation': 'No' }),
+    i('db.m5.large', 'MySQL', 'Single-AZ', '0.9', { 'Extended Support Pricing Year': 'Year 1' }),
+    i('db.m5.large', 'Oracle', 'Single-AZ', '0.5'),
+    st('Any', 'Single-AZ', '0.131'),
+    st('Any', 'Multi-AZ', '0.262'),
+    st('MySQL', 'Single-AZ', '0.2', 'General Purpose'),
+  ];
+  const db = (await parseRdsCsv(lines, 'seoul'))!;
+  assert.deepEqual(db.engines.mysql, {
+    instances: [{ sku: 'db.t4g.medium', vcpu: 2, ramGb: 4, burstable: true, perHour: 0.102, haPerHour: 0.203 }],
+    custom: null,
+    storageGbMonth: 0.131,
+    haStorageGbMonth: 0.262,
+  });
+  assert.equal(db.engines.postgres, null); // PG 인스턴스 행 없음
 });

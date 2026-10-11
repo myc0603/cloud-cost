@@ -6,7 +6,7 @@
  * 전에 차단하고 기존 스냅샷을 유지한다. 상세: docs/ARCHITECTURE.md §2
  */
 
-import type { EgressTier, K8sClusterPrice, LbPrice, NatPrice, StorageSku, VmSku } from '../src/lib/schema';
+import type { DbPrice, EgressTier, K8sClusterPrice, LbPrice, NatPrice, StorageSku, VmSku } from '../src/lib/schema';
 
 export interface Snapshot {
   vms: VmSku[];
@@ -15,6 +15,7 @@ export interface Snapshot {
   k8s: K8sClusterPrice | null;
   lb: LbPrice | null;
   nat: NatPrice | null;
+  db: DbPrice | null;
 }
 
 /** 전일 스냅샷 대비 이상 징후 목록을 반환. 빈 배열 = 통과. 이전 데이터가 없으면(첫 수집) 통과 */
@@ -71,11 +72,22 @@ export function validateSnapshot(label: string, prev: Snapshot | null, next: Sna
     ['LB GB당', prev.lb?.perGb, next.lb?.perGb],
     ['NAT 시간당', prev.nat?.hourly.usd, next.nat?.hourly.usd],
     ['NAT GB당', prev.nat?.perGb, next.nat?.perGb],
+    ...(['mysql', 'postgres'] as const).flatMap((e): [string, number | undefined, number | undefined][] => [
+      [`DB(${e}) 스토리지`, prev.db?.engines[e]?.storageGbMonth, next.db?.engines[e]?.storageGbMonth],
+      [`DB(${e}) vCPU 단가`, prev.db?.engines[e]?.custom?.vcpuPerHour, next.db?.engines[e]?.custom?.vcpuPerHour],
+    ]),
   ];
   for (const [name, before, after] of checks) {
     if (before === undefined) continue;
     if (after === undefined) errors.push(`${label}: ${name} 소실`);
     else if (Math.abs(after - before) / before > 0.3) errors.push(`${label}: ${name} 급변 $${before} → $${after}`);
+  }
+
+  // 6. DB 인스턴스 목록(AWS·Azure) — 엔진별 건수 급감
+  for (const e of ['mysql', 'postgres'] as const) {
+    const before = prev.db?.engines[e]?.instances.length ?? 0;
+    const after = next.db?.engines[e]?.instances.length ?? 0;
+    if (before > 0 && after < before * 0.7) errors.push(`${label}: DB(${e}) 인스턴스 건수 급감 ${before} → ${after}`);
   }
 
   return errors;

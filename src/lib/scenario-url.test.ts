@@ -57,6 +57,20 @@ test('LB·NAT 토큰 왕복 + 깨진 본문은 버린다', () => {
   assert.deepEqual(decodeScenario('res=lb:0:500,lb:1,nat:1:2:3')?.resources, []);
 });
 
+test('DB 토큰 왕복 + 깨진 본문은 버린다', () => {
+  const scenario: Scenario = {
+    region: 'seoul',
+    resources: [
+      { type: 'db', engine: 'postgres', vcpu: 2, ramGb: 8, storageGb: 100, ha: true, count: 1 },
+      { type: 'db', engine: 'mysql', vcpu: 4, ramGb: 16, storageGb: 500, ha: false, count: 2 },
+    ],
+  };
+  const encoded = encodeScenario(scenario);
+  assert.equal(new URLSearchParams(encoded).get('res'), 'db:pg:2c8g:100:1:1,db:mysql:4c16g:500:0:2');
+  assert.deepEqual(decodeScenario(encoded), scenario);
+  assert.deepEqual(decodeScenario('res=db:oracle:2c8g:100:0:1,db:pg:2c8g:100:2:1,db:pg:2c8g:0:0:1')?.resources, []);
+});
+
 test('singleton(트래픽)은 첫 카드만 살린다', () => {
   const s = decodeScenario('res=eg:100,eg:200');
   assert.deepEqual(s?.resources, [{ type: 'egress', gb: 100 }]);

@@ -51,7 +51,8 @@
       "egress": "아웃바운드 트래픽",
       "k8s": "Kubernetes 클러스터",
       "lb": "로드밸런서 (L7)",
-      "nat": "NAT 게이트웨이"
+      "nat": "NAT 게이트웨이",
+      "db": "관리형 DB"
     },
     "sizeGb": "용량 (GB)",
     "egressGb": "월 전송량 (GB)",
@@ -62,6 +63,10 @@
     "lbCount": "대수",
     "natCount": "게이트웨이 수",
     "processedGb": "월 처리 트래픽 (GB)",
+    "dbEngine": "엔진",
+    "dbStorageGb": "스토리지 (GB)",
+    "dbHa": "이중화",
+    "dbHaHint": "대기 서버를 둔 고가용성 구성 (AWS Multi-AZ · Azure HA · GCP Regional) — 컴퓨트·스토리지가 약 2배",
     "remove": "삭제",
     "removeAria": "이 리소스 삭제",
     "vcpu": "vCPU",
@@ -86,6 +91,13 @@
     "lbLine": "로드밸런서 ×{count} · 처리 {gb}GB",
     "natLine": "NAT 게이트웨이 ×{count} · 처리 {gb}GB",
     "natBilledVms": "(VM {vms}대 기준)",
+    "dbLine": "DB {engine}",
+    "dbEngine": {
+      "mysql": "MySQL",
+      "postgres": "PostgreSQL"
+    },
+    "dbHa": "이중화",
+    "dbStorageLine": "DB 스토리지 {gb}GB ×{count}",
     "cheapest": "최저가",
     "dataPending": "데이터 준비 중",
     "unavailable": "견적 불가",

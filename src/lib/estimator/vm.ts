@@ -53,7 +53,7 @@ export function matchVm(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmSku 
  * 같은 스펙에 더 비싼 SKU는 열등(strictly dominated)하므로 노이즈.
  * 입력이 가격 오름차순이면 각 사이즈의 첫 항목이 곧 최저가.
  */
-export function cheapestPerSize(sorted: VmSku[]): VmSku[] {
+export function cheapestPerSize<T extends { vcpu: number; ramGb: number }>(sorted: T[]): T[] {
   const seen = new Set<string>();
   return sorted.filter((s) => {
     const key = `${s.vcpu}/${s.ramGb}`;

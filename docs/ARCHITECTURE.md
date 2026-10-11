@@ -72,6 +72,7 @@ cloud-cost/
 │   │   ├── aws.ts           # 원본 API → 공통 스키마
 │   │   ├── azure.ts
 │   │   ├── azure-vm-sizes.ts    # Azure 스펙 카탈로그 (API에 vCPU·RAM 없음)
+│   │   ├── azure-db-sizes.ts    # Azure Database Flexible Server 사이즈 카탈로그 (같은 사정)
 │   │   ├── gcp.ts           # ⚠ 난이도 최고 → 프로토타입 1순위
 │   │   └── gcp-machine-types.ts # GCP 머신타입 카탈로그 (SKU는 코어·RAM 단가라 조합 필요)
 │   ├── validate.ts          # 급변·누락 감지
@@ -84,7 +85,8 @@ cloud-cost/
 │       ├── egress.json
 │       ├── k8s.json         # 관리형 K8s 표준 클러스터 시간당 요금
 │       ├── lb.json          # L7 로드밸런서 시간당 + 처리 GB당
-│       └── nat.json         # NAT 게이트웨이 시간당(게이트웨이당 또는 VM당) + 처리 GB당
+│       ├── nat.json         # NAT 게이트웨이 시간당(게이트웨이당 또는 VM당) + 처리 GB당
+│       └── db.json          # 관리형 DB — 엔진별 인스턴스 목록(AWS·Azure) 또는 커스텀 단가(GCP) + 스토리지
 ├── messages/                # UI 문구 (en.json / ko.json) — next-intl
 ├── src/
 │   ├── app/                 # 라우트 (§6)
@@ -139,6 +141,7 @@ src/
         ├── k8s.ts                # 관리형 K8s — 컨트롤 플레인 + 워커 노드(VM 매칭 재사용)
         ├── lb.ts                 # L7 로드밸런서 — 시간당 × 대수 + GB당 × 처리량
         ├── nat.ts                # NAT 게이트웨이 — GCP는 시나리오 VM 수 기준(32대/게이트웨이 상한)
+        ├── db.ts                 # 관리형 DB — AWS·Azure 사이즈 목록 매칭 / GCP 커스텀 사이즈 계산 + 스토리지
         └── estimator.test.ts     # 견적 정확성 = 테스트로 보장
 ```
 
@@ -206,6 +209,17 @@ interface NatPrice {
   hourly: { per: 'gateway'; usd: number } | { per: 'vm'; usd: number; maxVms: number };
   perGb: number;
 }
+
+/** 관리형 DB — 엔진별. instances(AWS RDS 클래스·Azure SKU) 또는 custom(GCP vCPU·RAM 단가) */
+type DbEngine = 'mysql' | 'postgres';
+interface DbInstance { sku: string; vcpu: number; ramGb: number; burstable: boolean; perHour: number; haPerHour: number | null }
+interface DbEnginePricing {
+  instances: DbInstance[];
+  custom: { vcpuPerHour: number; ramGbPerHour: number; haVcpuPerHour: number; haRamGbPerHour: number } | null;
+  storageGbMonth: number;
+  haStorageGbMonth: number;
+}
+interface DbPrice { provider: Provider; region: Region; engines: Record<DbEngine, DbEnginePricing | null> }
 
 /** data/meta.json */
 interface Meta {
@@ -278,3 +292,4 @@ flowchart TD
 | K8s 컨트롤 플레인 지표 (2026-10-11) | **표준(SLA 포함) 티어**: EKS 기본 / AKS Standard / GKE Regional (수집 시점 3사 모두 $0.10/h) | 운영 서비스 기준 + 기존 "프리티어 미반영" 원칙. AKS Free 티어·GKE 월 크레딧은 고지만. 연장 지원·Provisioned·AKS Automatic·GKE Autopilot(파드 단위 과금)은 제외 |
 | 로드밸런서 지표 (2026-10-11) | **L7(HTTP)**: AWS ALB / Azure Application Gateway Standard v2 / GCP 리전 외부 애플리케이션 LB. 입력 = 대수 + 월 처리 GB | 3사 모두 "시간당 고정 + 처리량" 구조로 정리됨. LCU·CU는 공식 정의상 시간당 1GB라 GB당 단가로 환산 — 연결 수·규칙 평가 차원은 미반영(연결이 아주 많으면 과소 추정). GCP는 인/아웃 처리량을 각각 과금하므로 총 처리 GB × 단가. L4(NLB 등)는 범위 밖 |
 | NAT 지표 (2026-10-11) | 게이트웨이 시간당 + 처리 GB당. GCP Cloud NAT는 VM당 시간 요금이라 **시나리오의 VM 대수 + K8s 노드 수**를 과금 VM으로 자동 산정(게이트웨이당 32대 상한, 문서값) | 입력 중복 없이 구성도대로 계산. NAT 처리비는 인터넷 egress 요금과 별개로 더해짐(실제 청구와 동일). 공인 IP 시간 요금(3사 $0.004~0.005/h)은 LB·NAT·VM 공통이라 제외 |
+| 관리형 DB 지표 (2026-10-11) | AWS RDS / Azure Database Flexible Server / GCP Cloud SQL Enterprise, MySQL·PostgreSQL. 스펙 만족 최저가(AWS·Azure 사이즈 목록, GCP 커스텀 사이즈 계산). 이중화 = 대기 포함 단가(≈2배) | Aurora(I/O 과금 등 구조 상이)·Enterprise Plus(상위 등급)·Single Server(단종)·공유 코어(SLA 없음) 제외. 엔진별 가격이 AWS·Azure에서 달라 엔진 단위 저장. 아키텍처 토글 미적용(관리형이라 ARM 호환성 무관), 버스트 옵션은 적용. Azure 버스트는 HA 미지원(문서) → HA 시 후보 제외. GCP 사이즈 규칙(vCPU 1·짝수 ≤96, RAM 0.9~6.5GB/vCPU·256MB 단위·최소 3.75GB)은 문서값 상수. 백업·추가 IOPS 제외 |

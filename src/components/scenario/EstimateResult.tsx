@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { HOURS_PER_MONTH, type EstimateLine, type ProviderEstimate } from '@/lib/estimator';
+import { HOURS_PER_MONTH, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
 import { formatMoney, type Currency, type Period } from '@/lib/display';
 import type { Arch, Provider } from '@/lib/schema';
 
@@ -58,6 +58,25 @@ function Segmented<T extends string>({
   );
 }
 
+/** 매칭 실패 표시 + 이유 (VM·K8s 노드·DB 공통) */
+function NoMatchNote({ noMatch }: { noMatch: NoMatchReason | null }) {
+  const t = useTranslations('estimate');
+  return (
+    <span className="ml-1 text-red-500">
+      {t('noMatch')}
+      {noMatch && (
+        <span className="ml-1 text-slate-400">
+          (
+          {noMatch.reason === 'arch'
+            ? t('noMatchArch')
+            : t('noMatchSize', { vcpu: noMatch.maxVcpu, ramGb: noMatch.maxRamGb })}
+          )
+        </span>
+      )}
+    </span>
+  );
+}
+
 function LineLabel({
   line,
   provider,
@@ -75,18 +94,7 @@ function LineLabel({
       <span>
         {line.role === 'k8s-node' ? t('k8sNode') : 'VM'} {line.spec.vcpu}vCPU/{line.spec.ramGb}GB ×{line.spec.count}
         {!line.matched ? (
-          <span className="ml-1 text-red-500">
-            {t('noMatch')}
-            {line.noMatch && (
-              <span className="ml-1 text-slate-400">
-                (
-                {line.noMatch.reason === 'arch'
-                  ? t('noMatchArch')
-                  : t('noMatchSize', { vcpu: line.noMatch.maxVcpu, ramGb: line.noMatch.maxRamGb })}
-                )
-              </span>
-            )}
-          </span>
+          <NoMatchNote noMatch={line.noMatch} />
         ) : line.candidates.length < 2 ? (
           <span className="ml-1 font-mono text-slate-900">
             → {line.matched.sku} ({line.matched.vcpu}vCPU/{line.matched.ramGb}GB)
@@ -109,6 +117,45 @@ function LineLabel({
           </select>
         )}
         {line.matched && <ArchBadge arch={line.matched.arch} />}
+      </span>
+    );
+  }
+  if (line.kind === 'db') {
+    const label = `${t('dbLine', { engine: t(`dbEngine.${line.engine}`) })}${line.ha ? ` · ${t('dbHa')}` : ''}`;
+    return (
+      <span>
+        {label} {line.spec.vcpu}vCPU/{line.spec.ramGb}GB ×{line.spec.count}
+        {!line.matched ? (
+          line.noMatch ? <NoMatchNote noMatch={line.noMatch} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
+        ) : line.candidates.length < 2 ? (
+          <span className="ml-1 font-mono text-slate-900">
+            → {line.matched.sku} ({line.matched.vcpu}vCPU/{line.matched.ramGb}GB)
+          </span>
+        ) : (
+          <select
+            aria-label={t('instanceSelect')}
+            value={line.matched.sku}
+            onChange={(e) =>
+              onSelect(provider, line.resourceIndex, e.target.value, e.target.value === line.candidates[0].sku)
+            }
+            className="ml-1 rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
+          >
+            {line.candidates.map((c) => (
+              <option key={c.sku} value={c.sku}>
+                {c.sku} · {c.vcpu}/{c.ramGb}GB · {money(c.perHour * HOURS_PER_MONTH * line.spec.count)}
+              </option>
+            ))}
+          </select>
+        )}
+      </span>
+    );
+  }
+  if (line.kind === 'db-storage') {
+    return (
+      <span>
+        {t('dbStorageLine', { gb: line.storageGb, count: line.count })}
+        {line.ha && <span className="ml-1 text-slate-400">({t('dbHa')})</span>}
+        {line.perGbMonth === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
       </span>
     );
   }

@@ -4,7 +4,7 @@
  */
 
 import assert from 'node:assert/strict';
-import { parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
+import { parseCloudSql, parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
 
 function fx(
   description: string,
@@ -101,5 +101,26 @@ assert.deepEqual(parseGcpNat(natSkus, 'seoul'), {
   hourly: { per: 'vm', usd: 0.0014, maxVms: 32 },
   perGb: 0.045,
 });
+
+// Cloud SQL: Zonal(단일)·Regional(이중화) vCPU·RAM·SSD — N4·Enterprise Plus 제외, 6개 다 있어야 엔진 생성
+const sqlSkus = [
+  fx('Cloud SQL for MySQL: Zonal - Enterprise N4 vCPU in Seoul', 'OnDemand', 99_000_000),
+  fx('Cloud SQL for MySQL: Zonal - Enterprise Plus N vCPU in Seoul', 'OnDemand', 99_000_000),
+  fx('Cloud SQL for MySQL: Zonal - vCPU in Seoul', 'OnDemand', 53_700_000),
+  fx('Cloud SQL for MySQL: Zonal - RAM in Seoul', 'OnDemand', 9_100_000),
+  fx('Cloud SQL for MySQL: Zonal - Standard storage in Seoul', 'OnDemand', 221_000_000),
+  fx('Cloud SQL for MySQL: Regional - vCPU in Seoul', 'OnDemand', 107_400_000),
+  fx('Cloud SQL for MySQL: Regional - RAM in Seoul', 'OnDemand', 18_200_000),
+  fx('Cloud SQL for MySQL: Regional - Standard storage in Seoul', 'OnDemand', 442_000_000),
+  fx('Cloud SQL for PostgreSQL: Zonal - vCPU in Seoul', 'OnDemand', 53_700_000), // PG는 일부만 → null
+];
+const sql = parseCloudSql(sqlSkus, 'asia-northeast3', 'seoul')!;
+assert.deepEqual(sql.engines.mysql, {
+  instances: [],
+  custom: { vcpuPerHour: 0.0537, ramGbPerHour: 0.0091, haVcpuPerHour: 0.1074, haRamGbPerHour: 0.0182 },
+  storageGbMonth: 0.221,
+  haStorageGbMonth: 0.442,
+});
+assert.equal(sql.engines.postgres, null);
 
 console.log(`gcp.test: 모든 검증 통과 ✔ (VmSku ${vms.length}건 생성)`);

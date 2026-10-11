@@ -1,6 +1,6 @@
 /**
  * 시나리오 템플릿 — "구성도를 넣으면 가격이 나온다"를 빈 화면 없이 바로 보여주는 출발점.
- * 규모는 예시값이다. 관리형 DB가 없어 DB는 VM으로 대신한다.
+ * 규모는 예시값이다.
  * 이름은 messages의 scenario.templateName.{id}.
  */
 
@@ -14,7 +14,7 @@ export const TEMPLATES: { id: TemplateId; resources: Resource[] }[] = [
     resources: [
       { type: 'lb', count: 1, gb: 500 },
       { type: 'vm', vcpu: 2, ramGb: 4, count: 2 }, // 웹
-      { type: 'vm', vcpu: 2, ramGb: 8, count: 1 }, // DB
+      { type: 'db', engine: 'postgres', vcpu: 2, ramGb: 8, storageGb: 100, ha: false, count: 1 },
       { type: 'block', gb: 100 },
       { type: 'egress', gb: 500 },
     ],
@@ -23,6 +23,7 @@ export const TEMPLATES: { id: TemplateId; resources: Resource[] }[] = [
     id: 'k8sApi',
     resources: [
       { type: 'k8s', clusters: 1, node: { vcpu: 4, ramGb: 16, count: 3 } },
+      { type: 'db', engine: 'postgres', vcpu: 4, ramGb: 16, storageGb: 200, ha: true, count: 1 },
       { type: 'lb', count: 1, gb: 1024 },
       { type: 'nat', count: 1, gb: 500 },
       { type: 'block', gb: 200 },

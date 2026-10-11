@@ -51,7 +51,8 @@
       "egress": "Outbound traffic",
       "k8s": "Kubernetes cluster",
       "lb": "Load balancer (L7)",
-      "nat": "NAT gateway"
+      "nat": "NAT gateway",
+      "db": "Managed database"
     },
     "sizeGb": "Size (GB)",
     "egressGb": "Monthly transfer (GB)",
@@ -62,6 +63,10 @@
     "lbCount": "Count",
     "natCount": "Gateways",
     "processedGb": "Monthly processed (GB)",
+    "dbEngine": "Engine",
+    "dbStorageGb": "Storage (GB)",
+    "dbHa": "High availability",
+    "dbHaHint": "Standby replica for high availability (AWS Multi-AZ · Azure HA · GCP Regional) — roughly doubles compute and storage",
     "remove": "Remove",
     "removeAria": "Remove this resource",
     "vcpu": "vCPU",
@@ -86,6 +91,13 @@
     "lbLine": "Load balancer ×{count} · {gb}GB processed",
     "natLine": "NAT gateway ×{count} · {gb}GB processed",
     "natBilledVms": "(billed for {vms} VMs)",
+    "dbLine": "DB {engine}",
+    "dbEngine": {
+      "mysql": "MySQL",
+      "postgres": "PostgreSQL"
+    },
+    "dbHa": "HA",
+    "dbStorageLine": "DB storage {gb}GB ×{count}",
     "cheapest": "Cheapest",
     "dataPending": "Data coming soon",
     "unavailable": "Not available",

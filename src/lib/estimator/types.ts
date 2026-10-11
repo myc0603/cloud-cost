@@ -3,7 +3,7 @@
  * 리소스 모듈은 이 파일만 import한다 (index.ts를 import하면 순환 참조).
  */
 
-import type { Provider, ProviderPricing, Region, StorageSku, VmSku } from '../schema';
+import type { DbEngine, Provider, ProviderPricing, Region, StorageSku, VmSku } from '../schema';
 
 export interface VmSpec {
   vcpu: number;
@@ -22,7 +22,9 @@ export type Resource =
   /** L7 로드밸런서 — 대수 + 월 처리 트래픽(전체 합계) */
   | { type: 'lb'; count: number; gb: number }
   /** NAT 게이트웨이 — 개수 + 월 처리 데이터(전체 합계) */
-  | { type: 'nat'; count: number; gb: number };
+  | { type: 'nat'; count: number; gb: number }
+  /** 관리형 DB — 엔진 · 인스턴스 스펙 · 스토리지(인스턴스당) · 이중화 · 인스턴스 수 */
+  | { type: 'db'; engine: DbEngine; vcpu: number; ramGb: number; storageGb: number; ha: boolean; count: number };
 
 export type ResourceType = Resource['type'];
 
@@ -71,7 +73,30 @@ export type EstimateLine = { resourceIndex: number } & (
   | { kind: 'lb'; count: number; gb: number; monthlyUsd: number | null }
   /** billedVms: 시간당 요금이 VM 수 비례인 플랫폼(GCP)에서 과금 기준이 된 VM 수. 그 외 null */
   | { kind: 'nat'; count: number; gb: number; billedVms: number | null; monthlyUsd: number | null }
+  /**
+   * 관리형 DB 컴퓨트. matched·candidates의 perHour는 이중화 여부가 반영된 값.
+   * matched·noMatch 둘 다 null = 해당 엔진 요금 데이터 없음
+   */
+  | {
+      kind: 'db';
+      engine: DbEngine;
+      ha: boolean;
+      spec: VmSpec;
+      matched: DbMatch | null;
+      candidates: DbMatch[];
+      noMatch: NoMatchReason | null;
+      monthlyUsd: number | null;
+    }
+  | { kind: 'db-storage'; storageGb: number; count: number; ha: boolean; perGbMonth: number | null; monthlyUsd: number | null }
 );
+
+/** DB 매칭 결과 한 건 — AWS·Azure는 실제 SKU, GCP는 계산한 커스텀 사이즈(db-custom-{vCPU}-{RAM MB}) */
+export interface DbMatch {
+  sku: string;
+  vcpu: number;
+  ramGb: number;
+  perHour: number;
+}
 
 export interface ProviderEstimate {
   provider: Provider;

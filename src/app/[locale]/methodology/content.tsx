@@ -54,6 +54,11 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
           NAT 게이트웨이는 시간당 + 처리 GB당 요금입니다. GCP Cloud NAT는 시간 요금이 VM 1대당이라 시나리오의 VM 대수와 K8s 노드 수를
           합산해 계산합니다(게이트웨이당 32대 상한). NAT 처리 요금은 아웃바운드 트래픽 요금과 별도로 더해집니다.
         </li>
+        <li className={LI}>
+          관리형 DB는 AWS RDS · Azure Database(Flexible Server) · GCP Cloud SQL(Enterprise)의 MySQL·PostgreSQL끼리, 요구
+          vCPU·RAM을 만족하는 최저가 사이즈로 계산합니다. GCP는 커스텀 사이즈라 스펙에 맞춰 계산합니다(메모리 최소 3.75GB).
+          이중화는 대기 서버를 포함한 요금입니다. Aurora·Enterprise Plus, 백업 스토리지와 추가 IOPS는 포함하지 않습니다.
+        </li>
         <li className={LI}>공인 IP 주소 시간 요금(3사 모두 시간당 약 $0.005)은 포함하지 않습니다.</li>
         <li className={LI}>오브젝트 스토리지는 표준 티어 첫 구간(50TB 이하) 단가.</li>
         <li className={LI}>
@@ -125,6 +130,11 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         <li className={LI}>
           NAT gateways are hourly + per-GB processed. GCP Cloud NAT bills hourly per VM, so we count the VMs and K8s nodes in your
           scenario (capped at 32 per gateway). NAT processing is charged in addition to outbound traffic.
+        </li>
+        <li className={LI}>
+          Managed databases compare MySQL and PostgreSQL on AWS RDS · Azure Database (Flexible Server) · GCP Cloud SQL (Enterprise),
+          picking the cheapest size that meets the requested vCPU and RAM. GCP uses custom sizes fitted to the spec (minimum 3.75 GB
+          memory). High availability includes the standby. Aurora, Enterprise Plus, backup storage and extra IOPS are not included.
         </li>
         <li className={LI}>Public IP address hourly fees (about $0.005/hour on all three) are not included.</li>
         <li className={LI}>Object storage uses the standard tier, first pricing band (up to 50TB).</li>

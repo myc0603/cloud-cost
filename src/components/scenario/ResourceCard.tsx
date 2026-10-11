@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import type { Resource } from '@/lib/estimator';
+import type { DbEngine } from '@/lib/schema';
 import NumberField from './NumberField';
 
 interface Props {
@@ -43,6 +44,28 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
             <NumberField label={t('nodeVcpu')} value={r.node.vcpu} min={1} onChange={(vcpu) => onChange({ ...r, node: { ...r.node, vcpu } })} />
             <NumberField label={t('nodeRam')} value={r.node.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, node: { ...r.node, ramGb } })} />
             <NumberField label={t('nodesPerCluster')} value={r.node.count} min={1} onChange={(count) => onChange({ ...r, node: { ...r.node, count } })} />
+          </>
+        ) : r.type === 'db' ? (
+          <>
+            <label className="flex flex-col gap-1 text-xs text-slate-500">
+              {t('dbEngine')}
+              <select
+                value={r.engine}
+                onChange={(e) => onChange({ ...r, engine: e.target.value as DbEngine })}
+                className="rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900"
+              >
+                <option value="postgres">PostgreSQL</option>
+                <option value="mysql">MySQL</option>
+              </select>
+            </label>
+            <NumberField label={t('vcpu')} value={r.vcpu} min={1} onChange={(vcpu) => onChange({ ...r, vcpu })} />
+            <NumberField label={t('ram')} value={r.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, ramGb })} />
+            <NumberField label={t('dbStorageGb')} value={r.storageGb} min={1} onChange={(storageGb) => onChange({ ...r, storageGb })} />
+            <NumberField label={t('count')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
+            <label className="flex items-center gap-1.5 self-end pb-1.5 text-xs text-slate-600" title={t('dbHaHint')}>
+              <input type="checkbox" checked={r.ha} onChange={(e) => onChange({ ...r, ha: e.target.checked })} />
+              {t('dbHa')}
+            </label>
           </>
         ) : r.type === 'lb' || r.type === 'nat' ? (
           <>

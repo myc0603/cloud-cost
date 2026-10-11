@@ -5,7 +5,20 @@
  * 파이프라인: fetchVmPriceItems → buildAzureVmSkus
  */
 
-import type { EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type {
+  DbEngine,
+  DbEnginePricing,
+  DbInstance,
+  DbPrice,
+  EgressTier,
+  K8sClusterPrice,
+  LbPrice,
+  NatPrice,
+  Region,
+  StorageSku,
+  VmSku,
+} from '../../src/lib/schema';
+import { AZURE_DB_SIZES } from './azure-db-sizes';
 import { AZURE_VM_SIZES } from './azure-vm-sizes';
 
 export const AZURE_REGION: Record<Region, string> = {
@@ -250,4 +263,59 @@ export async function collectAzureLb(region: Region): Promise<LbPrice | null> {
 export async function collectAzureNat(region: Region): Promise<NatPrice | null> {
   const items = await fetchPriceItems(`armRegionName eq 'Global' and priceType eq 'Consumption' and productName eq 'NAT Gateway'`);
   return buildAzureNat(items, region);
+}
+
+const AZURE_DB_SERVICE: Record<DbEngine, string> = {
+  mysql: 'Azure Database for MySQL',
+  postgres: 'Azure Database for PostgreSQL',
+};
+
+/**
+ * Flexible Server 한 엔진의 가격 아이템 → 카탈로그 조인.
+ * 이중화(HA)는 대기 서버가 주 서버와 같은 요금(공식 문서) → 컴퓨트·스토리지 2배. 버스트는 HA 미지원.
+ * 스토리지는 기본 "Storage Data Stored"(GB·월).
+ */
+export function buildAzureDbEngine(items: AzurePriceItem[]): DbEnginePricing | null {
+  // PG 스토리지 상품명은 "Flex Server Storage"로 줄여 쓴다
+  const flex = items.filter((i) => /Flex(ible)? Server/.test(i.productName) && i.type === 'Consumption' && i.retailPrice > 0);
+  const hourly = flex.filter((i) => i.unitOfMeasure === '1 Hour');
+
+  const perVcore = (series: string) =>
+    hourly.find((i) => i.productName.endsWith(`${series} Series Compute`) && (i.skuName === 'vCore' || i.skuName === '1 vCore'))?.retailPrice;
+  const tierRate = { general: perVcore('Dadsv5'), memory: perVcore('Eadsv5') };
+  const burstPrice = new Map(
+    hourly
+      .filter((i) => i.productName.endsWith('Burstable BS Series Compute'))
+      .map((i) => [i.meterName.toLowerCase().replace(/ vcore$/, ''), i.retailPrice]),
+  );
+
+  const instances: DbInstance[] = AZURE_DB_SIZES.flatMap((size) => {
+    const price = size.tier === 'burstable' ? burstPrice.get(size.meter!) : tierRate[size.tier] && tierRate[size.tier]! * size.vcpu;
+    if (!price) return [];
+    return [{
+      sku: size.sku,
+      vcpu: size.vcpu,
+      ramGb: size.ramGb,
+      burstable: size.tier === 'burstable',
+      perHour: +price.toFixed(6),
+      haPerHour: size.tier === 'burstable' ? null : +(price * 2).toFixed(6),
+    }];
+  });
+
+  const storage = flex.find(
+    (i) => i.productName.includes('Storage') && i.meterName === 'Storage Data Stored' && i.unitOfMeasure === '1 GB/Month',
+  )?.retailPrice;
+  if (instances.length === 0 || !storage) return null;
+  return { instances, custom: null, storageGbMonth: +storage.toFixed(6), haStorageGbMonth: +(storage * 2).toFixed(6) };
+}
+
+export async function collectAzureDb(region: Region): Promise<DbPrice | null> {
+  const engines = {} as Record<DbEngine, DbEnginePricing | null>;
+  for (const engine of ['mysql', 'postgres'] as const) {
+    const items = await fetchPriceItems(
+      `armRegionName eq '${AZURE_REGION[region]}' and priceType eq 'Consumption' and serviceName eq '${AZURE_DB_SERVICE[engine]}'`,
+    );
+    engines[engine] = buildAzureDbEngine(items);
+  }
+  return engines.mysql || engines.postgres ? { provider: 'azure', region, engines } : null;
 }

@@ -1,6 +1,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildAzureEgress, buildAzureK8s, buildAzureLb, buildAzureNat, buildAzureStorage, buildAzureVmSkus, type AzurePriceItem } from './azure';
+import {
+  buildAzureDbEngine,
+  buildAzureEgress,
+  buildAzureK8s,
+  buildAzureLb,
+  buildAzureNat,
+  buildAzureStorage,
+  buildAzureVmSkus,
+  type AzurePriceItem,
+} from './azure';
 
 const item = (over: Partial<AzurePriceItem>): AzurePriceItem => ({
   currencyCode: 'USD',
@@ -112,4 +121,25 @@ test('buildAzureNat: Standard 게이트웨이 시간당 + 처리 GB당 — Stand
     hourly: { per: 'gateway', usd: 0.045 },
     perGb: 0.045,
   });
+});
+
+test('buildAzureDbEngine: 버스트(사이즈별 미터·HA 없음) + 범용·메모리(vCore 단가 × vCore, HA 2배) + 스토리지', () => {
+  const pg = (product: string, skuName: string, meterName: string, retailPrice: number, unitOfMeasure = '1 Hour') =>
+    item({ productName: `Azure Database for PostgreSQL ${product}`, skuName, meterName, retailPrice, unitOfMeasure });
+  const items = [
+    pg('Flexible Server Burstable BS Series Compute', 'B2ms', 'B2ms vCore', 0.208),
+    pg('Flexible Server General Purpose Dadsv5 Series Compute', 'vCore', 'vCore', 0.123),
+    pg('Flexible Server General Purpose Dadsv5 Series Compute', '2 vCore', 'vCore', 0.246), // vCore당 미터만 사용
+    pg('Flexible Server Memory Optimized Eadsv5 Series Compute', '1 vCore', 'vCore', 0.15),
+    pg('Flex Server Storage', 'Storage', 'Storage Data Stored', 0.131, '1 GB/Month'), // PG는 "Flex Server"
+    pg('Single Server General Purpose - Compute Gen5', 'vCore', 'vCore', 9), // Single Server 제외
+  ];
+  const p = buildAzureDbEngine(items)!;
+  const find = (sku: string) => p.instances.find((i) => i.sku === sku);
+  assert.deepEqual(find('Standard_B2ms'), { sku: 'Standard_B2ms', vcpu: 2, ramGb: 8, burstable: true, perHour: 0.208, haPerHour: null });
+  assert.deepEqual(find('Standard_D4ads_v5'), { sku: 'Standard_D4ads_v5', vcpu: 4, ramGb: 16, burstable: false, perHour: 0.492, haPerHour: 0.984 });
+  assert.equal(find('Standard_E2ads_v5')?.perHour, 0.3);
+  assert.equal(find('Standard_B1ms'), undefined); // 가격 미터 없으면 제외
+  assert.equal(p.storageGbMonth, 0.131);
+  assert.equal(p.haStorageGbMonth, 0.262);
 });

@@ -22,6 +22,7 @@ const snap = (over: Partial<Snapshot>): Snapshot => ({
   k8s: null,
   lb: null,
   nat: null,
+  db: null,
   ...over,
 });
 
@@ -81,4 +82,17 @@ test('LB·NAT 단가 소실·급변은 실패', () => {
   assert.equal(validateSnapshot('t', snap({ lb: lb(0.0225, 0.008) }), snap({ lb: lb(0.0225, 0.02) })).length, 1);
   assert.equal(validateSnapshot('t', snap({ nat: nat(0.059) }), snap({ nat: nat(0.1) })).length, 1);
   assert.deepEqual(validateSnapshot('t', snap({ nat: nat(0.059) }), snap({ nat: nat(0.06) })), []);
+});
+
+test('DB: 엔진 요금 소실·스토리지 급변·인스턴스 건수 급감은 실패', () => {
+  const inst = { sku: 'x', vcpu: 2, ramGb: 8, burstable: false, perHour: 0.1, haPerHour: 0.2 };
+  const db = (n: number, storageGbMonth: number) => ({
+    provider: 'aws' as const,
+    region: 'seoul' as const,
+    engines: { mysql: { instances: Array(n).fill(inst), custom: null, storageGbMonth, haStorageGbMonth: storageGbMonth * 2 }, postgres: null },
+  });
+  assert.deepEqual(validateSnapshot('t', snap({ db: db(10, 0.131) }), snap({ db: db(10, 0.131) })), []);
+  assert.equal(validateSnapshot('t', snap({ db: db(10, 0.131) }), snap({ db: db(5, 0.131) })).length, 1); // 건수 급감
+  assert.equal(validateSnapshot('t', snap({ db: db(10, 0.131) }), snap({ db: db(10, 0.3) })).length, 1); // 스토리지 급변
+  assert.equal(validateSnapshot('t', snap({ db: db(10, 0.131) }), snap({ db: null })).length, 2); // 스토리지 소실 + 건수 0
 });

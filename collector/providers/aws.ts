@@ -9,7 +9,20 @@
 
 import { createInterface } from 'node:readline';
 import { Readable } from 'node:stream';
-import type { Arch, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type {
+  Arch,
+  DbEngine,
+  DbEnginePricing,
+  DbInstance,
+  DbPrice,
+  EgressTier,
+  K8sClusterPrice,
+  LbPrice,
+  NatPrice,
+  Region,
+  StorageSku,
+  VmSku,
+} from '../../src/lib/schema';
 
 export const AWS_REGION: Record<Region, string> = {
   seoul: 'ap-northeast-2',
@@ -299,6 +312,71 @@ export async function parseAlbCsv(
   return perHour !== null && perGb !== null ? { provider: 'aws', region, perHour, perGb } : null;
 }
 
+const RDS_ENGINES: Record<string, DbEngine> = { MySQL: 'mysql', PostgreSQL: 'postgres' };
+
+/**
+ * AmazonRDS 오퍼 CSV → 엔진별 인스턴스 클래스(단일·Multi-AZ 시간당) + gp3 스토리지(단일·Multi-AZ).
+ * 필터: MySQL·PostgreSQL / 현세대 / Single-AZ·Multi-AZ(읽기 가능 대기 클러스터 제외) / 연장 지원 행 제외.
+ * Multi-AZ 인스턴스 가격은 대기 서버를 포함한 값이다 (API가 별도 행으로 제공).
+ */
+export async function parseRdsCsv(
+  lines: AsyncIterable<string> | Iterable<string>,
+  region: Region,
+): Promise<DbPrice | null> {
+  type Acc = { instances: Map<string, DbInstance>; storage?: number; haStorage?: number };
+  const acc: Record<DbEngine, Acc> = { mysql: { instances: new Map() }, postgres: { instances: new Map() } };
+
+  await scanOfferCsv(lines, (get) => {
+    if (get('TermType') !== 'OnDemand' || get('Currency') !== 'USD') return;
+    if (get('Location') !== AWS_LOCATION[region]) return;
+    const deploy = get('Deployment Option');
+    if (deploy !== 'Single-AZ' && deploy !== 'Multi-AZ') return;
+    const price = Number(get('PricePerUnit'));
+    if (!(price > 0)) return;
+    const family = get('Product Family');
+
+    if (family === 'Database Instance') {
+      const engine = RDS_ENGINES[get('Database Engine')];
+      if (!engine || get('Current Generation') !== 'Yes' || get('Extended Support Pricing Year')) return;
+      if (!/^(?:[A-Z]+\d-)?(InstanceUsage|Multi-AZUsage):db\./.test(get('usageType'))) return;
+      const sku = get('Instance Type');
+      const vcpu = Number(get('vCPU'));
+      const ramGb = parseMemoryGb(get('Memory'));
+      if (!(vcpu > 0) || ramGb === null) return;
+      const inst = acc[engine].instances.get(sku) ?? {
+        sku,
+        vcpu,
+        ramGb,
+        burstable: /^db\.t\d/.test(sku),
+        perHour: 0,
+        haPerHour: null,
+      };
+      if (deploy === 'Single-AZ') inst.perHour = +price.toFixed(6);
+      else inst.haPerHour = +price.toFixed(6);
+      acc[engine].instances.set(sku, inst);
+      return;
+    }
+
+    if (family === 'Database Storage' && get('Volume Type') === 'General Purpose-GP3' && get('Unit') === 'GB-Mo') {
+      // 스토리지 행은 엔진별 또는 "Any" — 엔진별 값을 우선, 없으면 Any
+      const engineName = get('Database Engine');
+      const targets: DbEngine[] = engineName === 'Any' ? ['mysql', 'postgres'] : RDS_ENGINES[engineName] ? [RDS_ENGINES[engineName]] : [];
+      for (const engine of targets) {
+        const key = deploy === 'Single-AZ' ? 'storage' : 'haStorage';
+        if (engineName !== 'Any' || acc[engine][key] === undefined) acc[engine][key] = +price.toFixed(6);
+      }
+    }
+  });
+
+  const build = (a: Acc): DbEnginePricing | null => {
+    const instances = [...a.instances.values()].filter((i) => i.perHour > 0).sort((x, y) => x.sku.localeCompare(y.sku));
+    if (instances.length === 0 || a.storage === undefined || a.haStorage === undefined) return null;
+    return { instances, custom: null, storageGbMonth: a.storage, haStorageGbMonth: a.haStorage };
+  };
+  const engines = { mysql: build(acc.mysql), postgres: build(acc.postgres) };
+  return engines.mysql || engines.postgres ? { provider: 'aws', region, engines } : null;
+}
+
 async function streamOffer(offer: string, awsRegion: string) {
   const res = await fetch(offerCsvUrl(offer, awsRegion));
   if (!res.ok || !res.body) throw new Error(`AWS Price List API 오류 ${res.status} (${offer}/${awsRegion})`);
@@ -314,6 +392,7 @@ export async function collectAws(
   k8s: K8sClusterPrice | null;
   lb: LbPrice | null;
   nat: NatPrice | null;
+  db: DbPrice | null;
 }> {
   const awsRegion = AWS_REGION[region];
   const ec2 = await parseEc2OfferCsv(await streamOffer('AmazonEC2', awsRegion), region);
@@ -321,5 +400,6 @@ export async function collectAws(
   const egress = await parseDataTransferCsv(await streamOffer('AWSDataTransfer', awsRegion), region);
   const k8s = await parseEksCsv(await streamOffer('AmazonEKS', awsRegion), region);
   const lb = await parseAlbCsv(await streamOffer('AWSELB', awsRegion), region);
-  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat };
+  const db = await parseRdsCsv(await streamOffer('AmazonRDS', awsRegion), region);
+  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat, db };
 }

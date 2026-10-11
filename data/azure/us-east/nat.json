@@ -1,0 +1,9 @@
+{
+  "provider": "azure",
+  "region": "us-east",
+  "hourly": {
+    "per": "gateway",
+    "usd": 0.045
+  },
+  "perGb": 0.045
+}

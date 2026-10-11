@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -58,6 +59,8 @@ export default async function RootLayout({
           </nav>
           {children}
         </NextIntlClientProvider>
+        {/* 방문·유입 경로·국가 집계 (쿠키 없음). Vercel 대시보드에서 Analytics를 켜야 수집됨 */}
+        <Analytics />
       </body>
     </html>
   );

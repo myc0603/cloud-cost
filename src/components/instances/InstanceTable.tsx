@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { HOURS_PER_MONTH } from '@/lib/estimator';
+import { ArchBadge } from '@/components/scenario/EstimateResult';
+import { HOURS_PER_MONTH, type ArchFilter } from '@/lib/estimator';
+import { formatMoney, type Currency } from '@/lib/display';
 import type { Provider, Region, VmSku } from '@/lib/schema';
 
 const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
@@ -13,13 +15,16 @@ type SortKey = 'provider' | 'sku' | 'vcpu' | 'ramGb' | 'pricePerHour';
 const usd = (x: number, digits: number) =>
   '$' + x.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
 
-export default function InstanceTable({ skus }: { skus: VmSku[] }) {
+/** rate = USD당 원. null이면 환율 조회 실패 → 통화 선택 숨김 */
+export default function InstanceTable({ skus, usdKrwRate }: { skus: VmSku[]; usdKrwRate: number | null }) {
   const t = useTranslations('instances');
   const [region, setRegion] = useState<Region>('seoul');
   const [providers, setProviders] = useState<Set<Provider>>(new Set(['aws', 'azure', 'gcp']));
   const [minVcpu, setMinVcpu] = useState(0);
   const [minRam, setMinRam] = useState(0);
   const [includeBurstable, setIncludeBurstable] = useState(true);
+  const [arch, setArch] = useState<ArchFilter>('both');
+  const [currency, setCurrency] = useState<Currency>('usd');
   const [sortKey, setSortKey] = useState<SortKey>('pricePerHour');
   const [sortAsc, setSortAsc] = useState(true);
 
@@ -30,7 +35,8 @@ export default function InstanceTable({ skus }: { skus: VmSku[] }) {
         providers.has(s.provider) &&
         s.vcpu >= minVcpu &&
         s.ramGb >= minRam &&
-        (includeBurstable || !s.burstable),
+        (includeBurstable || !s.burstable) &&
+        (arch === 'both' || s.arch === arch),
     );
     return filtered.sort((a, b) => {
       const va = a[sortKey];
@@ -38,7 +44,17 @@ export default function InstanceTable({ skus }: { skus: VmSku[] }) {
       const cmp = typeof va === 'number' && typeof vb === 'number' ? va - vb : String(va).localeCompare(String(vb));
       return sortAsc ? cmp : -cmp;
     });
-  }, [skus, region, providers, minVcpu, minRam, includeBurstable, sortKey, sortAsc]);
+  }, [skus, region, providers, minVcpu, minRam, includeBurstable, arch, sortKey, sortAsc]);
+
+  // USD는 기존 고정 자릿수 유지, KRW만 표시 계층(display.ts)으로 환산
+  const hourly = (s: VmSku) =>
+    currency === 'krw' && usdKrwRate !== null
+      ? formatMoney(s.pricePerHour * HOURS_PER_MONTH, 'krw', 'hour', usdKrwRate)
+      : usd(s.pricePerHour, 4);
+  const monthly = (s: VmSku) =>
+    currency === 'krw' && usdKrwRate !== null
+      ? formatMoney(s.pricePerHour * HOURS_PER_MONTH, 'krw', 'month', usdKrwRate)
+      : usd(s.pricePerHour * HOURS_PER_MONTH, 2);
 
   const toggleProvider = (p: Provider) =>
     setProviders((prev) => {
@@ -105,6 +121,31 @@ export default function InstanceTable({ skus }: { skus: VmSku[] }) {
           <input type="checkbox" checked={includeBurstable} onChange={(e) => setIncludeBurstable(e.target.checked)} />
           {t('includeBurstable')}
         </label>
+        <label className="flex items-center gap-2">
+          {t('arch')}
+          <select
+            value={arch}
+            onChange={(e) => setArch(e.target.value as ArchFilter)}
+            className="rounded border border-slate-300 bg-white px-2 py-1"
+          >
+            {(['both', 'x86', 'arm'] as ArchFilter[]).map((a) => (
+              <option key={a} value={a}>{t(`archLabel.${a}`)}</option>
+            ))}
+          </select>
+        </label>
+        {usdKrwRate !== null && (
+          <label className="flex items-center gap-2">
+            {t('currency')}
+            <select
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value as Currency)}
+              className="rounded border border-slate-300 bg-white px-2 py-1"
+            >
+              <option value="usd">USD</option>
+              <option value="krw">{t('krw')}</option>
+            </select>
+          </label>
+        )}
         <span className="text-xs text-slate-400">{t('shown', { count: rows.length })}</span>
       </div>
 
@@ -118,6 +159,7 @@ export default function InstanceTable({ skus }: { skus: VmSku[] }) {
               <th className={th} onClick={() => sortBy('ramGb')}>{t('colRam')}{arrow('ramGb')}</th>
               <th className={th} onClick={() => sortBy('pricePerHour')}>{t('colHourly')}{arrow('pricePerHour')}</th>
               <th className="px-3 py-2 text-left font-semibold">{t('colMonthly')}</th>
+              <th className="px-3 py-2 text-left font-semibold">{t('colArch')}</th>
               <th className="px-3 py-2 text-left font-semibold">{t('colBurstable')}</th>
             </tr>
           </thead>
@@ -128,14 +170,20 @@ export default function InstanceTable({ skus }: { skus: VmSku[] }) {
                 <td className="px-3 py-1.5 font-mono text-xs">{s.sku}</td>
                 <td className="px-3 py-1.5 tabular-nums">{s.vcpu}</td>
                 <td className="px-3 py-1.5 tabular-nums">{s.ramGb}</td>
-                <td className="px-3 py-1.5 tabular-nums">{usd(s.pricePerHour, 4)}</td>
-                <td className="px-3 py-1.5 tabular-nums">{usd(s.pricePerHour * HOURS_PER_MONTH, 2)}</td>
+                <td className="px-3 py-1.5 tabular-nums">{hourly(s)}</td>
+                <td className="px-3 py-1.5 tabular-nums">{monthly(s)}</td>
+                <td className="px-3 py-1.5"><ArchBadge arch={s.arch} /></td>
                 <td className="px-3 py-1.5">{s.burstable ? '○' : ''}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {currency === 'krw' && usdKrwRate !== null && (
+        <p className="text-xs text-slate-400">
+          {t('fxNote', { rate: usdKrwRate.toLocaleString('ko-KR', { maximumFractionDigits: 2 }) })}
+        </p>
+      )}
     </div>
   );
 }

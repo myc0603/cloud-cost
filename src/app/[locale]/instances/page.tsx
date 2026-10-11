@@ -30,15 +30,16 @@ export default async function InstancesPage({ params }: { params: Promise<{ loca
     const pricing = loadPricing(region);
     return Object.values(pricing).flatMap((p) => p.vm);
   });
+  const meta = loadMeta();
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-10">
       <header className="mb-8">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
         <p className="mt-1 text-sm text-slate-600">{t('subtitle', { count: skus.length })}</p>
-        <DataFreshness meta={loadMeta()} />
+        <DataFreshness meta={meta} />
       </header>
-      <InstanceTable skus={skus} />
+      <InstanceTable skus={skus} usdKrwRate={meta?.usdKrw?.rate ?? null} />
     </main>
   );
 }

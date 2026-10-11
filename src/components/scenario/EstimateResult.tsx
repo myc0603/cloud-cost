@@ -15,7 +15,7 @@ const PERIODS: Period[] = ['hour', 'day', 'week', 'month'];
 const PERIOD_SUFFIX: Record<Period, string> = { hour: 'perHour', day: 'perDay', week: 'perWeek', month: 'perMonth' };
 
 /** 아키텍처 식별 배지 — ARM은 보라, x86은 중립색 */
-function ArchBadge({ arch }: { arch: Arch }) {
+export function ArchBadge({ arch }: { arch: Arch }) {
   const arm = arch === 'arm';
   return (
     <span

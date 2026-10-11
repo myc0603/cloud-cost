@@ -93,6 +93,15 @@
     "vcpuMin": "vCPU ≥",
     "ramMin": "RAM (GB) ≥",
     "includeBurstable": "Include burstable",
+    "arch": "Architecture",
+    "archLabel": {
+      "both": "Both",
+      "x86": "x86",
+      "arm": "ARM"
+    },
+    "currency": "Currency",
+    "krw": "KRW",
+    "fxNote": "Converted at ₩{rate}/USD",
     "shown": "{count, number} shown",
     "colProvider": "Provider",
     "colSku": "Instance",
@@ -100,6 +109,7 @@
     "colRam": "RAM (GB)",
     "colHourly": "Hourly",
     "colMonthly": "Monthly (730h)",
+    "colArch": "Arch",
     "colBurstable": "Burst"
   },
   "methodology": {

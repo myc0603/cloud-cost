@@ -30,7 +30,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>
           VM 자동 매칭: 요구 vCPU·RAM을 <b>모두 만족하는 인스턴스 중 최저가</b>를 선택합니다 (동가면
           vCPU가 작은 것). 선택된 인스턴스는 항상 견적 화면에 표시합니다 — 어떤 근거로 비교했는지
-          숨기지 않습니다.
+          숨기지 않습니다. 조건을 만족하는 다른 인스턴스로 직접 바꿀 수도 있고, 바꾼 선택은 공유 링크에 함께 저장됩니다.
         </li>
         <li className={LI}>버스트 인스턴스(AWS t계열, Azure B계열, GCP E2 공유 코어)는 옵션으로 포함/제외할 수 있습니다.</li>
         <li className={LI}>스토리지 = 용량 × GB·월 단가, 트래픽 = 무료 구간을 반영한 구간별 누적 계산.</li>
@@ -86,7 +86,8 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         <li className={LI}>
           VM auto-matching: we pick the <b>cheapest instance that satisfies both</b> the requested vCPU
           and RAM (ties go to fewer vCPUs). The selected instance is always shown in the estimate — we
-          never hide what the comparison is based on.
+          never hide what the comparison is based on. You can also switch to any other instance that meets
+          the specs, and your choice is saved in the share link.
         </li>
         <li className={LI}>Burstable instances (AWS t-series, Azure B-series, GCP E2 shared-core) can be included or excluded as an option.</li>
         <li className={LI}>Storage = capacity × GB-month rate; traffic = cumulative tiered calculation with free allowances applied.</li>

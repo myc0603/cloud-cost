@@ -93,6 +93,15 @@
     "vcpuMin": "vCPU ≥",
     "ramMin": "RAM(GB) ≥",
     "includeBurstable": "버스트 포함",
+    "arch": "아키텍처",
+    "archLabel": {
+      "both": "둘 다",
+      "x86": "x86",
+      "arm": "ARM"
+    },
+    "currency": "통화",
+    "krw": "원",
+    "fxNote": "환율 ₩{rate}/USD 기준",
     "shown": "{count, number}개 표시",
     "colProvider": "플랫폼",
     "colSku": "인스턴스",
@@ -100,6 +109,7 @@
     "colRam": "RAM (GB)",
     "colHourly": "시간당",
     "colMonthly": "월 (730h)",
+    "colArch": "아키텍처",
     "colBurstable": "버스트"
   },
   "methodology": {

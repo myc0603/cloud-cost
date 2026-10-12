@@ -23,6 +23,7 @@ const snap = (over: Partial<Snapshot>): Snapshot => ({
   lb: null,
   nat: null,
   db: null,
+  cache: null,
   ...over,
 });
 
@@ -95,4 +96,14 @@ test('DB: 엔진 요금 소실·스토리지 급변·인스턴스 건수 급감�
   assert.equal(validateSnapshot('t', snap({ db: db(10, 0.131) }), snap({ db: db(5, 0.131) })).length, 1); // 건수 급감
   assert.equal(validateSnapshot('t', snap({ db: db(10, 0.131) }), snap({ db: db(10, 0.3) })).length, 1); // 스토리지 급변
   assert.equal(validateSnapshot('t', snap({ db: db(10, 0.131) }), snap({ db: null })).length, 2); // 스토리지 소실 + 건수 0
+});
+
+test('캐시: 소실·노드 건수 급감·GB 단가 급변은 실패', () => {
+  const node = { sku: 'x', memoryGb: 1, burstable: false, perHour: 0.1, haPerHour: 0.2 };
+  const nodes = (n: number) => ({ provider: 'aws' as const, region: 'seoul' as const, engine: 'Valkey', nodes: Array(n).fill(node), gbTiers: null });
+  const tiers = (perGbHour: number) => ({ provider: 'gcp' as const, region: 'seoul' as const, engine: 'Redis', nodes: [], gbTiers: [{ upToGb: null, perGbHour, haPerGbHour: perGbHour * 2 }] });
+  assert.equal(validateSnapshot('t', snap({ cache: nodes(10) }), snap({ cache: null })).length, 2); // 소실 + 건수 0
+  assert.equal(validateSnapshot('t', snap({ cache: nodes(10) }), snap({ cache: nodes(5) })).length, 1);
+  assert.equal(validateSnapshot('t', snap({ cache: tiers(0.065) }), snap({ cache: tiers(0.1) })).length, 1);
+  assert.deepEqual(validateSnapshot('t', snap({ cache: tiers(0.065) }), snap({ cache: tiers(0.066) })), []);
 });

@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  buildAzureCache,
   buildAzureDbEngine,
   buildAzureEgress,
   buildAzureK8s,
@@ -142,4 +143,21 @@ test('buildAzureDbEngine: 버스트(사이즈별 미터·HA 없음) + 범용·�
   assert.equal(find('Standard_B1ms'), undefined); // 가격 미터 없으면 제외
   assert.equal(p.storageGbMonth, 0.131);
   assert.equal(p.haStorageGbMonth, 0.262);
+});
+
+test('buildAzureCache: Managed Redis SKU 미터 × 카탈로그 용량, 이중화 2배 — 기존 Azure Cache for Redis 제외', () => {
+  const amr = (tier: string, sku: string, retailPrice: number) =>
+    item({ productName: `Azure Managed Redis - ${tier}`, skuName: sku, meterName: `${sku} Cache Instance`, retailPrice });
+  const items = [
+    item({ productName: 'Azure Redis Cache Standard', skuName: 'C1', meterName: 'C1 Cache Instance', retailPrice: 0.089 }),
+    amr('Balanced', 'B1', 0.039),
+    amr('Memory Optimized', 'M10', 0.261),
+  ];
+  const c = buildAzureCache(items, 'seoul')!;
+  assert.equal(c.engine, 'Redis');
+  assert.deepEqual(c.nodes, [
+    { sku: 'B1', memoryGb: 1, burstable: false, perHour: 0.039, haPerHour: 0.078 },
+    { sku: 'M10', memoryGb: 12, burstable: false, perHour: 0.261, haPerHour: 0.522 },
+  ]);
+  assert.equal(buildAzureCache([], 'seoul'), null);
 });

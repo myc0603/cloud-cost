@@ -6,7 +6,7 @@
  * 전에 차단하고 기존 스냅샷을 유지한다. 상세: docs/ARCHITECTURE.md §2
  */
 
-import type { DbPrice, EgressTier, K8sClusterPrice, LbPrice, NatPrice, StorageSku, VmSku } from '../src/lib/schema';
+import type { CachePrice, DbPrice, EgressTier, K8sClusterPrice, LbPrice, NatPrice, StorageSku, VmSku } from '../src/lib/schema';
 
 export interface Snapshot {
   vms: VmSku[];
@@ -16,6 +16,7 @@ export interface Snapshot {
   lb: LbPrice | null;
   nat: NatPrice | null;
   db: DbPrice | null;
+  cache: CachePrice | null;
 }
 
 /** 전일 스냅샷 대비 이상 징후 목록을 반환. 빈 배열 = 통과. 이전 데이터가 없으면(첫 수집) 통과 */
@@ -76,6 +77,7 @@ export function validateSnapshot(label: string, prev: Snapshot | null, next: Sna
       [`DB(${e}) 스토리지`, prev.db?.engines[e]?.storageGbMonth, next.db?.engines[e]?.storageGbMonth],
       [`DB(${e}) vCPU 단가`, prev.db?.engines[e]?.custom?.vcpuPerHour, next.db?.engines[e]?.custom?.vcpuPerHour],
     ]),
+    ['캐시 GB 단가(첫 구간)', prev.cache?.gbTiers?.[0]?.perGbHour, next.cache?.gbTiers?.[0]?.perGbHour],
   ];
   for (const [name, before, after] of checks) {
     if (before === undefined) continue;
@@ -89,6 +91,12 @@ export function validateSnapshot(label: string, prev: Snapshot | null, next: Sna
     const after = next.db?.engines[e]?.instances.length ?? 0;
     if (before > 0 && after < before * 0.7) errors.push(`${label}: DB(${e}) 인스턴스 건수 급감 ${before} → ${after}`);
   }
+
+  // 7. 캐시 — 소실 또는 노드 건수 급감
+  if (prev.cache && !next.cache) errors.push(`${label}: 캐시 요금 소실`);
+  const nodesBefore = prev.cache?.nodes.length ?? 0;
+  const nodesAfter = next.cache?.nodes.length ?? 0;
+  if (nodesBefore > 0 && nodesAfter < nodesBefore * 0.7) errors.push(`${label}: 캐시 노드 건수 급감 ${nodesBefore} → ${nodesAfter}`);
 
   return errors;
 }

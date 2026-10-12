@@ -1,6 +1,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseAlbCsv, parseCsvLine, parseDataTransferCsv, parseEc2OfferCsv, parseEksCsv, parseRdsCsv, parseS3OfferCsv } from './aws';
+import {
+  parseAlbCsv,
+  parseCsvLine,
+  parseDataTransferCsv,
+  parseEc2OfferCsv,
+  parseEksCsv,
+  parseElastiCacheCsv,
+  parseRdsCsv,
+  parseS3OfferCsv,
+} from './aws';
 
 test('parseCsvLine: 따옴표·이스케이프·빈 필드', () => {
   assert.deepEqual(parseCsvLine('"a","b,c","d""e",,"f"'), ['a', 'b,c', 'd"e', '', 'f']);
@@ -222,4 +231,25 @@ test('parseRdsCsv: 엔진별 클래스(단일·Multi-AZ) + gp3 스토리지 — 
     haStorageGbMonth: 0.262,
   });
   assert.equal(db.engines.postgres, null); // PG 인스턴스 행 없음
+});
+
+test('parseElastiCacheCsv: Valkey 노드만 (Redis·Memcached·연장 지원·SyncDurability 제외), 이중화 = 2배, us-east-1 접두사 없음', async () => {
+  const H = '"SKU","TermType","Unit","PricePerUnit","Currency","Product Family","Location","Instance Type","Memory","Cache Engine","usageType"';
+  const r = (sku: string, engine: string, usageType: string, price: string, memory = '0.5 GiB', location = 'US East (N. Virginia)') =>
+    `"X","OnDemand","Hrs","${price}","USD","Cache Instance","${location}","${sku}","${memory}","${engine}","${usageType}"`;
+  const lines = [
+    H,
+    r('cache.t4g.micro', 'Redis', 'NodeUsage:cache.t4g.micro', '0.016'),
+    r('cache.t4g.micro', 'Memcached', 'NodeUsage:cache.t4g.micro', '0.016'),
+    r('cache.t4g.micro', 'Valkey', 'ExtendedSupportYr1_Yr2-NodeUsage:cache.t4g.micro', '0.05', ''),
+    r('cache.r7g.large', 'Valkey', 'SyncDurability-NodeUsage:cache.r7g.large', '0.03', ''),
+    r('cache.t4g.micro', 'Valkey', 'NodeUsage:cache.t4g.micro', '0.0128'),
+    r('cache.r7g.large', 'Valkey', 'NodeUsage:cache.r7g.large', '0.1745', '13.07 GiB'),
+  ];
+  const c = (await parseElastiCacheCsv(lines, 'us-east'))!;
+  assert.equal(c.engine, 'Valkey');
+  assert.deepEqual(c.nodes, [
+    { sku: 'cache.r7g.large', memoryGb: 13.07, burstable: false, perHour: 0.1745, haPerHour: 0.349 },
+    { sku: 'cache.t4g.micro', memoryGb: 0.5, burstable: true, perHour: 0.0128, haPerHour: 0.0256 },
+  ]);
 });

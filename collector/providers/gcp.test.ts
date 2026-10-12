@@ -4,7 +4,7 @@
  */
 
 import assert from 'node:assert/strict';
-import { parseCloudSql, parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
+import { parseCloudSql, parseMemorystore, parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
 
 function fx(
   description: string,
@@ -122,5 +122,16 @@ assert.deepEqual(sql.engines.mysql, {
   haStorageGbMonth: 0.442,
 });
 assert.equal(sql.engines.postgres, null);
+
+// Memorystore for Redis: Basic·Standard × M1~M5 — "Standard Node Capacity"(읽기 복제본) 제외, 구간 하나라도 빠지면 null
+const ms = ['M1', 'M2', 'M3', 'M4', 'M5'].flatMap((m, i) => [
+  fx(`Redis Capacity Basic ${m} Seoul`, 'OnDemand', (65 - i * 10) * 1_000_000),
+  fx(`Redis Capacity Standard ${m} Seoul`, 'OnDemand', (114 - i * 15) * 1_000_000),
+]);
+const cache = parseMemorystore([fx('Redis Standard Node Capacity M1 Seoul', 'OnDemand', 1_000_000), ...ms], 'asia-northeast3', 'seoul')!;
+assert.equal(cache.engine, 'Redis');
+assert.deepEqual(cache.gbTiers?.map((t) => t.upToGb), [4, 10, 35, 100, null]);
+assert.deepEqual(cache.gbTiers?.[0], { upToGb: 4, perGbHour: 0.065, haPerGbHour: 0.114 });
+assert.equal(parseMemorystore(ms.slice(0, 8), 'asia-northeast3', 'seoul'), null); // M5 없음
 
 console.log(`gcp.test: 모든 검증 통과 ✔ (VmSku ${vms.length}건 생성)`);

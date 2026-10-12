@@ -69,7 +69,9 @@ function NoMatchNote({ noMatch }: { noMatch: NoMatchReason | null }) {
           (
           {noMatch.reason === 'arch'
             ? t('noMatchArch')
-            : t('noMatchSize', { vcpu: noMatch.maxVcpu, ramGb: noMatch.maxRamGb })}
+            : noMatch.reason === 'memory'
+              ? t('noMatchMemory', { gb: noMatch.maxGb })
+              : t('noMatchSize', { vcpu: noMatch.maxVcpu, ramGb: noMatch.maxRamGb })}
           )
         </span>
       )}
@@ -143,6 +145,34 @@ function LineLabel({
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
                 {c.sku} · {c.vcpu}/{c.ramGb}GB · {money(c.perHour * HOURS_PER_MONTH * line.spec.count)}
+              </option>
+            ))}
+          </select>
+        )}
+      </span>
+    );
+  }
+  if (line.kind === 'cache') {
+    return (
+      <span>
+        {t('cacheLine', { engine: line.engine ?? '', gb: line.memoryGb, count: line.count })}
+        {line.ha && <span className="ml-1 text-slate-400">({t('dbHa')})</span>}
+        {!line.matched ? (
+          line.noMatch ? <NoMatchNote noMatch={line.noMatch} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
+        ) : line.candidates.length < 2 ? (
+          <span className="ml-1 font-mono text-slate-900">→ {line.matched.sku} ({line.matched.memoryGb}GB)</span>
+        ) : (
+          <select
+            aria-label={t('instanceSelect')}
+            value={line.matched.sku}
+            onChange={(e) =>
+              onSelect(provider, line.resourceIndex, e.target.value, e.target.value === line.candidates[0].sku)
+            }
+            className="ml-1 rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
+          >
+            {line.candidates.map((c) => (
+              <option key={c.sku} value={c.sku}>
+                {c.sku} · {c.memoryGb}GB · {money(c.perHour * HOURS_PER_MONTH * line.count)}
               </option>
             ))}
           </select>

@@ -5,7 +5,7 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
-import type { DbPrice, EgressTier, K8sClusterPrice, LbPrice, Meta, NatPrice, Provider, ProviderPricing, Region, StorageSku, VmSku } from './schema';
+import type { CachePrice, DbPrice, EgressTier, K8sClusterPrice, LbPrice, Meta, NatPrice, Provider, ProviderPricing, Region, StorageSku, VmSku } from './schema';
 
 export const PROVIDERS: Provider[] = ['aws', 'azure', 'gcp'];
 
@@ -32,6 +32,7 @@ export function loadPricing(region: Region): Record<Provider, ProviderPricing> {
       lb: readJson<LbPrice | null>(provider, region, 'lb.json', null),
       nat: readJson<NatPrice | null>(provider, region, 'nat.json', null),
       db: readJson<DbPrice | null>(provider, region, 'db.json', null),
+      cache: readJson<CachePrice | null>(provider, region, 'cache.json', null),
     };
     return [provider, pricing] as const;
   });

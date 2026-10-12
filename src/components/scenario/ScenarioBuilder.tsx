@@ -86,7 +86,7 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
 
   const updateResource = (i: number, next: Resource) => {
     const prev = scenario.resources[i];
-    // VM·K8s 노드·DB의 스펙(DB는 엔진·이중화 포함)이 바뀌면 후보가 달라지므로 선택 초기화 (대수만 바뀌면 유지)
+    // VM·K8s 노드·DB·캐시의 스펙(DB·캐시는 이중화 포함)이 바뀌면 후보가 달라지므로 선택 초기화 (대수만 바뀌면 유지)
     const spec = (r?: Resource) =>
       r?.type === 'vm'
         ? `${r.vcpu}/${r.ramGb}`
@@ -94,7 +94,9 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
           ? `${r.node.vcpu}/${r.node.ramGb}`
           : r?.type === 'db'
             ? `${r.engine}/${r.vcpu}/${r.ramGb}/${r.ha}`
-            : null;
+            : r?.type === 'cache'
+              ? `${r.memoryGb}/${r.ha}`
+              : null;
     if (spec(prev) !== spec(next)) {
       setOverrides((o) => clearIndex(o, i));
     }

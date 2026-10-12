@@ -3,10 +3,11 @@
  * I/O·UI 의존 없음: 입력이 같으면 출력이 항상 같다 (테스트로 정확성 보장).
  * 상세: docs/ARCHITECTURE.md §5
  *
- * 리소스 타입별 계산·URL 토큰은 각 모듈(vm·storage·egress·k8s·lb·nat·db)에 있고, 여기는 레지스트리와 합산만 한다.
+ * 리소스 타입별 계산·URL 토큰은 각 모듈(vm·storage·egress·k8s·lb·nat·db·cache)에 있고, 여기는 레지스트리와 합산만 한다.
  */
 
 import type { Provider, ProviderPricing } from '../schema';
+import { CACHE } from './cache';
 import { DB } from './db';
 import { EGRESS } from './egress';
 import { K8S } from './k8s';
@@ -40,6 +41,7 @@ export const RESOURCES: { [K in ResourceType]: ResourceDef<Extract<Resource, { t
   lb: LB,
   nat: NAT,
   db: DB,
+  cache: CACHE,
 };
 
 /** 타입별 정의 조회 — 유니온을 좁히지 못하는 호출부용 */

@@ -73,6 +73,7 @@ cloud-cost/
 │   │   ├── azure.ts
 │   │   ├── azure-vm-sizes.ts    # Azure 스펙 카탈로그 (API에 vCPU·RAM 없음)
 │   │   ├── azure-db-sizes.ts    # Azure Database Flexible Server 사이즈 카탈로그 (같은 사정)
+│   │   ├── azure-cache-sizes.ts # Azure Managed Redis SKU 용량 카탈로그 (같은 사정)
 │   │   ├── gcp.ts           # ⚠ 난이도 최고 → 프로토타입 1순위
 │   │   └── gcp-machine-types.ts # GCP 머신타입 카탈로그 (SKU는 코어·RAM 단가라 조합 필요)
 │   ├── validate.ts          # 급변·누락 감지
@@ -86,7 +87,8 @@ cloud-cost/
 │       ├── k8s.json         # 관리형 K8s 표준 클러스터 시간당 요금
 │       ├── lb.json          # L7 로드밸런서 시간당 + 처리 GB당
 │       ├── nat.json         # NAT 게이트웨이 시간당(게이트웨이당 또는 VM당) + 처리 GB당
-│       └── db.json          # 관리형 DB — 엔진별 인스턴스 목록(AWS·Azure) 또는 커스텀 단가(GCP) + 스토리지
+│       ├── db.json          # 관리형 DB — 엔진별 인스턴스 목록(AWS·Azure) 또는 커스텀 단가(GCP) + 스토리지
+│       └── cache.json       # Redis 호환 캐시 — 노드 목록(AWS·Azure) 또는 GB 구간 단가(GCP)
 ├── messages/                # UI 문구 (en.json / ko.json) — next-intl
 ├── src/
 │   ├── app/                 # 라우트 (§6)
@@ -142,6 +144,7 @@ src/
         ├── lb.ts                 # L7 로드밸런서 — 시간당 × 대수 + GB당 × 처리량
         ├── nat.ts                # NAT 게이트웨이 — GCP는 시나리오 VM 수 기준(32대/게이트웨이 상한)
         ├── db.ts                 # 관리형 DB — AWS·Azure 사이즈 목록 매칭 / GCP 커스텀 사이즈 계산 + 스토리지
+        ├── cache.ts              # Redis 호환 캐시 — AWS·Azure 노드 매칭 / GCP GB 구간 단가
         └── estimator.test.ts     # 견적 정확성 = 테스트로 보장
 ```
 
@@ -221,6 +224,11 @@ interface DbEnginePricing {
 }
 interface DbPrice { provider: Provider; region: Region; engines: Record<DbEngine, DbEnginePricing | null> }
 
+/** Redis 호환 캐시 — nodes(AWS Valkey 노드·Azure Managed Redis SKU) 또는 gbTiers(GCP, 용량이 속한 구간 단가 × 용량 전체) */
+interface CacheNode { sku: string; memoryGb: number; burstable: boolean; perHour: number; haPerHour: number }
+interface CacheGbTier { upToGb: number | null; perGbHour: number; haPerGbHour: number }
+interface CachePrice { provider: Provider; region: Region; engine: string; nodes: CacheNode[]; gbTiers: CacheGbTier[] | null }
+
 /** data/meta.json */
 interface Meta {
   collectedAt: string;      // ISO 8601
@@ -293,3 +301,4 @@ flowchart TD
 | 로드밸런서 지표 (2026-10-11) | **L7(HTTP)**: AWS ALB / Azure Application Gateway Standard v2 / GCP 리전 외부 애플리케이션 LB. 입력 = 대수 + 월 처리 GB | 3사 모두 "시간당 고정 + 처리량" 구조로 정리됨. LCU·CU는 공식 정의상 시간당 1GB라 GB당 단가로 환산 — 연결 수·규칙 평가 차원은 미반영(연결이 아주 많으면 과소 추정). GCP는 인/아웃 처리량을 각각 과금하므로 총 처리 GB × 단가. L4(NLB 등)는 범위 밖 |
 | NAT 지표 (2026-10-11) | 게이트웨이 시간당 + 처리 GB당. GCP Cloud NAT는 VM당 시간 요금이라 **시나리오의 VM 대수 + K8s 노드 수**를 과금 VM으로 자동 산정(게이트웨이당 32대 상한, 문서값) | 입력 중복 없이 구성도대로 계산. NAT 처리비는 인터넷 egress 요금과 별개로 더해짐(실제 청구와 동일). 공인 IP 시간 요금(3사 $0.004~0.005/h)은 LB·NAT·VM 공통이라 제외 |
 | 관리형 DB 지표 (2026-10-11) | AWS RDS / Azure Database Flexible Server / GCP Cloud SQL Enterprise, MySQL·PostgreSQL. 스펙 만족 최저가(AWS·Azure 사이즈 목록, GCP 커스텀 사이즈 계산). 이중화 = 대기 포함 단가(≈2배) | Aurora(I/O 과금 등 구조 상이)·Enterprise Plus(상위 등급)·Single Server(단종)·공유 코어(SLA 없음) 제외. 엔진별 가격이 AWS·Azure에서 달라 엔진 단위 저장. 아키텍처 토글 미적용(관리형이라 ARM 호환성 무관), 버스트 옵션은 적용. Azure 버스트는 HA 미지원(문서) → HA 시 후보 제외. GCP 사이즈 규칙(vCPU 1·짝수 ≤96, RAM 0.9~6.5GB/vCPU·256MB 단위·최소 3.75GB)은 문서값 상수. 백업·추가 IOPS 제외 |
+| 캐시 지표 (2026-10-12) | Redis 호환: **AWS ElastiCache Valkey** / **Azure Managed Redis** / GCP Memorystore for Redis(인스턴스형). 입력 = 메모리 GB · 이중화 · 개수 | AWS는 Redis OSS보다 20% 싼 기본 엔진 Valkey(Redis 호환). Azure Cache for Redis(C0~C6)는 2028-09-30 퇴역 공지 → 대체재인 Managed Redis. Azure 이중화 = API 미터(노드 1개) × 2는 가격 페이지의 1노드/2노드 열 구조로 **추론**(숫자 직접 대조 불가) — methodology 고지. GCP는 용량이 속한 구간 단가가 용량 전체에 적용(누적 아님), 1~300GB. Memcached·노드형 Memorystore(클러스터 전제) 제외. Azure B0 용량은 문서가 엇갈려 0.5GB, 235GB까지만 수록 |

@@ -24,7 +24,9 @@ export type Resource =
   /** NAT 게이트웨이 — 개수 + 월 처리 데이터(전체 합계) */
   | { type: 'nat'; count: number; gb: number }
   /** 관리형 DB — 엔진 · 인스턴스 스펙 · 스토리지(인스턴스당) · 이중화 · 인스턴스 수 */
-  | { type: 'db'; engine: DbEngine; vcpu: number; ramGb: number; storageGb: number; ha: boolean; count: number };
+  | { type: 'db'; engine: DbEngine; vcpu: number; ramGb: number; storageGb: number; ha: boolean; count: number }
+  /** Redis 호환 관리형 캐시 — 메모리(GB) · 이중화 · 캐시 개수 */
+  | { type: 'cache'; memoryGb: number; ha: boolean; count: number };
 
 export type ResourceType = Resource['type'];
 
@@ -51,8 +53,12 @@ export type Overrides = Partial<Record<Provider, Record<number, string>>>;
  * 매칭 실패 이유 — "견적 불가"를 버그로 오해하지 않게 화면에 같이 보여준다.
  * arch: 버스트·아키텍처 조건을 만족하는 인스턴스가 이 리전에 아예 없음 (예: 서울 GCP ARM)
  * size: 인스턴스는 있지만 요구 스펙이 조건 내 최대치를 넘음 (vCPU·RAM 최대는 각각 따로 집계)
+ * memory: 메모리만 보는 리소스(캐시)에서 요구 메모리가 최대치를 넘음
  */
-export type NoMatchReason = { reason: 'arch' } | { reason: 'size'; maxVcpu: number; maxRamGb: number };
+export type NoMatchReason =
+  | { reason: 'arch' }
+  | { reason: 'size'; maxVcpu: number; maxRamGb: number }
+  | { reason: 'memory'; maxGb: number };
 
 /** 견적 한 줄. resourceIndex = 이 줄을 만든 카드의 인덱스 (카드 하나가 여러 줄을 낼 수 있다) */
 export type EstimateLine = { resourceIndex: number } & (
@@ -88,7 +94,26 @@ export type EstimateLine = { resourceIndex: number } & (
       monthlyUsd: number | null;
     }
   | { kind: 'db-storage'; storageGb: number; count: number; ha: boolean; perGbMonth: number | null; monthlyUsd: number | null }
+  /** 관리형 캐시. engine = 표시용 엔진명(Valkey·Redis), 요금 데이터 없으면 null */
+  | {
+      kind: 'cache';
+      engine: string | null;
+      memoryGb: number;
+      ha: boolean;
+      count: number;
+      matched: CacheMatch | null;
+      candidates: CacheMatch[];
+      noMatch: NoMatchReason | null;
+      monthlyUsd: number | null;
+    }
 );
+
+/** 캐시 매칭 결과 — perHour는 이중화 여부가 반영된 값 */
+export interface CacheMatch {
+  sku: string;
+  memoryGb: number;
+  perHour: number;
+}
 
 /** DB 매칭 결과 한 건 — AWS·Azure는 실제 SKU, GCP는 계산한 커스텀 사이즈(db-custom-{vCPU}-{RAM MB}) */
 export interface DbMatch {

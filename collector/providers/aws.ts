@@ -11,6 +11,8 @@ import { createInterface } from 'node:readline';
 import { Readable } from 'node:stream';
 import type {
   Arch,
+  CacheNode,
+  CachePrice,
   DbEngine,
   DbEnginePricing,
   DbInstance,
@@ -377,6 +379,45 @@ export async function parseRdsCsv(
   return engines.mysql || engines.postgres ? { provider: 'aws', region, engines } : null;
 }
 
+/**
+ * AmazonElastiCache 오퍼 CSV → Valkey 노드 시간당. 이중화 = 주 + 복제 노드(같은 타입) 2개.
+ * Valkey: Redis 호환이고 Redis OSS보다 저렴한 AWS 기본 엔진 (methodology에 고지).
+ * 연장 지원·SyncDurability 행은 usageType이 달라 자연 제외. us-east-1은 리전 접두사 없음.
+ */
+export async function parseElastiCacheCsv(
+  lines: AsyncIterable<string> | Iterable<string>,
+  region: Region,
+): Promise<CachePrice | null> {
+  const nodes = new Map<string, CacheNode>();
+
+  await scanOfferCsv(lines, (get) => {
+    if (get('TermType') !== 'OnDemand' || get('Currency') !== 'USD') return;
+    if (get('Product Family') !== 'Cache Instance' || get('Cache Engine') !== 'Valkey') return;
+    if (get('Location') !== AWS_LOCATION[region]) return;
+    if (!/^(?:[A-Z]+\d-)?NodeUsage:cache\./.test(get('usageType'))) return;
+    const sku = get('Instance Type');
+    const price = Number(get('PricePerUnit'));
+    const memoryGb = parseMemoryGb(get('Memory'));
+    if (!(price > 0) || memoryGb === null || nodes.has(sku)) return;
+    nodes.set(sku, {
+      sku,
+      memoryGb,
+      burstable: /^cache\.t\d/.test(sku),
+      perHour: +price.toFixed(6),
+      haPerHour: +(price * 2).toFixed(6),
+    });
+  });
+
+  if (nodes.size === 0) return null;
+  return {
+    provider: 'aws',
+    region,
+    engine: 'Valkey',
+    nodes: [...nodes.values()].sort((a, b) => a.sku.localeCompare(b.sku)),
+    gbTiers: null,
+  };
+}
+
 async function streamOffer(offer: string, awsRegion: string) {
   const res = await fetch(offerCsvUrl(offer, awsRegion));
   if (!res.ok || !res.body) throw new Error(`AWS Price List API 오류 ${res.status} (${offer}/${awsRegion})`);
@@ -393,6 +434,7 @@ export async function collectAws(
   lb: LbPrice | null;
   nat: NatPrice | null;
   db: DbPrice | null;
+  cache: CachePrice | null;
 }> {
   const awsRegion = AWS_REGION[region];
   const ec2 = await parseEc2OfferCsv(await streamOffer('AmazonEC2', awsRegion), region);
@@ -401,5 +443,6 @@ export async function collectAws(
   const k8s = await parseEksCsv(await streamOffer('AmazonEKS', awsRegion), region);
   const lb = await parseAlbCsv(await streamOffer('AWSELB', awsRegion), region);
   const db = await parseRdsCsv(await streamOffer('AmazonRDS', awsRegion), region);
-  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat, db };
+  const cache = await parseElastiCacheCsv(await streamOffer('AmazonElastiCache', awsRegion), region);
+  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat, db, cache };
 }

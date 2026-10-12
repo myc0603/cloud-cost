@@ -6,6 +6,7 @@
  */
 
 import type {
+  CachePrice,
   DbEngine,
   DbEnginePricing,
   DbInstance,
@@ -18,6 +19,7 @@ import type {
   StorageSku,
   VmSku,
 } from '../../src/lib/schema';
+import { AZURE_CACHE_SIZES } from './azure-cache-sizes';
 import { AZURE_DB_SIZES } from './azure-db-sizes';
 import { AZURE_VM_SIZES } from './azure-vm-sizes';
 
@@ -318,4 +320,28 @@ export async function collectAzureDb(region: Region): Promise<DbPrice | null> {
     engines[engine] = buildAzureDbEngine(items);
   }
   return engines.mysql || engines.postgres ? { provider: 'azure', region, engines } : null;
+}
+
+/** Azure Managed Redis — 카탈로그 × "{SKU} Cache Instance" 미터(노드 1개). 이중화 = 2노드 → 2배 (추론, 카탈로그 주석 참조) */
+export function buildAzureCache(items: AzurePriceItem[], region: Region): CachePrice | null {
+  const nodes = AZURE_CACHE_SIZES.flatMap((size) => {
+    const price = items.find(
+      (i) =>
+        i.productName === `Azure Managed Redis - ${size.tier}` &&
+        i.meterName === `${size.sku} Cache Instance` &&
+        i.unitOfMeasure === '1 Hour' &&
+        i.type === 'Consumption' &&
+        i.retailPrice > 0,
+    )?.retailPrice;
+    if (!price) return [];
+    return [{ sku: size.sku, memoryGb: size.memoryGb, burstable: false, perHour: +price.toFixed(6), haPerHour: +(price * 2).toFixed(6) }];
+  });
+  return nodes.length > 0 ? { provider: 'azure', region, engine: 'Redis', nodes, gbTiers: null } : null;
+}
+
+export async function collectAzureCache(region: Region): Promise<CachePrice | null> {
+  const items = await fetchPriceItems(
+    `armRegionName eq '${AZURE_REGION[region]}' and priceType eq 'Consumption' and serviceName eq 'Redis Cache'`,
+  );
+  return buildAzureCache(items, region);
 }

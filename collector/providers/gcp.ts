@@ -6,7 +6,7 @@
  * 파이프라인: fetchComputeSkus → parseUnitPrices → buildVmSkus
  */
 
-import type { DbEngine, DbEnginePricing, DbPrice, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type { CacheGbTier, CachePrice, DbEngine, DbEnginePricing, DbPrice, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
 import { GCP_MACHINE_TYPES } from './gcp-machine-types';
 
 const COMPUTE_SERVICE_ID = '6F81-5844-456A'; // Compute Engine
@@ -14,6 +14,7 @@ const GCS_SERVICE_ID = '95FF-2EF5-5EA1'; // Cloud Storage
 const GKE_SERVICE_ID = 'CCD8-9BF1-090E'; // Kubernetes Engine
 const NETWORKING_SERVICE_ID = 'E505-1604-58F8'; // Networking (Cloud Load Balancing·Cloud NAT)
 const CLOUD_SQL_SERVICE_ID = '9662-B51E-5089'; // Cloud SQL
+const MEMORYSTORE_REDIS_SERVICE_ID = '5AF5-2C11-D467'; // Cloud Memorystore for Redis
 
 export const GCP_REGION: Record<Region, string> = {
   seoul: 'asia-northeast3',
@@ -69,6 +70,7 @@ export const fetchGcsSkus = (apiKey: string) => fetchServiceSkus(apiKey, GCS_SER
 export const fetchGkeSkus = (apiKey: string) => fetchServiceSkus(apiKey, GKE_SERVICE_ID);
 export const fetchNetworkingSkus = (apiKey: string) => fetchServiceSkus(apiKey, NETWORKING_SERVICE_ID);
 export const fetchCloudSqlSkus = (apiKey: string) => fetchServiceSkus(apiKey, CLOUD_SQL_SERVICE_ID);
+export const fetchMemorystoreSkus = (apiKey: string) => fetchServiceSkus(apiKey, MEMORYSTORE_REDIS_SERVICE_ID);
 
 async function fetchServiceSkus(apiKey: string, serviceId: string): Promise<RawSku[]> {
   const all: RawSku[] = [];
@@ -276,6 +278,28 @@ export function parseCloudSql(sqlSkus: RawSku[], gcpRegion: string, region: Regi
   };
   const engines = { mysql: engine('mysql'), postgres: engine('postgres') };
   return engines.mysql || engines.postgres ? { provider: 'gcp', region, engines } : null;
+}
+
+/**
+ * Memorystore for Redis 용량 구간 상한(GiB) — 가격 API에 없어 공식 문서값
+ * (cloud.google.com/memorystore/docs/redis/pricing: M1 1~4, M2 5~10, M3 11~35, M4 36~100, M5 100 초과)
+ */
+const MEMORYSTORE_TIERS: [string, number | null][] = [['M1', 4], ['M2', 10], ['M3', 35], ['M4', 100], ['M5', null]];
+
+/** Memorystore for Redis — Basic(단일)·Standard(이중화) 용량 GB당 시간 단가. "Redis Standard Node Capacity"(읽기 복제본) 제외 */
+export function parseMemorystore(redisSkus: RawSku[], gcpRegion: string, region: Region): CachePrice | null {
+  const price = (tier: 'Basic' | 'Standard', m: string) => {
+    const sku = redisSkus.find((s) => isOnDemandIn(s, gcpRegion) && s.description.startsWith(`Redis Capacity ${tier} ${m} `));
+    return sku && unitPriceOf(sku);
+  };
+  const gbTiers: CacheGbTier[] = [];
+  for (const [m, upToGb] of MEMORYSTORE_TIERS) {
+    const basic = price('Basic', m);
+    const standard = price('Standard', m);
+    if (!basic || !standard) return null; // 구간 하나라도 빠지면 계산이 틀어지므로 전체 무효
+    gbTiers.push({ upToGb, perGbHour: round6(basic), haPerGbHour: round6(standard) });
+  }
+  return { provider: 'gcp', region, engine: 'Redis', nodes: [], gbTiers };
 }
 
 /** 패밀리 단가 × 머신 타입 카탈로그 → VmSku[]. 단가가 불완전한 패밀리는 건너뛴다. */

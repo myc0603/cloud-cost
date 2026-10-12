@@ -118,6 +118,37 @@ export interface DbPrice {
   engines: Record<DbEngine, DbEnginePricing | null>;
 }
 
+/** 정해진 사이즈의 관리형 캐시 — AWS ElastiCache 노드 / Azure Managed Redis SKU */
+export interface CacheNode {
+  sku: string;
+  memoryGb: number;
+  burstable: boolean;
+  perHour: number;
+  /** 이중화(주 + 복제 노드) 시간당 */
+  haPerHour: number;
+}
+
+/** 용량 구간 단가 — GCP Memorystore. 인스턴스 용량이 속한 구간의 단가가 용량 전체에 적용된다 (누적 아님) */
+export interface CacheGbTier {
+  /** 구간 상한 GB (null = 무제한) */
+  upToGb: number | null;
+  perGbHour: number;
+  haPerGbHour: number;
+}
+
+/**
+ * Redis 호환 관리형 캐시 — AWS ElastiCache(Valkey) / Azure Managed Redis / GCP Memorystore for Redis.
+ * nodes(정해진 사이즈) 또는 gbTiers(GB 단가) 중 하나를 쓴다.
+ */
+export interface CachePrice {
+  provider: Provider;
+  region: Region;
+  /** 표시용 엔진명 — 'Valkey' | 'Redis' */
+  engine: string;
+  nodes: CacheNode[];
+  gbTiers: CacheGbTier[] | null;
+}
+
 /** 한 플랫폼의 리전별 요금 데이터 묶음 — pricing 로더가 반환하는 단위 */
 export interface ProviderPricing {
   vm: VmSku[];
@@ -127,6 +158,7 @@ export interface ProviderPricing {
   lb: LbPrice | null;
   nat: NatPrice | null;
   db: DbPrice | null;
+  cache: CachePrice | null;
 }
 
 /** data/meta.json */

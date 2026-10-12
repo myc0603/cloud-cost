@@ -59,6 +59,15 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
           vCPU·RAM을 만족하는 최저가 사이즈로 계산합니다. GCP는 커스텀 사이즈라 스펙에 맞춰 계산합니다(메모리 최소 3.75GB).
           이중화는 대기 서버를 포함한 요금입니다. Aurora·Enterprise Plus, 백업 스토리지와 추가 IOPS는 포함하지 않습니다.
         </li>
+        <li className={LI}>
+          캐시는 Redis 호환 관리형 캐시끼리 요구 메모리 이상인 최저가로 계산합니다: AWS ElastiCache는 <b>Valkey</b> 엔진 기준(Redis 호환,
+          Redis OSS 엔진보다 약 20% 저렴한 AWS 기본 엔진), Azure는 <b>Azure Managed Redis</b>(기존 Azure Cache for Redis는 2028년 퇴역 예정),
+          GCP는 Memorystore for Redis(용량 GB당 요금, 용량 구간별 단가)입니다.
+        </li>
+        <li className={LI}>
+          캐시 이중화는 AWS 복제 노드 1개 추가, GCP Standard 등급 요금입니다. Azure Managed Redis는 가격 API가 노드 1개 요금만 제공해,
+          가격 페이지의 &quot;1노드 / 2노드(이중화)&quot; 구분에 따라 <b>2배로 추정</b>했습니다.
+        </li>
         <li className={LI}>공인 IP 주소 시간 요금(3사 모두 시간당 약 $0.005)은 포함하지 않습니다.</li>
         <li className={LI}>오브젝트 스토리지는 표준 티어 첫 구간(50TB 이하) 단가.</li>
         <li className={LI}>
@@ -135,6 +144,16 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           Managed databases compare MySQL and PostgreSQL on AWS RDS · Azure Database (Flexible Server) · GCP Cloud SQL (Enterprise),
           picking the cheapest size that meets the requested vCPU and RAM. GCP uses custom sizes fitted to the spec (minimum 3.75 GB
           memory). High availability includes the standby. Aurora, Enterprise Plus, backup storage and extra IOPS are not included.
+        </li>
+        <li className={LI}>
+          Caches compare Redis-compatible managed caches, picking the cheapest option with at least the requested memory: AWS ElastiCache
+          with the <b>Valkey</b> engine (Redis-compatible and about 20% cheaper than the Redis OSS engine — AWS&apos;s default), Azure
+          <b> Azure Managed Redis</b> (the older Azure Cache for Redis is retiring in 2028), and GCP Memorystore for Redis (priced per GB
+          with capacity-tier rates).
+        </li>
+        <li className={LI}>
+          Cache high availability means one extra replica node on AWS and the Standard tier on GCP. For Azure Managed Redis the pricing
+          API only lists the single-node price, so we <b>estimate HA at 2×</b> based on the pricing page&apos;s one-node / two-node (HA) split.
         </li>
         <li className={LI}>Public IP address hourly fees (about $0.005/hour on all three) are not included.</li>
         <li className={LI}>Object storage uses the standard tier, first pricing band (up to 50TB).</li>

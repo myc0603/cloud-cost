@@ -38,8 +38,8 @@ const EGRESS: EgressTier = {
 };
 
 const PRICING: Record<Provider, ProviderPricing> = {
-  aws: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null },
-  azure: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null },
+  aws: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null },
+  azure: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null },
   gcp: {
     vm: FIXTURE,
     storage: [
@@ -62,6 +62,17 @@ const PRICING: Record<Provider, ProviderPricing> = {
           haStorageGbMonth: 0.4,
         },
       },
+    },
+    cache: {
+      provider: 'gcp',
+      region: 'seoul',
+      engine: 'Redis',
+      nodes: [],
+      gbTiers: [
+        { upToGb: 4, perGbHour: 0.065, haPerGbHour: 0.114 },
+        { upToGb: 10, perGbHour: 0.04, haPerGbHour: 0.075 },
+        { upToGb: null, perGbHour: 0.02, haPerGbHour: 0.04 },
+      ],
     },
   },
 };
@@ -329,12 +340,47 @@ test('estimate: DB(정해진 사이즈) — 버스트 옵션·이중화 미지�
   assert.deepEqual(db(false, true, 8).noMatch, { reason: 'size', maxVcpu: 4, maxRamGb: 16 });
 });
 
+test('estimate: 캐시(GB 구간) — GB 올림·최소 1GB, 용량이 속한 구간 단가 × 용량 전체, 이중화·개수·300GB 상한', () => {
+  const cache = (memoryGb: number, ha = false, count = 1) => {
+    const line = estimate(scenario([{ type: 'cache', memoryGb, ha, count }]), PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines[0];
+    assert.ok(line.kind === 'cache');
+    return line;
+  };
+  assert.deepEqual(cache(3).matched, { sku: 'Basic M1 3GB', memoryGb: 3, perHour: 0.195 });
+  assert.equal(cache(5).matched?.perHour, 0.2); // M2 구간 단가가 5GB 전체에 (누적 아님)
+  assert.equal(cache(5, true).matched?.sku, 'Standard M2 5GB');
+  assert.equal(cache(5, true, 2).monthlyUsd, +(5 * 0.075 * HOURS_PER_MONTH * 2).toFixed(2));
+  assert.equal(cache(3).engine, 'Redis');
+  assert.deepEqual(cache(301).noMatch, { reason: 'memory', maxGb: 300 });
+});
+
+test('estimate: 캐시(노드) — 메모리 ≥ 요구치 최저가, 버스트 옵션, 이중화 단가, 카드 인덱스 선택, 한도 초과', () => {
+  const node = (sku: string, memoryGb: number, perHour: number, burstable = false) => ({ sku, memoryGb, burstable, perHour, haPerHour: perHour * 2 });
+  const pricing = {
+    ...PRICING,
+    gcp: {
+      ...PRICING.gcp,
+      cache: { provider: 'gcp' as const, region: 'seoul' as const, engine: 'Valkey', gbTiers: null, nodes: [node('t-1', 1.37, 0.03, true), node('m-6', 6.38, 0.15), node('r-13', 13.07, 0.2)] },
+    },
+  };
+  const cache = (memoryGb: number, opts: { includeBurstable: boolean }, ha = false, pick?: string) => {
+    const line = estimate(scenario([{ type: 'cache', memoryGb, ha, count: 1 }]), pricing, opts, pick ? { gcp: { 0: pick } } : {}).find((e) => e.provider === 'gcp')!.lines[0];
+    assert.ok(line.kind === 'cache');
+    return line;
+  };
+  assert.equal(cache(1, { includeBurstable: true }).matched?.sku, 't-1');
+  assert.equal(cache(1, { includeBurstable: false }).matched?.sku, 'm-6');
+  assert.equal(cache(1, { includeBurstable: true }, true).matched?.perHour, 0.06);
+  assert.equal(cache(1, { includeBurstable: true }, false, 'r-13').matched?.sku, 'r-13');
+  assert.deepEqual(cache(20, { includeBurstable: true }).noMatch, { reason: 'memory', maxGb: 13.07 });
+});
+
 test('실데이터 스모크: 3사 스냅샷에서 통합 시나리오 견적', () => {
   const load = (p: string, f: string) => JSON.parse(readFileSync(`data/${p}/seoul/${f}`, 'utf8'));
   const pricing: Record<Provider, ProviderPricing> = {
-    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json'), k8s: load('aws', 'k8s.json'), lb: load('aws', 'lb.json'), nat: load('aws', 'nat.json'), db: load('aws', 'db.json') },
-    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json'), k8s: load('azure', 'k8s.json'), lb: load('azure', 'lb.json'), nat: load('azure', 'nat.json'), db: load('azure', 'db.json') },
-    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json'), k8s: load('gcp', 'k8s.json'), lb: load('gcp', 'lb.json'), nat: load('gcp', 'nat.json'), db: load('gcp', 'db.json') },
+    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json'), k8s: load('aws', 'k8s.json'), lb: load('aws', 'lb.json'), nat: load('aws', 'nat.json'), db: load('aws', 'db.json'), cache: load('aws', 'cache.json') },
+    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json'), k8s: load('azure', 'k8s.json'), lb: load('azure', 'lb.json'), nat: load('azure', 'nat.json'), db: load('azure', 'db.json'), cache: load('azure', 'cache.json') },
+    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json'), k8s: load('gcp', 'k8s.json'), lb: load('gcp', 'lb.json'), nat: load('gcp', 'nat.json'), db: load('gcp', 'db.json'), cache: load('gcp', 'cache.json') },
   };
   const s = scenario([vmRes(2, 4, 2), { type: 'block', gb: 100 }, { type: 'object', gb: 500 }, { type: 'egress', gb: 1024 }]);
   const results = estimate(s, pricing, { includeBurstable: true });

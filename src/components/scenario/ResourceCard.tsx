@@ -67,6 +67,15 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
               {t('dbHa')}
             </label>
           </>
+        ) : r.type === 'cache' ? (
+          <>
+            <NumberField label={t('cacheMemoryGb')} value={r.memoryGb} min={1} onChange={(memoryGb) => onChange({ ...r, memoryGb })} />
+            <NumberField label={t('count')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
+            <label className="flex items-center gap-1.5 self-end pb-1.5 text-xs text-slate-600" title={t('cacheHaHint')}>
+              <input type="checkbox" checked={r.ha} onChange={(e) => onChange({ ...r, ha: e.target.checked })} />
+              {t('dbHa')}
+            </label>
+          </>
         ) : r.type === 'lb' || r.type === 'nat' ? (
           <>
             <NumberField label={t(r.type === 'lb' ? 'lbCount' : 'natCount')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />

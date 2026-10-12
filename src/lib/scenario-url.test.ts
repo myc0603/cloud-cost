@@ -71,6 +71,14 @@ test('DB 토큰 왕복 + 깨진 본문은 버린다', () => {
   assert.deepEqual(decodeScenario('res=db:oracle:2c8g:100:0:1,db:pg:2c8g:100:2:1,db:pg:2c8g:0:0:1')?.resources, []);
 });
 
+test('캐시 토큰 왕복 + 깨진 본문은 버린다', () => {
+  const scenario: Scenario = { region: 'seoul', resources: [{ type: 'cache', memoryGb: 6, ha: true, count: 2 }] };
+  const encoded = encodeScenario(scenario);
+  assert.equal(new URLSearchParams(encoded).get('res'), 'cache:6:1:2');
+  assert.deepEqual(decodeScenario(encoded), scenario);
+  assert.deepEqual(decodeScenario('res=cache:0:0:1,cache:6:2:1,cache:6:1')?.resources, []);
+});
+
 test('singleton(트래픽)은 첫 카드만 살린다', () => {
   const s = decodeScenario('res=eg:100,eg:200');
   assert.deepEqual(s?.resources, [{ type: 'egress', gb: 100 }]);

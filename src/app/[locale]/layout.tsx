@@ -26,6 +26,8 @@ export async function generateMetadata({
     title: t('siteTitle'),
     description: t('siteDescription'),
     alternates: pageAlternates(locale, '/'),
+    // 네이버 서치어드바이저 소유 확인 (공개값 — 비밀 아님)
+    verification: { other: { 'naver-site-verification': '9bd3bf6a32b7666f7594be2854538f8f72e0719e' } },
   };
 }
 

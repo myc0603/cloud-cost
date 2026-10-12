@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { ArchBadge } from '@/components/scenario/EstimateResult';
 import { HOURS_PER_MONTH, type ArchFilter } from '@/lib/estimator';
 import { formatMoney, type Currency } from '@/lib/display';
@@ -27,7 +27,9 @@ export default function InstanceTable({ skus, usdKrwRate }: { skus: VmSku[]; usd
   const minRam = Math.max(0, parseInt(minRamText, 10) || 0);
   const [includeBurstable, setIncludeBurstable] = useState(true);
   const [arch, setArch] = useState<ArchFilter>('both');
-  const [currency, setCurrency] = useState<Currency>('usd');
+  // 한국어 화면은 원화가 기본 (환율이 없으면 원화 선택지가 없으므로 USD)
+  const locale = useLocale();
+  const [currency, setCurrency] = useState<Currency>(locale === 'ko' && usdKrwRate !== null ? 'krw' : 'usd');
   const [sortKey, setSortKey] = useState<SortKey>('pricePerHour');
   const [sortAsc, setSortAsc] = useState(true);
 

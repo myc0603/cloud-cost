@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { HOURS_PER_MONTH, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
 import { formatMoney, type Currency, type Period } from '@/lib/display';
 import type { Arch, Provider } from '@/lib/schema';
@@ -245,7 +245,9 @@ export default function EstimateResult({
 }) {
   const t = useTranslations('estimate');
   const td = useTranslations('display');
-  const [currency, setCurrency] = useState<Currency>('usd');
+  // 한국어 화면은 원화가 기본 (환율이 없으면 원화 선택지가 없으므로 USD)
+  const locale = useLocale();
+  const [currency, setCurrency] = useState<Currency>(locale === 'ko' && rate !== null ? 'krw' : 'usd');
   const [period, setPeriod] = useState<Period>('month');
 
   const canKrw = rate !== null;

@@ -1,0 +1,575 @@
+{
+  "provider": "aws",
+  "region": "seoul",
+  "engine": "Valkey",
+  "nodes": [
+    {
+      "sku": "cache.c8gn.12xlarge",
+      "memoryGb": 92.99,
+      "burstable": false,
+      "perHour": 4.98,
+      "haPerHour": 9.96
+    },
+    {
+      "sku": "cache.c8gn.16xlarge",
+      "memoryGb": 124.65,
+      "burstable": false,
+      "perHour": 6.64,
+      "haPerHour": 13.28
+    },
+    {
+      "sku": "cache.c8gn.2xlarge",
+      "memoryGb": 14.18,
+      "burstable": false,
+      "perHour": 0.83,
+      "haPerHour": 1.66
+    },
+    {
+      "sku": "cache.c8gn.4xlarge",
+      "memoryGb": 29.68,
+      "burstable": false,
+      "perHour": 1.66,
+      "haPerHour": 3.32
+    },
+    {
+      "sku": "cache.c8gn.8xlarge",
+      "memoryGb": 61.33,
+      "burstable": false,
+      "perHour": 3.32,
+      "haPerHour": 6.64
+    },
+    {
+      "sku": "cache.c8gn.large",
+      "memoryGb": 3.1,
+      "burstable": false,
+      "perHour": 0.2075,
+      "haPerHour": 0.415
+    },
+    {
+      "sku": "cache.c8gn.xlarge",
+      "memoryGb": 6.79,
+      "burstable": false,
+      "perHour": 0.415,
+      "haPerHour": 0.83
+    },
+    {
+      "sku": "cache.m4.10xlarge",
+      "memoryGb": 154.64,
+      "burstable": false,
+      "perHour": 3.4352,
+      "haPerHour": 6.8704
+    },
+    {
+      "sku": "cache.m4.2xlarge",
+      "memoryGb": 29.7,
+      "burstable": false,
+      "perHour": 0.6864,
+      "haPerHour": 1.3728
+    },
+    {
+      "sku": "cache.m4.4xlarge",
+      "memoryGb": 60.78,
+      "burstable": false,
+      "perHour": 1.3736,
+      "haPerHour": 2.7472
+    },
+    {
+      "sku": "cache.m4.large",
+      "memoryGb": 6.42,
+      "burstable": false,
+      "perHour": 0.172,
+      "haPerHour": 0.344
+    },
+    {
+      "sku": "cache.m4.xlarge",
+      "memoryGb": 14.28,
+      "burstable": false,
+      "perHour": 0.344,
+      "haPerHour": 0.688
+    },
+    {
+      "sku": "cache.m5.12xlarge",
+      "memoryGb": 157.12,
+      "burstable": false,
+      "perHour": 3.6704,
+      "haPerHour": 7.3408
+    },
+    {
+      "sku": "cache.m5.24xlarge",
+      "memoryGb": 314.32,
+      "burstable": false,
+      "perHour": 7.3408,
+      "haPerHour": 14.6816
+    },
+    {
+      "sku": "cache.m5.2xlarge",
+      "memoryGb": 26.04,
+      "burstable": false,
+      "perHour": 0.612,
+      "haPerHour": 1.224
+    },
+    {
+      "sku": "cache.m5.4xlarge",
+      "memoryGb": 52.26,
+      "burstable": false,
+      "perHour": 1.2232,
+      "haPerHour": 2.4464
+    },
+    {
+      "sku": "cache.m5.large",
+      "memoryGb": 6.38,
+      "burstable": false,
+      "perHour": 0.1528,
+      "haPerHour": 0.3056
+    },
+    {
+      "sku": "cache.m5.xlarge",
+      "memoryGb": 12.93,
+      "burstable": false,
+      "perHour": 0.3056,
+      "haPerHour": 0.6112
+    },
+    {
+      "sku": "cache.m6g.12xlarge",
+      "memoryGb": 157.12,
+      "burstable": false,
+      "perHour": 3.484,
+      "haPerHour": 6.968
+    },
+    {
+      "sku": "cache.m6g.16xlarge",
+      "memoryGb": 209.55,
+      "burstable": false,
+      "perHour": 4.6448,
+      "haPerHour": 9.2896
+    },
+    {
+      "sku": "cache.m6g.2xlarge",
+      "memoryGb": 26.04,
+      "burstable": false,
+      "perHour": 0.5808,
+      "haPerHour": 1.1616
+    },
+    {
+      "sku": "cache.m6g.4xlarge",
+      "memoryGb": 52.26,
+      "burstable": false,
+      "perHour": 1.1616,
+      "haPerHour": 2.3232
+    },
+    {
+      "sku": "cache.m6g.8xlarge",
+      "memoryGb": 103.68,
+      "burstable": false,
+      "perHour": 2.3224,
+      "haPerHour": 4.6448
+    },
+    {
+      "sku": "cache.m6g.large",
+      "memoryGb": 6.38,
+      "burstable": false,
+      "perHour": 0.1448,
+      "haPerHour": 0.2896
+    },
+    {
+      "sku": "cache.m6g.xlarge",
+      "memoryGb": 12.93,
+      "burstable": false,
+      "perHour": 0.2904,
+      "haPerHour": 0.5808
+    },
+    {
+      "sku": "cache.m7g.12xlarge",
+      "memoryGb": 157.12,
+      "burstable": false,
+      "perHour": 3.6936,
+      "haPerHour": 7.3872
+    },
+    {
+      "sku": "cache.m7g.16xlarge",
+      "memoryGb": 209.55,
+      "burstable": false,
+      "perHour": 4.924,
+      "haPerHour": 9.848
+    },
+    {
+      "sku": "cache.m7g.2xlarge",
+      "memoryGb": 26.04,
+      "burstable": false,
+      "perHour": 0.616,
+      "haPerHour": 1.232
+    },
+    {
+      "sku": "cache.m7g.4xlarge",
+      "memoryGb": 52.26,
+      "burstable": false,
+      "perHour": 1.232,
+      "haPerHour": 2.464
+    },
+    {
+      "sku": "cache.m7g.8xlarge",
+      "memoryGb": 103.68,
+      "burstable": false,
+      "perHour": 2.4624,
+      "haPerHour": 4.9248
+    },
+    {
+      "sku": "cache.m7g.large",
+      "memoryGb": 6.38,
+      "burstable": false,
+      "perHour": 0.1536,
+      "haPerHour": 0.3072
+    },
+    {
+      "sku": "cache.m7g.xlarge",
+      "memoryGb": 12.93,
+      "burstable": false,
+      "perHour": 0.308,
+      "haPerHour": 0.616
+    },
+    {
+      "sku": "cache.m8g.12xlarge",
+      "memoryGb": 187.96,
+      "burstable": false,
+      "perHour": 3.7339,
+      "haPerHour": 7.4678
+    },
+    {
+      "sku": "cache.m8g.16xlarge",
+      "memoryGb": 251.27,
+      "burstable": false,
+      "perHour": 4.9785,
+      "haPerHour": 9.957
+    },
+    {
+      "sku": "cache.m8g.2xlarge",
+      "memoryGb": 29.68,
+      "burstable": false,
+      "perHour": 0.6223,
+      "haPerHour": 1.2446
+    },
+    {
+      "sku": "cache.m8g.4xlarge",
+      "memoryGb": 61.33,
+      "burstable": false,
+      "perHour": 1.2446,
+      "haPerHour": 2.4892
+    },
+    {
+      "sku": "cache.m8g.8xlarge",
+      "memoryGb": 124.65,
+      "burstable": false,
+      "perHour": 2.4893,
+      "haPerHour": 4.9786
+    },
+    {
+      "sku": "cache.m8g.large",
+      "memoryGb": 6.79,
+      "burstable": false,
+      "perHour": 0.1556,
+      "haPerHour": 0.3112
+    },
+    {
+      "sku": "cache.m8g.xlarge",
+      "memoryGb": 14.18,
+      "burstable": false,
+      "perHour": 0.3112,
+      "haPerHour": 0.6224
+    },
+    {
+      "sku": "cache.r4.16xlarge",
+      "memoryGb": 407,
+      "burstable": false,
+      "perHour": 6.9888,
+      "haPerHour": 13.9776
+    },
+    {
+      "sku": "cache.r4.2xlarge",
+      "memoryGb": 50.47,
+      "burstable": false,
+      "perHour": 0.8736,
+      "haPerHour": 1.7472
+    },
+    {
+      "sku": "cache.r4.4xlarge",
+      "memoryGb": 101.38,
+      "burstable": false,
+      "perHour": 1.7472,
+      "haPerHour": 3.4944
+    },
+    {
+      "sku": "cache.r4.8xlarge",
+      "memoryGb": 203.26,
+      "burstable": false,
+      "perHour": 3.4944,
+      "haPerHour": 6.9888
+    },
+    {
+      "sku": "cache.r4.large",
+      "memoryGb": 12.3,
+      "burstable": false,
+      "perHour": 0.2184,
+      "haPerHour": 0.4368
+    },
+    {
+      "sku": "cache.r4.xlarge",
+      "memoryGb": 25.05,
+      "burstable": false,
+      "perHour": 0.4368,
+      "haPerHour": 0.8736
+    },
+    {
+      "sku": "cache.r5.12xlarge",
+      "memoryGb": 317.77,
+      "burstable": false,
+      "perHour": 4.9656,
+      "haPerHour": 9.9312
+    },
+    {
+      "sku": "cache.r5.24xlarge",
+      "memoryGb": 635.61,
+      "burstable": false,
+      "perHour": 9.9312,
+      "haPerHour": 19.8624
+    },
+    {
+      "sku": "cache.r5.2xlarge",
+      "memoryGb": 52.82,
+      "burstable": false,
+      "perHour": 0.828,
+      "haPerHour": 1.656
+    },
+    {
+      "sku": "cache.r5.4xlarge",
+      "memoryGb": 105.81,
+      "burstable": false,
+      "perHour": 1.6552,
+      "haPerHour": 3.3104
+    },
+    {
+      "sku": "cache.r5.large",
+      "memoryGb": 13.07,
+      "burstable": false,
+      "perHour": 0.2072,
+      "haPerHour": 0.4144
+    },
+    {
+      "sku": "cache.r5.xlarge",
+      "memoryGb": 26.32,
+      "burstable": false,
+      "perHour": 0.4136,
+      "haPerHour": 0.8272
+    },
+    {
+      "sku": "cache.r6g.12xlarge",
+      "memoryGb": 317.77,
+      "burstable": false,
+      "perHour": 4.7176,
+      "haPerHour": 9.4352
+    },
+    {
+      "sku": "cache.r6g.16xlarge",
+      "memoryGb": 419.09,
+      "burstable": false,
+      "perHour": 6.2896,
+      "haPerHour": 12.5792
+    },
+    {
+      "sku": "cache.r6g.2xlarge",
+      "memoryGb": 52.82,
+      "burstable": false,
+      "perHour": 0.7864,
+      "haPerHour": 1.5728
+    },
+    {
+      "sku": "cache.r6g.4xlarge",
+      "memoryGb": 105.81,
+      "burstable": false,
+      "perHour": 1.5728,
+      "haPerHour": 3.1456
+    },
+    {
+      "sku": "cache.r6g.8xlarge",
+      "memoryGb": 209.55,
+      "burstable": false,
+      "perHour": 3.1448,
+      "haPerHour": 6.2896
+    },
+    {
+      "sku": "cache.r6g.large",
+      "memoryGb": 13.07,
+      "burstable": false,
+      "perHour": 0.1968,
+      "haPerHour": 0.3936
+    },
+    {
+      "sku": "cache.r6g.xlarge",
+      "memoryGb": 26.32,
+      "burstable": false,
+      "perHour": 0.3928,
+      "haPerHour": 0.7856
+    },
+    {
+      "sku": "cache.r7g.12xlarge",
+      "memoryGb": 317.77,
+      "burstable": false,
+      "perHour": 5.0152,
+      "haPerHour": 10.0304
+    },
+    {
+      "sku": "cache.r7g.16xlarge",
+      "memoryGb": 419.09,
+      "burstable": false,
+      "perHour": 6.6864,
+      "haPerHour": 13.3728
+    },
+    {
+      "sku": "cache.r7g.2xlarge",
+      "memoryGb": 52.82,
+      "burstable": false,
+      "perHour": 0.836,
+      "haPerHour": 1.672
+    },
+    {
+      "sku": "cache.r7g.4xlarge",
+      "memoryGb": 105.81,
+      "burstable": false,
+      "perHour": 1.672,
+      "haPerHour": 3.344
+    },
+    {
+      "sku": "cache.r7g.8xlarge",
+      "memoryGb": 209.55,
+      "burstable": false,
+      "perHour": 3.3432,
+      "haPerHour": 6.6864
+    },
+    {
+      "sku": "cache.r7g.large",
+      "memoryGb": 13.07,
+      "burstable": false,
+      "perHour": 0.2096,
+      "haPerHour": 0.4192
+    },
+    {
+      "sku": "cache.r7g.xlarge",
+      "memoryGb": 26.32,
+      "burstable": false,
+      "perHour": 0.4176,
+      "haPerHour": 0.8352
+    },
+    {
+      "sku": "cache.r8g.12xlarge",
+      "memoryGb": 377.9,
+      "burstable": false,
+      "perHour": 5.0822,
+      "haPerHour": 10.1644
+    },
+    {
+      "sku": "cache.r8g.16xlarge",
+      "memoryGb": 504.52,
+      "burstable": false,
+      "perHour": 6.7763,
+      "haPerHour": 13.5526
+    },
+    {
+      "sku": "cache.r8g.2xlarge",
+      "memoryGb": 61.33,
+      "burstable": false,
+      "perHour": 0.847,
+      "haPerHour": 1.694
+    },
+    {
+      "sku": "cache.r8g.4xlarge",
+      "memoryGb": 124.65,
+      "burstable": false,
+      "perHour": 1.6941,
+      "haPerHour": 3.3882
+    },
+    {
+      "sku": "cache.r8g.8xlarge",
+      "memoryGb": 251.27,
+      "burstable": false,
+      "perHour": 3.3881,
+      "haPerHour": 6.7762
+    },
+    {
+      "sku": "cache.r8g.large",
+      "memoryGb": 14.18,
+      "burstable": false,
+      "perHour": 0.2118,
+      "haPerHour": 0.4236
+    },
+    {
+      "sku": "cache.r8g.xlarge",
+      "memoryGb": 29.68,
+      "burstable": false,
+      "perHour": 0.4235,
+      "haPerHour": 0.847
+    },
+    {
+      "sku": "cache.t2.medium",
+      "memoryGb": 3.22,
+      "burstable": true,
+      "perHour": 0.0832,
+      "haPerHour": 0.1664
+    },
+    {
+      "sku": "cache.t2.micro",
+      "memoryGb": 0.555,
+      "burstable": true,
+      "perHour": 0.0208,
+      "haPerHour": 0.0416
+    },
+    {
+      "sku": "cache.t2.small",
+      "memoryGb": 1.55,
+      "burstable": true,
+      "perHour": 0.0416,
+      "haPerHour": 0.0832
+    },
+    {
+      "sku": "cache.t3.medium",
+      "memoryGb": 3.09,
+      "burstable": true,
+      "perHour": 0.0792,
+      "haPerHour": 0.1584
+    },
+    {
+      "sku": "cache.t3.micro",
+      "memoryGb": 0.5,
+      "burstable": true,
+      "perHour": 0.02,
+      "haPerHour": 0.04
+    },
+    {
+      "sku": "cache.t3.small",
+      "memoryGb": 1.37,
+      "burstable": true,
+      "perHour": 0.0392,
+      "haPerHour": 0.0784
+    },
+    {
+      "sku": "cache.t4g.medium",
+      "memoryGb": 3.09,
+      "burstable": true,
+      "perHour": 0.0752,
+      "haPerHour": 0.1504
+    },
+    {
+      "sku": "cache.t4g.micro",
+      "memoryGb": 0.5,
+      "burstable": true,
+      "perHour": 0.0192,
+      "haPerHour": 0.0384
+    },
+    {
+      "sku": "cache.t4g.small",
+      "memoryGb": 1.37,
+      "burstable": true,
+      "perHour": 0.0376,
+      "haPerHour": 0.0752
+    }
+  ],
+  "gbTiers": null
+}

@@ -1,0 +1,176 @@
+{
+  "provider": "azure",
+  "region": "seoul",
+  "engine": "Redis",
+  "nodes": [
+    {
+      "sku": "B0",
+      "memoryGb": 0.5,
+      "burstable": false,
+      "perHour": 0.019,
+      "haPerHour": 0.038
+    },
+    {
+      "sku": "B1",
+      "memoryGb": 1,
+      "burstable": false,
+      "perHour": 0.039,
+      "haPerHour": 0.078
+    },
+    {
+      "sku": "B3",
+      "memoryGb": 3,
+      "burstable": false,
+      "perHour": 0.079,
+      "haPerHour": 0.158
+    },
+    {
+      "sku": "B5",
+      "memoryGb": 6,
+      "burstable": false,
+      "perHour": 0.189,
+      "haPerHour": 0.378
+    },
+    {
+      "sku": "B10",
+      "memoryGb": 12,
+      "burstable": false,
+      "perHour": 0.381,
+      "haPerHour": 0.762
+    },
+    {
+      "sku": "B20",
+      "memoryGb": 24,
+      "burstable": false,
+      "perHour": 0.761,
+      "haPerHour": 1.522
+    },
+    {
+      "sku": "B50",
+      "memoryGb": 60,
+      "burstable": false,
+      "perHour": 1.521,
+      "haPerHour": 3.042
+    },
+    {
+      "sku": "B100",
+      "memoryGb": 120,
+      "burstable": false,
+      "perHour": 3.02,
+      "haPerHour": 6.04
+    },
+    {
+      "sku": "B150",
+      "memoryGb": 175,
+      "burstable": false,
+      "perHour": 4.562,
+      "haPerHour": 9.124
+    },
+    {
+      "sku": "B250",
+      "memoryGb": 235,
+      "burstable": false,
+      "perHour": 6.098,
+      "haPerHour": 12.196
+    },
+    {
+      "sku": "M10",
+      "memoryGb": 12,
+      "burstable": false,
+      "perHour": 0.261,
+      "haPerHour": 0.522
+    },
+    {
+      "sku": "M20",
+      "memoryGb": 24,
+      "burstable": false,
+      "perHour": 0.522,
+      "haPerHour": 1.044
+    },
+    {
+      "sku": "M50",
+      "memoryGb": 60,
+      "burstable": false,
+      "perHour": 1.043,
+      "haPerHour": 2.086
+    },
+    {
+      "sku": "M100",
+      "memoryGb": 120,
+      "burstable": false,
+      "perHour": 2.086,
+      "haPerHour": 4.172
+    },
+    {
+      "sku": "M150",
+      "memoryGb": 175,
+      "burstable": false,
+      "perHour": 3.136,
+      "haPerHour": 6.272
+    },
+    {
+      "sku": "M250",
+      "memoryGb": 235,
+      "burstable": false,
+      "perHour": 4.182,
+      "haPerHour": 8.364
+    },
+    {
+      "sku": "X3",
+      "memoryGb": 3,
+      "burstable": false,
+      "perHour": 0.265,
+      "haPerHour": 0.53
+    },
+    {
+      "sku": "X5",
+      "memoryGb": 6,
+      "burstable": false,
+      "perHour": 0.352,
+      "haPerHour": 0.704
+    },
+    {
+      "sku": "X10",
+      "memoryGb": 12,
+      "burstable": false,
+      "perHour": 0.705,
+      "haPerHour": 1.41
+    },
+    {
+      "sku": "X20",
+      "memoryGb": 24,
+      "burstable": false,
+      "perHour": 1.411,
+      "haPerHour": 2.822
+    },
+    {
+      "sku": "X50",
+      "memoryGb": 60,
+      "burstable": false,
+      "perHour": 2.821,
+      "haPerHour": 5.642
+    },
+    {
+      "sku": "X100",
+      "memoryGb": 120,
+      "burstable": false,
+      "perHour": 5.642,
+      "haPerHour": 11.284
+    },
+    {
+      "sku": "X150",
+      "memoryGb": 175,
+      "burstable": false,
+      "perHour": 8.463,
+      "haPerHour": 16.926
+    },
+    {
+      "sku": "X250",
+      "memoryGb": 235,
+      "burstable": false,
+      "perHour": 11.284,
+      "haPerHour": 22.568
+    }
+  ],
+  "gbTiers": null
+}

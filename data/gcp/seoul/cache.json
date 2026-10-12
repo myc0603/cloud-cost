@@ -1,0 +1,33 @@
+{
+  "provider": "gcp",
+  "region": "seoul",
+  "engine": "Redis",
+  "nodes": [],
+  "gbTiers": [
+    {
+      "upToGb": 4,
+      "perGbHour": 0.065,
+      "haPerGbHour": 0.114
+    },
+    {
+      "upToGb": 10,
+      "perGbHour": 0.04,
+      "haPerGbHour": 0.075
+    },
+    {
+      "upToGb": 35,
+      "perGbHour": 0.032,
+      "haPerGbHour": 0.063
+    },
+    {
+      "upToGb": 100,
+      "perGbHour": 0.024,
+      "haPerGbHour": 0.047
+    },
+    {
+      "upToGb": null,
+      "perGbHour": 0.019,
+      "haPerGbHour": 0.037
+    }
+  ]
+}

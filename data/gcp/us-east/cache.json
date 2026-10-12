@@ -1,0 +1,33 @@
+{
+  "provider": "gcp",
+  "region": "us-east",
+  "engine": "Redis",
+  "nodes": [],
+  "gbTiers": [
+    {
+      "upToGb": 4,
+      "perGbHour": 0.049,
+      "haPerGbHour": 0.064
+    },
+    {
+      "upToGb": 10,
+      "perGbHour": 0.027,
+      "haPerGbHour": 0.054
+    },
+    {
+      "upToGb": 35,
+      "perGbHour": 0.023,
+      "haPerGbHour": 0.046
+    },
+    {
+      "upToGb": 100,
+      "perGbHour": 0.019,
+      "haPerGbHour": 0.035
+    },
+    {
+      "upToGb": null,
+      "perGbHour": 0.016,
+      "haPerGbHour": 0.03
+    }
+  ]
+}

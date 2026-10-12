@@ -279,6 +279,7 @@ flowchart TD
 | `/instances` | SSG | 인스턴스 단품 비교표 — SEO 랜딩 |
 | `/methodology` | SSG | 데이터 출처·수집 시각·계산 방식·한계 고지 |
 | `/api/feedback` | 서버리스 함수 (POST) | 피드백 폼 → GitHub 이슈 생성 (허니팟 스팸 방어). Vercel env `FEEDBACK_GITHUB_TOKEN` 필요 |
+| `/sitemap.xml` · `/robots.txt` | 정적 생성 | 검색 엔진용 페이지 목록(페이지 × 언어 + hreflang, lastmod = 가격 수집 시각) · 크롤링 규칙(/api 제외). 기준 도메인은 www (`seo.ts` SITE_URL) |
 
 - 페이지는 모두 영어가 기본(프리픽스 없음), 한국어는 `/ko` 프리픽스 (`/ko/instances` 등). hreflang·canonical은 `seo.ts`
 

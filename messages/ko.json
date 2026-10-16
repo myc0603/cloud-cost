@@ -29,6 +29,8 @@
       "seoul": "서울",
       "us-east": "미국 동부 (버지니아)"
     },
+    "pricingLoading": "요금 데이터를 불러오는 중…",
+    "pricingLoadError": "요금 데이터를 불러오지 못했습니다. 새로고침해 주세요.",
     "includeBurstable": "버스트 인스턴스 포함",
     "arch": "아키텍처",
     "archLabel": {
@@ -134,6 +136,7 @@
     "logsCommitment": "Commitment Tier {gb}GB/일",
     "cheapest": "최저가",
     "dataPending": "데이터 준비 중",
+    "notOffered": "이 리전 미제공",
     "unavailable": "견적 불가",
     "footnote": "Linux 정가(온디맨드) 또는 선택한 약정가 × 월 730시간 기준. 프리티어 미반영. 화살표(→)는 스펙을 만족하는 최저가 인스턴스로 자동 매칭된 결과입니다. 스토리지는 범용 SSD(gp3 · Premium SSD v2 · Balanced PD)와 표준 오브젝트 티어, 트래픽은 인터넷 라우팅 기준 구간 요금입니다."
   },
@@ -180,7 +183,9 @@
     "colHourly": "시간당",
     "colMonthly": "월 (730h)",
     "colArch": "아키텍처",
-    "colBurstable": "버스트"
+    "colBurstable": "버스트",
+    "loading": "불러오는 중…",
+    "loadError": "데이터를 불러오지 못했습니다. 새로고침해 주세요."
   },
   "methodology": {
     "title": "데이터 출처와 산정 방식"

@@ -7,6 +7,7 @@
  */
 
 import type { CacheGbTier, CachePrice, CdnPrice, CommitPrices, ContainerPrice, DbEngine, DbEnginePricing, DbPrice, DbRateSet, EgressTier, K8sClusterPrice, LbPrice, LogPrice, NatPrice, Region, StorageSku, Term, VmSku } from '../../src/lib/schema';
+import { regionCodes } from '../../src/lib/regions';
 import { GCP_MACHINE_TYPES } from './gcp-machine-types';
 
 const COMPUTE_SERVICE_ID = '6F81-5844-456A'; // Compute Engine
@@ -18,10 +19,7 @@ const MEMORYSTORE_REDIS_SERVICE_ID = '5AF5-2C11-D467'; // Cloud Memorystore for 
 const CLOUD_RUN_SERVICE_ID = '152E-C115-5142'; // Cloud Run
 const CLOUD_LOGGING_SERVICE_ID = '5490-F7B7-8DF6'; // Cloud Logging
 
-export const GCP_REGION: Record<Region, string> = {
-  seoul: 'asia-northeast3',
-  'us-east': 'us-east1',
-};
+export const GCP_REGION = regionCodes('gcp');
 
 /**
  * SKU description의 패밀리 라벨 → 우리 패밀리 키.

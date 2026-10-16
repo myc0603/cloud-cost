@@ -31,11 +31,9 @@ import type {
   Term,
   VmSku,
 } from '../../src/lib/schema';
+import { regionCodes } from '../../src/lib/regions';
 
-export const AWS_REGION: Record<Region, string> = {
-  seoul: 'ap-northeast-2',
-  'us-east': 'us-east-1',
-};
+export const AWS_REGION = regionCodes('aws');
 
 /** 오퍼 파일의 From/To Location에 쓰이는 리전 표기 */
 const AWS_LOCATION: Record<Region, string> = {

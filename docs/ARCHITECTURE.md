@@ -101,12 +101,14 @@ cloud-cost/
 │   └── lib/
 │       ├── schema.ts        # 공통 타입 — collector와 웹이 공유 (§4)
 │       ├── pricing.ts       # data/ 로더
+│       ├── regions.ts       # 리전 카탈로그 — 리전 목록 + 플랫폼별 리전 코드(null = 미제공), 수집기·화면 공용
 │       └── estimator/       # 견적 엔진 — 순수 함수, UI 무관 (§5)
 └── docs/
 ```
 
 - **collector 실행 구조**: 워크플로우는 `npm run collect`(= `collector/main.ts`) 하나만 실행. main.ts가 providers 3개를 병렬 호출 → validate → `data/` 기록. 커밋은 워크플로우의 다음 스텝. 로컬에서도 같은 명령으로 실행 가능(그냥 Node 스크립트).
 - **모듈 관계**: `data/*.json` → `pricing.ts`(경로·타입을 아는 유일한 로더) → `estimator/`(순수 함수 계산) → `components/`(표시).
+- **요금 데이터 전달**: 페이지에는 기본 리전(서울)만 넣고, 다른 리전은 빌드 시 정적 생성되는 `/pricing/{region}.json`(`app/pricing/[file]/route.ts`, 역시 `loadPricing`)을 고를 때 받는다(`use-region-pricing.ts`, 모듈 캐시). 전 리전을 페이지에 넣으면 리전 수만큼 첫 로딩이 커진다 — 2리전 기준 홈 gzip 91KB → 41KB.
 
 ### Next 앱 내부 (src/)
 
@@ -118,6 +120,7 @@ src/
 │   │   ├── page.tsx              # `/` 시나리오 빌더
 │   │   ├── instances/page.tsx    # `/instances` 비교표
 │   │   └── methodology/          # `/methodology` 데이터 안내 (content.tsx = 로케일별 본문 JSX)
+│   ├── pricing/[file]/route.ts   # `/pricing/{region}.json` — 리전별 요금 스냅샷 (빌드 시 정적 생성)
 │   └── api/feedback/route.ts     # POST — 피드백 → GitHub 이슈 생성
 ├── components/
 │   ├── scenario/
@@ -133,6 +136,8 @@ src/
 └── lib/
     ├── schema.ts
     ├── pricing.ts
+    ├── regions.ts                # 리전 카탈로그
+    ├── use-region-pricing.ts     # 'use client' — 리전 요금 지연 로딩 훅
     ├── scenario-url.ts           # 시나리오·매칭 옵션·커스텀 선택 ↔ URL 코덱
     ├── display.ts                # 통화(USD/KRW)·기간(시간/일/주/월) 표시 변환
     ├── seo.ts                    # canonical·hreflang
@@ -306,6 +311,7 @@ flowchart TD
 | `/` | SSG + 클라이언트 계산 | 시나리오 빌더 + 실시간 3사 견적 (핵심 화면) |
 | `/instances` | SSG | 인스턴스 단품 비교표 — SEO 랜딩 |
 | `/methodology` | SSG | 데이터 출처·수집 시각·계산 방식·한계 고지 |
+| `/pricing/{region}.json` | 정적 생성 (route handler, `force-static`) | 리전별 요금 스냅샷 — 화면이 고른 리전만 받아온다. 경로에 점이 있어 로케일 미들웨어 제외 |
 | `/api/feedback` | 서버리스 함수 (POST) | 피드백 폼 → GitHub 이슈 생성 (허니팟 스팸 방어). Vercel env `FEEDBACK_GITHUB_TOKEN` 필요 |
 | `/sitemap.xml` · `/robots.txt` | 정적 생성 | 검색 엔진용 페이지 목록(페이지 × 언어 + hreflang, lastmod = 가격 수집 시각) · 크롤링 규칙(/api 제외). 기준 도메인은 www (`seo.ts` SITE_URL) |
 
@@ -316,6 +322,7 @@ flowchart TD
 | 결정 | 선택 | 이유 |
 |---|---|---|
 | 견적 계산 위치 | 클라이언트 | 요금표 몇 MB → 브라우저에서 즉시 재계산, 서버 불필요 |
+| 리전 데이터 로딩 (2026-10-17) | 기본 리전만 페이지에 넣고 나머지는 정적 `/pricing/{region}.json` 지연 로딩. 리전 목록·플랫폼별 리전 코드는 `regions.ts` 한 곳(null = 미제공 → 수집 제외, 화면 "이 리전 미제공") | 리전 확대·플랫폼 추가 대비. 요청 시 서버 렌더링은 정적 사이트·CDN 캐시 장점을 잃어 기각 |
 | 데이터 저장 | git 커밋되는 JSON | DB 오버엔지니어링 회피 + 이력 공짜 |
 | 갱신 전략 | 커밋 → 재빌드 (ISR 불사용) | 일 1회 갱신이면 충분, 파이프라인 단순 |
 | 수집기 언어 | TypeScript (웹과 동일) | `schema.ts` 타입 공유로 수집↔웹 스키마 불일치 원천 차단 |

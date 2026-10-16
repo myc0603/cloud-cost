@@ -9,11 +9,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   setRequestLocale(locale);
   const t = await getTranslations('home');
 
-  // 빌드 시점에 스냅샷을 읽어 클라이언트로 내려보낸다 — 데이터 갱신 = 재빌드
-  const pricing = {
-    seoul: loadPricing('seoul'),
-    'us-east': loadPricing('us-east'),
-  };
+  // 빌드 시점에 기본 리전(서울)만 페이지에 넣는다 — 다른 리전은 고를 때 /pricing/{region}.json에서 받는다
+  const initialPricing = { seoul: loadPricing('seoul') };
   const meta = loadMeta();
 
   return (
@@ -24,7 +21,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <DataFreshness meta={meta} />
       </header>
       <Suspense>
-        <ScenarioBuilder pricing={pricing} usdKrwRate={meta?.usdKrw?.rate ?? null} />
+        <ScenarioBuilder initialPricing={initialPricing} usdKrwRate={meta?.usdKrw?.rate ?? null} />
       </Suspense>
     </main>
   );

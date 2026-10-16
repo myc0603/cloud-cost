@@ -13,7 +13,9 @@ import {
   encodeOverrides,
   encodeScenario,
 } from '@/lib/scenario-url';
+import { REGIONS } from '@/lib/regions';
 import { TEMPLATES, type TemplateId } from '@/lib/templates';
+import { useRegionPricing } from '@/lib/use-region-pricing';
 import EstimateResult from './EstimateResult';
 import ResourceCard from './ResourceCard';
 
@@ -21,8 +23,6 @@ const DEFAULT_SCENARIO: Scenario = {
   region: 'seoul',
   resources: [{ type: 'vm', vcpu: 2, ramGb: 4, count: 1 }],
 };
-
-const REGIONS: Region[] = ['seoul', 'us-east'];
 
 /** VM 스펙이 바뀌면 후보 집합이 달라지므로 그 카드의 커스텀 선택을 초기화 */
 function clearIndex(overrides: Overrides, i: number): Overrides {
@@ -51,13 +51,13 @@ function reindexAfterRemove(overrides: Overrides, removed: number): Overrides {
 }
 
 interface Props {
-  /** 리전별 × 플랫폼별 요금 데이터 — 서버(page.tsx)에서 로드해 내려준다 */
-  pricing: Record<Region, Record<Provider, ProviderPricing>>;
+  /** 페이지에 미리 넣은 리전의 요금 데이터(기본 리전) — 나머지 리전은 고를 때 /pricing/{region}.json에서 받는다 */
+  initialPricing: Partial<Record<Region, Record<Provider, ProviderPricing>>>;
   /** USD당 원 환율 — 표시 통화 전환용. 조회 실패 시 null */
   usdKrwRate: number | null;
 }
 
-export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
+export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
   const t = useTranslations('scenario');
   const searchParams = useSearchParams();
   const [scenario, setScenario] = useState<Scenario>(
@@ -80,8 +80,9 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
     window.history.replaceState(null, '', `?${params}`);
   }, [scenario, overrides, arch, includeBurstable, term]);
 
+  const { pricing, error: pricingError } = useRegionPricing(scenario.region, initialPricing);
   const estimates = useMemo(
-    () => estimate(scenario, pricing[scenario.region], { includeBurstable, arch, term }, overrides),
+    () => (pricing ? estimate(scenario, pricing, { includeBurstable, arch, term }, overrides) : null),
     [scenario, pricing, includeBurstable, arch, term, overrides],
   );
 
@@ -235,7 +236,13 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
       </section>
 
       <section>
-        <EstimateResult estimates={estimates} rate={usdKrwRate} term={term} onSelectInstance={selectInstance} />
+        {estimates ? (
+          <EstimateResult estimates={estimates} region={scenario.region} rate={usdKrwRate} term={term} onSelectInstance={selectInstance} />
+        ) : (
+          <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-400">
+            {t(pricingError ? 'pricingLoadError' : 'pricingLoading')}
+          </p>
+        )}
       </section>
     </div>
   );

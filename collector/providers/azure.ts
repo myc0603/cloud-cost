@@ -26,12 +26,10 @@ import type {
 } from '../../src/lib/schema';
 import { AZURE_CACHE_SIZES } from './azure-cache-sizes';
 import { AZURE_DB_SIZES } from './azure-db-sizes';
+import { regionCodes } from '../../src/lib/regions';
 import { AZURE_VM_SIZES } from './azure-vm-sizes';
 
-export const AZURE_REGION: Record<Region, string> = {
-  seoul: 'koreacentral',
-  'us-east': 'eastus',
-};
+export const AZURE_REGION = regionCodes('azure');
 
 /** Retail Prices API 응답에서 우리가 쓰는 필드만 */
 export interface AzurePriceItem {

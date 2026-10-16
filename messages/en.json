@@ -29,6 +29,8 @@
       "seoul": "Seoul",
       "us-east": "US East (Virginia)"
     },
+    "pricingLoading": "Loading pricing data…",
+    "pricingLoadError": "Couldn't load pricing data. Please refresh.",
     "includeBurstable": "Include burstable instances",
     "arch": "Architecture",
     "archLabel": {
@@ -134,6 +136,7 @@
     "logsCommitment": "commitment tier {gb}GB/day",
     "cheapest": "Cheapest",
     "dataPending": "Data coming soon",
+    "notOffered": "Not offered in this region",
     "unavailable": "Not available",
     "footnote": "Linux on-demand list prices (or the selected commitment prices) × 730 hours/month. Free tiers not included. The arrow (→) marks the cheapest instance that satisfies your specs, matched automatically. Storage compares general-purpose SSDs (gp3 · Premium SSD v2 · Balanced PD) and standard object tiers; traffic uses tiered internet-routing rates."
   },
@@ -180,7 +183,9 @@
     "colHourly": "Hourly",
     "colMonthly": "Monthly (730h)",
     "colArch": "Arch",
-    "colBurstable": "Burst"
+    "colBurstable": "Burst",
+    "loading": "Loading…",
+    "loadError": "Couldn't load data. Please refresh."
   },
   "methodology": {
     "title": "Data sources & methodology"

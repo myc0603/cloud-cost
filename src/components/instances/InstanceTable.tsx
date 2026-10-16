@@ -5,20 +5,29 @@ import { useLocale, useTranslations } from 'next-intl';
 import { ArchBadge } from '@/components/scenario/EstimateResult';
 import { HOURS_PER_MONTH, type ArchFilter } from '@/lib/estimator';
 import { formatMoney, type Currency } from '@/lib/display';
+import { REGIONS } from '@/lib/regions';
 import type { Provider, Region, VmSku } from '@/lib/schema';
+import { useRegionPricing } from '@/lib/use-region-pricing';
 
 const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
-const REGIONS: Region[] = ['seoul', 'us-east'];
 
 type SortKey = 'provider' | 'sku' | 'vcpu' | 'ramGb' | 'pricePerHour';
 
 const usd = (x: number, digits: number) =>
   '$' + x.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
 
-/** rate = USD당 원. null이면 환율 조회 실패 → 통화 선택 숨김 */
-export default function InstanceTable({ skus, usdKrwRate }: { skus: VmSku[]; usdKrwRate: number | null }) {
+/**
+ * initial = 페이지에 미리 넣은 리전의 VM 목록(기본 리전). 다른 리전은 고를 때 /pricing/{region}.json에서 받는다.
+ * rate = USD당 원. null이면 환율 조회 실패 → 통화 선택 숨김
+ */
+export default function InstanceTable({ initial, usdKrwRate }: { initial: { region: Region; skus: VmSku[] }; usdKrwRate: number | null }) {
   const t = useTranslations('instances');
-  const [region, setRegion] = useState<Region>('seoul');
+  const [region, setRegion] = useState<Region>(initial.region);
+  const { pricing, error } = useRegionPricing(region === initial.region ? null : region, {});
+  const skus = useMemo(
+    () => (region === initial.region ? initial.skus : pricing ? Object.values(pricing).flatMap((p) => p.vm) : null),
+    [region, initial, pricing],
+  );
   const [providers, setProviders] = useState<Set<Provider>>(new Set(['aws', 'azure', 'gcp']));
   // 입력 칸 글자 그대로 보관 — 빈칸 허용(= 필터 없음 0), 숫자는 파생값
   const [minVcpuText, setMinVcpuText] = useState('0');
@@ -34,6 +43,7 @@ export default function InstanceTable({ skus, usdKrwRate }: { skus: VmSku[]; usd
   const [sortAsc, setSortAsc] = useState(true);
 
   const rows = useMemo(() => {
+    if (!skus) return [];
     const filtered = skus.filter(
       (s) =>
         s.region === region &&
@@ -169,6 +179,11 @@ export default function InstanceTable({ skus, usdKrwRate }: { skus: VmSku[]; usd
             </tr>
           </thead>
           <tbody>
+            {!skus && (
+              <tr>
+                <td colSpan={8} className="px-3 py-6 text-center text-slate-400">{t(error ? 'loadError' : 'loading')}</td>
+              </tr>
+            )}
             {rows.map((s) => (
               <tr key={`${s.provider}-${s.region}-${s.sku}`} className="border-b border-slate-50 hover:bg-slate-50">
                 <td className="px-3 py-1.5">{PROVIDER_LABEL[s.provider]}</td>

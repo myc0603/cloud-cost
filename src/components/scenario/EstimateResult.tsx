@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { gcpSustainedUseMax, HOURS_PER_MONTH, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
 import { formatMoney, type Currency, type Period } from '@/lib/display';
-import type { Arch, Provider, Term } from '@/lib/schema';
+import { offeredIn } from '@/lib/regions';
+import type { Arch, Provider, Region, Term } from '@/lib/schema';
 
 const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
 
@@ -313,11 +314,13 @@ function LineLabel({
 /** rate = USD당 원. null이면 환율 조회 실패 → KRW 토글 숨김 */
 export default function EstimateResult({
   estimates,
+  region,
   rate,
   term,
   onSelectInstance,
 }: {
   estimates: ProviderEstimate[];
+  region: Region;
   rate: number | null;
   /** 약정 기간 — 생략 = 정가 */
   term?: Term;
@@ -382,7 +385,7 @@ export default function EstimateResult({
               </span>
               <span className="text-lg font-bold tabular-nums">
                 {!e.available ? (
-                  <span className="text-sm font-normal text-slate-400">{t('dataPending')}</span>
+                  <span className="text-sm font-normal text-slate-400">{t(offeredIn(region, e.provider) ? 'dataPending' : 'notOffered')}</span>
                 ) : e.totalMonthlyUsd === null ? (
                   <span className="text-sm font-normal text-slate-400">{t('unavailable')}</span>
                 ) : (

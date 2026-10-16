@@ -10,7 +10,8 @@
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import type { Meta, Region } from '../src/lib/schema';
+import { REGIONS, offeredIn } from '../src/lib/regions';
+import type { Meta, Provider, Region } from '../src/lib/schema';
 import { collectAws } from './providers/aws';
 import {
   collectAzureCache,
@@ -59,7 +60,8 @@ if (existsSync('.env')) {
   }
 }
 
-const REGIONS: Region[] = ['seoul', 'us-east'];
+/** 플랫폼이 제공하는 리전만 수집 (미제공 리전은 데이터 파일이 없고 화면은 "이 리전 미제공") */
+const regionsOf = (provider: Provider) => REGIONS.filter((r) => offeredIn(r, provider));
 
 interface Job {
   provider: string;
@@ -152,7 +154,7 @@ async function collectGcpJobs(): Promise<Job[]> {
   const total = compute.length + gcs.length + gke.length + net.length + sql.length + redis.length + run.length + logging.length;
   console.log(`[gcp] 원본 SKU ${total.toLocaleString()}건 수신`);
 
-  return REGIONS.map((region) => {
+  return regionsOf('gcp').map((region) => {
     const gcpRegion = GCP_REGION[region];
     const { unitPrices, unmatched } = parseUnitPrices(compute, gcpRegion);
     if (unmatched.length > 0) console.log(`[gcp/${region}] 매핑 안 된 VM 단가 라벨 ${unmatched.length}종`);
@@ -181,7 +183,7 @@ async function collectGcpJobs(): Promise<Job[]> {
 
 async function collectAwsJobs(): Promise<Job[]> {
   const jobs: Job[] = [];
-  for (const region of REGIONS) {
+  for (const region of regionsOf('aws')) {
     console.log(`[aws/${region}] EC2 + Savings Plans + S3 + DataTransfer + EKS + ELB + RDS + ElastiCache + ECS(Fargate) + CloudFront + CloudWatch 오퍼 CSV 스트리밍 파싱 중... (수백 MB)`);
     jobs.push({ provider: 'aws', region, snap: await collectAws(region), vmSamples: ['t3.medium', 'm5.large', 'c5.xlarge'] });
   }
@@ -190,7 +192,7 @@ async function collectAwsJobs(): Promise<Job[]> {
 
 async function collectAzureJobs(): Promise<Job[]> {
   const jobs: Job[] = [];
-  for (const region of REGIONS) {
+  for (const region of regionsOf('azure')) {
     console.log(`[azure/${region}] Retail Prices API 수집 중...`);
     const [vms, storage, egress, k8s, lb, nat, db, cache, container, cdn, logs] = await Promise.all([
       collectAzureVm(region),

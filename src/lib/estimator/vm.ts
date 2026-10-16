@@ -41,7 +41,7 @@ function eligibleVms(skus: VmSku[], opts: MatchOptions): VmSku[] {
 /** 후보가 없을 때 이유 — 조건 내 SKU가 0개면 arch, 아니면 최대 사이즈 안내 */
 export function noMatchReason(skus: VmSku[], opts: MatchOptions): NoMatchReason {
   const pool = eligibleVms(skus, opts);
-  if (pool.length === 0) return { reason: 'arch' };
+  if (pool.length === 0) return { reason: 'arch', arch: opts.arch === 'x86' ? 'x86' : 'arm', scope: 'region' };
   return {
     reason: 'size',
     maxVcpu: Math.max(...pool.map((s) => s.vcpu)),

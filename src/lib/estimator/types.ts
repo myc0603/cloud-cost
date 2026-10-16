@@ -64,12 +64,13 @@ export type Overrides = Partial<Record<Provider, Record<number, string>>>;
 
 /**
  * 매칭 실패 이유 — "견적 불가"를 버그로 오해하지 않게 화면에 같이 보여준다.
- * arch: 버스트·아키텍처 조건을 만족하는 인스턴스가 이 리전에 아예 없음 (예: 서울 GCP ARM)
+ * arch: 선택한 아키텍처(arch)가 없음 — scope region = 이 리전에 그 아키텍처 인스턴스가 없음(예: 서울 GCP ARM),
+ *       platform = 플랫폼 자체가 미지원(예: Container Apps·Cloud Run ARM). 화면은 '둘 다'로 바꾸라고 안내
  * size: 인스턴스는 있지만 요구 스펙이 조건 내 최대치를 넘음 (vCPU·RAM 최대는 각각 따로 집계)
  * memory: 메모리만 보는 리소스(캐시)에서 요구 메모리가 최대치를 넘음
  */
 export type NoMatchReason =
-  | { reason: 'arch' }
+  | { reason: 'arch'; arch: Arch; scope: 'region' | 'platform' }
   | { reason: 'size'; maxVcpu: number; maxRamGb: number }
   | { reason: 'memory'; maxGb: number };
 

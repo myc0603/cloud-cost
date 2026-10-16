@@ -67,7 +67,7 @@ const MAX: Record<Provider, Shape> = { aws: { vcpu: 16, ramGb: 120 }, azure: { v
 /** 요구 스펙 이상인 허용 조합 × 아키텍처 중 최저가. 동가면 작은 조합 */
 export function fitContainer(price: ContainerPrice, spec: Shape, opts: MatchOptions): ContainerMatch | NoMatchReason {
   const arches = (Object.keys(price.rates) as Arch[]).filter((a) => !opts.arch || opts.arch === 'both' || opts.arch === a);
-  if (arches.length === 0) return { reason: 'arch' };
+  if (arches.length === 0) return { reason: 'arch', arch: opts.arch === 'x86' ? 'x86' : 'arm', scope: 'platform' };
   let best: ContainerMatch | null = null;
   for (const arch of arches) {
     const r = price.rates[arch]!;

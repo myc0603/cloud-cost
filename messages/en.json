@@ -92,7 +92,8 @@
       "object-standard": "Object storage"
     },
     "noMatch": "No instance meets the specs",
-    "noMatchArch": "no instances of the selected architecture in this region",
+    "noMatchArch": "{provider} has no {arch} instances in this region — set Architecture to 'Both' to get an estimate",
+    "noMatchArchPlatform": "{product} doesn't support {arch} — set Architecture to 'Both' to get an estimate",
     "noMatchSize": "max {vcpu} vCPU · {ramGb} GB",
     "noMatchMemory": "max {gb} GB",
     "instanceSelect": "Choose instance (spec minimum or higher)",

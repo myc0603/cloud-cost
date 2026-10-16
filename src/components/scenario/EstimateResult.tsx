@@ -68,9 +68,10 @@ function NoCommitBadge({ term, matched }: { term?: Term; matched: { committed: b
   return <span className="ml-1 rounded bg-amber-100 px-1 py-0.5 align-middle text-[10px] font-medium text-amber-700">{t('noCommit')}</span>;
 }
 
-/** 매칭 실패 표시 + 이유 (VM·K8s 노드·DB 공통) */
-function NoMatchNote({ noMatch }: { noMatch: NoMatchReason | null }) {
+/** 매칭 실패 표시 + 이유 (VM·K8s 노드·DB·캐시·컨테이너 공통). 아키텍처 실패는 플랫폼 이름과 해결 방법까지 */
+function NoMatchNote({ noMatch, provider }: { noMatch: NoMatchReason | null; provider: Provider }) {
   const t = useTranslations('estimate');
+  const archLabel = (arch: Arch) => (arch === 'arm' ? 'ARM' : 'x86');
   return (
     <span className="ml-1 text-red-500">
       {t('noMatch')}
@@ -78,7 +79,9 @@ function NoMatchNote({ noMatch }: { noMatch: NoMatchReason | null }) {
         <span className="ml-1 text-slate-400">
           (
           {noMatch.reason === 'arch'
-            ? t('noMatchArch')
+            ? noMatch.scope === 'platform'
+              ? t('noMatchArchPlatform', { product: CONTAINER_PRODUCT[provider], arch: archLabel(noMatch.arch) })
+              : t('noMatchArch', { provider: PROVIDER_LABEL[provider], arch: archLabel(noMatch.arch) })
             : noMatch.reason === 'memory'
               ? t('noMatchMemory', { gb: noMatch.maxGb })
               : t('noMatchSize', { vcpu: noMatch.maxVcpu, ramGb: noMatch.maxRamGb })}
@@ -110,7 +113,7 @@ function LineLabel({
       <span>
         {line.role === 'k8s-node' ? t('k8sNode') : 'VM'} {line.spec.vcpu}vCPU/{line.spec.ramGb}GB ×{line.spec.count}
         {!line.matched ? (
-          <NoMatchNote noMatch={line.noMatch} />
+          <NoMatchNote noMatch={line.noMatch} provider={provider} />
         ) : line.candidates.length < 2 ? (
           <span className="ml-1 font-mono text-slate-900">
             → {line.matched.sku} ({line.matched.vcpu}vCPU/{line.matched.ramGb}GB)
@@ -147,7 +150,7 @@ function LineLabel({
       <span>
         {label} {line.spec.vcpu}vCPU/{line.spec.ramGb}GB ×{line.spec.count}
         {!line.matched ? (
-          line.noMatch ? <NoMatchNote noMatch={line.noMatch} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
+          line.noMatch ? <NoMatchNote noMatch={line.noMatch} provider={provider} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
         ) : line.candidates.length < 2 ? (
           <span className="ml-1 font-mono text-slate-900">
             → {line.matched.sku} ({line.matched.vcpu}vCPU/{line.matched.ramGb}GB)
@@ -179,7 +182,7 @@ function LineLabel({
         {t('cacheLine', { engine: line.engine ?? '', gb: line.memoryGb, count: line.count })}
         {line.ha && <span className="ml-1 text-slate-400">({t('dbHa')})</span>}
         {!line.matched ? (
-          line.noMatch ? <NoMatchNote noMatch={line.noMatch} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
+          line.noMatch ? <NoMatchNote noMatch={line.noMatch} provider={provider} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
         ) : line.candidates.length < 2 ? (
           <span className="ml-1 font-mono text-slate-900">→ {line.matched.sku} ({line.matched.memoryGb}GB)</span>
         ) : (
@@ -208,7 +211,7 @@ function LineLabel({
       <span>
         {t('containerLine', { vcpu: line.spec.vcpu, gb: line.spec.ramGb, count: line.spec.count })}
         {!line.matched ? (
-          line.noMatch ? <NoMatchNote noMatch={line.noMatch} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
+          line.noMatch ? <NoMatchNote noMatch={line.noMatch} provider={provider} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
         ) : (
           <span className="ml-1 font-mono text-slate-900">
             → {CONTAINER_PRODUCT[provider]} {line.matched.vcpu}vCPU/{line.matched.ramGb}GB

@@ -92,7 +92,8 @@
       "object-standard": "오브젝트 스토리지"
     },
     "noMatch": "조건 만족 인스턴스 없음",
-    "noMatchArch": "이 리전엔 선택한 아키텍처의 인스턴스가 없음",
+    "noMatchArch": "이 리전의 {provider}엔 {arch} 인스턴스가 없음 — 아키텍처를 '둘 다'로 바꾸면 견적이 나옵니다",
+    "noMatchArchPlatform": "{product}에서 {arch}을 지원하지 않음 — 아키텍처를 '둘 다'로 바꾸면 견적이 나옵니다",
     "noMatchSize": "최대 {vcpu}vCPU · {ramGb}GB",
     "noMatchMemory": "최대 {gb}GB",
     "instanceSelect": "인스턴스 선택 (조건 이상)",

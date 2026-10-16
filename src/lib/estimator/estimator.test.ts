@@ -217,7 +217,7 @@ test('estimate: 매칭 실패 이유 — 조건(아키텍처)에 맞는 SKU가 �
   const s = scenario([vmRes(2, 4)]);
   const vm = estimate(s, PRICING, { includeBurstable: true, arch: 'arm' }).find((e) => e.provider === 'gcp')!.lines[0];
   assert.ok(vm.kind === 'vm');
-  assert.deepEqual(vm.noMatch, { reason: 'arch' });
+  assert.deepEqual(vm.noMatch, { reason: 'arch', arch: 'arm', scope: 'region' });
 });
 
 test('estimate: 매칭 성공이면 noMatch는 null', () => {
@@ -468,7 +468,7 @@ test('컨테이너: 플랫폼별 허용 조합으로 올림 — Fargate 표·Con
   // 아키텍처: Fargate는 ARM이 싸면 ARM, ARM만이면 x86 전용 플랫폼은 arch 실패
   const arm = fitContainer(price('aws', true), { vcpu: 1, ramGb: 2 }, { includeBurstable: true });
   assert.ok('arch' in arm && arm.arch === 'arm');
-  assert.deepEqual(fit('gcp', 1, 2, { includeBurstable: true, arch: 'arm' }), { reason: 'arch' });
+  assert.deepEqual(fit('gcp', 1, 2, { includeBurstable: true, arch: 'arm' }), { reason: 'arch', arch: 'arm', scope: 'platform' });
 });
 
 test('컨테이너: 견적 줄 = 컨테이너 수 × 시간당 × 730, 약정 단가 반영', () => {

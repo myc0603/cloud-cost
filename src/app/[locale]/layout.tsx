@@ -7,7 +7,7 @@ import FeedbackWidget from '@/components/FeedbackWidget';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
-import { pageAlternates, SITE_URL } from '@/lib/seo';
+import { pageAlternates, pageOpenGraph, SITE_URL } from '@/lib/seo';
 import '../globals.css';
 
 export function generateStaticParams() {
@@ -26,6 +26,7 @@ export async function generateMetadata({
     title: t('siteTitle'),
     description: t('siteDescription'),
     alternates: pageAlternates(locale, '/'),
+    openGraph: await pageOpenGraph(locale, '/', t('siteTitle'), t('siteDescription')),
     // 네이버 서치어드바이저 소유 확인 (공개값 — 비밀 아님)
     verification: { other: { 'naver-site-verification': '9bd3bf6a32b7666f7594be2854538f8f72e0719e' } },
   };

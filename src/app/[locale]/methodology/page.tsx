@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import DataFreshness from '@/components/DataFreshness';
 import { loadMeta } from '@/lib/pricing';
-import { pageAlternates } from '@/lib/seo';
+import { pageAlternates, pageOpenGraph } from '@/lib/seo';
 import { MethodologyEn, MethodologyKo } from './content';
 
 export async function generateMetadata({
@@ -16,6 +16,7 @@ export async function generateMetadata({
     title: t('methodologyTitle'),
     description: t('methodologyDescription'),
     alternates: pageAlternates(locale, '/methodology'),
+    openGraph: await pageOpenGraph(locale, '/methodology', t('methodologyTitle'), t('methodologyDescription')),
   };
 }
 

@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import DataFreshness from '@/components/DataFreshness';
 import InstanceTable from '@/components/instances/InstanceTable';
 import { loadMeta, loadPricing } from '@/lib/pricing';
-import { pageAlternates } from '@/lib/seo';
+import { pageAlternates, pageOpenGraph } from '@/lib/seo';
 import type { Region } from '@/lib/schema';
 
 export async function generateMetadata({
@@ -17,6 +17,7 @@ export async function generateMetadata({
     title: t('instancesTitle'),
     description: t('instancesDescription'),
     alternates: pageAlternates(locale, '/instances'),
+    openGraph: await pageOpenGraph(locale, '/instances', t('instancesTitle'), t('instancesDescription')),
   };
 }
 

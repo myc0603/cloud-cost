@@ -42,6 +42,13 @@ test('컨테이너(분수 vCPU)·CDN·로그 토큰 왕복, 허용 밖 vCPU·깨
   assert.deepEqual(decodeScenario('r=seoul&res=ctr:3c1g:1,cdn:1024,cdn:0:10,log:100:45')?.resources ?? [], []); // 보관 일수는 선택지만
 });
 
+test('리전: 카탈로그의 모든 리전 왕복, 모르는 리전은 서울', () => {
+  for (const region of ['tokyo', 'singapore', 'us-west', 'frankfurt', 'london'] as const) {
+    assert.equal(decodeScenario(`r=${region}&res=vm:2c4g:1`)?.region, region);
+  }
+  assert.equal(decodeScenario('r=mars&res=vm:2c4g:1')?.region, 'seoul');
+});
+
 test('파라미터 없으면 null (기본 시나리오 위임) — v0.3 이전 형식도 null', () => {
   assert.equal(decodeScenario(''), null);
   assert.equal(decodeScenario('foo=bar'), null);

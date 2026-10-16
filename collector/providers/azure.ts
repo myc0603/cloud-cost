@@ -462,8 +462,19 @@ export async function collectAzureContainer(region: Region): Promise<ContainerPr
   return buildAzureContainer(items, region);
 }
 
-/** Front Door 과금 존 — 시청자가 리전과 같은 지역이라고 가정 (가격 페이지: Zone 8 - Korea, Zone 1 - North America) */
-const FRONT_DOOR_ZONE: Record<Region, string> = { seoul: 'Zone 8', 'us-east': 'Zone 1' };
+/**
+ * Front Door 과금 존 — 시청자가 리전과 같은 지역이라고 가정
+ * (가격 페이지: Zone 1 - North America, Zone 2 - Asia Pacific (including Japan), Zone 6 - Europe, Zone 8 - Korea)
+ */
+const FRONT_DOOR_ZONE: Record<Region, string> = {
+  seoul: 'Zone 8',
+  tokyo: 'Zone 2',
+  singapore: 'Zone 2',
+  'us-east': 'Zone 1',
+  'us-west': 'Zone 1',
+  frankfurt: 'Zone 6',
+  london: 'Zone 6',
+};
 
 /** tierMinimumUnits(구간 시작점) 순 아이템 → 누적 상한 구간 */
 const toTiers = (items: AzurePriceItem[]) => {

@@ -407,13 +407,29 @@ export function parseCloudLogging(skus: RawSku[], gcpRegion: string, region: Reg
 }
 
 /** Cloud CDN 시청자 지역 — 리전과 같은 지역 가정 (SKU "… Cache Data Transfer to {지역}") */
-const CLOUD_CDN_DEST: Record<Region, string> = { seoul: 'Asia', 'us-east': 'North America' };
+const CLOUD_CDN_DEST: Record<Region, string> = {
+  seoul: 'Asia',
+  tokyo: 'Asia',
+  singapore: 'Asia',
+  'us-east': 'North America',
+  'us-west': 'North America',
+  frankfurt: 'Europe',
+  london: 'Europe',
+};
 
 /**
  * Cloud CDN 캐시 채움 GB당 — 가격 API에 없어 공식 문서값 (cloud.google.com/cdn/pricing, 2026-10-17 확인:
  * 북미·유럽 내 $0.01, 아시아태평양 등 각 대륙 내 $0.02). 오리진이 같은 리전이라 같은 대륙 요금
  */
-const CLOUD_CDN_FILL: Record<Region, number> = { seoul: 0.02, 'us-east': 0.01 };
+const CLOUD_CDN_FILL: Record<Region, number> = {
+  seoul: 0.02,
+  tokyo: 0.02,
+  singapore: 0.02,
+  'us-east': 0.01,
+  'us-west': 0.01,
+  frankfurt: 0.01,
+  london: 0.01,
+};
 
 /**
  * Cloud CDN — 시청자 방향 캐시 전송 GB 구간 + 캐시 조회 요청 + 캐시 채움(미스분, 문서값).

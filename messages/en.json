@@ -3,7 +3,7 @@
     "siteTitle": "How Much Cloud — Cloud Cost Comparison",
     "siteDescription": "Compare estimated monthly costs for your workload across AWS, Azure, and GCP — side by side.",
     "instancesTitle": "AWS vs Azure vs GCP Instance Price Comparison | How Much Cloud",
-    "instancesDescription": "Compare vCPU/RAM specs and hourly/monthly prices of AWS EC2, Azure VM, and GCP Compute Engine instances in one table. Linux on-demand list prices, Seoul and US East regions.",
+    "instancesDescription": "Compare vCPU/RAM specs and hourly/monthly prices of AWS EC2, Azure VM, and GCP Compute Engine instances in one table. Linux on-demand list prices across 7 regions in Asia, the US and Europe.",
     "methodologyTitle": "Data Sources & Methodology | How Much Cloud",
     "methodologyDescription": "How we collect prices from the official cloud pricing APIs, validate them daily, and compute estimates — including comparison rules and limitations.",
     "ogHeadline": "Cloud costs,\nside by side",
@@ -27,7 +27,12 @@
     "region": "Region",
     "regionLabel": {
       "seoul": "Seoul",
-      "us-east": "US East (Virginia)"
+      "tokyo": "Tokyo",
+      "singapore": "Singapore",
+      "us-east": "US East (Virginia)",
+      "us-west": "US West (Oregon)",
+      "frankfurt": "Frankfurt",
+      "london": "London"
     },
     "pricingLoading": "Loading pricing data…",
     "pricingLoadError": "Couldn't load pricing data. Please refresh.",
@@ -161,7 +166,12 @@
     "region": "Region",
     "regionLabel": {
       "seoul": "Seoul",
-      "us-east": "US East"
+      "tokyo": "Tokyo",
+      "singapore": "Singapore",
+      "us-east": "US East (Virginia)",
+      "us-west": "US West (Oregon)",
+      "frankfurt": "Frankfurt",
+      "london": "London"
     },
     "vcpuMin": "vCPU ≥",
     "ramMin": "RAM (GB) ≥",

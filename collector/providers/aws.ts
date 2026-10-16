@@ -38,7 +38,12 @@ export const AWS_REGION = regionCodes('aws');
 /** 오퍼 파일의 From/To Location에 쓰이는 리전 표기 */
 const AWS_LOCATION: Record<Region, string> = {
   seoul: 'Asia Pacific (Seoul)',
+  tokyo: 'Asia Pacific (Tokyo)',
+  singapore: 'Asia Pacific (Singapore)',
   'us-east': 'US East (N. Virginia)',
+  'us-west': 'US West (Oregon)',
+  frankfurt: 'EU (Frankfurt)',
+  london: 'EU (London)',
 };
 
 const offerCsvUrl = (offer: string, awsRegion: string) =>
@@ -585,8 +590,16 @@ export async function parseElastiCacheCsv(
   };
 }
 
-/** CloudFront 시청자 지역 요금 접두사 — 리전과 같은 지역 가정 (한국은 Asia Pacific 구간) */
-const CLOUDFRONT_ZONE: Record<Region, string> = { seoul: 'AP', 'us-east': 'US' };
+/** CloudFront 시청자 지역 요금 접두사 — 리전과 같은 지역 가정 (한국·싱가포르는 Asia Pacific, 일본은 별도 JP 구간) */
+const CLOUDFRONT_ZONE: Record<Region, string> = {
+  seoul: 'AP',
+  tokyo: 'JP',
+  singapore: 'AP',
+  'us-east': 'US',
+  'us-west': 'US',
+  frankfurt: 'EU',
+  london: 'EU',
+};
 
 /**
  * CloudFront 정액 요금제 — 가격 API에 없어 공식 문서값

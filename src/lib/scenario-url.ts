@@ -7,6 +7,7 @@
  */
 
 import { RESOURCES, resourceDef, type ArchFilter, type Overrides, type Resource, type Scenario } from './estimator';
+import { REGIONS } from './regions';
 import type { Provider, Term } from './schema';
 
 const PROVIDERS = new Set<string>(['aws', 'azure', 'gcp']);
@@ -41,7 +42,7 @@ export function decodeScenario(query: string | URLSearchParams): Scenario | null
   }
 
   return {
-    region: params.get('r') === 'us-east' ? 'us-east' : 'seoul',
+    region: REGIONS.find((r) => r === params.get('r')) ?? 'seoul', // 모르는 리전은 기본(서울)
     resources,
   };
 }

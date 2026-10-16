@@ -1,9 +1,9 @@
 {
   "meta": {
     "siteTitle": "클라우드 비용 비교",
-    "siteDescription": "필요한 스펙을 입력하면 AWS · Azure · GCP의 월 예상 비용을 나란히 비교합니다. 서울·미국 동부 리전, 온디맨드와 1·3년 약정 요금 기준.",
+    "siteDescription": "필요한 스펙을 입력하면 AWS · Azure · GCP의 월 예상 비용을 나란히 비교합니다. 서울·도쿄·싱가포르·미국·유럽 7개 리전, 온디맨드와 1·3년 약정 요금 기준.",
     "instancesTitle": "AWS·Azure·GCP 인스턴스 가격 비교표 | 클라우드 비용 비교",
-    "instancesDescription": "AWS EC2, Azure VM, GCP Compute Engine 인스턴스의 vCPU/RAM 스펙과 시간당·월 가격을 한 표에서 비교합니다. Linux 온디맨드 정가, 서울·미국 동부 리전.",
+    "instancesDescription": "AWS EC2, Azure VM, GCP Compute Engine 인스턴스의 vCPU/RAM 스펙과 시간당·월 가격을 한 표에서 비교합니다. Linux 온디맨드 정가, 서울·도쿄·싱가포르·미국·유럽 7개 리전.",
     "methodologyTitle": "데이터 출처와 산정 방식 | 클라우드 비용 비교",
     "methodologyDescription": "가격 데이터의 출처(3사 공식 API), 수집 주기, 견적 계산 방식, 비교 기준과 한계를 투명하게 공개합니다.",
     "ogHeadline": "같은 스펙,\n클라우드별 월 비용",
@@ -27,7 +27,12 @@
     "region": "리전",
     "regionLabel": {
       "seoul": "서울",
-      "us-east": "미국 동부 (버지니아)"
+      "tokyo": "도쿄",
+      "singapore": "싱가포르",
+      "us-east": "미국 동부 (버지니아)",
+      "us-west": "미국 서부 (오리건)",
+      "frankfurt": "프랑크푸르트",
+      "london": "런던"
     },
     "pricingLoading": "요금 데이터를 불러오는 중…",
     "pricingLoadError": "요금 데이터를 불러오지 못했습니다. 새로고침해 주세요.",
@@ -161,7 +166,12 @@
     "region": "리전",
     "regionLabel": {
       "seoul": "서울",
-      "us-east": "미국 동부"
+      "tokyo": "도쿄",
+      "singapore": "싱가포르",
+      "us-east": "미국 동부 (버지니아)",
+      "us-west": "미국 서부 (오리건)",
+      "frankfurt": "프랑크푸르트",
+      "london": "런던"
     },
     "vcpuMin": "vCPU ≥",
     "ramMin": "RAM(GB) ≥",

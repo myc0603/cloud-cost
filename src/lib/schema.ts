@@ -8,8 +8,8 @@ export type Provider = 'aws' | 'azure' | 'gcp';
 /** CPU 아키텍처. arm = Graviton(AWS)·Ampere(Azure/GCP) 계열 */
 export type Arch = 'x86' | 'arm';
 
-/** 정규화 리전 키. seoul = ap-northeast-2 / koreacentral / asia-northeast3 */
-export type Region = 'seoul' | 'us-east';
+/** 정규화 리전 키. 플랫폼별 실제 리전 코드는 regions.ts */
+export type Region = 'seoul' | 'tokyo' | 'singapore' | 'us-east' | 'us-west' | 'frankfurt' | 'london';
 
 /**
  * 약정 기간. 약정가는 3사 모두 "인스턴스 고정형 + 선결제 없음" 기준의 시간당 실효가

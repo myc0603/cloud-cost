@@ -8,7 +8,12 @@ import type { Provider, Region } from './schema';
 
 export const REGION_CODES: Record<Region, Record<Provider, string | null>> = {
   seoul: { aws: 'ap-northeast-2', azure: 'koreacentral', gcp: 'asia-northeast3' },
+  tokyo: { aws: 'ap-northeast-1', azure: 'japaneast', gcp: 'asia-northeast1' },
+  singapore: { aws: 'ap-southeast-1', azure: 'southeastasia', gcp: 'asia-southeast1' },
   'us-east': { aws: 'us-east-1', azure: 'eastus', gcp: 'us-east1' },
+  'us-west': { aws: 'us-west-2', azure: 'westus2', gcp: 'us-west1' },
+  frankfurt: { aws: 'eu-central-1', azure: 'germanywestcentral', gcp: 'europe-west3' },
+  london: { aws: 'eu-west-2', azure: 'uksouth', gcp: 'europe-west2' },
 };
 
 export const REGIONS = Object.keys(REGION_CODES) as Region[];

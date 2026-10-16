@@ -77,7 +77,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         </li>
         <li className={LI}>
           CDN은 AWS <b>CloudFront</b> · Azure <b>Front Door Standard</b> · GCP <b>Cloud CDN</b>을 비교하며, 사용자가 리전과 같은
-          지역(서울이면 한국·아시아태평양, 미국 동부면 북미)에 있다고 가정합니다. 전송 GB·요청 수 구간 요금에 Front Door 기본료(월 $35)를
+          지역(서울이면 한국, 도쿄면 일본, 싱가포르면 아시아태평양, 미국 리전이면 북미, 유럽 리전이면 유럽)에 있다고 가정합니다. 전송 GB·요청 수 구간 요금에 Front Door 기본료(월 $35)를
           더하고, GCP는 캐시 채움 요금을 캐시 적중률 90% 가정으로 더합니다. CloudFront는 사용량을 감당하는 가장 싼{' '}
           <b>정액 요금제</b>(Free·Pro·Business·Premium)와 종량제 중 싼 쪽으로 계산합니다. CDN을 거친 트래픽은 아웃바운드 트래픽 카드와
           별개이고, AWS·Azure 오리진에서 CDN으로 가는 전송은 무료입니다. Cloud CDN이 쓰는 L7 로드밸런서 요금은 로드밸런서 카드로 따로
@@ -210,7 +210,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         </li>
         <li className={LI}>
           CDNs compare AWS <b>CloudFront</b> · Azure <b>Front Door Standard</b> · GCP <b>Cloud CDN</b>, assuming your users are in the
-          same area as the region (Seoul → Korea/Asia Pacific, US East → North America). We add tiered per-GB and per-request rates,
+          same area as the region (Seoul → Korea, Tokyo → Japan, Singapore → Asia Pacific, US regions → North America, European regions → Europe). We add tiered per-GB and per-request rates,
           Front Door&apos;s base fee ($35/month), and GCP cache fill assuming a 90% cache hit ratio. CloudFront uses whichever is cheaper:
           pay-as-you-go or the cheapest <b>flat-rate plan</b> (Free, Pro, Business, Premium) whose allowance covers your usage. CDN traffic
           is separate from the outbound traffic card, and transfer from AWS or Azure origins to the CDN is free. The L7 load balancer that

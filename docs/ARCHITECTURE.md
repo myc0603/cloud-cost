@@ -168,7 +168,7 @@ src/
 
 ```ts
 type Provider = 'aws' | 'azure' | 'gcp';
-type Region = 'seoul' | 'us-east';          // 정규화 리전 키 (아래 매핑표)
+type Region = 'seoul' | 'tokyo' | 'singapore' | 'us-east' | 'us-west' | 'frankfurt' | 'london'; // 정규화 리전 키 (아래 매핑표)
 type Arch = 'x86' | 'arm';                  // arm = Graviton(AWS)·Ampere(Azure/GCP)
 
 /** VM — 가격은 USD, Linux 온디맨드, 시간당 */
@@ -268,12 +268,17 @@ interface Meta {
 }
 ```
 
-**리전 매핑표**
+**리전 매핑표** (출처: `src/lib/regions.ts`, null = 미제공)
 
 | 정규화 키 | AWS | Azure | GCP |
 |---|---|---|---|
 | `seoul` | ap-northeast-2 | koreacentral | asia-northeast3 |
+| `tokyo` | ap-northeast-1 | japaneast | asia-northeast1 |
+| `singapore` | ap-southeast-1 | southeastasia | asia-southeast1 |
 | `us-east` | us-east-1 | eastus | us-east1 |
+| `us-west` | us-west-2 | westus2 | us-west1 |
+| `frankfurt` | eu-central-1 | germanywestcentral | europe-west3 |
+| `london` | eu-west-2 | uksouth | europe-west2 |
 
 ## 5. 견적 엔진 (`src/lib/estimator/`)
 
@@ -323,6 +328,7 @@ flowchart TD
 |---|---|---|
 | 견적 계산 위치 | 클라이언트 | 요금표 몇 MB → 브라우저에서 즉시 재계산, 서버 불필요 |
 | 리전 데이터 로딩 (2026-10-17) | 기본 리전만 페이지에 넣고 나머지는 정적 `/pricing/{region}.json` 지연 로딩. 리전 목록·플랫폼별 리전 코드는 `regions.ts` 한 곳(null = 미제공 → 수집 제외, 화면 "이 리전 미제공") | 리전 확대·플랫폼 추가 대비. 요청 시 서버 렌더링은 정적 사이트·CDN 캐시 장점을 잃어 기각 |
+| 지원 리전 (2026-10-17) | 서울 · 도쿄 · 싱가포르 · 미국 동부(버지니아) · 미국 서부(오리건) · 프랑크푸르트 · 런던 — 3사 모두 제공하는 수요 큰 리전 | 영어 기본 사이트인데 2리전뿐이던 문제. 리전별 CDN 시청자 지역(CloudFront JP·AP·EU·US / Front Door Zone 1·2·6·8 / Cloud CDN Asia·Europe·North America)은 공식 가격표로 확인 |
 | 데이터 저장 | git 커밋되는 JSON | DB 오버엔지니어링 회피 + 이력 공짜 |
 | 갱신 전략 | 커밋 → 재빌드 (ISR 불사용) | 일 1회 갱신이면 충분, 파이프라인 단순 |
 | 수집기 언어 | TypeScript (웹과 동일) | `schema.ts` 타입 공유로 수집↔웹 스키마 불일치 원천 차단 |

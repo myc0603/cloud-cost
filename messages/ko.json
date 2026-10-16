@@ -61,7 +61,8 @@
       "lb": "로드밸런서 (L7)",
       "nat": "NAT 게이트웨이",
       "db": "관리형 DB",
-      "cache": "캐시 (Redis 호환)"
+      "cache": "캐시 (Redis 호환)",
+      "container": "서버리스 컨테이너"
     },
     "sizeGb": "용량 (GB)",
     "egressGb": "월 전송량 (GB)",
@@ -82,7 +83,8 @@
     "removeAria": "이 리소스 삭제",
     "vcpu": "vCPU",
     "ram": "RAM (GB)",
-    "count": "대수"
+    "count": "대수",
+    "containerCount": "컨테이너 수"
   },
   "estimate": {
     "storageLabel": {
@@ -115,6 +117,7 @@
     "dbHa": "이중화",
     "dbStorageLine": "DB 스토리지 {gb}GB ×{count}",
     "cacheLine": "캐시 {engine} {gb}GB ×{count}",
+    "containerLine": "컨테이너 {vcpu}vCPU/{gb}GB ×{count}",
     "cheapest": "최저가",
     "dataPending": "데이터 준비 중",
     "unavailable": "견적 불가",

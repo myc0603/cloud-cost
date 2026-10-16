@@ -8,6 +8,9 @@ import type { Arch, Provider, Term } from '@/lib/schema';
 
 const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
 
+/** 서버리스 컨테이너 상품명 — 비교 대상 고정 (estimator/container.ts) */
+const CONTAINER_PRODUCT: Record<Provider, string> = { aws: 'Fargate', azure: 'Container Apps', gcp: 'Cloud Run' };
+
 /** (provider, 카드 인덱스)의 인스턴스 선택 변경. isDefault(=최저가)면 override 해제 */
 type SelectInstance = (provider: Provider, resourceIndex: number, sku: string, isDefault: boolean) => void;
 
@@ -196,6 +199,22 @@ function LineLabel({
             ))}
           </select>
         )}
+        <NoCommitBadge term={term} matched={line.matched} />
+      </span>
+    );
+  }
+  if (line.kind === 'container') {
+    return (
+      <span>
+        {t('containerLine', { vcpu: line.spec.vcpu, gb: line.spec.ramGb, count: line.spec.count })}
+        {!line.matched ? (
+          line.noMatch ? <NoMatchNote noMatch={line.noMatch} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
+        ) : (
+          <span className="ml-1 font-mono text-slate-900">
+            → {CONTAINER_PRODUCT[provider]} {line.matched.vcpu}vCPU/{line.matched.ramGb}GB
+          </span>
+        )}
+        {line.matched && <ArchBadge arch={line.matched.arch} />}
         <NoCommitBadge term={term} matched={line.matched} />
       </span>
     );

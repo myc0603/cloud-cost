@@ -3,7 +3,7 @@
  * 리소스 모듈은 이 파일만 import한다 (index.ts를 import하면 순환 참조).
  */
 
-import type { CommitPrices, DbEngine, Provider, ProviderPricing, Region, StorageSku, Term, VmSku } from '../schema';
+import type { Arch, CommitPrices, DbEngine, Provider, ProviderPricing, Region, StorageSku, Term, VmSku } from '../schema';
 
 export interface VmSpec {
   vcpu: number;
@@ -26,7 +26,9 @@ export type Resource =
   /** 관리형 DB — 엔진 · 인스턴스 스펙 · 스토리지(인스턴스당) · 이중화 · 인스턴스 수 */
   | { type: 'db'; engine: DbEngine; vcpu: number; ramGb: number; storageGb: number; ha: boolean; count: number }
   /** Redis 호환 관리형 캐시 — 메모리(GB) · 이중화 · 캐시 개수 */
-  | { type: 'cache'; memoryGb: number; ha: boolean; count: number };
+  | { type: 'cache'; memoryGb: number; ha: boolean; count: number }
+  /** 서버리스 컨테이너 — 컨테이너당 vCPU(0.25~16) · 메모리(GB) · 상시 실행 컨테이너 수 */
+  | ({ type: 'container' } & VmSpec);
 
 export type ResourceType = Resource['type'];
 
@@ -117,7 +119,18 @@ export type EstimateLine = { resourceIndex: number } & (
       noMatch: NoMatchReason | null;
       monthlyUsd: number | null;
     }
+  /** 서버리스 컨테이너. matched·noMatch 둘 다 null = 요금 데이터 없음 */
+  | { kind: 'container'; spec: VmSpec; matched: ContainerMatch | null; noMatch: NoMatchReason | null; monthlyUsd: number | null }
 );
+
+/** 컨테이너 매칭 결과 — 플랫폼 허용 조합으로 올린 사이즈, perHour = 컨테이너 1개 시간당(요금 기준 반영) */
+export interface ContainerMatch {
+  vcpu: number;
+  ramGb: number;
+  arch: Arch;
+  perHour: number;
+  committed: boolean;
+}
 
 /** VM 매칭 결과 — perHour = 선택한 요금 기준(정가·약정)의 시간당, pricePerHour는 정가 그대로 */
 export interface VmMatch extends VmSku {

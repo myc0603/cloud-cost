@@ -6,7 +6,7 @@
  * 파이프라인: fetchComputeSkus → parseUnitPrices → buildVmSkus
  */
 
-import type { CacheGbTier, CachePrice, CommitPrices, DbEngine, DbEnginePricing, DbPrice, DbRateSet, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, Term, VmSku } from '../../src/lib/schema';
+import type { CacheGbTier, CachePrice, CommitPrices, ContainerPrice, DbEngine, DbEnginePricing, DbPrice, DbRateSet, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, Term, VmSku } from '../../src/lib/schema';
 import { GCP_MACHINE_TYPES } from './gcp-machine-types';
 
 const COMPUTE_SERVICE_ID = '6F81-5844-456A'; // Compute Engine
@@ -15,6 +15,7 @@ const GKE_SERVICE_ID = 'CCD8-9BF1-090E'; // Kubernetes Engine
 const NETWORKING_SERVICE_ID = 'E505-1604-58F8'; // Networking (Cloud Load Balancing·Cloud NAT)
 const CLOUD_SQL_SERVICE_ID = '9662-B51E-5089'; // Cloud SQL
 const MEMORYSTORE_REDIS_SERVICE_ID = '5AF5-2C11-D467'; // Cloud Memorystore for Redis
+const CLOUD_RUN_SERVICE_ID = '152E-C115-5142'; // Cloud Run
 
 export const GCP_REGION: Record<Region, string> = {
   seoul: 'asia-northeast3',
@@ -95,6 +96,7 @@ export const fetchGkeSkus = (apiKey: string) => fetchServiceSkus(apiKey, GKE_SER
 export const fetchNetworkingSkus = (apiKey: string) => fetchServiceSkus(apiKey, NETWORKING_SERVICE_ID);
 export const fetchCloudSqlSkus = (apiKey: string) => fetchServiceSkus(apiKey, CLOUD_SQL_SERVICE_ID);
 export const fetchMemorystoreSkus = (apiKey: string) => fetchServiceSkus(apiKey, MEMORYSTORE_REDIS_SERVICE_ID);
+export const fetchCloudRunSkus = (apiKey: string) => fetchServiceSkus(apiKey, CLOUD_RUN_SERVICE_ID);
 
 async function fetchServiceSkus(apiKey: string, serviceId: string): Promise<RawSku[]> {
   const all: RawSku[] = [];
@@ -379,6 +381,32 @@ export function parseMemorystore(redisSkus: RawSku[], gcpRegion: string, region:
     gbTiers.push(tier);
   }
   return { provider: 'gcp', region, engine: 'Redis', nodes: [], gbTiers };
+}
+
+/**
+ * Cloud Run 유연 CUD 할인율 — 지출 기반이라 공식 문서값
+ * (cloud.google.com/run/cud, 2026-10-17 확인: 인스턴스 기반 과금 1년 28%·3년 46%)
+ */
+const CLOUD_RUN_CUD: Record<Term, number> = { '1y': 0.28, '3y': 0.46 };
+
+/**
+ * Cloud Run — 인스턴스 기반 과금(CPU 상시 할당) vCPU·메모리 초 단가 → 시간 단가. x86만 지원.
+ * 요청 기반 과금·최소 인스턴스 유휴 요금·무료 사용량은 비교 기준(상시 실행, 프리티어 미반영)에 따라 제외.
+ */
+export function parseCloudRun(runSkus: RawSku[], gcpRegion: string, region: Region): ContainerPrice | null {
+  const price = (prefix: string) => {
+    const sku = runSkus.find((s) => isOnDemandIn(s, gcpRegion) && s.description.startsWith(prefix));
+    return sku && unitPriceOf(sku);
+  };
+  const cpu = price('Services CPU (Instance-based billing) in ');
+  const mem = price('Services Memory (Instance-based billing) in ');
+  if (!cpu || !mem) return null;
+  const rate = (k: number) => ({ vcpuPerHour: round6(cpu * 3600 * k), gbPerHour: round6(mem * 3600 * k) });
+  return {
+    provider: 'gcp',
+    region,
+    rates: { x86: { ...rate(1), commit: { '1y': rate(1 - CLOUD_RUN_CUD['1y']), '3y': rate(1 - CLOUD_RUN_CUD['3y']) } } },
+  };
 }
 
 /**

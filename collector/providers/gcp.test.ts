@@ -4,7 +4,7 @@
  */
 
 import assert from 'node:assert/strict';
-import { parseCloudSql, parseCommitUnitPrices, parseMemorystore, parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
+import { parseCloudRun, parseCloudSql, parseCommitUnitPrices, parseMemorystore, parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
 
 function fx(
   description: string,
@@ -173,5 +173,23 @@ assert.deepEqual(committed.commit, {
   '3y': +(2 * 0.014046 + 8 * 0.001883).toFixed(6),
 });
 assert.equal(e2s2.commit, undefined); // CUD 단가를 안 넘기면 약정가 없음
+
+// Cloud Run: 인스턴스 기반 과금 vCPU·메모리 초 단가 → 시간 단가, 유연 CUD 28%·46% — 요청 기반 과금·다른 리전 제외
+const run = parseCloudRun(
+  [
+    fx('Services CPU (Request-based billing) in asia-northeast3', 'OnDemand', 33_600),
+    fx('Services CPU (Instance-based billing) in asia-northeast3', 'OnDemand', 21_600),
+    fx('Services Memory (Instance-based billing) in asia-northeast3', 'OnDemand', 2_400),
+    fx('Services CPU (Instance-based billing) in us-east1', 'OnDemand', 18_000, ['us-east1']),
+  ],
+  'asia-northeast3',
+  'seoul',
+)!;
+assert.deepEqual(run.rates.x86, {
+  vcpuPerHour: 0.07776,
+  gbPerHour: 0.00864,
+  commit: { '1y': { vcpuPerHour: 0.055987, gbPerHour: 0.006221 }, '3y': { vcpuPerHour: 0.04199, gbPerHour: 0.004666 } },
+});
+assert.equal(parseCloudRun([], 'asia-northeast3', 'seoul'), null);
 
 console.log(`gcp.test: 모든 검증 통과 ✔ (VmSku ${vms.length}건 생성)`);

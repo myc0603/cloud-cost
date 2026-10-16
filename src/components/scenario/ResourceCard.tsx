@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import type { Resource } from '@/lib/estimator';
+import { CONTAINER_VCPUS, type Resource } from '@/lib/estimator';
 import type { DbEngine } from '@/lib/schema';
 import NumberField from './NumberField';
 
@@ -75,6 +75,23 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
               <input type="checkbox" checked={r.ha} onChange={(e) => onChange({ ...r, ha: e.target.checked })} />
               {t('dbHa')}
             </label>
+          </>
+        ) : r.type === 'container' ? (
+          <>
+            <label className="flex flex-col gap-1 text-xs text-slate-500">
+              {t('vcpu')}
+              <select
+                value={r.vcpu}
+                onChange={(e) => onChange({ ...r, vcpu: Number(e.target.value) })}
+                className="w-24 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900"
+              >
+                {CONTAINER_VCPUS.map((v) => (
+                  <option key={v} value={v}>{v}</option>
+                ))}
+              </select>
+            </label>
+            <NumberField label={t('ram')} value={r.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, ramGb })} />
+            <NumberField label={t('containerCount')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
           </>
         ) : r.type === 'lb' || r.type === 'nat' ? (
           <>

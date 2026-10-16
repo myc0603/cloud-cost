@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   buildAzureCache,
+  buildAzureContainer,
   buildAzureDbEngine,
   buildAzureEgress,
   buildAzureK8s,
@@ -208,4 +209,21 @@ test('buildAzureCache: 같은 미터의 예약 아이템 → 약정가, 이중�
   const c = buildAzureCache([amr({}), amr({ type: 'Reservation', reservationTerm: '1 Year', retailPrice: 1076 })], 'seoul')!;
   const perHour = +(1076 / 8760).toFixed(6);
   assert.deepEqual(c.nodes[0].commit, { '1y': { perHour, haPerHour: +(perHour * 2).toFixed(6) } });
+});
+
+test('buildAzureContainer: Container Apps 활성 vCPU·메모리 초 단가 → 시간 단가 + Savings Plan, 유휴·Dedicated 제외', () => {
+  const ca = (meterName: string, retailPrice: number, unitOfMeasure: string, skuName = 'Standard', savingsPlan?: AzurePriceItem['savingsPlan']) =>
+    item({ productName: 'Azure Container Apps', skuName, meterName, retailPrice, unitOfMeasure, savingsPlan });
+  const c = buildAzureContainer(
+    [
+      ca('Standard vCPU Idle Usage', 3e-6, '1 Second'), // ✘ 유휴
+      ca('Dedicated vCPU Usage', 0.057, '1 Hour', 'Dedicated'), // ✘ Dedicated
+      ca('Standard vCPU Active Usage', 2.4e-5, '1 Second', 'Standard', [{ term: '1 Year', retailPrice: 2.04e-5 }, { term: '3 Years', retailPrice: 1.992e-5 }]),
+      ca('Standard Memory Active Usage', 3e-6, '1 GiB Second', 'Standard', [{ term: '1 Year', retailPrice: 2.55e-6 }]),
+    ],
+    'seoul',
+  )!;
+  // 3년은 메모리 SP 단가가 없어 미적용
+  assert.deepEqual(c.rates, { x86: { vcpuPerHour: 0.0864, gbPerHour: 0.0108, commit: { '1y': { vcpuPerHour: 0.07344, gbPerHour: 0.00918 } } } });
+  assert.equal(buildAzureContainer([], 'seoul'), null);
 });

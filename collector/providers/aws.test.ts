@@ -5,7 +5,9 @@ import {
   parseCsvLine,
   parseDataTransferCsv,
   parseEc2OfferCsv,
-  parseEc2SavingsPlanCsv,
+  parseFargateCsv,
+  parseSavingsPlanCsv,
+  attachFargateCommit,
   parseEksCsv,
   parseElastiCacheCsv,
   parseRdsCsv,
@@ -234,7 +236,7 @@ test('parseRdsCsv: 엔진별 클래스(단일·Multi-AZ) + gp3 스토리지 — 
   assert.equal(db.engines.postgres, null); // PG 인스턴스 행 없음
 });
 
-test('parseEc2SavingsPlanCsv: EC2 Instance SP·선결제 없음·Linux 공유 테넌시만, us-east-1 접두사 없음', async () => {
+test('parseSavingsPlanCsv: EC2 Instance SP·선결제 없음·Linux 공유 테넌시만, us-east-1 접두사 없음', async () => {
   const H =
     'SKU,RateCode,Unit,EffectiveDate,DiscountedRate,Currency,DiscountedSKU,DiscountedServiceCode,DiscountedUsageType,DiscountedOperation,PurchaseOption,LeaseContractLength,LeaseContractLengthUnit,Product Family,DiscountedInstanceType';
   const r = (type: string, rate: string, o: { family?: string; option?: string; usage?: string; op?: string; years?: string } = {}) =>
@@ -250,8 +252,40 @@ test('parseEc2SavingsPlanCsv: EC2 Instance SP·선결제 없음·Linux 공유 �
     r('m6g.xlarge', '0.9', { usage: 'APN2-DedicatedUsage:m6g.xlarge' }), // ✘ 전용 테넌시
     r('m8i.large', '0.085', { usage: 'BoxUsage:m8i.large' }), // ✔ us-east-1 표기
   ];
-  const rates = await parseEc2SavingsPlanCsv(lines);
-  assert.deepEqual(Object.fromEntries(rates), { 'm6g.xlarge': { '1y': 0.1197, '3y': 0.0821 }, 'm8i.large': { '1y': 0.085 } });
+  const { ec2 } = await parseSavingsPlanCsv(lines);
+  assert.deepEqual(Object.fromEntries(ec2), { 'm6g.xlarge': { '1y': 0.1197, '3y': 0.0821 }, 'm8i.large': { '1y': 0.085 } });
+});
+
+test('Fargate: ECS 오퍼 → x86·ARM vCPU·GB 단가 (Windows·임시 스토리지·Managed Instances 제외) + Compute SP 약정', async () => {
+  const H = '"SKU","TermType","Unit","PricePerUnit","Currency","Location","usageType"';
+  const r = (usage: string, price: string) => `"X","OnDemand","hours","${price}","USD","Asia Pacific (Seoul)","${usage}"`;
+  const price = (await parseFargateCsv(
+    [
+      H,
+      r('APN2-Fargate-vCPU-Hours:perCPU', '0.04656'),
+      r('APN2-Fargate-GB-Hours', '0.00511'),
+      r('APN2-Fargate-ARM-vCPU-Hours:perCPU', '0.03725'),
+      r('APN2-Fargate-ARM-GB-Hours', '0.00409'),
+      r('APN2-Fargate-Windows-vCPU-Hours:perCPU', '0.053544'), // ✘ Windows
+      r('APN2-Fargate-EphemeralStorage-GB-Hours', '0.000127'), // ✘ 임시 스토리지
+      r('APN2-ECS-Managed-Instances:t3a.large-management-hours', '0.011'), // ✘
+    ],
+    'seoul',
+  ))!;
+  assert.deepEqual({ ...price.rates }, { x86: { vcpuPerHour: 0.04656, gbPerHour: 0.00511 }, arm: { vcpuPerHour: 0.03725, gbPerHour: 0.00409 } });
+
+  const SH = 'SKU,DiscountedRate,Currency,DiscountedUsageType,DiscountedOperation,PurchaseOption,LeaseContractLength,LeaseContractLengthUnit,Product Family,DiscountedInstanceType';
+  const sp = (usage: string, rate: string, years = '1', option = 'No Upfront') => `X,${rate},USD,${usage},,${option},${years},year,ComputeSavingsPlans,`;
+  const { fargate } = await parseSavingsPlanCsv([
+    SH,
+    sp('APN2-Fargate-vCPU-Hours:perCPU', '0.037248'),
+    sp('APN2-Fargate-GB-Hours', '0.004088'),
+    sp('APN2-Fargate-vCPU-Hours:perCPU', '0.03', '1', 'All Upfront'), // ✘ 선결제
+    sp('APN2-Fargate-ARM-vCPU-Hours:perCPU', '0.02011', '3'), // ARM 3년은 GB 요율이 없어 미적용
+  ]);
+  attachFargateCommit(price, fargate);
+  assert.deepEqual(price.rates.x86?.commit, { '1y': { vcpuPerHour: 0.037248, gbPerHour: 0.004088 } });
+  assert.equal(price.rates.arm?.commit, undefined);
 });
 
 test('parseRdsCsv: 예약가 — 선결제 없음 우선, 없으면 부분 선결제 환산, Convertible·전액 선결제 무시, 배포 옵션별', async () => {

@@ -8,6 +8,7 @@
 import type {
   CachePrice,
   CommitPrices,
+  ContainerPrice,
   DbEngine,
   DbEnginePricing,
   DbInstance,
@@ -44,6 +45,8 @@ export interface AzurePriceItem {
   type: string;
   /** 예약(type === 'Reservation') 아이템만: '1 Year' | '3 Years'. retailPrice는 기간 총액 */
   reservationTerm?: string;
+  /** Savings Plan 단가(정가와 같은 단위) — 미리보기 api-version으로 조회할 때만 온다 */
+  savingsPlan?: { term: string; retailPrice: number }[];
 }
 
 const RESERVATION_TERM: Record<string, Term> = { '1 Year': '1y', '3 Years': '3y' };
@@ -82,8 +85,10 @@ async function fetchWithRetry(url: string, attempts = 4): Promise<Response> {
   }
 }
 
-async function fetchPriceItems(filter: string): Promise<AzurePriceItem[]> {
-  let url: string | null = `https://prices.azure.com/api/retail/prices?$filter=${encodeURIComponent(filter)}`;
+/** withSavingsPlan: Savings Plan 단가는 미리보기 api-version에서만 내려온다 */
+async function fetchPriceItems(filter: string, withSavingsPlan = false): Promise<AzurePriceItem[]> {
+  const version = withSavingsPlan ? 'api-version=2023-01-01-preview&' : '';
+  let url: string | null = `https://prices.azure.com/api/retail/prices?${version}$filter=${encodeURIComponent(filter)}`;
   const items: AzurePriceItem[] = [];
 
   while (url) {
@@ -422,4 +427,37 @@ export async function collectAzureCache(region: Region): Promise<CachePrice | nu
     `armRegionName eq '${AZURE_REGION[region]}' and ${PRICE_TYPES} and serviceName eq 'Redis Cache'`,
   );
   return buildAzureCache(items, region);
+}
+
+/**
+ * Azure Container Apps — Consumption 플랜 활성(active) vCPU·메모리 초 단가 → 시간 단가.
+ * 유휴(idle) 요금·요청 요금·월 무료 사용량은 비교 기준(상시 실행, 프리티어 미반영)에 따라 제외.
+ * 약정: Container Apps에 적용되는 유일한 약정인 Savings Plan(같은 미터의 savingsPlan 단가). x86만 지원.
+ */
+export function buildAzureContainer(items: AzurePriceItem[], region: Region): ContainerPrice | null {
+  const meter = (name: string, unit: string) =>
+    items.find(
+      (i) => i.productName === 'Azure Container Apps' && i.skuName === 'Standard' && i.meterName === name && i.unitOfMeasure === unit && i.type === 'Consumption' && i.retailPrice > 0,
+    );
+  const cpu = meter('Standard vCPU Active Usage', '1 Second');
+  const mem = meter('Standard Memory Active Usage', '1 GiB Second');
+  if (!cpu || !mem) return null;
+  const perHour = (x: number) => +(x * 3600).toFixed(6);
+  const sp = (i: AzurePriceItem, term: string) => i.savingsPlan?.find((p) => p.term === term)?.retailPrice;
+  const x86: NonNullable<ContainerPrice['rates']['x86']> = { vcpuPerHour: perHour(cpu.retailPrice), gbPerHour: perHour(mem.retailPrice) };
+  const terms: CommitPrices<{ vcpuPerHour: number; gbPerHour: number }> = {};
+  for (const [term, label] of [['1y', '1 Year'], ['3y', '3 Years']] as const) {
+    const [c, m] = [sp(cpu, label), sp(mem, label)];
+    if (c && m && c < cpu.retailPrice && m < mem.retailPrice) terms[term] = { vcpuPerHour: perHour(c), gbPerHour: perHour(m) };
+  }
+  if (Object.keys(terms).length > 0) x86.commit = terms;
+  return { provider: 'azure', region, rates: { x86 } };
+}
+
+export async function collectAzureContainer(region: Region): Promise<ContainerPrice | null> {
+  const items = await fetchPriceItems(
+    `armRegionName eq '${AZURE_REGION[region]}' and priceType eq 'Consumption' and serviceName eq 'Azure Container Apps'`,
+    true,
+  );
+  return buildAzureContainer(items, region);
 }

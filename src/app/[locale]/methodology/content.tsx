@@ -69,9 +69,18 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
           가격 페이지의 &quot;1노드 / 2노드(이중화)&quot; 구분에 따라 <b>2배로 추정</b>했습니다.
         </li>
         <li className={LI}>
+          서버리스 컨테이너는 AWS <b>ECS Fargate</b> · Azure <b>Container Apps</b>(Consumption) · GCP <b>Cloud Run</b>(CPU 상시 할당)을
+          컨테이너가 24시간 실행되는 기준으로 비교합니다. 플랫폼마다 허용되는 vCPU·메모리 조합이 달라 요구 스펙 이상인 가장 싼 조합으로
+          올려 계산합니다(Container Apps는 메모리 = vCPU × 2·최대 4 vCPU, Cloud Run은 vCPU 정수). Container Apps·Cloud Run은 HTTPS
+          인그레스가 포함되지만 Fargate는 로드밸런서(ALB)를 별도로 더해야 합니다. 유휴 시간 할인·요청 요금(Container Apps 100만 건당
+          $0.4)·월 무료 사용량은 반영하지 않습니다. ARM은 Fargate만 지원합니다.
+        </li>
+        <li className={LI}>
           <b>약정 할인</b>(요금 기준: 1년·3년 약정)은 3사 모두 <b>인스턴스 고정형 + 선결제 없음</b> 기준입니다: AWS EC2 Instance Savings
           Plans(Standard RI와 같은 요율)·RDS/ElastiCache 예약 인스턴스, Azure 예약(월납·선납 총액 동일), GCP 리소스 기반 약정 사용
-          할인(CUD, 월납). 더 유연한 상품(AWS Compute Savings Plans·Azure Savings Plan)은 할인 폭이 작아 쓰지 않습니다. 약정가 기준으로
+          할인(CUD, 월납). 더 유연한 상품(AWS Compute Savings Plans·Azure Savings Plan)은 할인 폭이 작아 쓰지 않습니다. 단, 서버리스
+          컨테이너는 고정형 약정이 없어 각 사의 유일한 약정(Fargate Compute Savings Plans·Container Apps Savings Plan·Cloud Run 유연
+          CUD 1년 28%·3년 46%)을 적용합니다. 약정가 기준으로
           최저가 인스턴스를 다시 찾으며, 약정 상품이 없는 SKU는 정가로 계산하고 &quot;약정가 없음&quot;으로 표시합니다.
         </li>
         <li className={LI}>
@@ -172,10 +181,19 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           API only lists the single-node price, so we <b>estimate HA at 2×</b> based on the pricing page&apos;s one-node / two-node (HA) split.
         </li>
         <li className={LI}>
+          Serverless containers compare AWS <b>ECS Fargate</b> · Azure <b>Container Apps</b> (Consumption) · GCP <b>Cloud Run</b> (CPU
+          always allocated) running 24/7. Each platform allows different vCPU/memory combinations, so we round up to the cheapest allowed
+          combination that meets the spec (Container Apps: memory = vCPU × 2, up to 4 vCPU; Cloud Run: whole vCPUs). Container Apps and
+          Cloud Run include HTTPS ingress, while Fargate needs a separate load balancer (ALB). Idle-time discounts, request charges
+          (Container Apps $0.4 per million) and monthly free grants are not included. Only Fargate offers ARM.
+        </li>
+        <li className={LI}>
           <b>Commitment discounts</b> (Pricing: 1-year or 3-year commitment) use <b>instance-specific commitments with no upfront
           payment</b> on all three: AWS EC2 Instance Savings Plans (same rates as Standard RIs) and RDS/ElastiCache reserved instances,
           Azure reservations (monthly and upfront totals are equal), and GCP resource-based committed use discounts (CUDs, billed
-          monthly). More flexible plans (AWS Compute Savings Plans, Azure savings plan) give smaller discounts and are not used. The
+          monthly). More flexible plans (AWS Compute Savings Plans, Azure savings plan) give smaller discounts and are not used, except
+          for serverless containers, which have no instance-specific commitments — there we use each provider&apos;s only option
+          (Fargate Compute Savings Plans, Container Apps savings plan, Cloud Run flexible CUDs at 28% / 46%). The
           cheapest instance is re-matched at commitment prices; SKUs without a commitment offer are priced on-demand and marked
           &quot;no commitment price&quot;.
         </li>

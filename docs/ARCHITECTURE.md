@@ -88,7 +88,8 @@ cloud-cost/
 │       ├── lb.json          # L7 로드밸런서 시간당 + 처리 GB당
 │       ├── nat.json         # NAT 게이트웨이 시간당(게이트웨이당 또는 VM당) + 처리 GB당
 │       ├── db.json          # 관리형 DB — 엔진별 인스턴스 목록(AWS·Azure) 또는 커스텀 단가(GCP) + 스토리지
-│       └── cache.json       # Redis 호환 캐시 — 노드 목록(AWS·Azure) 또는 GB 구간 단가(GCP)
+│       ├── cache.json       # Redis 호환 캐시 — 노드 목록(AWS·Azure) 또는 GB 구간 단가(GCP)
+│       └── container.json   # 서버리스 컨테이너 — vCPU·GB 시간 단가(아키텍처별) + 약정
 ├── messages/                # UI 문구 (en.json / ko.json) — next-intl
 ├── src/
 │   ├── app/                 # 라우트 (§6)
@@ -145,6 +146,7 @@ src/
         ├── nat.ts                # NAT 게이트웨이 — GCP는 시나리오 VM 수 기준(32대/게이트웨이 상한)
         ├── db.ts                 # 관리형 DB — AWS·Azure 사이즈 목록 매칭 / GCP 커스텀 사이즈 계산 + 스토리지
         ├── cache.ts              # Redis 호환 캐시 — AWS·Azure 노드 매칭 / GCP GB 구간 단가
+        ├── container.ts          # 서버리스 컨테이너 — 플랫폼별 허용 vCPU·메모리 조합으로 올림
         └── estimator.test.ts     # 견적 정확성 = 테스트로 보장
 ```
 
@@ -238,6 +240,10 @@ interface CacheGbTier { upToGb: number | null; perGbHour: number; haPerGbHour: n
   commit?: CommitPrices<{ perGbHour: number; haPerGbHour: number }> } // GCP M1(5GB 미만)은 약정 없음
 interface CachePrice { provider: Provider; region: Region; engine: string; nodes: CacheNode[]; gbTiers: CacheGbTier[] | null }
 
+/** 서버리스 컨테이너 — Fargate / Container Apps / Cloud Run 상시 실행 vCPU·GB 시간 단가 (ARM은 Fargate만). 허용 사이즈 규칙은 estimator/container.ts */
+interface ContainerRate { vcpuPerHour: number; gbPerHour: number }
+interface ContainerPrice { provider: Provider; region: Region; rates: Partial<Record<Arch, ContainerRate & { commit?: CommitPrices<ContainerRate> }>> }
+
 /** data/meta.json */
 interface Meta {
   collectedAt: string;      // ISO 8601
@@ -315,3 +321,4 @@ flowchart TD
 | 캐시 지표 (2026-10-12) | Redis 호환: **AWS ElastiCache Valkey** / **Azure Managed Redis** / GCP Memorystore for Redis(인스턴스형). 입력 = 메모리 GB · 이중화 · 개수 | AWS는 Redis OSS보다 20% 싼 기본 엔진 Valkey(Redis 호환). Azure Cache for Redis(C0~C6)는 2028-09-30 퇴역 공지 → 대체재인 Managed Redis. Azure 이중화 = API 미터(노드 1개) × 2는 가격 페이지의 1노드/2노드 열 구조로 **추론**(숫자 직접 대조 불가) — methodology 고지. GCP는 용량이 속한 구간 단가가 용량 전체에 적용(누적 아님), 1~300GB. Memcached·노드형 Memorystore(클러스터 전제) 제외. Azure B0 용량은 문서가 엇갈려 0.5GB, 235GB까지만 수록 |
 | K8s 노드 버스트 (2026-10-17) | 워커 노드는 버스트 옵션과 무관하게 **항상 버스트 제외** | 파드를 몰아넣어 꾸준히 쓰는 노드엔 CPU 크레딧 방식이 안 맞음. GCP는 4c16g급 버스트가 없어 AWS·Azure만 버스트가 뽑히던 불공정도 해소. 작은 개발 클러스터용 허용 요구가 오면 카드별 옵션으로 확장 |
 | 약정 할인 (2026-10-17) | 요금 기준 토글(정가 / 1년 / 3년, URL `term=1y\|3y`). 3사 **인스턴스 고정형 + 선결제 없음**: AWS EC2 Instance SP(VM)·RDS/ElastiCache Standard RI / Azure 예약(VM·DB vCore·Managed Redis) / GCP 리소스 기반 CUD(VM), Cloud SQL·Memorystore는 지출 기반 CUD 문서 할인율(25·52% / 20·40%, M1 제외). 적용 범위 = VM·K8s 노드·DB·캐시 컴퓨트, 나머지는 정가 | 3사가 서로 대응되고 할인 폭이 가장 큰 상품끼리 비교. 유연형(Compute SP·Azure SP)은 할인 폭이 작아 미사용. AWS VM은 RI 대신 SP 파일 — 요율이 같고 8세대 등 RI 없는 신형까지 덮음. 선결제 없음이 없는 상품(RDS 3년 일부)은 부분 선결제 ÷ 기간 시간을 더해 환산. 약정가 기준으로 최저가 재매칭, 약정가 없는 SKU(Azure B·Fsv2, GCP T2A 등)는 정가 + "약정가 없음" 배지. Azure DB·Redis 이중화 약정 = 2배(대기 vCore·노드까지 예약 가정) |
+| 서버리스 컨테이너 지표 (2026-10-17) | AWS **ECS Fargate** / Azure **Container Apps**(Consumption, 활성 요금) / GCP **Cloud Run**(인스턴스 기반 과금 = CPU 상시 할당). 입력 = 컨테이너당 vCPU(0.25~16 선택) · 메모리 GB · 컨테이너 수, 24시간 실행 | 시장에서 실제로 비교되는 조합. Azure Container Instances는 Fargate와 단가가 같지만 오토스케일·인그레스·롤링 배포가 없어 운영용으론 덜 쓰여 제외. 허용 vCPU·메모리 조합(Fargate 표 / CA 1:2·최대 4 vCPU / Cloud Run 정수 vCPU·vCPU별 메모리 범위)은 문서값 상수, 요구 이상 최저가 조합으로 올림. Fargate만 인그레스 미포함(ALB 별도) — 고지. 유휴 할인·요청 요금·무료 사용량 제외. 약정: 고정형이 없어 각 사 유일한 약정(Compute SP / Azure SP / Cloud Run 유연 CUD 28·46% 문서값) |

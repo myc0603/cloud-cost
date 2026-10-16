@@ -14,6 +14,8 @@ import type {
   CacheNode,
   CommitPrices,
   CachePrice,
+  ContainerPrice,
+  ContainerRate,
   DbEngine,
   DbEnginePricing,
   DbInstance,
@@ -259,29 +261,89 @@ export async function parseEc2OfferCsv(
   };
 }
 
-/**
- * Savings Plans 오퍼 CSV → 인스턴스 타입별 EC2 Instance Savings Plans 시간당 요율 (선결제 없음, Linux 공유 테넌시).
- * EC2 Instance SP = Standard RI와 같은 요율이고, 8세대 등 RI가 없는 신형 인스턴스까지 덮는다.
- * 요율은 이미 시간당 실효가라 선결제 환산이 필요 없다. us-east-1은 usageType에 리전 접두사가 없다.
- */
 const SP_TERM: Record<string, Term> = { '1 year': '1y', '3 year': '3y' };
 
-export async function parseEc2SavingsPlanCsv(
-  lines: AsyncIterable<string> | Iterable<string>,
-): Promise<Map<string, CommitPrices<number>>> {
-  const rates = new Map<string, CommitPrices<number>>();
+/** Fargate 단가 usageType → (아키텍처, 항목). Windows·임시 스토리지 제외. us-east-1은 리전 접두사 없음 */
+function fargateKey(usageType: string): [Arch, keyof ContainerRate] | null {
+  const m = usageType.match(/^(?:[A-Z]+\d-)?Fargate-(ARM-)?(vCPU-Hours:perCPU|GB-Hours)$/);
+  return m ? [m[1] ? 'arm' : 'x86', m[2] === 'GB-Hours' ? 'gbPerHour' : 'vcpuPerHour'] : null;
+}
+
+export interface SavingsPlanRates {
+  /** 인스턴스 타입 → EC2 Instance SP 요율 */
+  ec2: Map<string, CommitPrices<number>>;
+  /** Fargate — Compute SP 요율 (Fargate는 EC2 Instance SP 대상이 아니라 유연형 Compute SP뿐) */
+  fargate: Partial<Record<Arch, CommitPrices<Partial<ContainerRate>>>>;
+}
+
+/**
+ * Savings Plans 오퍼 CSV(리전당 ~190MB, 한 번만 스트리밍) → 선결제 없음 시간당 요율.
+ * - EC2: EC2 Instance Savings Plans, Linux 공유 테넌시. Standard RI와 같은 요율이고 8세대 등 RI가 없는 신형까지 덮는다
+ * - Fargate: Compute Savings Plans (Fargate에 적용되는 유일한 약정)
+ * 요율은 이미 시간당 실효가라 선결제 환산이 필요 없다. us-east-1은 usageType에 리전 접두사가 없다.
+ */
+export async function parseSavingsPlanCsv(lines: AsyncIterable<string> | Iterable<string>): Promise<SavingsPlanRates> {
+  const out: SavingsPlanRates = { ec2: new Map(), fargate: {} };
   await scanOfferCsv(lines, (get) => {
-    if (get('Product Family') !== 'EC2InstanceSavingsPlans' || get('PurchaseOption') !== 'No Upfront') return;
-    if (get('Currency') !== 'USD' || get('DiscountedOperation') !== 'RunInstances') return;
-    if (!/^(?:[A-Z]+\d-)?BoxUsage:/.test(get('DiscountedUsageType'))) return;
+    if (get('PurchaseOption') !== 'No Upfront' || get('Currency') !== 'USD') return;
     const term = SP_TERM[`${get('LeaseContractLength')} ${get('LeaseContractLengthUnit')}`];
     const price = Number(get('DiscountedRate'));
     if (!term || !(price > 0)) return;
-    const entry = rates.get(get('DiscountedInstanceType')) ?? {};
-    entry[term] ??= +price.toFixed(6);
-    rates.set(get('DiscountedInstanceType'), entry);
+    const family = get('Product Family');
+
+    if (family === 'EC2InstanceSavingsPlans') {
+      if (get('DiscountedOperation') !== 'RunInstances' || !/^(?:[A-Z]+\d-)?BoxUsage:/.test(get('DiscountedUsageType'))) return;
+      const entry = out.ec2.get(get('DiscountedInstanceType')) ?? {};
+      entry[term] ??= +price.toFixed(6);
+      out.ec2.set(get('DiscountedInstanceType'), entry);
+      return;
+    }
+    if (family === 'ComputeSavingsPlans') {
+      const key = fargateKey(get('DiscountedUsageType'));
+      if (!key) return;
+      ((out.fargate[key[0]] ??= {})[term] ??= {})[key[1]] ??= +price.toFixed(6);
+    }
   });
-  return rates;
+  return out;
+}
+
+/**
+ * AmazonECS 오퍼 CSV → Fargate Linux vCPU·GB 시간 단가 (x86·ARM). 약정은 SP 파일에서 붙인다.
+ * ECS Managed Instances·Windows·임시 스토리지(20GB 기본 포함분 초과 시) 행은 제외.
+ */
+export async function parseFargateCsv(
+  lines: AsyncIterable<string> | Iterable<string>,
+  region: Region,
+): Promise<ContainerPrice | null> {
+  const acc: Partial<Record<Arch, Partial<ContainerRate>>> = {};
+  await scanOfferCsv(lines, (get) => {
+    if (get('TermType') !== 'OnDemand' || get('Currency') !== 'USD') return;
+    if (get('Location') !== AWS_LOCATION[region]) return;
+    const key = fargateKey(get('usageType'));
+    const price = Number(get('PricePerUnit'));
+    if (key && price > 0) (acc[key[0]] ??= {})[key[1]] ??= +price.toFixed(6);
+  });
+  const rates: ContainerPrice['rates'] = {};
+  for (const arch of ['x86', 'arm'] as const) {
+    const r = acc[arch];
+    if (r?.vcpuPerHour !== undefined && r.gbPerHour !== undefined) rates[arch] = { vcpuPerHour: r.vcpuPerHour, gbPerHour: r.gbPerHour };
+  }
+  return rates.x86 ? { provider: 'aws', region, rates } : null;
+}
+
+/** SP 요율을 Fargate 단가에 붙인다 — vCPU·GB 둘 다 있고 정가보다 싼 기간만 */
+export function attachFargateCommit(price: ContainerPrice | null, sp: SavingsPlanRates['fargate']): void {
+  if (!price) return;
+  for (const [arch, rate] of Object.entries(price.rates) as [Arch, NonNullable<ContainerPrice['rates']['x86']>][]) {
+    const commit: CommitPrices<ContainerRate> = {};
+    for (const term of ['1y', '3y'] as const) {
+      const c = sp[arch]?.[term];
+      if (c?.vcpuPerHour !== undefined && c.gbPerHour !== undefined && c.vcpuPerHour < rate.vcpuPerHour && c.gbPerHour < rate.gbPerHour) {
+        commit[term] = { vcpuPerHour: c.vcpuPerHour, gbPerHour: c.gbPerHour };
+      }
+    }
+    if (Object.keys(commit).length > 0) rate.commit = commit;
+  }
 }
 
 /**
@@ -553,19 +615,22 @@ export async function collectAws(
   nat: NatPrice | null;
   db: DbPrice | null;
   cache: CachePrice | null;
+  container: ContainerPrice | null;
 }> {
   const awsRegion = AWS_REGION[region];
   const ec2 = await parseEc2OfferCsv(await streamOffer('AmazonEC2', awsRegion), region);
-  const sp = await parseEc2SavingsPlanCsv(await streamSavingsPlans(awsRegion));
+  const sp = await parseSavingsPlanCsv(await streamSavingsPlans(awsRegion));
   for (const vm of ec2.vms) {
-    const commit = cheaperThan(vm.pricePerHour, sp.get(vm.sku));
+    const commit = cheaperThan(vm.pricePerHour, sp.ec2.get(vm.sku));
     if (commit) vm.commit = commit;
   }
+  const container = await parseFargateCsv(await streamOffer('AmazonECS', awsRegion), region);
+  attachFargateCommit(container, sp.fargate);
   const s3 = await parseS3OfferCsv(await streamOffer('AmazonS3', awsRegion), region);
   const egress = await parseDataTransferCsv(await streamOffer('AWSDataTransfer', awsRegion), region);
   const k8s = await parseEksCsv(await streamOffer('AmazonEKS', awsRegion), region);
   const lb = await parseAlbCsv(await streamOffer('AWSELB', awsRegion), region);
   const db = await parseRdsCsv(await streamOffer('AmazonRDS', awsRegion), region);
   const cache = await parseElastiCacheCsv(await streamOffer('AmazonElastiCache', awsRegion), region);
-  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat, db, cache };
+  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat, db, cache, container };
 }

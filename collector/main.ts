@@ -3,7 +3,7 @@
  * 실행: tsx collector/main.ts [all|gcp|aws|azure] [--force]
  *   - gcp: GCP_API_KEY 환경변수 또는 .env 필요
  *   - --force: 검증 실패를 무시하고 기록 (실제 대규모 가격 개편일 때만)
- * 산출: data/{provider}/{region}/vm.json · storage.json · egress.json · k8s.json · lb.json · nat.json · db.json · cache.json + data/meta.json
+ * 산출: data/{provider}/{region}/vm.json · storage.json · egress.json · k8s.json · lb.json · nat.json · db.json · cache.json · container.json + data/meta.json
  *
  * 흐름: 전부 수집 → 기존 스냅샷과 검증 → 하나라도 이상하면 아무것도 쓰지 않고
  * 실패 종료(exit 1) → CI가 실패하면 커밋이 없고 GitHub이 알림을 보낸다.
@@ -14,6 +14,7 @@ import type { Meta, Region } from '../src/lib/schema';
 import { collectAws } from './providers/aws';
 import {
   collectAzureCache,
+  collectAzureContainer,
   collectAzureDb,
   collectAzureEgress,
   collectAzureK8s,
@@ -25,12 +26,14 @@ import {
 import {
   GCP_REGION,
   buildVmSkus,
+  fetchCloudRunSkus,
   fetchCloudSqlSkus,
   fetchComputeSkus,
   fetchGcsSkus,
   fetchMemorystoreSkus,
   fetchGkeSkus,
   fetchNetworkingSkus,
+  parseCloudRun,
   parseCloudSql,
   parseGcpEgress,
   parseGcpLb,
@@ -65,7 +68,7 @@ function readOldSnapshot(provider: string, region: Region): Snapshot | null {
   if (!existsSync(`${dir}/vm.json`)) return null;
   const read = <T>(file: string, fallback: T): T =>
     existsSync(`${dir}/${file}`) ? JSON.parse(readFileSync(`${dir}/${file}`, 'utf8')) : fallback;
-  return { vms: read('vm.json', []), storage: read('storage.json', []), egress: read('egress.json', null), k8s: read('k8s.json', null), lb: read('lb.json', null), nat: read('nat.json', null), db: read('db.json', null), cache: read('cache.json', null) };
+  return { vms: read('vm.json', []), storage: read('storage.json', []), egress: read('egress.json', null), k8s: read('k8s.json', null), lb: read('lb.json', null), nat: read('nat.json', null), db: read('db.json', null), cache: read('cache.json', null), container: read('container.json', null) };
 }
 
 function writeSnapshot({ provider, region, snap, vmSamples }: Job) {
@@ -79,6 +82,7 @@ function writeSnapshot({ provider, region, snap, vmSamples }: Job) {
   writeFileSync(`${dir}/nat.json`, JSON.stringify(snap.nat, null, 2) + '\n');
   writeFileSync(`${dir}/db.json`, JSON.stringify(snap.db, null, 2) + '\n');
   writeFileSync(`${dir}/cache.json`, JSON.stringify(snap.cache, null, 2) + '\n');
+  writeFileSync(`${dir}/container.json`, JSON.stringify(snap.container, null, 2) + '\n');
 
   console.log(`\n━━━ ${provider} / ${region} ━━━`);
   console.log(`VmSku ${snap.vms.length}건 · 스토리지 ${snap.storage.length}종 · egress ${snap.egress ? `구간 ${snap.egress.tiers.length}개(무료 ${snap.egress.freeGb}GB)` : '없음'} → ${dir}/`);
@@ -97,6 +101,8 @@ function writeSnapshot({ provider, region, snap, vmSamples }: Job) {
   }
   const c = snap.cache;
   console.log(`  ${'cache'.padEnd(16)} ${!c ? '없음' : c.gbTiers ? `${c.engine} GB 구간 ${c.gbTiers.length}개 (첫 구간 $${c.gbTiers[0].perGbHour}/GB·h)` : `${c.engine} 노드 ${c.nodes.length}종`}`);
+  const x86 = snap.container?.rates.x86;
+  console.log(`  ${'container'.padEnd(16)} ${x86 ? `vCPU $${x86.vcpuPerHour}/h + $${x86.gbPerHour}/GB·h${snap.container?.rates.arm ? ' (+ARM)' : ''}` : '없음'}`);
 }
 
 /** 환율(USD→KRW) — 무료 API, 실패해도 수집을 막지 않는다 (기존 값 유지) */
@@ -121,16 +127,17 @@ async function collectGcpJobs(): Promise<Job[]> {
     console.error('GCP_API_KEY가 없습니다. .env에 GCP_API_KEY=<키>를 설정하세요.');
     process.exit(1);
   }
-  console.log('[gcp] Compute Engine + Cloud Storage + GKE + Networking + Cloud SQL + Memorystore SKU 수집 중... (수만 건, 수십 초 소요)');
-  const [compute, gcs, gke, net, sql, redis] = await Promise.all([
+  console.log('[gcp] Compute Engine + Cloud Storage + GKE + Networking + Cloud SQL + Memorystore + Cloud Run SKU 수집 중... (수만 건, 수십 초 소요)');
+  const [compute, gcs, gke, net, sql, redis, run] = await Promise.all([
     fetchComputeSkus(apiKey),
     fetchGcsSkus(apiKey),
     fetchGkeSkus(apiKey),
     fetchNetworkingSkus(apiKey),
     fetchCloudSqlSkus(apiKey),
     fetchMemorystoreSkus(apiKey),
+    fetchCloudRunSkus(apiKey),
   ]);
-  const total = compute.length + gcs.length + gke.length + net.length + sql.length + redis.length;
+  const total = compute.length + gcs.length + gke.length + net.length + sql.length + redis.length + run.length;
   console.log(`[gcp] 원본 SKU ${total.toLocaleString()}건 수신`);
 
   return REGIONS.map((region) => {
@@ -151,6 +158,7 @@ async function collectGcpJobs(): Promise<Job[]> {
         nat: parseGcpNat(net, region),
         db: parseCloudSql(sql, gcpRegion, region),
         cache: parseMemorystore(redis, gcpRegion, region),
+        container: parseCloudRun(run, gcpRegion, region),
       },
       vmSamples: ['e2-micro', 'e2-standard-2', 'n2-standard-4'],
     };
@@ -160,7 +168,7 @@ async function collectGcpJobs(): Promise<Job[]> {
 async function collectAwsJobs(): Promise<Job[]> {
   const jobs: Job[] = [];
   for (const region of REGIONS) {
-    console.log(`[aws/${region}] EC2 + S3 + DataTransfer + EKS + ELB + RDS + ElastiCache 오퍼 CSV 스트리밍 파싱 중... (수백 MB)`);
+    console.log(`[aws/${region}] EC2 + Savings Plans + S3 + DataTransfer + EKS + ELB + RDS + ElastiCache + ECS(Fargate) 오퍼 CSV 스트리밍 파싱 중... (수백 MB)`);
     jobs.push({ provider: 'aws', region, snap: await collectAws(region), vmSamples: ['t3.medium', 'm5.large', 'c5.xlarge'] });
   }
   return jobs;
@@ -170,7 +178,7 @@ async function collectAzureJobs(): Promise<Job[]> {
   const jobs: Job[] = [];
   for (const region of REGIONS) {
     console.log(`[azure/${region}] Retail Prices API 수집 중...`);
-    const [vms, storage, egress, k8s, lb, nat, db, cache] = await Promise.all([
+    const [vms, storage, egress, k8s, lb, nat, db, cache, container] = await Promise.all([
       collectAzureVm(region),
       collectAzureStorage(region),
       collectAzureEgress(region),
@@ -179,8 +187,9 @@ async function collectAzureJobs(): Promise<Job[]> {
       collectAzureNat(region),
       collectAzureDb(region),
       collectAzureCache(region),
+      collectAzureContainer(region),
     ]);
-    jobs.push({ provider: 'azure', region, snap: { vms, storage, egress, k8s, lb, nat, db, cache }, vmSamples: ['Standard_B2s', 'Standard_D2s_v5', 'Standard_F4s_v2'] });
+    jobs.push({ provider: 'azure', region, snap: { vms, storage, egress, k8s, lb, nat, db, cache, container }, vmSamples: ['Standard_B2s', 'Standard_D2s_v5', 'Standard_F4s_v2'] });
   }
   return jobs;
 }

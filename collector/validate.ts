@@ -6,7 +6,7 @@
  * 전에 차단하고 기존 스냅샷을 유지한다. 상세: docs/ARCHITECTURE.md §2
  */
 
-import type { CachePrice, DbPrice, EgressTier, K8sClusterPrice, LbPrice, NatPrice, StorageSku, VmSku } from '../src/lib/schema';
+import type { CachePrice, ContainerPrice, DbPrice, EgressTier, K8sClusterPrice, LbPrice, NatPrice, StorageSku, VmSku } from '../src/lib/schema';
 
 export interface Snapshot {
   vms: VmSku[];
@@ -17,6 +17,7 @@ export interface Snapshot {
   nat: NatPrice | null;
   db: DbPrice | null;
   cache: CachePrice | null;
+  container: ContainerPrice | null;
 }
 
 /** 전일 스냅샷 대비 이상 징후 목록을 반환. 빈 배열 = 통과. 이전 데이터가 없으면(첫 수집) 통과 */
@@ -78,6 +79,8 @@ export function validateSnapshot(label: string, prev: Snapshot | null, next: Sna
       [`DB(${e}) vCPU 단가`, prev.db?.engines[e]?.custom?.vcpuPerHour, next.db?.engines[e]?.custom?.vcpuPerHour],
     ]),
     ['캐시 GB 단가(첫 구간)', prev.cache?.gbTiers?.[0]?.perGbHour, next.cache?.gbTiers?.[0]?.perGbHour],
+    ['컨테이너 vCPU 단가', prev.container?.rates.x86?.vcpuPerHour, next.container?.rates.x86?.vcpuPerHour],
+    ['컨테이너 GB 단가', prev.container?.rates.x86?.gbPerHour, next.container?.rates.x86?.gbPerHour],
   ];
   for (const [name, before, after] of checks) {
     if (before === undefined) continue;

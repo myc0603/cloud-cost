@@ -1,10 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { calcEgressUsd, cheapestPerSize, estimate, gcpSustainedUseMax, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
+import { calcEgressUsd, cheapestPerSize, estimate, fitContainer, gcpSustainedUseMax, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
 import { fitCloudSqlShape } from './db';
-import type { DbInstance, EgressTier, Provider, ProviderPricing, VmSku } from '../schema';
-import type { Resource } from './types';
+import type { ContainerPrice, DbInstance, EgressTier, Provider, ProviderPricing, VmSku } from '../schema';
+import type { MatchOptions, Resource } from './types';
 
 const sku = (over: Partial<VmSku>): VmSku => ({
   provider: 'gcp',
@@ -38,8 +38,8 @@ const EGRESS: EgressTier = {
 };
 
 const PRICING: Record<Provider, ProviderPricing> = {
-  aws: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null },
-  azure: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null },
+  aws: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null },
+  azure: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null },
   gcp: {
     vm: FIXTURE,
     storage: [
@@ -74,6 +74,7 @@ const PRICING: Record<Provider, ProviderPricing> = {
         { upToGb: null, perGbHour: 0.02, haPerGbHour: 0.04 },
       ],
     },
+    container: null,
   },
 };
 
@@ -447,12 +448,55 @@ test('gcpSustainedUseMax: GCP N1 30%·N2·N2D·C2 20%, E2·다른 플랫폼은 n
   assert.equal(gcpSustainedUseMax(sku({ provider: 'aws', generation: 'n2' })), null);
 });
 
+test('컨테이너: 플랫폼별 허용 조합으로 올림 — Fargate 표·Container Apps 1:2·Cloud Run 정수 vCPU', () => {
+  const rate = { vcpuPerHour: 0.04, gbPerHour: 0.005 };
+  const price = (provider: Provider, arm = false): ContainerPrice => ({ provider, region: 'seoul', rates: { x86: rate, ...(arm ? { arm: { vcpuPerHour: 0.03, gbPerHour: 0.004 } } : {}) } });
+  const fit = (provider: Provider, vcpu: number, ramGb: number, opts: MatchOptions = { includeBurstable: true }) => fitContainer(price(provider), { vcpu, ramGb }, opts);
+  // Fargate: 0.25 vCPU는 최대 2GB → 3GB는 0.5 vCPU로
+  assert.deepEqual(fit('aws', 0.25, 3), { vcpu: 0.5, ramGb: 3, arch: 'x86', perHour: 0.035, committed: false });
+  // 1 vCPU 최소 메모리 2GB
+  assert.ok('vcpu' in fit('aws', 1, 1) && (fit('aws', 1, 1) as { ramGb: number }).ramGb === 2);
+  // 8 vCPU는 4GB 단위 → 17GB 요구면 20GB
+  assert.equal((fit('aws', 8, 17) as { ramGb: number }).ramGb, 20);
+  // Container Apps: 메모리 = vCPU × 2 → 1 vCPU/3GB면 1.5 vCPU/3GB, 4 vCPU 초과는 불가
+  assert.deepEqual(fit('azure', 1, 3), { vcpu: 1.5, ramGb: 3, arch: 'x86', perHour: 0.075, committed: false });
+  assert.deepEqual(fit('azure', 8, 16), { reason: 'size', maxVcpu: 4, maxRamGb: 8 });
+  // Cloud Run: 분수 vCPU 불가 → 1, 1 vCPU 최대 4GB → 6GB면 2 vCPU, 4 vCPU 최소 2GB
+  assert.equal((fit('gcp', 0.25, 1) as { vcpu: number }).vcpu, 1);
+  assert.equal((fit('gcp', 1, 6) as { vcpu: number }).vcpu, 2);
+  assert.equal((fit('gcp', 4, 1) as { ramGb: number }).ramGb, 2);
+  // 아키텍처: Fargate는 ARM이 싸면 ARM, ARM만이면 x86 전용 플랫폼은 arch 실패
+  const arm = fitContainer(price('aws', true), { vcpu: 1, ramGb: 2 }, { includeBurstable: true });
+  assert.ok('arch' in arm && arm.arch === 'arm');
+  assert.deepEqual(fit('gcp', 1, 2, { includeBurstable: true, arch: 'arm' }), { reason: 'arch' });
+});
+
+test('컨테이너: 견적 줄 = 컨테이너 수 × 시간당 × 730, 약정 단가 반영', () => {
+  const container: ContainerPrice = {
+    provider: 'gcp',
+    region: 'seoul',
+    rates: { x86: { vcpuPerHour: 0.08, gbPerHour: 0.01, commit: { '1y': { vcpuPerHour: 0.04, gbPerHour: 0.005 } } } },
+  };
+  const line = (term?: '1y' | '3y') =>
+    estimate(scenario([{ type: 'container', vcpu: 1, ramGb: 2, count: 3 }]), { ...PRICING, gcp: { ...PRICING.gcp, container } }, { includeBurstable: true, term })
+      .find((e) => e.provider === 'gcp')!.lines[0];
+  const od = line();
+  assert.ok(od.kind === 'container' && od.matched?.perHour === 0.1);
+  assert.equal(od.monthlyUsd, +(0.1 * HOURS_PER_MONTH * 3).toFixed(2));
+  const y1 = line('1y');
+  assert.ok(y1.kind === 'container' && y1.matched?.perHour === 0.05 && y1.matched.committed);
+  const y3 = line('3y'); // 3년 약정가 없음 → 정가
+  assert.ok(y3.kind === 'container' && y3.matched?.perHour === 0.1 && !y3.matched.committed);
+  const none = estimate(scenario([{ type: 'container', vcpu: 1, ramGb: 2, count: 1 }]), PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines[0];
+  assert.ok(none.kind === 'container' && none.matched === null && none.noMatch === null); // 데이터 없음
+});
+
 test('실데이터 스모크: 3사 스냅샷에서 통합 시나리오 견적', () => {
   const load = (p: string, f: string) => JSON.parse(readFileSync(`data/${p}/seoul/${f}`, 'utf8'));
   const pricing: Record<Provider, ProviderPricing> = {
-    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json'), k8s: load('aws', 'k8s.json'), lb: load('aws', 'lb.json'), nat: load('aws', 'nat.json'), db: load('aws', 'db.json'), cache: load('aws', 'cache.json') },
-    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json'), k8s: load('azure', 'k8s.json'), lb: load('azure', 'lb.json'), nat: load('azure', 'nat.json'), db: load('azure', 'db.json'), cache: load('azure', 'cache.json') },
-    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json'), k8s: load('gcp', 'k8s.json'), lb: load('gcp', 'lb.json'), nat: load('gcp', 'nat.json'), db: load('gcp', 'db.json'), cache: load('gcp', 'cache.json') },
+    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json'), k8s: load('aws', 'k8s.json'), lb: load('aws', 'lb.json'), nat: load('aws', 'nat.json'), db: load('aws', 'db.json'), cache: load('aws', 'cache.json'), container: load('aws', 'container.json') },
+    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json'), k8s: load('azure', 'k8s.json'), lb: load('azure', 'lb.json'), nat: load('azure', 'nat.json'), db: load('azure', 'db.json'), cache: load('azure', 'cache.json'), container: load('azure', 'container.json') },
+    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json'), k8s: load('gcp', 'k8s.json'), lb: load('gcp', 'lb.json'), nat: load('gcp', 'nat.json'), db: load('gcp', 'db.json'), cache: load('gcp', 'cache.json'), container: load('gcp', 'container.json') },
   };
   const s = scenario([vmRes(2, 4, 2), { type: 'block', gb: 100 }, { type: 'object', gb: 500 }, { type: 'egress', gb: 1024 }]);
   const results = estimate(s, pricing, { includeBurstable: true });

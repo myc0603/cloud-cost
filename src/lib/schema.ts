@@ -170,6 +170,24 @@ export interface CachePrice {
   gbTiers: CacheGbTier[] | null;
 }
 
+/** 컨테이너 vCPU·메모리 시간 단가 한 벌 */
+export interface ContainerRate {
+  vcpuPerHour: number;
+  gbPerHour: number;
+}
+
+/**
+ * 서버리스 컨테이너 — AWS ECS Fargate / Azure Container Apps(Consumption, 활성 요금) / GCP Cloud Run(인스턴스 기반 과금).
+ * 상시 실행 기준 vCPU·GB 시간 단가. 허용 사이즈 조합은 플랫폼마다 달라 estimator/container.ts의 문서값 규칙을 쓴다.
+ * 약정은 3사 모두 유연형·지출 기반뿐이라 그걸 쓴다 (Fargate Compute SP / Azure Savings Plan / Cloud Run 유연 CUD).
+ */
+export interface ContainerPrice {
+  provider: Provider;
+  region: Region;
+  /** 아키텍처별 단가 — ARM은 Fargate만 */
+  rates: Partial<Record<Arch, ContainerRate & { commit?: CommitPrices<ContainerRate> }>>;
+}
+
 /** 한 플랫폼의 리전별 요금 데이터 묶음 — pricing 로더가 반환하는 단위 */
 export interface ProviderPricing {
   vm: VmSku[];
@@ -180,6 +198,7 @@ export interface ProviderPricing {
   nat: NatPrice | null;
   db: DbPrice | null;
   cache: CachePrice | null;
+  container: ContainerPrice | null;
 }
 
 /** data/meta.json */

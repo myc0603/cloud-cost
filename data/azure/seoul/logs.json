@@ -1,0 +1,54 @@
+{
+  "provider": "azure",
+  "region": "seoul",
+  "ingestPerGb": 3.11,
+  "storagePerGbMonth": 0.14,
+  "includedDays": 31,
+  "storedRatio": 1,
+  "commitmentTiers": [
+    {
+      "gbPerDay": 100,
+      "perDay": 264.6
+    },
+    {
+      "gbPerDay": 200,
+      "perDay": 496.8
+    },
+    {
+      "gbPerDay": 300,
+      "perDay": 729
+    },
+    {
+      "gbPerDay": 400,
+      "perDay": 950.4
+    },
+    {
+      "gbPerDay": 500,
+      "perDay": 1167.75
+    },
+    {
+      "gbPerDay": 1000,
+      "perDay": 2295
+    },
+    {
+      "gbPerDay": 2000,
+      "perDay": 4482
+    },
+    {
+      "gbPerDay": 5000,
+      "perDay": 10867.5
+    },
+    {
+      "gbPerDay": 10000,
+      "perDay": 21114
+    },
+    {
+      "gbPerDay": 25000,
+      "perDay": 51232.5
+    },
+    {
+      "gbPerDay": 50000,
+      "perDay": 99360
+    }
+  ]
+}

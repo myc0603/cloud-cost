@@ -1,0 +1,9 @@
+{
+  "provider": "aws",
+  "region": "us-east",
+  "ingestPerGb": 0.5,
+  "storagePerGbMonth": 0.03,
+  "includedDays": 0,
+  "storedRatio": 0.15,
+  "commitmentTiers": []
+}

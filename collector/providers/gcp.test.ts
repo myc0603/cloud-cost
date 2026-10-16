@@ -4,7 +4,7 @@
  */
 
 import assert from 'node:assert/strict';
-import { parseCloudCdn, parseCloudRun, parseCloudSql, parseCommitUnitPrices, parseMemorystore, parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
+import { parseCloudCdn, parseCloudLogging, parseCloudRun, parseCloudSql, parseCommitUnitPrices, parseMemorystore, parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
 
 function fx(
   description: string,
@@ -209,5 +209,21 @@ assert.deepEqual(cdn.gbTiers, [{ upTo: 10240, price: 0.09 }, { upTo: null, price
 assert.deepEqual(cdn.requestTiers, [{ upTo: null, price: 0.0075 }]);
 assert.equal(cdn.fillPerGb, 0.02);
 assert.equal(parseCloudCdn([], 'seoul'), null);
+
+// Cloud Logging: 수집(무료 50GiB 다음 단가) + 기본 30일 이후 보관, 벤더 로그 제외
+const logSku = (description: string, tiers: [number, number][], regions: string[]): RawSku => ({
+  ...fx(description, 'OnDemand', 0, regions),
+  pricingInfo: [{ pricingExpression: { usageUnit: 'GiBy', tieredRates: tiers.map(([start, nanos]) => ({ startUsageAmount: start, unitPrice: { currencyCode: 'USD', units: '0', nanos } })) } }],
+});
+const logging = parseCloudLogging(
+  [
+    logSku('Vended Logs Storage', [[0, 250_000_000]], ['global']),
+    logSku('Log Storage cost', [[0, 0], [50, 500_000_000]], ['asia-northeast3', 'us-east1']),
+    logSku('Log Retention cost', [[0, 10_000_000]], ['global']),
+  ],
+  'asia-northeast3',
+  'seoul',
+)!;
+assert.deepEqual(logging, { provider: 'gcp', region: 'seoul', ingestPerGb: 0.5, storagePerGbMonth: 0.01, includedDays: 30, storedRatio: 1, commitmentTiers: [] });
 
 console.log(`gcp.test: 모든 검증 통과 ✔ (VmSku ${vms.length}건 생성)`);

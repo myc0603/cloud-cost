@@ -222,6 +222,29 @@ export interface CdnPrice {
   plans: CdnPlan[];
 }
 
+/** Azure Log Analytics Commitment Tier — 하루 약정 GB와 일 요금 (31일 단위, 초과분은 등급 실효 단가) */
+export interface LogCommitmentTier {
+  gbPerDay: number;
+  perDay: number;
+}
+
+/**
+ * 로그 수집 — AWS CloudWatch Logs(Standard) / Azure Log Analytics(Analytics Logs) / GCP Cloud Logging.
+ * 수집 GB당 + 보관 GB·월(기본 포함 기간 이후). 쿼리 요금·저가 등급(IA·Basic·Auxiliary)·무료분은 비교 대상 아님.
+ */
+export interface LogPrice {
+  provider: Provider;
+  region: Region;
+  ingestPerGb: number;
+  storagePerGbMonth: number;
+  /** 보관 요금 없이 포함되는 일수 (AWS 0, Azure 31, GCP 30) */
+  includedDays: number;
+  /** 보관 과금 크기 배율 — AWS는 압축 크기(원본 × 0.15, 문서값), 그 외 1 */
+  storedRatio: number;
+  /** 볼륨 약정 등급 (Azure). 없으면 빈 배열 */
+  commitmentTiers: LogCommitmentTier[];
+}
+
 /** 한 플랫폼의 리전별 요금 데이터 묶음 — pricing 로더가 반환하는 단위 */
 export interface ProviderPricing {
   vm: VmSku[];
@@ -234,6 +257,7 @@ export interface ProviderPricing {
   cache: CachePrice | null;
   container: ContainerPrice | null;
   cdn: CdnPrice | null;
+  logs: LogPrice | null;
 }
 
 /** data/meta.json */

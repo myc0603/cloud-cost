@@ -84,6 +84,13 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
           더합니다.
         </li>
         <li className={LI}>
+          로그 수집은 3사의 <b>표준(검색·분석 가능) 등급</b>끼리 비교합니다: AWS CloudWatch Logs Standard · Azure Log Analytics Analytics
+          Logs · GCP Cloud Logging. 수집 GB당 요금 + 보관 기간 동안 쌓인 양의 보관 요금이며, Azure는 31일·GCP는 30일 보관이 기본 포함이고
+          AWS는 압축 크기(원본의 15%, 공식 가정)로 처음부터 과금합니다. Azure는 하루 약정량이 있는 Commitment Tier가 더 싸면 그걸로
+          계산합니다. 쿼리 요금, 저가 등급(CloudWatch Infrequent Access · Azure Basic·Auxiliary Logs), 벤더 로그(VPC 플로우 로그 등)는
+          포함하지 않습니다.
+        </li>
+        <li className={LI}>
           <b>약정 할인</b>(요금 기준: 1년·3년 약정)은 3사 모두 <b>인스턴스 고정형 + 선결제 없음</b> 기준입니다: AWS EC2 Instance Savings
           Plans(Standard RI와 같은 요율)·RDS/ElastiCache 예약 인스턴스, Azure 예약(월납·선납 총액 동일), GCP 리소스 기반 약정 사용
           할인(CUD, 월납). 더 유연한 상품(AWS Compute Savings Plans·Azure Savings Plan)은 할인 폭이 작아 쓰지 않습니다. 단, 서버리스
@@ -92,7 +99,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
           최저가 인스턴스를 다시 찾으며, 약정 상품이 없는 SKU는 정가로 계산하고 &quot;약정가 없음&quot;으로 표시합니다.
         </li>
         <li className={LI}>
-          약정은 VM·K8s 노드·DB·캐시·컨테이너 컴퓨트에만 적용되고 스토리지·트래픽·CDN·LB·NAT·K8s 컨트롤 플레인은 정가입니다. RDS 3년처럼 선결제 없음
+          약정은 VM·K8s 노드·DB·캐시·컨테이너 컴퓨트에만 적용되고 스토리지·트래픽·CDN·로그·LB·NAT·K8s 컨트롤 플레인은 정가입니다. RDS 3년처럼 선결제 없음
           상품이 없으면 부분 선결제액을 기간 시간으로 나눠 시간당에 더합니다. GCP Cloud SQL(1년 25%·3년 52%)과 Memorystore(1년 20%·3년
           40%, 5GB 이상)는 지출 기반 약정이라 가격 API에 약정가가 없어 공식 문서의 할인율을 씁니다. Azure DB 이중화의 약정가는 대기 서버
           vCore까지 예약한다고 보고 2배로 계산합니다.
@@ -210,6 +217,13 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           Cloud CDN needs is added with the load balancer card.
         </li>
         <li className={LI}>
+          Log ingestion compares the <b>standard (searchable) tiers</b>: AWS CloudWatch Logs Standard · Azure Log Analytics Analytics Logs
+          · GCP Cloud Logging. Cost = per-GB ingestion + storage for what accumulates over the retention period; Azure includes 31 days
+          and GCP 30 days, while AWS bills compressed size (15% of raw, its published assumption) from day one. On Azure we use a
+          commitment tier when it is cheaper. Query charges, lower-cost tiers (CloudWatch Infrequent Access, Azure Basic/Auxiliary Logs)
+          and vended logs (VPC flow logs, etc.) are not included.
+        </li>
+        <li className={LI}>
           <b>Commitment discounts</b> (Pricing: 1-year or 3-year commitment) use <b>instance-specific commitments with no upfront
           payment</b> on all three: AWS EC2 Instance Savings Plans (same rates as Standard RIs) and RDS/ElastiCache reserved instances,
           Azure reservations (monthly and upfront totals are equal), and GCP resource-based committed use discounts (CUDs, billed
@@ -220,7 +234,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           &quot;no commitment price&quot;.
         </li>
         <li className={LI}>
-          Commitments apply only to VM, K8s node, DB, cache and container compute; storage, traffic, CDN, load balancers, NAT and K8s control planes
+          Commitments apply only to VM, K8s node, DB, cache and container compute; storage, traffic, CDN, logs, load balancers, NAT and K8s control planes
           stay on-demand. Where no no-upfront option exists (some 3-year RDS terms), the partial upfront payment is spread over the
           term&apos;s hours. GCP Cloud SQL (25% for 1 year, 52% for 3 years) and Memorystore (20% / 40%, instances of 5 GB or more) use
           spend-based commitments with no commitment prices in the pricing API, so we apply the discount rates from the official docs.

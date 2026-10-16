@@ -17,6 +17,7 @@ import type {
   EgressTier,
   K8sClusterPrice,
   LbPrice,
+  LogPrice,
   NatPrice,
   Region,
   StorageSku,
@@ -493,4 +494,43 @@ export async function collectAzureCdn(region: Region): Promise<CdnPrice | null> 
     `serviceName eq 'Azure Front Door Service' and priceType eq 'Consumption' and armRegionName eq '${FRONT_DOOR_ZONE[region]}'`,
   );
   return buildAzureCdn(items, region);
+}
+
+/** Log Analytics에서 보관 요금 없이 포함되는 일수 (Analytics Logs 31일, learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure) */
+const LOG_ANALYTICS_INCLUDED_DAYS = 31;
+
+/**
+ * Azure Log Analytics(Analytics Logs) — 수집 GB당(월 5GB 무료 구간 다음 단가) + 보관 GB·월 + Commitment Tier(Azure Monitor 미터, 일 요금).
+ * Basic·Auxiliary Logs(저가 등급)는 비교 대상 아님.
+ */
+export function buildAzureLogs(laItems: AzurePriceItem[], monitorItems: AzurePriceItem[], region: Region): LogPrice | null {
+  const ingest = laItems.find((i) => i.meterName === 'Analytics Logs Data Ingestion' && i.unitOfMeasure === '1 GB' && i.type === 'Consumption' && i.retailPrice > 0)?.retailPrice;
+  const storage = laItems.find((i) => i.meterName === 'Analytics Logs Data Retention' && i.unitOfMeasure === '1 GB/Month' && i.type === 'Consumption' && i.retailPrice > 0)?.retailPrice;
+  if (!ingest || !storage) return null;
+  const commitmentTiers = monitorItems
+    .flatMap((i) => {
+      const m = i.skuName.match(/^(\d+) GB Commitment Tier$/);
+      return m && i.meterName.endsWith('Capacity Reservation') && i.unitOfMeasure === '1/Day' && i.type === 'Consumption' && i.retailPrice > 0
+        ? [{ gbPerDay: Number(m[1]), perDay: +i.retailPrice.toFixed(6) }]
+        : [];
+    })
+    .sort((a, b) => a.gbPerDay - b.gbPerDay);
+  return {
+    provider: 'azure',
+    region,
+    ingestPerGb: +ingest.toFixed(6),
+    storagePerGbMonth: +storage.toFixed(6),
+    includedDays: LOG_ANALYTICS_INCLUDED_DAYS,
+    storedRatio: 1,
+    commitmentTiers,
+  };
+}
+
+export async function collectAzureLogs(region: Region): Promise<LogPrice | null> {
+  const base = `armRegionName eq '${AZURE_REGION[region]}' and priceType eq 'Consumption'`;
+  const [la, monitor] = await Promise.all([
+    fetchPriceItems(`${base} and serviceName eq 'Log Analytics'`),
+    fetchPriceItems(`${base} and serviceName eq 'Azure Monitor'`),
+  ]);
+  return buildAzureLogs(la, monitor, region);
 }

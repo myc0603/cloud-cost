@@ -90,7 +90,8 @@ cloud-cost/
 │       ├── db.json          # 관리형 DB — 엔진별 인스턴스 목록(AWS·Azure) 또는 커스텀 단가(GCP) + 스토리지
 │       ├── cache.json       # Redis 호환 캐시 — 노드 목록(AWS·Azure) 또는 GB 구간 단가(GCP)
 │       ├── container.json   # 서버리스 컨테이너 — vCPU·GB 시간 단가(아키텍처별) + 약정
-│       └── cdn.json         # CDN — 전송·요청 구간 + 기본료·캐시 채움 + 정액 요금제(CloudFront)
+│       ├── cdn.json         # CDN — 전송·요청 구간 + 기본료·캐시 채움 + 정액 요금제(CloudFront)
+│       └── logs.json        # 로그 수집 — 수집·보관 단가 + 포함 일수 + Commitment Tier(Azure)
 ├── messages/                # UI 문구 (en.json / ko.json) — next-intl
 ├── src/
 │   ├── app/                 # 라우트 (§6)
@@ -149,6 +150,7 @@ src/
         ├── cache.ts              # Redis 호환 캐시 — AWS·Azure 노드 매칭 / GCP GB 구간 단가
         ├── container.ts          # 서버리스 컨테이너 — 플랫폼별 허용 vCPU·메모리 조합으로 올림
         ├── cdn.ts                # CDN — 종량제 구간 계산 vs CloudFront 정액 요금제 중 싼 쪽
+        ├── logs.ts               # 로그 수집 — 수집 + 포함 기간 넘는 보관, Azure Commitment Tier 비교
         └── estimator.test.ts     # 견적 정확성 = 테스트로 보장
 ```
 
@@ -251,6 +253,9 @@ interface PriceTier { upTo: number | null; price: number }
 interface CdnPlan { name: string; monthlyUsd: number; maxGb: number; maxRequests: number }
 interface CdnPrice { provider: Provider; region: Region; gbTiers: PriceTier[]; requestTiers: PriceTier[]; monthlyBase: number; fillPerGb: number; plans: CdnPlan[] }
 
+/** 로그 수집 — 수집 GB당 + 보관 GB·월(포함 일수 이후, AWS는 압축 배율) + Azure Commitment Tier */
+interface LogPrice { provider: Provider; region: Region; ingestPerGb: number; storagePerGbMonth: number; includedDays: number; storedRatio: number; commitmentTiers: { gbPerDay: number; perDay: number }[] }
+
 /** data/meta.json */
 interface Meta {
   collectedAt: string;      // ISO 8601
@@ -330,4 +335,5 @@ flowchart TD
 | 약정 할인 (2026-10-17) | 요금 기준 토글(정가 / 1년 / 3년, URL `term=1y\|3y`). 3사 **인스턴스 고정형 + 선결제 없음**: AWS EC2 Instance SP(VM)·RDS/ElastiCache Standard RI / Azure 예약(VM·DB vCore·Managed Redis) / GCP 리소스 기반 CUD(VM), Cloud SQL·Memorystore는 지출 기반 CUD 문서 할인율(25·52% / 20·40%, M1 제외). 적용 범위 = VM·K8s 노드·DB·캐시 컴퓨트, 나머지는 정가 | 3사가 서로 대응되고 할인 폭이 가장 큰 상품끼리 비교. 유연형(Compute SP·Azure SP)은 할인 폭이 작아 미사용. AWS VM은 RI 대신 SP 파일 — 요율이 같고 8세대 등 RI 없는 신형까지 덮음. 선결제 없음이 없는 상품(RDS 3년 일부)은 부분 선결제 ÷ 기간 시간을 더해 환산. 약정가 기준으로 최저가 재매칭, 약정가 없는 SKU(Azure B·Fsv2, GCP T2A 등)는 정가 + "약정가 없음" 배지. Azure DB·Redis 이중화 약정 = 2배(대기 vCore·노드까지 예약 가정) |
 | 서버리스 컨테이너 지표 (2026-10-17) | AWS **ECS Fargate** / Azure **Container Apps**(Consumption, 활성 요금) / GCP **Cloud Run**(인스턴스 기반 과금 = CPU 상시 할당). 입력 = 컨테이너당 vCPU(0.25~16 선택) · 메모리 GB · 컨테이너 수, 24시간 실행 | 시장에서 실제로 비교되는 조합. Azure Container Instances는 Fargate와 단가가 같지만 오토스케일·인그레스·롤링 배포가 없어 운영용으론 덜 쓰여 제외. 허용 vCPU·메모리 조합(Fargate 표 / CA 1:2·최대 4 vCPU / Cloud Run 정수 vCPU·vCPU별 메모리 범위)은 문서값 상수, 요구 이상 최저가 조합으로 올림. Fargate만 인그레스 미포함(ALB 별도) — 고지. 유휴 할인·요청 요금·무료 사용량 제외. 약정: 고정형이 없어 각 사 유일한 약정(Compute SP / Azure SP / Cloud Run 유연 CUD 28·46% 문서값) |
 | CDN 지표 (2026-10-17) | AWS **CloudFront** / Azure **Front Door Standard** / GCP **Cloud CDN**. 입력 = 월 전송 GB · 월 요청(백만 건), singleton. 시청자 = 리전과 같은 지역(서울 → CF AP·AFD Zone 8 Korea·GCP Asia, 미국 동부 → 북미). 종량제 = 기본료(AFD $35) + 전송 구간 + 요청 구간 + 캐시 채움(GCP, 적중률 90% 가정, 문서값). CloudFront는 한도 안 최저 정액 요금제(Free·Pro·Business·Premium, 문서값)와 종량제 중 싼 쪽 | CDN 경유 트래픽은 egress 카드와 별개(카드 안내) — AWS·Azure 오리진 → CDN 무료. 정액제는 소·중규모에서 종량제의 1/9 수준이라 미반영 시 오해 → 반영. 약정 없음(AWS만 Security Savings Bundle이 있어 불공정) → 정가. Cloud CDN의 L7 LB는 LB 카드로. Front Door 엣지 → 오리진 요청 바이트는 미미해 제외 |
+| 로그 수집 지표 (2026-10-17) | 표준 등급: AWS **CloudWatch Logs Standard** / Azure **Log Analytics Analytics Logs** / GCP **Cloud Logging**. 입력 = 월 수집 GB · 보관 일수(30·90·180·365·730), singleton. 수집 GB당 + 정상 상태 누적량 중 포함 기간(Azure 31일·GCP 30일·AWS 0) 초과분 보관, AWS는 압축 0.15(문서값). Azure Commitment Tier(Azure Monitor 미터, 일 요금, 초과분 실효 단가)는 더 싸면 적용 | 저가 등급(IA·Basic·Auxiliary)은 쿼리 제한·별도 과금이라 조건이 달라 제외. 쿼리 요금·벤더 로그·무료분 제외. Azure가 3~6배 비싼 건 실제 요금 구조 |
 | 무료 사용량 원칙 (2026-10-17) | 계정당 상시 무료분은 **미반영**, 요금표에 내장된 트래픽 무료 구간과 배포별 정식 요금제(CloudFront Free)는 반영 | 무료분은 계정 전체에서 한 번 — 다른 서비스가 이미 쓰는 실제 계정에선 구성 하나만 빼면 과소 추정. methodology에 명시 |

@@ -8,6 +8,7 @@ import {
   buildAzureEgress,
   buildAzureK8s,
   buildAzureLb,
+  buildAzureLogs,
   buildAzureNat,
   buildAzureStorage,
   buildAzureVmSkus,
@@ -248,4 +249,27 @@ test('buildAzureCdn: Front Door Standard 존(서울 → Zone 8) 기본료 + 전�
   assert.deepEqual(cdn.requestTiers, [{ upTo: null, price: 0.0181 }]);
   assert.equal(cdn.monthlyBase, 35);
   assert.equal(buildAzureCdn([], 'seoul'), null);
+});
+
+test('buildAzureLogs: Analytics Logs 수집(무료 구간 다음 단가)·보관 + Commitment Tier(Azure Monitor 일 요금)', () => {
+  const la = [
+    item({ productName: 'Log Analytics', meterName: 'Analytics Logs Data Ingestion', retailPrice: 0, unitOfMeasure: '1 GB' }), // 무료 구간
+    item({ productName: 'Log Analytics', meterName: 'Analytics Logs Data Ingestion', retailPrice: 3.11, unitOfMeasure: '1 GB', tierMinimumUnits: 5 }),
+    item({ productName: 'Log Analytics', meterName: 'Analytics Logs Data Retention', retailPrice: 0.14, unitOfMeasure: '1 GB/Month' }),
+  ];
+  const monitor = [
+    item({ productName: 'Azure Monitor', skuName: '200 GB Commitment Tier', meterName: '200 GB Commitment Tier Capacity Reservation', retailPrice: 496.8, unitOfMeasure: '1/Day' }),
+    item({ productName: 'Azure Monitor', skuName: '100 GB Commitment Tier', meterName: '100 GB Commitment Tier Capacity Reservation', retailPrice: 264.6, unitOfMeasure: '1/Day' }),
+    item({ productName: 'Azure Monitor', skuName: 'Basic Logs', meterName: 'Basic Logs Data Ingestion', retailPrice: 0.675, unitOfMeasure: '1 GB' }), // ✘ 저가 등급
+  ];
+  assert.deepEqual(buildAzureLogs(la, monitor, 'seoul'), {
+    provider: 'azure',
+    region: 'seoul',
+    ingestPerGb: 3.11,
+    storagePerGbMonth: 0.14,
+    includedDays: 31,
+    storedRatio: 1,
+    commitmentTiers: [{ gbPerDay: 100, perDay: 264.6 }, { gbPerDay: 200, perDay: 496.8 }],
+  });
+  assert.equal(buildAzureLogs([], monitor, 'seoul'), null);
 });

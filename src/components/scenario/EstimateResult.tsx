@@ -8,6 +8,9 @@ import type { Arch, Provider, Term } from '@/lib/schema';
 
 const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
 
+/** 로그 수집 상품명 — 비교 대상 고정 (estimator/logs.ts) */
+const LOGS_PRODUCT: Record<Provider, string> = { aws: 'CloudWatch Logs', azure: 'Log Analytics', gcp: 'Cloud Logging' };
+
 /** CDN 상품명 — 비교 대상 고정 (estimator/cdn.ts) */
 const CDN_PRODUCT: Record<Provider, string> = { aws: 'CloudFront', azure: 'Front Door Standard', gcp: 'Cloud CDN' };
 
@@ -222,6 +225,21 @@ function LineLabel({
         )}
         {line.matched && <ArchBadge arch={line.matched.arch} />}
         <NoCommitBadge term={term} matched={line.matched} />
+      </span>
+    );
+  }
+  if (line.kind === 'logs') {
+    return (
+      <span>
+        {t('logsLine', { gb: line.gb, days: line.retentionDays })}
+        {line.monthlyUsd === null ? (
+          <span className="ml-1 text-red-500">{t('noData')}</span>
+        ) : (
+          <span className="ml-1 text-slate-400">
+            → {LOGS_PRODUCT[provider]}
+            {line.commitmentGbPerDay !== null && ` ${t('logsCommitment', { gb: line.commitmentGbPerDay })}`}
+          </span>
+        )}
       </span>
     );
   }

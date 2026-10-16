@@ -24,6 +24,7 @@ import type {
   EgressTier,
   K8sClusterPrice,
   LbPrice,
+  LogPrice,
   NatPrice,
   Region,
   StorageSku,
@@ -631,6 +632,29 @@ export async function parseCloudFrontCsv(lines: AsyncIterable<string> | Iterable
   };
 }
 
+/** CloudWatch Logs 보관 과금 크기 = 원본 × 0.15 (aws.amazon.com/cloudwatch/pricing "0.15 compression ratio", 2026-10-17 확인) */
+const CLOUDWATCH_COMPRESSION = 0.15;
+
+/**
+ * AmazonCloudWatch 리전 오퍼 CSV → Logs Standard 클래스 수집 GB당 + 보관 GB·월.
+ * Global 무료 행·Infrequent Access·벤더 로그 행은 usageType이 달라 제외. us-east-1은 리전 접두사 없음.
+ */
+export async function parseCloudWatchLogsCsv(lines: AsyncIterable<string> | Iterable<string>, region: Region): Promise<LogPrice | null> {
+  let ingest: number | null = null;
+  let storage: number | null = null;
+  await scanOfferCsv(lines, (get) => {
+    if (get('TermType') !== 'OnDemand' || get('Currency') !== 'USD') return;
+    const price = Number(get('PricePerUnit'));
+    if (!(price > 0)) return;
+    const m = get('usageType').match(/^(?:[A-Z]+\d-)?(DataProcessing-Bytes|TimedStorage-ByteHrs)$/);
+    if (m?.[1] === 'DataProcessing-Bytes') ingest ??= +price.toFixed(6);
+    if (m?.[1] === 'TimedStorage-ByteHrs') storage ??= +price.toFixed(6);
+  });
+  return ingest !== null && storage !== null
+    ? { provider: 'aws', region, ingestPerGb: ingest, storagePerGbMonth: storage, includedDays: 0, storedRatio: CLOUDWATCH_COMPRESSION, commitmentTiers: [] }
+    : null;
+}
+
 async function streamCsv(url: string) {
   const res = await fetch(url);
   if (!res.ok || !res.body) throw new Error(`AWS Price List API 오류 ${res.status} (${url})`);
@@ -666,6 +690,7 @@ export async function collectAws(
   cache: CachePrice | null;
   container: ContainerPrice | null;
   cdn: CdnPrice | null;
+  logs: LogPrice | null;
 }> {
   const awsRegion = AWS_REGION[region];
   const ec2 = await parseEc2OfferCsv(await streamOffer('AmazonEC2', awsRegion), region);
@@ -677,11 +702,12 @@ export async function collectAws(
   const container = await parseFargateCsv(await streamOffer('AmazonECS', awsRegion), region);
   attachFargateCommit(container, sp.fargate);
   const cdn = await parseCloudFrontCsv(await streamGlobalOffer('AmazonCloudFront'), region);
+  const logs = await parseCloudWatchLogsCsv(await streamOffer('AmazonCloudWatch', awsRegion), region);
   const s3 = await parseS3OfferCsv(await streamOffer('AmazonS3', awsRegion), region);
   const egress = await parseDataTransferCsv(await streamOffer('AWSDataTransfer', awsRegion), region);
   const k8s = await parseEksCsv(await streamOffer('AmazonEKS', awsRegion), region);
   const lb = await parseAlbCsv(await streamOffer('AWSELB', awsRegion), region);
   const db = await parseRdsCsv(await streamOffer('AmazonRDS', awsRegion), region);
   const cache = await parseElastiCacheCsv(await streamOffer('AmazonElastiCache', awsRegion), region);
-  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat, db, cache, container, cdn };
+  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat, db, cache, container, cdn, logs };
 }

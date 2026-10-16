@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { CONTAINER_VCPUS, type Resource } from '@/lib/estimator';
+import { CONTAINER_VCPUS, LOG_RETENTION_DAYS, type Resource } from '@/lib/estimator';
 import type { DbEngine } from '@/lib/schema';
 import NumberField from './NumberField';
 
@@ -92,6 +92,22 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
             </label>
             <NumberField label={t('ram')} value={r.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, ramGb })} />
             <NumberField label={t('containerCount')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
+          </>
+        ) : r.type === 'logs' ? (
+          <>
+            <NumberField label={t('logsGb')} value={r.gb} min={1} onChange={(gb) => onChange({ ...r, gb })} />
+            <label className="flex flex-col gap-1 text-xs text-slate-500">
+              {t('logsRetention')}
+              <select
+                value={r.retentionDays}
+                onChange={(e) => onChange({ ...r, retentionDays: Number(e.target.value) })}
+                className="w-24 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900"
+              >
+                {LOG_RETENTION_DAYS.map((d) => (
+                  <option key={d} value={d}>{t('logsDays', { days: d })}</option>
+                ))}
+              </select>
+            </label>
           </>
         ) : r.type === 'cdn' ? (
           <>

@@ -6,6 +6,7 @@ import {
   parseDataTransferCsv,
   parseEc2OfferCsv,
   parseCloudFrontCsv,
+  parseCloudWatchLogsCsv,
   parseFargateCsv,
   parseSavingsPlanCsv,
   attachFargateCommit,
@@ -379,4 +380,14 @@ test('parseCloudFrontCsv: 시청자 지역(서울 → AP) 전송 구간 + HTTPS 
   assert.deepEqual(cdn.requestTiers, [{ upTo: null, price: 0.012 }]);
   assert.equal(cdn.fillPerGb, 0);
   assert.deepEqual(cdn.plans.map((p) => p.name), ['Free', 'Pro', 'Business', 'Premium']);
+});
+
+test('parseCloudWatchLogsCsv: Standard 수집·보관 단가(압축 0.15), Global 무료·IA·벤더 로그 제외, us-east-1 접두사 없음', async () => {
+  const H = '"SKU","TermType","Unit","PricePerUnit","Currency","usageType"';
+  const r = (usage: string, price: string) => `"X","OnDemand","GB","${price}","USD","${usage}"`;
+  const logs = (await parseCloudWatchLogsCsv(
+    [H, r('Global-DataProcessing-Bytes', '0'), r('DataProcessingIA-Bytes', '0.25'), r('VendedLog-Bytes', '0.5'), r('DataProcessing-Bytes', '0.5'), r('TimedStorage-ByteHrs', '0.03')],
+    'us-east',
+  ))!;
+  assert.deepEqual(logs, { provider: 'aws', region: 'us-east', ingestPerGb: 0.5, storagePerGbMonth: 0.03, includedDays: 0, storedRatio: 0.15, commitmentTiers: [] });
 });

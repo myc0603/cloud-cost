@@ -30,7 +30,9 @@ export type Resource =
   /** 서버리스 컨테이너 — 컨테이너당 vCPU(0.25~16) · 메모리(GB) · 상시 실행 컨테이너 수 */
   | ({ type: 'container' } & VmSpec)
   /** CDN — 월 시청자 전송량(GB) · 월 요청 수(백만 건). CDN을 거친 트래픽은 egress 카드에 넣지 않는다 */
-  | { type: 'cdn'; gb: number; requestsM: number };
+  | { type: 'cdn'; gb: number; requestsM: number }
+  /** 로그 수집 — 월 수집량(GB) · 보관 일수 */
+  | { type: 'logs'; gb: number; retentionDays: number };
 
 export type ResourceType = Resource['type'];
 
@@ -140,6 +142,8 @@ export type EstimateLine = { resourceIndex: number } & (
   | { kind: 'container'; spec: VmSpec; matched: ContainerMatch | null; noMatch: NoMatchReason | null; monthlyUsd: number | null }
   /** CDN. plan = 정액 요금제로 계산했으면 그 이름(CloudFront), 종량제면 null */
   | { kind: 'cdn'; gb: number; requestsM: number; plan: string | null; monthlyUsd: number | null }
+  /** 로그 수집. commitmentGbPerDay = Azure Commitment Tier로 계산했으면 그 등급(GB/일), 종량제면 null */
+  | { kind: 'logs'; gb: number; retentionDays: number; commitmentGbPerDay: number | null; monthlyUsd: number | null }
 );
 
 /** 컨테이너 매칭 결과 — 플랫폼 허용 조합으로 올린 사이즈, perHour = 컨테이너 1개 시간당(요금 기준 반영) */

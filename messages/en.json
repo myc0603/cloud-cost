@@ -63,7 +63,8 @@
       "db": "Managed database",
       "cache": "Cache (Redis-compatible)",
       "container": "Serverless containers",
-      "cdn": "CDN"
+      "cdn": "CDN",
+      "logs": "Log ingestion"
     },
     "sizeGb": "Size (GB)",
     "egressGb": "Monthly transfer (GB)",
@@ -88,7 +89,10 @@
     "containerCount": "Containers",
     "cdnGb": "Monthly transfer (GB)",
     "cdnRequestsM": "Monthly requests (millions)",
-    "cdnHint": "Leave traffic served through the CDN out of the outbound traffic card."
+    "cdnHint": "Leave traffic served through the CDN out of the outbound traffic card.",
+    "logsGb": "Monthly ingestion (GB)",
+    "logsRetention": "Retention",
+    "logsDays": "{days} days"
   },
   "estimate": {
     "storageLabel": {
@@ -105,7 +109,7 @@
     "noCommit": "no commitment price",
     "onDemandShort": "on-demand",
     "sudNote": "(sustained use discount not applied — up to {pct}% off automatically if run all month)",
-    "commitNotice": "{years}-year commitment prices (no upfront) — AWS EC2 Instance Savings Plans and RDS/ElastiCache reservations, Azure reservations, GCP committed use discounts (CUDs). Commitments apply only to VM, K8s node, DB, cache and container compute; storage, traffic, CDN, load balancers, NAT and K8s control planes stay at on-demand prices. Committed charges are billed for the whole term whether or not you use them.",
+    "commitNotice": "{years}-year commitment prices (no upfront) — AWS EC2 Instance Savings Plans and RDS/ElastiCache reservations, Azure reservations, GCP committed use discounts (CUDs). Commitments apply only to VM, K8s node, DB, cache and container compute; storage, traffic, CDN, logs, load balancers, NAT and K8s control planes stay at on-demand prices. Committed charges are billed for the whole term whether or not you use them.",
     "noData": "No data",
     "egressLine": "Outbound traffic {gb}GB",
     "freeApplied": "({gb}GB free tier applied)",
@@ -126,6 +130,8 @@
     "cdnLine": "CDN {gb}GB · {requests}M requests",
     "cdnPlan": "{plan} flat-rate plan",
     "cdnPayg": "pay-as-you-go",
+    "logsLine": "Logs {gb}GB · {days}-day retention",
+    "logsCommitment": "commitment tier {gb}GB/day",
     "cheapest": "Cheapest",
     "dataPending": "Data coming soon",
     "unavailable": "Not available",

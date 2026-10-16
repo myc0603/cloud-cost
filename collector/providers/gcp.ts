@@ -6,7 +6,7 @@
  * 파이프라인: fetchComputeSkus → parseUnitPrices → buildVmSkus
  */
 
-import type { CacheGbTier, CachePrice, CdnPrice, CommitPrices, ContainerPrice, DbEngine, DbEnginePricing, DbPrice, DbRateSet, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, Term, VmSku } from '../../src/lib/schema';
+import type { CacheGbTier, CachePrice, CdnPrice, CommitPrices, ContainerPrice, DbEngine, DbEnginePricing, DbPrice, DbRateSet, EgressTier, K8sClusterPrice, LbPrice, LogPrice, NatPrice, Region, StorageSku, Term, VmSku } from '../../src/lib/schema';
 import { GCP_MACHINE_TYPES } from './gcp-machine-types';
 
 const COMPUTE_SERVICE_ID = '6F81-5844-456A'; // Compute Engine
@@ -16,6 +16,7 @@ const NETWORKING_SERVICE_ID = 'E505-1604-58F8'; // Networking (Cloud Load Balanc
 const CLOUD_SQL_SERVICE_ID = '9662-B51E-5089'; // Cloud SQL
 const MEMORYSTORE_REDIS_SERVICE_ID = '5AF5-2C11-D467'; // Cloud Memorystore for Redis
 const CLOUD_RUN_SERVICE_ID = '152E-C115-5142'; // Cloud Run
+const CLOUD_LOGGING_SERVICE_ID = '5490-F7B7-8DF6'; // Cloud Logging
 
 export const GCP_REGION: Record<Region, string> = {
   seoul: 'asia-northeast3',
@@ -97,6 +98,7 @@ export const fetchNetworkingSkus = (apiKey: string) => fetchServiceSkus(apiKey, 
 export const fetchCloudSqlSkus = (apiKey: string) => fetchServiceSkus(apiKey, CLOUD_SQL_SERVICE_ID);
 export const fetchMemorystoreSkus = (apiKey: string) => fetchServiceSkus(apiKey, MEMORYSTORE_REDIS_SERVICE_ID);
 export const fetchCloudRunSkus = (apiKey: string) => fetchServiceSkus(apiKey, CLOUD_RUN_SERVICE_ID);
+export const fetchCloudLoggingSkus = (apiKey: string) => fetchServiceSkus(apiKey, CLOUD_LOGGING_SERVICE_ID);
 
 async function fetchServiceSkus(apiKey: string, serviceId: string): Promise<RawSku[]> {
   const all: RawSku[] = [];
@@ -381,6 +383,29 @@ export function parseMemorystore(redisSkus: RawSku[], gcpRegion: string, region:
     gbTiers.push(tier);
   }
   return { provider: 'gcp', region, engine: 'Redis', nodes: [], gbTiers };
+}
+
+/** Cloud Logging 기본 보관(_Default 버킷 30일, 보관 요금 없음) — cloud.google.com/logging/pricing (2026-10-17 확인) */
+const CLOUD_LOGGING_INCLUDED_DAYS = 30;
+
+/**
+ * Cloud Logging — 수집(Log Storage cost, 프로젝트당 50GiB 무료 구간 다음 단가) + 기본 기간 이후 보관(GiB·월).
+ * 벤더 로그(Vended Logs, VPC 플로우 등 할인 요금)는 비교 대상 아님.
+ */
+export function parseCloudLogging(skus: RawSku[], gcpRegion: string, region: Region): LogPrice | null {
+  const ingest = skus.find((s) => isOnDemandIn(s, gcpRegion) && s.description === 'Log Storage cost');
+  const retention = skus.find((s) => isOnDemandIn(s, 'global') && s.description === 'Log Retention cost');
+  const [ingestPerGb, storagePerGbMonth] = [ingest && unitPriceOf(ingest), retention && unitPriceOf(retention)];
+  if (!ingestPerGb || !storagePerGbMonth) return null;
+  return {
+    provider: 'gcp',
+    region,
+    ingestPerGb: round6(ingestPerGb),
+    storagePerGbMonth: round6(storagePerGbMonth),
+    includedDays: CLOUD_LOGGING_INCLUDED_DAYS,
+    storedRatio: 1,
+    commitmentTiers: [],
+  };
 }
 
 /** Cloud CDN 시청자 지역 — 리전과 같은 지역 가정 (SKU "… Cache Data Transfer to {지역}") */

@@ -237,6 +237,15 @@ test('estimate: K8s 카드 = 컨트롤 플레인 + 노드 두 줄, 노드 수는
   assert.equal(node.monthlyUsd, +(0.08 * HOURS_PER_MONTH * 6).toFixed(2));
 });
 
+test('estimate: K8s 노드는 버스트 포함 옵션이어도 버스트 제외 (일반 VM은 포함)', () => {
+  const s = scenario([vmRes(2, 4), { type: 'k8s', clusters: 1, node: { vcpu: 2, ramGb: 4, count: 1 } }]);
+  const gcp = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!;
+  const [vm, , node] = gcp.lines;
+  assert.ok(vm.kind === 'vm' && vm.matched?.sku === 'cheap-burst');
+  assert.ok(node.kind === 'vm' && node.role === 'k8s-node' && node.matched?.sku === 'fit');
+  assert.ok(node.candidates.every((c) => !c.burstable));
+});
+
 test('estimate: K8s 노드도 카드 인덱스 override로 인스턴스 변경', () => {
   const s = scenario([vmRes(2, 4), { type: 'k8s', clusters: 1, node: { vcpu: 2, ramGb: 8, count: 1 } }]);
   const gcp = estimate(s, PRICING, { includeBurstable: true }, { gcp: { 1: 'big' } }).find((e) => e.provider === 'gcp')!;

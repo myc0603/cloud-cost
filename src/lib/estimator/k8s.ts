@@ -1,7 +1,8 @@
 /**
  * 관리형 Kubernetes 리소스 (EKS·AKS·GKE) — 컨트롤 플레인 + 워커 노드 두 줄.
  * 컨트롤 플레인: 표준(SLA 포함) 티어 클러스터 시간당 요금 × 클러스터 수.
- * 워커 노드: 일반 VM과 같은 매칭(최저가·드롭다운). 노드 수 = 클러스터 수 × 클러스터당 노드.
+ * 워커 노드: 일반 VM과 같은 매칭(최저가·드롭다운)이되 버스트는 항상 제외 — 파드를 몰아넣어 꾸준히 쓰는 노드엔 CPU 크레딧 방식이 안 맞음.
+ * 노드 수 = 클러스터 수 × 클러스터당 노드.
  */
 
 import { HOURS_PER_MONTH, parsePositiveInt, round2, type Resource, type ResourceDef } from './types';
@@ -27,7 +28,7 @@ export const K8S: ResourceDef<Extract<Resource, { type: 'k8s' }>> = {
         clusterPerHour: perHour,
         monthlyUsd: perHour === null ? null : round2(perHour * HOURS_PER_MONTH * r.clusters),
       },
-      vmLine(index, { ...r.node, count: r.node.count * r.clusters }, pricing.vm, opts, pick, 'k8s-node'),
+      vmLine(index, { ...r.node, count: r.node.count * r.clusters }, pricing.vm, { ...opts, includeBurstable: false }, pick, 'k8s-node'),
     ];
   },
 };

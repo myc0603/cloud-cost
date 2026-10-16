@@ -43,7 +43,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>블록 스토리지는 3사의 <b>범용 SSD</b>끼리: AWS gp3 · GCP Balanced PD · Azure Premium SSD v2 (기본 성능 제공분 기준).</li>
         <li className={LI}>
           Kubernetes는 <b>SLA가 있는 표준 티어</b> 컨트롤 플레인끼리: EKS 기본 · AKS Standard · GKE Regional. 워커 노드는 일반 VM과
-          같은 방식으로 매칭합니다. AKS Free 티어(SLA 없음, 컨트롤 플레인 무료)와 GKE 결제 계정당 월 크레딧(클러스터 1개분)은 반영하지 않습니다.
+          같은 방식으로 매칭하되, 버스트 옵션과 관계없이 버스트 인스턴스는 제외합니다(꾸준히 부하가 걸리는 노드엔 CPU 크레딧 방식이 맞지 않음). AKS Free 티어(SLA 없음, 컨트롤 플레인 무료)와 GKE 결제 계정당 월 크레딧(클러스터 1개분)은 반영하지 않습니다.
         </li>
         <li className={LI}>
           로드밸런서는 <b>L7(HTTP)</b>끼리: AWS ALB · Azure Application Gateway Standard v2 · GCP 리전 외부 애플리케이션 LB. 시간당 고정비 +
@@ -128,7 +128,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         <li className={LI}>Block storage compares the three general-purpose SSDs: AWS gp3 · GCP Balanced PD · Azure Premium SSD v2 (baseline performance included in the price).</li>
         <li className={LI}>
           Kubernetes compares <b>SLA-backed standard-tier</b> control planes: EKS standard · AKS Standard · GKE Regional. Worker nodes
-          are matched the same way as regular VMs. The AKS Free tier (no SLA, free control plane) and GKE&apos;s monthly per-billing-account
+          are matched the same way as regular VMs, except that burstable instances are always excluded regardless of the burstable option (CPU credits don't suit nodes under sustained load). The AKS Free tier (no SLA, free control plane) and GKE&apos;s monthly per-billing-account
           credit (one cluster) are not applied.
         </li>
         <li className={LI}>

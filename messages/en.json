@@ -97,6 +97,7 @@
     "armNotice": "ARM (Graviton · Ampere) instances require your app to be ARM (aarch64) compatible — you may need to recompile and verify dependencies.",
     "noCommit": "no commitment price",
     "onDemandShort": "on-demand",
+    "sudNote": "(sustained use discount not applied — up to {pct}% off automatically if run all month)",
     "commitNotice": "{years}-year commitment prices (no upfront) — AWS EC2 Instance Savings Plans and RDS/ElastiCache reservations, Azure reservations, GCP committed use discounts (CUDs). Commitments apply only to VM, K8s node, DB and cache compute; storage, traffic, load balancers, NAT and K8s control planes stay at on-demand prices. Committed charges are billed for the whole term whether or not you use them.",
     "noData": "No data",
     "egressLine": "Outbound traffic {gb}GB",

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { calcEgressUsd, cheapestPerSize, estimate, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
+import { calcEgressUsd, cheapestPerSize, estimate, gcpSustainedUseMax, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
 import { fitCloudSqlShape } from './db';
 import type { DbInstance, EgressTier, Provider, ProviderPricing, VmSku } from '../schema';
 import type { Resource } from './types';
@@ -438,6 +438,13 @@ test('약정: K8s 노드·DB(정해진 사이즈·이중화 약정가 없으면 
   const [m2] = lines([{ type: 'cache', memoryGb: 5, ha: false, count: 1 }], '1y');
   assert.ok(m1.kind === 'cache' && m1.matched?.committed === false);
   assert.ok(m2.kind === 'cache' && m2.matched?.perHour === 0.1 && m2.matched.committed);
+});
+
+test('gcpSustainedUseMax: GCP N1 30%·N2·N2D·C2 20%, E2·다른 플랫폼은 null', () => {
+  assert.equal(gcpSustainedUseMax(sku({ generation: 'n1' })), 0.3);
+  assert.equal(gcpSustainedUseMax(sku({ generation: 'n2d' })), 0.2);
+  assert.equal(gcpSustainedUseMax(sku({ generation: 'e2' })), null);
+  assert.equal(gcpSustainedUseMax(sku({ provider: 'aws', generation: 'n2' })), null);
 });
 
 test('실데이터 스모크: 3사 스냅샷에서 통합 시나리오 견적', () => {

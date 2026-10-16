@@ -55,6 +55,18 @@ export function matchVm(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmMatc
 }
 
 /**
+ * GCP 지속 사용 할인(SUD) 최대율 — 한 달 내내 쓰면 자동 적용, 견적(정가)에는 미반영이라 화면 안내용.
+ * 대상 시리즈·최대율은 공식 문서값 (cloud.google.com/compute/docs/sustained-use-discounts, 2026-10-17 확인).
+ * E2·N4·C3·C4·T2D 등은 대상 아님. 약정(CUD)이 덮는 사용량엔 적용되지 않는다.
+ */
+const GCP_SUD_MAX: Record<string, number> = { n1: 0.3, n2: 0.2, n2d: 0.2, c2: 0.2 };
+
+/** SUD 대상 GCP VM이면 최대 할인율, 아니면 null */
+export function gcpSustainedUseMax(vm: VmSku): number | null {
+  return vm.provider === 'gcp' ? (GCP_SUD_MAX[vm.generation] ?? null) : null;
+}
+
+/**
  * 사이즈(vCPU·RAM)별 최저가 1개만 남긴다 — 드롭다운 후보용.
  * 같은 스펙에 더 비싼 SKU는 열등(strictly dominated)하므로 노이즈.
  * 입력이 가격 오름차순이면 각 사이즈의 첫 항목이 곧 최저가.

@@ -80,6 +80,10 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
           40%, 5GB 이상)는 지출 기반 약정이라 가격 API에 약정가가 없어 공식 문서의 할인율을 씁니다. Azure DB 이중화의 약정가는 대기 서버
           vCore까지 예약한다고 보고 2배로 계산합니다.
         </li>
+        <li className={LI}>
+          GCP N1·N2·N2D·C2는 한 달 내내 쓰면 <b>지속 사용 할인</b>(최대 20~30%)이 자동으로 붙지만 정가 견적에는 반영하지 않습니다.
+          해당 인스턴스가 선택되면 결과에 표시합니다. 기본 매칭되는 E2 등 신형 시리즈는 대상이 아닙니다.
+        </li>
         <li className={LI}>공인 IP 주소 시간 요금(3사 모두 시간당 약 $0.005)은 포함하지 않습니다.</li>
         <li className={LI}>오브젝트 스토리지는 표준 티어 첫 구간(50TB 이하) 단가.</li>
         <li className={LI}>
@@ -181,6 +185,11 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           term&apos;s hours. GCP Cloud SQL (25% for 1 year, 52% for 3 years) and Memorystore (20% / 40%, instances of 5 GB or more) use
           spend-based commitments with no commitment prices in the pricing API, so we apply the discount rates from the official docs.
           Azure DB high-availability commitment prices assume the standby&apos;s vCores are reserved too (2×).
+        </li>
+        <li className={LI}>
+          GCP N1, N2, N2D and C2 automatically get a <b>sustained use discount</b> (up to 20–30%) when run for the whole month, but
+          on-demand estimates don&apos;t include it; the result notes it when such an instance is selected. Newer series such as E2
+          (the usual default match) are not eligible.
         </li>
         <li className={LI}>Public IP address hourly fees (about $0.005/hour on all three) are not included.</li>
         <li className={LI}>Object storage uses the standard tier, first pricing band (up to 50TB).</li>

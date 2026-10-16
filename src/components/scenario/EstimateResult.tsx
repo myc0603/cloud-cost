@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { HOURS_PER_MONTH, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
+import { gcpSustainedUseMax, HOURS_PER_MONTH, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
 import { formatMoney, type Currency, type Period } from '@/lib/display';
 import type { Arch, Provider, Term } from '@/lib/schema';
 
@@ -132,6 +132,9 @@ function LineLabel({
         )}
         {line.matched && <ArchBadge arch={line.matched.arch} />}
         <NoCommitBadge term={term} matched={line.matched} />
+        {!term && line.matched && gcpSustainedUseMax(line.matched) !== null && (
+          <span className="ml-1 text-slate-400">{t('sudNote', { pct: gcpSustainedUseMax(line.matched)! * 100 })}</span>
+        )}
       </span>
     );
   }

@@ -1,0 +1,55 @@
+{
+  "provider": "azure",
+  "region": "seoul",
+  "gbTiers": [
+    {
+      "upTo": 10000,
+      "price": 0.14
+    },
+    {
+      "upTo": 50000,
+      "price": 0.132006
+    },
+    {
+      "upTo": 150000,
+      "price": 0.092134
+    },
+    {
+      "upTo": 500000,
+      "price": 0.035406
+    },
+    {
+      "upTo": 1000000,
+      "price": 0.023002
+    },
+    {
+      "upTo": 5000000,
+      "price": 0.023002
+    },
+    {
+      "upTo": null,
+      "price": 0.023002
+    }
+  ],
+  "requestTiers": [
+    {
+      "upTo": 25000,
+      "price": 0.0181
+    },
+    {
+      "upTo": 100000,
+      "price": 0.01629
+    },
+    {
+      "upTo": 500000,
+      "price": 0.014661
+    },
+    {
+      "upTo": null,
+      "price": 0.013195
+    }
+  ],
+  "monthlyBase": 35,
+  "fillPerGb": 0,
+  "plans": []
+}

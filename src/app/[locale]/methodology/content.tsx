@@ -9,7 +9,10 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
   return (
     <>
       <h2 className={H2}>데이터 출처</h2>
-      <p className={P}>모든 가격은 각 클라우드의 공식 가격 API에서 수집합니다. 사람이 손으로 입력하지 않습니다.</p>
+      <p className={P}>
+        가격은 각 클라우드의 공식 가격 API에서 자동 수집합니다. API에 없는 일부 값(Azure·GCP 인스턴스 스펙, CloudFront 정액 요금제,
+        Cloud SQL·Memorystore·Cloud Run 약정 할인율, Cloud CDN 캐시 채움 단가 등)은 공식 문서값을 확인 날짜와 함께 코드에 기록해 씁니다.
+      </p>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}>AWS — Price List Bulk API (리전별 오퍼 파일)</li>
         <li className={LI}>Azure — Retail Prices API</li>
@@ -125,8 +128,19 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
 
       <h2 className={H2}>한계 — 이 견적이 말해주지 않는 것</h2>
       <ul className="mt-2 list-disc pl-5">
-        <li className={LI}>약정 할인(Savings Plans, CUD, RI), 프리티어, 협상 할인 미반영 — 실제 청구액은 더 낮을 수 있습니다.</li>
-        <li className={LI}>스토리지 IOPS 추가분, API 요청 수, 스냅샷, 로드밸런서 등 부가 요금 미포함.</li>
+        <li className={LI}>
+          기본 견적은 정가입니다. 약정은 &ldquo;요금 기준&rdquo;에서 1·3년 약정(위 기준)만 고를 수 있고, 여러 약정의 조합, Spot·선점형
+          인스턴스, 기업 협상 할인(EDP 등)·크레딧, 계정당 무료 사용량은 반영하지 않습니다 — 실제 청구액은 더 낮을 수 있습니다.
+        </li>
+        <li className={LI}>
+          스토리지 IOPS·처리량 추가분, 오브젝트 스토리지 API 요청, 스냅샷·백업, 가용 영역·리전 간 데이터 전송, 모니터링 지표·쿼리,
+          기술 지원 플랜 요금은 포함하지 않습니다.
+        </li>
+        <li className={LI}>
+          모든 리소스는 한 달 내내(730시간) 켜져 있다고 보고 계산합니다. 오토스케일·야간 중지처럼 사용량이 변하는 구성은 실제보다 높게
+          나옵니다.
+        </li>
+        <li className={LI}>부가세 등 세금은 포함하지 않습니다 (국가에 따라 붙으며, 한국은 10%).</li>
         <li className={LI}>Azure·GCP는 가격 API에 스펙이 없어 주력 시리즈만 수록합니다 (Azure: B·Bsv2/Dsv5·Dsv6/Esv5·Esv6/Fsv2/Dpsv6·Epsv6, GCP: E2/N1/N2/N2D/N4/N4D/C2/C2D/C3/C3D/C4/C4D/T2D/T2A/C4A). Azure AMD 변형(Dasv6 등) 등 일부 시리즈는 빠져 있어 실제 최저가와 다를 수 있습니다.</li>
         <li className={LI}>이 서비스의 견적은 <b>구조 비교와 규모 감 잡기</b>를 위한 것이며, 계약·정산의 근거 자료가 아닙니다.</li>
       </ul>
@@ -138,7 +152,11 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
   return (
     <>
       <h2 className={H2}>Data sources</h2>
-      <p className={P}>All prices are collected from each cloud&rsquo;s official pricing API. Nothing is entered by hand.</p>
+      <p className={P}>
+        Prices are collected automatically from each cloud&rsquo;s official pricing API. A few values the APIs don&rsquo;t provide
+        (Azure and GCP instance specs, CloudFront flat-rate plans, Cloud SQL / Memorystore / Cloud Run commitment discount rates, Cloud
+        CDN cache fill rates, etc.) come from the official docs and are recorded in code with the date they were checked.
+      </p>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}>AWS — Price List Bulk API (per-region offer files)</li>
         <li className={LI}>Azure — Retail Prices API</li>
@@ -262,8 +280,20 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
 
       <h2 className={H2}>Limitations — what this estimate does not tell you</h2>
       <ul className="mt-2 list-disc pl-5">
-        <li className={LI}>Commitment discounts (Savings Plans, CUD, RI), free tiers, and negotiated discounts are not reflected — your actual bill may be lower.</li>
-        <li className={LI}>Extra storage IOPS, API request counts, snapshots, load balancers, and other add-on charges are not included.</li>
+        <li className={LI}>
+          Estimates default to list prices. Under &ldquo;Pricing&rdquo; you can pick 1- or 3-year commitments (as described above);
+          combinations of commitments, Spot/preemptible instances, negotiated discounts (EDP, etc.), credits and per-account free
+          allowances are not reflected — your actual bill may be lower.
+        </li>
+        <li className={LI}>
+          Extra storage IOPS/throughput, object storage API requests, snapshots and backups, cross-AZ and cross-region data transfer,
+          monitoring metrics and queries, and support plan fees are not included.
+        </li>
+        <li className={LI}>
+          Every resource is assumed to run all month (730 hours). Setups whose usage varies — autoscaling, shutting down at night —
+          will come out higher than reality.
+        </li>
+        <li className={LI}>Taxes such as VAT are not included (they depend on your country — 10% in Korea).</li>
         <li className={LI}>Azure and GCP pricing APIs carry no specs, so only main series are cataloged (Azure: B·Bsv2/Dsv5·Dsv6/Esv5·Esv6/Fsv2/Dpsv6·Epsv6; GCP: E2/N1/N2/N2D/N4/N4D/C2/C2D/C3/C3D/C4/C4D/T2D/T2A/C4A). Some series such as Azure AMD variants (Dasv6, etc.) are not included, so the true cheapest option may differ.</li>
         <li className={LI}>These estimates are meant for <b>structural comparison and ballparking</b>, not as a basis for contracts or billing.</li>
       </ul>

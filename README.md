@@ -2,7 +2,7 @@
 
 **워크로드 시나리오를 입력하면 AWS · Azure · GCP 월 예상 비용을 나란히 비교해주는 웹 서비스.**
 
-🔗 **[howmuchcloud.com](https://howmuchcloud.com)**
+🔗 **[howmuchcloud.com](https://www.howmuchcloud.com)**
 
 <img src="docs/screenshot.png" alt="견적 비교 화면" width="720">
 
@@ -10,6 +10,9 @@
 ## 핵심 컨셉
 
 "웹서버 2대 + DB 1대 + 스토리지 500GB + 월 트래픽 1TB" 같은 시나리오를 넣으면 3사 월 비용이 한 화면에 나온다. 사용자는 vCPU/RAM만 지정하면 각 플랫폼에서 그 스펙을 만족하는 최저가 인스턴스가 자동 매칭된다.
+
+- 리소스 12종: VM · 블록/오브젝트 스토리지 · 트래픽 · Kubernetes · L7 로드밸런서 · NAT · 관리형 DB · Redis 호환 캐시 · 서버리스 컨테이너 · CDN · 로그 수집
+- 리전 7개(서울 · 도쿄 · 싱가포르 · 미국 동부/서부 · 프랑크푸르트 · 런던), 정가와 1·3년 약정가 비교
 
 가격 데이터는 3사 공식 가격 API에서 **매일 자동 수집**한다. 서버·DB 없이 돌아가는 구조가 특징:
 
@@ -40,4 +43,4 @@ npm run typecheck
 
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — 시스템 구성, 데이터 갱신 흐름, 스키마
 - [docs/PLANNING.md](docs/PLANNING.md) — 기획서 (문제 정의, 타겟 사용자, 로드맵)
-- [howmuchcloud.com/methodology](https://howmuchcloud.com/methodology) — 견적 산출 방식 설명
+- [howmuchcloud.com/methodology](https://www.howmuchcloud.com/methodology) — 견적 산출 방식 설명

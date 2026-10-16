@@ -44,7 +44,7 @@ sequenceDiagram
     participant V as Vercel
     participant U as 브라우저
 
-    GA->>API: 가격 조회 (3사 병렬)
+    GA->>API: 가격 조회 (3사 × 리전)
     API-->>GA: 원본 SKU 데이터
     GA->>GA: 정규화 → 공통 스키마
     GA->>GA: 검증 (전일 대비 급변·건수 급감 감지)
@@ -74,7 +74,7 @@ cloud-cost/
 │   │   ├── azure-vm-sizes.ts    # Azure 스펙 카탈로그 (API에 vCPU·RAM 없음)
 │   │   ├── azure-db-sizes.ts    # Azure Database Flexible Server 사이즈 카탈로그 (같은 사정)
 │   │   ├── azure-cache-sizes.ts # Azure Managed Redis SKU 용량 카탈로그 (같은 사정)
-│   │   ├── gcp.ts           # ⚠ 난이도 최고 → 프로토타입 1순위
+│   │   ├── gcp.ts           # VM은 패밀리별 vCPU·RAM 단가 → 머신 타입 카탈로그와 조합
 │   │   └── gcp-machine-types.ts # GCP 머신타입 카탈로그 (SKU는 코어·RAM 단가라 조합 필요)
 │   ├── validate.ts          # 급변·누락 감지
 │   └── main.ts
@@ -106,7 +106,7 @@ cloud-cost/
 └── docs/
 ```
 
-- **collector 실행 구조**: 워크플로우는 `npm run collect`(= `collector/main.ts`) 하나만 실행. main.ts가 providers 3개를 병렬 호출 → validate → `data/` 기록. 커밋은 워크플로우의 다음 스텝. 로컬에서도 같은 명령으로 실행 가능(그냥 Node 스크립트).
+- **collector 실행 구조**: 워크플로우는 `npm run collect`(= `collector/main.ts`) 하나만 실행. main.ts가 플랫폼 순서대로(GCP → AWS → Azure, 플랫폼 안에서는 API 요청 병렬) 수집 → validate → `data/` 기록. 리전 목록은 `src/lib/regions.ts`. 커밋은 워크플로우의 다음 스텝. 로컬에서도 같은 명령으로 실행 가능(그냥 Node 스크립트).
 - **모듈 관계**: `data/*.json` → `pricing.ts`(경로·타입을 아는 유일한 로더) → `estimator/`(순수 함수 계산) → `components/`(표시).
 - **요금 데이터 전달**: 페이지에는 기본 리전(서울)만 넣고, 다른 리전은 빌드 시 정적 생성되는 `/pricing/{region}.json`(`app/pricing/[file]/route.ts`, 역시 `loadPricing`)을 고를 때 받는다(`use-region-pricing.ts`, 모듈 캐시). 전 리전을 페이지에 넣으면 리전 수만큼 첫 로딩이 커진다 — 2리전 기준 홈 gzip 91KB → 41KB.
 
@@ -160,7 +160,7 @@ src/
 ```
 
 - 기본은 서버 컴포넌트(빌드 시 HTML로 구움) — `/instances`, `/methodology`는 순수 SSG로 SEO 대응.
-- `ScenarioBuilder`만 `'use client'`: 요금표 JSON을 번들에 포함해 내려보내고(v1 규모 수백 KB), 입력 변경 시 브라우저에서 estimator 즉시 재실행 → 서버 왕복 없는 실시간 견적. 매일 재빌드되므로 번들 속 요금표도 항상 최신.
+- `ScenarioBuilder`·`InstanceTable`은 `'use client'`: 기본 리전 요금표는 페이지에 들어 있고 다른 리전은 `/pricing/{region}.json`을 받아(§3 요금 데이터 전달), 입력 변경 시 브라우저에서 estimator 즉시 재실행 → 서버 왕복 없는 실시간 견적. 매일 재빌드되므로 페이지·JSON 속 요금표도 항상 최신.
 
 ## 4. 데이터 스키마 (`src/lib/schema.ts`)
 
@@ -294,9 +294,9 @@ flowchart TD
     SUM --> OUT["AWS $x · Azure $y · GCP $z<br/>최저가 강조 + KRW 환산"]
 ```
 
-- 순수 함수로 작성 (`estimate(scenario, priceData) → Estimate[]`) — 테스트가 곧 검증 수단
+- 순수 함수로 작성 (`estimate(scenario, pricing, matchOptions, overrides) → ProviderEstimate[]`) — 테스트가 곧 검증 수단
 - **시나리오 = 리소스 카드 목록** (`resources: Resource[]`, 카드 순서 그대로). 리소스 타입마다 `ResourceDef`(기본값 · URL 토큰 인코딩/디코딩 · 견적 줄 계산)를 구현한 모듈 하나가 있고, `index.ts`의 `RESOURCES` 레지스트리에 등록한다. `estimate()`는 카드를 돌며 각 정의에 위임하고 합산만 한다
-  - 새 리소스 추가 = 모듈 1개 + 레지스트리 1줄 + `Resource` 유니온 1줄 + `ResourceCard` 입력 필드 + 문구
+  - 새 리소스 추가 = 모듈 1개 + 레지스트리 1줄 + `Resource` 유니온 1줄 + `EstimateLine` 종류 + `ResourceCard` 입력 필드·`EstimateResult` 줄 + 문구(ko/en) + methodology 고지 + 스키마·수집기 3사·validate·로더 + 테스트 (약정이 있으면 `commit?: CommitPrices`)
   - 견적 줄마다 `resourceIndex`(만든 카드)가 붙는다 — 카드 하나가 여러 줄을 낼 수 있음 (예: K8s = 컨트롤 플레인 + 노드)
   - `singleton` 타입은 시나리오에 하나만: 트래픽은 구간 요금이 전체 전송량 기준이라 카드를 나누면 무료 구간이 중복 적용됨
   - 리소스 모듈은 `types.ts`만 import (`index.ts`를 import하면 순환 참조)

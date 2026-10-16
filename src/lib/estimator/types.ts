@@ -3,7 +3,7 @@
  * 리소스 모듈은 이 파일만 import한다 (index.ts를 import하면 순환 참조).
  */
 
-import type { Arch, CommitPrices, DbEngine, Provider, ProviderPricing, Region, StorageSku, Term, VmSku } from '../schema';
+import type { Arch, CommitPrices, DbEngine, PriceTier, Provider, ProviderPricing, Region, StorageSku, Term, VmSku } from '../schema';
 
 export interface VmSpec {
   vcpu: number;
@@ -28,7 +28,9 @@ export type Resource =
   /** Redis 호환 관리형 캐시 — 메모리(GB) · 이중화 · 캐시 개수 */
   | { type: 'cache'; memoryGb: number; ha: boolean; count: number }
   /** 서버리스 컨테이너 — 컨테이너당 vCPU(0.25~16) · 메모리(GB) · 상시 실행 컨테이너 수 */
-  | ({ type: 'container' } & VmSpec);
+  | ({ type: 'container' } & VmSpec)
+  /** CDN — 월 시청자 전송량(GB) · 월 요청 수(백만 건). CDN을 거친 트래픽은 egress 카드에 넣지 않는다 */
+  | { type: 'cdn'; gb: number; requestsM: number };
 
 export type ResourceType = Resource['type'];
 
@@ -51,6 +53,20 @@ export interface MatchOptions {
    * 이 기준 가격으로 최저가를 다시 찾는다. 약정가가 없는 후보는 정가로 남는다(committed: false).
    */
   term?: Term;
+}
+
+/** 구간 요금 누적 계산 — tiers는 0부터의 절대 사용량 구간(무료 구간 포함) */
+export function tieredCost(tiers: PriceTier[], qty: number): number {
+  let cost = 0;
+  let prev = 0;
+  for (const tier of tiers) {
+    const cap = tier.upTo ?? Infinity;
+    const used = Math.min(qty, cap) - prev;
+    if (used > 0) cost += used * tier.price;
+    if (qty <= cap) break;
+    prev = cap;
+  }
+  return cost;
 }
 
 /** 약정 기간의 가격 — 약정가가 없으면 정가. committed = 약정가 적용 여부 */
@@ -122,6 +138,8 @@ export type EstimateLine = { resourceIndex: number } & (
     }
   /** 서버리스 컨테이너. matched·noMatch 둘 다 null = 요금 데이터 없음 */
   | { kind: 'container'; spec: VmSpec; matched: ContainerMatch | null; noMatch: NoMatchReason | null; monthlyUsd: number | null }
+  /** CDN. plan = 정액 요금제로 계산했으면 그 이름(CloudFront), 종량제면 null */
+  | { kind: 'cdn'; gb: number; requestsM: number; plan: string | null; monthlyUsd: number | null }
 );
 
 /** 컨테이너 매칭 결과 — 플랫폼 허용 조합으로 올린 사이즈, perHour = 컨테이너 1개 시간당(요금 기준 반영) */

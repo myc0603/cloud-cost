@@ -93,6 +93,12 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
             <NumberField label={t('ram')} value={r.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, ramGb })} />
             <NumberField label={t('containerCount')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
           </>
+        ) : r.type === 'cdn' ? (
+          <>
+            <NumberField label={t('cdnGb')} value={r.gb} min={1} onChange={(gb) => onChange({ ...r, gb })} />
+            <NumberField label={t('cdnRequestsM')} value={r.requestsM} min={1} onChange={(requestsM) => onChange({ ...r, requestsM })} />
+            <p className="basis-full text-xs text-slate-400">{t('cdnHint')}</p>
+          </>
         ) : r.type === 'lb' || r.type === 'nat' ? (
           <>
             <NumberField label={t(r.type === 'lb' ? 'lbCount' : 'natCount')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />

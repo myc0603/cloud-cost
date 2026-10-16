@@ -8,6 +8,9 @@ import type { Arch, Provider, Term } from '@/lib/schema';
 
 const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
 
+/** CDN 상품명 — 비교 대상 고정 (estimator/cdn.ts) */
+const CDN_PRODUCT: Record<Provider, string> = { aws: 'CloudFront', azure: 'Front Door Standard', gcp: 'Cloud CDN' };
+
 /** 서버리스 컨테이너 상품명 — 비교 대상 고정 (estimator/container.ts) */
 const CONTAINER_PRODUCT: Record<Provider, string> = { aws: 'Fargate', azure: 'Container Apps', gcp: 'Cloud Run' };
 
@@ -219,6 +222,20 @@ function LineLabel({
         )}
         {line.matched && <ArchBadge arch={line.matched.arch} />}
         <NoCommitBadge term={term} matched={line.matched} />
+      </span>
+    );
+  }
+  if (line.kind === 'cdn') {
+    return (
+      <span>
+        {t('cdnLine', { gb: line.gb, requests: line.requestsM, man: (line.requestsM * 100).toLocaleString('ko-KR') })}
+        {line.monthlyUsd === null ? (
+          <span className="ml-1 text-red-500">{t('noData')}</span>
+        ) : (
+          <span className="ml-1 text-slate-400">
+            → {CDN_PRODUCT[provider]} {line.plan ? t('cdnPlan', { plan: line.plan }) : t('cdnPayg')}
+          </span>
+        )}
       </span>
     );
   }

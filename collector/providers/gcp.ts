@@ -6,7 +6,7 @@
  * 파이프라인: fetchComputeSkus → parseUnitPrices → buildVmSkus
  */
 
-import type { CacheGbTier, CachePrice, CommitPrices, ContainerPrice, DbEngine, DbEnginePricing, DbPrice, DbRateSet, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, Term, VmSku } from '../../src/lib/schema';
+import type { CacheGbTier, CachePrice, CdnPrice, CommitPrices, ContainerPrice, DbEngine, DbEnginePricing, DbPrice, DbRateSet, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, Term, VmSku } from '../../src/lib/schema';
 import { GCP_MACHINE_TYPES } from './gcp-machine-types';
 
 const COMPUTE_SERVICE_ID = '6F81-5844-456A'; // Compute Engine
@@ -381,6 +381,40 @@ export function parseMemorystore(redisSkus: RawSku[], gcpRegion: string, region:
     gbTiers.push(tier);
   }
   return { provider: 'gcp', region, engine: 'Redis', nodes: [], gbTiers };
+}
+
+/** Cloud CDN 시청자 지역 — 리전과 같은 지역 가정 (SKU "… Cache Data Transfer to {지역}") */
+const CLOUD_CDN_DEST: Record<Region, string> = { seoul: 'Asia', 'us-east': 'North America' };
+
+/**
+ * Cloud CDN 캐시 채움 GB당 — 가격 API에 없어 공식 문서값 (cloud.google.com/cdn/pricing, 2026-10-17 확인:
+ * 북미·유럽 내 $0.01, 아시아태평양 등 각 대륙 내 $0.02). 오리진이 같은 리전이라 같은 대륙 요금
+ */
+const CLOUD_CDN_FILL: Record<Region, number> = { seoul: 0.02, 'us-east': 0.01 };
+
+/**
+ * Cloud CDN — 시청자 방향 캐시 전송 GB 구간 + 캐시 조회 요청 + 캐시 채움(미스분, 문서값).
+ * 외부 애플리케이션 LB가 필요하지만 그 요금은 LB 카드로 따로 더한다.
+ */
+export function parseCloudCdn(netSkus: RawSku[], region: Region): CdnPrice | null {
+  const egress = netSkus.find((s) => isOnDemandIn(s, 'global') && s.description === `Networking Cloud CDN Traffic Cache Data Transfer to ${CLOUD_CDN_DEST[region]}`);
+  const lookups = netSkus.find((s) => isOnDemandIn(s, 'global') && s.description === 'Networking Cloud Cdn Cache Lookups');
+  const rates = egress?.pricingInfo?.[0]?.pricingExpression?.tieredRates;
+  const perLookup = lookups && unitPriceOf(lookups);
+  if (!rates || rates.length === 0 || !perLookup) return null;
+  const sorted = [...rates].sort((a, b) => (a.startUsageAmount ?? 0) - (b.startUsageAmount ?? 0));
+  return {
+    provider: 'gcp',
+    region,
+    gbTiers: sorted.map((r, k) => ({
+      upTo: sorted[k + 1]?.startUsageAmount ?? null,
+      price: round6(Number(r.unitPrice?.units ?? 0) + (r.unitPrice?.nanos ?? 0) / 1e9),
+    })),
+    requestTiers: [{ upTo: null, price: round6(perLookup * 10_000) }],
+    monthlyBase: 0,
+    fillPerGb: CLOUD_CDN_FILL[region],
+    plans: [],
+  };
 }
 
 /**

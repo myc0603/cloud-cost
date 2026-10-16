@@ -25,6 +25,7 @@ const snap = (over: Partial<Snapshot>): Snapshot => ({
   db: null,
   cache: null,
   container: null,
+  cdn: null,
   ...over,
 });
 

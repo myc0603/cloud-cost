@@ -5,6 +5,7 @@ import {
   parseCsvLine,
   parseDataTransferCsv,
   parseEc2OfferCsv,
+  parseCloudFrontCsv,
   parseFargateCsv,
   parseSavingsPlanCsv,
   attachFargateCommit,
@@ -357,4 +358,25 @@ test('parseElastiCacheCsv: Valkey 예약 노드 → 약정가, 이중화 2배', 
   ];
   const [node] = (await parseElastiCacheCsv(lines, 'seoul'))!.nodes;
   assert.deepEqual(node.commit, { '1y': { perHour: 0.105, haPerHour: 0.21 }, '3y': { perHour: 0.08, haPerHour: 0.16 } });
+});
+
+test('parseCloudFrontCsv: 시청자 지역(서울 → AP) 전송 구간 + HTTPS 요청(1만 건) + 정액 요금제, 오리진 방향·Proxy 제외', async () => {
+  const H = '"SKU","TermType","StartingRange","EndingRange","Unit","PricePerUnit","Currency","usageType"';
+  const r = (usage: string, price: string, start = '0', end = 'Inf', unit = 'GB') => `"X","OnDemand","${start}","${end}","${unit}","${price}","USD","${usage}"`;
+  const cdn = (await parseCloudFrontCsv(
+    [
+      H,
+      r('AP-DataTransfer-Out-Bytes', '0.1', '10240', 'Inf'),
+      r('AP-DataTransfer-Out-Bytes', '0.12', '0', '10240'),
+      r('AP-DataTransfer-Out-OBytes', '0.06'), // ✘ 오리진 방향
+      r('US-DataTransfer-Out-Bytes', '0.085', '0', 'Inf'), // ✘ 다른 지역
+      r('AP-Requests-HTTPS-Proxy', '0.0000012', '0', 'Inf', 'Requests'), // ✘ Proxy
+      r('AP-Requests-Tier2-HTTPS', '0.0000012', '0', 'Inf', 'Requests'),
+    ],
+    'seoul',
+  ))!;
+  assert.deepEqual(cdn.gbTiers, [{ upTo: 10240, price: 0.12 }, { upTo: null, price: 0.1 }]);
+  assert.deepEqual(cdn.requestTiers, [{ upTo: null, price: 0.012 }]);
+  assert.equal(cdn.fillPerGb, 0);
+  assert.deepEqual(cdn.plans.map((p) => p.name), ['Free', 'Pro', 'Business', 'Premium']);
 });

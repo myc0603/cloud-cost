@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { calcEgressUsd, cheapestPerSize, estimate, fitContainer, gcpSustainedUseMax, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
+import { calcEgressUsd, cdnMonthly, cheapestPerSize, estimate, fitContainer, gcpSustainedUseMax, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
 import { fitCloudSqlShape } from './db';
-import type { ContainerPrice, DbInstance, EgressTier, Provider, ProviderPricing, VmSku } from '../schema';
+import type { CdnPrice, ContainerPrice, DbInstance, EgressTier, Provider, ProviderPricing, VmSku } from '../schema';
 import type { MatchOptions, Resource } from './types';
 
 const sku = (over: Partial<VmSku>): VmSku => ({
@@ -38,8 +38,8 @@ const EGRESS: EgressTier = {
 };
 
 const PRICING: Record<Provider, ProviderPricing> = {
-  aws: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null },
-  azure: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null },
+  aws: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null },
+  azure: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null },
   gcp: {
     vm: FIXTURE,
     storage: [
@@ -75,6 +75,7 @@ const PRICING: Record<Provider, ProviderPricing> = {
       ],
     },
     container: null,
+    cdn: null,
   },
 };
 
@@ -491,12 +492,49 @@ test('컨테이너: 견적 줄 = 컨테이너 수 × 시간당 × 730, 약정 �
   assert.ok(none.kind === 'container' && none.matched === null && none.noMatch === null); // 데이터 없음
 });
 
+test('CDN: 종량제 = 기본료 + 전송 구간 + 요청 구간(1만 건) + 캐시 채움(미스 10%)', () => {
+  const cdn: CdnPrice = {
+    provider: 'gcp',
+    region: 'seoul',
+    gbTiers: [{ upTo: 1000, price: 0.1 }, { upTo: null, price: 0.05 }],
+    requestTiers: [{ upTo: 100, price: 0.01 }, { upTo: null, price: 0.005 }],
+    monthlyBase: 35,
+    fillPerGb: 0.02,
+    plans: [],
+  };
+  const line = estimate(scenario([{ type: 'cdn', gb: 2000, requestsM: 2 }]), { ...PRICING, gcp: { ...PRICING.gcp, cdn } }, { includeBurstable: true })
+    .find((e) => e.provider === 'gcp')!.lines[0];
+  // 35 + (1000×0.1 + 1000×0.05) + (100×0.01 + 100×0.005) + 2000×0.1×0.02
+  assert.deepEqual(line, { resourceIndex: 0, kind: 'cdn', gb: 2000, requestsM: 2, plan: null, monthlyUsd: +(35 + 150 + 1.5 + 4).toFixed(2) });
+});
+
+test('CDN: 정액 요금제는 한도 안에서 가장 싼 것, 종량제보다 비싸면 종량제', () => {
+  const cdn: CdnPrice = {
+    provider: 'aws',
+    region: 'seoul',
+    gbTiers: [{ upTo: null, price: 0.12 }],
+    requestTiers: [{ upTo: null, price: 0.012 }],
+    monthlyBase: 0,
+    fillPerGb: 0,
+    plans: [
+      { name: 'Free', monthlyUsd: 0, maxGb: 100, maxRequests: 1_000_000 },
+      { name: 'Pro', monthlyUsd: 15, maxGb: 51200, maxRequests: 10_000_000 },
+      { name: 'Business', monthlyUsd: 200, maxGb: 51200, maxRequests: 125_000_000 },
+    ],
+  };
+  assert.deepEqual(cdnMonthly(cdn, 100, 1_000_000), { usd: 0, plan: 'Free' });
+  assert.deepEqual(cdnMonthly(cdn, 1024, 10_000_000), { usd: 15, plan: 'Pro' });
+  // 1TB·5천만 건: Business $200 > 종량제 1024×0.12 + 5000×0.012 = $182.88
+  assert.equal(cdnMonthly(cdn, 1024, 50_000_000).plan, null);
+  assert.equal(cdnMonthly(cdn, 60000, 1_000_000).plan, null); // 전송 한도 초과 → 종량제
+});
+
 test('실데이터 스모크: 3사 스냅샷에서 통합 시나리오 견적', () => {
   const load = (p: string, f: string) => JSON.parse(readFileSync(`data/${p}/seoul/${f}`, 'utf8'));
   const pricing: Record<Provider, ProviderPricing> = {
-    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json'), k8s: load('aws', 'k8s.json'), lb: load('aws', 'lb.json'), nat: load('aws', 'nat.json'), db: load('aws', 'db.json'), cache: load('aws', 'cache.json'), container: load('aws', 'container.json') },
-    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json'), k8s: load('azure', 'k8s.json'), lb: load('azure', 'lb.json'), nat: load('azure', 'nat.json'), db: load('azure', 'db.json'), cache: load('azure', 'cache.json'), container: load('azure', 'container.json') },
-    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json'), k8s: load('gcp', 'k8s.json'), lb: load('gcp', 'lb.json'), nat: load('gcp', 'nat.json'), db: load('gcp', 'db.json'), cache: load('gcp', 'cache.json'), container: load('gcp', 'container.json') },
+    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json'), k8s: load('aws', 'k8s.json'), lb: load('aws', 'lb.json'), nat: load('aws', 'nat.json'), db: load('aws', 'db.json'), cache: load('aws', 'cache.json'), container: load('aws', 'container.json'), cdn: load('aws', 'cdn.json') },
+    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json'), k8s: load('azure', 'k8s.json'), lb: load('azure', 'lb.json'), nat: load('azure', 'nat.json'), db: load('azure', 'db.json'), cache: load('azure', 'cache.json'), container: load('azure', 'container.json'), cdn: load('azure', 'cdn.json') },
+    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json'), k8s: load('gcp', 'k8s.json'), lb: load('gcp', 'lb.json'), nat: load('gcp', 'nat.json'), db: load('gcp', 'db.json'), cache: load('gcp', 'cache.json'), container: load('gcp', 'container.json'), cdn: load('gcp', 'cdn.json') },
   };
   const s = scenario([vmRes(2, 4, 2), { type: 'block', gb: 100 }, { type: 'object', gb: 500 }, { type: 'egress', gb: 1024 }]);
   const results = estimate(s, pricing, { includeBurstable: true });

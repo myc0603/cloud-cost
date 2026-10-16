@@ -14,6 +14,7 @@ import type {
   CacheNode,
   CommitPrices,
   CachePrice,
+  CdnPrice,
   ContainerPrice,
   ContainerRate,
   DbEngine,
@@ -585,6 +586,51 @@ export async function parseElastiCacheCsv(
   };
 }
 
+/** CloudFront 시청자 지역 요금 접두사 — 리전과 같은 지역 가정 (한국은 Asia Pacific 구간) */
+const CLOUDFRONT_ZONE: Record<Region, string> = { seoul: 'AP', 'us-east': 'US' };
+
+/**
+ * CloudFront 정액 요금제 — 가격 API에 없어 공식 문서값
+ * (docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/flat-rate-pricing-plan.html, 2026-10-17 확인).
+ * 배포당 월정액, 한도 초과 요금은 없지만 지속 초과 시 성능 조정 → 한도 안 요금제만 고른다.
+ */
+const CLOUDFRONT_PLANS: CdnPrice['plans'] = [
+  { name: 'Free', monthlyUsd: 0, maxGb: 100, maxRequests: 1_000_000 },
+  { name: 'Pro', monthlyUsd: 15, maxGb: 50 * 1024, maxRequests: 10_000_000 },
+  { name: 'Business', monthlyUsd: 200, maxGb: 50 * 1024, maxRequests: 125_000_000 },
+  { name: 'Premium', monthlyUsd: 1000, maxGb: 50 * 1024, maxRequests: 500_000_000 },
+];
+
+/**
+ * AmazonCloudFront 글로벌 오퍼 CSV → 시청자 지역(리전과 같은 지역)의 인터넷 전송 GB 구간 + HTTPS 요청 단가 + 정액 요금제.
+ * 오리진 방향 전송(OBytes)·Proxy·FLE 요청은 제외. AWS 오리진 → CloudFront 전송은 무료라 캐시 채움 0.
+ */
+export async function parseCloudFrontCsv(lines: AsyncIterable<string> | Iterable<string>, region: Region): Promise<CdnPrice | null> {
+  const zone = CLOUDFRONT_ZONE[region];
+  const tiers: { start: number; end: number | null; price: number }[] = [];
+  let perRequest: number | null = null;
+  await scanOfferCsv(lines, (get) => {
+    if (get('TermType') !== 'OnDemand' || get('Currency') !== 'USD') return;
+    const price = Number(get('PricePerUnit'));
+    if (get('usageType') === `${zone}-DataTransfer-Out-Bytes` && get('Unit') === 'GB') {
+      tiers.push({ start: Number(get('StartingRange')), end: get('EndingRange') === 'Inf' ? null : Number(get('EndingRange')), price: +price.toFixed(6) });
+    } else if (get('usageType') === `${zone}-Requests-Tier2-HTTPS` && price > 0) {
+      perRequest ??= price;
+    }
+  });
+  if (tiers.length === 0 || perRequest === null) return null;
+  tiers.sort((a, b) => a.start - b.start);
+  return {
+    provider: 'aws',
+    region,
+    gbTiers: tiers.map((t) => ({ upTo: t.end, price: t.price })),
+    requestTiers: [{ upTo: null, price: +(perRequest * 10_000).toFixed(6) }],
+    monthlyBase: 0,
+    fillPerGb: 0,
+    plans: CLOUDFRONT_PLANS,
+  };
+}
+
 async function streamCsv(url: string) {
   const res = await fetch(url);
   if (!res.ok || !res.body) throw new Error(`AWS Price List API 오류 ${res.status} (${url})`);
@@ -592,6 +638,9 @@ async function streamCsv(url: string) {
 }
 
 const streamOffer = (offer: string, awsRegion: string) => streamCsv(offerCsvUrl(offer, awsRegion));
+
+/** 리전 구분이 없는 글로벌 오퍼 (CloudFront) */
+const streamGlobalOffer = (offer: string) => streamCsv(`https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/${offer}/current/index.csv`);
 
 /** Savings Plans 오퍼는 "current" 경로가 없어 리전 인덱스에서 버전 경로(.json)를 찾아 .csv로 바꾼다 */
 async function streamSavingsPlans(awsRegion: string) {
@@ -616,6 +665,7 @@ export async function collectAws(
   db: DbPrice | null;
   cache: CachePrice | null;
   container: ContainerPrice | null;
+  cdn: CdnPrice | null;
 }> {
   const awsRegion = AWS_REGION[region];
   const ec2 = await parseEc2OfferCsv(await streamOffer('AmazonEC2', awsRegion), region);
@@ -626,11 +676,12 @@ export async function collectAws(
   }
   const container = await parseFargateCsv(await streamOffer('AmazonECS', awsRegion), region);
   attachFargateCommit(container, sp.fargate);
+  const cdn = await parseCloudFrontCsv(await streamGlobalOffer('AmazonCloudFront'), region);
   const s3 = await parseS3OfferCsv(await streamOffer('AmazonS3', awsRegion), region);
   const egress = await parseDataTransferCsv(await streamOffer('AWSDataTransfer', awsRegion), region);
   const k8s = await parseEksCsv(await streamOffer('AmazonEKS', awsRegion), region);
   const lb = await parseAlbCsv(await streamOffer('AWSELB', awsRegion), region);
   const db = await parseRdsCsv(await streamOffer('AmazonRDS', awsRegion), region);
   const cache = await parseElastiCacheCsv(await streamOffer('AmazonElastiCache', awsRegion), region);
-  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat, db, cache, container };
+  return { vms: ec2.vms, storage: s3 ? [...ec2.storage, s3] : ec2.storage, egress, k8s, lb, nat: ec2.nat, db, cache, container, cdn };
 }

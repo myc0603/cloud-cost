@@ -3,20 +3,11 @@
  */
 
 import type { EgressTier } from '../schema';
-import { parsePositiveInt, round2, type Resource, type ResourceDef } from './types';
+import { parsePositiveInt, round2, tieredCost, type Resource, type ResourceDef } from './types';
 
 /** 구간 요금 누적 계산 — tiers는 0GB부터의 절대 사용량 구간(무료 구간 포함) */
 export function calcEgressUsd(egress: EgressTier, gb: number): number {
-  let cost = 0;
-  let prev = 0;
-  for (const tier of egress.tiers) {
-    const cap = tier.upToGb ?? Infinity;
-    const qty = Math.min(gb, cap) - prev;
-    if (qty > 0) cost += qty * tier.pricePerGb;
-    if (gb <= cap) break;
-    prev = cap;
-  }
-  return cost;
+  return tieredCost(egress.tiers.map((t) => ({ upTo: t.upToGb, price: t.pricePerGb })), gb);
 }
 
 /** URL 본문: 월 GB 정수 */

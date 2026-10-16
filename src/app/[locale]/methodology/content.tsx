@@ -76,6 +76,14 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
           $0.4)·월 무료 사용량은 반영하지 않습니다. ARM은 Fargate만 지원합니다.
         </li>
         <li className={LI}>
+          CDN은 AWS <b>CloudFront</b> · Azure <b>Front Door Standard</b> · GCP <b>Cloud CDN</b>을 비교하며, 사용자가 리전과 같은
+          지역(서울이면 한국·아시아태평양, 미국 동부면 북미)에 있다고 가정합니다. 전송 GB·요청 수 구간 요금에 Front Door 기본료(월 $35)를
+          더하고, GCP는 캐시 채움 요금을 캐시 적중률 90% 가정으로 더합니다. CloudFront는 사용량을 감당하는 가장 싼{' '}
+          <b>정액 요금제</b>(Free·Pro·Business·Premium)와 종량제 중 싼 쪽으로 계산합니다. CDN을 거친 트래픽은 아웃바운드 트래픽 카드와
+          별개이고, AWS·Azure 오리진에서 CDN으로 가는 전송은 무료입니다. Cloud CDN이 쓰는 L7 로드밸런서 요금은 로드밸런서 카드로 따로
+          더합니다.
+        </li>
+        <li className={LI}>
           <b>약정 할인</b>(요금 기준: 1년·3년 약정)은 3사 모두 <b>인스턴스 고정형 + 선결제 없음</b> 기준입니다: AWS EC2 Instance Savings
           Plans(Standard RI와 같은 요율)·RDS/ElastiCache 예약 인스턴스, Azure 예약(월납·선납 총액 동일), GCP 리소스 기반 약정 사용
           할인(CUD, 월납). 더 유연한 상품(AWS Compute Savings Plans·Azure Savings Plan)은 할인 폭이 작아 쓰지 않습니다. 단, 서버리스
@@ -84,10 +92,16 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
           최저가 인스턴스를 다시 찾으며, 약정 상품이 없는 SKU는 정가로 계산하고 &quot;약정가 없음&quot;으로 표시합니다.
         </li>
         <li className={LI}>
-          약정은 VM·K8s 노드·DB·캐시 컴퓨트에만 적용되고 스토리지·트래픽·LB·NAT·K8s 컨트롤 플레인은 정가입니다. RDS 3년처럼 선결제 없음
+          약정은 VM·K8s 노드·DB·캐시·컨테이너 컴퓨트에만 적용되고 스토리지·트래픽·CDN·LB·NAT·K8s 컨트롤 플레인은 정가입니다. RDS 3년처럼 선결제 없음
           상품이 없으면 부분 선결제액을 기간 시간으로 나눠 시간당에 더합니다. GCP Cloud SQL(1년 25%·3년 52%)과 Memorystore(1년 20%·3년
           40%, 5GB 이상)는 지출 기반 약정이라 가격 API에 약정가가 없어 공식 문서의 할인율을 씁니다. Azure DB 이중화의 약정가는 대기 서버
           vCore까지 예약한다고 보고 2배로 계산합니다.
+        </li>
+        <li className={LI}>
+          <b>무료 사용량</b>: 계정당 한 번 주어지는 상시 무료분(CloudFront 종량제 월 1TB, Container Apps·Cloud Run 월 무료분, GKE 월
+          크레딧, AKS Free 티어 등)은 반영하지 않습니다. 실제 계정에선 다른 서비스가 이미 쓰고 있을 수 있어 구성 하나만 놓고 빼면 실제보다
+          싸게 나오기 때문입니다. 단, 요금표 자체에 들어 있는 트래픽 무료 구간과, 배포마다 고르는 정식 요금제(CloudFront Free 요금제)는
+          반영합니다.
         </li>
         <li className={LI}>
           GCP N1·N2·N2D·C2는 한 달 내내 쓰면 <b>지속 사용 할인</b>(최대 20~30%)이 자동으로 붙지만 정가 견적에는 반영하지 않습니다.
@@ -188,6 +202,14 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           (Container Apps $0.4 per million) and monthly free grants are not included. Only Fargate offers ARM.
         </li>
         <li className={LI}>
+          CDNs compare AWS <b>CloudFront</b> · Azure <b>Front Door Standard</b> · GCP <b>Cloud CDN</b>, assuming your users are in the
+          same area as the region (Seoul → Korea/Asia Pacific, US East → North America). We add tiered per-GB and per-request rates,
+          Front Door&apos;s base fee ($35/month), and GCP cache fill assuming a 90% cache hit ratio. CloudFront uses whichever is cheaper:
+          pay-as-you-go or the cheapest <b>flat-rate plan</b> (Free, Pro, Business, Premium) whose allowance covers your usage. CDN traffic
+          is separate from the outbound traffic card, and transfer from AWS or Azure origins to the CDN is free. The L7 load balancer that
+          Cloud CDN needs is added with the load balancer card.
+        </li>
+        <li className={LI}>
           <b>Commitment discounts</b> (Pricing: 1-year or 3-year commitment) use <b>instance-specific commitments with no upfront
           payment</b> on all three: AWS EC2 Instance Savings Plans (same rates as Standard RIs) and RDS/ElastiCache reserved instances,
           Azure reservations (monthly and upfront totals are equal), and GCP resource-based committed use discounts (CUDs, billed
@@ -198,11 +220,17 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           &quot;no commitment price&quot;.
         </li>
         <li className={LI}>
-          Commitments apply only to VM, K8s node, DB and cache compute; storage, traffic, load balancers, NAT and K8s control planes
+          Commitments apply only to VM, K8s node, DB, cache and container compute; storage, traffic, CDN, load balancers, NAT and K8s control planes
           stay on-demand. Where no no-upfront option exists (some 3-year RDS terms), the partial upfront payment is spread over the
           term&apos;s hours. GCP Cloud SQL (25% for 1 year, 52% for 3 years) and Memorystore (20% / 40%, instances of 5 GB or more) use
           spend-based commitments with no commitment prices in the pricing API, so we apply the discount rates from the official docs.
           Azure DB high-availability commitment prices assume the standby&apos;s vCores are reserved too (2×).
+        </li>
+        <li className={LI}>
+          <b>Free usage</b>: per-account always-free allowances (CloudFront pay-as-you-go 1 TB/month, Container Apps and Cloud Run monthly
+          grants, the GKE monthly credit, the AKS Free tier, etc.) are not applied — a real account may already be using them for other
+          services, so subtracting them for one setup would understate the cost. Free tiers built into the rate tables (traffic) and
+          standalone plans you pick per deployment (the CloudFront Free plan) are included.
         </li>
         <li className={LI}>
           GCP N1, N2, N2D and C2 automatically get a <b>sustained use discount</b> (up to 20–30%) when run for the whole month, but

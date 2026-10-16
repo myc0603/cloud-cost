@@ -7,6 +7,7 @@
 
 import type {
   CachePrice,
+  CdnPrice,
   CommitPrices,
   ContainerPrice,
   DbEngine,
@@ -460,4 +461,36 @@ export async function collectAzureContainer(region: Region): Promise<ContainerPr
     true,
   );
   return buildAzureContainer(items, region);
+}
+
+/** Front Door 과금 존 — 시청자가 리전과 같은 지역이라고 가정 (가격 페이지: Zone 8 - Korea, Zone 1 - North America) */
+const FRONT_DOOR_ZONE: Record<Region, string> = { seoul: 'Zone 8', 'us-east': 'Zone 1' };
+
+/** tierMinimumUnits(구간 시작점) 순 아이템 → 누적 상한 구간 */
+const toTiers = (items: AzurePriceItem[]) => {
+  const sorted = [...items].sort((a, b) => a.tierMinimumUnits - b.tierMinimumUnits);
+  return sorted.map((i, k) => ({ upTo: sorted[k + 1]?.tierMinimumUnits ?? null, price: +i.retailPrice.toFixed(6) }));
+};
+
+/**
+ * Azure Front Door Standard — 프로필 기본료(월) + 시청자 방향 전송 GB 구간 + 요청 1만 건 구간.
+ * Azure 오리진 → Front Door 전송은 무료(문서), 엣지 → 오리진 요청 바이트(Data Transfer In)는 작아 제외.
+ */
+export function buildAzureCdn(items: AzurePriceItem[], region: Region): CdnPrice | null {
+  const meter = (name: string, unit: string) =>
+    items.filter(
+      (i) => i.productName === 'Azure Front Door' && i.skuName === 'Standard' && i.armRegionName === FRONT_DOOR_ZONE[region] && i.meterName === name && i.unitOfMeasure === unit && i.type === 'Consumption',
+    );
+  const out = meter('Standard Data Transfer Out', '1 GB');
+  const requests = meter('Standard Requests', '10K');
+  const base = meter('Standard Base Fees', '1/Month')[0]?.retailPrice;
+  if (out.length === 0 || requests.length === 0 || base === undefined) return null;
+  return { provider: 'azure', region, gbTiers: toTiers(out), requestTiers: toTiers(requests), monthlyBase: base, fillPerGb: 0, plans: [] };
+}
+
+export async function collectAzureCdn(region: Region): Promise<CdnPrice | null> {
+  const items = await fetchPriceItems(
+    `serviceName eq 'Azure Front Door Service' and priceType eq 'Consumption' and armRegionName eq '${FRONT_DOOR_ZONE[region]}'`,
+  );
+  return buildAzureCdn(items, region);
 }

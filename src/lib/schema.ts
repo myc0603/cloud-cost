@@ -188,6 +188,40 @@ export interface ContainerPrice {
   rates: Partial<Record<Arch, ContainerRate & { commit?: CommitPrices<ContainerRate> }>>;
 }
 
+/** 구간 단가 — upTo는 0부터의 누적 상한(null = 무제한), 단위는 쓰는 곳이 정한다 */
+export interface PriceTier {
+  upTo: number | null;
+  price: number;
+}
+
+/** CloudFront 정액 요금제 — 배포당 월정액, 한도 안이면 초과 요금 없음 (한도 초과 시 성능 조정 가능 → 한도 안 요금제만 고른다) */
+export interface CdnPlan {
+  name: string;
+  monthlyUsd: number;
+  maxGb: number;
+  maxRequests: number;
+}
+
+/**
+ * CDN — AWS CloudFront / Azure Front Door Standard / GCP Cloud CDN.
+ * 시청자는 리전과 같은 지역으로 가정한다 (서울 → 한국·아시아태평양 요금, 미국 동부 → 북미 요금).
+ * 오리진 → CDN 전송: AWS·Azure 오리진은 무료, GCP는 캐시 채움(fillPerGb, 캐시 미스분).
+ */
+export interface CdnPrice {
+  provider: Provider;
+  region: Region;
+  /** 시청자 방향 전송 — GB 구간 */
+  gbTiers: PriceTier[];
+  /** 요청 — 1만 건 단위 구간 (upTo도 1만 건 단위) */
+  requestTiers: PriceTier[];
+  /** 월 고정비 (Front Door 프로필 기본료). 없으면 0 */
+  monthlyBase: number;
+  /** 캐시 채움 GB당 (GCP 같은 대륙 요금). 무료면 0 */
+  fillPerGb: number;
+  /** 정액 요금제 (CloudFront). 없으면 빈 배열 */
+  plans: CdnPlan[];
+}
+
 /** 한 플랫폼의 리전별 요금 데이터 묶음 — pricing 로더가 반환하는 단위 */
 export interface ProviderPricing {
   vm: VmSku[];
@@ -199,6 +233,7 @@ export interface ProviderPricing {
   db: DbPrice | null;
   cache: CachePrice | null;
   container: ContainerPrice | null;
+  cdn: CdnPrice | null;
 }
 
 /** data/meta.json */

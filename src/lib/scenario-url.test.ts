@@ -27,6 +27,20 @@ test('인코딩 → 디코딩 왕복 보존 (카드 순서 포함)', () => {
   assert.deepEqual(decodeScenario(encoded), scenario);
 });
 
+test('컨테이너(분수 vCPU)·CDN 토큰 왕복, 허용 밖 vCPU·깨진 CDN 본문은 버림', () => {
+  const scenario: Scenario = {
+    region: 'seoul',
+    resources: [
+      { type: 'container', vcpu: 0.25, ramGb: 1, count: 3 },
+      { type: 'cdn', gb: 1024, requestsM: 10 },
+    ],
+  };
+  const encoded = encodeScenario(scenario);
+  assert.equal(new URLSearchParams(encoded).get('res'), 'ctr:0.25c1g:3,cdn:1024:10');
+  assert.deepEqual(decodeScenario(encoded), scenario);
+  assert.deepEqual(decodeScenario('r=seoul&res=ctr:3c1g:1,cdn:1024,cdn:0:10')?.resources ?? [], []);
+});
+
 test('파라미터 없으면 null (기본 시나리오 위임) — v0.3 이전 형식도 null', () => {
   assert.equal(decodeScenario(''), null);
   assert.equal(decodeScenario('foo=bar'), null);

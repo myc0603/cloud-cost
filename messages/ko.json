@@ -62,7 +62,8 @@
       "nat": "NAT 게이트웨이",
       "db": "관리형 DB",
       "cache": "캐시 (Redis 호환)",
-      "container": "서버리스 컨테이너"
+      "container": "서버리스 컨테이너",
+      "cdn": "CDN"
     },
     "sizeGb": "용량 (GB)",
     "egressGb": "월 전송량 (GB)",
@@ -84,7 +85,10 @@
     "vcpu": "vCPU",
     "ram": "RAM (GB)",
     "count": "대수",
-    "containerCount": "컨테이너 수"
+    "containerCount": "컨테이너 수",
+    "cdnGb": "월 전송량 (GB)",
+    "cdnRequestsM": "월 요청 수 (백만 건)",
+    "cdnHint": "CDN을 거쳐 나가는 트래픽은 아웃바운드 트래픽 카드에서 빼고 입력하세요."
   },
   "estimate": {
     "storageLabel": {
@@ -101,7 +105,7 @@
     "noCommit": "약정가 없음",
     "onDemandShort": "정가",
     "sudNote": "(지속 사용 할인 미반영 — 한 달 내내 쓰면 최대 {pct}% 자동 할인)",
-    "commitNotice": "{years}년 약정가(선결제 없음) 기준 — AWS EC2 Instance Savings Plans·RDS/ElastiCache 예약, Azure 예약, GCP 약정 사용 할인(CUD). 약정은 VM·K8s 노드·DB·캐시 컴퓨트에만 적용되고, 스토리지·트래픽·LB·NAT·K8s 컨트롤 플레인은 정가입니다. 약정 요금은 실제 사용 여부와 관계없이 기간 내내 청구됩니다.",
+    "commitNotice": "{years}년 약정가(선결제 없음) 기준 — AWS EC2 Instance Savings Plans·RDS/ElastiCache 예약, Azure 예약, GCP 약정 사용 할인(CUD). 약정은 VM·K8s 노드·DB·캐시·컨테이너 컴퓨트에만 적용되고, 스토리지·트래픽·CDN·LB·NAT·K8s 컨트롤 플레인은 정가입니다. 약정 요금은 실제 사용 여부와 관계없이 기간 내내 청구됩니다.",
     "noData": "데이터 없음",
     "egressLine": "아웃바운드 트래픽 {gb}GB",
     "freeApplied": "(무료 {gb}GB 반영)",
@@ -119,6 +123,9 @@
     "dbStorageLine": "DB 스토리지 {gb}GB ×{count}",
     "cacheLine": "캐시 {engine} {gb}GB ×{count}",
     "containerLine": "컨테이너 {vcpu}vCPU/{gb}GB ×{count}",
+    "cdnLine": "CDN {gb}GB · 요청 {man}만 건",
+    "cdnPlan": "{plan} 정액제",
+    "cdnPayg": "종량제",
     "cheapest": "최저가",
     "dataPending": "데이터 준비 중",
     "unavailable": "견적 불가",

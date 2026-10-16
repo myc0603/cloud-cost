@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   buildAzureCache,
+  buildAzureCdn,
   buildAzureContainer,
   buildAzureDbEngine,
   buildAzureEgress,
@@ -226,4 +227,25 @@ test('buildAzureContainer: Container Apps 활성 vCPU·메모리 초 단가 → 
   // 3년은 메모리 SP 단가가 없어 미적용
   assert.deepEqual(c.rates, { x86: { vcpuPerHour: 0.0864, gbPerHour: 0.0108, commit: { '1y': { vcpuPerHour: 0.07344, gbPerHour: 0.00918 } } } });
   assert.equal(buildAzureContainer([], 'seoul'), null);
+});
+
+test('buildAzureCdn: Front Door Standard 존(서울 → Zone 8) 기본료 + 전송·요청 구간, Premium·다른 존 제외', () => {
+  const fd = (meterName: string, retailPrice: number, unitOfMeasure: string, tierMinimumUnits = 0, over: Partial<AzurePriceItem> = {}) =>
+    item({ productName: 'Azure Front Door', skuName: 'Standard', armRegionName: 'Zone 8', meterName, retailPrice, unitOfMeasure, tierMinimumUnits, ...over });
+  const cdn = buildAzureCdn(
+    [
+      fd('Standard Base Fees', 35, '1/Month'),
+      fd('Standard Data Transfer Out', 0.132006, '1 GB', 10000),
+      fd('Standard Data Transfer Out', 0.14, '1 GB'),
+      fd('Standard Requests', 0.0181, '10K'),
+      fd('Standard Requests', 0.6, '1M/Month'), // ✘ 다른 단위 미터
+      fd('Standard Data Transfer Out', 0.0825, '1 GB', 0, { armRegionName: 'Zone 1' }), // ✘ 다른 존
+      fd('Premium Data Transfer Out', 0.2, '1 GB', 0, { skuName: 'Premium' }), // ✘ Premium
+    ],
+    'seoul',
+  )!;
+  assert.deepEqual(cdn.gbTiers, [{ upTo: 10000, price: 0.14 }, { upTo: null, price: 0.132006 }]);
+  assert.deepEqual(cdn.requestTiers, [{ upTo: null, price: 0.0181 }]);
+  assert.equal(cdn.monthlyBase, 35);
+  assert.equal(buildAzureCdn([], 'seoul'), null);
 });

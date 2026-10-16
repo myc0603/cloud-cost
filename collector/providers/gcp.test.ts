@@ -4,7 +4,7 @@
  */
 
 import assert from 'node:assert/strict';
-import { parseCloudRun, parseCloudSql, parseCommitUnitPrices, parseMemorystore, parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
+import { parseCloudCdn, parseCloudRun, parseCloudSql, parseCommitUnitPrices, parseMemorystore, parseGcpLb, parseGcpNat, parseGkeCluster, parseUnitPrices, buildVmSkus, type RawSku } from './gcp';
 
 function fx(
   description: string,
@@ -191,5 +191,23 @@ assert.deepEqual(run.rates.x86, {
   commit: { '1y': { vcpuPerHour: 0.055987, gbPerHour: 0.006221 }, '3y': { vcpuPerHour: 0.04199, gbPerHour: 0.004666 } },
 });
 assert.equal(parseCloudRun([], 'asia-northeast3', 'seoul'), null);
+
+// Cloud CDN: 시청자 지역(서울 → Asia) 캐시 전송 구간 + 조회(1만 건) + 캐시 채움(문서값, 아시아 $0.02)
+const tiered = (description: string, tiers: [number, number][]): RawSku => ({
+  ...fx(description, 'OnDemand', 0, ['global']),
+  pricingInfo: [{ pricingExpression: { usageUnit: 'GiBy', tieredRates: tiers.map(([start, nanos]) => ({ startUsageAmount: start, unitPrice: { currencyCode: 'USD', units: '0', nanos } })) } }],
+});
+const cdn = parseCloudCdn(
+  [
+    tiered('Networking Cloud CDN Traffic Cache Data Transfer to Asia', [[10240, 60_000_000], [0, 90_000_000]]),
+    tiered('Networking Cloud CDN Traffic Cache Data Transfer to Europe', [[0, 80_000_000]]),
+    fx('Networking Cloud Cdn Cache Lookups', 'OnDemand', 750, ['global']),
+  ],
+  'seoul',
+)!;
+assert.deepEqual(cdn.gbTiers, [{ upTo: 10240, price: 0.09 }, { upTo: null, price: 0.06 }]);
+assert.deepEqual(cdn.requestTiers, [{ upTo: null, price: 0.0075 }]);
+assert.equal(cdn.fillPerGb, 0.02);
+assert.equal(parseCloudCdn([], 'seoul'), null);
 
 console.log(`gcp.test: 모든 검증 통과 ✔ (VmSku ${vms.length}건 생성)`);

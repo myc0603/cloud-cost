@@ -74,7 +74,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 0.013
+    "pricePerHour": 0.013,
+    "commit": {
+      "1y": 0.007306,
+      "3y": 0.004947
+    }
   },
   {
     "provider": "azure",
@@ -85,7 +89,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 0.052
+    "pricePerHour": 0.052,
+    "commit": {
+      "1y": 0.02911,
+      "3y": 0.019749
+    }
   },
   {
     "provider": "azure",
@@ -96,7 +104,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 0.104
+    "pricePerHour": 0.104,
+    "commit": {
+      "1y": 0.058219,
+      "3y": 0.039536
+    }
   },
   {
     "provider": "azure",
@@ -107,7 +119,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 0.184
+    "pricePerHour": 0.184,
+    "commit": {
+      "1y": 0.103196,
+      "3y": 0.070015
+    }
   },
   {
     "provider": "azure",
@@ -118,7 +134,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 0.208
+    "pricePerHour": 0.208,
+    "commit": {
+      "1y": 0.116438,
+      "3y": 0.079033
+    }
   },
   {
     "provider": "azure",
@@ -129,7 +149,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 0.368
+    "pricePerHour": 0.368,
+    "commit": {
+      "1y": 0.206279,
+      "3y": 0.139992
+    }
   },
   {
     "provider": "azure",
@@ -140,7 +164,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 0.416
+    "pricePerHour": 0.416,
+    "commit": {
+      "1y": 0.232991,
+      "3y": 0.158067
+    }
   },
   {
     "provider": "azure",
@@ -151,7 +179,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 0.737
+    "pricePerHour": 0.737,
+    "commit": {
+      "1y": 0.412671,
+      "3y": 0.279985
+    }
   },
   {
     "provider": "azure",
@@ -162,7 +194,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 0.832
+    "pricePerHour": 0.832,
+    "commit": {
+      "1y": 0.465868,
+      "3y": 0.316172
+    }
   },
   {
     "provider": "azure",
@@ -173,7 +209,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 1.473
+    "pricePerHour": 1.473,
+    "commit": {
+      "1y": 0.825114,
+      "3y": 0.559932
+    }
   },
   {
     "provider": "azure",
@@ -184,7 +224,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "bsv2",
-    "pricePerHour": 1.664
+    "pricePerHour": 1.664,
+    "commit": {
+      "1y": 0.931849,
+      "3y": 0.632306
+    }
   },
   {
     "provider": "azure",
@@ -195,7 +239,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv5",
-    "pricePerHour": 0.118
+    "pricePerHour": 0.118,
+    "commit": {
+      "1y": 0.072831,
+      "3y": 0.046613
+    }
   },
   {
     "provider": "azure",
@@ -206,7 +254,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv5",
-    "pricePerHour": 0.236
+    "pricePerHour": 0.236,
+    "commit": {
+      "1y": 0.145662,
+      "3y": 0.093227
+    }
   },
   {
     "provider": "azure",
@@ -217,7 +269,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv5",
-    "pricePerHour": 0.472
+    "pricePerHour": 0.472,
+    "commit": {
+      "1y": 0.29121,
+      "3y": 0.186454
+    }
   },
   {
     "provider": "azure",
@@ -228,7 +284,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv5",
-    "pricePerHour": 0.944
+    "pricePerHour": 0.944,
+    "commit": {
+      "1y": 0.58242,
+      "3y": 0.372869
+    }
   },
   {
     "provider": "azure",
@@ -239,7 +299,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv5",
-    "pricePerHour": 1.888
+    "pricePerHour": 1.888,
+    "commit": {
+      "1y": 1.16484,
+      "3y": 0.745776
+    }
   },
   {
     "provider": "azure",
@@ -250,7 +314,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv5",
-    "pricePerHour": 2.832
+    "pricePerHour": 2.832,
+    "commit": {
+      "1y": 1.747374,
+      "3y": 1.118645
+    }
   },
   {
     "provider": "azure",
@@ -261,7 +329,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv5",
-    "pricePerHour": 3.776
+    "pricePerHour": 3.776,
+    "commit": {
+      "1y": 2.329795,
+      "3y": 1.491514
+    }
   },
   {
     "provider": "azure",
@@ -272,7 +344,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv5",
-    "pricePerHour": 5.664
+    "pricePerHour": 5.664,
+    "commit": {
+      "1y": 3.494635,
+      "3y": 2.237291
+    }
   },
   {
     "provider": "azure",
@@ -283,7 +359,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv6",
-    "pricePerHour": 0.124
+    "pricePerHour": 0.124,
+    "commit": {
+      "1y": 0.076826,
+      "3y": 0.048326
+    }
   },
   {
     "provider": "azure",
@@ -294,7 +374,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv6",
-    "pricePerHour": 0.248
+    "pricePerHour": 0.248,
+    "commit": {
+      "1y": 0.153653,
+      "3y": 0.096651
+    }
   },
   {
     "provider": "azure",
@@ -305,7 +389,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv6",
-    "pricePerHour": 0.496
+    "pricePerHour": 0.496,
+    "commit": {
+      "1y": 0.307306,
+      "3y": 0.193303
+    }
   },
   {
     "provider": "azure",
@@ -316,7 +404,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv6",
-    "pricePerHour": 0.991
+    "pricePerHour": 0.991,
+    "commit": {
+      "1y": 0.614498,
+      "3y": 0.386568
+    }
   },
   {
     "provider": "azure",
@@ -327,7 +419,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv6",
-    "pricePerHour": 1.982
+    "pricePerHour": 1.982,
+    "commit": {
+      "1y": 1.22911,
+      "3y": 0.773135
+    }
   },
   {
     "provider": "azure",
@@ -338,7 +434,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv6",
-    "pricePerHour": 2.974
+    "pricePerHour": 2.974,
+    "commit": {
+      "1y": 1.843607,
+      "3y": 1.159703
+    }
   },
   {
     "provider": "azure",
@@ -349,7 +449,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv6",
-    "pricePerHour": 3.965
+    "pricePerHour": 3.965,
+    "commit": {
+      "1y": 2.458219,
+      "3y": 1.546271
+    }
   },
   {
     "provider": "azure",
@@ -360,7 +464,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv6",
-    "pricePerHour": 5.947
+    "pricePerHour": 5.947,
+    "commit": {
+      "1y": 3.687215,
+      "3y": 2.319406
+    }
   },
   {
     "provider": "azure",
@@ -371,7 +479,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv6",
-    "pricePerHour": 7.93
+    "pricePerHour": 7.93,
+    "commit": {
+      "1y": 4.916324,
+      "3y": 3.092542
+    }
   },
   {
     "provider": "azure",
@@ -382,7 +494,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "dsv6",
-    "pricePerHour": 11.894
+    "pricePerHour": 11.894,
+    "commit": {
+      "1y": 7.374543,
+      "3y": 4.638813
+    }
   },
   {
     "provider": "azure",
@@ -393,7 +509,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv5",
-    "pricePerHour": 0.152
+    "pricePerHour": 0.152,
+    "commit": {
+      "1y": 0.093836,
+      "3y": 0.060046
+    }
   },
   {
     "provider": "azure",
@@ -404,7 +524,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv5",
-    "pricePerHour": 0.304
+    "pricePerHour": 0.304,
+    "commit": {
+      "1y": 0.187557,
+      "3y": 0.120091
+    }
   },
   {
     "provider": "azure",
@@ -415,7 +539,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv5",
-    "pricePerHour": 0.608
+    "pricePerHour": 0.608,
+    "commit": {
+      "1y": 0.375114,
+      "3y": 0.240145
+    }
   },
   {
     "provider": "azure",
@@ -426,7 +554,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv5",
-    "pricePerHour": 1.216
+    "pricePerHour": 1.216,
+    "commit": {
+      "1y": 0.750228,
+      "3y": 0.480327
+    }
   },
   {
     "provider": "azure",
@@ -437,7 +569,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv5",
-    "pricePerHour": 1.52
+    "pricePerHour": 1.52,
+    "commit": {
+      "1y": 0.937785,
+      "3y": 0.600419
+    }
   },
   {
     "provider": "azure",
@@ -448,7 +584,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv5",
-    "pricePerHour": 2.432
+    "pricePerHour": 2.432,
+    "commit": {
+      "1y": 1.500571,
+      "3y": 0.960654
+    }
   },
   {
     "provider": "azure",
@@ -459,7 +599,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv5",
-    "pricePerHour": 3.648
+    "pricePerHour": 3.648,
+    "commit": {
+      "1y": 2.250799,
+      "3y": 1.440944
+    }
   },
   {
     "provider": "azure",
@@ -470,7 +614,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv5",
-    "pricePerHour": 4.864
+    "pricePerHour": 4.864,
+    "commit": {
+      "1y": 3.001142,
+      "3y": 1.921271
+    }
   },
   {
     "provider": "azure",
@@ -481,7 +629,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv5",
-    "pricePerHour": 7.296
+    "pricePerHour": 7.296,
+    "commit": {
+      "1y": 4.501598,
+      "3y": 2.881925
+    }
   },
   {
     "provider": "azure",
@@ -492,7 +644,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv6",
-    "pricePerHour": 0.16
+    "pricePerHour": 0.16,
+    "commit": {
+      "1y": 0.098973,
+      "3y": 0.062253
+    }
   },
   {
     "provider": "azure",
@@ -503,7 +659,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv6",
-    "pricePerHour": 0.319
+    "pricePerHour": 0.319,
+    "commit": {
+      "1y": 0.197945,
+      "3y": 0.124505
+    }
   },
   {
     "provider": "azure",
@@ -514,7 +674,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv6",
-    "pricePerHour": 0.638
+    "pricePerHour": 0.638,
+    "commit": {
+      "1y": 0.395776,
+      "3y": 0.248973
+    }
   },
   {
     "provider": "azure",
@@ -525,7 +689,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv6",
-    "pricePerHour": 1.277
+    "pricePerHour": 1.277,
+    "commit": {
+      "1y": 0.791667,
+      "3y": 0.497945
+    }
   },
   {
     "provider": "azure",
@@ -536,7 +704,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv6",
-    "pricePerHour": 1.596
+    "pricePerHour": 1.596,
+    "commit": {
+      "1y": 0.989498,
+      "3y": 0.622451
+    }
   },
   {
     "provider": "azure",
@@ -547,7 +719,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv6",
-    "pricePerHour": 2.554
+    "pricePerHour": 2.554,
+    "commit": {
+      "1y": 1.583219,
+      "3y": 0.99589
+    }
   },
   {
     "provider": "azure",
@@ -558,7 +734,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv6",
-    "pricePerHour": 3.83
+    "pricePerHour": 3.83,
+    "commit": {
+      "1y": 2.374886,
+      "3y": 1.493874
+    }
   },
   {
     "provider": "azure",
@@ -569,7 +749,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv6",
-    "pricePerHour": 5.107
+    "pricePerHour": 5.107,
+    "commit": {
+      "1y": 3.166438,
+      "3y": 1.991819
+    }
   },
   {
     "provider": "azure",
@@ -580,7 +764,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv6",
-    "pricePerHour": 7.661
+    "pricePerHour": 7.661,
+    "commit": {
+      "1y": 4.749658,
+      "3y": 2.987709
+    }
   },
   {
     "provider": "azure",
@@ -591,7 +779,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "esv6",
-    "pricePerHour": 10.214
+    "pricePerHour": 10.214,
+    "commit": {
+      "1y": 6.332877,
+      "3y": 3.9836
+    }
   },
   {
     "provider": "azure",
@@ -690,7 +882,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "dpsv6",
-    "pricePerHour": 0.0914
+    "pricePerHour": 0.0914,
+    "commit": {
+      "1y": 0.053881,
+      "3y": 0.034741
+    }
   },
   {
     "provider": "azure",
@@ -701,7 +897,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "dpsv6",
-    "pricePerHour": 0.183
+    "pricePerHour": 0.183,
+    "commit": {
+      "1y": 0.107877,
+      "3y": 0.069482
+    }
   },
   {
     "provider": "azure",
@@ -712,7 +912,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "dpsv6",
-    "pricePerHour": 0.366
+    "pricePerHour": 0.366,
+    "commit": {
+      "1y": 0.215753,
+      "3y": 0.138927
+    }
   },
   {
     "provider": "azure",
@@ -723,7 +927,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "dpsv6",
-    "pricePerHour": 0.731
+    "pricePerHour": 0.731,
+    "commit": {
+      "1y": 0.431393,
+      "3y": 0.277854
+    }
   },
   {
     "provider": "azure",
@@ -734,7 +942,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "dpsv6",
-    "pricePerHour": 1.462
+    "pricePerHour": 1.462,
+    "commit": {
+      "1y": 0.862785,
+      "3y": 0.555708
+    }
   },
   {
     "provider": "azure",
@@ -745,7 +957,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "dpsv6",
-    "pricePerHour": 2.194
+    "pricePerHour": 2.194,
+    "commit": {
+      "1y": 1.294178,
+      "3y": 0.833562
+    }
   },
   {
     "provider": "azure",
@@ -756,7 +972,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "dpsv6",
-    "pricePerHour": 2.925
+    "pricePerHour": 2.925,
+    "commit": {
+      "1y": 1.725685,
+      "3y": 1.111416
+    }
   },
   {
     "provider": "azure",
@@ -767,7 +987,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "dpsv6",
-    "pricePerHour": 4.387
+    "pricePerHour": 4.387,
+    "commit": {
+      "1y": 2.58847,
+      "3y": 1.667123
+    }
   },
   {
     "provider": "azure",
@@ -778,7 +1002,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "epsv6",
-    "pricePerHour": 0.12
+    "pricePerHour": 0.12,
+    "commit": {
+      "1y": 0.07089,
+      "3y": 0.045662
+    }
   },
   {
     "provider": "azure",
@@ -789,7 +1017,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "epsv6",
-    "pricePerHour": 0.24
+    "pricePerHour": 0.24,
+    "commit": {
+      "1y": 0.141781,
+      "3y": 0.091362
+    }
   },
   {
     "provider": "azure",
@@ -800,7 +1032,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "epsv6",
-    "pricePerHour": 0.481
+    "pricePerHour": 0.481,
+    "commit": {
+      "1y": 0.283676,
+      "3y": 0.182686
+    }
   },
   {
     "provider": "azure",
@@ -811,7 +1047,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "epsv6",
-    "pricePerHour": 0.962
+    "pricePerHour": 0.962,
+    "commit": {
+      "1y": 0.567352,
+      "3y": 0.365411
+    }
   },
   {
     "provider": "azure",
@@ -822,7 +1062,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "epsv6",
-    "pricePerHour": 1.923
+    "pricePerHour": 1.923,
+    "commit": {
+      "1y": 1.134703,
+      "3y": 0.730822
+    }
   },
   {
     "provider": "azure",
@@ -833,7 +1077,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "epsv6",
-    "pricePerHour": 2.885
+    "pricePerHour": 2.885,
+    "commit": {
+      "1y": 1.702055,
+      "3y": 1.096233
+    }
   },
   {
     "provider": "azure",
@@ -844,7 +1092,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "epsv6",
-    "pricePerHour": 3.846
+    "pricePerHour": 3.846,
+    "commit": {
+      "1y": 2.269406,
+      "3y": 1.461644
+    }
   },
   {
     "provider": "azure",
@@ -855,6 +1107,10 @@
     "burstable": false,
     "arch": "arm",
     "generation": "epsv6",
-    "pricePerHour": 5.77
+    "pricePerHour": 5.77,
+    "commit": {
+      "1y": 3.40411,
+      "3y": 2.192466
+    }
   }
 ]

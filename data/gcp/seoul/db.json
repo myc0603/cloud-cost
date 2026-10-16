@@ -8,7 +8,21 @@
         "vcpuPerHour": 0.0537,
         "ramGbPerHour": 0.0091,
         "haVcpuPerHour": 0.1074,
-        "haRamGbPerHour": 0.0182
+        "haRamGbPerHour": 0.0182,
+        "commit": {
+          "1y": {
+            "vcpuPerHour": 0.040275,
+            "ramGbPerHour": 0.006825,
+            "haVcpuPerHour": 0.08055,
+            "haRamGbPerHour": 0.01365
+          },
+          "3y": {
+            "vcpuPerHour": 0.025776,
+            "ramGbPerHour": 0.004368,
+            "haVcpuPerHour": 0.051552,
+            "haRamGbPerHour": 0.008736
+          }
+        }
       },
       "storageGbMonth": 0.221,
       "haStorageGbMonth": 0.442
@@ -19,7 +33,21 @@
         "vcpuPerHour": 0.0537,
         "ramGbPerHour": 0.0091,
         "haVcpuPerHour": 0.1074,
-        "haRamGbPerHour": 0.0182
+        "haRamGbPerHour": 0.0182,
+        "commit": {
+          "1y": {
+            "vcpuPerHour": 0.040275,
+            "ramGbPerHour": 0.006825,
+            "haVcpuPerHour": 0.08055,
+            "haRamGbPerHour": 0.01365
+          },
+          "3y": {
+            "vcpuPerHour": 0.025776,
+            "ramGbPerHour": 0.004368,
+            "haVcpuPerHour": 0.051552,
+            "haRamGbPerHour": 0.008736
+          }
+        }
       },
       "storageGbMonth": 0.221,
       "haStorageGbMonth": 0.442

@@ -12,22 +12,62 @@
     {
       "upToGb": 10,
       "perGbHour": 0.027,
-      "haPerGbHour": 0.054
+      "haPerGbHour": 0.054,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0216,
+          "haPerGbHour": 0.0432
+        },
+        "3y": {
+          "perGbHour": 0.0162,
+          "haPerGbHour": 0.0324
+        }
+      }
     },
     {
       "upToGb": 35,
       "perGbHour": 0.023,
-      "haPerGbHour": 0.046
+      "haPerGbHour": 0.046,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0184,
+          "haPerGbHour": 0.0368
+        },
+        "3y": {
+          "perGbHour": 0.0138,
+          "haPerGbHour": 0.0276
+        }
+      }
     },
     {
       "upToGb": 100,
       "perGbHour": 0.019,
-      "haPerGbHour": 0.035
+      "haPerGbHour": 0.035,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0152,
+          "haPerGbHour": 0.028
+        },
+        "3y": {
+          "perGbHour": 0.0114,
+          "haPerGbHour": 0.021
+        }
+      }
     },
     {
       "upToGb": null,
       "perGbHour": 0.016,
-      "haPerGbHour": 0.03
+      "haPerGbHour": 0.03,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0128,
+          "haPerGbHour": 0.024
+        },
+        "3y": {
+          "perGbHour": 0.0096,
+          "haPerGbHour": 0.018
+        }
+      }
     }
   ]
 }

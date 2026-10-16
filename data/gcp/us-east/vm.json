@@ -8,7 +8,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.008376
+    "pricePerHour": 0.008376,
+    "commit": {
+      "1y": 0.005277,
+      "3y": 0.003769
+    }
   },
   {
     "provider": "gcp",
@@ -19,7 +23,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.016753
+    "pricePerHour": 0.016753,
+    "commit": {
+      "1y": 0.010554,
+      "3y": 0.007539
+    }
   },
   {
     "provider": "gcp",
@@ -30,7 +38,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.033506
+    "pricePerHour": 0.033506,
+    "commit": {
+      "1y": 0.021109,
+      "3y": 0.015078
+    }
   },
   {
     "provider": "gcp",
@@ -41,7 +53,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.067011
+    "pricePerHour": 0.067011,
+    "commit": {
+      "1y": 0.042217,
+      "3y": 0.030155
+    }
   },
   {
     "provider": "gcp",
@@ -52,7 +68,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.134023
+    "pricePerHour": 0.134023,
+    "commit": {
+      "1y": 0.084434,
+      "3y": 0.06031
+    }
   },
   {
     "provider": "gcp",
@@ -63,7 +83,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.268046
+    "pricePerHour": 0.268046,
+    "commit": {
+      "1y": 0.168869,
+      "3y": 0.120621
+    }
   },
   {
     "provider": "gcp",
@@ -74,7 +98,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.536091
+    "pricePerHour": 0.536091,
+    "commit": {
+      "1y": 0.337737,
+      "3y": 0.241241
+    }
   },
   {
     "provider": "gcp",
@@ -85,7 +113,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 1.072183
+    "pricePerHour": 1.072183,
+    "commit": {
+      "1y": 0.675475,
+      "3y": 0.482482
+    }
   },
   {
     "provider": "gcp",
@@ -96,7 +128,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.0904
+    "pricePerHour": 0.0904,
+    "commit": {
+      "1y": 0.056952,
+      "3y": 0.04068
+    }
   },
   {
     "provider": "gcp",
@@ -107,7 +143,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.180799
+    "pricePerHour": 0.180799,
+    "commit": {
+      "1y": 0.113904,
+      "3y": 0.08136
+    }
   },
   {
     "provider": "gcp",
@@ -118,7 +158,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.361599
+    "pricePerHour": 0.361599,
+    "commit": {
+      "1y": 0.227807,
+      "3y": 0.162719
+    }
   },
   {
     "provider": "gcp",
@@ -129,7 +173,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.723197
+    "pricePerHour": 0.723197,
+    "commit": {
+      "1y": 0.455614,
+      "3y": 0.325439
+    }
   },
   {
     "provider": "gcp",
@@ -140,7 +188,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.04947
+    "pricePerHour": 0.04947,
+    "commit": {
+      "1y": 0.031166,
+      "3y": 0.022262
+    }
   },
   {
     "provider": "gcp",
@@ -151,7 +203,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.09894
+    "pricePerHour": 0.09894,
+    "commit": {
+      "1y": 0.062332,
+      "3y": 0.044523
+    }
   },
   {
     "provider": "gcp",
@@ -162,7 +218,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.197881
+    "pricePerHour": 0.197881,
+    "commit": {
+      "1y": 0.124665,
+      "3y": 0.089046
+    }
   },
   {
     "provider": "gcp",
@@ -173,7 +233,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.395762
+    "pricePerHour": 0.395762,
+    "commit": {
+      "1y": 0.24933,
+      "3y": 0.178093
+    }
   },
   {
     "provider": "gcp",
@@ -184,7 +248,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "e2",
-    "pricePerHour": 0.791524
+    "pricePerHour": 0.791524,
+    "commit": {
+      "1y": 0.49866,
+      "3y": 0.356186
+    }
   },
   {
     "provider": "gcp",
@@ -195,7 +263,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.097118
+    "pricePerHour": 0.097118,
+    "commit": {
+      "1y": 0.061182,
+      "3y": 0.043706
+    }
   },
   {
     "provider": "gcp",
@@ -206,7 +278,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.194236
+    "pricePerHour": 0.194236,
+    "commit": {
+      "1y": 0.122364,
+      "3y": 0.087412
+    }
   },
   {
     "provider": "gcp",
@@ -217,7 +293,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.388472
+    "pricePerHour": 0.388472,
+    "commit": {
+      "1y": 0.244728,
+      "3y": 0.174824
+    }
   },
   {
     "provider": "gcp",
@@ -228,7 +308,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.776944
+    "pricePerHour": 0.776944,
+    "commit": {
+      "1y": 0.489456,
+      "3y": 0.349648
+    }
   },
   {
     "provider": "gcp",
@@ -239,7 +323,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 1.553888
+    "pricePerHour": 1.553888,
+    "commit": {
+      "1y": 0.978912,
+      "3y": 0.699296
+    }
   },
   {
     "provider": "gcp",
@@ -250,7 +338,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 2.330832
+    "pricePerHour": 2.330832,
+    "commit": {
+      "1y": 1.468368,
+      "3y": 1.048944
+    }
   },
   {
     "provider": "gcp",
@@ -261,7 +353,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 3.107776
+    "pricePerHour": 3.107776,
+    "commit": {
+      "1y": 1.957824,
+      "3y": 1.398592
+    }
   },
   {
     "provider": "gcp",
@@ -272,7 +368,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 3.88472
+    "pricePerHour": 3.88472,
+    "commit": {
+      "1y": 2.44728,
+      "3y": 1.74824
+    }
   },
   {
     "provider": "gcp",
@@ -283,7 +383,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 4.661664
+    "pricePerHour": 4.661664,
+    "commit": {
+      "1y": 2.936736,
+      "3y": 2.097888
+    }
   },
   {
     "provider": "gcp",
@@ -294,7 +398,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 6.215552
+    "pricePerHour": 6.215552,
+    "commit": {
+      "1y": 3.915648,
+      "3y": 2.797184
+    }
   },
   {
     "provider": "gcp",
@@ -305,7 +413,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.131014
+    "pricePerHour": 0.131014,
+    "commit": {
+      "1y": 0.082534,
+      "3y": 0.058962
+    }
   },
   {
     "provider": "gcp",
@@ -316,7 +428,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.262028
+    "pricePerHour": 0.262028,
+    "commit": {
+      "1y": 0.165068,
+      "3y": 0.117924
+    }
   },
   {
     "provider": "gcp",
@@ -327,7 +443,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.524056
+    "pricePerHour": 0.524056,
+    "commit": {
+      "1y": 0.330136,
+      "3y": 0.235848
+    }
   },
   {
     "provider": "gcp",
@@ -338,7 +458,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 1.048112
+    "pricePerHour": 1.048112,
+    "commit": {
+      "1y": 0.660272,
+      "3y": 0.471696
+    }
   },
   {
     "provider": "gcp",
@@ -349,7 +473,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 2.096224
+    "pricePerHour": 2.096224,
+    "commit": {
+      "1y": 1.320544,
+      "3y": 0.943392
+    }
   },
   {
     "provider": "gcp",
@@ -360,7 +488,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 3.144336
+    "pricePerHour": 3.144336,
+    "commit": {
+      "1y": 1.980816,
+      "3y": 1.415088
+    }
   },
   {
     "provider": "gcp",
@@ -371,7 +503,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 4.192448
+    "pricePerHour": 4.192448,
+    "commit": {
+      "1y": 2.641088,
+      "3y": 1.886784
+    }
   },
   {
     "provider": "gcp",
@@ -382,7 +518,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 5.24056
+    "pricePerHour": 5.24056,
+    "commit": {
+      "1y": 3.30136,
+      "3y": 2.35848
+    }
   },
   {
     "provider": "gcp",
@@ -393,7 +533,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 6.288672
+    "pricePerHour": 6.288672,
+    "commit": {
+      "1y": 3.961632,
+      "3y": 2.830176
+    }
   },
   {
     "provider": "gcp",
@@ -404,7 +548,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 7.706976
+    "pricePerHour": 7.706976,
+    "commit": {
+      "1y": 4.855136,
+      "3y": 3.468448
+    }
   },
   {
     "provider": "gcp",
@@ -415,7 +563,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.071696
+    "pricePerHour": 0.071696,
+    "commit": {
+      "1y": 0.045168,
+      "3y": 0.032264
+    }
   },
   {
     "provider": "gcp",
@@ -426,7 +578,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.143392
+    "pricePerHour": 0.143392,
+    "commit": {
+      "1y": 0.090336,
+      "3y": 0.064528
+    }
   },
   {
     "provider": "gcp",
@@ -437,7 +593,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.286784
+    "pricePerHour": 0.286784,
+    "commit": {
+      "1y": 0.180672,
+      "3y": 0.129056
+    }
   },
   {
     "provider": "gcp",
@@ -448,7 +608,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 0.573568
+    "pricePerHour": 0.573568,
+    "commit": {
+      "1y": 0.361344,
+      "3y": 0.258112
+    }
   },
   {
     "provider": "gcp",
@@ -459,7 +623,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 1.147136
+    "pricePerHour": 1.147136,
+    "commit": {
+      "1y": 0.722688,
+      "3y": 0.516224
+    }
   },
   {
     "provider": "gcp",
@@ -470,7 +638,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 1.720704
+    "pricePerHour": 1.720704,
+    "commit": {
+      "1y": 1.084032,
+      "3y": 0.774336
+    }
   },
   {
     "provider": "gcp",
@@ -481,7 +653,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 2.294272
+    "pricePerHour": 2.294272,
+    "commit": {
+      "1y": 1.445376,
+      "3y": 1.032448
+    }
   },
   {
     "provider": "gcp",
@@ -492,7 +668,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 2.86784
+    "pricePerHour": 2.86784,
+    "commit": {
+      "1y": 1.80672,
+      "3y": 1.29056
+    }
   },
   {
     "provider": "gcp",
@@ -503,7 +683,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2",
-    "pricePerHour": 3.441408
+    "pricePerHour": 3.441408,
+    "commit": {
+      "1y": 2.168064,
+      "3y": 1.548672
+    }
   },
   {
     "provider": "gcp",
@@ -514,7 +698,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 0.084492
+    "pricePerHour": 0.084492,
+    "commit": {
+      "1y": 0.053228,
+      "3y": 0.038024
+    }
   },
   {
     "provider": "gcp",
@@ -525,7 +713,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 0.168984
+    "pricePerHour": 0.168984,
+    "commit": {
+      "1y": 0.106456,
+      "3y": 0.076048
+    }
   },
   {
     "provider": "gcp",
@@ -536,7 +728,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 0.337968
+    "pricePerHour": 0.337968,
+    "commit": {
+      "1y": 0.212912,
+      "3y": 0.152096
+    }
   },
   {
     "provider": "gcp",
@@ -547,7 +743,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 0.675936
+    "pricePerHour": 0.675936,
+    "commit": {
+      "1y": 0.425824,
+      "3y": 0.304192
+    }
   },
   {
     "provider": "gcp",
@@ -558,7 +758,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 1.351872
+    "pricePerHour": 1.351872,
+    "commit": {
+      "1y": 0.851648,
+      "3y": 0.608384
+    }
   },
   {
     "provider": "gcp",
@@ -569,7 +773,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 2.027808
+    "pricePerHour": 2.027808,
+    "commit": {
+      "1y": 1.277472,
+      "3y": 0.912576
+    }
   },
   {
     "provider": "gcp",
@@ -580,7 +788,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 2.703744
+    "pricePerHour": 2.703744,
+    "commit": {
+      "1y": 1.703296,
+      "3y": 1.216768
+    }
   },
   {
     "provider": "gcp",
@@ -591,7 +803,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 3.37968
+    "pricePerHour": 3.37968,
+    "commit": {
+      "1y": 2.12912,
+      "3y": 1.52096
+    }
   },
   {
     "provider": "gcp",
@@ -602,7 +818,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 4.055616
+    "pricePerHour": 4.055616,
+    "commit": {
+      "1y": 2.554944,
+      "3y": 1.825152
+    }
   },
   {
     "provider": "gcp",
@@ -613,7 +833,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 5.407488
+    "pricePerHour": 5.407488,
+    "commit": {
+      "1y": 3.406592,
+      "3y": 2.433536
+    }
   },
   {
     "provider": "gcp",
@@ -624,7 +848,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n2d",
-    "pricePerHour": 9.463104
+    "pricePerHour": 9.463104,
+    "commit": {
+      "1y": 5.961536,
+      "3y": 4.258688
+    }
   },
   {
     "provider": "gcp",
@@ -635,7 +863,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.0907
+    "pricePerHour": 0.0907,
+    "commit": {
+      "1y": 0.05714,
+      "3y": 0.040816
+    }
   },
   {
     "provider": "gcp",
@@ -646,7 +878,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.1814
+    "pricePerHour": 0.1814,
+    "commit": {
+      "1y": 0.11428,
+      "3y": 0.081632
+    }
   },
   {
     "provider": "gcp",
@@ -657,7 +893,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.3628
+    "pricePerHour": 0.3628,
+    "commit": {
+      "1y": 0.22856,
+      "3y": 0.163264
+    }
   },
   {
     "provider": "gcp",
@@ -668,7 +908,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.7256
+    "pricePerHour": 0.7256,
+    "commit": {
+      "1y": 0.45712,
+      "3y": 0.326528
+    }
   },
   {
     "provider": "gcp",
@@ -679,7 +923,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 1.4512
+    "pricePerHour": 1.4512,
+    "commit": {
+      "1y": 0.91424,
+      "3y": 0.653056
+    }
   },
   {
     "provider": "gcp",
@@ -690,7 +938,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 2.1768
+    "pricePerHour": 2.1768,
+    "commit": {
+      "1y": 1.37136,
+      "3y": 0.979584
+    }
   },
   {
     "provider": "gcp",
@@ -701,7 +953,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 2.9024
+    "pricePerHour": 2.9024,
+    "commit": {
+      "1y": 1.82848,
+      "3y": 1.306112
+    }
   },
   {
     "provider": "gcp",
@@ -712,7 +968,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 3.628
+    "pricePerHour": 3.628,
+    "commit": {
+      "1y": 2.2856,
+      "3y": 1.63264
+    }
   },
   {
     "provider": "gcp",
@@ -723,7 +983,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.11902
+    "pricePerHour": 0.11902,
+    "commit": {
+      "1y": 0.07498,
+      "3y": 0.05356
+    }
   },
   {
     "provider": "gcp",
@@ -734,7 +998,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.23804
+    "pricePerHour": 0.23804,
+    "commit": {
+      "1y": 0.14996,
+      "3y": 0.10712
+    }
   },
   {
     "provider": "gcp",
@@ -745,7 +1013,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.47608
+    "pricePerHour": 0.47608,
+    "commit": {
+      "1y": 0.29992,
+      "3y": 0.21424
+    }
   },
   {
     "provider": "gcp",
@@ -756,7 +1028,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.95216
+    "pricePerHour": 0.95216,
+    "commit": {
+      "1y": 0.59984,
+      "3y": 0.42848
+    }
   },
   {
     "provider": "gcp",
@@ -767,7 +1043,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 1.90432
+    "pricePerHour": 1.90432,
+    "commit": {
+      "1y": 1.19968,
+      "3y": 0.85696
+    }
   },
   {
     "provider": "gcp",
@@ -778,7 +1058,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 2.85648
+    "pricePerHour": 2.85648,
+    "commit": {
+      "1y": 1.79952,
+      "3y": 1.28544
+    }
   },
   {
     "provider": "gcp",
@@ -789,7 +1073,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 3.80864
+    "pricePerHour": 3.80864,
+    "commit": {
+      "1y": 2.39936,
+      "3y": 1.71392
+    }
   },
   {
     "provider": "gcp",
@@ -800,7 +1088,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 4.7608
+    "pricePerHour": 4.7608,
+    "commit": {
+      "1y": 2.9992,
+      "3y": 2.1424
+    }
   },
   {
     "provider": "gcp",
@@ -811,7 +1103,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.07654
+    "pricePerHour": 0.07654,
+    "commit": {
+      "1y": 0.04822,
+      "3y": 0.034444
+    }
   },
   {
     "provider": "gcp",
@@ -822,7 +1118,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.15308
+    "pricePerHour": 0.15308,
+    "commit": {
+      "1y": 0.09644,
+      "3y": 0.068888
+    }
   },
   {
     "provider": "gcp",
@@ -833,7 +1133,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.30616
+    "pricePerHour": 0.30616,
+    "commit": {
+      "1y": 0.19288,
+      "3y": 0.137776
+    }
   },
   {
     "provider": "gcp",
@@ -844,7 +1148,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 0.61232
+    "pricePerHour": 0.61232,
+    "commit": {
+      "1y": 0.38576,
+      "3y": 0.275552
+    }
   },
   {
     "provider": "gcp",
@@ -855,7 +1163,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 1.22464
+    "pricePerHour": 1.22464,
+    "commit": {
+      "1y": 0.77152,
+      "3y": 0.551104
+    }
   },
   {
     "provider": "gcp",
@@ -866,7 +1178,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 1.83696
+    "pricePerHour": 1.83696,
+    "commit": {
+      "1y": 1.15728,
+      "3y": 0.826656
+    }
   },
   {
     "provider": "gcp",
@@ -877,7 +1193,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 2.44928
+    "pricePerHour": 2.44928,
+    "commit": {
+      "1y": 1.54304,
+      "3y": 1.102208
+    }
   },
   {
     "provider": "gcp",
@@ -888,7 +1208,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4",
-    "pricePerHour": 3.0616
+    "pricePerHour": 3.0616,
+    "commit": {
+      "1y": 1.9288,
+      "3y": 1.37776
+    }
   },
   {
     "provider": "gcp",
@@ -899,7 +1223,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.0847
+    "pricePerHour": 0.0847,
+    "commit": {
+      "1y": 0.053358,
+      "3y": 0.03812
+    }
   },
   {
     "provider": "gcp",
@@ -910,7 +1238,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.1694
+    "pricePerHour": 0.1694,
+    "commit": {
+      "1y": 0.106716,
+      "3y": 0.07624
+    }
   },
   {
     "provider": "gcp",
@@ -921,7 +1253,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.3388
+    "pricePerHour": 0.3388,
+    "commit": {
+      "1y": 0.213432,
+      "3y": 0.15248
+    }
   },
   {
     "provider": "gcp",
@@ -932,7 +1268,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.6776
+    "pricePerHour": 0.6776,
+    "commit": {
+      "1y": 0.426864,
+      "3y": 0.30496
+    }
   },
   {
     "provider": "gcp",
@@ -943,7 +1283,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 1.3552
+    "pricePerHour": 1.3552,
+    "commit": {
+      "1y": 0.853728,
+      "3y": 0.60992
+    }
   },
   {
     "provider": "gcp",
@@ -954,7 +1298,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 2.0328
+    "pricePerHour": 2.0328,
+    "commit": {
+      "1y": 1.280592,
+      "3y": 0.91488
+    }
   },
   {
     "provider": "gcp",
@@ -965,7 +1313,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 2.7104
+    "pricePerHour": 2.7104,
+    "commit": {
+      "1y": 1.707456,
+      "3y": 1.21984
+    }
   },
   {
     "provider": "gcp",
@@ -976,7 +1328,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 3.388
+    "pricePerHour": 3.388,
+    "commit": {
+      "1y": 2.13432,
+      "3y": 1.5248
+    }
   },
   {
     "provider": "gcp",
@@ -987,7 +1343,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 4.0656
+    "pricePerHour": 4.0656,
+    "commit": {
+      "1y": 2.561184,
+      "3y": 1.82976
+    }
   },
   {
     "provider": "gcp",
@@ -998,7 +1358,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.11118
+    "pricePerHour": 0.11118,
+    "commit": {
+      "1y": 0.070038,
+      "3y": 0.05004
+    }
   },
   {
     "provider": "gcp",
@@ -1009,7 +1373,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.22236
+    "pricePerHour": 0.22236,
+    "commit": {
+      "1y": 0.140076,
+      "3y": 0.10008
+    }
   },
   {
     "provider": "gcp",
@@ -1020,7 +1388,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.44472
+    "pricePerHour": 0.44472,
+    "commit": {
+      "1y": 0.280152,
+      "3y": 0.20016
+    }
   },
   {
     "provider": "gcp",
@@ -1031,7 +1403,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.88944
+    "pricePerHour": 0.88944,
+    "commit": {
+      "1y": 0.560304,
+      "3y": 0.40032
+    }
   },
   {
     "provider": "gcp",
@@ -1042,7 +1418,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 1.77888
+    "pricePerHour": 1.77888,
+    "commit": {
+      "1y": 1.120608,
+      "3y": 0.80064
+    }
   },
   {
     "provider": "gcp",
@@ -1053,7 +1433,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 2.66832
+    "pricePerHour": 2.66832,
+    "commit": {
+      "1y": 1.680912,
+      "3y": 1.20096
+    }
   },
   {
     "provider": "gcp",
@@ -1064,7 +1448,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 3.55776
+    "pricePerHour": 3.55776,
+    "commit": {
+      "1y": 2.241216,
+      "3y": 1.60128
+    }
   },
   {
     "provider": "gcp",
@@ -1075,7 +1463,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 4.4472
+    "pricePerHour": 4.4472,
+    "commit": {
+      "1y": 2.80152,
+      "3y": 2.0016
+    }
   },
   {
     "provider": "gcp",
@@ -1086,7 +1478,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 5.33664
+    "pricePerHour": 5.33664,
+    "commit": {
+      "1y": 3.361824,
+      "3y": 2.40192
+    }
   },
   {
     "provider": "gcp",
@@ -1097,7 +1493,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.07146
+    "pricePerHour": 0.07146,
+    "commit": {
+      "1y": 0.045018,
+      "3y": 0.03216
+    }
   },
   {
     "provider": "gcp",
@@ -1108,7 +1508,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.14292
+    "pricePerHour": 0.14292,
+    "commit": {
+      "1y": 0.090036,
+      "3y": 0.06432
+    }
   },
   {
     "provider": "gcp",
@@ -1119,7 +1523,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.28584
+    "pricePerHour": 0.28584,
+    "commit": {
+      "1y": 0.180072,
+      "3y": 0.12864
+    }
   },
   {
     "provider": "gcp",
@@ -1130,7 +1538,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 0.57168
+    "pricePerHour": 0.57168,
+    "commit": {
+      "1y": 0.360144,
+      "3y": 0.25728
+    }
   },
   {
     "provider": "gcp",
@@ -1141,7 +1553,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 1.14336
+    "pricePerHour": 1.14336,
+    "commit": {
+      "1y": 0.720288,
+      "3y": 0.51456
+    }
   },
   {
     "provider": "gcp",
@@ -1152,7 +1568,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 1.71504
+    "pricePerHour": 1.71504,
+    "commit": {
+      "1y": 1.080432,
+      "3y": 0.77184
+    }
   },
   {
     "provider": "gcp",
@@ -1163,7 +1583,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 2.28672
+    "pricePerHour": 2.28672,
+    "commit": {
+      "1y": 1.440576,
+      "3y": 1.02912
+    }
   },
   {
     "provider": "gcp",
@@ -1174,7 +1598,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 2.8584
+    "pricePerHour": 2.8584,
+    "commit": {
+      "1y": 1.80072,
+      "3y": 1.2864
+    }
   },
   {
     "provider": "gcp",
@@ -1185,7 +1613,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n4d",
-    "pricePerHour": 3.43008
+    "pricePerHour": 3.43008,
+    "commit": {
+      "1y": 2.160864,
+      "3y": 1.54368
+    }
   },
   {
     "provider": "gcp",
@@ -1196,7 +1628,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n1",
-    "pricePerHour": 0.0475
+    "pricePerHour": 0.0475,
+    "commit": {
+      "1y": 0.029924,
+      "3y": 0.021376
+    }
   },
   {
     "provider": "gcp",
@@ -1207,7 +1643,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n1",
-    "pricePerHour": 0.095
+    "pricePerHour": 0.095,
+    "commit": {
+      "1y": 0.059847,
+      "3y": 0.042752
+    }
   },
   {
     "provider": "gcp",
@@ -1218,7 +1658,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n1",
-    "pricePerHour": 0.189999
+    "pricePerHour": 0.189999,
+    "commit": {
+      "1y": 0.119695,
+      "3y": 0.085505
+    }
   },
   {
     "provider": "gcp",
@@ -1229,7 +1673,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n1",
-    "pricePerHour": 0.379998
+    "pricePerHour": 0.379998,
+    "commit": {
+      "1y": 0.23939,
+      "3y": 0.17101
+    }
   },
   {
     "provider": "gcp",
@@ -1240,7 +1688,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "n1",
-    "pricePerHour": 0.759996
+    "pricePerHour": 0.759996,
+    "commit": {
+      "1y": 0.47878,
+      "3y": 0.34202
+    }
   },
   {
     "provider": "gcp",
@@ -1251,7 +1703,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2",
-    "pricePerHour": 0.208808
+    "pricePerHour": 0.208808,
+    "commit": {
+      "1y": 0.13154,
+      "3y": 0.083524
+    }
   },
   {
     "provider": "gcp",
@@ -1262,7 +1718,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2",
-    "pricePerHour": 0.417616
+    "pricePerHour": 0.417616,
+    "commit": {
+      "1y": 0.26308,
+      "3y": 0.167048
+    }
   },
   {
     "provider": "gcp",
@@ -1273,7 +1733,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2",
-    "pricePerHour": 0.835232
+    "pricePerHour": 0.835232,
+    "commit": {
+      "1y": 0.52616,
+      "3y": 0.334096
+    }
   },
   {
     "provider": "gcp",
@@ -1284,7 +1748,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2",
-    "pricePerHour": 1.56606
+    "pricePerHour": 1.56606,
+    "commit": {
+      "1y": 0.98655,
+      "3y": 0.62643
+    }
   },
   {
     "provider": "gcp",
@@ -1295,7 +1763,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2",
-    "pricePerHour": 3.13212
+    "pricePerHour": 3.13212,
+    "commit": {
+      "1y": 1.9731,
+      "3y": 1.25286
+    }
   },
   {
     "provider": "gcp",
@@ -1306,7 +1778,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2d",
-    "pricePerHour": 0.090798
+    "pricePerHour": 0.090798,
+    "commit": {
+      "1y": 0.0572,
+      "3y": 0.040854
+    }
   },
   {
     "provider": "gcp",
@@ -1317,7 +1793,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2d",
-    "pricePerHour": 0.181596
+    "pricePerHour": 0.181596,
+    "commit": {
+      "1y": 0.1144,
+      "3y": 0.081708
+    }
   },
   {
     "provider": "gcp",
@@ -1328,7 +1808,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2d",
-    "pricePerHour": 0.363192
+    "pricePerHour": 0.363192,
+    "commit": {
+      "1y": 0.2288,
+      "3y": 0.163416
+    }
   },
   {
     "provider": "gcp",
@@ -1339,7 +1823,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2d",
-    "pricePerHour": 0.726384
+    "pricePerHour": 0.726384,
+    "commit": {
+      "1y": 0.4576,
+      "3y": 0.326832
+    }
   },
   {
     "provider": "gcp",
@@ -1350,7 +1838,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2d",
-    "pricePerHour": 1.452768
+    "pricePerHour": 1.452768,
+    "commit": {
+      "1y": 0.9152,
+      "3y": 0.653664
+    }
   },
   {
     "provider": "gcp",
@@ -1361,7 +1853,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2d",
-    "pricePerHour": 2.542344
+    "pricePerHour": 2.542344,
+    "commit": {
+      "1y": 1.6016,
+      "3y": 1.143912
+    }
   },
   {
     "provider": "gcp",
@@ -1372,7 +1868,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c2d",
-    "pricePerHour": 5.084688
+    "pricePerHour": 5.084688,
+    "commit": {
+      "1y": 3.2032,
+      "3y": 2.287824
+    }
   },
   {
     "provider": "gcp",
@@ -1383,7 +1883,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3",
-    "pricePerHour": 0.201608
+    "pricePerHour": 0.201608,
+    "commit": {
+      "1y": 0.127016,
+      "3y": 0.090724
+    }
   },
   {
     "provider": "gcp",
@@ -1394,7 +1898,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3",
-    "pricePerHour": 0.403216
+    "pricePerHour": 0.403216,
+    "commit": {
+      "1y": 0.254032,
+      "3y": 0.181448
+    }
   },
   {
     "provider": "gcp",
@@ -1405,7 +1913,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3",
-    "pricePerHour": 1.108844
+    "pricePerHour": 1.108844,
+    "commit": {
+      "1y": 0.698588,
+      "3y": 0.498982
+    }
   },
   {
     "provider": "gcp",
@@ -1416,7 +1928,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3",
-    "pricePerHour": 2.217688
+    "pricePerHour": 2.217688,
+    "commit": {
+      "1y": 1.397176,
+      "3y": 0.997964
+    }
   },
   {
     "provider": "gcp",
@@ -1427,7 +1943,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3",
-    "pricePerHour": 4.435376
+    "pricePerHour": 4.435376,
+    "commit": {
+      "1y": 2.794352,
+      "3y": 1.995928
+    }
   },
   {
     "provider": "gcp",
@@ -1438,7 +1958,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3",
-    "pricePerHour": 8.870752
+    "pricePerHour": 8.870752,
+    "commit": {
+      "1y": 5.588704,
+      "3y": 3.991856
+    }
   },
   {
     "provider": "gcp",
@@ -1449,7 +1973,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 0.181596
+    "pricePerHour": 0.181596,
+    "commit": {
+      "1y": 0.1144,
+      "3y": 0.081708
+    }
   },
   {
     "provider": "gcp",
@@ -1460,7 +1988,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 0.363192
+    "pricePerHour": 0.363192,
+    "commit": {
+      "1y": 0.2288,
+      "3y": 0.163416
+    }
   },
   {
     "provider": "gcp",
@@ -1471,7 +2003,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 0.726384
+    "pricePerHour": 0.726384,
+    "commit": {
+      "1y": 0.4576,
+      "3y": 0.326832
+    }
   },
   {
     "provider": "gcp",
@@ -1482,7 +2018,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 1.36197
+    "pricePerHour": 1.36197,
+    "commit": {
+      "1y": 0.858,
+      "3y": 0.61281
+    }
   },
   {
     "provider": "gcp",
@@ -1493,7 +2033,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 2.72394
+    "pricePerHour": 2.72394,
+    "commit": {
+      "1y": 1.716,
+      "3y": 1.22562
+    }
   },
   {
     "provider": "gcp",
@@ -1504,7 +2048,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 4.08591
+    "pricePerHour": 4.08591,
+    "commit": {
+      "1y": 2.574,
+      "3y": 1.83843
+    }
   },
   {
     "provider": "gcp",
@@ -1515,7 +2063,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 8.17182
+    "pricePerHour": 8.17182,
+    "commit": {
+      "1y": 5.148,
+      "3y": 3.67686
+    }
   },
   {
     "provider": "gcp",
@@ -1526,7 +2078,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 16.34364
+    "pricePerHour": 16.34364,
+    "commit": {
+      "1y": 10.296,
+      "3y": 7.35372
+    }
   },
   {
     "provider": "gcp",
@@ -1537,7 +2093,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 0.24494
+    "pricePerHour": 0.24494,
+    "commit": {
+      "1y": 0.154304,
+      "3y": 0.110204
+    }
   },
   {
     "provider": "gcp",
@@ -1548,7 +2108,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 0.48988
+    "pricePerHour": 0.48988,
+    "commit": {
+      "1y": 0.308608,
+      "3y": 0.220408
+    }
   },
   {
     "provider": "gcp",
@@ -1559,7 +2123,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 0.97976
+    "pricePerHour": 0.97976,
+    "commit": {
+      "1y": 0.617216,
+      "3y": 0.440816
+    }
   },
   {
     "provider": "gcp",
@@ -1570,7 +2138,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 1.83705
+    "pricePerHour": 1.83705,
+    "commit": {
+      "1y": 1.15728,
+      "3y": 0.82653
+    }
   },
   {
     "provider": "gcp",
@@ -1581,7 +2153,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 3.6741
+    "pricePerHour": 3.6741,
+    "commit": {
+      "1y": 2.31456,
+      "3y": 1.65306
+    }
   },
   {
     "provider": "gcp",
@@ -1592,7 +2168,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 5.51115
+    "pricePerHour": 5.51115,
+    "commit": {
+      "1y": 3.47184,
+      "3y": 2.47959
+    }
   },
   {
     "provider": "gcp",
@@ -1603,7 +2183,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 11.0223
+    "pricePerHour": 11.0223,
+    "commit": {
+      "1y": 6.94368,
+      "3y": 4.95918
+    }
   },
   {
     "provider": "gcp",
@@ -1614,7 +2198,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 22.0446
+    "pricePerHour": 22.0446,
+    "commit": {
+      "1y": 13.88736,
+      "3y": 9.91836
+    }
   },
   {
     "provider": "gcp",
@@ -1625,7 +2213,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 0.149924
+    "pricePerHour": 0.149924,
+    "commit": {
+      "1y": 0.094448,
+      "3y": 0.06746
+    }
   },
   {
     "provider": "gcp",
@@ -1636,7 +2228,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 0.299848
+    "pricePerHour": 0.299848,
+    "commit": {
+      "1y": 0.188896,
+      "3y": 0.13492
+    }
   },
   {
     "provider": "gcp",
@@ -1647,7 +2243,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 0.599696
+    "pricePerHour": 0.599696,
+    "commit": {
+      "1y": 0.377792,
+      "3y": 0.26984
+    }
   },
   {
     "provider": "gcp",
@@ -1658,7 +2258,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 1.120471
+    "pricePerHour": 1.120471,
+    "commit": {
+      "1y": 0.705866,
+      "3y": 0.504169
+    }
   },
   {
     "provider": "gcp",
@@ -1669,7 +2273,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 2.240942
+    "pricePerHour": 2.240942,
+    "commit": {
+      "1y": 1.411732,
+      "3y": 1.008338
+    }
   },
   {
     "provider": "gcp",
@@ -1680,7 +2288,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 3.361413
+    "pricePerHour": 3.361413,
+    "commit": {
+      "1y": 2.117598,
+      "3y": 1.512507
+    }
   },
   {
     "provider": "gcp",
@@ -1691,7 +2303,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 6.722826
+    "pricePerHour": 6.722826,
+    "commit": {
+      "1y": 4.235196,
+      "3y": 3.025014
+    }
   },
   {
     "provider": "gcp",
@@ -1702,7 +2318,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c3d",
-    "pricePerHour": 13.445652
+    "pricePerHour": 13.445652,
+    "commit": {
+      "1y": 8.470392,
+      "3y": 6.050028
+    }
   },
   {
     "provider": "gcp",
@@ -1713,7 +2333,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.096866
+    "pricePerHour": 0.096866,
+    "commit": {
+      "1y": 0.061027,
+      "3y": 0.04359
+    }
   },
   {
     "provider": "gcp",
@@ -1724,7 +2348,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.19767
+    "pricePerHour": 0.19767,
+    "commit": {
+      "1y": 0.124535,
+      "3y": 0.088952
+    }
   },
   {
     "provider": "gcp",
@@ -1735,7 +2363,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.39534
+    "pricePerHour": 0.39534,
+    "commit": {
+      "1y": 0.24907,
+      "3y": 0.177904
+    }
   },
   {
     "provider": "gcp",
@@ -1746,7 +2378,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.79068
+    "pricePerHour": 0.79068,
+    "commit": {
+      "1y": 0.49814,
+      "3y": 0.355808
+    }
   },
   {
     "provider": "gcp",
@@ -1757,7 +2393,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 1.18602
+    "pricePerHour": 1.18602,
+    "commit": {
+      "1y": 0.74721,
+      "3y": 0.533712
+    }
   },
   {
     "provider": "gcp",
@@ -1768,7 +2408,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 1.58136
+    "pricePerHour": 1.58136,
+    "commit": {
+      "1y": 0.99628,
+      "3y": 0.711616
+    }
   },
   {
     "provider": "gcp",
@@ -1779,7 +2423,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 2.37204
+    "pricePerHour": 2.37204,
+    "commit": {
+      "1y": 1.49442,
+      "3y": 1.067424
+    }
   },
   {
     "provider": "gcp",
@@ -1790,7 +2438,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 4.74408
+    "pricePerHour": 4.74408,
+    "commit": {
+      "1y": 2.98884,
+      "3y": 2.134848
+    }
   },
   {
     "provider": "gcp",
@@ -1801,7 +2453,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 7.11612
+    "pricePerHour": 7.11612,
+    "commit": {
+      "1y": 4.48326,
+      "3y": 3.202272
+    }
   },
   {
     "provider": "gcp",
@@ -1812,7 +2468,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 9.48816
+    "pricePerHour": 9.48816,
+    "commit": {
+      "1y": 5.97768,
+      "3y": 4.269696
+    }
   },
   {
     "provider": "gcp",
@@ -1823,7 +2483,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 14.23224
+    "pricePerHour": 14.23224,
+    "commit": {
+      "1y": 8.96652,
+      "3y": 6.404544
+    }
   },
   {
     "provider": "gcp",
@@ -1834,7 +2498,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.12837
+    "pricePerHour": 0.12837,
+    "commit": {
+      "1y": 0.080875,
+      "3y": 0.057766
+    }
   },
   {
     "provider": "gcp",
@@ -1845,7 +2513,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.260678
+    "pricePerHour": 0.260678,
+    "commit": {
+      "1y": 0.164231,
+      "3y": 0.117304
+    }
   },
   {
     "provider": "gcp",
@@ -1856,7 +2528,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.521356
+    "pricePerHour": 0.521356,
+    "commit": {
+      "1y": 0.328462,
+      "3y": 0.234608
+    }
   },
   {
     "provider": "gcp",
@@ -1867,7 +2543,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 1.042712
+    "pricePerHour": 1.042712,
+    "commit": {
+      "1y": 0.656924,
+      "3y": 0.469216
+    }
   },
   {
     "provider": "gcp",
@@ -1878,7 +2558,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 1.564068
+    "pricePerHour": 1.564068,
+    "commit": {
+      "1y": 0.985386,
+      "3y": 0.703824
+    }
   },
   {
     "provider": "gcp",
@@ -1889,7 +2573,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 2.085424
+    "pricePerHour": 2.085424,
+    "commit": {
+      "1y": 1.313848,
+      "3y": 0.938432
+    }
   },
   {
     "provider": "gcp",
@@ -1900,7 +2588,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 3.128136
+    "pricePerHour": 3.128136,
+    "commit": {
+      "1y": 1.970772,
+      "3y": 1.407648
+    }
   },
   {
     "provider": "gcp",
@@ -1911,7 +2603,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 6.256272
+    "pricePerHour": 6.256272,
+    "commit": {
+      "1y": 3.941544,
+      "3y": 2.815296
+    }
   },
   {
     "provider": "gcp",
@@ -1922,7 +2618,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 9.384408
+    "pricePerHour": 9.384408,
+    "commit": {
+      "1y": 5.912316,
+      "3y": 4.222944
+    }
   },
   {
     "provider": "gcp",
@@ -1933,7 +2633,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 12.512544
+    "pricePerHour": 12.512544,
+    "commit": {
+      "1y": 7.883088,
+      "3y": 5.630592
+    }
   },
   {
     "provider": "gcp",
@@ -1944,7 +2648,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 18.768816
+    "pricePerHour": 18.768816,
+    "commit": {
+      "1y": 11.824632,
+      "3y": 8.445888
+    }
   },
   {
     "provider": "gcp",
@@ -1955,7 +2663,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.085052
+    "pricePerHour": 0.085052,
+    "commit": {
+      "1y": 0.053584,
+      "3y": 0.038274
+    }
   },
   {
     "provider": "gcp",
@@ -1966,7 +2678,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.170104
+    "pricePerHour": 0.170104,
+    "commit": {
+      "1y": 0.107168,
+      "3y": 0.076548
+    }
   },
   {
     "provider": "gcp",
@@ -1977,7 +2693,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.340208
+    "pricePerHour": 0.340208,
+    "commit": {
+      "1y": 0.214336,
+      "3y": 0.153096
+    }
   },
   {
     "provider": "gcp",
@@ -1988,7 +2708,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 0.680416
+    "pricePerHour": 0.680416,
+    "commit": {
+      "1y": 0.428672,
+      "3y": 0.306192
+    }
   },
   {
     "provider": "gcp",
@@ -1999,7 +2723,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 1.020624
+    "pricePerHour": 1.020624,
+    "commit": {
+      "1y": 0.643008,
+      "3y": 0.459288
+    }
   },
   {
     "provider": "gcp",
@@ -2010,7 +2738,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 1.360832
+    "pricePerHour": 1.360832,
+    "commit": {
+      "1y": 0.857344,
+      "3y": 0.612384
+    }
   },
   {
     "provider": "gcp",
@@ -2021,7 +2753,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 2.041248
+    "pricePerHour": 2.041248,
+    "commit": {
+      "1y": 1.286016,
+      "3y": 0.918576
+    }
   },
   {
     "provider": "gcp",
@@ -2032,7 +2768,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 4.082496
+    "pricePerHour": 4.082496,
+    "commit": {
+      "1y": 2.572032,
+      "3y": 1.837152
+    }
   },
   {
     "provider": "gcp",
@@ -2043,7 +2783,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 6.123744
+    "pricePerHour": 6.123744,
+    "commit": {
+      "1y": 3.858048,
+      "3y": 2.755728
+    }
   },
   {
     "provider": "gcp",
@@ -2054,7 +2798,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 8.164992
+    "pricePerHour": 8.164992,
+    "commit": {
+      "1y": 5.144064,
+      "3y": 3.674304
+    }
   },
   {
     "provider": "gcp",
@@ -2065,7 +2813,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4",
-    "pricePerHour": 12.247488
+    "pricePerHour": 12.247488,
+    "commit": {
+      "1y": 7.716096,
+      "3y": 5.511456
+    }
   },
   {
     "provider": "gcp",
@@ -2076,7 +2828,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.089876
+    "pricePerHour": 0.089876,
+    "commit": {
+      "1y": 0.056622,
+      "3y": 0.040444
+    }
   },
   {
     "provider": "gcp",
@@ -2087,7 +2843,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.183248
+    "pricePerHour": 0.183248,
+    "commit": {
+      "1y": 0.115446,
+      "3y": 0.082461
+    }
   },
   {
     "provider": "gcp",
@@ -2098,7 +2858,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.369991
+    "pricePerHour": 0.369991,
+    "commit": {
+      "1y": 0.233095,
+      "3y": 0.166496
+    }
   },
   {
     "provider": "gcp",
@@ -2109,7 +2873,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.739982
+    "pricePerHour": 0.739982,
+    "commit": {
+      "1y": 0.46619,
+      "3y": 0.332991
+    }
   },
   {
     "provider": "gcp",
@@ -2120,7 +2888,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 1.479964
+    "pricePerHour": 1.479964,
+    "commit": {
+      "1y": 0.932379,
+      "3y": 0.665983
+    }
   },
   {
     "provider": "gcp",
@@ -2131,7 +2903,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 2.219946
+    "pricePerHour": 2.219946,
+    "commit": {
+      "1y": 1.398569,
+      "3y": 0.998974
+    }
   },
   {
     "provider": "gcp",
@@ -2142,7 +2918,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 2.959927
+    "pricePerHour": 2.959927,
+    "commit": {
+      "1y": 1.864758,
+      "3y": 1.331965
+    }
   },
   {
     "provider": "gcp",
@@ -2153,7 +2933,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 4.439891
+    "pricePerHour": 4.439891,
+    "commit": {
+      "1y": 2.797138,
+      "3y": 1.997948
+    }
   },
   {
     "provider": "gcp",
@@ -2164,7 +2948,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 8.879782
+    "pricePerHour": 8.879782,
+    "commit": {
+      "1y": 5.594275,
+      "3y": 3.995896
+    }
   },
   {
     "provider": "gcp",
@@ -2175,7 +2963,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 17.759564
+    "pricePerHour": 17.759564,
+    "commit": {
+      "1y": 11.18855,
+      "3y": 7.991792
+    }
   },
   {
     "provider": "gcp",
@@ -2186,7 +2978,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.117841
+    "pricePerHour": 0.117841,
+    "commit": {
+      "1y": 0.07424,
+      "3y": 0.053028
+    }
   },
   {
     "provider": "gcp",
@@ -2197,7 +2993,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.239177
+    "pricePerHour": 0.239177,
+    "commit": {
+      "1y": 0.150682,
+      "3y": 0.107629
+    }
   },
   {
     "provider": "gcp",
@@ -2208,7 +3008,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.481849
+    "pricePerHour": 0.481849,
+    "commit": {
+      "1y": 0.303566,
+      "3y": 0.216832
+    }
   },
   {
     "provider": "gcp",
@@ -2219,7 +3023,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.963699
+    "pricePerHour": 0.963699,
+    "commit": {
+      "1y": 0.607132,
+      "3y": 0.433663
+    }
   },
   {
     "provider": "gcp",
@@ -2230,7 +3038,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 1.927398
+    "pricePerHour": 1.927398,
+    "commit": {
+      "1y": 1.214265,
+      "3y": 0.867326
+    }
   },
   {
     "provider": "gcp",
@@ -2241,7 +3053,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 2.891096
+    "pricePerHour": 2.891096,
+    "commit": {
+      "1y": 1.821397,
+      "3y": 1.300989
+    }
   },
   {
     "provider": "gcp",
@@ -2252,7 +3068,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 3.854795
+    "pricePerHour": 3.854795,
+    "commit": {
+      "1y": 2.42853,
+      "3y": 1.734652
+    }
   },
   {
     "provider": "gcp",
@@ -2263,7 +3083,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 5.782193
+    "pricePerHour": 5.782193,
+    "commit": {
+      "1y": 3.642795,
+      "3y": 2.601979
+    }
   },
   {
     "provider": "gcp",
@@ -2274,7 +3098,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 11.564386
+    "pricePerHour": 11.564386,
+    "commit": {
+      "1y": 7.285589,
+      "3y": 5.203957
+    }
   },
   {
     "provider": "gcp",
@@ -2285,7 +3113,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 23.128772
+    "pricePerHour": 23.128772,
+    "commit": {
+      "1y": 14.571178,
+      "3y": 10.407914
+    }
   },
   {
     "provider": "gcp",
@@ -2296,7 +3128,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.075894
+    "pricePerHour": 0.075894,
+    "commit": {
+      "1y": 0.047813,
+      "3y": 0.034152
+    }
   },
   {
     "provider": "gcp",
@@ -2307,7 +3143,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.155283
+    "pricePerHour": 0.155283,
+    "commit": {
+      "1y": 0.097828,
+      "3y": 0.069877
+    }
   },
   {
     "provider": "gcp",
@@ -2318,7 +3158,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.314062
+    "pricePerHour": 0.314062,
+    "commit": {
+      "1y": 0.197859,
+      "3y": 0.141328
+    }
   },
   {
     "provider": "gcp",
@@ -2329,7 +3173,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 0.628123
+    "pricePerHour": 0.628123,
+    "commit": {
+      "1y": 0.395718,
+      "3y": 0.282655
+    }
   },
   {
     "provider": "gcp",
@@ -2340,7 +3188,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 1.256247
+    "pricePerHour": 1.256247,
+    "commit": {
+      "1y": 0.791436,
+      "3y": 0.565311
+    }
   },
   {
     "provider": "gcp",
@@ -2351,7 +3203,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 1.88437
+    "pricePerHour": 1.88437,
+    "commit": {
+      "1y": 1.187154,
+      "3y": 0.847966
+    }
   },
   {
     "provider": "gcp",
@@ -2362,7 +3218,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 2.512493
+    "pricePerHour": 2.512493,
+    "commit": {
+      "1y": 1.582873,
+      "3y": 1.130622
+    }
   },
   {
     "provider": "gcp",
@@ -2373,7 +3233,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 3.76874
+    "pricePerHour": 3.76874,
+    "commit": {
+      "1y": 2.374309,
+      "3y": 1.695933
+    }
   },
   {
     "provider": "gcp",
@@ -2384,7 +3248,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 7.53748
+    "pricePerHour": 7.53748,
+    "commit": {
+      "1y": 4.748618,
+      "3y": 3.391866
+    }
   },
   {
     "provider": "gcp",
@@ -2395,7 +3263,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "c4d",
-    "pricePerHour": 15.07496
+    "pricePerHour": 15.07496,
+    "commit": {
+      "1y": 9.497236,
+      "3y": 6.783732
+    }
   },
   {
     "provider": "gcp",
@@ -2406,7 +3278,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "t2d",
-    "pricePerHour": 0.042246
+    "pricePerHour": 0.042246,
+    "commit": {
+      "1y": 0.026614,
+      "3y": 0.019012
+    }
   },
   {
     "provider": "gcp",
@@ -2417,7 +3293,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "t2d",
-    "pricePerHour": 0.084492
+    "pricePerHour": 0.084492,
+    "commit": {
+      "1y": 0.053228,
+      "3y": 0.038024
+    }
   },
   {
     "provider": "gcp",
@@ -2428,7 +3308,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "t2d",
-    "pricePerHour": 0.168984
+    "pricePerHour": 0.168984,
+    "commit": {
+      "1y": 0.106456,
+      "3y": 0.076048
+    }
   },
   {
     "provider": "gcp",
@@ -2439,7 +3323,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "t2d",
-    "pricePerHour": 0.337968
+    "pricePerHour": 0.337968,
+    "commit": {
+      "1y": 0.212912,
+      "3y": 0.152096
+    }
   },
   {
     "provider": "gcp",
@@ -2450,7 +3338,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "t2d",
-    "pricePerHour": 0.675936
+    "pricePerHour": 0.675936,
+    "commit": {
+      "1y": 0.425824,
+      "3y": 0.304192
+    }
   },
   {
     "provider": "gcp",
@@ -2461,7 +3353,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "t2d",
-    "pricePerHour": 1.351872
+    "pricePerHour": 1.351872,
+    "commit": {
+      "1y": 0.851648,
+      "3y": 0.608384
+    }
   },
   {
     "provider": "gcp",
@@ -2472,7 +3368,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "t2d",
-    "pricePerHour": 2.027808
+    "pricePerHour": 2.027808,
+    "commit": {
+      "1y": 1.277472,
+      "3y": 0.912576
+    }
   },
   {
     "provider": "gcp",
@@ -2483,7 +3383,11 @@
     "burstable": false,
     "arch": "x86",
     "generation": "t2d",
-    "pricePerHour": 2.53476
+    "pricePerHour": 2.53476,
+    "commit": {
+      "1y": 1.59684,
+      "3y": 1.14072
+    }
   },
   {
     "provider": "gcp",
@@ -2571,7 +3475,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.0449
+    "pricePerHour": 0.0449,
+    "commit": {
+      "1y": 0.02961,
+      "3y": 0.02021
+    }
   },
   {
     "provider": "gcp",
@@ -2582,7 +3490,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.0898
+    "pricePerHour": 0.0898,
+    "commit": {
+      "1y": 0.05922,
+      "3y": 0.04042
+    }
   },
   {
     "provider": "gcp",
@@ -2593,7 +3505,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.1796
+    "pricePerHour": 0.1796,
+    "commit": {
+      "1y": 0.11844,
+      "3y": 0.08084
+    }
   },
   {
     "provider": "gcp",
@@ -2604,7 +3520,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.3592
+    "pricePerHour": 0.3592,
+    "commit": {
+      "1y": 0.23688,
+      "3y": 0.16168
+    }
   },
   {
     "provider": "gcp",
@@ -2615,7 +3535,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.7184
+    "pricePerHour": 0.7184,
+    "commit": {
+      "1y": 0.47376,
+      "3y": 0.32336
+    }
   },
   {
     "provider": "gcp",
@@ -2626,7 +3550,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 1.4368
+    "pricePerHour": 1.4368,
+    "commit": {
+      "1y": 0.94752,
+      "3y": 0.64672
+    }
   },
   {
     "provider": "gcp",
@@ -2637,7 +3565,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 2.1552
+    "pricePerHour": 2.1552,
+    "commit": {
+      "1y": 1.42128,
+      "3y": 0.97008
+    }
   },
   {
     "provider": "gcp",
@@ -2648,7 +3580,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 2.8736
+    "pricePerHour": 2.8736,
+    "commit": {
+      "1y": 1.89504,
+      "3y": 1.29344
+    }
   },
   {
     "provider": "gcp",
@@ -2659,7 +3595,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 3.2328
+    "pricePerHour": 3.2328,
+    "commit": {
+      "1y": 2.13192,
+      "3y": 1.45512
+    }
   },
   {
     "provider": "gcp",
@@ -2670,7 +3610,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.05894
+    "pricePerHour": 0.05894,
+    "commit": {
+      "1y": 0.03885,
+      "3y": 0.02653
+    }
   },
   {
     "provider": "gcp",
@@ -2681,7 +3625,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.11788
+    "pricePerHour": 0.11788,
+    "commit": {
+      "1y": 0.0777,
+      "3y": 0.05306
+    }
   },
   {
     "provider": "gcp",
@@ -2692,7 +3640,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.23576
+    "pricePerHour": 0.23576,
+    "commit": {
+      "1y": 0.1554,
+      "3y": 0.10612
+    }
   },
   {
     "provider": "gcp",
@@ -2703,7 +3655,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.47152
+    "pricePerHour": 0.47152,
+    "commit": {
+      "1y": 0.3108,
+      "3y": 0.21224
+    }
   },
   {
     "provider": "gcp",
@@ -2714,7 +3670,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.94304
+    "pricePerHour": 0.94304,
+    "commit": {
+      "1y": 0.6216,
+      "3y": 0.42448
+    }
   },
   {
     "provider": "gcp",
@@ -2725,7 +3685,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 1.88608
+    "pricePerHour": 1.88608,
+    "commit": {
+      "1y": 1.2432,
+      "3y": 0.84896
+    }
   },
   {
     "provider": "gcp",
@@ -2736,7 +3700,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 2.82912
+    "pricePerHour": 2.82912,
+    "commit": {
+      "1y": 1.8648,
+      "3y": 1.27344
+    }
   },
   {
     "provider": "gcp",
@@ -2747,7 +3715,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 3.77216
+    "pricePerHour": 3.77216,
+    "commit": {
+      "1y": 2.4864,
+      "3y": 1.69792
+    }
   },
   {
     "provider": "gcp",
@@ -2758,7 +3730,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 4.24368
+    "pricePerHour": 4.24368,
+    "commit": {
+      "1y": 2.7972,
+      "3y": 1.91016
+    }
   },
   {
     "provider": "gcp",
@@ -2769,7 +3745,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.03788
+    "pricePerHour": 0.03788,
+    "commit": {
+      "1y": 0.02499,
+      "3y": 0.01705
+    }
   },
   {
     "provider": "gcp",
@@ -2780,7 +3760,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.07576
+    "pricePerHour": 0.07576,
+    "commit": {
+      "1y": 0.04998,
+      "3y": 0.0341
+    }
   },
   {
     "provider": "gcp",
@@ -2791,7 +3775,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.15152
+    "pricePerHour": 0.15152,
+    "commit": {
+      "1y": 0.09996,
+      "3y": 0.0682
+    }
   },
   {
     "provider": "gcp",
@@ -2802,7 +3790,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.30304
+    "pricePerHour": 0.30304,
+    "commit": {
+      "1y": 0.19992,
+      "3y": 0.1364
+    }
   },
   {
     "provider": "gcp",
@@ -2813,7 +3805,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 0.60608
+    "pricePerHour": 0.60608,
+    "commit": {
+      "1y": 0.39984,
+      "3y": 0.2728
+    }
   },
   {
     "provider": "gcp",
@@ -2824,7 +3820,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 1.21216
+    "pricePerHour": 1.21216,
+    "commit": {
+      "1y": 0.79968,
+      "3y": 0.5456
+    }
   },
   {
     "provider": "gcp",
@@ -2835,7 +3835,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 1.81824
+    "pricePerHour": 1.81824,
+    "commit": {
+      "1y": 1.19952,
+      "3y": 0.8184
+    }
   },
   {
     "provider": "gcp",
@@ -2846,7 +3850,11 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 2.42432
+    "pricePerHour": 2.42432,
+    "commit": {
+      "1y": 1.59936,
+      "3y": 1.0912
+    }
   },
   {
     "provider": "gcp",
@@ -2857,6 +3865,10 @@
     "burstable": false,
     "arch": "arm",
     "generation": "c4a",
-    "pricePerHour": 2.72736
+    "pricePerHour": 2.72736,
+    "commit": {
+      "1y": 1.79928,
+      "3y": 1.2276
+    }
   }
 ]

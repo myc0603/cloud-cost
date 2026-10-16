@@ -3,7 +3,7 @@
  * 리소스 모듈은 이 파일만 import한다 (index.ts를 import하면 순환 참조).
  */
 
-import type { DbEngine, Provider, ProviderPricing, Region, StorageSku, VmSku } from '../schema';
+import type { CommitPrices, DbEngine, Provider, ProviderPricing, Region, StorageSku, Term, VmSku } from '../schema';
 
 export interface VmSpec {
   vcpu: number;
@@ -44,6 +44,17 @@ export interface MatchOptions {
   includeBurstable: boolean;
   /** 매칭할 아키텍처. 생략 시 both */
   arch?: ArchFilter;
+  /**
+   * 약정 기간 — 생략 시 정가(온디맨드). VM·K8s 노드·DB·캐시 컴퓨트에만 적용되고,
+   * 이 기준 가격으로 최저가를 다시 찾는다. 약정가가 없는 후보는 정가로 남는다(committed: false).
+   */
+  term?: Term;
+}
+
+/** 약정 기간의 가격 — 약정가가 없으면 정가. committed = 약정가 적용 여부 */
+export function priceAt<T>(onDemand: T, commit: CommitPrices<T> | undefined, term: Term | undefined): { price: T; committed: boolean } {
+  const c = term ? commit?.[term] : undefined;
+  return c === undefined ? { price: onDemand, committed: false } : { price: c, committed: true };
 }
 
 /** 플랫폼 × 리소스 인덱스 → 사용자가 고른 SKU명. 조건 미충족·미존재 SKU는 무시하고 최저가로 self-heal */
@@ -67,8 +78,8 @@ export type EstimateLine = { resourceIndex: number } & (
       /** vm = VM 카드, k8s-node = K8s 카드의 워커 노드 (표시 라벨만 다르고 매칭은 동일) */
       role: 'vm' | 'k8s-node';
       spec: VmSpec;
-      matched: VmSku | null;
-      candidates: VmSku[];
+      matched: VmMatch | null;
+      candidates: VmMatch[];
       /** matched가 null일 때만 값이 있다 */
       noMatch: NoMatchReason | null;
       monthlyUsd: number | null;
@@ -108,19 +119,28 @@ export type EstimateLine = { resourceIndex: number } & (
     }
 );
 
-/** 캐시 매칭 결과 — perHour는 이중화 여부가 반영된 값 */
+/** VM 매칭 결과 — perHour = 선택한 요금 기준(정가·약정)의 시간당, pricePerHour는 정가 그대로 */
+export interface VmMatch extends VmSku {
+  perHour: number;
+  /** 약정 기간이 지정됐는데 약정가가 없어 정가로 계산했으면 false (정가 기준이면 항상 false) */
+  committed: boolean;
+}
+
+/** 캐시 매칭 결과 — perHour는 이중화 여부·요금 기준이 반영된 값 */
 export interface CacheMatch {
   sku: string;
   memoryGb: number;
   perHour: number;
+  committed: boolean;
 }
 
-/** DB 매칭 결과 한 건 — AWS·Azure는 실제 SKU, GCP는 계산한 커스텀 사이즈(db-custom-{vCPU}-{RAM MB}) */
+/** DB 매칭 결과 한 건 — AWS·Azure는 실제 SKU, GCP는 계산한 커스텀 사이즈(db-custom-{vCPU}-{RAM MB}). perHour는 이중화·요금 기준 반영 */
 export interface DbMatch {
   sku: string;
   vcpu: number;
   ramGb: number;
   perHour: number;
+  committed: boolean;
 }
 
 export interface ProviderEstimate {

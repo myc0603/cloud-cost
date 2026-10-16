@@ -116,6 +116,13 @@ test('matchOptions: arch·burst 왕복', () => {
   assert.equal(decodeMatchOptions('arch=mips').arch, 'both'); // 모르는 값 → both
 });
 
+test('matchOptions: 약정 기간 왕복, 정가는 생략, 모르는 값은 정가', () => {
+  const opts = { arch: 'both' as const, includeBurstable: true, term: '3y' as const };
+  assert.equal(encodeMatchOptions(opts), 'term=3y');
+  assert.deepEqual(decodeMatchOptions(encodeMatchOptions(opts)), opts);
+  assert.equal(decodeMatchOptions('term=5y').term, undefined);
+});
+
 test('템플릿: 전부 URL 왕복 보존 (토큰 형식·singleton 규칙에 맞는 데이터)', () => {
   for (const tpl of TEMPLATES) {
     const scenario: Scenario = { region: 'seoul', resources: tpl.resources };

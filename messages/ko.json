@@ -34,6 +34,12 @@
       "x86": "x86",
       "arm": "ARM"
     },
+    "term": "요금 기준",
+    "termLabel": {
+      "od": "정가 (온디맨드)",
+      "1y": "1년 약정",
+      "3y": "3년 약정"
+    },
     "templateStart": "템플릿으로 시작:",
     "templateName": {
       "web": "소규모 웹 서비스",
@@ -87,6 +93,9 @@
     "noMatchMemory": "최대 {gb}GB",
     "instanceSelect": "인스턴스 선택 (조건 이상)",
     "armNotice": "ARM(Graviton·Ampere) 인스턴스는 앱이 ARM(aarch64) 호환이어야 실행됩니다 — 재컴파일·의존성 확인이 필요할 수 있어요.",
+    "noCommit": "약정가 없음",
+    "onDemandShort": "정가",
+    "commitNotice": "{years}년 약정가(선결제 없음) 기준 — AWS EC2 Instance Savings Plans·RDS/ElastiCache 예약, Azure 예약, GCP 약정 사용 할인(CUD). 약정은 VM·K8s 노드·DB·캐시 컴퓨트에만 적용되고, 스토리지·트래픽·LB·NAT·K8s 컨트롤 플레인은 정가입니다. 약정 요금은 실제 사용 여부와 관계없이 기간 내내 청구됩니다.",
     "noData": "데이터 없음",
     "egressLine": "아웃바운드 트래픽 {gb}GB",
     "freeApplied": "(무료 {gb}GB 반영)",
@@ -106,7 +115,7 @@
     "cheapest": "최저가",
     "dataPending": "데이터 준비 중",
     "unavailable": "견적 불가",
-    "footnote": "Linux 온디맨드 정가 × 월 730시간 기준. 할인·프리티어 미반영. 화살표(→)는 스펙을 만족하는 최저가 인스턴스로 자동 매칭된 결과입니다. 스토리지는 범용 SSD(gp3 · Premium SSD v2 · Balanced PD)와 표준 오브젝트 티어, 트래픽은 인터넷 라우팅 기준 구간 요금입니다."
+    "footnote": "Linux 정가(온디맨드) 또는 선택한 약정가 × 월 730시간 기준. 프리티어 미반영. 화살표(→)는 스펙을 만족하는 최저가 인스턴스로 자동 매칭된 결과입니다. 스토리지는 범용 SSD(gp3 · Premium SSD v2 · Balanced PD)와 표준 오브젝트 티어, 트래픽은 인터넷 라우팅 기준 구간 요금입니다."
   },
   "display": {
     "currency": "통화",

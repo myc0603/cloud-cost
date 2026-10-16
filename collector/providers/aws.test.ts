@@ -5,6 +5,7 @@ import {
   parseCsvLine,
   parseDataTransferCsv,
   parseEc2OfferCsv,
+  parseEc2SavingsPlanCsv,
   parseEksCsv,
   parseElastiCacheCsv,
   parseRdsCsv,
@@ -233,6 +234,60 @@ test('parseRdsCsv: 엔진별 클래스(단일·Multi-AZ) + gp3 스토리지 — 
   assert.equal(db.engines.postgres, null); // PG 인스턴스 행 없음
 });
 
+test('parseEc2SavingsPlanCsv: EC2 Instance SP·선결제 없음·Linux 공유 테넌시만, us-east-1 접두사 없음', async () => {
+  const H =
+    'SKU,RateCode,Unit,EffectiveDate,DiscountedRate,Currency,DiscountedSKU,DiscountedServiceCode,DiscountedUsageType,DiscountedOperation,PurchaseOption,LeaseContractLength,LeaseContractLengthUnit,Product Family,DiscountedInstanceType';
+  const r = (type: string, rate: string, o: { family?: string; option?: string; usage?: string; op?: string; years?: string } = {}) =>
+    `X,X,Hrs,2026-01-01,${rate},USD,X,AmazonEC2,${o.usage ?? `APN2-BoxUsage:${type}`},${o.op ?? 'RunInstances'},${o.option ?? 'No Upfront'},${o.years ?? '1'},year,${o.family ?? 'EC2InstanceSavingsPlans'},${type}`;
+  const lines = [
+    'FormatVersion,v1.0',
+    H,
+    r('m6g.xlarge', '0.1197'),
+    r('m6g.xlarge', '0.0821', { years: '3' }),
+    r('m6g.xlarge', '0.1344', { family: 'ComputeSavingsPlans' }), // ✘ 유연형
+    r('m6g.xlarge', '0.114', { option: 'Partial Upfront' }), // ✘ 부분 선결제
+    r('m6g.xlarge', '0.5', { op: 'RunInstances:0002' }), // ✘ Windows
+    r('m6g.xlarge', '0.9', { usage: 'APN2-DedicatedUsage:m6g.xlarge' }), // ✘ 전용 테넌시
+    r('m8i.large', '0.085', { usage: 'BoxUsage:m8i.large' }), // ✔ us-east-1 표기
+  ];
+  const rates = await parseEc2SavingsPlanCsv(lines);
+  assert.deepEqual(Object.fromEntries(rates), { 'm6g.xlarge': { '1y': 0.1197, '3y': 0.0821 }, 'm8i.large': { '1y': 0.085 } });
+});
+
+test('parseRdsCsv: 예약가 — 선결제 없음 우선, 없으면 부분 선결제 환산, Convertible·전액 선결제 무시, 배포 옵션별', async () => {
+  const H =
+    '"SKU","TermType","Unit","PricePerUnit","Currency","Product Family","Location","Instance Type","Current Generation","vCPU","Memory","Database Engine","Deployment Option","Volume Type","usageType","LeaseContractLength","PurchaseOption","OfferingClass"';
+  const r = (o: Record<string, string>) => {
+    const base: Record<string, string> = {
+      Currency: 'USD', Location: 'Asia Pacific (Seoul)', 'Current Generation': 'Yes', 'Product Family': 'Database Instance',
+      'Instance Type': 'db.m6g.large', vCPU: '2', Memory: '8 GiB', 'Database Engine': 'PostgreSQL', 'Deployment Option': 'Single-AZ',
+      usageType: 'APN2-InstanceUsage:db.m6g.large', Unit: 'Hrs', TermType: 'Reserved', OfferingClass: 'standard', ...o,
+    };
+    return parseCsvLine(H).map((k) => `"${base[k] ?? ''}"`).join(',');
+  };
+  const multi = { 'Deployment Option': 'Multi-AZ', usageType: 'APN2-Multi-AZUsage:db.m6g.large' };
+  const lines = [
+    H,
+    r({ TermType: 'OnDemand', PricePerUnit: '0.221' }),
+    r({ TermType: 'OnDemand', PricePerUnit: '0.441', ...multi }),
+    r({ LeaseContractLength: '1yr', PurchaseOption: 'No Upfront', PricePerUnit: '0.1367' }),
+    r({ LeaseContractLength: '1yr', PurchaseOption: 'Partial Upfront', PricePerUnit: '0.0651' }),
+    r({ LeaseContractLength: '1yr', PurchaseOption: 'Partial Upfront', Unit: 'Quantity', PricePerUnit: '570' }),
+    r({ LeaseContractLength: '3yr', PurchaseOption: 'Partial Upfront', PricePerUnit: '0.0574' }),
+    r({ LeaseContractLength: '3yr', PurchaseOption: 'Partial Upfront', Unit: 'Quantity', PricePerUnit: '1507' }),
+    r({ LeaseContractLength: '3yr', PurchaseOption: 'All Upfront', Unit: 'Quantity', PricePerUnit: '2955' }),
+    r({ LeaseContractLength: '1yr', PurchaseOption: 'No Upfront', PricePerUnit: '0.01', OfferingClass: 'convertible' }),
+    r({ LeaseContractLength: '1yr', PurchaseOption: 'No Upfront', PricePerUnit: '0.2733', ...multi }),
+    r({ 'Product Family': 'Database Storage', TermType: 'OnDemand', Unit: 'GB-Mo', 'Database Engine': 'Any', 'Volume Type': 'General Purpose-GP3', PricePerUnit: '0.131', usageType: '' }),
+    r({ 'Product Family': 'Database Storage', TermType: 'OnDemand', Unit: 'GB-Mo', 'Database Engine': 'Any', 'Volume Type': 'General Purpose-GP3', PricePerUnit: '0.262', usageType: '', 'Deployment Option': 'Multi-AZ' }),
+  ];
+  const inst = (await parseRdsCsv(lines, 'seoul'))!.engines.postgres!.instances[0];
+  assert.deepEqual(inst.commit, {
+    '1y': { perHour: 0.1367, haPerHour: 0.2733 },
+    '3y': { perHour: +(0.0574 + 1507 / 26280).toFixed(6), haPerHour: null }, // Multi-AZ 3년 예약 없음
+  });
+});
+
 test('parseElastiCacheCsv: Valkey 노드만 (Redis·Memcached·연장 지원·SyncDurability 제외), 이중화 = 2배, us-east-1 접두사 없음', async () => {
   const H = '"SKU","TermType","Unit","PricePerUnit","Currency","Product Family","Location","Instance Type","Memory","Cache Engine","usageType"';
   const r = (sku: string, engine: string, usageType: string, price: string, memory = '0.5 GiB', location = 'US East (N. Virginia)') =>
@@ -252,4 +307,20 @@ test('parseElastiCacheCsv: Valkey 노드만 (Redis·Memcached·연장 지원·Sy
     { sku: 'cache.r7g.large', memoryGb: 13.07, burstable: false, perHour: 0.1745, haPerHour: 0.349 },
     { sku: 'cache.t4g.micro', memoryGb: 0.5, burstable: true, perHour: 0.0128, haPerHour: 0.0256 },
   ]);
+});
+
+test('parseElastiCacheCsv: Valkey 예약 노드 → 약정가, 이중화 2배', async () => {
+  const H = '"SKU","TermType","Unit","PricePerUnit","Currency","Product Family","Location","Instance Type","Memory","Cache Engine","usageType","LeaseContractLength","PurchaseOption","OfferingClass"';
+  const r = (term: string, price: string, lease = '', option = '', engine = 'Valkey') =>
+    `"X","${term}","Hrs","${price}","USD","Cache Instance","Asia Pacific (Seoul)","cache.m7g.large","6.38 GiB","${engine}","APN2-NodeUsage:cache.m7g.large","${lease}","${option}","standard"`;
+  const lines = [
+    H,
+    r('OnDemand', '0.1536'),
+    r('Reserved', '0.105', '1yr', 'No Upfront'),
+    r('Reserved', '0.08', '3yr', 'No Upfront'),
+    r('Reserved', '0.01', '1yr', 'Heavy Utilization'), // ✘ 구형 옵션
+    r('Reserved', '0.02', '1yr', 'No Upfront', 'Redis'), // ✘ 다른 엔진
+  ];
+  const [node] = (await parseElastiCacheCsv(lines, 'seoul'))!.nodes;
+  assert.deepEqual(node.commit, { '1y': { perHour: 0.105, haPerHour: 0.21 }, '3y': { perHour: 0.08, haPerHour: 0.16 } });
 });

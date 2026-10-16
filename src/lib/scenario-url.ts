@@ -7,7 +7,7 @@
  */
 
 import { RESOURCES, resourceDef, type ArchFilter, type Overrides, type Resource, type Scenario } from './estimator';
-import type { Provider } from './schema';
+import type { Provider, Term } from './schema';
 
 const PROVIDERS = new Set<string>(['aws', 'azure', 'gcp']);
 
@@ -59,23 +59,28 @@ export function encodeOverrides(overrides: Overrides): string {
   return tokens.join(',');
 }
 
+type UrlMatchOptions = { arch: ArchFilter; includeBurstable: boolean; term?: Term };
+
 /**
- * 매칭 옵션(아키텍처·버스트) ↔ URL. arch=arm|x86 (both는 기본이라 생략), burst=0 (기본 포함이라 끌 때만).
- * 총액을 바꾸는 시나리오 성격이라 공유 링크에 함께 저장한다.
+ * 매칭 옵션(아키텍처·버스트·약정 기간) ↔ URL. arch=arm|x86 (both는 기본이라 생략), burst=0 (기본 포함이라 끌 때만),
+ * term=1y|3y (정가는 기본이라 생략). 총액을 바꾸는 시나리오 성격이라 공유 링크에 함께 저장한다.
  */
-export function encodeMatchOptions(opts: { arch: ArchFilter; includeBurstable: boolean }): string {
+export function encodeMatchOptions(opts: UrlMatchOptions): string {
   const params = new URLSearchParams();
   if (opts.arch !== 'both') params.set('arch', opts.arch);
   if (!opts.includeBurstable) params.set('burst', '0');
+  if (opts.term) params.set('term', opts.term);
   return params.toString();
 }
 
-export function decodeMatchOptions(query: string | URLSearchParams): { arch: ArchFilter; includeBurstable: boolean } {
+export function decodeMatchOptions(query: string | URLSearchParams): UrlMatchOptions {
   const params = typeof query === 'string' ? new URLSearchParams(query) : query;
   const arch = params.get('arch');
+  const term = params.get('term');
   return {
     arch: arch === 'x86' || arch === 'arm' ? arch : 'both',
     includeBurstable: params.get('burst') !== '0',
+    ...(term === '1y' || term === '3y' ? { term } : {}),
   };
 }
 

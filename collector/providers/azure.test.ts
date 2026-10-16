@@ -161,3 +161,51 @@ test('buildAzureCache: Managed Redis SKU 미터 × 카탈로그 용량, 이중�
   ]);
   assert.equal(buildAzureCache([], 'seoul'), null);
 });
+
+test('buildAzureVmSkus: 예약 아이템(기간 총액) → 시간당 약정가, Windows 예약·정가 이상 제외', () => {
+  const rsv = (term: string, retailPrice: number, over: Partial<AzurePriceItem> = {}) =>
+    item({ type: 'Reservation', reservationTerm: term, retailPrice, armSkuName: 'Standard_D2s_v5', meterName: 'D2s v5', productName: 'Virtual Machines Dsv5 Series', ...over });
+  const items = [
+    item({ armSkuName: 'Standard_D2s_v5', meterName: 'D2s v5', productName: 'Virtual Machines Dsv5 Series', retailPrice: 0.115 }),
+    rsv('1 Year', 604.44), // 604.44 / 8760 = 0.069
+    rsv('3 Years', 1314), //  1314 / 26280 = 0.05
+    rsv('1 Year', 1, { productName: 'Virtual Machines Dsv5 Series Windows' }), // ✘ Windows
+    item({}), // B2s 정가만
+    rsv('1 Year', 9000, { armSkuName: 'Standard_B2s', meterName: 'B2s', productName: 'Virtual Machines BS Series' }), // ✘ 정가보다 비쌈
+  ];
+  const skus = buildAzureVmSkus(items, 'seoul');
+  assert.deepEqual(skus.find((s) => s.sku === 'Standard_D2s_v5')?.commit, { '1y': 0.069, '3y': 0.05 });
+  assert.equal(skus.find((s) => s.sku === 'Standard_B2s')?.commit, undefined);
+});
+
+test('buildAzureDbEngine: vCore 예약 — PG 시리즈별·MySQL 등급 공통 상품, 이중화 2배, 버스트 없음', () => {
+  const it = (service: string, product: string, retailPrice: number, over: Partial<AzurePriceItem> = {}) =>
+    item({ productName: `Azure Database for ${service} ${product}`, skuName: 'vCore', meterName: 'vCore', retailPrice, ...over });
+  const rsv = (service: string, product: string, term: string, retailPrice: number) =>
+    it(service, product, retailPrice, { type: 'Reservation', reservationTerm: term });
+  const base = (service: string) => [
+    it(service, 'Flexible Server Burstable BS Series Compute', 0.208, { skuName: 'B2ms', meterName: 'B2ms vCore' }),
+    it(service, 'Flexible Server General Purpose Dadsv5 Series Compute', 0.123),
+    it(service, 'Flex Server Storage', 0.131, { skuName: 'Storage', meterName: 'Storage Data Stored', unitOfMeasure: '1 GB/Month' }),
+  ];
+  const pg = buildAzureDbEngine([
+    ...base('PostgreSQL'),
+    rsv('PostgreSQL', 'Flexible Server General Purpose Dadsv5 Series Compute', '1 Year', 646.08), // /8760 = 0.073753
+    rsv('PostgreSQL', 'Flexible Server General Purpose Ddsv4 Series Compute', '1 Year', 1), // 다른 시리즈
+  ])!;
+  assert.deepEqual(pg.instances.find((i) => i.sku === 'Standard_D2ads_v5')?.commit, {
+    '1y': { perHour: +(2 * 646.08 / 8760).toFixed(6), haPerHour: +(+(2 * 646.08 / 8760).toFixed(6) * 2).toFixed(6) },
+  });
+  assert.equal(pg.instances.find((i) => i.sku === 'Standard_B2ms')?.commit, undefined);
+
+  const mysql = buildAzureDbEngine([...base('MySQL'), rsv('MySQL', 'Flexible Server General Purpose Series Compute', '3 Years', 1240)])!;
+  assert.equal(mysql.instances.find((i) => i.sku === 'Standard_D2ads_v5')?.commit?.['3y']?.perHour, +(2 * 1240 / 26280).toFixed(6));
+});
+
+test('buildAzureCache: 같은 미터의 예약 아이템 → 약정가, 이중화 2배', () => {
+  const amr = (over: Partial<AzurePriceItem>) =>
+    item({ productName: 'Azure Managed Redis - Balanced', skuName: 'B5', meterName: 'B5 Cache Instance', retailPrice: 0.189, ...over });
+  const c = buildAzureCache([amr({}), amr({ type: 'Reservation', reservationTerm: '1 Year', retailPrice: 1076 })], 'seoul')!;
+  const perHour = +(1076 / 8760).toFixed(6);
+  assert.deepEqual(c.nodes[0].commit, { '1y': { perHour, haPerHour: +(perHour * 2).toFixed(6) } });
+});

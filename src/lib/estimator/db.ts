@@ -3,13 +3,14 @@
  * - AWS·Azure: 정해진 사이즈 목록에서 스펙 만족 최저가 (VM과 같은 규칙, 드롭다운 선택 가능)
  * - GCP: 커스텀 사이즈를 요구 스펙에 맞게 계산 (규칙은 아래 상수, 공식 문서값)
  * 이중화(HA)는 3사 모두 대기 서버 포함 단가를 쓴다 (컴퓨트·스토리지 ≈ 2배). 아키텍처 토글은 적용 안 함 —
- * 관리형 DB는 앱 코드가 올라가지 않아 ARM 호환성 문제가 없다. 버스트 포함 옵션은 따른다.
+ * 관리형 DB는 앱 코드가 올라가지 않아 ARM 호환성 문제가 없다. 버스트 포함 옵션·약정 기간은 따른다.
  */
 
-import type { DbCustomRates, DbEngine, DbInstance } from '../schema';
+import type { DbEngine, DbInstance, DbRateSet } from '../schema';
 import {
   HOURS_PER_MONTH,
   parsePositiveInt,
+  priceAt,
   round2,
   type DbMatch,
   type MatchOptions,
@@ -27,8 +28,8 @@ import { cheapestPerSize } from './vm';
 const GCP_SQL = { maxVcpu: 96, minRamPerVcpu: 0.9, maxRamPerVcpu: 6.5, minRamGb: 3.75, ramStepGb: 0.25 };
 const GCP_SQL_VCPUS = [1, ...Array.from({ length: GCP_SQL.maxVcpu / 2 }, (_, i) => (i + 1) * 2)];
 
-/** 요구 스펙을 만족하는 가장 싼 커스텀 사이즈. 만들 수 없으면 null */
-export function fitCloudSqlShape(spec: VmSpec, rates: DbCustomRates, ha: boolean): DbMatch | null {
+/** 요구 스펙을 만족하는 가장 싼 커스텀 사이즈. 만들 수 없으면 null. committed = 약정 단가(rates)로 계산했는지 */
+export function fitCloudSqlShape(spec: VmSpec, rates: DbRateSet, ha: boolean, committed = false): DbMatch | null {
   const [cpuRate, ramRate] = ha ? [rates.haVcpuPerHour, rates.haRamGbPerHour] : [rates.vcpuPerHour, rates.ramGbPerHour];
   let best: DbMatch | null = null;
   for (const vcpu of GCP_SQL_VCPUS) {
@@ -37,7 +38,7 @@ export function fitCloudSqlShape(spec: VmSpec, rates: DbCustomRates, ha: boolean
     const ramGb = Math.ceil(minRam / GCP_SQL.ramStepGb) * GCP_SQL.ramStepGb;
     if (ramGb > GCP_SQL.maxRamPerVcpu * vcpu) continue;
     const perHour = +(vcpu * cpuRate + ramGb * ramRate).toFixed(6);
-    if (!best || perHour < best.perHour) best = { sku: `db-custom-${vcpu}-${ramGb * 1024}`, vcpu, ramGb, perHour };
+    if (!best || perHour < best.perHour) best = { sku: `db-custom-${vcpu}-${ramGb * 1024}`, vcpu, ramGb, perHour, committed };
   }
   return best;
 }
@@ -45,7 +46,14 @@ export function fitCloudSqlShape(spec: VmSpec, rates: DbCustomRates, ha: boolean
 /** 정해진 사이즈 목록에서 후보 — 버스트 옵션·HA 지원 여부 필터 후 스펙 만족, 가격 오름차순(동가면 vCPU 작은 것) */
 function instanceCandidates(instances: DbInstance[], spec: VmSpec, opts: MatchOptions, ha: boolean) {
   const pool = instances.filter((i) => (opts.includeBurstable || !i.burstable) && (!ha || i.haPerHour !== null));
-  const toMatch = (i: DbInstance): DbMatch => ({ sku: i.sku, vcpu: i.vcpu, ramGb: i.ramGb, perHour: ha ? i.haPerHour! : i.perHour });
+  const toMatch = (i: DbInstance): DbMatch => {
+    // 약정가가 있어도 이중화 약정가가 없으면(RDS Multi-AZ 3년 일부) 정가
+    const c = opts.term ? i.commit?.[opts.term] : undefined;
+    const committedPrice = c && (ha ? c.haPerHour : c.perHour);
+    return committedPrice
+      ? { sku: i.sku, vcpu: i.vcpu, ramGb: i.ramGb, perHour: committedPrice, committed: true }
+      : { sku: i.sku, vcpu: i.vcpu, ramGb: i.ramGb, perHour: ha ? i.haPerHour! : i.perHour, committed: false };
+  };
   const candidates = cheapestPerSize(
     pool
       .filter((i) => i.vcpu >= spec.vcpu && i.ramGb >= spec.ramGb)
@@ -80,7 +88,8 @@ export const DB: ResourceDef<Extract<Resource, { type: 'db' }>> = {
     let candidates: DbMatch[] = [];
     let noMatch: NoMatchReason | null = null;
     if (p?.custom) {
-      const fit = fitCloudSqlShape(spec, p.custom, r.ha);
+      const { price: rates, committed } = priceAt<DbRateSet>(p.custom, p.custom.commit, opts.term);
+      const fit = fitCloudSqlShape(spec, rates, r.ha, committed);
       candidates = fit ? [fit] : [];
       if (!fit) noMatch = { reason: 'size', maxVcpu: GCP_SQL.maxVcpu, maxRamGb: GCP_SQL.maxVcpu * GCP_SQL.maxRamPerVcpu };
     } else if (p) {

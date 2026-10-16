@@ -34,6 +34,12 @@
       "x86": "x86",
       "arm": "ARM"
     },
+    "term": "Pricing",
+    "termLabel": {
+      "od": "On-demand",
+      "1y": "1-year commitment",
+      "3y": "3-year commitment"
+    },
     "templateStart": "Start from a template:",
     "templateName": {
       "web": "Small web service",
@@ -87,6 +93,9 @@
     "noMatchMemory": "max {gb} GB",
     "instanceSelect": "Choose instance (spec minimum or higher)",
     "armNotice": "ARM (Graviton · Ampere) instances require your app to be ARM (aarch64) compatible — you may need to recompile and verify dependencies.",
+    "noCommit": "no commitment price",
+    "onDemandShort": "on-demand",
+    "commitNotice": "{years}-year commitment prices (no upfront) — AWS EC2 Instance Savings Plans and RDS/ElastiCache reservations, Azure reservations, GCP committed use discounts (CUDs). Commitments apply only to VM, K8s node, DB and cache compute; storage, traffic, load balancers, NAT and K8s control planes stay at on-demand prices. Committed charges are billed for the whole term whether or not you use them.",
     "noData": "No data",
     "egressLine": "Outbound traffic {gb}GB",
     "freeApplied": "({gb}GB free tier applied)",
@@ -106,7 +115,7 @@
     "cheapest": "Cheapest",
     "dataPending": "Data coming soon",
     "unavailable": "Not available",
-    "footnote": "Linux on-demand list prices × 730 hours/month. Discounts and free tiers not included. The arrow (→) marks the cheapest instance that satisfies your specs, matched automatically. Storage compares general-purpose SSDs (gp3 · Premium SSD v2 · Balanced PD) and standard object tiers; traffic uses tiered internet-routing rates."
+    "footnote": "Linux on-demand list prices (or the selected commitment prices) × 730 hours/month. Free tiers not included. The arrow (→) marks the cheapest instance that satisfies your specs, matched automatically. Storage compares general-purpose SSDs (gp3 · Premium SSD v2 · Balanced PD) and standard object tiers; traffic uses tiered internet-routing rates."
   },
   "display": {
     "currency": "Currency",

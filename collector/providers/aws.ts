@@ -12,6 +12,7 @@ import { Readable } from 'node:stream';
 import type {
   Arch,
   CacheNode,
+  CommitPrices,
   CachePrice,
   DbEngine,
   DbEnginePricing,
@@ -23,6 +24,7 @@ import type {
   NatPrice,
   Region,
   StorageSku,
+  Term,
   VmSku,
 } from '../../src/lib/schema';
 
@@ -103,6 +105,58 @@ async function scanOfferCsv(
   }
 
   if (!col) throw new Error('AWS CSV에서 헤더 행(SKU로 시작)을 찾지 못했습니다 — 형식 변경 의심');
+}
+
+const TERM_HOURS: Record<Term, number> = { '1y': 8760, '3y': 26280 };
+const LEASE_TERM: Record<string, Term> = { '1yr': '1y', '3yr': '3y' };
+
+/**
+ * 예약(RI) 행 누적 → 기간별 시간당 실효가. Standard 클래스만(= EC2 Instance Savings Plans 요율과 같다).
+ * 기간마다 "선결제 없음"을 쓰고, 없으면 "부분 선결제"(시간당 + 선결제액 ÷ 기간 시간)로 환산한다.
+ * 키는 호출부가 정한다 (인스턴스 타입, RDS는 타입+배포 옵션 등).
+ */
+export class ReservedRates {
+  private rows = new Map<string, Record<string, { hourly?: number; upfront?: number }>>();
+
+  /** Reserved 행이면 누적하고 true, 아니면 false */
+  add(key: string, get: Getter): boolean {
+    if (get('TermType') !== 'Reserved') return false;
+    const term = LEASE_TERM[get('LeaseContractLength')];
+    const option = get('PurchaseOption');
+    if (!term || get('OfferingClass') !== 'standard' || (option !== 'No Upfront' && option !== 'Partial Upfront')) return true;
+    const byKey = this.rows.get(key) ?? {};
+    const slot = (byKey[`${term}|${option}`] ??= {});
+    const price = Number(get('PricePerUnit'));
+    if (get('Unit') === 'Quantity') slot.upfront = price;
+    else if (get('Unit') === 'Hrs') slot.hourly = price;
+    this.rows.set(key, byKey);
+    return true;
+  }
+
+  get(key: string): CommitPrices<number> | undefined {
+    const byKey = this.rows.get(key);
+    if (!byKey) return undefined;
+    const out: CommitPrices<number> = {};
+    for (const term of ['1y', '3y'] as const) {
+      const none = byKey[`${term}|No Upfront`];
+      const partial = byKey[`${term}|Partial Upfront`];
+      const rate =
+        none?.hourly !== undefined
+          ? none.hourly
+          : partial?.hourly !== undefined && partial.upfront !== undefined
+            ? partial.hourly + partial.upfront / TERM_HOURS[term]
+            : undefined;
+      if (rate !== undefined && rate > 0) out[term] = +rate.toFixed(6);
+    }
+    return Object.keys(out).length > 0 ? out : undefined;
+  }
+}
+
+/** 약정가가 정가보다 싸지 않으면 버린다 (데이터 이상 방어) */
+function cheaperThan(onDemand: number, commit: CommitPrices<number> | undefined): CommitPrices<number> | undefined {
+  if (!commit) return undefined;
+  const out = Object.fromEntries(Object.entries(commit).filter(([, v]) => v < onDemand)) as CommitPrices<number>;
+  return Object.keys(out).length > 0 ? out : undefined;
 }
 
 export interface AwsEc2Offer {
@@ -203,6 +257,31 @@ export async function parseEc2OfferCsv(
         ? { provider: 'aws', region, hourly: { per: 'gateway', usd: natPerHour }, perGb: natPerGb }
         : null,
   };
+}
+
+/**
+ * Savings Plans 오퍼 CSV → 인스턴스 타입별 EC2 Instance Savings Plans 시간당 요율 (선결제 없음, Linux 공유 테넌시).
+ * EC2 Instance SP = Standard RI와 같은 요율이고, 8세대 등 RI가 없는 신형 인스턴스까지 덮는다.
+ * 요율은 이미 시간당 실효가라 선결제 환산이 필요 없다. us-east-1은 usageType에 리전 접두사가 없다.
+ */
+const SP_TERM: Record<string, Term> = { '1 year': '1y', '3 year': '3y' };
+
+export async function parseEc2SavingsPlanCsv(
+  lines: AsyncIterable<string> | Iterable<string>,
+): Promise<Map<string, CommitPrices<number>>> {
+  const rates = new Map<string, CommitPrices<number>>();
+  await scanOfferCsv(lines, (get) => {
+    if (get('Product Family') !== 'EC2InstanceSavingsPlans' || get('PurchaseOption') !== 'No Upfront') return;
+    if (get('Currency') !== 'USD' || get('DiscountedOperation') !== 'RunInstances') return;
+    if (!/^(?:[A-Z]+\d-)?BoxUsage:/.test(get('DiscountedUsageType'))) return;
+    const term = SP_TERM[`${get('LeaseContractLength')} ${get('LeaseContractLengthUnit')}`];
+    const price = Number(get('DiscountedRate'));
+    if (!term || !(price > 0)) return;
+    const entry = rates.get(get('DiscountedInstanceType')) ?? {};
+    entry[term] ??= +price.toFixed(6);
+    rates.set(get('DiscountedInstanceType'), entry);
+  });
+  return rates;
 }
 
 /**
@@ -320,6 +399,7 @@ const RDS_ENGINES: Record<string, DbEngine> = { MySQL: 'mysql', PostgreSQL: 'pos
  * AmazonRDS 오퍼 CSV → 엔진별 인스턴스 클래스(단일·Multi-AZ 시간당) + gp3 스토리지(단일·Multi-AZ).
  * 필터: MySQL·PostgreSQL / 현세대 / Single-AZ·Multi-AZ(읽기 가능 대기 클러스터 제외) / 연장 지원 행 제외.
  * Multi-AZ 인스턴스 가격은 대기 서버를 포함한 값이다 (API가 별도 행으로 제공).
+ * 약정가: 같은 필터의 Reserved 행 — 배포 옵션별 RI가 따로 있다 (ReservedRates).
  */
 export async function parseRdsCsv(
   lines: AsyncIterable<string> | Iterable<string>,
@@ -327,21 +407,24 @@ export async function parseRdsCsv(
 ): Promise<DbPrice | null> {
   type Acc = { instances: Map<string, DbInstance>; storage?: number; haStorage?: number };
   const acc: Record<DbEngine, Acc> = { mysql: { instances: new Map() }, postgres: { instances: new Map() } };
+  const reserved = new ReservedRates();
 
   await scanOfferCsv(lines, (get) => {
-    if (get('TermType') !== 'OnDemand' || get('Currency') !== 'USD') return;
+    if (get('Currency') !== 'USD') return;
     if (get('Location') !== AWS_LOCATION[region]) return;
     const deploy = get('Deployment Option');
     if (deploy !== 'Single-AZ' && deploy !== 'Multi-AZ') return;
-    const price = Number(get('PricePerUnit'));
-    if (!(price > 0)) return;
     const family = get('Product Family');
+    if (get('TermType') !== 'OnDemand' && !(family === 'Database Instance' && get('TermType') === 'Reserved')) return;
+    const price = Number(get('PricePerUnit'));
 
     if (family === 'Database Instance') {
       const engine = RDS_ENGINES[get('Database Engine')];
       if (!engine || get('Current Generation') !== 'Yes' || get('Extended Support Pricing Year')) return;
       if (!/^(?:[A-Z]+\d-)?(InstanceUsage|Multi-AZUsage):db\./.test(get('usageType'))) return;
       const sku = get('Instance Type');
+      if (reserved.add(`${engine}|${sku}|${deploy}`, get)) return;
+      if (!(price > 0)) return;
       const vcpu = Number(get('vCPU'));
       const ramGb = parseMemoryGb(get('Memory'));
       if (!(vcpu > 0) || ramGb === null) return;
@@ -359,6 +442,7 @@ export async function parseRdsCsv(
       return;
     }
 
+    if (!(price > 0)) return;
     if (family === 'Database Storage' && get('Volume Type') === 'General Purpose-GP3' && get('Unit') === 'GB-Mo') {
       // 스토리지 행은 엔진별 또는 "Any" — 엔진별 값을 우선, 없으면 Any
       const engineName = get('Database Engine');
@@ -370,12 +454,22 @@ export async function parseRdsCsv(
     }
   });
 
-  const build = (a: Acc): DbEnginePricing | null => {
+  const build = (engine: DbEngine): DbEnginePricing | null => {
+    const a = acc[engine];
     const instances = [...a.instances.values()].filter((i) => i.perHour > 0).sort((x, y) => x.sku.localeCompare(y.sku));
+    for (const inst of instances) {
+      const single = cheaperThan(inst.perHour, reserved.get(`${engine}|${inst.sku}|Single-AZ`));
+      const ha = inst.haPerHour === null ? undefined : cheaperThan(inst.haPerHour, reserved.get(`${engine}|${inst.sku}|Multi-AZ`));
+      const commit: DbInstance['commit'] = {};
+      for (const term of ['1y', '3y'] as const) {
+        if (single?.[term] !== undefined) commit[term] = { perHour: single[term]!, haPerHour: ha?.[term] ?? null };
+      }
+      if (Object.keys(commit).length > 0) inst.commit = commit;
+    }
     if (instances.length === 0 || a.storage === undefined || a.haStorage === undefined) return null;
     return { instances, custom: null, storageGbMonth: a.storage, haStorageGbMonth: a.haStorage };
   };
-  const engines = { mysql: build(acc.mysql), postgres: build(acc.postgres) };
+  const engines = { mysql: build('mysql'), postgres: build('postgres') };
   return engines.mysql || engines.postgres ? { provider: 'aws', region, engines } : null;
 }
 
@@ -383,19 +477,23 @@ export async function parseRdsCsv(
  * AmazonElastiCache 오퍼 CSV → Valkey 노드 시간당. 이중화 = 주 + 복제 노드(같은 타입) 2개.
  * Valkey: Redis 호환이고 Redis OSS보다 저렴한 AWS 기본 엔진 (methodology에 고지).
  * 연장 지원·SyncDurability 행은 usageType이 달라 자연 제외. us-east-1은 리전 접두사 없음.
+ * 약정가: Valkey 예약 노드(ReservedRates), 이중화는 노드 2개분.
  */
 export async function parseElastiCacheCsv(
   lines: AsyncIterable<string> | Iterable<string>,
   region: Region,
 ): Promise<CachePrice | null> {
   const nodes = new Map<string, CacheNode>();
+  const reserved = new ReservedRates();
 
   await scanOfferCsv(lines, (get) => {
-    if (get('TermType') !== 'OnDemand' || get('Currency') !== 'USD') return;
+    if (get('Currency') !== 'USD') return;
     if (get('Product Family') !== 'Cache Instance' || get('Cache Engine') !== 'Valkey') return;
     if (get('Location') !== AWS_LOCATION[region]) return;
     if (!/^(?:[A-Z]+\d-)?NodeUsage:cache\./.test(get('usageType'))) return;
     const sku = get('Instance Type');
+    if (reserved.add(sku, get)) return;
+    if (get('TermType') !== 'OnDemand') return;
     const price = Number(get('PricePerUnit'));
     const memoryGb = parseMemoryGb(get('Memory'));
     if (!(price > 0) || memoryGb === null || nodes.has(sku)) return;
@@ -409,6 +507,13 @@ export async function parseElastiCacheCsv(
   });
 
   if (nodes.size === 0) return null;
+  for (const node of nodes.values()) {
+    const rates = cheaperThan(node.perHour, reserved.get(node.sku));
+    if (!rates) continue;
+    node.commit = Object.fromEntries(
+      Object.entries(rates).map(([term, perHour]) => [term, { perHour, haPerHour: +(perHour * 2).toFixed(6) }]),
+    );
+  }
   return {
     provider: 'aws',
     region,
@@ -418,10 +523,23 @@ export async function parseElastiCacheCsv(
   };
 }
 
-async function streamOffer(offer: string, awsRegion: string) {
-  const res = await fetch(offerCsvUrl(offer, awsRegion));
-  if (!res.ok || !res.body) throw new Error(`AWS Price List API 오류 ${res.status} (${offer}/${awsRegion})`);
+async function streamCsv(url: string) {
+  const res = await fetch(url);
+  if (!res.ok || !res.body) throw new Error(`AWS Price List API 오류 ${res.status} (${url})`);
   return createInterface({ input: Readable.fromWeb(res.body as never), crlfDelay: Infinity });
+}
+
+const streamOffer = (offer: string, awsRegion: string) => streamCsv(offerCsvUrl(offer, awsRegion));
+
+/** Savings Plans 오퍼는 "current" 경로가 없어 리전 인덱스에서 버전 경로(.json)를 찾아 .csv로 바꾼다 */
+async function streamSavingsPlans(awsRegion: string) {
+  const base = 'https://pricing.us-east-1.amazonaws.com';
+  const res = await fetch(`${base}/savingsPlan/v1.0/aws/AWSComputeSavingsPlan/current/region_index.json`);
+  if (!res.ok) throw new Error(`AWS Savings Plans 인덱스 오류 ${res.status}`);
+  const { regions } = (await res.json()) as { regions: { regionCode: string; versionUrl: string }[] };
+  const versionUrl = regions.find((r) => r.regionCode === awsRegion)?.versionUrl;
+  if (!versionUrl) throw new Error(`AWS Savings Plans 인덱스에 ${awsRegion} 없음`);
+  return streamCsv(base + versionUrl.replace(/\.json$/, '.csv'));
 }
 
 export async function collectAws(
@@ -438,6 +556,11 @@ export async function collectAws(
 }> {
   const awsRegion = AWS_REGION[region];
   const ec2 = await parseEc2OfferCsv(await streamOffer('AmazonEC2', awsRegion), region);
+  const sp = await parseEc2SavingsPlanCsv(await streamSavingsPlans(awsRegion));
+  for (const vm of ec2.vms) {
+    const commit = cheaperThan(vm.pricePerHour, sp.get(vm.sku));
+    if (commit) vm.commit = commit;
+  }
   const s3 = await parseS3OfferCsv(await streamOffer('AmazonS3', awsRegion), region);
   const egress = await parseDataTransferCsv(await streamOffer('AWSDataTransfer', awsRegion), region);
   const k8s = await parseEksCsv(await streamOffer('AmazonEKS', awsRegion), region);

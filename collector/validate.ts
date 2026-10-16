@@ -98,5 +98,15 @@ export function validateSnapshot(label: string, prev: Snapshot | null, next: Sna
   const nodesAfter = next.cache?.nodes.length ?? 0;
   if (nodesBefore > 0 && nodesAfter < nodesBefore * 0.7) errors.push(`${label}: 캐시 노드 건수 급감 ${nodesBefore} → ${nodesAfter}`);
 
+  // 8. VM 약정가 — 약정가 있는 VM 건수 급감(약정 API 파싱 실패 의심), 3년 > 1년 역전(기간 오독 의심)
+  const committed = (vms: VmSku[]) => vms.filter((v) => v.commit).length;
+  if (committed(prev.vms) > 0 && committed(next.vms) < committed(prev.vms) * 0.7) {
+    errors.push(`${label}: 약정가 있는 VM 건수 급감 ${committed(prev.vms)} → ${committed(next.vms)}`);
+  }
+  const inverted = next.vms.filter((v) => v.commit?.['1y'] !== undefined && v.commit['3y'] !== undefined && v.commit['3y'] > v.commit['1y']);
+  if (inverted.length > 0) {
+    errors.push(`${label}: 3년 약정가 > 1년 약정가 ${inverted.length}건 — ${inverted.slice(0, 5).map((v) => v.sku).join(', ')}`);
+  }
+
   return errors;
 }

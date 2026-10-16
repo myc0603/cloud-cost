@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { estimate, RESOURCES, type ArchFilter, type Overrides, type Resource, type ResourceType, type Scenario } from '@/lib/estimator';
-import type { Provider, ProviderPricing, Region } from '@/lib/schema';
+import type { Provider, ProviderPricing, Region, Term } from '@/lib/schema';
 import {
   decodeMatchOptions,
   decodeOverrides,
@@ -64,24 +64,25 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
     () => decodeScenario(searchParams) ?? DEFAULT_SCENARIO,
   );
   const [overrides, setOverrides] = useState<Overrides>(() => decodeOverrides(searchParams));
-  const [{ arch, includeBurstable }, setMatchOpts] = useState(() => decodeMatchOptions(searchParams));
+  const [{ arch, includeBurstable, term }, setMatchOpts] = useState(() => decodeMatchOptions(searchParams));
   const [copied, setCopied] = useState(false);
 
   const setArch = (next: ArchFilter) => setMatchOpts((o) => ({ ...o, arch: next }));
   const setIncludeBurstable = (next: boolean) => setMatchOpts((o) => ({ ...o, includeBurstable: next }));
+  const setTerm = (next: Term | undefined) => setMatchOpts((o) => ({ ...o, term: next }));
 
   // 현재 주소 = 현재 시나리오 + 커스텀 선택 + 매칭 옵션 유지 (주소 복사가 곧 공유)
   useEffect(() => {
     const params = new URLSearchParams(encodeScenario(scenario));
     const pick = encodeOverrides(overrides);
     if (pick) params.set('pick', pick);
-    for (const [k, v] of new URLSearchParams(encodeMatchOptions({ arch, includeBurstable }))) params.set(k, v);
+    for (const [k, v] of new URLSearchParams(encodeMatchOptions({ arch, includeBurstable, term }))) params.set(k, v);
     window.history.replaceState(null, '', `?${params}`);
-  }, [scenario, overrides, arch, includeBurstable]);
+  }, [scenario, overrides, arch, includeBurstable, term]);
 
   const estimates = useMemo(
-    () => estimate(scenario, pricing[scenario.region], { includeBurstable, arch }, overrides),
-    [scenario, pricing, includeBurstable, arch, overrides],
+    () => estimate(scenario, pricing[scenario.region], { includeBurstable, arch, term }, overrides),
+    [scenario, pricing, includeBurstable, arch, term, overrides],
   );
 
   const updateResource = (i: number, next: Resource) => {
@@ -172,6 +173,18 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
               ))}
             </select>
           </label>
+          <label className="flex items-center gap-2 text-sm">
+            {t('term')}
+            <select
+              value={term ?? 'od'}
+              onChange={(e) => setTerm(e.target.value === 'od' ? undefined : (e.target.value as Term))}
+              className="rounded border border-slate-300 bg-white px-2 py-1"
+            >
+              {(['od', '1y', '3y'] as const).map((v) => (
+                <option key={v} value={v}>{t(`termLabel.${v}`)}</option>
+              ))}
+            </select>
+          </label>
         </div>
 
         <div className="flex flex-wrap items-center gap-2 text-sm">
@@ -222,7 +235,7 @@ export default function ScenarioBuilder({ pricing, usdKrwRate }: Props) {
       </section>
 
       <section>
-        <EstimateResult estimates={estimates} rate={usdKrwRate} onSelectInstance={selectInstance} />
+        <EstimateResult estimates={estimates} rate={usdKrwRate} term={term} onSelectInstance={selectInstance} />
       </section>
     </div>
   );

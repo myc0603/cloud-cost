@@ -107,3 +107,12 @@ test('캐시: 소실·노드 건수 급감·GB 단가 급변은 실패', () => {
   assert.equal(validateSnapshot('t', snap({ cache: tiers(0.065) }), snap({ cache: tiers(0.1) })).length, 1);
   assert.deepEqual(validateSnapshot('t', snap({ cache: tiers(0.065) }), snap({ cache: tiers(0.066) })), []);
 });
+
+test('약정가 있는 VM 건수 급감·3년 > 1년 역전은 실패', () => {
+  const c = (sku: string, y1: number, y3: number): VmSku => ({ ...vm(sku, 0.2), commit: { '1y': y1, '3y': y3 } });
+  const prev = snap({ vms: [c('a', 0.12, 0.08), c('b', 0.12, 0.08), c('c', 0.12, 0.08)] });
+  const lost = validateSnapshot('t', prev, snap({ vms: [c('a', 0.12, 0.08), vm('b', 0.2), vm('c', 0.2)] }));
+  assert.ok(lost.some((e) => e.includes('약정가 있는 VM 건수 급감')));
+  const inverted = validateSnapshot('t', prev, snap({ vms: [c('a', 0.12, 0.08), c('b', 0.12, 0.08), c('c', 0.08, 0.12)] }));
+  assert.deepEqual(inverted, ['t: 3년 약정가 > 1년 약정가 1건 — c']);
+});

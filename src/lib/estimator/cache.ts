@@ -3,9 +3,10 @@
  * - AWS·Azure: 메모리 ≥ 요구치인 노드·SKU 중 최저가 (드롭다운 선택 가능). AWS t계열은 버스트 옵션을 따른다
  * - GCP: 요구치를 GB 단위로 올림(최소 1GB)해 용량이 속한 구간 단가 × 용량 (최대 300GB, 문서값)
  * 이중화 단가는 수집 단계에서 정해진다(AWS 복제 노드 2개, Azure 2노드, GCP Standard 등급). 아키텍처 토글은 미적용.
+ * 약정 기간은 따른다 (GCP는 5GB 미만 M1 구간에 약정이 없다).
  */
 
-import { HOURS_PER_MONTH, parsePositiveInt, round2, type CacheMatch, type NoMatchReason, type Resource, type ResourceDef } from './types';
+import { HOURS_PER_MONTH, parsePositiveInt, priceAt, round2, type CacheMatch, type NoMatchReason, type Resource, type ResourceDef } from './types';
 
 /** Memorystore for Redis 인스턴스 용량 범위 — cloud.google.com/memorystore/docs/redis (2026-10-12 확인) */
 const MEMORYSTORE = { minGb: 1, maxGb: 300 };
@@ -32,15 +33,19 @@ export const CACHE: ResourceDef<Extract<Resource, { type: 'cache' }>> = {
         noMatch = { reason: 'memory', maxGb: MEMORYSTORE.maxGb };
       } else {
         const tier = cache.gbTiers[i];
-        const perHour = +(gb * (r.ha ? tier.haPerGbHour : tier.perGbHour)).toFixed(6);
-        candidates = [{ sku: `${r.ha ? 'Standard' : 'Basic'} M${i + 1} ${gb}GB`, memoryGb: gb, perHour }];
+        const { price, committed } = priceAt(tier, tier.commit, opts.term);
+        const perHour = +(gb * (r.ha ? price.haPerGbHour : price.perGbHour)).toFixed(6);
+        candidates = [{ sku: `${r.ha ? 'Standard' : 'Basic'} M${i + 1} ${gb}GB`, memoryGb: gb, perHour, committed }];
       }
     } else if (cache) {
       const pool = cache.nodes.filter((n) => opts.includeBurstable || !n.burstable);
       const seen = new Set<number>(); // 같은 메모리 크기는 최저가 1개만 (드롭다운 노이즈 제거, VM의 cheapestPerSize와 같은 취지)
       candidates = pool
         .filter((n) => n.memoryGb >= r.memoryGb)
-        .map((n) => ({ sku: n.sku, memoryGb: n.memoryGb, perHour: r.ha ? n.haPerHour : n.perHour }))
+        .map((n) => {
+          const { price, committed } = priceAt(n, n.commit, opts.term);
+          return { sku: n.sku, memoryGb: n.memoryGb, perHour: r.ha ? price.haPerHour : price.perHour, committed };
+        })
         .sort((a, b) => a.perHour - b.perHour || a.memoryGb - b.memoryGb)
         .filter((c) => !seen.has(c.memoryGb) && !!seen.add(c.memoryGb));
       if (candidates.length === 0 && pool.length > 0) noMatch = { reason: 'memory', maxGb: Math.max(...pool.map((n) => n.memoryGb)) };

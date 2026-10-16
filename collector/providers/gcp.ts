@@ -6,7 +6,7 @@
  * 파이프라인: fetchComputeSkus → parseUnitPrices → buildVmSkus
  */
 
-import type { CacheGbTier, CachePrice, DbEngine, DbEnginePricing, DbPrice, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, VmSku } from '../../src/lib/schema';
+import type { CacheGbTier, CachePrice, CommitPrices, DbEngine, DbEnginePricing, DbPrice, DbRateSet, EgressTier, K8sClusterPrice, LbPrice, NatPrice, Region, StorageSku, Term, VmSku } from '../../src/lib/schema';
 import { GCP_MACHINE_TYPES } from './gcp-machine-types';
 
 const COMPUTE_SERVICE_ID = '6F81-5844-456A'; // Compute Engine
@@ -44,6 +44,30 @@ const FAMILY_LABELS: Record<string, string> = {
   'C4D Instance': 'c4d',
   'C4A Arm Instance': 'c4a', // ARM (Axion) — 서울 미제공
 };
+
+/**
+ * 리소스 기반 CUD SKU의 패밀리 라벨 → 패밀리 키. 온디맨드와 표기가 또 다르다.
+ * 예: "Commitment v1: E2 Cpu in Seoul for 1 Year", N1은 라벨 없이 "Commitment v1: Cpu in …",
+ *     C2는 "Commitment: Compute optimized Core running in … for 1 Year". T2A는 CUD 대상이 아님(공식 문서).
+ */
+const COMMIT_FAMILY_LABELS: Record<string, string> = {
+  '': 'n1',
+  E2: 'e2',
+  N2: 'n2',
+  'N2D AMD': 'n2d',
+  'Compute optimized': 'c2',
+  'C2D AMD': 'c2d',
+  C3: 'c3',
+  'T2D AMD': 't2d',
+  N4: 'n4',
+  N4D: 'n4d',
+  C3D: 'c3d',
+  C4: 'c4',
+  C4D: 'c4d',
+  'C4A Arm': 'c4a',
+};
+
+const COMMIT_USAGE: Record<string, Term> = { Commit1Yr: '1y', Commit3Yr: '3y' };
 
 /** Billing Catalog API 응답에서 우리가 쓰는 필드만 */
 export interface RawSku {
@@ -138,6 +162,36 @@ export function parseUnitPrices(
   }
 
   return { unitPrices, unmatched: [...unmatched].sort() };
+}
+
+/**
+ * 리소스 기반 CUD(1년·3년) vCPU/RAM 시간 단가를 패밀리별로. 월납·선결제 없음.
+ * unmatched = CUD 패턴인데 라벨 맵에 없는 것 (메모리 최적화·GPU 계열 등 미수록 패밀리)
+ */
+export function parseCommitUnitPrices(
+  skus: RawSku[],
+  gcpRegion: string,
+): { commitPrices: Partial<Record<Term, UnitPrices>>; unmatched: string[] } {
+  const commitPrices: Partial<Record<Term, UnitPrices>> = {};
+  const unmatched = new Set<string>();
+
+  for (const sku of skus) {
+    const term = COMMIT_USAGE[sku.category?.usageType ?? ''];
+    if (!term || !sku.serviceRegions?.includes(gcpRegion)) continue;
+    const m = sku.description.match(/^Commitment(?: v1)?: (?:(.+?) )?(Cpu|Core|Ram)(?: running)? in .+ for [13] Years?$/);
+    if (!m) continue;
+    const [, label = '', kind] = m;
+    const family = COMMIT_FAMILY_LABELS[label];
+    if (!family) {
+      unmatched.add(`${label} (${kind})`);
+      continue;
+    }
+    const price = unitPriceOf(sku);
+    if (price === undefined) continue;
+    const entry = ((commitPrices[term] ??= {})[family] ??= {});
+    entry[kind === 'Ram' ? 'ramGbPerHour' : 'corePerHour'] ??= price;
+  }
+  return { commitPrices, unmatched: [...unmatched].sort() };
 }
 
 const round6 = (x: number) => +x.toFixed(6);
@@ -256,6 +310,12 @@ export function parseGcpNat(netSkus: RawSku[], region: Region): NatPrice | null 
 const CLOUD_SQL_ENGINE_LABEL: Record<DbEngine, string> = { mysql: 'MySQL', postgres: 'PostgreSQL' };
 
 /**
+ * Cloud SQL CUD 할인율 — 지출 기반이라 가격 API에 약정 SKU가 없어 공식 문서값
+ * (cloud.google.com/sql/docs/postgres/cud, 2026-10-17 확인: 1년 25%·3년 52%, vCPU·RAM(이중화 포함)에만, 스토리지 제외)
+ */
+const CLOUD_SQL_CUD: Record<Term, number> = { '1y': 0.25, '3y': 0.52 };
+
+/**
  * Cloud SQL Enterprise 커스텀 사이즈 단가 — vCPU·RAM·SSD 스토리지, Zonal(단일)·Regional(이중화).
  * 설명 예: "Cloud SQL for MySQL: Zonal - vCPU in Seoul". N4 시리즈·Enterprise Plus·공유 코어·HDD는 설명이 달라 제외.
  */
@@ -269,9 +329,16 @@ export function parseCloudSql(sqlSkus: RawSku[], gcpRegion: string, region: Regi
     const [vcpu, ram, storage] = (['vCPU', 'RAM', 'Standard storage'] as const).map((x) => price('Zonal', x));
     const [haVcpu, haRam, haStorage] = (['vCPU', 'RAM', 'Standard storage'] as const).map((x) => price('Regional', x));
     if (!vcpu || !ram || !storage || !haVcpu || !haRam || !haStorage) return null;
+    const rates = (k: number): DbRateSet => ({
+      vcpuPerHour: round6(vcpu * k),
+      ramGbPerHour: round6(ram * k),
+      haVcpuPerHour: round6(haVcpu * k),
+      haRamGbPerHour: round6(haRam * k),
+    });
+    const commit: CommitPrices<DbRateSet> = { '1y': rates(1 - CLOUD_SQL_CUD['1y']), '3y': rates(1 - CLOUD_SQL_CUD['3y']) };
     return {
       instances: [],
-      custom: { vcpuPerHour: round6(vcpu), ramGbPerHour: round6(ram), haVcpuPerHour: round6(haVcpu), haRamGbPerHour: round6(haRam) },
+      custom: { ...rates(1), commit },
       storageGbMonth: round6(storage),
       haStorageGbMonth: round6(haStorage),
     };
@@ -286,6 +353,12 @@ export function parseCloudSql(sqlSkus: RawSku[], gcpRegion: string, region: Regi
  */
 const MEMORYSTORE_TIERS: [string, number | null][] = [['M1', 4], ['M2', 10], ['M3', 35], ['M4', 100], ['M5', null]];
 
+/**
+ * Memorystore CUD 할인율 — 지출 기반이라 공식 문서값
+ * (cloud.google.com/memorystore/docs/redis/cuds, 2026-10-17 확인: 1년 20%·3년 40%, 5GB 이상 인스턴스만 → M1 구간 제외)
+ */
+const MEMORYSTORE_CUD: Record<Term, number> = { '1y': 0.2, '3y': 0.4 };
+
 /** Memorystore for Redis — Basic(단일)·Standard(이중화) 용량 GB당 시간 단가. "Redis Standard Node Capacity"(읽기 복제본) 제외 */
 export function parseMemorystore(redisSkus: RawSku[], gcpRegion: string, region: Region): CachePrice | null {
   const price = (tier: 'Basic' | 'Standard', m: string) => {
@@ -297,16 +370,33 @@ export function parseMemorystore(redisSkus: RawSku[], gcpRegion: string, region:
     const basic = price('Basic', m);
     const standard = price('Standard', m);
     if (!basic || !standard) return null; // 구간 하나라도 빠지면 계산이 틀어지므로 전체 무효
-    gbTiers.push({ upToGb, perGbHour: round6(basic), haPerGbHour: round6(standard) });
+    const tier: CacheGbTier = { upToGb, perGbHour: round6(basic), haPerGbHour: round6(standard) };
+    if (m !== 'M1') {
+      tier.commit = Object.fromEntries(
+        (['1y', '3y'] as const).map((t) => [t, { perGbHour: round6(basic * (1 - MEMORYSTORE_CUD[t])), haPerGbHour: round6(standard * (1 - MEMORYSTORE_CUD[t])) }]),
+      );
+    }
+    gbTiers.push(tier);
   }
   return { provider: 'gcp', region, engine: 'Redis', nodes: [], gbTiers };
 }
 
-/** 패밀리 단가 × 머신 타입 카탈로그 → VmSku[]. 단가가 불완전한 패밀리는 건너뛴다. */
-export function buildVmSkus(unitPrices: UnitPrices, region: Region): VmSku[] {
+/**
+ * 패밀리 단가 × 머신 타입 카탈로그 → VmSku[]. 단가가 불완전한 패밀리는 건너뛴다.
+ * 약정가도 같은 식(과금 코어 × vCPU 단가 + RAM × RAM 단가)에 CUD 단가를 넣는다.
+ */
+export function buildVmSkus(unitPrices: UnitPrices, region: Region, commitPrices: Partial<Record<Term, UnitPrices>> = {}): VmSku[] {
   return GCP_MACHINE_TYPES.flatMap((mt) => {
     const p = unitPrices[mt.family];
     if (p?.corePerHour === undefined || p?.ramGbPerHour === undefined) return [];
+    const pricePerHour = round6(mt.billedCores * p.corePerHour + mt.ramGb * p.ramGbPerHour);
+    const commit: CommitPrices<number> = {};
+    for (const term of ['1y', '3y'] as const) {
+      const c = commitPrices[term]?.[mt.family];
+      if (c?.corePerHour === undefined || c?.ramGbPerHour === undefined) continue;
+      const v = round6(mt.billedCores * c.corePerHour + mt.ramGb * c.ramGbPerHour);
+      if (v < pricePerHour) commit[term] = v;
+    }
     return [{
       provider: 'gcp' as const,
       region,
@@ -316,7 +406,8 @@ export function buildVmSkus(unitPrices: UnitPrices, region: Region): VmSku[] {
       burstable: mt.burstable,
       arch: mt.arch,
       generation: mt.family,
-      pricePerHour: round6(mt.billedCores * p.corePerHour + mt.ramGb * p.ramGbPerHour),
+      pricePerHour,
+      ...(Object.keys(commit).length > 0 && { commit }),
     }];
   });
 }

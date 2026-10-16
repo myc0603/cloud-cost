@@ -295,7 +295,7 @@ const RATES = { vcpuPerHour: 0.05, ramGbPerHour: 0.01, haVcpuPerHour: 0.1, haRam
 
 test('fitCloudSqlShape: 문서 규칙 — vCPU 1 또는 짝수, RAM 0.9~6.5GB/vCPU·256MB 단위·최소 3.75GB', () => {
   const fit = (vcpu: number, ramGb: number) => fitCloudSqlShape({ vcpu, ramGb, count: 1 }, RATES, false);
-  assert.deepEqual(fit(2, 8), { sku: 'db-custom-2-8192', vcpu: 2, ramGb: 8, perHour: 0.18 });
+  assert.deepEqual(fit(2, 8), { sku: 'db-custom-2-8192', vcpu: 2, ramGb: 8, perHour: 0.18, committed: false });
   assert.equal(fit(1, 1)?.ramGb, 3.75); // 최소 3.75GB
   assert.equal(fit(3, 4)?.vcpu, 4); // 3은 불가 → 짝수 4
   assert.equal(fit(4, 4)?.ramGb, 4); // vCPU당 최소 0.9GB → 3.6, 단 최소 3.75 → 3.75 < 4 OK
@@ -355,7 +355,7 @@ test('estimate: 캐시(GB 구간) — GB 올림·최소 1GB, 용량이 속한 �
     assert.ok(line.kind === 'cache');
     return line;
   };
-  assert.deepEqual(cache(3).matched, { sku: 'Basic M1 3GB', memoryGb: 3, perHour: 0.195 });
+  assert.deepEqual(cache(3).matched, { sku: 'Basic M1 3GB', memoryGb: 3, perHour: 0.195, committed: false });
   assert.equal(cache(5).matched?.perHour, 0.2); // M2 구간 단가가 5GB 전체에 (누적 아님)
   assert.equal(cache(5, true).matched?.sku, 'Standard M2 5GB');
   assert.equal(cache(5, true, 2).monthlyUsd, +(5 * 0.075 * HOURS_PER_MONTH * 2).toFixed(2));
@@ -382,6 +382,62 @@ test('estimate: 캐시(노드) — 메모리 ≥ 요구치 최저가, 버스트 
   assert.equal(cache(1, { includeBurstable: true }, true).matched?.perHour, 0.06);
   assert.equal(cache(1, { includeBurstable: true }, false, 'r-13').matched?.sku, 'r-13');
   assert.deepEqual(cache(20, { includeBurstable: true }).noMatch, { reason: 'memory', maxGb: 13.07 });
+});
+
+test('약정: VM은 약정가 기준으로 최저가를 다시 찾고, 약정가 없는 후보는 정가(committed false)로 남는다', () => {
+  const skus = [
+    sku({ sku: 'od-cheap', pricePerHour: 0.08 }), // 약정가 없음
+    sku({ sku: 'commit-cheap', pricePerHour: 0.1, commit: { '1y': 0.07, '3y': 0.05 } }),
+  ];
+  const spec = { vcpu: 2, ramGb: 4, count: 1 };
+  assert.equal(matchVm(skus, spec, { includeBurstable: true })?.sku, 'od-cheap'); // 정가 기준
+  const y1 = qualifyingVms(skus, spec, { includeBurstable: true, term: '1y' });
+  assert.deepEqual(y1.map((c) => [c.sku, c.perHour, c.committed]), [['commit-cheap', 0.07, true], ['od-cheap', 0.08, false]]);
+  assert.equal(y1[0].pricePerHour, 0.1); // 정가는 그대로 보존
+  assert.equal(matchVm(skus, spec, { includeBurstable: true, term: '3y' })?.perHour, 0.05);
+});
+
+test('약정: K8s 노드·DB(정해진 사이즈·이중화 약정가 없으면 정가)·GCP 커스텀·캐시 노드·GB 구간(M1 제외)', () => {
+  const inst: DbInstance = { sku: 'gp', vcpu: 2, ramGb: 8, burstable: false, perHour: 0.2, haPerHour: 0.4, commit: { '1y': { perHour: 0.12, haPerHour: 0.24 }, '3y': { perHour: 0.08, haPerHour: null } } };
+  const pricing = {
+    ...PRICING,
+    gcp: {
+      ...PRICING.gcp,
+      vm: [sku({ sku: 'node', vcpu: 2, ramGb: 8, pricePerHour: 0.1, commit: { '1y': 0.06 } })],
+      db: {
+        provider: 'gcp' as const,
+        region: 'seoul' as const,
+        engines: {
+          mysql: { instances: [inst], custom: null, storageGbMonth: 0.1, haStorageGbMonth: 0.2 },
+          postgres: { ...PRICING.gcp.db!.engines.postgres!, custom: { ...RATES, commit: { '1y': { vcpuPerHour: 0.04, ramGbPerHour: 0.008, haVcpuPerHour: 0.08, haRamGbPerHour: 0.016 } } } },
+        },
+      },
+      cache: {
+        ...PRICING.gcp.cache!,
+        gbTiers: PRICING.gcp.cache!.gbTiers!.map((t, i) => (i === 0 ? t : { ...t, commit: { '1y': { perGbHour: t.perGbHour / 2, haPerGbHour: t.haPerGbHour / 2 } } })),
+      },
+    },
+  };
+  const lines = (resources: Resource[], term: '1y' | '3y') =>
+    estimate(scenario(resources), pricing, { includeBurstable: true, term }).find((e) => e.provider === 'gcp')!.lines;
+  const node = lines([{ type: 'k8s', clusters: 1, node: { vcpu: 2, ramGb: 8, count: 1 } }], '1y')[1];
+  assert.ok(node.kind === 'vm' && node.matched?.perHour === 0.06 && node.matched.committed);
+  // DB 정해진 사이즈: 1년 이중화 약정가 / 3년은 이중화 약정가 없음 → 정가
+  const mysql = (ha: boolean, term: '1y' | '3y') => lines([{ type: 'db', engine: 'mysql', vcpu: 2, ramGb: 8, storageGb: 10, ha, count: 1 }], term)[0];
+  const [a, b, c] = [mysql(true, '1y'), mysql(false, '3y'), mysql(true, '3y')];
+  assert.ok(a.kind === 'db' && a.matched?.perHour === 0.24 && a.matched.committed);
+  assert.ok(b.kind === 'db' && b.matched?.perHour === 0.08 && b.matched.committed);
+  assert.ok(c.kind === 'db' && c.matched?.perHour === 0.4 && !c.matched.committed);
+  // GCP 커스텀: 약정 단가로 계산 (2×0.04 + 8×0.008), 3년 단가 없으면 정가
+  const pg = (term: '1y' | '3y') => lines([{ type: 'db', engine: 'postgres', vcpu: 2, ramGb: 8, storageGb: 10, ha: false, count: 1 }], term)[0];
+  const [p1, p3] = [pg('1y'), pg('3y')];
+  assert.ok(p1.kind === 'db' && p1.matched?.perHour === 0.144 && p1.matched.committed);
+  assert.ok(p3.kind === 'db' && p3.matched?.perHour === 0.18 && !p3.matched.committed);
+  // 캐시 GB 구간: M1(3GB)은 약정 없음, M2(5GB)는 약정 단가
+  const [m1] = lines([{ type: 'cache', memoryGb: 3, ha: false, count: 1 }], '1y');
+  const [m2] = lines([{ type: 'cache', memoryGb: 5, ha: false, count: 1 }], '1y');
+  assert.ok(m1.kind === 'cache' && m1.matched?.committed === false);
+  assert.ok(m2.kind === 'cache' && m2.matched?.perHour === 0.1 && m2.matched.committed);
 });
 
 test('실데이터 스모크: 3사 스냅샷에서 통합 시나리오 견적', () => {

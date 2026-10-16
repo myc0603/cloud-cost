@@ -7,23 +7,29 @@ import type { VmSku } from '../schema';
 import {
   HOURS_PER_MONTH,
   parsePositiveInt,
+  priceAt,
   round2,
   type EstimateLine,
   type MatchOptions,
   type NoMatchReason,
   type Resource,
   type ResourceDef,
+  type VmMatch,
   type VmSpec,
 } from './types';
 
 /**
- * 요구 스펙을 만족하는(vCPU·RAM 최소 충족) 후보를 가격 오름차순으로.
+ * 요구 스펙을 만족하는(vCPU·RAM 최소 충족) 후보를 선택한 요금 기준(정가·약정) 가격 오름차순으로.
  * 동가면 vCPU가 작은 것 우선 → 과잉 프로비저닝 최소화. 첫 항목이 곧 최저가.
  */
-export function qualifyingVms(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmSku[] {
+export function qualifyingVms(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmMatch[] {
   return eligibleVms(skus, opts)
     .filter((s) => s.vcpu >= spec.vcpu && s.ramGb >= spec.ramGb)
-    .sort((a, b) => a.pricePerHour - b.pricePerHour || a.vcpu - b.vcpu);
+    .map((s) => {
+      const { price, committed } = priceAt(s.pricePerHour, s.commit, opts.term);
+      return { ...s, perHour: price, committed };
+    })
+    .sort((a, b) => a.perHour - b.perHour || a.vcpu - b.vcpu);
 }
 
 /** 스펙과 무관한 매칭 조건(버스트·아키텍처)만 적용한 후보 */
@@ -44,7 +50,7 @@ export function noMatchReason(skus: VmSku[], opts: MatchOptions): NoMatchReason 
 }
 
 /** 스펙 만족 후보 중 최저가 (자동 선택 기본값) */
-export function matchVm(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmSku | null {
+export function matchVm(skus: VmSku[], spec: VmSpec, opts: MatchOptions): VmMatch | null {
   return qualifyingVms(skus, spec, opts)[0] ?? null;
 }
 
@@ -82,7 +88,7 @@ export function vmLine(
     matched,
     candidates,
     noMatch: matched ? null : noMatchReason(skus, opts),
-    monthlyUsd: matched ? round2(matched.pricePerHour * HOURS_PER_MONTH * spec.count) : null,
+    monthlyUsd: matched ? round2(matched.perHour * HOURS_PER_MONTH * spec.count) : null,
   };
 }
 

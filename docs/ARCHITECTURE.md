@@ -171,7 +171,12 @@ interface VmSku {
   arch: Arch;               // 매칭 필터 + 표시 배지 (arch 도입 전 스냅샷은 로더가 x86로 백필)
   generation: string;       // 패밀리 키 (t3·m5·dsv5·e2·n2 …)
   pricePerHour: number;
+  commit?: CommitPrices<number>; // 약정 시간당 (아래)
 }
+
+/** 약정가 — 기간별, 인스턴스 고정형·선결제 없음 기준 시간당 실효가. 키가 없으면 그 기간 약정 상품 없음 */
+type Term = '1y' | '3y';
+type CommitPrices<T> = Partial<Record<Term, T>>;
 
 /** 스토리지 — GB·월 단가 */
 interface StorageSku {
@@ -215,18 +220,22 @@ interface NatPrice {
 
 /** 관리형 DB — 엔진별. instances(AWS RDS 클래스·Azure SKU) 또는 custom(GCP vCPU·RAM 단가) */
 type DbEngine = 'mysql' | 'postgres';
-interface DbInstance { sku: string; vcpu: number; ramGb: number; burstable: boolean; perHour: number; haPerHour: number | null }
+interface DbInstance { sku: string; vcpu: number; ramGb: number; burstable: boolean; perHour: number; haPerHour: number | null;
+  commit?: CommitPrices<{ perHour: number; haPerHour: number | null }> }
+interface DbRateSet { vcpuPerHour: number; ramGbPerHour: number; haVcpuPerHour: number; haRamGbPerHour: number }
 interface DbEnginePricing {
   instances: DbInstance[];
-  custom: { vcpuPerHour: number; ramGbPerHour: number; haVcpuPerHour: number; haRamGbPerHour: number } | null;
+  custom: (DbRateSet & { commit?: CommitPrices<DbRateSet> }) | null;
   storageGbMonth: number;
   haStorageGbMonth: number;
 }
 interface DbPrice { provider: Provider; region: Region; engines: Record<DbEngine, DbEnginePricing | null> }
 
 /** Redis 호환 캐시 — nodes(AWS Valkey 노드·Azure Managed Redis SKU) 또는 gbTiers(GCP, 용량이 속한 구간 단가 × 용량 전체) */
-interface CacheNode { sku: string; memoryGb: number; burstable: boolean; perHour: number; haPerHour: number }
-interface CacheGbTier { upToGb: number | null; perGbHour: number; haPerGbHour: number }
+interface CacheNode { sku: string; memoryGb: number; burstable: boolean; perHour: number; haPerHour: number;
+  commit?: CommitPrices<{ perHour: number; haPerHour: number }> }
+interface CacheGbTier { upToGb: number | null; perGbHour: number; haPerGbHour: number;
+  commit?: CommitPrices<{ perGbHour: number; haPerGbHour: number }> } // GCP M1(5GB 미만)은 약정 없음
 interface CachePrice { provider: Provider; region: Region; engine: string; nodes: CacheNode[]; gbTiers: CacheGbTier[] | null }
 
 /** data/meta.json */
@@ -265,10 +274,11 @@ flowchart TD
   - 리소스 모듈은 `types.ts`만 import (`index.ts`를 import하면 순환 참조)
   - 다른 카드를 참조해야 하는 리소스는 `estimate` 컨텍스트의 `scenario`를 쓴다 (NAT: GCP 과금 VM 수 = VM 카드 대수 + K8s 노드 수)
 - 월 환산: 시간당 가격 × **730시간** 고정
-- 매칭 옵션: 버스트 포함(기본 포함), 아키텍처 `both`(기본) / `x86` / `arm`. 현세대 한정은 수집 단계에서 걸러짐(엔진에 세대 필터 없음)
+- 매칭 옵션: 버스트 포함(기본 포함), 아키텍처 `both`(기본) / `x86` / `arm`, 약정 기간 `term`(생략 = 정가 / `1y` / `3y`). 현세대 한정은 수집 단계에서 걸러짐(엔진에 세대 필터 없음)
+- 약정 기간이 있으면 VM·K8s 노드·DB·캐시 후보의 가격을 약정가로 바꿔(`priceAt`) 그 기준으로 최저가를 찾는다. 약정가 없는 후보는 정가로 남고 매칭 결과에 `committed: false` — 화면은 "약정가 없음" 배지. 매칭 결과의 `perHour`가 선택한 기준 가격(VM은 `pricePerHour`에 정가 보존)
 - 커스텀 선택: 드롭다운 후보 = 조건 충족 SKU 중 사이즈(vCPU·RAM)별 최저가 1개. 고른 SKU가 조건에서 벗어나면 최저가로 self-heal. 선택은 카드 인덱스 기준으로 저장
 - 매칭 실패 시 이유(`noMatch`)를 함께 반환: `arch`(버스트·아키텍처 조건에 맞는 SKU가 리전에 없음) / `size`(조건 내 최대 vCPU·RAM 안내) — "견적 불가"가 버그로 보이지 않게
-- 시나리오 상태는 URL 쿼리에 인코딩 → 저장 기능 없이 공유 가능. 예: `/?r=seoul&res=vm:2c4g:2,blk:100,obj:500,eg:1024&arch=x86&burst=0&pick=aws:0:t3.large` — URL 자체가 시나리오 데이터라서 열면 같은 화면이 재구성됨. `res`는 카드 순서대로 `토큰:본문`(본문 형식은 리소스 모듈이 정함), `pick`의 숫자는 카드 인덱스 (`arch`·`burst`·`pick`은 기본값이면 생략). v0.3 이전 형식(`vm=`·`blk=` …)은 지원 안 함 — 열면 기본 시나리오
+- 시나리오 상태는 URL 쿼리에 인코딩 → 저장 기능 없이 공유 가능. 예: `/?r=seoul&res=vm:2c4g:2,blk:100,obj:500,eg:1024&arch=x86&burst=0&term=1y&pick=aws:0:t3.large` — URL 자체가 시나리오 데이터라서 열면 같은 화면이 재구성됨. `res`는 카드 순서대로 `토큰:본문`(본문 형식은 리소스 모듈이 정함), `pick`의 숫자는 카드 인덱스 (`arch`·`burst`·`term`·`pick`은 기본값이면 생략). v0.3 이전 형식(`vm=`·`blk=` …)은 지원 안 함 — 열면 기본 시나리오
 - 통화·기간 전환은 엔진 밖 표시 계층(`display.ts`)에서 월 USD에 곱셈만 — 엔진 출력은 항상 월 USD
 
 ## 6. 라우트
@@ -303,3 +313,5 @@ flowchart TD
 | NAT 지표 (2026-10-11) | 게이트웨이 시간당 + 처리 GB당. GCP Cloud NAT는 VM당 시간 요금이라 **시나리오의 VM 대수 + K8s 노드 수**를 과금 VM으로 자동 산정(게이트웨이당 32대 상한, 문서값) | 입력 중복 없이 구성도대로 계산. NAT 처리비는 인터넷 egress 요금과 별개로 더해짐(실제 청구와 동일). 공인 IP 시간 요금(3사 $0.004~0.005/h)은 LB·NAT·VM 공통이라 제외 |
 | 관리형 DB 지표 (2026-10-11) | AWS RDS / Azure Database Flexible Server / GCP Cloud SQL Enterprise, MySQL·PostgreSQL. 스펙 만족 최저가(AWS·Azure 사이즈 목록, GCP 커스텀 사이즈 계산). 이중화 = 대기 포함 단가(≈2배) | Aurora(I/O 과금 등 구조 상이)·Enterprise Plus(상위 등급)·Single Server(단종)·공유 코어(SLA 없음) 제외. 엔진별 가격이 AWS·Azure에서 달라 엔진 단위 저장. 아키텍처 토글 미적용(관리형이라 ARM 호환성 무관), 버스트 옵션은 적용. Azure 버스트는 HA 미지원(문서) → HA 시 후보 제외. GCP 사이즈 규칙(vCPU 1·짝수 ≤96, RAM 0.9~6.5GB/vCPU·256MB 단위·최소 3.75GB)은 문서값 상수. 백업·추가 IOPS 제외 |
 | 캐시 지표 (2026-10-12) | Redis 호환: **AWS ElastiCache Valkey** / **Azure Managed Redis** / GCP Memorystore for Redis(인스턴스형). 입력 = 메모리 GB · 이중화 · 개수 | AWS는 Redis OSS보다 20% 싼 기본 엔진 Valkey(Redis 호환). Azure Cache for Redis(C0~C6)는 2028-09-30 퇴역 공지 → 대체재인 Managed Redis. Azure 이중화 = API 미터(노드 1개) × 2는 가격 페이지의 1노드/2노드 열 구조로 **추론**(숫자 직접 대조 불가) — methodology 고지. GCP는 용량이 속한 구간 단가가 용량 전체에 적용(누적 아님), 1~300GB. Memcached·노드형 Memorystore(클러스터 전제) 제외. Azure B0 용량은 문서가 엇갈려 0.5GB, 235GB까지만 수록 |
+| K8s 노드 버스트 (2026-10-17) | 워커 노드는 버스트 옵션과 무관하게 **항상 버스트 제외** | 파드를 몰아넣어 꾸준히 쓰는 노드엔 CPU 크레딧 방식이 안 맞음. GCP는 4c16g급 버스트가 없어 AWS·Azure만 버스트가 뽑히던 불공정도 해소. 작은 개발 클러스터용 허용 요구가 오면 카드별 옵션으로 확장 |
+| 약정 할인 (2026-10-17) | 요금 기준 토글(정가 / 1년 / 3년, URL `term=1y\|3y`). 3사 **인스턴스 고정형 + 선결제 없음**: AWS EC2 Instance SP(VM)·RDS/ElastiCache Standard RI / Azure 예약(VM·DB vCore·Managed Redis) / GCP 리소스 기반 CUD(VM), Cloud SQL·Memorystore는 지출 기반 CUD 문서 할인율(25·52% / 20·40%, M1 제외). 적용 범위 = VM·K8s 노드·DB·캐시 컴퓨트, 나머지는 정가 | 3사가 서로 대응되고 할인 폭이 가장 큰 상품끼리 비교. 유연형(Compute SP·Azure SP)은 할인 폭이 작아 미사용. AWS VM은 RI 대신 SP 파일 — 요율이 같고 8세대 등 RI 없는 신형까지 덮음. 선결제 없음이 없는 상품(RDS 3년 일부)은 부분 선결제 ÷ 기간 시간을 더해 환산. 약정가 기준으로 최저가 재매칭, 약정가 없는 SKU(Azure B·Fsv2, GCP T2A 등)는 정가 + "약정가 없음" 배지. Azure DB·Redis 이중화 약정 = 2배(대기 vCore·노드까지 예약 가정) |

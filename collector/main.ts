@@ -38,6 +38,7 @@ import {
   parseGcpStorage,
   parseGkeCluster,
   parseMemorystore,
+  parseCommitUnitPrices,
   parseUnitPrices,
 } from './providers/gcp';
 import { validateSnapshot, type Snapshot } from './validate';
@@ -136,11 +137,13 @@ async function collectGcpJobs(): Promise<Job[]> {
     const gcpRegion = GCP_REGION[region];
     const { unitPrices, unmatched } = parseUnitPrices(compute, gcpRegion);
     if (unmatched.length > 0) console.log(`[gcp/${region}] 매핑 안 된 VM 단가 라벨 ${unmatched.length}종`);
+    const commit = parseCommitUnitPrices(compute, gcpRegion);
+    if (commit.unmatched.length > 0) console.log(`[gcp/${region}] 매핑 안 된 CUD 라벨 ${commit.unmatched.length}종`);
     return {
       provider: 'gcp',
       region,
       snap: {
-        vms: buildVmSkus(unitPrices, region),
+        vms: buildVmSkus(unitPrices, region, commit.commitPrices),
         storage: parseGcpStorage(compute, gcs, gcpRegion, region),
         egress: parseGcpEgress(compute, gcpRegion, region),
         k8s: parseGkeCluster(gke, region),

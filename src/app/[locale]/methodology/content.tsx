@@ -38,7 +38,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
 
       <h2 className={H2}>비교 기준 (공정성을 위한 통일)</h2>
       <ul className="mt-2 list-disc pl-5">
-        <li className={LI}><b>Linux 온디맨드 정가</b>, 공유 테넌시, 현세대 인스턴스만.</li>
+        <li className={LI}><b>Linux 온디맨드 정가</b>(기본, 약정가는 아래), 공유 테넌시, 현세대 인스턴스만.</li>
         <li className={LI}><b>x86과 ARM</b>(AWS Graviton, Azure Dpsv6·Epsv6, GCP T2A·C4A)을 기본으로 함께 비교합니다. ARM은 대개 저렴하지만 앱 호환성 확인이 필요해 결과에 배지로 표시하며, 아키텍처 토글로 x86 또는 ARM만 볼 수 있습니다.</li>
         <li className={LI}>블록 스토리지는 3사의 <b>범용 SSD</b>끼리: AWS gp3 · GCP Balanced PD · Azure Premium SSD v2 (기본 성능 제공분 기준).</li>
         <li className={LI}>
@@ -67,6 +67,18 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>
           캐시 이중화는 AWS 복제 노드 1개 추가, GCP Standard 등급 요금입니다. Azure Managed Redis는 가격 API가 노드 1개 요금만 제공해,
           가격 페이지의 &quot;1노드 / 2노드(이중화)&quot; 구분에 따라 <b>2배로 추정</b>했습니다.
+        </li>
+        <li className={LI}>
+          <b>약정 할인</b>(요금 기준: 1년·3년 약정)은 3사 모두 <b>인스턴스 고정형 + 선결제 없음</b> 기준입니다: AWS EC2 Instance Savings
+          Plans(Standard RI와 같은 요율)·RDS/ElastiCache 예약 인스턴스, Azure 예약(월납·선납 총액 동일), GCP 리소스 기반 약정 사용
+          할인(CUD, 월납). 더 유연한 상품(AWS Compute Savings Plans·Azure Savings Plan)은 할인 폭이 작아 쓰지 않습니다. 약정가 기준으로
+          최저가 인스턴스를 다시 찾으며, 약정 상품이 없는 SKU는 정가로 계산하고 &quot;약정가 없음&quot;으로 표시합니다.
+        </li>
+        <li className={LI}>
+          약정은 VM·K8s 노드·DB·캐시 컴퓨트에만 적용되고 스토리지·트래픽·LB·NAT·K8s 컨트롤 플레인은 정가입니다. RDS 3년처럼 선결제 없음
+          상품이 없으면 부분 선결제액을 기간 시간으로 나눠 시간당에 더합니다. GCP Cloud SQL(1년 25%·3년 52%)과 Memorystore(1년 20%·3년
+          40%, 5GB 이상)는 지출 기반 약정이라 가격 API에 약정가가 없어 공식 문서의 할인율을 씁니다. Azure DB 이중화의 약정가는 대기 서버
+          vCore까지 예약한다고 보고 2배로 계산합니다.
         </li>
         <li className={LI}>공인 IP 주소 시간 요금(3사 모두 시간당 약 $0.005)은 포함하지 않습니다.</li>
         <li className={LI}>오브젝트 스토리지는 표준 티어 첫 구간(50TB 이하) 단가.</li>
@@ -123,7 +135,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
 
       <h2 className={H2}>Comparison basis (unified for fairness)</h2>
       <ul className="mt-2 list-disc pl-5">
-        <li className={LI}><b>Linux on-demand list prices</b>, shared tenancy, current-generation instances only.</li>
+        <li className={LI}><b>Linux on-demand list prices</b> (by default — commitment prices below), shared tenancy, current-generation instances only.</li>
         <li className={LI}><b>x86 and ARM</b> (AWS Graviton, Azure Dpsv6·Epsv6, GCP T2A·C4A) are compared together by default. ARM is usually cheaper but needs app compatibility, so it is marked with a badge, and the architecture toggle lets you limit results to x86 or ARM.</li>
         <li className={LI}>Block storage compares the three general-purpose SSDs: AWS gp3 · GCP Balanced PD · Azure Premium SSD v2 (baseline performance included in the price).</li>
         <li className={LI}>
@@ -154,6 +166,21 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         <li className={LI}>
           Cache high availability means one extra replica node on AWS and the Standard tier on GCP. For Azure Managed Redis the pricing
           API only lists the single-node price, so we <b>estimate HA at 2×</b> based on the pricing page&apos;s one-node / two-node (HA) split.
+        </li>
+        <li className={LI}>
+          <b>Commitment discounts</b> (Pricing: 1-year or 3-year commitment) use <b>instance-specific commitments with no upfront
+          payment</b> on all three: AWS EC2 Instance Savings Plans (same rates as Standard RIs) and RDS/ElastiCache reserved instances,
+          Azure reservations (monthly and upfront totals are equal), and GCP resource-based committed use discounts (CUDs, billed
+          monthly). More flexible plans (AWS Compute Savings Plans, Azure savings plan) give smaller discounts and are not used. The
+          cheapest instance is re-matched at commitment prices; SKUs without a commitment offer are priced on-demand and marked
+          &quot;no commitment price&quot;.
+        </li>
+        <li className={LI}>
+          Commitments apply only to VM, K8s node, DB and cache compute; storage, traffic, load balancers, NAT and K8s control planes
+          stay on-demand. Where no no-upfront option exists (some 3-year RDS terms), the partial upfront payment is spread over the
+          term&apos;s hours. GCP Cloud SQL (25% for 1 year, 52% for 3 years) and Memorystore (20% / 40%, instances of 5 GB or more) use
+          spend-based commitments with no commitment prices in the pricing API, so we apply the discount rates from the official docs.
+          Azure DB high-availability commitment prices assume the standby&apos;s vCores are reserved too (2×).
         </li>
         <li className={LI}>Public IP address hourly fees (about $0.005/hour on all three) are not included.</li>
         <li className={LI}>Object storage uses the standard tier, first pricing band (up to 50TB).</li>

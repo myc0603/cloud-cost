@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { HOURS_PER_MONTH, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
 import { formatMoney, type Currency, type Period } from '@/lib/display';
-import type { Arch, Provider } from '@/lib/schema';
+import type { Arch, Provider, Term } from '@/lib/schema';
 
 const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
 
@@ -58,6 +58,13 @@ function Segmented<T extends string>({
   );
 }
 
+/** 약정 기준인데 이 SKU엔 약정가가 없어 정가로 계산했음을 표시 (VM·K8s 노드·DB·캐시 공통) */
+function NoCommitBadge({ term, matched }: { term?: Term; matched: { committed: boolean } | null }) {
+  const t = useTranslations('estimate');
+  if (!term || !matched || matched.committed) return null;
+  return <span className="ml-1 rounded bg-amber-100 px-1 py-0.5 align-middle text-[10px] font-medium text-amber-700">{t('noCommit')}</span>;
+}
+
 /** 매칭 실패 표시 + 이유 (VM·K8s 노드·DB 공통) */
 function NoMatchNote({ noMatch }: { noMatch: NoMatchReason | null }) {
   const t = useTranslations('estimate');
@@ -82,15 +89,19 @@ function NoMatchNote({ noMatch }: { noMatch: NoMatchReason | null }) {
 function LineLabel({
   line,
   provider,
+  term,
   money,
   onSelect,
 }: {
   line: EstimateLine;
   provider: Provider;
+  term?: Term;
   money: (monthlyUsd: number) => string;
   onSelect: SelectInstance;
 }) {
   const t = useTranslations('estimate');
+  /** 드롭다운 후보 라벨 접미사 — 약정 기준에서 약정가 없는 후보 */
+  const odSuffix = (c: { committed: boolean }) => (term && !c.committed ? ` · ${t('onDemandShort')}` : '');
   if (line.kind === 'vm') {
     return (
       <span>
@@ -112,13 +123,15 @@ function LineLabel({
           >
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
-                {c.sku} · {c.vcpu}/{c.ramGb}GB · {money(c.pricePerHour * HOURS_PER_MONTH * line.spec.count)}
+                {c.sku} · {c.vcpu}/{c.ramGb}GB · {money(c.perHour * HOURS_PER_MONTH * line.spec.count)}
                 {c.arch === 'arm' ? ' · ARM' : ''}
+                {odSuffix(c)}
               </option>
             ))}
           </select>
         )}
         {line.matched && <ArchBadge arch={line.matched.arch} />}
+        <NoCommitBadge term={term} matched={line.matched} />
       </span>
     );
   }
@@ -145,10 +158,12 @@ function LineLabel({
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
                 {c.sku} · {c.vcpu}/{c.ramGb}GB · {money(c.perHour * HOURS_PER_MONTH * line.spec.count)}
+                {odSuffix(c)}
               </option>
             ))}
           </select>
         )}
+        <NoCommitBadge term={term} matched={line.matched} />
       </span>
     );
   }
@@ -173,10 +188,12 @@ function LineLabel({
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
                 {c.sku} · {c.memoryGb}GB · {money(c.perHour * HOURS_PER_MONTH * line.count)}
+                {odSuffix(c)}
               </option>
             ))}
           </select>
         )}
+        <NoCommitBadge term={term} matched={line.matched} />
       </span>
     );
   }
@@ -237,10 +254,13 @@ function LineLabel({
 export default function EstimateResult({
   estimates,
   rate,
+  term,
   onSelectInstance,
 }: {
   estimates: ProviderEstimate[];
   rate: number | null;
+  /** 약정 기간 — 생략 = 정가 */
+  term?: Term;
   onSelectInstance: SelectInstance;
 }) {
   const t = useTranslations('estimate');
@@ -315,7 +335,7 @@ export default function EstimateResult({
               <ul className="mt-3 space-y-1 border-t border-slate-100 pt-3">
                 {e.lines.map((line, i) => (
                   <li key={i} className="flex justify-between gap-2 text-xs text-slate-600">
-                    <LineLabel line={line} provider={e.provider} money={money} onSelect={onSelectInstance} />
+                    <LineLabel line={line} provider={e.provider} term={term} money={money} onSelect={onSelectInstance} />
                     {line.monthlyUsd !== null && <span className="tabular-nums">{money(line.monthlyUsd)}</span>}
                   </li>
                 ))}
@@ -324,6 +344,9 @@ export default function EstimateResult({
           </div>
         );
       })}
+      {term && (
+        <p className="rounded-md bg-sky-50 px-3 py-2 text-xs text-sky-800">{t('commitNotice', { years: term === '1y' ? 1 : 3 })}</p>
+      )}
       {hasArm && (
         <p className="rounded-md bg-violet-50 px-3 py-2 text-xs text-violet-700">{t('armNotice')}</p>
       )}

@@ -11,6 +11,16 @@ export type Arch = 'x86' | 'arm';
 /** 정규화 리전 키. seoul = ap-northeast-2 / koreacentral / asia-northeast3 */
 export type Region = 'seoul' | 'us-east';
 
+/**
+ * 약정 기간. 약정가는 3사 모두 "인스턴스 고정형 + 선결제 없음" 기준의 시간당 실효가
+ * (AWS Standard RI·EC2 Instance SP / Azure 예약 / GCP 리소스 CUD, 지출 기반 CUD 상품은 공식 할인율).
+ * 선결제 없음이 없는 상품(RDS 3년 일부)은 부분 선결제액 ÷ 기간 시간을 시간당에 더한다.
+ */
+export type Term = '1y' | '3y';
+
+/** 기간별 약정가. 키가 없으면 그 기간 약정 상품이 없다 */
+export type CommitPrices<T> = Partial<Record<Term, T>>;
+
 /** VM — 가격은 USD, Linux 온디맨드, 시간당 */
 export interface VmSku {
   provider: Provider;
@@ -22,6 +32,8 @@ export interface VmSku {
   arch: Arch; // x86 | arm — 매칭 필터 + 표시 배지
   generation: string; // 구세대 필터용 (패밀리 키)
   pricePerHour: number;
+  /** 약정 시간당 */
+  commit?: CommitPrices<number>;
 }
 
 /** 스토리지 — GB·월 단가 */
@@ -90,14 +102,20 @@ export interface DbInstance {
   perHour: number;
   /** 이중화(대기 서버 포함) 시간당. null = 이중화 미지원 (Azure 버스트 등급) */
   haPerHour: number | null;
+  commit?: CommitPrices<{ perHour: number; haPerHour: number | null }>;
 }
 
-/** 커스텀 사이즈 관리형 DB 단가 — GCP Cloud SQL Enterprise. 사이즈 규칙은 estimator/db.ts */
-export interface DbCustomRates {
+/** 커스텀 사이즈 단가 한 벌 */
+export interface DbRateSet {
   vcpuPerHour: number;
   ramGbPerHour: number;
   haVcpuPerHour: number;
   haRamGbPerHour: number;
+}
+
+/** 커스텀 사이즈 관리형 DB 단가 — GCP Cloud SQL Enterprise. 사이즈 규칙은 estimator/db.ts */
+export interface DbCustomRates extends DbRateSet {
+  commit?: CommitPrices<DbRateSet>;
 }
 
 /** 엔진 하나의 요금 — instances(정해진 사이즈) 또는 custom(커스텀 사이즈) 중 하나를 쓴다 */
@@ -126,6 +144,7 @@ export interface CacheNode {
   perHour: number;
   /** 이중화(주 + 복제 노드) 시간당 */
   haPerHour: number;
+  commit?: CommitPrices<{ perHour: number; haPerHour: number }>;
 }
 
 /** 용량 구간 단가 — GCP Memorystore. 인스턴스 용량이 속한 구간의 단가가 용량 전체에 적용된다 (누적 아님) */
@@ -134,6 +153,8 @@ export interface CacheGbTier {
   upToGb: number | null;
   perGbHour: number;
   haPerGbHour: number;
+  /** 약정 대상이 아닌 구간(Memorystore M1, 5GB 미만)은 없음 */
+  commit?: CommitPrices<{ perGbHour: number; haPerGbHour: number }>;
 }
 
 /**

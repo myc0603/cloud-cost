@@ -7,6 +7,7 @@
 
 import type {
   CachePrice,
+  CommitPrices,
   DbEngine,
   DbEnginePricing,
   DbInstance,
@@ -17,6 +18,7 @@ import type {
   NatPrice,
   Region,
   StorageSku,
+  Term,
   VmSku,
 } from '../../src/lib/schema';
 import { AZURE_CACHE_SIZES } from './azure-cache-sizes';
@@ -40,7 +42,33 @@ export interface AzurePriceItem {
   unitOfMeasure: string;
   tierMinimumUnits: number;
   type: string;
+  /** 예약(type === 'Reservation') 아이템만: '1 Year' | '3 Years'. retailPrice는 기간 총액 */
+  reservationTerm?: string;
 }
+
+const RESERVATION_TERM: Record<string, Term> = { '1 Year': '1y', '3 Years': '3y' };
+const TERM_HOURS: Record<Term, number> = { '1y': 8760, '3y': 26280 };
+
+/** 예약 아이템 → [기간, 시간당]. 기간 총액 ÷ 기간 시간 (월납도 총액이 같다) */
+function reservationHourly(item: AzurePriceItem): [Term, number] | null {
+  const term = item.reservationTerm ? RESERVATION_TERM[item.reservationTerm] : undefined;
+  if (item.type !== 'Reservation' || !term || !(item.retailPrice > 0)) return null;
+  return [term, item.retailPrice / TERM_HOURS[term]];
+}
+
+/** 시간당 약정가 맵 → 정가보다 싼 것만, scale배(vCore 수·노드 수), 소수 6자리 */
+function commitOf(rates: CommitPrices<number> | undefined, scale: number, onDemand: number): CommitPrices<number> | undefined {
+  if (!rates) return undefined;
+  const out: CommitPrices<number> = {};
+  for (const [term, perHour] of Object.entries(rates) as [Term, number][]) {
+    const v = +(perHour * scale).toFixed(6);
+    if (v < onDemand) out[term] = v;
+  }
+  return Object.keys(out).length > 0 ? out : undefined;
+}
+
+/** 정가·예약 아이템을 함께 받는 필터 (예약가는 같은 미터의 기간 총액) */
+const PRICE_TYPES = `(priceType eq 'Consumption' or priceType eq 'Reservation')`;
 
 /** 429(요청 과다)는 잠깐 기다렸다 재시도 — 리전당 병렬 요청이 여럿이라 간헐적으로 걸린다 */
 async function fetchWithRetry(url: string, attempts = 4): Promise<Response> {
@@ -69,22 +97,31 @@ async function fetchPriceItems(filter: string): Promise<AzurePriceItem[]> {
 }
 
 export const fetchVmPriceItems = (armRegion: string) =>
-  fetchPriceItems(`serviceName eq 'Virtual Machines' and armRegionName eq '${armRegion}' and priceType eq 'Consumption'`);
+  fetchPriceItems(`serviceName eq 'Virtual Machines' and armRegionName eq '${armRegion}' and ${PRICE_TYPES}`);
 
 /**
  * 가격 아이템 → 카탈로그 조인 → VmSku[].
  * 제외: Windows 제품, Spot/Low Priority 미터, 시간 단가가 아닌 것.
+ * 약정가: 같은 armSkuName의 예약(Reserved VM Instances) 아이템.
  */
 export function buildAzureVmSkus(items: AzurePriceItem[], region: Region): VmSku[] {
   const priceBySku = new Map<string, number>();
+  const reservedBySku = new Map<string, CommitPrices<number>>();
 
   for (const item of items) {
     if (item.currencyCode !== 'USD') continue;
     if (item.unitOfMeasure !== '1 Hour') continue;
-    if (item.type !== 'Consumption') continue;
     // "Eadsv5 Series CloudServices" 같은 구형 Cloud Services 요금 변형 제외
     if (!item.productName.startsWith('Virtual Machines')) continue;
     if (/windows/i.test(item.productName)) continue;
+    const reserved = reservationHourly(item);
+    if (reserved) {
+      const entry = reservedBySku.get(item.armSkuName) ?? {};
+      entry[reserved[0]] ??= reserved[1];
+      reservedBySku.set(item.armSkuName, entry);
+      continue;
+    }
+    if (item.type !== 'Consumption') continue;
     if (/spot|low priority/i.test(item.meterName)) continue;
     if (!(item.retailPrice > 0)) continue;
 
@@ -99,6 +136,7 @@ export function buildAzureVmSkus(items: AzurePriceItem[], region: Region): VmSku
   return AZURE_VM_SIZES.flatMap((size) => {
     const price = priceBySku.get(size.armSkuName);
     if (price === undefined) return [];
+    const commit = commitOf(reservedBySku.get(size.armSkuName), 1, price);
     return [{
       provider: 'azure' as const,
       region,
@@ -109,6 +147,7 @@ export function buildAzureVmSkus(items: AzurePriceItem[], region: Region): VmSku
       arch: size.arch,
       generation: size.generation,
       pricePerHour: +price.toFixed(6),
+      ...(commit && { commit }),
     }];
   });
 }
@@ -276,6 +315,8 @@ const AZURE_DB_SERVICE: Record<DbEngine, string> = {
  * Flexible Server 한 엔진의 가격 아이템 → 카탈로그 조인.
  * 이중화(HA)는 대기 서버가 주 서버와 같은 요금(공식 문서) → 컴퓨트·스토리지 2배. 버스트는 HA 미지원.
  * 스토리지는 기본 "Storage Data Stored"(GB·월).
+ * 약정가: vCore당 예약(reserved capacity) — PG는 시리즈별, MySQL은 등급 공통("General Purpose Series Compute") 상품.
+ * 버스트 등급은 예약 상품이 없다. 이중화는 대기 서버 vCore까지 예약한다고 보고 2배.
  */
 export function buildAzureDbEngine(items: AzurePriceItem[]): DbEnginePricing | null {
   // PG 스토리지 상품명은 "Flex Server Storage"로 줄여 쓴다
@@ -285,6 +326,20 @@ export function buildAzureDbEngine(items: AzurePriceItem[]): DbEnginePricing | n
   const perVcore = (series: string) =>
     hourly.find((i) => i.productName.endsWith(`${series} Series Compute`) && (i.skuName === 'vCore' || i.skuName === '1 vCore'))?.retailPrice;
   const tierRate = { general: perVcore('Dadsv5'), memory: perVcore('Eadsv5') };
+
+  const reserved = items.filter((i) => i.productName.includes('Flexible Server') && (i.skuName === 'vCore' || i.skuName === '1 vCore'));
+  const reservedPerVcore = (series: string, tierName: string): CommitPrices<number> | undefined => {
+    const pick = (suffix: string) => {
+      const out: CommitPrices<number> = {};
+      for (const i of reserved.filter((x) => x.productName.endsWith(suffix))) {
+        const r = reservationHourly(i);
+        if (r) out[r[0]] ??= r[1];
+      }
+      return Object.keys(out).length > 0 ? out : undefined;
+    };
+    return pick(`${series} Series Compute`) ?? pick(`Flexible Server ${tierName} Series Compute`);
+  };
+  const tierReserved = { general: reservedPerVcore('Dadsv5', 'General Purpose'), memory: reservedPerVcore('Eadsv5', 'Memory Optimized') };
   const burstPrice = new Map(
     hourly
       .filter((i) => i.productName.endsWith('Burstable BS Series Compute'))
@@ -294,6 +349,10 @@ export function buildAzureDbEngine(items: AzurePriceItem[]): DbEnginePricing | n
   const instances: DbInstance[] = AZURE_DB_SIZES.flatMap((size) => {
     const price = size.tier === 'burstable' ? burstPrice.get(size.meter!) : tierRate[size.tier] && tierRate[size.tier]! * size.vcpu;
     if (!price) return [];
+    const rates = size.tier === 'burstable' ? undefined : commitOf(tierReserved[size.tier], size.vcpu, price);
+    const commit = rates && Object.fromEntries(
+      Object.entries(rates).map(([term, perHour]) => [term, { perHour, haPerHour: +(perHour * 2).toFixed(6) }]),
+    );
     return [{
       sku: size.sku,
       vcpu: size.vcpu,
@@ -301,6 +360,7 @@ export function buildAzureDbEngine(items: AzurePriceItem[]): DbEnginePricing | n
       burstable: size.tier === 'burstable',
       perHour: +price.toFixed(6),
       haPerHour: size.tier === 'burstable' ? null : +(price * 2).toFixed(6),
+      ...(commit && { commit }),
     }];
   });
 
@@ -315,33 +375,51 @@ export async function collectAzureDb(region: Region): Promise<DbPrice | null> {
   const engines = {} as Record<DbEngine, DbEnginePricing | null>;
   for (const engine of ['mysql', 'postgres'] as const) {
     const items = await fetchPriceItems(
-      `armRegionName eq '${AZURE_REGION[region]}' and priceType eq 'Consumption' and serviceName eq '${AZURE_DB_SERVICE[engine]}'`,
+      `armRegionName eq '${AZURE_REGION[region]}' and ${PRICE_TYPES} and serviceName eq '${AZURE_DB_SERVICE[engine]}'`,
     );
     engines[engine] = buildAzureDbEngine(items);
   }
   return engines.mysql || engines.postgres ? { provider: 'azure', region, engines } : null;
 }
 
-/** Azure Managed Redis — 카탈로그 × "{SKU} Cache Instance" 미터(노드 1개). 이중화 = 2노드 → 2배 (추론, 카탈로그 주석 참조) */
+/**
+ * Azure Managed Redis — 카탈로그 × "{SKU} Cache Instance" 미터(노드 1개). 이중화 = 2노드 → 2배 (추론, 카탈로그 주석 참조).
+ * 약정가: 같은 미터의 예약 아이템, 이중화는 같은 2배.
+ */
 export function buildAzureCache(items: AzurePriceItem[], region: Region): CachePrice | null {
   const nodes = AZURE_CACHE_SIZES.flatMap((size) => {
-    const price = items.find(
+    const meter = items.filter(
       (i) =>
         i.productName === `Azure Managed Redis - ${size.tier}` &&
         i.meterName === `${size.sku} Cache Instance` &&
-        i.unitOfMeasure === '1 Hour' &&
-        i.type === 'Consumption' &&
-        i.retailPrice > 0,
-    )?.retailPrice;
+        i.unitOfMeasure === '1 Hour',
+    );
+    const price = meter.find((i) => i.type === 'Consumption' && i.retailPrice > 0)?.retailPrice;
     if (!price) return [];
-    return [{ sku: size.sku, memoryGb: size.memoryGb, burstable: false, perHour: +price.toFixed(6), haPerHour: +(price * 2).toFixed(6) }];
+    const reserved: CommitPrices<number> = {};
+    for (const i of meter) {
+      const r = reservationHourly(i);
+      if (r) reserved[r[0]] ??= r[1];
+    }
+    const rates = commitOf(reserved, 1, price);
+    const commit = rates && Object.fromEntries(
+      Object.entries(rates).map(([term, perHour]) => [term, { perHour, haPerHour: +(perHour * 2).toFixed(6) }]),
+    );
+    return [{
+      sku: size.sku,
+      memoryGb: size.memoryGb,
+      burstable: false,
+      perHour: +price.toFixed(6),
+      haPerHour: +(price * 2).toFixed(6),
+      ...(commit && { commit }),
+    }];
   });
   return nodes.length > 0 ? { provider: 'azure', region, engine: 'Redis', nodes, gbTiers: null } : null;
 }
 
 export async function collectAzureCache(region: Region): Promise<CachePrice | null> {
   const items = await fetchPriceItems(
-    `armRegionName eq '${AZURE_REGION[region]}' and priceType eq 'Consumption' and serviceName eq 'Redis Cache'`,
+    `armRegionName eq '${AZURE_REGION[region]}' and ${PRICE_TYPES} and serviceName eq 'Redis Cache'`,
   );
   return buildAzureCache(items, region);
 }

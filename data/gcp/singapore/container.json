@@ -1,0 +1,20 @@
+{
+  "provider": "gcp",
+  "region": "singapore",
+  "rates": {
+    "x86": {
+      "vcpuPerHour": 0.07776,
+      "gbPerHour": 0.00864,
+      "commit": {
+        "1y": {
+          "vcpuPerHour": 0.055987,
+          "gbPerHour": 0.006221
+        },
+        "3y": {
+          "vcpuPerHour": 0.04199,
+          "gbPerHour": 0.004666
+        }
+      }
+    }
+  }
+}

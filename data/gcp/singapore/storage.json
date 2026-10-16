@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.11
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.02
+  }
+]

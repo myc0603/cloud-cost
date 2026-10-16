@@ -1,0 +1,54 @@
+{
+  "provider": "azure",
+  "region": "us-west",
+  "ingestPerGb": 2.3,
+  "storagePerGbMonth": 0.1,
+  "includedDays": 31,
+  "storedRatio": 1,
+  "commitmentTiers": [
+    {
+      "gbPerDay": 100,
+      "perDay": 196
+    },
+    {
+      "gbPerDay": 200,
+      "perDay": 368
+    },
+    {
+      "gbPerDay": 300,
+      "perDay": 540
+    },
+    {
+      "gbPerDay": 400,
+      "perDay": 704
+    },
+    {
+      "gbPerDay": 500,
+      "perDay": 865
+    },
+    {
+      "gbPerDay": 1000,
+      "perDay": 1700
+    },
+    {
+      "gbPerDay": 2000,
+      "perDay": 3320
+    },
+    {
+      "gbPerDay": 5000,
+      "perDay": 8050
+    },
+    {
+      "gbPerDay": 10000,
+      "perDay": 15640
+    },
+    {
+      "gbPerDay": 25000,
+      "perDay": 37950
+    },
+    {
+      "gbPerDay": 50000,
+      "perDay": 73600
+    }
+  ]
+}

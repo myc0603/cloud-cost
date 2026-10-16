@@ -1,0 +1,9 @@
+{
+  "provider": "aws",
+  "region": "london",
+  "hourly": {
+    "per": "gateway",
+    "usd": 0.05
+  },
+  "perGb": 0.05
+}

@@ -1,0 +1,55 @@
+{
+  "provider": "azure",
+  "region": "us-west",
+  "gbTiers": [
+    {
+      "upTo": 10000,
+      "price": 0.0825
+    },
+    {
+      "upTo": 50000,
+      "price": 0.065002
+    },
+    {
+      "upTo": 150000,
+      "price": 0.056001
+    },
+    {
+      "upTo": 500000,
+      "price": 0.014083
+    },
+    {
+      "upTo": 1000000,
+      "price": 0.00693
+    },
+    {
+      "upTo": 5000000,
+      "price": 0.005742
+    },
+    {
+      "upTo": null,
+      "price": 0.005404
+    }
+  ],
+  "requestTiers": [
+    {
+      "upTo": 25000,
+      "price": 0.009
+    },
+    {
+      "upTo": 100000,
+      "price": 0.0081
+    },
+    {
+      "upTo": 500000,
+      "price": 0.00729
+    },
+    {
+      "upTo": null,
+      "price": 0.006561
+    }
+  ],
+  "monthlyBase": 35,
+  "fillPerGb": 0,
+  "plans": []
+}

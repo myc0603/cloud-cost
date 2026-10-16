@@ -1,0 +1,73 @@
+{
+  "provider": "gcp",
+  "region": "london",
+  "engine": "Redis",
+  "nodes": [],
+  "gbTiers": [
+    {
+      "upToGb": 4,
+      "perGbHour": 0.053,
+      "haPerGbHour": 0.09
+    },
+    {
+      "upToGb": 10,
+      "perGbHour": 0.034,
+      "haPerGbHour": 0.064,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0272,
+          "haPerGbHour": 0.0512
+        },
+        "3y": {
+          "perGbHour": 0.0204,
+          "haPerGbHour": 0.0384
+        }
+      }
+    },
+    {
+      "upToGb": 35,
+      "perGbHour": 0.027,
+      "haPerGbHour": 0.052,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0216,
+          "haPerGbHour": 0.0416
+        },
+        "3y": {
+          "perGbHour": 0.0162,
+          "haPerGbHour": 0.0312
+        }
+      }
+    },
+    {
+      "upToGb": 100,
+      "perGbHour": 0.023,
+      "haPerGbHour": 0.045,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0184,
+          "haPerGbHour": 0.036
+        },
+        "3y": {
+          "perGbHour": 0.0138,
+          "haPerGbHour": 0.027
+        }
+      }
+    },
+    {
+      "upToGb": null,
+      "perGbHour": 0.018,
+      "haPerGbHour": 0.036,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0144,
+          "haPerGbHour": 0.0288
+        },
+        "3y": {
+          "perGbHour": 0.0108,
+          "haPerGbHour": 0.0216
+        }
+      }
+    }
+  ]
+}

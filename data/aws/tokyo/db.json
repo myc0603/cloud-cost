@@ -1,0 +1,7724 @@
+{
+  "provider": "aws",
+  "region": "tokyo",
+  "engines": {
+    "mysql": {
+      "instances": [
+        {
+          "sku": "db.m5.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.64,
+          "haPerHour": 11.28,
+          "commit": {
+            "1y": {
+              "perHour": 3.9085,
+              "haPerHour": 7.817
+            },
+            "3y": {
+              "perHour": 2.650819,
+              "haPerHour": 5.301599
+            }
+          }
+        },
+        {
+          "sku": "db.m5.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.52,
+          "haPerHour": 15.04,
+          "commit": {
+            "1y": {
+              "perHour": 5.2128,
+              "haPerHour": 10.4256
+            },
+            "3y": {
+              "perHour": 3.533191,
+              "haPerHour": 7.066419
+            }
+          }
+        },
+        {
+          "sku": "db.m5.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 11.28,
+          "haPerHour": 22.56,
+          "commit": {
+            "1y": {
+              "perHour": 7.817,
+              "haPerHour": 15.6341
+            },
+            "3y": {
+              "perHour": 5.301599,
+              "haPerHour": 10.603198
+            }
+          }
+        },
+        {
+          "sku": "db.m5.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.94,
+          "haPerHour": 1.88,
+          "commit": {
+            "1y": {
+              "perHour": 0.6514,
+              "haPerHour": 1.3028
+            },
+            "3y": {
+              "perHour": 0.44179,
+              "haPerHour": 0.883619
+            }
+          }
+        },
+        {
+          "sku": "db.m5.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.88,
+          "haPerHour": 3.76,
+          "commit": {
+            "1y": {
+              "perHour": 1.3028,
+              "haPerHour": 2.6057
+            },
+            "3y": {
+              "perHour": 0.883619,
+              "haPerHour": 1.7672
+            }
+          }
+        },
+        {
+          "sku": "db.m5.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.76,
+          "haPerHour": 7.52,
+          "commit": {
+            "1y": {
+              "perHour": 2.6064,
+              "haPerHour": 5.2128
+            },
+            "3y": {
+              "perHour": 1.766595,
+              "haPerHour": 3.533191
+            }
+          }
+        },
+        {
+          "sku": "db.m5.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.235,
+          "haPerHour": 0.47,
+          "commit": {
+            "1y": {
+              "perHour": 0.1629,
+              "haPerHour": 0.3257
+            },
+            "3y": {
+              "perHour": 0.110413,
+              "haPerHour": 0.220964
+            }
+          }
+        },
+        {
+          "sku": "db.m5.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.47,
+          "haPerHour": 0.94,
+          "commit": {
+            "1y": {
+              "perHour": 0.3257,
+              "haPerHour": 0.6514
+            },
+            "3y": {
+              "perHour": 0.220964,
+              "haPerHour": 0.44179
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 6.98,
+          "haPerHour": 13.959,
+          "commit": {
+            "1y": {
+              "perHour": 5.3744,
+              "haPerHour": 10.7488
+            },
+            "3y": {
+              "perHour": 3.838844,
+              "haPerHour": 7.677751
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 9.306,
+          "haPerHour": 18.613,
+          "commit": {
+            "1y": {
+              "perHour": 7.1659,
+              "haPerHour": 14.3317
+            },
+            "3y": {
+              "perHour": 5.118447,
+              "haPerHour": 10.236993
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 13.959,
+          "haPerHour": 27.919,
+          "commit": {
+            "1y": {
+              "perHour": 10.7488,
+              "haPerHour": 21.4976
+            },
+            "3y": {
+              "perHour": 7.677751,
+              "haPerHour": 15.355402
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.163,
+          "haPerHour": 2.327,
+          "commit": {
+            "1y": {
+              "perHour": 0.8957,
+              "haPerHour": 1.7915
+            },
+            "3y": {
+              "perHour": 0.639801,
+              "haPerHour": 1.279602
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.327,
+          "haPerHour": 4.653,
+          "commit": {
+            "1y": {
+              "perHour": 1.7915,
+              "haPerHour": 3.5829
+            },
+            "3y": {
+              "perHour": 1.279602,
+              "haPerHour": 2.559204
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 4.653,
+          "haPerHour": 9.306,
+          "commit": {
+            "1y": {
+              "perHour": 3.5829,
+              "haPerHour": 7.1659
+            },
+            "3y": {
+              "perHour": 2.559204,
+              "haPerHour": 5.118447
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.291,
+          "haPerHour": 0.582,
+          "commit": {
+            "1y": {
+              "perHour": 0.2239,
+              "haPerHour": 0.4479
+            },
+            "3y": {
+              "perHour": 0.159985,
+              "haPerHour": 0.31997
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.582,
+          "haPerHour": 1.163,
+          "commit": {
+            "1y": {
+              "perHour": 0.4479,
+              "haPerHour": 0.8957
+            },
+            "3y": {
+              "perHour": 0.31997,
+              "haPerHour": 0.639801
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.013,
+          "haPerHour": 10.027,
+          "commit": {
+            "1y": {
+              "perHour": 3.4752,
+              "haPerHour": 6.9504
+            },
+            "3y": {
+              "perHour": 2.35544,
+              "haPerHour": 4.710979
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 6.684,
+          "haPerHour": 13.369,
+          "commit": {
+            "1y": {
+              "perHour": 4.6336,
+              "haPerHour": 9.2672
+            },
+            "3y": {
+              "perHour": 3.14062,
+              "haPerHour": 6.281239
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.836,
+          "haPerHour": 1.671,
+          "commit": {
+            "1y": {
+              "perHour": 0.5792,
+              "haPerHour": 1.1584
+            },
+            "3y": {
+              "perHour": 0.392571,
+              "haPerHour": 0.78518
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.671,
+          "haPerHour": 3.342,
+          "commit": {
+            "1y": {
+              "perHour": 1.1584,
+              "haPerHour": 2.3168
+            },
+            "3y": {
+              "perHour": 0.78518,
+              "haPerHour": 1.57036
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.342,
+          "haPerHour": 6.684,
+          "commit": {
+            "1y": {
+              "perHour": 2.3168,
+              "haPerHour": 4.6336
+            },
+            "3y": {
+              "perHour": 1.57036,
+              "haPerHour": 3.14062
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.209,
+          "haPerHour": 0.418,
+          "commit": {
+            "1y": {
+              "perHour": 0.1448,
+              "haPerHour": 0.2896
+            },
+            "3y": {
+              "perHour": 0.098187,
+              "haPerHour": 0.196235
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.418,
+          "haPerHour": 0.836,
+          "commit": {
+            "1y": {
+              "perHour": 0.2896,
+              "haPerHour": 0.5792
+            },
+            "3y": {
+              "perHour": 0.196235,
+              "haPerHour": 0.392571
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 6.268,
+          "haPerHour": 12.537,
+          "commit": {
+            "1y": {
+              "perHour": 4.8266,
+              "haPerHour": 9.6533
+            },
+            "3y": {
+              "perHour": 3.447582,
+              "haPerHour": 6.895203
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 8.358,
+          "haPerHour": 16.716,
+          "commit": {
+            "1y": {
+              "perHour": 6.4355,
+              "haPerHour": 12.871
+            },
+            "3y": {
+              "perHour": 4.596802,
+              "haPerHour": 9.193604
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.045,
+          "haPerHour": 2.089,
+          "commit": {
+            "1y": {
+              "perHour": 0.8044,
+              "haPerHour": 1.6089
+            },
+            "3y": {
+              "perHour": 0.574591,
+              "haPerHour": 1.149181
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.089,
+          "haPerHour": 4.179,
+          "commit": {
+            "1y": {
+              "perHour": 1.6089,
+              "haPerHour": 3.2178
+            },
+            "3y": {
+              "perHour": 1.149181,
+              "haPerHour": 2.298401
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 4.179,
+          "haPerHour": 8.358,
+          "commit": {
+            "1y": {
+              "perHour": 3.2178,
+              "haPerHour": 6.4355
+            },
+            "3y": {
+              "perHour": 2.298401,
+              "haPerHour": 4.596802
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.261,
+          "haPerHour": 0.522,
+          "commit": {
+            "1y": {
+              "perHour": 0.2011,
+              "haPerHour": 0.4022
+            },
+            "3y": {
+              "perHour": 0.143642,
+              "haPerHour": 0.287345
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.522,
+          "haPerHour": 1.045,
+          "commit": {
+            "1y": {
+              "perHour": 0.4022,
+              "haPerHour": 0.8044
+            },
+            "3y": {
+              "perHour": 0.287345,
+              "haPerHour": 0.574591
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.64,
+          "haPerHour": 11.28,
+          "commit": {
+            "1y": {
+              "perHour": 3.9096,
+              "haPerHour": 7.8192
+            },
+            "3y": {
+              "perHour": 2.649962,
+              "haPerHour": 5.299824
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.52,
+          "haPerHour": 15.04,
+          "commit": {
+            "1y": {
+              "perHour": 5.2128,
+              "haPerHour": 10.4256
+            },
+            "3y": {
+              "perHour": 3.533191,
+              "haPerHour": 7.066419
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 11.28,
+          "haPerHour": 22.56,
+          "commit": {
+            "1y": {
+              "perHour": 7.8192,
+              "haPerHour": 15.6384
+            },
+            "3y": {
+              "perHour": 5.299824,
+              "haPerHour": 10.59961
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.94,
+          "haPerHour": 1.88,
+          "commit": {
+            "1y": {
+              "perHour": 0.6516,
+              "haPerHour": 1.3032
+            },
+            "3y": {
+              "perHour": 0.441614,
+              "haPerHour": 0.883367
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.32xlarge",
+          "vcpu": 128,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 15.04,
+          "haPerHour": 30.08,
+          "commit": {
+            "1y": {
+              "perHour": 10.4256,
+              "haPerHour": 20.8512
+            },
+            "3y": {
+              "perHour": 7.066419,
+              "haPerHour": 14.132838
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.88,
+          "haPerHour": 3.76,
+          "commit": {
+            "1y": {
+              "perHour": 1.3032,
+              "haPerHour": 2.6064
+            },
+            "3y": {
+              "perHour": 0.883367,
+              "haPerHour": 1.766595
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.76,
+          "haPerHour": 7.52,
+          "commit": {
+            "1y": {
+              "perHour": 2.6064,
+              "haPerHour": 5.2128
+            },
+            "3y": {
+              "perHour": 1.766595,
+              "haPerHour": 3.533191
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.235,
+          "haPerHour": 0.47,
+          "commit": {
+            "1y": {
+              "perHour": 0.1629,
+              "haPerHour": 0.3258
+            },
+            "3y": {
+              "perHour": 0.110413,
+              "haPerHour": 0.220826
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.47,
+          "haPerHour": 0.94,
+          "commit": {
+            "1y": {
+              "perHour": 0.3258,
+              "haPerHour": 0.6516
+            },
+            "3y": {
+              "perHour": 0.220826,
+              "haPerHour": 0.441614
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 7.456,
+          "haPerHour": 14.912,
+          "commit": {
+            "1y": {
+              "perHour": 5.7412,
+              "haPerHour": 11.4824
+            },
+            "3y": {
+              "perHour": 4.100819,
+              "haPerHour": 8.201775
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 9.941,
+          "haPerHour": 19.883,
+          "commit": {
+            "1y": {
+              "perHour": 7.6549,
+              "haPerHour": 15.3099
+            },
+            "3y": {
+              "perHour": 5.467804,
+              "haPerHour": 10.935608
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 14.912,
+          "haPerHour": 29.824,
+          "commit": {
+            "1y": {
+              "perHour": 11.4824,
+              "haPerHour": 22.9648
+            },
+            "3y": {
+              "perHour": 8.201775,
+              "haPerHour": 16.403412
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.243,
+          "haPerHour": 2.485,
+          "commit": {
+            "1y": {
+              "perHour": 0.9569,
+              "haPerHour": 1.9137
+            },
+            "3y": {
+              "perHour": 0.683443,
+              "haPerHour": 1.366986
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.32xlarge",
+          "vcpu": 128,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 19.883,
+          "haPerHour": 39.766,
+          "commit": {
+            "1y": {
+              "perHour": 15.3099,
+              "haPerHour": 30.6198
+            },
+            "3y": {
+              "perHour": 10.935608,
+              "haPerHour": 21.871254
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.485,
+          "haPerHour": 4.971,
+          "commit": {
+            "1y": {
+              "perHour": 1.9137,
+              "haPerHour": 3.8275
+            },
+            "3y": {
+              "perHour": 1.366986,
+              "haPerHour": 2.733971
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 4.971,
+          "haPerHour": 9.941,
+          "commit": {
+            "1y": {
+              "perHour": 3.8275,
+              "haPerHour": 7.6549
+            },
+            "3y": {
+              "perHour": 2.733971,
+              "haPerHour": 5.467804
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.311,
+          "haPerHour": 0.621,
+          "commit": {
+            "1y": {
+              "perHour": 0.2392,
+              "haPerHour": 0.4784
+            },
+            "3y": {
+              "perHour": 0.170826,
+              "haPerHour": 0.341752
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.621,
+          "haPerHour": 1.243,
+          "commit": {
+            "1y": {
+              "perHour": 0.4784,
+              "haPerHour": 0.9569
+            },
+            "3y": {
+              "perHour": 0.341752,
+              "haPerHour": 0.683443
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 9.788,
+          "haPerHour": 19.577,
+          "commit": {
+            "1y": {
+              "perHour": 7.537,
+              "haPerHour": 15.0741
+            },
+            "3y": {
+              "perHour": 5.383581,
+              "haPerHour": 10.7672
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 13.051,
+          "haPerHour": 26.102,
+          "commit": {
+            "1y": {
+              "perHour": 10.0494,
+              "haPerHour": 20.0987
+            },
+            "3y": {
+              "perHour": 7.178179,
+              "haPerHour": 14.35622
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 19.577,
+          "haPerHour": 39.153,
+          "commit": {
+            "1y": {
+              "perHour": 15.0741,
+              "haPerHour": 30.1481
+            },
+            "3y": {
+              "perHour": 10.7672,
+              "haPerHour": 21.534399
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.631,
+          "haPerHour": 3.263,
+          "commit": {
+            "1y": {
+              "perHour": 1.2562,
+              "haPerHour": 2.5123
+            },
+            "3y": {
+              "perHour": 0.89723,
+              "haPerHour": 1.79456
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.32xlarge",
+          "vcpu": 128,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 26.102,
+          "haPerHour": 52.205,
+          "commit": {
+            "1y": {
+              "perHour": 20.0987,
+              "haPerHour": 40.1975
+            },
+            "3y": {
+              "perHour": 14.35622,
+              "haPerHour": 28.71244
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 3.263,
+          "haPerHour": 6.526,
+          "commit": {
+            "1y": {
+              "perHour": 2.5123,
+              "haPerHour": 5.0247
+            },
+            "3y": {
+              "perHour": 1.79456,
+              "haPerHour": 3.589021
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 6.526,
+          "haPerHour": 13.051,
+          "commit": {
+            "1y": {
+              "perHour": 5.0247,
+              "haPerHour": 10.0494
+            },
+            "3y": {
+              "perHour": 3.589021,
+              "haPerHour": 7.178179
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.408,
+          "haPerHour": 0.816,
+          "commit": {
+            "1y": {
+              "perHour": 0.314,
+              "haPerHour": 0.6281
+            },
+            "3y": {
+              "perHour": 0.224377,
+              "haPerHour": 0.448615
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.816,
+          "haPerHour": 1.631,
+          "commit": {
+            "1y": {
+              "perHour": 0.6281,
+              "haPerHour": 1.2562
+            },
+            "3y": {
+              "perHour": 0.448615,
+              "haPerHour": 0.89723
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 8.558,
+          "haPerHour": 17.116,
+          "commit": {
+            "1y": {
+              "perHour": 6.5895,
+              "haPerHour": 13.179
+            },
+            "3y": {
+              "perHour": 4.706787,
+              "haPerHour": 9.413611
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 11.41,
+          "haPerHour": 22.821,
+          "commit": {
+            "1y": {
+              "perHour": 8.786,
+              "haPerHour": 17.5721
+            },
+            "3y": {
+              "perHour": 6.275761,
+              "haPerHour": 12.551423
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 17.116,
+          "haPerHour": 34.231,
+          "commit": {
+            "1y": {
+              "perHour": 13.179,
+              "haPerHour": 26.3581
+            },
+            "3y": {
+              "perHour": 9.413611,
+              "haPerHour": 18.827223
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.426,
+          "haPerHour": 2.853,
+          "commit": {
+            "1y": {
+              "perHour": 1.0983,
+              "haPerHour": 2.1965
+            },
+            "3y": {
+              "perHour": 0.784437,
+              "haPerHour": 1.568975
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.32xlarge",
+          "vcpu": 128,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 22.821,
+          "haPerHour": 45.642,
+          "commit": {
+            "1y": {
+              "perHour": 17.5721,
+              "haPerHour": 35.1441
+            },
+            "3y": {
+              "perHour": 12.551423,
+              "haPerHour": 25.102984
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.853,
+          "haPerHour": 5.705,
+          "commit": {
+            "1y": {
+              "perHour": 2.1965,
+              "haPerHour": 4.393
+            },
+            "3y": {
+              "perHour": 1.568975,
+              "haPerHour": 3.13785
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 5.705,
+          "haPerHour": 11.41,
+          "commit": {
+            "1y": {
+              "perHour": 4.393,
+              "haPerHour": 8.786
+            },
+            "3y": {
+              "perHour": 3.13785,
+              "haPerHour": 6.275761
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.357,
+          "haPerHour": 0.713,
+          "commit": {
+            "1y": {
+              "perHour": 0.2746,
+              "haPerHour": 0.5491
+            },
+            "3y": {
+              "perHour": 0.196159,
+              "haPerHour": 0.392219
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.713,
+          "haPerHour": 1.426,
+          "commit": {
+            "1y": {
+              "perHour": 0.5491,
+              "haPerHour": 1.0983
+            },
+            "3y": {
+              "perHour": 0.392219,
+              "haPerHour": 0.784437
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.621,
+          "haPerHour": 11.241,
+          "commit": {
+            "1y": {
+              "perHour": 4.3279,
+              "haPerHour": 8.6558
+            },
+            "3y": {
+              "perHour": 3.091362,
+              "haPerHour": 6.182762
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.494,
+          "haPerHour": 14.988,
+          "commit": {
+            "1y": {
+              "perHour": 5.7705,
+              "haPerHour": 11.5411
+            },
+            "3y": {
+              "perHour": 4.121821,
+              "haPerHour": 8.243604
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.937,
+          "haPerHour": 1.874,
+          "commit": {
+            "1y": {
+              "perHour": 0.7213,
+              "haPerHour": 1.4426
+            },
+            "3y": {
+              "perHour": 0.51521,
+              "haPerHour": 1.030421
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.874,
+          "haPerHour": 3.747,
+          "commit": {
+            "1y": {
+              "perHour": 1.4426,
+              "haPerHour": 2.8853
+            },
+            "3y": {
+              "perHour": 1.030421,
+              "haPerHour": 2.060941
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.747,
+          "haPerHour": 7.494,
+          "commit": {
+            "1y": {
+              "perHour": 2.8853,
+              "haPerHour": 5.7705
+            },
+            "3y": {
+              "perHour": 2.060941,
+              "haPerHour": 4.121821
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.234,
+          "haPerHour": 0.468,
+          "commit": {
+            "1y": {
+              "perHour": 0.1803,
+              "haPerHour": 0.3607
+            },
+            "3y": {
+              "perHour": 0.128822,
+              "haPerHour": 0.257605
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.468,
+          "haPerHour": 0.937,
+          "commit": {
+            "1y": {
+              "perHour": 0.3607,
+              "haPerHour": 0.7213
+            },
+            "3y": {
+              "perHour": 0.257605,
+              "haPerHour": 0.51521
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.928,
+          "haPerHour": 11.856,
+          "commit": {
+            "1y": {
+              "perHour": 3.972,
+              "haPerHour": 7.944
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.904,
+          "haPerHour": 15.808,
+          "commit": {
+            "1y": {
+              "perHour": 5.296,
+              "haPerHour": 10.591
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 11.856,
+          "haPerHour": 23.712,
+          "commit": {
+            "1y": {
+              "perHour": 7.944,
+              "haPerHour": 15.887
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.988,
+          "haPerHour": 1.976,
+          "commit": {
+            "1y": {
+              "perHour": 0.662,
+              "haPerHour": 1.324
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.48xlarge",
+          "vcpu": 192,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 23.712,
+          "haPerHour": 47.424,
+          "commit": {
+            "1y": {
+              "perHour": 15.887,
+              "haPerHour": 31.774
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.976,
+          "haPerHour": 3.952,
+          "commit": {
+            "1y": {
+              "perHour": 1.324,
+              "haPerHour": 2.648
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.952,
+          "haPerHour": 7.904,
+          "commit": {
+            "1y": {
+              "perHour": 2.648,
+              "haPerHour": 5.296
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.247,
+          "haPerHour": 0.494,
+          "commit": {
+            "1y": {
+              "perHour": 0.165,
+              "haPerHour": 0.331
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.494,
+          "haPerHour": 0.988,
+          "commit": {
+            "1y": {
+              "perHour": 0.331,
+              "haPerHour": 0.662
+            }
+          }
+        },
+        {
+          "sku": "db.m8a.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 7.1592,
+          "haPerHour": 14.3184
+        },
+        {
+          "sku": "db.m8a.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 9.5456,
+          "haPerHour": 19.0912
+        },
+        {
+          "sku": "db.m8a.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 14.3184,
+          "haPerHour": 28.6368
+        },
+        {
+          "sku": "db.m8a.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.1932,
+          "haPerHour": 2.3864
+        },
+        {
+          "sku": "db.m8a.48xlarge",
+          "vcpu": 192,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 28.6368,
+          "haPerHour": 57.2736
+        },
+        {
+          "sku": "db.m8a.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.3864,
+          "haPerHour": 4.7728
+        },
+        {
+          "sku": "db.m8a.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 4.7728,
+          "haPerHour": 9.5456
+        },
+        {
+          "sku": "db.m8a.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.2983,
+          "haPerHour": 0.5966
+        },
+        {
+          "sku": "db.m8a.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.5966,
+          "haPerHour": 1.1932
+        },
+        {
+          "sku": "db.m8g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.616,
+          "haPerHour": 11.232,
+          "commit": {
+            "1y": {
+              "perHour": 3.7627,
+              "haPerHour": 7.5254
+            },
+            "3y": {
+              "perHour": 2.6395,
+              "haPerHour": 5.279
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.488,
+          "haPerHour": 14.976,
+          "commit": {
+            "1y": {
+              "perHour": 5.0169,
+              "haPerHour": 10.0339
+            },
+            "3y": {
+              "perHour": 3.5193,
+              "haPerHour": 7.0387
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.24xlarge",
+          "vcpu": 96,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 11.232,
+          "haPerHour": 22.464,
+          "commit": {
+            "1y": {
+              "perHour": 7.5254,
+              "haPerHour": 15.0508
+            },
+            "3y": {
+              "perHour": 5.279,
+              "haPerHour": 10.558
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.936,
+          "haPerHour": 1.872,
+          "commit": {
+            "1y": {
+              "perHour": 0.6271,
+              "haPerHour": 1.2542
+            },
+            "3y": {
+              "perHour": 0.4399,
+              "haPerHour": 0.8798
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.48xlarge",
+          "vcpu": 192,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 22.464,
+          "haPerHour": 44.928,
+          "commit": {
+            "1y": {
+              "perHour": 15.0508,
+              "haPerHour": 30.1017
+            },
+            "3y": {
+              "perHour": 10.558,
+              "haPerHour": 21.1161
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.872,
+          "haPerHour": 3.744,
+          "commit": {
+            "1y": {
+              "perHour": 1.2542,
+              "haPerHour": 2.5084
+            },
+            "3y": {
+              "perHour": 0.8798,
+              "haPerHour": 1.7596
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.744,
+          "haPerHour": 7.488,
+          "commit": {
+            "1y": {
+              "perHour": 2.5084,
+              "haPerHour": 5.0169
+            },
+            "3y": {
+              "perHour": 1.7596,
+              "haPerHour": 3.5193
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.234,
+          "haPerHour": 0.468,
+          "commit": {
+            "1y": {
+              "perHour": 0.1567,
+              "haPerHour": 0.3135
+            },
+            "3y": {
+              "perHour": 0.1099,
+              "haPerHour": 0.2199
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.468,
+          "haPerHour": 0.936,
+          "commit": {
+            "1y": {
+              "perHour": 0.3135,
+              "haPerHour": 0.6271
+            },
+            "3y": {
+              "perHour": 0.2199,
+              "haPerHour": 0.4399
+            }
+          }
+        },
+        {
+          "sku": "db.m8gd.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 6.6336,
+          "haPerHour": 13.2672
+        },
+        {
+          "sku": "db.m8gd.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 8.8448,
+          "haPerHour": 17.6896
+        },
+        {
+          "sku": "db.m8gd.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 13.2672,
+          "haPerHour": 26.5344
+        },
+        {
+          "sku": "db.m8gd.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.1056,
+          "haPerHour": 2.2112
+        },
+        {
+          "sku": "db.m8gd.48xlarge",
+          "vcpu": 192,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 26.5344,
+          "haPerHour": 53.0688
+        },
+        {
+          "sku": "db.m8gd.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.2112,
+          "haPerHour": 4.4224
+        },
+        {
+          "sku": "db.m8gd.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 4.4224,
+          "haPerHour": 8.8448
+        },
+        {
+          "sku": "db.m8gd.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.2764,
+          "haPerHour": 0.5528
+        },
+        {
+          "sku": "db.m8gd.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.5528,
+          "haPerHour": 1.1056
+        },
+        {
+          "sku": "db.r5.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 6.84,
+          "haPerHour": 13.68,
+          "commit": {
+            "1y": {
+              "perHour": 4.6683,
+              "haPerHour": 9.3366
+            },
+            "3y": {
+              "perHour": 3.078003,
+              "haPerHour": 6.156006
+            }
+          }
+        },
+        {
+          "sku": "db.r5.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.12,
+          "haPerHour": 18.24,
+          "commit": {
+            "1y": {
+              "perHour": 6.224,
+              "haPerHour": 12.448
+            },
+            "3y": {
+              "perHour": 4.102984,
+              "haPerHour": 8.205968
+            }
+          }
+        },
+        {
+          "sku": "db.r5.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 13.68,
+          "haPerHour": 27.36,
+          "commit": {
+            "1y": {
+              "perHour": 9.3366,
+              "haPerHour": 18.6732
+            },
+            "3y": {
+              "perHour": 6.156006,
+              "haPerHour": 12.312012
+            }
+          }
+        },
+        {
+          "sku": "db.r5.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.14,
+          "haPerHour": 2.28,
+          "commit": {
+            "1y": {
+              "perHour": 0.7781,
+              "haPerHour": 1.5561
+            },
+            "3y": {
+              "perHour": 0.513007,
+              "haPerHour": 1.026014
+            }
+          }
+        },
+        {
+          "sku": "db.r5.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.28,
+          "haPerHour": 4.56,
+          "commit": {
+            "1y": {
+              "perHour": 1.5561,
+              "haPerHour": 3.1122
+            },
+            "3y": {
+              "perHour": 1.026014,
+              "haPerHour": 2.051989
+            }
+          }
+        },
+        {
+          "sku": "db.r5.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.56,
+          "haPerHour": 9.12,
+          "commit": {
+            "1y": {
+              "perHour": 3.112,
+              "haPerHour": 6.224
+            },
+            "3y": {
+              "perHour": 2.051423,
+              "haPerHour": 4.102984
+            }
+          }
+        },
+        {
+          "sku": "db.r5.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.285,
+          "haPerHour": 0.57,
+          "commit": {
+            "1y": {
+              "perHour": 0.1945,
+              "haPerHour": 0.389
+            },
+            "3y": {
+              "perHour": 0.128217,
+              "haPerHour": 0.256534
+            }
+          }
+        },
+        {
+          "sku": "db.r5.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.57,
+          "haPerHour": 1.14,
+          "commit": {
+            "1y": {
+              "perHour": 0.389,
+              "haPerHour": 0.7781
+            },
+            "3y": {
+              "perHour": 0.256534,
+              "haPerHour": 0.513007
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 8.568,
+          "haPerHour": 17.136,
+          "commit": {
+            "1y": {
+              "perHour": 5.8295,
+              "haPerHour": 11.659
+            },
+            "3y": {
+              "perHour": 3.857781,
+              "haPerHour": 7.715563
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 11.424,
+          "haPerHour": 22.848,
+          "commit": {
+            "1y": {
+              "perHour": 7.7727,
+              "haPerHour": 15.5453
+            },
+            "3y": {
+              "perHour": 5.143642,
+              "haPerHour": 10.287383
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 17.136,
+          "haPerHour": 34.272,
+          "commit": {
+            "1y": {
+              "perHour": 11.659,
+              "haPerHour": 23.318
+            },
+            "3y": {
+              "perHour": 7.715563,
+              "haPerHour": 15.431025
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.428,
+          "haPerHour": 2.856,
+          "commit": {
+            "1y": {
+              "perHour": 0.9716,
+              "haPerHour": 1.9432
+            },
+            "3y": {
+              "perHour": 0.642961,
+              "haPerHour": 1.28596
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.856,
+          "haPerHour": 5.712,
+          "commit": {
+            "1y": {
+              "perHour": 1.9432,
+              "haPerHour": 3.8863
+            },
+            "3y": {
+              "perHour": 1.28596,
+              "haPerHour": 2.571821
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.712,
+          "haPerHour": 11.424,
+          "commit": {
+            "1y": {
+              "perHour": 3.8863,
+              "haPerHour": 7.7727
+            },
+            "3y": {
+              "perHour": 2.571821,
+              "haPerHour": 5.143642
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.357,
+          "haPerHour": 0.714,
+          "commit": {
+            "1y": {
+              "perHour": 0.2429,
+              "haPerHour": 0.4858
+            },
+            "3y": {
+              "perHour": 0.160765,
+              "haPerHour": 0.321431
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.714,
+          "haPerHour": 1.428,
+          "commit": {
+            "1y": {
+              "perHour": 0.4858,
+              "haPerHour": 0.9716
+            },
+            "3y": {
+              "perHour": 0.321431,
+              "haPerHour": 0.642961
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 8.242,
+          "haPerHour": 16.484,
+          "commit": {
+            "1y": {
+              "perHour": 6.3464,
+              "haPerHour": 12.6928
+            },
+            "3y": {
+              "perHour": 4.533191,
+              "haPerHour": 9.066343
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 10.989,
+          "haPerHour": 21.979,
+          "commit": {
+            "1y": {
+              "perHour": 8.4619,
+              "haPerHour": 16.9238
+            },
+            "3y": {
+              "perHour": 6.044208,
+              "haPerHour": 12.088416
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 16.484,
+          "haPerHour": 32.968,
+          "commit": {
+            "1y": {
+              "perHour": 12.6928,
+              "haPerHour": 25.3857
+            },
+            "3y": {
+              "perHour": 9.066343,
+              "haPerHour": 18.132624
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.374,
+          "haPerHour": 2.747,
+          "commit": {
+            "1y": {
+              "perHour": 1.0577,
+              "haPerHour": 2.1155
+            },
+            "3y": {
+              "perHour": 0.755578,
+              "haPerHour": 1.511018
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.747,
+          "haPerHour": 5.495,
+          "commit": {
+            "1y": {
+              "perHour": 2.1155,
+              "haPerHour": 4.2309
+            },
+            "3y": {
+              "perHour": 1.511018,
+              "haPerHour": 3.022135
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.495,
+          "haPerHour": 10.989,
+          "commit": {
+            "1y": {
+              "perHour": 4.2309,
+              "haPerHour": 8.4619
+            },
+            "3y": {
+              "perHour": 3.022135,
+              "haPerHour": 6.044208
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.343,
+          "haPerHour": 0.687,
+          "commit": {
+            "1y": {
+              "perHour": 0.2644,
+              "haPerHour": 0.5289
+            },
+            "3y": {
+              "perHour": 0.188844,
+              "haPerHour": 0.377789
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.687,
+          "haPerHour": 1.374,
+          "commit": {
+            "1y": {
+              "perHour": 0.5289,
+              "haPerHour": 1.0577
+            },
+            "3y": {
+              "perHour": 0.377789,
+              "haPerHour": 0.755578
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 6.122,
+          "haPerHour": 12.244,
+          "commit": {
+            "1y": {
+              "perHour": 4.1779,
+              "haPerHour": 8.3557
+            },
+            "3y": {
+              "perHour": 2.754155,
+              "haPerHour": 5.50821
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 8.162,
+          "haPerHour": 16.325,
+          "commit": {
+            "1y": {
+              "perHour": 5.5705,
+              "haPerHour": 11.141
+            },
+            "3y": {
+              "perHour": 3.672173,
+              "haPerHour": 7.344246
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.02,
+          "haPerHour": 2.041,
+          "commit": {
+            "1y": {
+              "perHour": 0.6963,
+              "haPerHour": 1.3926
+            },
+            "3y": {
+              "perHour": 0.45899,
+              "haPerHour": 0.918018
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.041,
+          "haPerHour": 4.081,
+          "commit": {
+            "1y": {
+              "perHour": 1.3926,
+              "haPerHour": 2.7852
+            },
+            "3y": {
+              "perHour": 0.918018,
+              "haPerHour": 1.836037
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.081,
+          "haPerHour": 8.162,
+          "commit": {
+            "1y": {
+              "perHour": 2.7852,
+              "haPerHour": 5.5705
+            },
+            "3y": {
+              "perHour": 1.836037,
+              "haPerHour": 3.672173
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.255,
+          "haPerHour": 0.51,
+          "commit": {
+            "1y": {
+              "perHour": 0.1741,
+              "haPerHour": 0.3482
+            },
+            "3y": {
+              "perHour": 0.114782,
+              "haPerHour": 0.229564
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.51,
+          "haPerHour": 1.02,
+          "commit": {
+            "1y": {
+              "perHour": 0.3482,
+              "haPerHour": 0.6963
+            },
+            "3y": {
+              "perHour": 0.229564,
+              "haPerHour": 0.45899
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.407,
+          "haPerHour": 14.814,
+          "commit": {
+            "1y": {
+              "perHour": 5.7036,
+              "haPerHour": 11.4071
+            },
+            "3y": {
+              "perHour": 4.073986,
+              "haPerHour": 8.147973
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.876,
+          "haPerHour": 19.753,
+          "commit": {
+            "1y": {
+              "perHour": 7.6048,
+              "haPerHour": 15.2095
+            },
+            "3y": {
+              "perHour": 5.431982,
+              "haPerHour": 10.863963
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.235,
+          "haPerHour": 2.469,
+          "commit": {
+            "1y": {
+              "perHour": 0.9506,
+              "haPerHour": 1.9012
+            },
+            "3y": {
+              "perHour": 0.678998,
+              "haPerHour": 1.357995
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.469,
+          "haPerHour": 4.938,
+          "commit": {
+            "1y": {
+              "perHour": 1.9012,
+              "haPerHour": 3.8024
+            },
+            "3y": {
+              "perHour": 1.357995,
+              "haPerHour": 2.715991
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.938,
+          "haPerHour": 9.876,
+          "commit": {
+            "1y": {
+              "perHour": 3.8024,
+              "haPerHour": 7.6048
+            },
+            "3y": {
+              "perHour": 2.715991,
+              "haPerHour": 5.431982
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.309,
+          "haPerHour": 0.617,
+          "commit": {
+            "1y": {
+              "perHour": 0.2376,
+              "haPerHour": 0.4753
+            },
+            "3y": {
+              "perHour": 0.169793,
+              "haPerHour": 0.339449
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.617,
+          "haPerHour": 1.235,
+          "commit": {
+            "1y": {
+              "perHour": 0.4753,
+              "haPerHour": 0.9506
+            },
+            "3y": {
+              "perHour": 0.339449,
+              "haPerHour": 0.678998
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 6.84,
+          "haPerHour": 13.68,
+          "commit": {
+            "1y": {
+              "perHour": 4.668,
+              "haPerHour": 9.336
+            },
+            "3y": {
+              "perHour": 3.077223,
+              "haPerHour": 6.154407
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.12,
+          "haPerHour": 18.24,
+          "commit": {
+            "1y": {
+              "perHour": 6.224,
+              "haPerHour": 12.448
+            },
+            "3y": {
+              "perHour": 4.102984,
+              "haPerHour": 8.205968
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 13.68,
+          "haPerHour": 27.36,
+          "commit": {
+            "1y": {
+              "perHour": 9.336,
+              "haPerHour": 18.672
+            },
+            "3y": {
+              "perHour": 6.154407,
+              "haPerHour": 12.308814
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.14,
+          "haPerHour": 2.28,
+          "commit": {
+            "1y": {
+              "perHour": 0.778,
+              "haPerHour": 1.556
+            },
+            "3y": {
+              "perHour": 0.512831,
+              "haPerHour": 1.025761
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.32xlarge",
+          "vcpu": 128,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 18.24,
+          "haPerHour": 36.48,
+          "commit": {
+            "1y": {
+              "perHour": 12.448,
+              "haPerHour": 24.896
+            },
+            "3y": {
+              "perHour": 8.205968,
+              "haPerHour": 16.411798
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.28,
+          "haPerHour": 4.56,
+          "commit": {
+            "1y": {
+              "perHour": 1.556,
+              "haPerHour": 3.112
+            },
+            "3y": {
+              "perHour": 1.025761,
+              "haPerHour": 2.051423
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.56,
+          "haPerHour": 9.12,
+          "commit": {
+            "1y": {
+              "perHour": 3.112,
+              "haPerHour": 6.224
+            },
+            "3y": {
+              "perHour": 2.051423,
+              "haPerHour": 4.102984
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.285,
+          "haPerHour": 0.57,
+          "commit": {
+            "1y": {
+              "perHour": 0.1945,
+              "haPerHour": 0.389
+            },
+            "3y": {
+              "perHour": 0.128217,
+              "haPerHour": 0.256434
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.57,
+          "haPerHour": 1.14,
+          "commit": {
+            "1y": {
+              "perHour": 0.389,
+              "haPerHour": 0.778
+            },
+            "3y": {
+              "perHour": 0.256434,
+              "haPerHour": 0.512831
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 8.584,
+          "haPerHour": 17.167,
+          "commit": {
+            "1y": {
+              "perHour": 6.6093,
+              "haPerHour": 13.2186
+            },
+            "3y": {
+              "perHour": 4.720964,
+              "haPerHour": 9.441828
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 11.445,
+          "haPerHour": 22.889,
+          "commit": {
+            "1y": {
+              "perHour": 8.8124,
+              "haPerHour": 17.6248
+            },
+            "3y": {
+              "perHour": 6.294598,
+              "haPerHour": 12.589159
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 17.167,
+          "haPerHour": 34.334,
+          "commit": {
+            "1y": {
+              "perHour": 13.2186,
+              "haPerHour": 26.4372
+            },
+            "3y": {
+              "perHour": 9.441828,
+              "haPerHour": 18.883757
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.431,
+          "haPerHour": 2.861,
+          "commit": {
+            "1y": {
+              "perHour": 1.1015,
+              "haPerHour": 2.2031
+            },
+            "3y": {
+              "perHour": 0.786817,
+              "haPerHour": 1.573634
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.32xlarge",
+          "vcpu": 128,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 22.889,
+          "haPerHour": 45.779,
+          "commit": {
+            "1y": {
+              "perHour": 17.6248,
+              "haPerHour": 35.2496
+            },
+            "3y": {
+              "perHour": 12.589159,
+              "haPerHour": 25.178255
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.861,
+          "haPerHour": 5.722,
+          "commit": {
+            "1y": {
+              "perHour": 2.2031,
+              "haPerHour": 4.4062
+            },
+            "3y": {
+              "perHour": 1.573634,
+              "haPerHour": 3.14723
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.722,
+          "haPerHour": 11.445,
+          "commit": {
+            "1y": {
+              "perHour": 4.4062,
+              "haPerHour": 8.8124
+            },
+            "3y": {
+              "perHour": 3.14723,
+              "haPerHour": 6.294598
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.358,
+          "haPerHour": 0.715,
+          "commit": {
+            "1y": {
+              "perHour": 0.2754,
+              "haPerHour": 0.5508
+            },
+            "3y": {
+              "perHour": 0.196764,
+              "haPerHour": 0.393389
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.715,
+          "haPerHour": 1.431,
+          "commit": {
+            "1y": {
+              "perHour": 0.5508,
+              "haPerHour": 1.1015
+            },
+            "3y": {
+              "perHour": 0.393389,
+              "haPerHour": 0.786817
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 11.25,
+          "haPerHour": 22.501,
+          "commit": {
+            "1y": {
+              "perHour": 8.6628,
+              "haPerHour": 17.3257
+            },
+            "3y": {
+              "perHour": 6.187774,
+              "haPerHour": 12.375447
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 15.001,
+          "haPerHour": 30.001,
+          "commit": {
+            "1y": {
+              "perHour": 11.5504,
+              "haPerHour": 23.1009
+            },
+            "3y": {
+              "perHour": 8.250352,
+              "haPerHour": 16.500604
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 22.501,
+          "haPerHour": 45.002,
+          "commit": {
+            "1y": {
+              "perHour": 17.3257,
+              "haPerHour": 34.6513
+            },
+            "3y": {
+              "perHour": 12.375447,
+              "haPerHour": 24.750957
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.875,
+          "haPerHour": 3.75,
+          "commit": {
+            "1y": {
+              "perHour": 1.4438,
+              "haPerHour": 2.8876
+            },
+            "3y": {
+              "perHour": 1.031239,
+              "haPerHour": 2.062579
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.32xlarge",
+          "vcpu": 128,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 30.001,
+          "haPerHour": 60.002,
+          "commit": {
+            "1y": {
+              "perHour": 23.1009,
+              "haPerHour": 46.2018
+            },
+            "3y": {
+              "perHour": 16.500604,
+              "haPerHour": 33.001247
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.75,
+          "haPerHour": 7.5,
+          "commit": {
+            "1y": {
+              "perHour": 2.8876,
+              "haPerHour": 5.7752
+            },
+            "3y": {
+              "perHour": 2.062579,
+              "haPerHour": 4.125195
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.5,
+          "haPerHour": 15.001,
+          "commit": {
+            "1y": {
+              "perHour": 5.7752,
+              "haPerHour": 11.5504
+            },
+            "3y": {
+              "perHour": 4.125195,
+              "haPerHour": 8.250352
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.469,
+          "haPerHour": 0.938,
+          "commit": {
+            "1y": {
+              "perHour": 0.361,
+              "haPerHour": 0.7219
+            },
+            "3y": {
+              "perHour": 0.257819,
+              "haPerHour": 0.515639
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.938,
+          "haPerHour": 1.875,
+          "commit": {
+            "1y": {
+              "perHour": 0.7219,
+              "haPerHour": 1.4438
+            },
+            "3y": {
+              "perHour": 0.515639,
+              "haPerHour": 1.031239
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 10.031,
+          "haPerHour": 20.062,
+          "commit": {
+            "1y": {
+              "perHour": 7.724,
+              "haPerHour": 15.4481
+            },
+            "3y": {
+              "perHour": 5.5172,
+              "haPerHour": 11.034361
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 13.375,
+          "haPerHour": 26.75,
+          "commit": {
+            "1y": {
+              "perHour": 10.2987,
+              "haPerHour": 20.5975
+            },
+            "3y": {
+              "perHour": 7.35622,
+              "haPerHour": 14.71244
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 20.062,
+          "haPerHour": 40.125,
+          "commit": {
+            "1y": {
+              "perHour": 15.4481,
+              "haPerHour": 30.8962
+            },
+            "3y": {
+              "perHour": 11.034361,
+              "haPerHour": 22.068761
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.672,
+          "haPerHour": 3.344,
+          "commit": {
+            "1y": {
+              "perHour": 1.2873,
+              "haPerHour": 2.5747
+            },
+            "3y": {
+              "perHour": 0.919579,
+              "haPerHour": 1.839021
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.32xlarge",
+          "vcpu": 128,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 26.75,
+          "haPerHour": 53.5,
+          "commit": {
+            "1y": {
+              "perHour": 20.5975,
+              "haPerHour": 41.1949
+            },
+            "3y": {
+              "perHour": 14.71244,
+              "haPerHour": 29.424981
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.344,
+          "haPerHour": 6.687,
+          "commit": {
+            "1y": {
+              "perHour": 2.5747,
+              "haPerHour": 5.1494
+            },
+            "3y": {
+              "perHour": 1.839021,
+              "haPerHour": 3.678141
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 6.687,
+          "haPerHour": 13.375,
+          "commit": {
+            "1y": {
+              "perHour": 5.1494,
+              "haPerHour": 10.2987
+            },
+            "3y": {
+              "perHour": 3.678141,
+              "haPerHour": 7.35622
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.418,
+          "haPerHour": 0.836,
+          "commit": {
+            "1y": {
+              "perHour": 0.3218,
+              "haPerHour": 0.6437
+            },
+            "3y": {
+              "perHour": 0.229854,
+              "haPerHour": 0.459771
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.836,
+          "haPerHour": 1.672,
+          "commit": {
+            "1y": {
+              "perHour": 0.6437,
+              "haPerHour": 1.2873
+            },
+            "3y": {
+              "perHour": 0.459771,
+              "haPerHour": 0.919579
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 6.885,
+          "haPerHour": 13.77,
+          "commit": {
+            "1y": {
+              "perHour": 5.3015,
+              "haPerHour": 10.6029
+            },
+            "3y": {
+              "perHour": 3.786779,
+              "haPerHour": 7.573558
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.18,
+          "haPerHour": 18.36,
+          "commit": {
+            "1y": {
+              "perHour": 7.0686,
+              "haPerHour": 14.1372
+            },
+            "3y": {
+              "perHour": 5.049005,
+              "haPerHour": 10.098011
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.148,
+          "haPerHour": 2.295,
+          "commit": {
+            "1y": {
+              "perHour": 0.8836,
+              "haPerHour": 1.7672
+            },
+            "3y": {
+              "perHour": 0.631163,
+              "haPerHour": 1.262226
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.295,
+          "haPerHour": 4.59,
+          "commit": {
+            "1y": {
+              "perHour": 1.7672,
+              "haPerHour": 3.5343
+            },
+            "3y": {
+              "perHour": 1.262226,
+              "haPerHour": 2.524553
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.59,
+          "haPerHour": 9.18,
+          "commit": {
+            "1y": {
+              "perHour": 3.5343,
+              "haPerHour": 7.0686
+            },
+            "3y": {
+              "perHour": 2.524553,
+              "haPerHour": 5.049005
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.287,
+          "haPerHour": 0.574,
+          "commit": {
+            "1y": {
+              "perHour": 0.2209,
+              "haPerHour": 0.4418
+            },
+            "3y": {
+              "perHour": 0.157781,
+              "haPerHour": 0.315563
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.574,
+          "haPerHour": 1.148,
+          "commit": {
+            "1y": {
+              "perHour": 0.4418,
+              "haPerHour": 0.8836
+            },
+            "3y": {
+              "perHour": 0.315563,
+              "haPerHour": 0.631163
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.2,
+          "haPerHour": 14.4,
+          "commit": {
+            "1y": {
+              "perHour": 4.824,
+              "haPerHour": 9.648
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.6,
+          "haPerHour": 19.2,
+          "commit": {
+            "1y": {
+              "perHour": 6.432,
+              "haPerHour": 12.864
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 14.4,
+          "haPerHour": 28.8,
+          "commit": {
+            "1y": {
+              "perHour": 9.648,
+              "haPerHour": 19.296
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.2,
+          "haPerHour": 2.4,
+          "commit": {
+            "1y": {
+              "perHour": 0.804,
+              "haPerHour": 1.608
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.48xlarge",
+          "vcpu": 192,
+          "ramGb": 1536,
+          "burstable": false,
+          "perHour": 28.8,
+          "haPerHour": 57.6,
+          "commit": {
+            "1y": {
+              "perHour": 19.296,
+              "haPerHour": 38.592
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.4,
+          "haPerHour": 4.8,
+          "commit": {
+            "1y": {
+              "perHour": 1.608,
+              "haPerHour": 3.216
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.8,
+          "haPerHour": 9.6,
+          "commit": {
+            "1y": {
+              "perHour": 3.216,
+              "haPerHour": 6.432
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.3,
+          "haPerHour": 0.6,
+          "commit": {
+            "1y": {
+              "perHour": 0.201,
+              "haPerHour": 0.402
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.6,
+          "haPerHour": 1.2,
+          "commit": {
+            "1y": {
+              "perHour": 0.402,
+              "haPerHour": 0.804
+            }
+          }
+        },
+        {
+          "sku": "db.r8a.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 8.6952,
+          "haPerHour": 17.3904
+        },
+        {
+          "sku": "db.r8a.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 11.5936,
+          "haPerHour": 23.1872
+        },
+        {
+          "sku": "db.r8a.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 17.3904,
+          "haPerHour": 34.7808
+        },
+        {
+          "sku": "db.r8a.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.4492,
+          "haPerHour": 2.8984
+        },
+        {
+          "sku": "db.r8a.48xlarge",
+          "vcpu": 192,
+          "ramGb": 1536,
+          "burstable": false,
+          "perHour": 34.7808,
+          "haPerHour": 69.5616
+        },
+        {
+          "sku": "db.r8a.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.8984,
+          "haPerHour": 5.7968
+        },
+        {
+          "sku": "db.r8a.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.7968,
+          "haPerHour": 11.5936
+        },
+        {
+          "sku": "db.r8a.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.3623,
+          "haPerHour": 0.7246
+        },
+        {
+          "sku": "db.r8a.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.7246,
+          "haPerHour": 1.4492
+        },
+        {
+          "sku": "db.r8g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 6.888,
+          "haPerHour": 13.776,
+          "commit": {
+            "1y": {
+              "perHour": 4.615,
+              "haPerHour": 9.23
+            },
+            "3y": {
+              "perHour": 3.2373,
+              "haPerHour": 6.4747
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.184,
+          "haPerHour": 18.368,
+          "commit": {
+            "1y": {
+              "perHour": 6.153,
+              "haPerHour": 12.307
+            },
+            "3y": {
+              "perHour": 4.3164,
+              "haPerHour": 8.6329
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 13.776,
+          "haPerHour": 27.552,
+          "commit": {
+            "1y": {
+              "perHour": 9.23,
+              "haPerHour": 18.46
+            },
+            "3y": {
+              "perHour": 6.4747,
+              "haPerHour": 12.9494
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.148,
+          "haPerHour": 2.296,
+          "commit": {
+            "1y": {
+              "perHour": 0.769,
+              "haPerHour": 1.538
+            },
+            "3y": {
+              "perHour": 0.5395,
+              "haPerHour": 1.0791
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.48xlarge",
+          "vcpu": 192,
+          "ramGb": 1536,
+          "burstable": false,
+          "perHour": 27.552,
+          "haPerHour": 55.104,
+          "commit": {
+            "1y": {
+              "perHour": 18.46,
+              "haPerHour": 36.92
+            },
+            "3y": {
+              "perHour": 12.9494,
+              "haPerHour": 25.8988
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.296,
+          "haPerHour": 4.592,
+          "commit": {
+            "1y": {
+              "perHour": 1.538,
+              "haPerHour": 3.077
+            },
+            "3y": {
+              "perHour": 1.0791,
+              "haPerHour": 2.1582
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.592,
+          "haPerHour": 9.184,
+          "commit": {
+            "1y": {
+              "perHour": 3.077,
+              "haPerHour": 6.153
+            },
+            "3y": {
+              "perHour": 2.1582,
+              "haPerHour": 4.3164
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.287,
+          "haPerHour": 0.574,
+          "commit": {
+            "1y": {
+              "perHour": 0.192,
+              "haPerHour": 0.385
+            },
+            "3y": {
+              "perHour": 0.1348,
+              "haPerHour": 0.2697
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.574,
+          "haPerHour": 1.148,
+          "commit": {
+            "1y": {
+              "perHour": 0.385,
+              "haPerHour": 0.769
+            },
+            "3y": {
+              "perHour": 0.2697,
+              "haPerHour": 0.5395
+            }
+          }
+        },
+        {
+          "sku": "db.r8gd.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.884,
+          "haPerHour": 15.768
+        },
+        {
+          "sku": "db.r8gd.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 10.512,
+          "haPerHour": 21.024
+        },
+        {
+          "sku": "db.r8gd.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 15.768,
+          "haPerHour": 31.536
+        },
+        {
+          "sku": "db.r8gd.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.314,
+          "haPerHour": 2.628
+        },
+        {
+          "sku": "db.r8gd.48xlarge",
+          "vcpu": 192,
+          "ramGb": 1536,
+          "burstable": false,
+          "perHour": 31.536,
+          "haPerHour": 63.072
+        },
+        {
+          "sku": "db.r8gd.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.628,
+          "haPerHour": 5.256
+        },
+        {
+          "sku": "db.r8gd.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.256,
+          "haPerHour": 10.512
+        },
+        {
+          "sku": "db.r8gd.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.3285,
+          "haPerHour": 0.657
+        },
+        {
+          "sku": "db.r8gd.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.657,
+          "haPerHour": 1.314
+        },
+        {
+          "sku": "db.t3.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": true,
+          "perHour": 0.832,
+          "haPerHour": 1.664,
+          "commit": {
+            "1y": {
+              "perHour": 0.6465,
+              "haPerHour": 1.2929
+            },
+            "3y": {
+              "perHour": 0.415991,
+              "haPerHour": 0.831982
+            }
+          }
+        },
+        {
+          "sku": "db.t3.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": true,
+          "perHour": 0.208,
+          "haPerHour": 0.416,
+          "commit": {
+            "1y": {
+              "perHour": 0.1616,
+              "haPerHour": 0.3232
+            },
+            "3y": {
+              "perHour": 0.104017,
+              "haPerHour": 0.207995
+            }
+          }
+        },
+        {
+          "sku": "db.t3.medium",
+          "vcpu": 2,
+          "ramGb": 4,
+          "burstable": true,
+          "perHour": 0.104,
+          "haPerHour": 0.208,
+          "commit": {
+            "1y": {
+              "perHour": 0.0808,
+              "haPerHour": 0.1616
+            },
+            "3y": {
+              "perHour": 0.051989,
+              "haPerHour": 0.104017
+            }
+          }
+        },
+        {
+          "sku": "db.t3.micro",
+          "vcpu": 2,
+          "ramGb": 1,
+          "burstable": true,
+          "perHour": 0.026,
+          "haPerHour": 0.052,
+          "commit": {
+            "1y": {
+              "perHour": 0.0202,
+              "haPerHour": 0.0404
+            },
+            "3y": {
+              "perHour": 0.013007,
+              "haPerHour": 0.026014
+            }
+          }
+        },
+        {
+          "sku": "db.t3.small",
+          "vcpu": 2,
+          "ramGb": 2,
+          "burstable": true,
+          "perHour": 0.052,
+          "haPerHour": 0.104,
+          "commit": {
+            "1y": {
+              "perHour": 0.0404,
+              "haPerHour": 0.0808
+            },
+            "3y": {
+              "perHour": 0.026014,
+              "haPerHour": 0.051989
+            }
+          }
+        },
+        {
+          "sku": "db.t3.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": true,
+          "perHour": 0.416,
+          "haPerHour": 0.832,
+          "commit": {
+            "1y": {
+              "perHour": 0.3232,
+              "haPerHour": 0.6465
+            },
+            "3y": {
+              "perHour": 0.207995,
+              "haPerHour": 0.415991
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": true,
+          "perHour": 0.806,
+          "haPerHour": 1.613,
+          "commit": {
+            "1y": {
+              "perHour": 0.629,
+              "haPerHour": 1.258
+            },
+            "3y": {
+              "perHour": 0.403198,
+              "haPerHour": 0.806396
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": true,
+          "perHour": 0.202,
+          "haPerHour": 0.403,
+          "commit": {
+            "1y": {
+              "perHour": 0.1572,
+              "haPerHour": 0.3145
+            },
+            "3y": {
+              "perHour": 0.100819,
+              "haPerHour": 0.201599
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.medium",
+          "vcpu": 2,
+          "ramGb": 4,
+          "burstable": true,
+          "perHour": 0.101,
+          "haPerHour": 0.202,
+          "commit": {
+            "1y": {
+              "perHour": 0.0786,
+              "haPerHour": 0.1572
+            },
+            "3y": {
+              "perHour": 0.05039,
+              "haPerHour": 0.100819
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.micro",
+          "vcpu": 2,
+          "ramGb": 1,
+          "burstable": true,
+          "perHour": 0.025,
+          "haPerHour": 0.05,
+          "commit": {
+            "1y": {
+              "perHour": 0.0197,
+              "haPerHour": 0.0393
+            },
+            "3y": {
+              "perHour": 0.012617,
+              "haPerHour": 0.025195
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.small",
+          "vcpu": 2,
+          "ramGb": 2,
+          "burstable": true,
+          "perHour": 0.05,
+          "haPerHour": 0.101,
+          "commit": {
+            "1y": {
+              "perHour": 0.0393,
+              "haPerHour": 0.0786
+            },
+            "3y": {
+              "perHour": 0.025195,
+              "haPerHour": 0.05039
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": true,
+          "perHour": 0.403,
+          "haPerHour": 0.806,
+          "commit": {
+            "1y": {
+              "perHour": 0.3145,
+              "haPerHour": 0.629
+            },
+            "3y": {
+              "perHour": 0.201599,
+              "haPerHour": 0.403198
+            }
+          }
+        }
+      ],
+      "custom": null,
+      "storageGbMonth": 0.138,
+      "haStorageGbMonth": 0.276
+    },
+    "postgres": {
+      "instances": [
+        {
+          "sku": "db.m5.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.928,
+          "haPerHour": 11.856,
+          "commit": {
+            "1y": {
+              "perHour": 4.1081,
+              "haPerHour": 8.2162
+            },
+            "3y": {
+              "perHour": 2.786175,
+              "haPerHour": 5.572349
+            }
+          }
+        },
+        {
+          "sku": "db.m5.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.904,
+          "haPerHour": 15.808,
+          "commit": {
+            "1y": {
+              "perHour": 5.4784,
+              "haPerHour": 10.9568
+            },
+            "3y": {
+              "perHour": 3.712969,
+              "haPerHour": 7.425838
+            }
+          }
+        },
+        {
+          "sku": "db.m5.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 11.856,
+          "haPerHour": 23.712,
+          "commit": {
+            "1y": {
+              "perHour": 8.2162,
+              "haPerHour": 16.4324
+            },
+            "3y": {
+              "perHour": 5.572349,
+              "haPerHour": 11.144636
+            }
+          }
+        },
+        {
+          "sku": "db.m5.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.988,
+          "haPerHour": 1.976,
+          "commit": {
+            "1y": {
+              "perHour": 0.6847,
+              "haPerHour": 1.3694
+            },
+            "3y": {
+              "perHour": 0.464392,
+              "haPerHour": 0.928746
+            }
+          }
+        },
+        {
+          "sku": "db.m5.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.976,
+          "haPerHour": 3.952,
+          "commit": {
+            "1y": {
+              "perHour": 1.3694,
+              "haPerHour": 2.7387
+            },
+            "3y": {
+              "perHour": 0.928746,
+              "haPerHour": 1.857429
+            }
+          }
+        },
+        {
+          "sku": "db.m5.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.952,
+          "haPerHour": 7.904,
+          "commit": {
+            "1y": {
+              "perHour": 2.7392,
+              "haPerHour": 5.4784
+            },
+            "3y": {
+              "perHour": 1.856434,
+              "haPerHour": 3.712969
+            }
+          }
+        },
+        {
+          "sku": "db.m5.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.247,
+          "haPerHour": 0.494,
+          "commit": {
+            "1y": {
+              "perHour": 0.1712,
+              "haPerHour": 0.3423
+            },
+            "3y": {
+              "perHour": 0.116029,
+              "haPerHour": 0.232196
+            }
+          }
+        },
+        {
+          "sku": "db.m5.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.494,
+          "haPerHour": 0.988,
+          "commit": {
+            "1y": {
+              "perHour": 0.3423,
+              "haPerHour": 0.6847
+            },
+            "3y": {
+              "perHour": 0.232196,
+              "haPerHour": 0.464392
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 6.98,
+          "haPerHour": 13.959,
+          "commit": {
+            "1y": {
+              "perHour": 5.3744,
+              "haPerHour": 10.7488
+            },
+            "3y": {
+              "perHour": 3.838844,
+              "haPerHour": 7.677751
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 9.306,
+          "haPerHour": 18.613,
+          "commit": {
+            "1y": {
+              "perHour": 7.1659,
+              "haPerHour": 14.3317
+            },
+            "3y": {
+              "perHour": 5.118447,
+              "haPerHour": 10.236993
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 13.959,
+          "haPerHour": 27.919,
+          "commit": {
+            "1y": {
+              "perHour": 10.7488,
+              "haPerHour": 21.4976
+            },
+            "3y": {
+              "perHour": 7.677751,
+              "haPerHour": 15.355402
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.163,
+          "haPerHour": 2.327,
+          "commit": {
+            "1y": {
+              "perHour": 0.8957,
+              "haPerHour": 1.7915
+            },
+            "3y": {
+              "perHour": 0.639801,
+              "haPerHour": 1.279602
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.327,
+          "haPerHour": 4.653,
+          "commit": {
+            "1y": {
+              "perHour": 1.7915,
+              "haPerHour": 3.5829
+            },
+            "3y": {
+              "perHour": 1.279602,
+              "haPerHour": 2.559204
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 4.653,
+          "haPerHour": 9.306,
+          "commit": {
+            "1y": {
+              "perHour": 3.5829,
+              "haPerHour": 7.1659
+            },
+            "3y": {
+              "perHour": 2.559204,
+              "haPerHour": 5.118447
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.291,
+          "haPerHour": 0.582,
+          "commit": {
+            "1y": {
+              "perHour": 0.2239,
+              "haPerHour": 0.4479
+            },
+            "3y": {
+              "perHour": 0.159985,
+              "haPerHour": 0.31997
+            }
+          }
+        },
+        {
+          "sku": "db.m5d.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.582,
+          "haPerHour": 1.163,
+          "commit": {
+            "1y": {
+              "perHour": 0.4479,
+              "haPerHour": 0.8957
+            },
+            "3y": {
+              "perHour": 0.31997,
+              "haPerHour": 0.639801
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.295,
+          "haPerHour": 10.59,
+          "commit": {
+            "1y": {
+              "perHour": 3.6702,
+              "haPerHour": 7.3404
+            },
+            "3y": {
+              "perHour": 2.487421,
+              "haPerHour": 4.974943
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.06,
+          "haPerHour": 14.121,
+          "commit": {
+            "1y": {
+              "perHour": 4.8936,
+              "haPerHour": 9.7873
+            },
+            "3y": {
+              "perHour": 3.316595,
+              "haPerHour": 6.633191
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.883,
+          "haPerHour": 1.765,
+          "commit": {
+            "1y": {
+              "perHour": 0.6117,
+              "haPerHour": 1.2234
+            },
+            "3y": {
+              "perHour": 0.414606,
+              "haPerHour": 0.829174
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.765,
+          "haPerHour": 3.53,
+          "commit": {
+            "1y": {
+              "perHour": 1.2234,
+              "haPerHour": 2.4468
+            },
+            "3y": {
+              "perHour": 0.829174,
+              "haPerHour": 1.658348
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.53,
+          "haPerHour": 7.06,
+          "commit": {
+            "1y": {
+              "perHour": 2.4468,
+              "haPerHour": 4.8936
+            },
+            "3y": {
+              "perHour": 1.658348,
+              "haPerHour": 3.316595
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.221,
+          "haPerHour": 0.441,
+          "commit": {
+            "1y": {
+              "perHour": 0.1529,
+              "haPerHour": 0.3059
+            },
+            "3y": {
+              "perHour": 0.103626,
+              "haPerHour": 0.207253
+            }
+          }
+        },
+        {
+          "sku": "db.m6g.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.441,
+          "haPerHour": 0.883,
+          "commit": {
+            "1y": {
+              "perHour": 0.3059,
+              "haPerHour": 0.6117
+            },
+            "3y": {
+              "perHour": 0.207253,
+              "haPerHour": 0.414606
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 6.268,
+          "haPerHour": 12.537,
+          "commit": {
+            "1y": {
+              "perHour": 4.8266,
+              "haPerHour": 9.6533
+            },
+            "3y": {
+              "perHour": 3.447582,
+              "haPerHour": 6.895203
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 8.358,
+          "haPerHour": 16.716,
+          "commit": {
+            "1y": {
+              "perHour": 6.4355,
+              "haPerHour": 12.871
+            },
+            "3y": {
+              "perHour": 4.596802,
+              "haPerHour": 9.193604
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.045,
+          "haPerHour": 2.089,
+          "commit": {
+            "1y": {
+              "perHour": 0.8044,
+              "haPerHour": 1.6089
+            },
+            "3y": {
+              "perHour": 0.574591,
+              "haPerHour": 1.149181
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.089,
+          "haPerHour": 4.179,
+          "commit": {
+            "1y": {
+              "perHour": 1.6089,
+              "haPerHour": 3.2178
+            },
+            "3y": {
+              "perHour": 1.149181,
+              "haPerHour": 2.298401
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 4.179,
+          "haPerHour": 8.358,
+          "commit": {
+            "1y": {
+              "perHour": 3.2178,
+              "haPerHour": 6.4355
+            },
+            "3y": {
+              "perHour": 2.298401,
+              "haPerHour": 4.596802
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.261,
+          "haPerHour": 0.522,
+          "commit": {
+            "1y": {
+              "perHour": 0.2011,
+              "haPerHour": 0.4022
+            },
+            "3y": {
+              "perHour": 0.143642,
+              "haPerHour": 0.287345
+            }
+          }
+        },
+        {
+          "sku": "db.m6gd.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.522,
+          "haPerHour": 1.045,
+          "commit": {
+            "1y": {
+              "perHour": 0.4022,
+              "haPerHour": 0.8044
+            },
+            "3y": {
+              "perHour": 0.287345,
+              "haPerHour": 0.574591
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.928,
+          "haPerHour": 11.856,
+          "commit": {
+            "1y": {
+              "perHour": 4.1088,
+              "haPerHour": 8.2176
+            },
+            "3y": {
+              "perHour": 2.784652,
+              "haPerHour": 5.569403
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.904,
+          "haPerHour": 15.808,
+          "commit": {
+            "1y": {
+              "perHour": 5.4784,
+              "haPerHour": 10.9568
+            },
+            "3y": {
+              "perHour": 3.712969,
+              "haPerHour": 7.425838
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 11.856,
+          "haPerHour": 23.712,
+          "commit": {
+            "1y": {
+              "perHour": 8.2176,
+              "haPerHour": 16.4352
+            },
+            "3y": {
+              "perHour": 5.569403,
+              "haPerHour": 11.138806
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.988,
+          "haPerHour": 1.976,
+          "commit": {
+            "1y": {
+              "perHour": 0.6848,
+              "haPerHour": 1.3696
+            },
+            "3y": {
+              "perHour": 0.46414,
+              "haPerHour": 0.928217
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.32xlarge",
+          "vcpu": 128,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 15.808,
+          "haPerHour": 31.616,
+          "commit": {
+            "1y": {
+              "perHour": 10.9568,
+              "haPerHour": 21.9136
+            },
+            "3y": {
+              "perHour": 7.425838,
+              "haPerHour": 14.851737
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.976,
+          "haPerHour": 3.952,
+          "commit": {
+            "1y": {
+              "perHour": 1.3696,
+              "haPerHour": 2.7392
+            },
+            "3y": {
+              "perHour": 0.928217,
+              "haPerHour": 1.856434
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.952,
+          "haPerHour": 7.904,
+          "commit": {
+            "1y": {
+              "perHour": 2.7392,
+              "haPerHour": 5.4784
+            },
+            "3y": {
+              "perHour": 1.856434,
+              "haPerHour": 3.712969
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.247,
+          "haPerHour": 0.494,
+          "commit": {
+            "1y": {
+              "perHour": 0.1712,
+              "haPerHour": 0.3424
+            },
+            "3y": {
+              "perHour": 0.116029,
+              "haPerHour": 0.23202
+            }
+          }
+        },
+        {
+          "sku": "db.m6i.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.494,
+          "haPerHour": 0.988,
+          "commit": {
+            "1y": {
+              "perHour": 0.3424,
+              "haPerHour": 0.6848
+            },
+            "3y": {
+              "perHour": 0.23202,
+              "haPerHour": 0.46414
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 7.456,
+          "haPerHour": 14.912,
+          "commit": {
+            "1y": {
+              "perHour": 5.7412,
+              "haPerHour": 11.4824
+            },
+            "3y": {
+              "perHour": 4.100819,
+              "haPerHour": 8.201775
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 9.941,
+          "haPerHour": 19.883,
+          "commit": {
+            "1y": {
+              "perHour": 7.6549,
+              "haPerHour": 15.3099
+            },
+            "3y": {
+              "perHour": 5.467804,
+              "haPerHour": 10.935608
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 14.912,
+          "haPerHour": 29.824,
+          "commit": {
+            "1y": {
+              "perHour": 11.4824,
+              "haPerHour": 22.9648
+            },
+            "3y": {
+              "perHour": 8.201775,
+              "haPerHour": 16.403412
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.243,
+          "haPerHour": 2.485,
+          "commit": {
+            "1y": {
+              "perHour": 0.9569,
+              "haPerHour": 1.9137
+            },
+            "3y": {
+              "perHour": 0.683443,
+              "haPerHour": 1.366986
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.32xlarge",
+          "vcpu": 128,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 19.883,
+          "haPerHour": 39.766,
+          "commit": {
+            "1y": {
+              "perHour": 15.3099,
+              "haPerHour": 30.6198
+            },
+            "3y": {
+              "perHour": 10.935608,
+              "haPerHour": 21.871254
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.485,
+          "haPerHour": 4.971,
+          "commit": {
+            "1y": {
+              "perHour": 1.9137,
+              "haPerHour": 3.8275
+            },
+            "3y": {
+              "perHour": 1.366986,
+              "haPerHour": 2.733971
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 4.971,
+          "haPerHour": 9.941,
+          "commit": {
+            "1y": {
+              "perHour": 3.8275,
+              "haPerHour": 7.6549
+            },
+            "3y": {
+              "perHour": 2.733971,
+              "haPerHour": 5.467804
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.311,
+          "haPerHour": 0.621,
+          "commit": {
+            "1y": {
+              "perHour": 0.2392,
+              "haPerHour": 0.4784
+            },
+            "3y": {
+              "perHour": 0.170826,
+              "haPerHour": 0.341752
+            }
+          }
+        },
+        {
+          "sku": "db.m6id.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.621,
+          "haPerHour": 1.243,
+          "commit": {
+            "1y": {
+              "perHour": 0.4784,
+              "haPerHour": 0.9569
+            },
+            "3y": {
+              "perHour": 0.341752,
+              "haPerHour": 0.683443
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 9.788,
+          "haPerHour": 19.577,
+          "commit": {
+            "1y": {
+              "perHour": 7.537,
+              "haPerHour": 15.0741
+            },
+            "3y": {
+              "perHour": 5.383581,
+              "haPerHour": 10.7672
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 13.051,
+          "haPerHour": 26.102,
+          "commit": {
+            "1y": {
+              "perHour": 10.0494,
+              "haPerHour": 20.0987
+            },
+            "3y": {
+              "perHour": 7.178179,
+              "haPerHour": 14.35622
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 19.577,
+          "haPerHour": 39.153,
+          "commit": {
+            "1y": {
+              "perHour": 15.0741,
+              "haPerHour": 30.1481
+            },
+            "3y": {
+              "perHour": 10.7672,
+              "haPerHour": 21.534399
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.631,
+          "haPerHour": 3.263,
+          "commit": {
+            "1y": {
+              "perHour": 1.2562,
+              "haPerHour": 2.5123
+            },
+            "3y": {
+              "perHour": 0.89723,
+              "haPerHour": 1.79456
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.32xlarge",
+          "vcpu": 128,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 26.102,
+          "haPerHour": 52.205,
+          "commit": {
+            "1y": {
+              "perHour": 20.0987,
+              "haPerHour": 40.1975
+            },
+            "3y": {
+              "perHour": 14.35622,
+              "haPerHour": 28.71244
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 3.263,
+          "haPerHour": 6.526,
+          "commit": {
+            "1y": {
+              "perHour": 2.5123,
+              "haPerHour": 5.0247
+            },
+            "3y": {
+              "perHour": 1.79456,
+              "haPerHour": 3.589021
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 6.526,
+          "haPerHour": 13.051,
+          "commit": {
+            "1y": {
+              "perHour": 5.0247,
+              "haPerHour": 10.0494
+            },
+            "3y": {
+              "perHour": 3.589021,
+              "haPerHour": 7.178179
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.408,
+          "haPerHour": 0.816,
+          "commit": {
+            "1y": {
+              "perHour": 0.314,
+              "haPerHour": 0.6281
+            },
+            "3y": {
+              "perHour": 0.224377,
+              "haPerHour": 0.448615
+            }
+          }
+        },
+        {
+          "sku": "db.m6idn.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.816,
+          "haPerHour": 1.631,
+          "commit": {
+            "1y": {
+              "perHour": 0.6281,
+              "haPerHour": 1.2562
+            },
+            "3y": {
+              "perHour": 0.448615,
+              "haPerHour": 0.89723
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 8.558,
+          "haPerHour": 17.116,
+          "commit": {
+            "1y": {
+              "perHour": 6.5895,
+              "haPerHour": 13.179
+            },
+            "3y": {
+              "perHour": 4.706787,
+              "haPerHour": 9.413611
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 11.41,
+          "haPerHour": 22.821,
+          "commit": {
+            "1y": {
+              "perHour": 8.786,
+              "haPerHour": 17.5721
+            },
+            "3y": {
+              "perHour": 6.275761,
+              "haPerHour": 12.551423
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 17.116,
+          "haPerHour": 34.231,
+          "commit": {
+            "1y": {
+              "perHour": 13.179,
+              "haPerHour": 26.3581
+            },
+            "3y": {
+              "perHour": 9.413611,
+              "haPerHour": 18.827223
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.426,
+          "haPerHour": 2.853,
+          "commit": {
+            "1y": {
+              "perHour": 1.0983,
+              "haPerHour": 2.1965
+            },
+            "3y": {
+              "perHour": 0.784437,
+              "haPerHour": 1.568975
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.32xlarge",
+          "vcpu": 128,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 22.821,
+          "haPerHour": 45.642,
+          "commit": {
+            "1y": {
+              "perHour": 17.5721,
+              "haPerHour": 35.1441
+            },
+            "3y": {
+              "perHour": 12.551423,
+              "haPerHour": 25.102984
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.853,
+          "haPerHour": 5.705,
+          "commit": {
+            "1y": {
+              "perHour": 2.1965,
+              "haPerHour": 4.393
+            },
+            "3y": {
+              "perHour": 1.568975,
+              "haPerHour": 3.13785
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 5.705,
+          "haPerHour": 11.41,
+          "commit": {
+            "1y": {
+              "perHour": 4.393,
+              "haPerHour": 8.786
+            },
+            "3y": {
+              "perHour": 3.13785,
+              "haPerHour": 6.275761
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.357,
+          "haPerHour": 0.713,
+          "commit": {
+            "1y": {
+              "perHour": 0.2746,
+              "haPerHour": 0.5491
+            },
+            "3y": {
+              "perHour": 0.196159,
+              "haPerHour": 0.392219
+            }
+          }
+        },
+        {
+          "sku": "db.m6in.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.713,
+          "haPerHour": 1.426,
+          "commit": {
+            "1y": {
+              "perHour": 0.5491,
+              "haPerHour": 1.0983
+            },
+            "3y": {
+              "perHour": 0.392219,
+              "haPerHour": 0.784437
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.621,
+          "haPerHour": 11.242,
+          "commit": {
+            "1y": {
+              "perHour": 4.3279,
+              "haPerHour": 8.6558
+            },
+            "3y": {
+              "perHour": 3.091362,
+              "haPerHour": 6.182762
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.494,
+          "haPerHour": 14.989,
+          "commit": {
+            "1y": {
+              "perHour": 5.7705,
+              "haPerHour": 11.5411
+            },
+            "3y": {
+              "perHour": 4.121821,
+              "haPerHour": 8.243604
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.937,
+          "haPerHour": 1.874,
+          "commit": {
+            "1y": {
+              "perHour": 0.7213,
+              "haPerHour": 1.4426
+            },
+            "3y": {
+              "perHour": 0.51521,
+              "haPerHour": 1.030421
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.874,
+          "haPerHour": 3.747,
+          "commit": {
+            "1y": {
+              "perHour": 1.4426,
+              "haPerHour": 2.8853
+            },
+            "3y": {
+              "perHour": 1.030421,
+              "haPerHour": 2.060941
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.747,
+          "haPerHour": 7.494,
+          "commit": {
+            "1y": {
+              "perHour": 2.8853,
+              "haPerHour": 5.7705
+            },
+            "3y": {
+              "perHour": 2.060941,
+              "haPerHour": 4.121821
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.234,
+          "haPerHour": 0.468,
+          "commit": {
+            "1y": {
+              "perHour": 0.1803,
+              "haPerHour": 0.3607
+            },
+            "3y": {
+              "perHour": 0.128822,
+              "haPerHour": 0.257605
+            }
+          }
+        },
+        {
+          "sku": "db.m7g.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.468,
+          "haPerHour": 0.937,
+          "commit": {
+            "1y": {
+              "perHour": 0.3607,
+              "haPerHour": 0.7213
+            },
+            "3y": {
+              "perHour": 0.257605,
+              "haPerHour": 0.51521
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.928,
+          "haPerHour": 11.856,
+          "commit": {
+            "1y": {
+              "perHour": 3.972,
+              "haPerHour": 7.944
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.904,
+          "haPerHour": 15.808,
+          "commit": {
+            "1y": {
+              "perHour": 5.296,
+              "haPerHour": 10.591
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 11.856,
+          "haPerHour": 23.712,
+          "commit": {
+            "1y": {
+              "perHour": 7.944,
+              "haPerHour": 15.887
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.988,
+          "haPerHour": 1.976,
+          "commit": {
+            "1y": {
+              "perHour": 0.662,
+              "haPerHour": 1.324
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.48xlarge",
+          "vcpu": 192,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 23.712,
+          "haPerHour": 47.424,
+          "commit": {
+            "1y": {
+              "perHour": 15.887,
+              "haPerHour": 31.774
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.976,
+          "haPerHour": 3.952,
+          "commit": {
+            "1y": {
+              "perHour": 1.324,
+              "haPerHour": 2.648
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.952,
+          "haPerHour": 7.904,
+          "commit": {
+            "1y": {
+              "perHour": 2.648,
+              "haPerHour": 5.296
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.247,
+          "haPerHour": 0.494,
+          "commit": {
+            "1y": {
+              "perHour": 0.165,
+              "haPerHour": 0.331
+            }
+          }
+        },
+        {
+          "sku": "db.m7i.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.494,
+          "haPerHour": 0.988,
+          "commit": {
+            "1y": {
+              "perHour": 0.331,
+              "haPerHour": 0.662
+            }
+          }
+        },
+        {
+          "sku": "db.m8a.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 7.1592,
+          "haPerHour": 14.3184
+        },
+        {
+          "sku": "db.m8a.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 9.5456,
+          "haPerHour": 19.0912
+        },
+        {
+          "sku": "db.m8a.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 14.3184,
+          "haPerHour": 28.6368
+        },
+        {
+          "sku": "db.m8a.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.1932,
+          "haPerHour": 2.3864
+        },
+        {
+          "sku": "db.m8a.48xlarge",
+          "vcpu": 192,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 28.6368,
+          "haPerHour": 57.2736
+        },
+        {
+          "sku": "db.m8a.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.3864,
+          "haPerHour": 4.7728
+        },
+        {
+          "sku": "db.m8a.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 4.7728,
+          "haPerHour": 9.5456
+        },
+        {
+          "sku": "db.m8a.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.2983,
+          "haPerHour": 0.5966
+        },
+        {
+          "sku": "db.m8a.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.5966,
+          "haPerHour": 1.1932
+        },
+        {
+          "sku": "db.m8g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.616,
+          "haPerHour": 11.232,
+          "commit": {
+            "1y": {
+              "perHour": 3.7627,
+              "haPerHour": 7.5254
+            },
+            "3y": {
+              "perHour": 2.6395,
+              "haPerHour": 5.279
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.488,
+          "haPerHour": 14.976,
+          "commit": {
+            "1y": {
+              "perHour": 5.0169,
+              "haPerHour": 10.0339
+            },
+            "3y": {
+              "perHour": 3.5193,
+              "haPerHour": 7.0387
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.24xlarge",
+          "vcpu": 96,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 11.232,
+          "haPerHour": 22.464,
+          "commit": {
+            "1y": {
+              "perHour": 7.5254,
+              "haPerHour": 15.0508
+            },
+            "3y": {
+              "perHour": 5.279,
+              "haPerHour": 10.558
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.936,
+          "haPerHour": 1.872,
+          "commit": {
+            "1y": {
+              "perHour": 0.6271,
+              "haPerHour": 1.2542
+            },
+            "3y": {
+              "perHour": 0.4399,
+              "haPerHour": 0.8798
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.48xlarge",
+          "vcpu": 192,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 22.464,
+          "haPerHour": 44.928,
+          "commit": {
+            "1y": {
+              "perHour": 15.0508,
+              "haPerHour": 30.1017
+            },
+            "3y": {
+              "perHour": 10.558,
+              "haPerHour": 21.1161
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.872,
+          "haPerHour": 3.744,
+          "commit": {
+            "1y": {
+              "perHour": 1.2542,
+              "haPerHour": 2.5084
+            },
+            "3y": {
+              "perHour": 0.8798,
+              "haPerHour": 1.7596
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.744,
+          "haPerHour": 7.488,
+          "commit": {
+            "1y": {
+              "perHour": 2.5084,
+              "haPerHour": 5.0169
+            },
+            "3y": {
+              "perHour": 1.7596,
+              "haPerHour": 3.5193
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.234,
+          "haPerHour": 0.468,
+          "commit": {
+            "1y": {
+              "perHour": 0.1567,
+              "haPerHour": 0.3135
+            },
+            "3y": {
+              "perHour": 0.1099,
+              "haPerHour": 0.2199
+            }
+          }
+        },
+        {
+          "sku": "db.m8g.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.468,
+          "haPerHour": 0.936,
+          "commit": {
+            "1y": {
+              "perHour": 0.3135,
+              "haPerHour": 0.6271
+            },
+            "3y": {
+              "perHour": 0.2199,
+              "haPerHour": 0.4399
+            }
+          }
+        },
+        {
+          "sku": "db.m8gd.12xlarge",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 6.6336,
+          "haPerHour": 13.2672
+        },
+        {
+          "sku": "db.m8gd.16xlarge",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 8.8448,
+          "haPerHour": 17.6896
+        },
+        {
+          "sku": "db.m8gd.24xlarge",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 13.2672,
+          "haPerHour": 26.5344
+        },
+        {
+          "sku": "db.m8gd.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.1056,
+          "haPerHour": 2.2112
+        },
+        {
+          "sku": "db.m8gd.48xlarge",
+          "vcpu": 192,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 26.5344,
+          "haPerHour": 53.0688
+        },
+        {
+          "sku": "db.m8gd.4xlarge",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 2.2112,
+          "haPerHour": 4.4224
+        },
+        {
+          "sku": "db.m8gd.8xlarge",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 4.4224,
+          "haPerHour": 8.8448
+        },
+        {
+          "sku": "db.m8gd.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.2764,
+          "haPerHour": 0.5528
+        },
+        {
+          "sku": "db.m8gd.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.5528,
+          "haPerHour": 1.1056
+        },
+        {
+          "sku": "db.r5.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.2,
+          "haPerHour": 14.4,
+          "commit": {
+            "1y": {
+              "perHour": 4.914,
+              "haPerHour": 9.828
+            },
+            "3y": {
+              "perHour": 3.240015,
+              "haPerHour": 6.479992
+            }
+          }
+        },
+        {
+          "sku": "db.r5.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.6,
+          "haPerHour": 19.2,
+          "commit": {
+            "1y": {
+              "perHour": 6.552,
+              "haPerHour": 13.104
+            },
+            "3y": {
+              "perHour": 4.320008,
+              "haPerHour": 8.640015
+            }
+          }
+        },
+        {
+          "sku": "db.r5.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 14.4,
+          "haPerHour": 28.8,
+          "commit": {
+            "1y": {
+              "perHour": 9.828,
+              "haPerHour": 19.656
+            },
+            "3y": {
+              "perHour": 6.479992,
+              "haPerHour": 12.959985
+            }
+          }
+        },
+        {
+          "sku": "db.r5.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.2,
+          "haPerHour": 2.4,
+          "commit": {
+            "1y": {
+              "perHour": 0.819,
+              "haPerHour": 1.638
+            },
+            "3y": {
+              "perHour": 0.540015,
+              "haPerHour": 1.079992
+            }
+          }
+        },
+        {
+          "sku": "db.r5.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.4,
+          "haPerHour": 4.8,
+          "commit": {
+            "1y": {
+              "perHour": 1.638,
+              "haPerHour": 3.276
+            },
+            "3y": {
+              "perHour": 1.079992,
+              "haPerHour": 2.159985
+            }
+          }
+        },
+        {
+          "sku": "db.r5.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.8,
+          "haPerHour": 9.6,
+          "commit": {
+            "1y": {
+              "perHour": 3.276,
+              "haPerHour": 6.552
+            },
+            "3y": {
+              "perHour": 2.159985,
+              "haPerHour": 4.320008
+            }
+          }
+        },
+        {
+          "sku": "db.r5.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.3,
+          "haPerHour": 0.6,
+          "commit": {
+            "1y": {
+              "perHour": 0.2048,
+              "haPerHour": 0.4095
+            },
+            "3y": {
+              "perHour": 0.135004,
+              "haPerHour": 0.270008
+            }
+          }
+        },
+        {
+          "sku": "db.r5.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.6,
+          "haPerHour": 1.2,
+          "commit": {
+            "1y": {
+              "perHour": 0.4095,
+              "haPerHour": 0.819
+            },
+            "3y": {
+              "perHour": 0.270008,
+              "haPerHour": 0.540015
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 8.568,
+          "haPerHour": 17.136,
+          "commit": {
+            "1y": {
+              "perHour": 5.8295,
+              "haPerHour": 11.659
+            },
+            "3y": {
+              "perHour": 3.857781,
+              "haPerHour": 7.715563
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 11.424,
+          "haPerHour": 22.848,
+          "commit": {
+            "1y": {
+              "perHour": 7.7727,
+              "haPerHour": 15.5453
+            },
+            "3y": {
+              "perHour": 5.143642,
+              "haPerHour": 10.287383
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 17.136,
+          "haPerHour": 34.272,
+          "commit": {
+            "1y": {
+              "perHour": 11.659,
+              "haPerHour": 23.318
+            },
+            "3y": {
+              "perHour": 7.715563,
+              "haPerHour": 15.431025
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.428,
+          "haPerHour": 2.856,
+          "commit": {
+            "1y": {
+              "perHour": 0.9716,
+              "haPerHour": 1.9432
+            },
+            "3y": {
+              "perHour": 0.642961,
+              "haPerHour": 1.28596
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.856,
+          "haPerHour": 5.712,
+          "commit": {
+            "1y": {
+              "perHour": 1.9432,
+              "haPerHour": 3.8863
+            },
+            "3y": {
+              "perHour": 1.28596,
+              "haPerHour": 2.571821
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.712,
+          "haPerHour": 11.424,
+          "commit": {
+            "1y": {
+              "perHour": 3.8863,
+              "haPerHour": 7.7727
+            },
+            "3y": {
+              "perHour": 2.571821,
+              "haPerHour": 5.143642
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.357,
+          "haPerHour": 0.714,
+          "commit": {
+            "1y": {
+              "perHour": 0.2429,
+              "haPerHour": 0.4858
+            },
+            "3y": {
+              "perHour": 0.160765,
+              "haPerHour": 0.321431
+            }
+          }
+        },
+        {
+          "sku": "db.r5b.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.714,
+          "haPerHour": 1.428,
+          "commit": {
+            "1y": {
+              "perHour": 0.4858,
+              "haPerHour": 0.9716
+            },
+            "3y": {
+              "perHour": 0.321431,
+              "haPerHour": 0.642961
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 8.242,
+          "haPerHour": 16.484,
+          "commit": {
+            "1y": {
+              "perHour": 6.3464,
+              "haPerHour": 12.6928
+            },
+            "3y": {
+              "perHour": 4.533191,
+              "haPerHour": 9.066343
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 10.989,
+          "haPerHour": 21.979,
+          "commit": {
+            "1y": {
+              "perHour": 8.4619,
+              "haPerHour": 16.9238
+            },
+            "3y": {
+              "perHour": 6.044208,
+              "haPerHour": 12.088416
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 16.484,
+          "haPerHour": 32.968,
+          "commit": {
+            "1y": {
+              "perHour": 12.6928,
+              "haPerHour": 25.3857
+            },
+            "3y": {
+              "perHour": 9.066343,
+              "haPerHour": 18.132624
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.374,
+          "haPerHour": 2.747,
+          "commit": {
+            "1y": {
+              "perHour": 1.0577,
+              "haPerHour": 2.1155
+            },
+            "3y": {
+              "perHour": 0.755578,
+              "haPerHour": 1.511018
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.747,
+          "haPerHour": 5.495,
+          "commit": {
+            "1y": {
+              "perHour": 2.1155,
+              "haPerHour": 4.2309
+            },
+            "3y": {
+              "perHour": 1.511018,
+              "haPerHour": 3.022135
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.495,
+          "haPerHour": 10.989,
+          "commit": {
+            "1y": {
+              "perHour": 4.2309,
+              "haPerHour": 8.4619
+            },
+            "3y": {
+              "perHour": 3.022135,
+              "haPerHour": 6.044208
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.343,
+          "haPerHour": 0.687,
+          "commit": {
+            "1y": {
+              "perHour": 0.2644,
+              "haPerHour": 0.5289
+            },
+            "3y": {
+              "perHour": 0.188844,
+              "haPerHour": 0.377789
+            }
+          }
+        },
+        {
+          "sku": "db.r5d.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.687,
+          "haPerHour": 1.374,
+          "commit": {
+            "1y": {
+              "perHour": 0.5289,
+              "haPerHour": 1.0577
+            },
+            "3y": {
+              "perHour": 0.377789,
+              "haPerHour": 0.755578
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 6.474,
+          "haPerHour": 12.948,
+          "commit": {
+            "1y": {
+              "perHour": 4.4197,
+              "haPerHour": 8.8395
+            },
+            "3y": {
+              "perHour": 2.913435,
+              "haPerHour": 5.827008
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 8.632,
+          "haPerHour": 17.265,
+          "commit": {
+            "1y": {
+              "perHour": 5.893,
+              "haPerHour": 11.786
+            },
+            "3y": {
+              "perHour": 3.884614,
+              "haPerHour": 7.769365
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.079,
+          "haPerHour": 2.158,
+          "commit": {
+            "1y": {
+              "perHour": 0.7366,
+              "haPerHour": 1.4732
+            },
+            "3y": {
+              "perHour": 0.485608,
+              "haPerHour": 0.971178
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.158,
+          "haPerHour": 4.316,
+          "commit": {
+            "1y": {
+              "perHour": 1.4732,
+              "haPerHour": 2.9465
+            },
+            "3y": {
+              "perHour": 0.971178,
+              "haPerHour": 1.942357
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.316,
+          "haPerHour": 8.632,
+          "commit": {
+            "1y": {
+              "perHour": 2.9465,
+              "haPerHour": 5.893
+            },
+            "3y": {
+              "perHour": 1.942357,
+              "haPerHour": 3.884614
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.27,
+          "haPerHour": 0.54,
+          "commit": {
+            "1y": {
+              "perHour": 0.1842,
+              "haPerHour": 0.3683
+            },
+            "3y": {
+              "perHour": 0.121393,
+              "haPerHour": 0.242785
+            }
+          }
+        },
+        {
+          "sku": "db.r6g.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.54,
+          "haPerHour": 1.079,
+          "commit": {
+            "1y": {
+              "perHour": 0.3683,
+              "haPerHour": 0.7366
+            },
+            "3y": {
+              "perHour": 0.242785,
+              "haPerHour": 0.485608
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.407,
+          "haPerHour": 14.814,
+          "commit": {
+            "1y": {
+              "perHour": 5.7036,
+              "haPerHour": 11.4071
+            },
+            "3y": {
+              "perHour": 4.073986,
+              "haPerHour": 8.147973
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.876,
+          "haPerHour": 19.753,
+          "commit": {
+            "1y": {
+              "perHour": 7.6048,
+              "haPerHour": 15.2095
+            },
+            "3y": {
+              "perHour": 5.431982,
+              "haPerHour": 10.863963
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.235,
+          "haPerHour": 2.469,
+          "commit": {
+            "1y": {
+              "perHour": 0.9506,
+              "haPerHour": 1.9012
+            },
+            "3y": {
+              "perHour": 0.678998,
+              "haPerHour": 1.357995
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.469,
+          "haPerHour": 4.938,
+          "commit": {
+            "1y": {
+              "perHour": 1.9012,
+              "haPerHour": 3.8024
+            },
+            "3y": {
+              "perHour": 1.357995,
+              "haPerHour": 2.715991
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.938,
+          "haPerHour": 9.876,
+          "commit": {
+            "1y": {
+              "perHour": 3.8024,
+              "haPerHour": 7.6048
+            },
+            "3y": {
+              "perHour": 2.715991,
+              "haPerHour": 5.431982
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.309,
+          "haPerHour": 0.617,
+          "commit": {
+            "1y": {
+              "perHour": 0.2376,
+              "haPerHour": 0.4753
+            },
+            "3y": {
+              "perHour": 0.169793,
+              "haPerHour": 0.339449
+            }
+          }
+        },
+        {
+          "sku": "db.r6gd.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.617,
+          "haPerHour": 1.235,
+          "commit": {
+            "1y": {
+              "perHour": 0.4753,
+              "haPerHour": 0.9506
+            },
+            "3y": {
+              "perHour": 0.339449,
+              "haPerHour": 0.678998
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.2,
+          "haPerHour": 14.4,
+          "commit": {
+            "1y": {
+              "perHour": 4.9152,
+              "haPerHour": 9.8304
+            },
+            "3y": {
+              "perHour": 3.240053,
+              "haPerHour": 6.480207
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.6,
+          "haPerHour": 19.2,
+          "commit": {
+            "1y": {
+              "perHour": 6.5536,
+              "haPerHour": 13.1072
+            },
+            "3y": {
+              "perHour": 4.320146,
+              "haPerHour": 8.640229
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 14.4,
+          "haPerHour": 28.8,
+          "commit": {
+            "1y": {
+              "perHour": 9.8304,
+              "haPerHour": 19.6608
+            },
+            "3y": {
+              "perHour": 6.480207,
+              "haPerHour": 12.960375
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.2,
+          "haPerHour": 2.4,
+          "commit": {
+            "1y": {
+              "perHour": 0.8192,
+              "haPerHour": 1.6384
+            },
+            "3y": {
+              "perHour": 0.540015,
+              "haPerHour": 1.08003
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.32xlarge",
+          "vcpu": 128,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 19.2,
+          "haPerHour": 38.4,
+          "commit": {
+            "1y": {
+              "perHour": 13.1072,
+              "haPerHour": 26.2144
+            },
+            "3y": {
+              "perHour": 8.640229,
+              "haPerHour": 17.280459
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.4,
+          "haPerHour": 4.8,
+          "commit": {
+            "1y": {
+              "perHour": 1.6384,
+              "haPerHour": 3.2768
+            },
+            "3y": {
+              "perHour": 1.08003,
+              "haPerHour": 2.160023
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.8,
+          "haPerHour": 9.6,
+          "commit": {
+            "1y": {
+              "perHour": 3.2768,
+              "haPerHour": 6.5536
+            },
+            "3y": {
+              "perHour": 2.160023,
+              "haPerHour": 4.320146
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.3,
+          "haPerHour": 0.6,
+          "commit": {
+            "1y": {
+              "perHour": 0.2048,
+              "haPerHour": 0.4096
+            },
+            "3y": {
+              "perHour": 0.135004,
+              "haPerHour": 0.270008
+            }
+          }
+        },
+        {
+          "sku": "db.r6i.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.6,
+          "haPerHour": 1.2,
+          "commit": {
+            "1y": {
+              "perHour": 0.4096,
+              "haPerHour": 0.8192
+            },
+            "3y": {
+              "perHour": 0.270008,
+              "haPerHour": 0.540015
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 8.584,
+          "haPerHour": 17.167,
+          "commit": {
+            "1y": {
+              "perHour": 6.6093,
+              "haPerHour": 13.2186
+            },
+            "3y": {
+              "perHour": 4.720964,
+              "haPerHour": 9.441828
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 11.445,
+          "haPerHour": 22.889,
+          "commit": {
+            "1y": {
+              "perHour": 8.8124,
+              "haPerHour": 17.6248
+            },
+            "3y": {
+              "perHour": 6.294598,
+              "haPerHour": 12.589159
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 17.167,
+          "haPerHour": 34.334,
+          "commit": {
+            "1y": {
+              "perHour": 13.2186,
+              "haPerHour": 26.4372
+            },
+            "3y": {
+              "perHour": 9.441828,
+              "haPerHour": 18.883757
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.431,
+          "haPerHour": 2.861,
+          "commit": {
+            "1y": {
+              "perHour": 1.1015,
+              "haPerHour": 2.2031
+            },
+            "3y": {
+              "perHour": 0.786817,
+              "haPerHour": 1.573634
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.32xlarge",
+          "vcpu": 128,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 22.889,
+          "haPerHour": 45.779,
+          "commit": {
+            "1y": {
+              "perHour": 17.6248,
+              "haPerHour": 35.2496
+            },
+            "3y": {
+              "perHour": 12.589159,
+              "haPerHour": 25.178255
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.861,
+          "haPerHour": 5.722,
+          "commit": {
+            "1y": {
+              "perHour": 2.2031,
+              "haPerHour": 4.4062
+            },
+            "3y": {
+              "perHour": 1.573634,
+              "haPerHour": 3.14723
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.722,
+          "haPerHour": 11.445,
+          "commit": {
+            "1y": {
+              "perHour": 4.4062,
+              "haPerHour": 8.8124
+            },
+            "3y": {
+              "perHour": 3.14723,
+              "haPerHour": 6.294598
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.358,
+          "haPerHour": 0.715,
+          "commit": {
+            "1y": {
+              "perHour": 0.2754,
+              "haPerHour": 0.5508
+            },
+            "3y": {
+              "perHour": 0.196764,
+              "haPerHour": 0.393389
+            }
+          }
+        },
+        {
+          "sku": "db.r6id.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.715,
+          "haPerHour": 1.431,
+          "commit": {
+            "1y": {
+              "perHour": 0.5508,
+              "haPerHour": 1.1015
+            },
+            "3y": {
+              "perHour": 0.393389,
+              "haPerHour": 0.786817
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 11.25,
+          "haPerHour": 22.501,
+          "commit": {
+            "1y": {
+              "perHour": 8.6628,
+              "haPerHour": 17.3257
+            },
+            "3y": {
+              "perHour": 6.187774,
+              "haPerHour": 12.375447
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 15.001,
+          "haPerHour": 30.001,
+          "commit": {
+            "1y": {
+              "perHour": 11.5504,
+              "haPerHour": 23.1009
+            },
+            "3y": {
+              "perHour": 8.250352,
+              "haPerHour": 16.500604
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 22.501,
+          "haPerHour": 45.002,
+          "commit": {
+            "1y": {
+              "perHour": 17.3257,
+              "haPerHour": 34.6513
+            },
+            "3y": {
+              "perHour": 12.375447,
+              "haPerHour": 24.750957
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.875,
+          "haPerHour": 3.75,
+          "commit": {
+            "1y": {
+              "perHour": 1.4438,
+              "haPerHour": 2.8876
+            },
+            "3y": {
+              "perHour": 1.031239,
+              "haPerHour": 2.062579
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.32xlarge",
+          "vcpu": 128,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 30.001,
+          "haPerHour": 60.002,
+          "commit": {
+            "1y": {
+              "perHour": 23.1009,
+              "haPerHour": 46.2018
+            },
+            "3y": {
+              "perHour": 16.500604,
+              "haPerHour": 33.001247
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.75,
+          "haPerHour": 7.5,
+          "commit": {
+            "1y": {
+              "perHour": 2.8876,
+              "haPerHour": 5.7752
+            },
+            "3y": {
+              "perHour": 2.062579,
+              "haPerHour": 4.125195
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 7.5,
+          "haPerHour": 15.001,
+          "commit": {
+            "1y": {
+              "perHour": 5.7752,
+              "haPerHour": 11.5504
+            },
+            "3y": {
+              "perHour": 4.125195,
+              "haPerHour": 8.250352
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.469,
+          "haPerHour": 0.938,
+          "commit": {
+            "1y": {
+              "perHour": 0.361,
+              "haPerHour": 0.7219
+            },
+            "3y": {
+              "perHour": 0.257819,
+              "haPerHour": 0.515639
+            }
+          }
+        },
+        {
+          "sku": "db.r6idn.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.938,
+          "haPerHour": 1.875,
+          "commit": {
+            "1y": {
+              "perHour": 0.7219,
+              "haPerHour": 1.4438
+            },
+            "3y": {
+              "perHour": 0.515639,
+              "haPerHour": 1.031239
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 10.031,
+          "haPerHour": 20.062,
+          "commit": {
+            "1y": {
+              "perHour": 7.724,
+              "haPerHour": 15.4481
+            },
+            "3y": {
+              "perHour": 5.5172,
+              "haPerHour": 11.034361
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 13.375,
+          "haPerHour": 26.75,
+          "commit": {
+            "1y": {
+              "perHour": 10.2987,
+              "haPerHour": 20.5975
+            },
+            "3y": {
+              "perHour": 7.35622,
+              "haPerHour": 14.71244
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 20.062,
+          "haPerHour": 40.125,
+          "commit": {
+            "1y": {
+              "perHour": 15.4481,
+              "haPerHour": 30.8962
+            },
+            "3y": {
+              "perHour": 11.034361,
+              "haPerHour": 22.068761
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.672,
+          "haPerHour": 3.344,
+          "commit": {
+            "1y": {
+              "perHour": 1.2873,
+              "haPerHour": 2.5747
+            },
+            "3y": {
+              "perHour": 0.919579,
+              "haPerHour": 1.839021
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.32xlarge",
+          "vcpu": 128,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 26.75,
+          "haPerHour": 53.5,
+          "commit": {
+            "1y": {
+              "perHour": 20.5975,
+              "haPerHour": 41.1949
+            },
+            "3y": {
+              "perHour": 14.71244,
+              "haPerHour": 29.424981
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.344,
+          "haPerHour": 6.687,
+          "commit": {
+            "1y": {
+              "perHour": 2.5747,
+              "haPerHour": 5.1494
+            },
+            "3y": {
+              "perHour": 1.839021,
+              "haPerHour": 3.678141
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 6.687,
+          "haPerHour": 13.375,
+          "commit": {
+            "1y": {
+              "perHour": 5.1494,
+              "haPerHour": 10.2987
+            },
+            "3y": {
+              "perHour": 3.678141,
+              "haPerHour": 7.35622
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.418,
+          "haPerHour": 0.836,
+          "commit": {
+            "1y": {
+              "perHour": 0.3218,
+              "haPerHour": 0.6437
+            },
+            "3y": {
+              "perHour": 0.229854,
+              "haPerHour": 0.459771
+            }
+          }
+        },
+        {
+          "sku": "db.r6in.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.836,
+          "haPerHour": 1.672,
+          "commit": {
+            "1y": {
+              "perHour": 0.6437,
+              "haPerHour": 1.2873
+            },
+            "3y": {
+              "perHour": 0.459771,
+              "haPerHour": 0.919579
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 6.885,
+          "haPerHour": 13.77,
+          "commit": {
+            "1y": {
+              "perHour": 5.3015,
+              "haPerHour": 10.6029
+            },
+            "3y": {
+              "perHour": 3.786779,
+              "haPerHour": 7.573558
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.18,
+          "haPerHour": 18.36,
+          "commit": {
+            "1y": {
+              "perHour": 7.0686,
+              "haPerHour": 14.1372
+            },
+            "3y": {
+              "perHour": 5.049005,
+              "haPerHour": 10.098011
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.148,
+          "haPerHour": 2.295,
+          "commit": {
+            "1y": {
+              "perHour": 0.8836,
+              "haPerHour": 1.7672
+            },
+            "3y": {
+              "perHour": 0.631163,
+              "haPerHour": 1.262226
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.295,
+          "haPerHour": 4.59,
+          "commit": {
+            "1y": {
+              "perHour": 1.7672,
+              "haPerHour": 3.5343
+            },
+            "3y": {
+              "perHour": 1.262226,
+              "haPerHour": 2.524553
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.59,
+          "haPerHour": 9.18,
+          "commit": {
+            "1y": {
+              "perHour": 3.5343,
+              "haPerHour": 7.0686
+            },
+            "3y": {
+              "perHour": 2.524553,
+              "haPerHour": 5.049005
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.287,
+          "haPerHour": 0.574,
+          "commit": {
+            "1y": {
+              "perHour": 0.2209,
+              "haPerHour": 0.4418
+            },
+            "3y": {
+              "perHour": 0.157781,
+              "haPerHour": 0.315563
+            }
+          }
+        },
+        {
+          "sku": "db.r7g.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.574,
+          "haPerHour": 1.148,
+          "commit": {
+            "1y": {
+              "perHour": 0.4418,
+              "haPerHour": 0.8836
+            },
+            "3y": {
+              "perHour": 0.315563,
+              "haPerHour": 0.631163
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.2,
+          "haPerHour": 14.4,
+          "commit": {
+            "1y": {
+              "perHour": 4.824,
+              "haPerHour": 9.648
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.6,
+          "haPerHour": 19.2,
+          "commit": {
+            "1y": {
+              "perHour": 6.432,
+              "haPerHour": 12.864
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 14.4,
+          "haPerHour": 28.8,
+          "commit": {
+            "1y": {
+              "perHour": 9.648,
+              "haPerHour": 19.296
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.2,
+          "haPerHour": 2.4,
+          "commit": {
+            "1y": {
+              "perHour": 0.804,
+              "haPerHour": 1.608
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.48xlarge",
+          "vcpu": 192,
+          "ramGb": 1536,
+          "burstable": false,
+          "perHour": 28.8,
+          "haPerHour": 57.6,
+          "commit": {
+            "1y": {
+              "perHour": 19.296,
+              "haPerHour": 38.592
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.4,
+          "haPerHour": 4.8,
+          "commit": {
+            "1y": {
+              "perHour": 1.608,
+              "haPerHour": 3.216
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.8,
+          "haPerHour": 9.6,
+          "commit": {
+            "1y": {
+              "perHour": 3.216,
+              "haPerHour": 6.432
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.3,
+          "haPerHour": 0.6,
+          "commit": {
+            "1y": {
+              "perHour": 0.201,
+              "haPerHour": 0.402
+            }
+          }
+        },
+        {
+          "sku": "db.r7i.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.6,
+          "haPerHour": 1.2,
+          "commit": {
+            "1y": {
+              "perHour": 0.402,
+              "haPerHour": 0.804
+            }
+          }
+        },
+        {
+          "sku": "db.r8a.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 8.6952,
+          "haPerHour": 17.3904
+        },
+        {
+          "sku": "db.r8a.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 11.5936,
+          "haPerHour": 23.1872
+        },
+        {
+          "sku": "db.r8a.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 17.3904,
+          "haPerHour": 34.7808
+        },
+        {
+          "sku": "db.r8a.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.4492,
+          "haPerHour": 2.8984
+        },
+        {
+          "sku": "db.r8a.48xlarge",
+          "vcpu": 192,
+          "ramGb": 1536,
+          "burstable": false,
+          "perHour": 34.7808,
+          "haPerHour": 69.5616
+        },
+        {
+          "sku": "db.r8a.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.8984,
+          "haPerHour": 5.7968
+        },
+        {
+          "sku": "db.r8a.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.7968,
+          "haPerHour": 11.5936
+        },
+        {
+          "sku": "db.r8a.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.3623,
+          "haPerHour": 0.7246
+        },
+        {
+          "sku": "db.r8a.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.7246,
+          "haPerHour": 1.4492
+        },
+        {
+          "sku": "db.r8g.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 6.888,
+          "haPerHour": 13.776,
+          "commit": {
+            "1y": {
+              "perHour": 4.615,
+              "haPerHour": 9.23
+            },
+            "3y": {
+              "perHour": 3.2373,
+              "haPerHour": 6.4747
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.184,
+          "haPerHour": 18.368,
+          "commit": {
+            "1y": {
+              "perHour": 6.153,
+              "haPerHour": 12.307
+            },
+            "3y": {
+              "perHour": 4.3164,
+              "haPerHour": 8.6329
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 13.776,
+          "haPerHour": 27.552,
+          "commit": {
+            "1y": {
+              "perHour": 9.23,
+              "haPerHour": 18.46
+            },
+            "3y": {
+              "perHour": 6.4747,
+              "haPerHour": 12.9494
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.148,
+          "haPerHour": 2.296,
+          "commit": {
+            "1y": {
+              "perHour": 0.769,
+              "haPerHour": 1.538
+            },
+            "3y": {
+              "perHour": 0.5395,
+              "haPerHour": 1.0791
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.48xlarge",
+          "vcpu": 192,
+          "ramGb": 1536,
+          "burstable": false,
+          "perHour": 27.552,
+          "haPerHour": 55.104,
+          "commit": {
+            "1y": {
+              "perHour": 18.46,
+              "haPerHour": 36.92
+            },
+            "3y": {
+              "perHour": 12.9494,
+              "haPerHour": 25.8988
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.296,
+          "haPerHour": 4.592,
+          "commit": {
+            "1y": {
+              "perHour": 1.538,
+              "haPerHour": 3.077
+            },
+            "3y": {
+              "perHour": 1.0791,
+              "haPerHour": 2.1582
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.592,
+          "haPerHour": 9.184,
+          "commit": {
+            "1y": {
+              "perHour": 3.077,
+              "haPerHour": 6.153
+            },
+            "3y": {
+              "perHour": 2.1582,
+              "haPerHour": 4.3164
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.287,
+          "haPerHour": 0.574,
+          "commit": {
+            "1y": {
+              "perHour": 0.192,
+              "haPerHour": 0.385
+            },
+            "3y": {
+              "perHour": 0.1348,
+              "haPerHour": 0.2697
+            }
+          }
+        },
+        {
+          "sku": "db.r8g.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.574,
+          "haPerHour": 1.148,
+          "commit": {
+            "1y": {
+              "perHour": 0.385,
+              "haPerHour": 0.769
+            },
+            "3y": {
+              "perHour": 0.2697,
+              "haPerHour": 0.5395
+            }
+          }
+        },
+        {
+          "sku": "db.r8gd.12xlarge",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.884,
+          "haPerHour": 15.768
+        },
+        {
+          "sku": "db.r8gd.16xlarge",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 10.512,
+          "haPerHour": 21.024
+        },
+        {
+          "sku": "db.r8gd.24xlarge",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 15.768,
+          "haPerHour": 31.536
+        },
+        {
+          "sku": "db.r8gd.2xlarge",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.314,
+          "haPerHour": 2.628
+        },
+        {
+          "sku": "db.r8gd.48xlarge",
+          "vcpu": 192,
+          "ramGb": 1536,
+          "burstable": false,
+          "perHour": 31.536,
+          "haPerHour": 63.072
+        },
+        {
+          "sku": "db.r8gd.4xlarge",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.628,
+          "haPerHour": 5.256
+        },
+        {
+          "sku": "db.r8gd.8xlarge",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 5.256,
+          "haPerHour": 10.512
+        },
+        {
+          "sku": "db.r8gd.large",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.3285,
+          "haPerHour": 0.657
+        },
+        {
+          "sku": "db.r8gd.xlarge",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.657,
+          "haPerHour": 1.314
+        },
+        {
+          "sku": "db.t3.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": true,
+          "perHour": 0.896,
+          "haPerHour": 1.792,
+          "commit": {
+            "1y": {
+              "perHour": 0.6962,
+              "haPerHour": 1.3924
+            },
+            "3y": {
+              "perHour": 0.448011,
+              "haPerHour": 0.895983
+            }
+          }
+        },
+        {
+          "sku": "db.t3.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": true,
+          "perHour": 0.224,
+          "haPerHour": 0.448,
+          "commit": {
+            "1y": {
+              "perHour": 0.174,
+              "haPerHour": 0.3481
+            },
+            "3y": {
+              "perHour": 0.112012,
+              "haPerHour": 0.223986
+            }
+          }
+        },
+        {
+          "sku": "db.t3.medium",
+          "vcpu": 2,
+          "ramGb": 4,
+          "burstable": true,
+          "perHour": 0.112,
+          "haPerHour": 0.224,
+          "commit": {
+            "1y": {
+              "perHour": 0.087,
+              "haPerHour": 0.174
+            },
+            "3y": {
+              "perHour": 0.056006,
+              "haPerHour": 0.112012
+            }
+          }
+        },
+        {
+          "sku": "db.t3.micro",
+          "vcpu": 2,
+          "ramGb": 1,
+          "burstable": true,
+          "perHour": 0.028,
+          "haPerHour": 0.056,
+          "commit": {
+            "1y": {
+              "perHour": 0.0218,
+              "haPerHour": 0.0435
+            },
+            "3y": {
+              "perHour": 0.014002,
+              "haPerHour": 0.028003
+            }
+          }
+        },
+        {
+          "sku": "db.t3.small",
+          "vcpu": 2,
+          "ramGb": 2,
+          "burstable": true,
+          "perHour": 0.056,
+          "haPerHour": 0.112,
+          "commit": {
+            "1y": {
+              "perHour": 0.0435,
+              "haPerHour": 0.087
+            },
+            "3y": {
+              "perHour": 0.028003,
+              "haPerHour": 0.056006
+            }
+          }
+        },
+        {
+          "sku": "db.t3.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": true,
+          "perHour": 0.448,
+          "haPerHour": 0.896,
+          "commit": {
+            "1y": {
+              "perHour": 0.3481,
+              "haPerHour": 0.6962
+            },
+            "3y": {
+              "perHour": 0.223986,
+              "haPerHour": 0.448011
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.2xlarge",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": true,
+          "perHour": 0.806,
+          "haPerHour": 1.613,
+          "commit": {
+            "1y": {
+              "perHour": 0.629,
+              "haPerHour": 1.258
+            },
+            "3y": {
+              "perHour": 0.403198,
+              "haPerHour": 0.806396
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.large",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": true,
+          "perHour": 0.202,
+          "haPerHour": 0.403,
+          "commit": {
+            "1y": {
+              "perHour": 0.1572,
+              "haPerHour": 0.3145
+            },
+            "3y": {
+              "perHour": 0.100819,
+              "haPerHour": 0.201599
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.medium",
+          "vcpu": 2,
+          "ramGb": 4,
+          "burstable": true,
+          "perHour": 0.101,
+          "haPerHour": 0.202,
+          "commit": {
+            "1y": {
+              "perHour": 0.0786,
+              "haPerHour": 0.1572
+            },
+            "3y": {
+              "perHour": 0.05039,
+              "haPerHour": 0.100819
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.micro",
+          "vcpu": 2,
+          "ramGb": 1,
+          "burstable": true,
+          "perHour": 0.025,
+          "haPerHour": 0.05,
+          "commit": {
+            "1y": {
+              "perHour": 0.0197,
+              "haPerHour": 0.0393
+            },
+            "3y": {
+              "perHour": 0.012617,
+              "haPerHour": 0.025195
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.small",
+          "vcpu": 2,
+          "ramGb": 2,
+          "burstable": true,
+          "perHour": 0.05,
+          "haPerHour": 0.101,
+          "commit": {
+            "1y": {
+              "perHour": 0.0393,
+              "haPerHour": 0.0786
+            },
+            "3y": {
+              "perHour": 0.025195,
+              "haPerHour": 0.05039
+            }
+          }
+        },
+        {
+          "sku": "db.t4g.xlarge",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": true,
+          "perHour": 0.403,
+          "haPerHour": 0.806,
+          "commit": {
+            "1y": {
+              "perHour": 0.3145,
+              "haPerHour": 0.629
+            },
+            "3y": {
+              "perHour": 0.201599,
+              "haPerHour": 0.403198
+            }
+          }
+        }
+      ],
+      "custom": null,
+      "storageGbMonth": 0.138,
+      "haStorageGbMonth": 0.276
+    }
+  }
+}

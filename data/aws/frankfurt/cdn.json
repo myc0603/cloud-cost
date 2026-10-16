@@ -1,0 +1,68 @@
+{
+  "provider": "aws",
+  "region": "frankfurt",
+  "gbTiers": [
+    {
+      "upTo": 10240,
+      "price": 0.085
+    },
+    {
+      "upTo": 51200,
+      "price": 0.08
+    },
+    {
+      "upTo": 153600,
+      "price": 0.06
+    },
+    {
+      "upTo": 512000,
+      "price": 0.04
+    },
+    {
+      "upTo": 1048576,
+      "price": 0.03
+    },
+    {
+      "upTo": 5242880,
+      "price": 0.025
+    },
+    {
+      "upTo": null,
+      "price": 0.02
+    }
+  ],
+  "requestTiers": [
+    {
+      "upTo": null,
+      "price": 0.012
+    }
+  ],
+  "monthlyBase": 0,
+  "fillPerGb": 0,
+  "plans": [
+    {
+      "name": "Free",
+      "monthlyUsd": 0,
+      "maxGb": 100,
+      "maxRequests": 1000000
+    },
+    {
+      "name": "Pro",
+      "monthlyUsd": 15,
+      "maxGb": 51200,
+      "maxRequests": 10000000
+    },
+    {
+      "name": "Business",
+      "monthlyUsd": 200,
+      "maxGb": 51200,
+      "maxRequests": 125000000
+    },
+    {
+      "name": "Premium",
+      "monthlyUsd": 1000,
+      "maxGb": 51200,
+      "maxRequests": 500000000
+    }
+  ]
+}

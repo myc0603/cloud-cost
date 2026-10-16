@@ -1,0 +1,20 @@
+{
+  "provider": "gcp",
+  "region": "us-west",
+  "rates": {
+    "x86": {
+      "vcpuPerHour": 0.0648,
+      "gbPerHour": 0.0072,
+      "commit": {
+        "1y": {
+          "vcpuPerHour": 0.046656,
+          "gbPerHour": 0.005184
+        },
+        "3y": {
+          "vcpuPerHour": 0.034992,
+          "gbPerHour": 0.003888
+        }
+      }
+    }
+  }
+}

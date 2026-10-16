@@ -1,0 +1,9 @@
+{
+  "provider": "aws",
+  "region": "singapore",
+  "ingestPerGb": 0.7,
+  "storagePerGbMonth": 0.03,
+  "includedDays": 0,
+  "storedRatio": 0.15,
+  "commitmentTiers": []
+}

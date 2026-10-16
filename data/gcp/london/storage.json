@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "gcp",
+    "region": "london",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.12
+  },
+  {
+    "provider": "gcp",
+    "region": "london",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.023
+  }
+]

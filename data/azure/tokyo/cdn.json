@@ -1,0 +1,55 @@
+{
+  "provider": "azure",
+  "region": "tokyo",
+  "gbTiers": [
+    {
+      "upTo": 10000,
+      "price": 0.115
+    },
+    {
+      "upTo": 50000,
+      "price": 0.0975
+    },
+    {
+      "upTo": 150000,
+      "price": 0.089
+    },
+    {
+      "upTo": 500000,
+      "price": 0.025
+    },
+    {
+      "upTo": 1000000,
+      "price": 0.00923
+    },
+    {
+      "upTo": 5000000,
+      "price": 0.00714
+    },
+    {
+      "upTo": null,
+      "price": 0.00665
+    }
+  ],
+  "requestTiers": [
+    {
+      "upTo": 25000,
+      "price": 0.0108
+    },
+    {
+      "upTo": 100000,
+      "price": 0.0097
+    },
+    {
+      "upTo": 500000,
+      "price": 0.008748
+    },
+    {
+      "upTo": null,
+      "price": 0.007873
+    }
+  ],
+  "monthlyBase": 35,
+  "fillPerGb": 0,
+  "plans": []
+}

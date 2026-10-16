@@ -1,0 +1,34 @@
+{
+  "provider": "aws",
+  "region": "tokyo",
+  "rates": {
+    "x86": {
+      "vcpuPerHour": 0.05056,
+      "gbPerHour": 0.00553,
+      "commit": {
+        "1y": {
+          "vcpuPerHour": 0.042976,
+          "gbPerHour": 0.0047
+        },
+        "3y": {
+          "vcpuPerHour": 0.030336,
+          "gbPerHour": 0.003318
+        }
+      }
+    },
+    "arm": {
+      "vcpuPerHour": 0.04045,
+      "gbPerHour": 0.00442,
+      "commit": {
+        "1y": {
+          "vcpuPerHour": 0.03185,
+          "gbPerHour": 0.00348
+        },
+        "3y": {
+          "vcpuPerHour": 0.02184,
+          "gbPerHour": 0.00239
+        }
+      }
+    }
+  }
+}

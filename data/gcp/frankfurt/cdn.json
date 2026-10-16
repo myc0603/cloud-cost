@@ -1,0 +1,31 @@
+{
+  "provider": "gcp",
+  "region": "frankfurt",
+  "gbTiers": [
+    {
+      "upTo": 10240,
+      "price": 0.08
+    },
+    {
+      "upTo": 153600,
+      "price": 0.055
+    },
+    {
+      "upTo": 1024000,
+      "price": 0.03
+    },
+    {
+      "upTo": null,
+      "price": 0.02
+    }
+  ],
+  "requestTiers": [
+    {
+      "upTo": null,
+      "price": 0.0075
+    }
+  ],
+  "monthlyBase": 0,
+  "fillPerGb": 0.01,
+  "plans": []
+}

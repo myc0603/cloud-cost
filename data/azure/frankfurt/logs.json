@@ -1,0 +1,54 @@
+{
+  "provider": "azure",
+  "region": "frankfurt",
+  "ingestPerGb": 2.99,
+  "storagePerGbMonth": 0.13,
+  "includedDays": 31,
+  "storedRatio": 1,
+  "commitmentTiers": [
+    {
+      "gbPerDay": 100,
+      "perDay": 252.84
+    },
+    {
+      "gbPerDay": 200,
+      "perDay": 474.72
+    },
+    {
+      "gbPerDay": 300,
+      "perDay": 696.6
+    },
+    {
+      "gbPerDay": 400,
+      "perDay": 908.16
+    },
+    {
+      "gbPerDay": 500,
+      "perDay": 1115.85
+    },
+    {
+      "gbPerDay": 1000,
+      "perDay": 2193
+    },
+    {
+      "gbPerDay": 2000,
+      "perDay": 4282.8
+    },
+    {
+      "gbPerDay": 5000,
+      "perDay": 10384.5
+    },
+    {
+      "gbPerDay": 10000,
+      "perDay": 20175.6
+    },
+    {
+      "gbPerDay": 25000,
+      "perDay": 48955.5
+    },
+    {
+      "gbPerDay": 50000,
+      "perDay": 94944
+    }
+  ]
+}

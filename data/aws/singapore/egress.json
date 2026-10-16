@@ -1,0 +1,27 @@
+{
+  "provider": "aws",
+  "region": "singapore",
+  "freeGb": 100,
+  "tiers": [
+    {
+      "upToGb": 100,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": 10340,
+      "pricePerGb": 0.12
+    },
+    {
+      "upToGb": 51300,
+      "pricePerGb": 0.085
+    },
+    {
+      "upToGb": 153700,
+      "pricePerGb": 0.082
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.08
+    }
+  ]
+}

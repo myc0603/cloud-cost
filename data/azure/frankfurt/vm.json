@@ -1,0 +1,1116 @@
+[
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B1s",
+    "vcpu": 1,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.012
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B1ms",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.024
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B2s",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.048
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B2ms",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.096
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B4ms",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.192
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B8ms",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.384
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B2ts_v2",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.012,
+    "commit": {
+      "1y": 0.007078,
+      "3y": 0.004566
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B2ls_v2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.048,
+    "commit": {
+      "1y": 0.028311,
+      "3y": 0.018227
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B2s_v2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.096,
+    "commit": {
+      "1y": 0.056621,
+      "3y": 0.036492
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B4ls_v2",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.17,
+    "commit": {
+      "1y": 0.100342,
+      "3y": 0.06465
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B4s_v2",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.192,
+    "commit": {
+      "1y": 0.113242,
+      "3y": 0.072945
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B8ls_v2",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.34,
+    "commit": {
+      "1y": 0.200685,
+      "3y": 0.129224
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B8s_v2",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.384,
+    "commit": {
+      "1y": 0.226598,
+      "3y": 0.145928
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B16ls_v2",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.68,
+    "commit": {
+      "1y": 0.401256,
+      "3y": 0.258447
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B16s_v2",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.768,
+    "commit": {
+      "1y": 0.453082,
+      "3y": 0.291857
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B32ls_v2",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 1.36,
+    "commit": {
+      "1y": 0.802511,
+      "3y": 0.516857
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_B32s_v2",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 1.536,
+    "commit": {
+      "1y": 0.906279,
+      "3y": 0.583676
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D2s_v5",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 0.115,
+    "commit": {
+      "1y": 0.071005,
+      "3y": 0.045434
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D4s_v5",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 0.23,
+    "commit": {
+      "1y": 0.141895,
+      "3y": 0.090868
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D8s_v5",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 0.46,
+    "commit": {
+      "1y": 0.28379,
+      "3y": 0.181697
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D16s_v5",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 0.92,
+    "commit": {
+      "1y": 0.567694,
+      "3y": 0.363394
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D32s_v5",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 1.84,
+    "commit": {
+      "1y": 1.135274,
+      "3y": 0.726788
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D48s_v5",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 2.76,
+    "commit": {
+      "1y": 1.702968,
+      "3y": 1.090183
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D64s_v5",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 3.68,
+    "commit": {
+      "1y": 2.270548,
+      "3y": 1.453615
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D96s_v5",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 5.52,
+    "commit": {
+      "1y": 3.405822,
+      "3y": 2.180403
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D2s_v6",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 0.121,
+    "commit": {
+      "1y": 0.074886,
+      "3y": 0.047108
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D4s_v6",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 0.242,
+    "commit": {
+      "1y": 0.149772,
+      "3y": 0.094178
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D8s_v6",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 0.483,
+    "commit": {
+      "1y": 0.299429,
+      "3y": 0.188394
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D16s_v6",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 0.966,
+    "commit": {
+      "1y": 0.598973,
+      "3y": 0.376788
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D32s_v6",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 1.932,
+    "commit": {
+      "1y": 1.197945,
+      "3y": 0.753539
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D48s_v6",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 2.898,
+    "commit": {
+      "1y": 1.796918,
+      "3y": 1.130327
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D64s_v6",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 3.864,
+    "commit": {
+      "1y": 2.39589,
+      "3y": 1.507078
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D96s_v6",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 5.796,
+    "commit": {
+      "1y": 3.593836,
+      "3y": 2.260616
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D128s_v6",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 7.729,
+    "commit": {
+      "1y": 4.791781,
+      "3y": 3.014155
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D192s_v6",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 11.593,
+    "commit": {
+      "1y": 7.187671,
+      "3y": 4.521271
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E2s_v5",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 0.152,
+    "commit": {
+      "1y": 0.093836,
+      "3y": 0.060046
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E4s_v5",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 0.304,
+    "commit": {
+      "1y": 0.187557,
+      "3y": 0.120091
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E8s_v5",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 0.608,
+    "commit": {
+      "1y": 0.375114,
+      "3y": 0.240145
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E16s_v5",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 1.216,
+    "commit": {
+      "1y": 0.750228,
+      "3y": 0.480327
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E20s_v5",
+    "vcpu": 20,
+    "ramGb": 160,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 1.52,
+    "commit": {
+      "1y": 0.937785,
+      "3y": 0.600419
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E32s_v5",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 2.432,
+    "commit": {
+      "1y": 1.500571,
+      "3y": 0.960654
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E48s_v5",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 3.648,
+    "commit": {
+      "1y": 2.250799,
+      "3y": 1.440944
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E64s_v5",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 4.864,
+    "commit": {
+      "1y": 3.001142,
+      "3y": 1.921271
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E96s_v5",
+    "vcpu": 96,
+    "ramGb": 672,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 7.296,
+    "commit": {
+      "1y": 4.501598,
+      "3y": 2.881925
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E2s_v6",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 0.16,
+    "commit": {
+      "1y": 0.098973,
+      "3y": 0.062253
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E4s_v6",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 0.319,
+    "commit": {
+      "1y": 0.197945,
+      "3y": 0.124505
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E8s_v6",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 0.638,
+    "commit": {
+      "1y": 0.395776,
+      "3y": 0.248973
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E16s_v6",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 1.277,
+    "commit": {
+      "1y": 0.791667,
+      "3y": 0.497945
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E20s_v6",
+    "vcpu": 20,
+    "ramGb": 160,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 1.596,
+    "commit": {
+      "1y": 0.989498,
+      "3y": 0.622451
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E32s_v6",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 2.554,
+    "commit": {
+      "1y": 1.583219,
+      "3y": 0.99589
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E48s_v6",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 3.83,
+    "commit": {
+      "1y": 2.374886,
+      "3y": 1.493874
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E64s_v6",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 5.107,
+    "commit": {
+      "1y": 3.166438,
+      "3y": 1.991819
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E96s_v6",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 7.661,
+    "commit": {
+      "1y": 4.749658,
+      "3y": 2.987709
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E128s_v6",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 10.214,
+    "commit": {
+      "1y": 6.332877,
+      "3y": 3.9836
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_F2s_v2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 0.097
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_F4s_v2",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 0.194
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_F8s_v2",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 0.388
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_F16s_v2",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 0.776
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_F32s_v2",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 1.552
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_F48s_v2",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 2.328
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_F64s_v2",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 3.104
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_F72s_v2",
+    "vcpu": 72,
+    "ramGb": 144,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 3.492
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D2ps_v6",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.0838,
+    "commit": {
+      "1y": 0.049429,
+      "3y": 0.031849
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D4ps_v6",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.168,
+    "commit": {
+      "1y": 0.098858,
+      "3y": 0.063699
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D8ps_v6",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.335,
+    "commit": {
+      "1y": 0.197717,
+      "3y": 0.127359
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D16ps_v6",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.67,
+    "commit": {
+      "1y": 0.395548,
+      "3y": 0.254756
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D32ps_v6",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 1.341,
+    "commit": {
+      "1y": 0.791096,
+      "3y": 0.509513
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D48ps_v6",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 2.011,
+    "commit": {
+      "1y": 1.186644,
+      "3y": 0.764269
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D64ps_v6",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 2.682,
+    "commit": {
+      "1y": 1.582192,
+      "3y": 1.019026
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_D96ps_v6",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 4.022,
+    "commit": {
+      "1y": 2.373174,
+      "3y": 1.528501
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E2ps_v6",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.11,
+    "commit": {
+      "1y": 0.065068,
+      "3y": 0.041895
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E4ps_v6",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.22,
+    "commit": {
+      "1y": 0.130023,
+      "3y": 0.083752
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E8ps_v6",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.441,
+    "commit": {
+      "1y": 0.260046,
+      "3y": 0.167504
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E16ps_v6",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.882,
+    "commit": {
+      "1y": 0.520091,
+      "3y": 0.335008
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E32ps_v6",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 1.763,
+    "commit": {
+      "1y": 1.040297,
+      "3y": 0.670015
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E48ps_v6",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 2.645,
+    "commit": {
+      "1y": 1.560388,
+      "3y": 1.005023
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E64ps_v6",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 3.526,
+    "commit": {
+      "1y": 2.080594,
+      "3y": 1.34003
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "sku": "Standard_E96ps_v6",
+    "vcpu": 96,
+    "ramGb": 672,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 5.29,
+    "commit": {
+      "1y": 3.12089,
+      "3y": 2.010046
+    }
+  }
+]

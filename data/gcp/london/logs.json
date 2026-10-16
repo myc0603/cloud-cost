@@ -1,0 +1,9 @@
+{
+  "provider": "gcp",
+  "region": "london",
+  "ingestPerGb": 0.5,
+  "storagePerGbMonth": 0.01,
+  "includedDays": 30,
+  "storedRatio": 1,
+  "commitmentTiers": []
+}

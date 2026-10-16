@@ -1,0 +1,54 @@
+{
+  "provider": "azure",
+  "region": "tokyo",
+  "ingestPerGb": 3.34,
+  "storagePerGbMonth": 0.15,
+  "includedDays": 31,
+  "storedRatio": 1,
+  "commitmentTiers": [
+    {
+      "gbPerDay": 100,
+      "perDay": 284.2
+    },
+    {
+      "gbPerDay": 200,
+      "perDay": 533.6
+    },
+    {
+      "gbPerDay": 300,
+      "perDay": 783
+    },
+    {
+      "gbPerDay": 400,
+      "perDay": 1020.8
+    },
+    {
+      "gbPerDay": 500,
+      "perDay": 1254.25
+    },
+    {
+      "gbPerDay": 1000,
+      "perDay": 2465
+    },
+    {
+      "gbPerDay": 2000,
+      "perDay": 4814
+    },
+    {
+      "gbPerDay": 5000,
+      "perDay": 11672.5
+    },
+    {
+      "gbPerDay": 10000,
+      "perDay": 22678
+    },
+    {
+      "gbPerDay": 25000,
+      "perDay": 55027.5
+    },
+    {
+      "gbPerDay": 50000,
+      "perDay": 106720
+    }
+  ]
+}

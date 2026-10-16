@@ -1,0 +1,27 @@
+{
+  "provider": "aws",
+  "region": "tokyo",
+  "freeGb": 100,
+  "tiers": [
+    {
+      "upToGb": 100,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": 10340,
+      "pricePerGb": 0.114
+    },
+    {
+      "upToGb": 51300,
+      "pricePerGb": 0.089
+    },
+    {
+      "upToGb": 153700,
+      "pricePerGb": 0.086
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.084
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "provider": "gcp",
+  "region": "london",
+  "hourly": {
+    "per": "vm",
+    "usd": 0.0014,
+    "maxVms": 32
+  },
+  "perGb": 0.045
+}

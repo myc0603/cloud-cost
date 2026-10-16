@@ -1,0 +1,366 @@
+{
+  "provider": "azure",
+  "region": "london",
+  "engine": "Redis",
+  "nodes": [
+    {
+      "sku": "B0",
+      "memoryGb": 0.5,
+      "burstable": false,
+      "perHour": 0.018,
+      "haPerHour": 0.036,
+      "commit": {
+        "1y": {
+          "perHour": 0.011644,
+          "haPerHour": 0.023288
+        },
+        "3y": {
+          "perHour": 0.008105,
+          "haPerHour": 0.01621
+        }
+      }
+    },
+    {
+      "sku": "B1",
+      "memoryGb": 1,
+      "burstable": false,
+      "perHour": 0.037,
+      "haPerHour": 0.074,
+      "commit": {
+        "1y": {
+          "perHour": 0.024087,
+          "haPerHour": 0.048174
+        },
+        "3y": {
+          "perHour": 0.016667,
+          "haPerHour": 0.033334
+        }
+      }
+    },
+    {
+      "sku": "B3",
+      "memoryGb": 3,
+      "burstable": false,
+      "perHour": 0.075,
+      "haPerHour": 0.15,
+      "commit": {
+        "1y": {
+          "perHour": 0.048744,
+          "haPerHour": 0.097488
+        },
+        "3y": {
+          "perHour": 0.033752,
+          "haPerHour": 0.067504
+        }
+      }
+    },
+    {
+      "sku": "B5",
+      "memoryGb": 6,
+      "burstable": false,
+      "perHour": 0.179,
+      "haPerHour": 0.358,
+      "commit": {
+        "1y": {
+          "perHour": 0.116324,
+          "haPerHour": 0.232648
+        },
+        "3y": {
+          "perHour": 0.080556,
+          "haPerHour": 0.161112
+        }
+      }
+    },
+    {
+      "sku": "B10",
+      "memoryGb": 12,
+      "burstable": false,
+      "perHour": 0.362,
+      "haPerHour": 0.724,
+      "commit": {
+        "1y": {
+          "perHour": 0.235274,
+          "haPerHour": 0.470548
+        },
+        "3y": {
+          "perHour": 0.1629,
+          "haPerHour": 0.3258
+        }
+      }
+    },
+    {
+      "sku": "B20",
+      "memoryGb": 24,
+      "burstable": false,
+      "perHour": 0.723,
+      "haPerHour": 1.446,
+      "commit": {
+        "1y": {
+          "perHour": 0.469977,
+          "haPerHour": 0.939954
+        },
+        "3y": {
+          "perHour": 0.325342,
+          "haPerHour": 0.650684
+        }
+      }
+    },
+    {
+      "sku": "B50",
+      "memoryGb": 60,
+      "burstable": false,
+      "perHour": 1.446,
+      "haPerHour": 2.892,
+      "commit": {
+        "1y": {
+          "perHour": 0.939954,
+          "haPerHour": 1.879908
+        },
+        "3y": {
+          "perHour": 0.650685,
+          "haPerHour": 1.30137
+        }
+      }
+    },
+    {
+      "sku": "B100",
+      "memoryGb": 120,
+      "burstable": false,
+      "perHour": 2.87,
+      "haPerHour": 5.74,
+      "commit": {
+        "1y": {
+          "perHour": 1.865525,
+          "haPerHour": 3.73105
+        },
+        "3y": {
+          "perHour": 1.291514,
+          "haPerHour": 2.583028
+        }
+      }
+    },
+    {
+      "sku": "B150",
+      "memoryGb": 175,
+      "burstable": false,
+      "perHour": 4.336,
+      "haPerHour": 8.672,
+      "commit": {
+        "1y": {
+          "perHour": 2.818379,
+          "haPerHour": 5.636758
+        },
+        "3y": {
+          "perHour": 1.951218,
+          "haPerHour": 3.902436
+        }
+      }
+    },
+    {
+      "sku": "B250",
+      "memoryGb": 235,
+      "burstable": false,
+      "perHour": 5.796,
+      "haPerHour": 11.592,
+      "commit": {
+        "1y": {
+          "perHour": 3.767352,
+          "haPerHour": 7.534704
+        },
+        "3y": {
+          "perHour": 2.608181,
+          "haPerHour": 5.216362
+        }
+      }
+    },
+    {
+      "sku": "M10",
+      "memoryGb": 12,
+      "burstable": false,
+      "perHour": 0.248,
+      "haPerHour": 0.496
+    },
+    {
+      "sku": "M20",
+      "memoryGb": 24,
+      "burstable": false,
+      "perHour": 0.496,
+      "haPerHour": 0.992
+    },
+    {
+      "sku": "M50",
+      "memoryGb": 60,
+      "burstable": false,
+      "perHour": 0.991,
+      "haPerHour": 1.982
+    },
+    {
+      "sku": "M100",
+      "memoryGb": 120,
+      "burstable": false,
+      "perHour": 1.983,
+      "haPerHour": 3.966
+    },
+    {
+      "sku": "M150",
+      "memoryGb": 175,
+      "burstable": false,
+      "perHour": 2.981,
+      "haPerHour": 5.962,
+      "commit": {
+        "1y": {
+          "perHour": 1.937671,
+          "haPerHour": 3.875342
+        },
+        "3y": {
+          "perHour": 1.341438,
+          "haPerHour": 2.682876
+        }
+      }
+    },
+    {
+      "sku": "M250",
+      "memoryGb": 235,
+      "burstable": false,
+      "perHour": 3.974,
+      "haPerHour": 7.948
+    },
+    {
+      "sku": "X3",
+      "memoryGb": 3,
+      "burstable": false,
+      "perHour": 0.252,
+      "haPerHour": 0.504,
+      "commit": {
+        "1y": {
+          "perHour": 0.163813,
+          "haPerHour": 0.327626
+        },
+        "3y": {
+          "perHour": 0.113394,
+          "haPerHour": 0.226788
+        }
+      }
+    },
+    {
+      "sku": "X5",
+      "memoryGb": 6,
+      "burstable": false,
+      "perHour": 0.335,
+      "haPerHour": 0.67,
+      "commit": {
+        "1y": {
+          "perHour": 0.217694,
+          "haPerHour": 0.435388
+        },
+        "3y": {
+          "perHour": 0.150761,
+          "haPerHour": 0.301522
+        }
+      }
+    },
+    {
+      "sku": "X10",
+      "memoryGb": 12,
+      "burstable": false,
+      "perHour": 0.67,
+      "haPerHour": 1.34,
+      "commit": {
+        "1y": {
+          "perHour": 0.435502,
+          "haPerHour": 0.871004
+        },
+        "3y": {
+          "perHour": 0.301484,
+          "haPerHour": 0.602968
+        }
+      }
+    },
+    {
+      "sku": "X20",
+      "memoryGb": 24,
+      "burstable": false,
+      "perHour": 1.341,
+      "haPerHour": 2.682,
+      "commit": {
+        "1y": {
+          "perHour": 0.871689,
+          "haPerHour": 1.743378
+        },
+        "3y": {
+          "perHour": 0.603463,
+          "haPerHour": 1.206926
+        }
+      }
+    },
+    {
+      "sku": "X50",
+      "memoryGb": 60,
+      "burstable": false,
+      "perHour": 2.681,
+      "haPerHour": 5.362,
+      "commit": {
+        "1y": {
+          "perHour": 1.742694,
+          "haPerHour": 3.485388
+        },
+        "3y": {
+          "perHour": 1.206469,
+          "haPerHour": 2.412938
+        }
+      }
+    },
+    {
+      "sku": "X100",
+      "memoryGb": 120,
+      "burstable": false,
+      "perHour": 5.362,
+      "haPerHour": 10.724,
+      "commit": {
+        "1y": {
+          "perHour": 3.485274,
+          "haPerHour": 6.970548
+        },
+        "3y": {
+          "perHour": 2.4129,
+          "haPerHour": 4.8258
+        }
+      }
+    },
+    {
+      "sku": "X150",
+      "memoryGb": 175,
+      "burstable": false,
+      "perHour": 8.043,
+      "haPerHour": 16.086,
+      "commit": {
+        "1y": {
+          "perHour": 5.227968,
+          "haPerHour": 10.455936
+        },
+        "3y": {
+          "perHour": 3.619368,
+          "haPerHour": 7.238736
+        }
+      }
+    },
+    {
+      "sku": "X250",
+      "memoryGb": 235,
+      "burstable": false,
+      "perHour": 10.725,
+      "haPerHour": 21.45,
+      "commit": {
+        "1y": {
+          "perHour": 6.971233,
+          "haPerHour": 13.942466
+        },
+        "3y": {
+          "perHour": 4.826256,
+          "haPerHour": 9.652512
+        }
+      }
+    }
+  ],
+  "gbTiers": null
+}

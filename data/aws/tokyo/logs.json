@@ -1,0 +1,9 @@
+{
+  "provider": "aws",
+  "region": "tokyo",
+  "ingestPerGb": 0.76,
+  "storagePerGbMonth": 0.033,
+  "includedDays": 0,
+  "storedRatio": 0.15,
+  "commitmentTiers": []
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "aws",
+    "region": "frankfurt",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.0952
+  },
+  {
+    "provider": "aws",
+    "region": "frankfurt",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.0245
+  }
+]

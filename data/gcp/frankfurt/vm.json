@@ -1,0 +1,3797 @@
+[
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.010792,
+    "commit": {
+      "1y": 0.006799,
+      "3y": 0.004856
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.021584,
+    "commit": {
+      "1y": 0.013598,
+      "3y": 0.009713
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.043168,
+    "commit": {
+      "1y": 0.027196,
+      "3y": 0.019426
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.086336,
+    "commit": {
+      "1y": 0.054391,
+      "3y": 0.038851
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.172671,
+    "commit": {
+      "1y": 0.108783,
+      "3y": 0.077702
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.345342,
+    "commit": {
+      "1y": 0.217566,
+      "3y": 0.155404
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.690684,
+    "commit": {
+      "1y": 0.435131,
+      "3y": 0.310808
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 1.381369,
+    "commit": {
+      "1y": 0.870262,
+      "3y": 0.621616
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.116464,
+    "commit": {
+      "1y": 0.073372,
+      "3y": 0.052409
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.232927,
+    "commit": {
+      "1y": 0.146744,
+      "3y": 0.104817
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.465855,
+    "commit": {
+      "1y": 0.293489,
+      "3y": 0.209635
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.93171,
+    "commit": {
+      "1y": 0.586977,
+      "3y": 0.419269
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.063739,
+    "commit": {
+      "1y": 0.040156,
+      "3y": 0.028683
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.127479,
+    "commit": {
+      "1y": 0.080312,
+      "3y": 0.057365
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.254958,
+    "commit": {
+      "1y": 0.160623,
+      "3y": 0.114731
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.509916,
+    "commit": {
+      "1y": 0.321247,
+      "3y": 0.229462
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "e2-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 1.019831,
+    "commit": {
+      "1y": 0.642494,
+      "3y": 0.458924
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.125124,
+    "commit": {
+      "1y": 0.078752,
+      "3y": 0.056246
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.250248,
+    "commit": {
+      "1y": 0.157504,
+      "3y": 0.112492
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.500496,
+    "commit": {
+      "1y": 0.315008,
+      "3y": 0.224984
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 1.000992,
+    "commit": {
+      "1y": 0.630016,
+      "3y": 0.449968
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 2.001984,
+    "commit": {
+      "1y": 1.260032,
+      "3y": 0.899936
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 3.002976,
+    "commit": {
+      "1y": 1.890048,
+      "3y": 1.349904
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-standard-64",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 4.003968,
+    "commit": {
+      "1y": 2.520064,
+      "3y": 1.799872
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-standard-80",
+    "vcpu": 80,
+    "ramGb": 320,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 5.00496,
+    "commit": {
+      "1y": 3.15008,
+      "3y": 2.24984
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-standard-96",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 6.005952,
+    "commit": {
+      "1y": 3.780096,
+      "3y": 2.699808
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-standard-128",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 8.007936,
+    "commit": {
+      "1y": 5.040128,
+      "3y": 3.599744
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.168788,
+    "commit": {
+      "1y": 0.106232,
+      "3y": 0.07587
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.337576,
+    "commit": {
+      "1y": 0.212464,
+      "3y": 0.15174
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.675152,
+    "commit": {
+      "1y": 0.424928,
+      "3y": 0.30348
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 1.350304,
+    "commit": {
+      "1y": 0.849856,
+      "3y": 0.60696
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highmem-32",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 2.700608,
+    "commit": {
+      "1y": 1.699712,
+      "3y": 1.21392
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highmem-48",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 4.050912,
+    "commit": {
+      "1y": 2.549568,
+      "3y": 1.82088
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highmem-64",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 5.401216,
+    "commit": {
+      "1y": 3.399424,
+      "3y": 2.42784
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highmem-80",
+    "vcpu": 80,
+    "ramGb": 640,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 6.75152,
+    "commit": {
+      "1y": 4.24928,
+      "3y": 3.0348
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highmem-96",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 8.101824,
+    "commit": {
+      "1y": 5.099136,
+      "3y": 3.64176
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highmem-128",
+    "vcpu": 128,
+    "ramGb": 864,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 9.929152,
+    "commit": {
+      "1y": 6.249248,
+      "3y": 4.4632
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.092376,
+    "commit": {
+      "1y": 0.058142,
+      "3y": 0.041528
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.184752,
+    "commit": {
+      "1y": 0.116284,
+      "3y": 0.083056
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.369504,
+    "commit": {
+      "1y": 0.232568,
+      "3y": 0.166112
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.739008,
+    "commit": {
+      "1y": 0.465136,
+      "3y": 0.332224
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 1.478016,
+    "commit": {
+      "1y": 0.930272,
+      "3y": 0.664448
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 48,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 2.217024,
+    "commit": {
+      "1y": 1.395408,
+      "3y": 0.996672
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highcpu-64",
+    "vcpu": 64,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 2.956032,
+    "commit": {
+      "1y": 1.860544,
+      "3y": 1.328896
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highcpu-80",
+    "vcpu": 80,
+    "ramGb": 80,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 3.69504,
+    "commit": {
+      "1y": 2.32568,
+      "3y": 1.66112
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2-highcpu-96",
+    "vcpu": 96,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 4.434048,
+    "commit": {
+      "1y": 2.790816,
+      "3y": 1.993344
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 0.108854,
+    "commit": {
+      "1y": 0.06851,
+      "3y": 0.048934
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 0.217708,
+    "commit": {
+      "1y": 0.13702,
+      "3y": 0.097868
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 0.435416,
+    "commit": {
+      "1y": 0.27404,
+      "3y": 0.195736
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 0.870832,
+    "commit": {
+      "1y": 0.54808,
+      "3y": 0.391472
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 1.741664,
+    "commit": {
+      "1y": 1.09616,
+      "3y": 0.782944
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 2.612496,
+    "commit": {
+      "1y": 1.64424,
+      "3y": 1.174416
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-64",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 3.483328,
+    "commit": {
+      "1y": 2.19232,
+      "3y": 1.565888
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-80",
+    "vcpu": 80,
+    "ramGb": 320,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 4.35416,
+    "commit": {
+      "1y": 2.7404,
+      "3y": 1.95736
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-96",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 5.224992,
+    "commit": {
+      "1y": 3.28848,
+      "3y": 2.348832
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-128",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 6.966656,
+    "commit": {
+      "1y": 4.38464,
+      "3y": 3.131776
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n2d-standard-224",
+    "vcpu": 224,
+    "ramGb": 896,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 12.191648,
+    "commit": {
+      "1y": 7.67312,
+      "3y": 5.480608
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.107026,
+    "commit": {
+      "1y": 0.067425,
+      "3y": 0.048163
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.214052,
+    "commit": {
+      "1y": 0.13485,
+      "3y": 0.096326
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.428104,
+    "commit": {
+      "1y": 0.269701,
+      "3y": 0.192652
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.856208,
+    "commit": {
+      "1y": 0.539402,
+      "3y": 0.385303
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 1.712416,
+    "commit": {
+      "1y": 1.078803,
+      "3y": 0.770606
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 2.568624,
+    "commit": {
+      "1y": 1.618205,
+      "3y": 1.155909
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-standard-64",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 3.424832,
+    "commit": {
+      "1y": 2.157606,
+      "3y": 1.541212
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-standard-80",
+    "vcpu": 80,
+    "ramGb": 320,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 4.28104,
+    "commit": {
+      "1y": 2.697008,
+      "3y": 1.926515
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.140444,
+    "commit": {
+      "1y": 0.088476,
+      "3y": 0.063201
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.280887,
+    "commit": {
+      "1y": 0.176953,
+      "3y": 0.126402
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.561774,
+    "commit": {
+      "1y": 0.353906,
+      "3y": 0.252803
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 1.123549,
+    "commit": {
+      "1y": 0.707811,
+      "3y": 0.505606
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highmem-32",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 2.247098,
+    "commit": {
+      "1y": 1.415622,
+      "3y": 1.011213
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highmem-48",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 3.370646,
+    "commit": {
+      "1y": 2.123434,
+      "3y": 1.516819
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highmem-64",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 4.494195,
+    "commit": {
+      "1y": 2.831245,
+      "3y": 2.022426
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highmem-80",
+    "vcpu": 80,
+    "ramGb": 640,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 5.617744,
+    "commit": {
+      "1y": 3.539056,
+      "3y": 2.528032
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.090317,
+    "commit": {
+      "1y": 0.0569,
+      "3y": 0.040644
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.180634,
+    "commit": {
+      "1y": 0.113799,
+      "3y": 0.081288
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.361269,
+    "commit": {
+      "1y": 0.227598,
+      "3y": 0.162576
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.722538,
+    "commit": {
+      "1y": 0.455197,
+      "3y": 0.325151
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 1.445075,
+    "commit": {
+      "1y": 0.910394,
+      "3y": 0.650303
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 2.167613,
+    "commit": {
+      "1y": 1.36559,
+      "3y": 0.975454
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highcpu-64",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 2.89015,
+    "commit": {
+      "1y": 1.820787,
+      "3y": 1.300605
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4-highcpu-80",
+    "vcpu": 80,
+    "ramGb": 160,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 3.612688,
+    "commit": {
+      "1y": 2.275984,
+      "3y": 1.625757
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.09998,
+    "commit": {
+      "1y": 0.06296,
+      "3y": 0.044996
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.19996,
+    "commit": {
+      "1y": 0.12592,
+      "3y": 0.089992
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.39992,
+    "commit": {
+      "1y": 0.25184,
+      "3y": 0.179984
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.79984,
+    "commit": {
+      "1y": 0.50368,
+      "3y": 0.359968
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 1.59968,
+    "commit": {
+      "1y": 1.00736,
+      "3y": 0.719936
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 2.39952,
+    "commit": {
+      "1y": 1.51104,
+      "3y": 1.079904
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-standard-64",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 3.19936,
+    "commit": {
+      "1y": 2.01472,
+      "3y": 1.439872
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-standard-80",
+    "vcpu": 80,
+    "ramGb": 320,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 3.9992,
+    "commit": {
+      "1y": 2.5184,
+      "3y": 1.79984
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-standard-96",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 4.79904,
+    "commit": {
+      "1y": 3.02208,
+      "3y": 2.159808
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.13126,
+    "commit": {
+      "1y": 0.08264,
+      "3y": 0.059076
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.26252,
+    "commit": {
+      "1y": 0.16528,
+      "3y": 0.118152
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.52504,
+    "commit": {
+      "1y": 0.33056,
+      "3y": 0.236304
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 1.05008,
+    "commit": {
+      "1y": 0.66112,
+      "3y": 0.472608
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highmem-32",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 2.10016,
+    "commit": {
+      "1y": 1.32224,
+      "3y": 0.945216
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highmem-48",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 3.15024,
+    "commit": {
+      "1y": 1.98336,
+      "3y": 1.417824
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highmem-64",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 4.20032,
+    "commit": {
+      "1y": 2.64448,
+      "3y": 1.890432
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highmem-80",
+    "vcpu": 80,
+    "ramGb": 640,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 5.2504,
+    "commit": {
+      "1y": 3.3056,
+      "3y": 2.36304
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highmem-96",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 6.30048,
+    "commit": {
+      "1y": 3.96672,
+      "3y": 2.835648
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.08434,
+    "commit": {
+      "1y": 0.05312,
+      "3y": 0.037956
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.16868,
+    "commit": {
+      "1y": 0.10624,
+      "3y": 0.075912
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.33736,
+    "commit": {
+      "1y": 0.21248,
+      "3y": 0.151824
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.67472,
+    "commit": {
+      "1y": 0.42496,
+      "3y": 0.303648
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 1.34944,
+    "commit": {
+      "1y": 0.84992,
+      "3y": 0.607296
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 2.02416,
+    "commit": {
+      "1y": 1.27488,
+      "3y": 0.910944
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highcpu-64",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 2.69888,
+    "commit": {
+      "1y": 1.69984,
+      "3y": 1.214592
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highcpu-80",
+    "vcpu": 80,
+    "ramGb": 160,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 3.3736,
+    "commit": {
+      "1y": 2.1248,
+      "3y": 1.51824
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n4d-highcpu-96",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 4.04832,
+    "commit": {
+      "1y": 2.54976,
+      "3y": 1.821888
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n1-standard-1",
+    "vcpu": 1,
+    "ramGb": 3.75,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n1",
+    "pricePerHour": 0.061198,
+    "commit": {
+      "1y": 0.038517,
+      "3y": 0.027514
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n1-standard-2",
+    "vcpu": 2,
+    "ramGb": 7.5,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n1",
+    "pricePerHour": 0.122395,
+    "commit": {
+      "1y": 0.077035,
+      "3y": 0.055027
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n1-standard-4",
+    "vcpu": 4,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n1",
+    "pricePerHour": 0.24479,
+    "commit": {
+      "1y": 0.154069,
+      "3y": 0.110054
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n1-standard-8",
+    "vcpu": 8,
+    "ramGb": 30,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n1",
+    "pricePerHour": 0.48958,
+    "commit": {
+      "1y": 0.308138,
+      "3y": 0.220108
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "n1-standard-16",
+    "vcpu": 16,
+    "ramGb": 60,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n1",
+    "pricePerHour": 0.97916,
+    "commit": {
+      "1y": 0.616276,
+      "3y": 0.440216
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 0.269012,
+    "commit": {
+      "1y": 0.169324,
+      "3y": 0.107608
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 0.538024,
+    "commit": {
+      "1y": 0.338648,
+      "3y": 0.215216
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 1.076048,
+    "commit": {
+      "1y": 0.677296,
+      "3y": 0.430432
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2-standard-30",
+    "vcpu": 30,
+    "ramGb": 120,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 2.01759,
+    "commit": {
+      "1y": 1.26993,
+      "3y": 0.80706
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2-standard-60",
+    "vcpu": 60,
+    "ramGb": 240,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 4.03518,
+    "commit": {
+      "1y": 2.53986,
+      "3y": 1.61412
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 0.116976,
+    "commit": {
+      "1y": 0.073696,
+      "3y": 0.05264
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 0.233952,
+    "commit": {
+      "1y": 0.147392,
+      "3y": 0.10528
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 0.467904,
+    "commit": {
+      "1y": 0.294784,
+      "3y": 0.21056
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 0.935808,
+    "commit": {
+      "1y": 0.589568,
+      "3y": 0.42112
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 1.871616,
+    "commit": {
+      "1y": 1.179136,
+      "3y": 0.84224
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2d-standard-56",
+    "vcpu": 56,
+    "ramGb": 224,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 3.275328,
+    "commit": {
+      "1y": 2.063488,
+      "3y": 1.47392
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c2d-standard-112",
+    "vcpu": 112,
+    "ramGb": 448,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 6.550656,
+    "commit": {
+      "1y": 4.126976,
+      "3y": 2.94784
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 0.237897,
+    "commit": {
+      "1y": 0.149879,
+      "3y": 0.107054
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 0.475795,
+    "commit": {
+      "1y": 0.299758,
+      "3y": 0.214109
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3-standard-22",
+    "vcpu": 22,
+    "ramGb": 88,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 1.308436,
+    "commit": {
+      "1y": 0.824334,
+      "3y": 0.588799
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3-standard-44",
+    "vcpu": 44,
+    "ramGb": 176,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 2.616872,
+    "commit": {
+      "1y": 1.648668,
+      "3y": 1.177598
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3-standard-88",
+    "vcpu": 88,
+    "ramGb": 352,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 5.233744,
+    "commit": {
+      "1y": 3.297335,
+      "3y": 2.355195
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3-standard-176",
+    "vcpu": 176,
+    "ramGb": 704,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 10.467487,
+    "commit": {
+      "1y": 6.594671,
+      "3y": 4.71039
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.214283,
+    "commit": {
+      "1y": 0.134992,
+      "3y": 0.096415
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.428567,
+    "commit": {
+      "1y": 0.269984,
+      "3y": 0.192831
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.857133,
+    "commit": {
+      "1y": 0.539968,
+      "3y": 0.385662
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-standard-30",
+    "vcpu": 30,
+    "ramGb": 120,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 1.607125,
+    "commit": {
+      "1y": 1.01244,
+      "3y": 0.723116
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-standard-60",
+    "vcpu": 60,
+    "ramGb": 240,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 3.214249,
+    "commit": {
+      "1y": 2.02488,
+      "3y": 1.446232
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-standard-90",
+    "vcpu": 90,
+    "ramGb": 360,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 4.821374,
+    "commit": {
+      "1y": 3.03732,
+      "3y": 2.169347
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-standard-180",
+    "vcpu": 180,
+    "ramGb": 720,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 9.642748,
+    "commit": {
+      "1y": 6.07464,
+      "3y": 4.338695
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-standard-360",
+    "vcpu": 360,
+    "ramGb": 1440,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 19.285495,
+    "commit": {
+      "1y": 12.14928,
+      "3y": 8.67739
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.289029,
+    "commit": {
+      "1y": 0.182079,
+      "3y": 0.130041
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.578058,
+    "commit": {
+      "1y": 0.364157,
+      "3y": 0.260081
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 1.156117,
+    "commit": {
+      "1y": 0.728315,
+      "3y": 0.520163
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highmem-30",
+    "vcpu": 30,
+    "ramGb": 240,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 2.167719,
+    "commit": {
+      "1y": 1.36559,
+      "3y": 0.975305
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highmem-60",
+    "vcpu": 60,
+    "ramGb": 480,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 4.335438,
+    "commit": {
+      "1y": 2.731181,
+      "3y": 1.950611
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highmem-90",
+    "vcpu": 90,
+    "ramGb": 720,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 6.503157,
+    "commit": {
+      "1y": 4.096771,
+      "3y": 2.925916
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highmem-180",
+    "vcpu": 180,
+    "ramGb": 1440,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 13.006314,
+    "commit": {
+      "1y": 8.193542,
+      "3y": 5.851832
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highmem-360",
+    "vcpu": 360,
+    "ramGb": 2880,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 26.012628,
+    "commit": {
+      "1y": 16.387085,
+      "3y": 11.703665
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.17691,
+    "commit": {
+      "1y": 0.111449,
+      "3y": 0.079603
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.353821,
+    "commit": {
+      "1y": 0.222897,
+      "3y": 0.159206
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.707641,
+    "commit": {
+      "1y": 0.445795,
+      "3y": 0.318411
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highcpu-30",
+    "vcpu": 30,
+    "ramGb": 59,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 1.322156,
+    "commit": {
+      "1y": 0.832922,
+      "3y": 0.594919
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highcpu-60",
+    "vcpu": 60,
+    "ramGb": 118,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 2.644312,
+    "commit": {
+      "1y": 1.665844,
+      "3y": 1.189839
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highcpu-90",
+    "vcpu": 90,
+    "ramGb": 177,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 3.966467,
+    "commit": {
+      "1y": 2.498766,
+      "3y": 1.784758
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highcpu-180",
+    "vcpu": 180,
+    "ramGb": 354,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 7.932935,
+    "commit": {
+      "1y": 4.997531,
+      "3y": 3.569517
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c3d-highcpu-360",
+    "vcpu": 360,
+    "ramGb": 708,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 15.865869,
+    "commit": {
+      "1y": 9.995063,
+      "3y": 7.139033
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-2",
+    "vcpu": 2,
+    "ramGb": 7,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.114302,
+    "commit": {
+      "1y": 0.072012,
+      "3y": 0.051436
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-4",
+    "vcpu": 4,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.233251,
+    "commit": {
+      "1y": 0.146951,
+      "3y": 0.104963
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-8",
+    "vcpu": 8,
+    "ramGb": 30,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.466501,
+    "commit": {
+      "1y": 0.293903,
+      "3y": 0.209927
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-16",
+    "vcpu": 16,
+    "ramGb": 60,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.933002,
+    "commit": {
+      "1y": 0.587805,
+      "3y": 0.419853
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-24",
+    "vcpu": 24,
+    "ramGb": 90,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.399504,
+    "commit": {
+      "1y": 0.881708,
+      "3y": 0.62978
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-32",
+    "vcpu": 32,
+    "ramGb": 120,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.866005,
+    "commit": {
+      "1y": 1.17561,
+      "3y": 0.839707
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-48",
+    "vcpu": 48,
+    "ramGb": 180,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 2.799007,
+    "commit": {
+      "1y": 1.763416,
+      "3y": 1.25956
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-96",
+    "vcpu": 96,
+    "ramGb": 360,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 5.598014,
+    "commit": {
+      "1y": 3.526831,
+      "3y": 2.519121
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-144",
+    "vcpu": 144,
+    "ramGb": 540,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 8.397022,
+    "commit": {
+      "1y": 5.290247,
+      "3y": 3.778681
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-192",
+    "vcpu": 192,
+    "ramGb": 720,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 11.196029,
+    "commit": {
+      "1y": 7.053662,
+      "3y": 5.038241
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-standard-288",
+    "vcpu": 288,
+    "ramGb": 1080,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 16.794043,
+    "commit": {
+      "1y": 10.580494,
+      "3y": 7.557362
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-2",
+    "vcpu": 2,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.151477,
+    "commit": {
+      "1y": 0.095433,
+      "3y": 0.068164
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-4",
+    "vcpu": 4,
+    "ramGb": 31,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.3076,
+    "commit": {
+      "1y": 0.193793,
+      "3y": 0.138419
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-8",
+    "vcpu": 8,
+    "ramGb": 62,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.6152,
+    "commit": {
+      "1y": 0.387585,
+      "3y": 0.276837
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-16",
+    "vcpu": 16,
+    "ramGb": 124,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.2304,
+    "commit": {
+      "1y": 0.77517,
+      "3y": 0.553675
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-24",
+    "vcpu": 24,
+    "ramGb": 186,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.8456,
+    "commit": {
+      "1y": 1.162755,
+      "3y": 0.830512
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-32",
+    "vcpu": 32,
+    "ramGb": 248,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 2.4608,
+    "commit": {
+      "1y": 1.550341,
+      "3y": 1.10735
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-48",
+    "vcpu": 48,
+    "ramGb": 372,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 3.6912,
+    "commit": {
+      "1y": 2.325511,
+      "3y": 1.661025
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-96",
+    "vcpu": 96,
+    "ramGb": 744,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 7.382401,
+    "commit": {
+      "1y": 4.651022,
+      "3y": 3.322049
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-144",
+    "vcpu": 144,
+    "ramGb": 1116,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 11.073601,
+    "commit": {
+      "1y": 6.976533,
+      "3y": 4.983074
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-192",
+    "vcpu": 192,
+    "ramGb": 1488,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 14.764802,
+    "commit": {
+      "1y": 9.302044,
+      "3y": 6.644099
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highmem-288",
+    "vcpu": 288,
+    "ramGb": 2232,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 22.147203,
+    "commit": {
+      "1y": 13.953066,
+      "3y": 9.966148
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.100361,
+    "commit": {
+      "1y": 0.063229,
+      "3y": 0.045163
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.200723,
+    "commit": {
+      "1y": 0.126458,
+      "3y": 0.090327
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.401445,
+    "commit": {
+      "1y": 0.252916,
+      "3y": 0.180653
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.802891,
+    "commit": {
+      "1y": 0.505833,
+      "3y": 0.361307
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-24",
+    "vcpu": 24,
+    "ramGb": 48,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.204336,
+    "commit": {
+      "1y": 0.758749,
+      "3y": 0.54196
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.605782,
+    "commit": {
+      "1y": 1.011666,
+      "3y": 0.722613
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 2.408673,
+    "commit": {
+      "1y": 1.517499,
+      "3y": 1.08392
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-96",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 4.817345,
+    "commit": {
+      "1y": 3.034998,
+      "3y": 2.167839
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-144",
+    "vcpu": 144,
+    "ramGb": 288,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 7.226018,
+    "commit": {
+      "1y": 4.552497,
+      "3y": 3.251759
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-192",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 9.634691,
+    "commit": {
+      "1y": 6.069996,
+      "3y": 4.335679
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4-highcpu-288",
+    "vcpu": 288,
+    "ramGb": 576,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 14.452036,
+    "commit": {
+      "1y": 9.104993,
+      "3y": 6.503518
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-standard-2",
+    "vcpu": 2,
+    "ramGb": 7,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.106054,
+    "commit": {
+      "1y": 0.066814,
+      "3y": 0.047724
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-standard-4",
+    "vcpu": 4,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.216232,
+    "commit": {
+      "1y": 0.136227,
+      "3y": 0.097304
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-standard-8",
+    "vcpu": 8,
+    "ramGb": 31,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.436589,
+    "commit": {
+      "1y": 0.275052,
+      "3y": 0.196465
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-standard-16",
+    "vcpu": 16,
+    "ramGb": 62,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.873178,
+    "commit": {
+      "1y": 0.550104,
+      "3y": 0.39293
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-standard-32",
+    "vcpu": 32,
+    "ramGb": 124,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 1.746356,
+    "commit": {
+      "1y": 1.100208,
+      "3y": 0.78586
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-standard-48",
+    "vcpu": 48,
+    "ramGb": 186,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 2.619534,
+    "commit": {
+      "1y": 1.650312,
+      "3y": 1.17879
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-standard-64",
+    "vcpu": 64,
+    "ramGb": 248,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 3.492712,
+    "commit": {
+      "1y": 2.200416,
+      "3y": 1.57172
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-standard-96",
+    "vcpu": 96,
+    "ramGb": 372,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 5.239069,
+    "commit": {
+      "1y": 3.300625,
+      "3y": 2.35758
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-standard-192",
+    "vcpu": 192,
+    "ramGb": 744,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 10.478137,
+    "commit": {
+      "1y": 6.601249,
+      "3y": 4.71516
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-standard-384",
+    "vcpu": 384,
+    "ramGb": 1488,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 20.956274,
+    "commit": {
+      "1y": 13.202499,
+      "3y": 9.430319
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highmem-2",
+    "vcpu": 2,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.139052,
+    "commit": {
+      "1y": 0.087603,
+      "3y": 0.062573
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highmem-4",
+    "vcpu": 4,
+    "ramGb": 31,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.282229,
+    "commit": {
+      "1y": 0.177805,
+      "3y": 0.127003
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highmem-8",
+    "vcpu": 8,
+    "ramGb": 63,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.568582,
+    "commit": {
+      "1y": 0.358208,
+      "3y": 0.255861
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highmem-16",
+    "vcpu": 16,
+    "ramGb": 126,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 1.137164,
+    "commit": {
+      "1y": 0.716417,
+      "3y": 0.511723
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highmem-32",
+    "vcpu": 32,
+    "ramGb": 252,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 2.274328,
+    "commit": {
+      "1y": 1.432833,
+      "3y": 1.023445
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highmem-48",
+    "vcpu": 48,
+    "ramGb": 378,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 3.411492,
+    "commit": {
+      "1y": 2.14925,
+      "3y": 1.535168
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highmem-64",
+    "vcpu": 64,
+    "ramGb": 504,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 4.548657,
+    "commit": {
+      "1y": 2.865667,
+      "3y": 2.04689
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highmem-96",
+    "vcpu": 96,
+    "ramGb": 756,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 6.822985,
+    "commit": {
+      "1y": 4.2985,
+      "3y": 3.070336
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highmem-192",
+    "vcpu": 192,
+    "ramGb": 1512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 13.64597,
+    "commit": {
+      "1y": 8.597,
+      "3y": 6.140671
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highmem-384",
+    "vcpu": 384,
+    "ramGb": 3024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 27.291939,
+    "commit": {
+      "1y": 17.194,
+      "3y": 12.281343
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 3,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.089555,
+    "commit": {
+      "1y": 0.05642,
+      "3y": 0.0403
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 7,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.183234,
+    "commit": {
+      "1y": 0.115438,
+      "3y": 0.082455
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.370593,
+    "commit": {
+      "1y": 0.233474,
+      "3y": 0.166767
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 30,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.741185,
+    "commit": {
+      "1y": 0.466948,
+      "3y": 0.333534
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 60,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 1.48237,
+    "commit": {
+      "1y": 0.933896,
+      "3y": 0.667067
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 90,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 2.223555,
+    "commit": {
+      "1y": 1.400843,
+      "3y": 1.000601
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highcpu-64",
+    "vcpu": 64,
+    "ramGb": 120,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 2.96474,
+    "commit": {
+      "1y": 1.867791,
+      "3y": 1.334135
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highcpu-96",
+    "vcpu": 96,
+    "ramGb": 180,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 4.44711,
+    "commit": {
+      "1y": 2.801687,
+      "3y": 2.001202
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highcpu-192",
+    "vcpu": 192,
+    "ramGb": 360,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 8.894221,
+    "commit": {
+      "1y": 5.603374,
+      "3y": 4.002404
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4d-highcpu-384",
+    "vcpu": 384,
+    "ramGb": 720,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 17.788441,
+    "commit": {
+      "1y": 11.206748,
+      "3y": 8.004808
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "t2d-standard-1",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 0.054427,
+    "commit": {
+      "1y": 0.034255,
+      "3y": 0.024467
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "t2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 0.108854,
+    "commit": {
+      "1y": 0.06851,
+      "3y": 0.048934
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "t2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 0.217708,
+    "commit": {
+      "1y": 0.13702,
+      "3y": 0.097868
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "t2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 0.435416,
+    "commit": {
+      "1y": 0.27404,
+      "3y": 0.195736
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "t2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 0.870832,
+    "commit": {
+      "1y": 0.54808,
+      "3y": 0.391472
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "t2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 1.741664,
+    "commit": {
+      "1y": 1.09616,
+      "3y": 0.782944
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "t2d-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 2.612496,
+    "commit": {
+      "1y": 1.64424,
+      "3y": 1.174416
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "t2d-standard-60",
+    "vcpu": 60,
+    "ramGb": 240,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 3.26562,
+    "commit": {
+      "1y": 2.0553,
+      "3y": 1.46802
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-standard-1",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.052983,
+    "commit": {
+      "1y": 0.034941,
+      "3y": 0.023846
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.105966,
+    "commit": {
+      "1y": 0.069882,
+      "3y": 0.047692
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.211932,
+    "commit": {
+      "1y": 0.139764,
+      "3y": 0.095384
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.423864,
+    "commit": {
+      "1y": 0.279528,
+      "3y": 0.190768
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.847728,
+    "commit": {
+      "1y": 0.559056,
+      "3y": 0.381536
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 1.695456,
+    "commit": {
+      "1y": 1.118112,
+      "3y": 0.763072
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 2.543184,
+    "commit": {
+      "1y": 1.677168,
+      "3y": 1.144608
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-standard-64",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 3.390912,
+    "commit": {
+      "1y": 2.236224,
+      "3y": 1.526144
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-standard-72",
+    "vcpu": 72,
+    "ramGb": 288,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 3.814776,
+    "commit": {
+      "1y": 2.515752,
+      "3y": 1.716912
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highmem-1",
+    "vcpu": 1,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.069551,
+    "commit": {
+      "1y": 0.045845,
+      "3y": 0.031302
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.139102,
+    "commit": {
+      "1y": 0.09169,
+      "3y": 0.062604
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.278204,
+    "commit": {
+      "1y": 0.18338,
+      "3y": 0.125208
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.556408,
+    "commit": {
+      "1y": 0.36676,
+      "3y": 0.250416
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 1.112816,
+    "commit": {
+      "1y": 0.73352,
+      "3y": 0.500832
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highmem-32",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 2.225632,
+    "commit": {
+      "1y": 1.46704,
+      "3y": 1.001664
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highmem-48",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 3.338448,
+    "commit": {
+      "1y": 2.20056,
+      "3y": 1.502496
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highmem-64",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 4.451264,
+    "commit": {
+      "1y": 2.93408,
+      "3y": 2.003328
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highmem-72",
+    "vcpu": 72,
+    "ramGb": 576,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 5.007672,
+    "commit": {
+      "1y": 3.30084,
+      "3y": 2.253744
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highcpu-1",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.044699,
+    "commit": {
+      "1y": 0.029489,
+      "3y": 0.020118
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.089398,
+    "commit": {
+      "1y": 0.058978,
+      "3y": 0.040236
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.178796,
+    "commit": {
+      "1y": 0.117956,
+      "3y": 0.080472
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.357592,
+    "commit": {
+      "1y": 0.235912,
+      "3y": 0.160944
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.715184,
+    "commit": {
+      "1y": 0.471824,
+      "3y": 0.321888
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 1.430368,
+    "commit": {
+      "1y": 0.943648,
+      "3y": 0.643776
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 2.145552,
+    "commit": {
+      "1y": 1.415472,
+      "3y": 0.965664
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highcpu-64",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 2.860736,
+    "commit": {
+      "1y": 1.887296,
+      "3y": 1.287552
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "sku": "c4a-highcpu-72",
+    "vcpu": 72,
+    "ramGb": 144,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 3.218328,
+    "commit": {
+      "1y": 2.123208,
+      "3y": 1.448496
+    }
+  }
+]

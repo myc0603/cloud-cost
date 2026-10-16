@@ -1,0 +1,23 @@
+{
+  "provider": "gcp",
+  "region": "singapore",
+  "freeGb": 200,
+  "tiers": [
+    {
+      "upToGb": 200,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": 10240,
+      "pricePerGb": 0.11
+    },
+    {
+      "upToGb": 153600,
+      "pricePerGb": 0.075
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.07
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "provider": "gcp",
+  "region": "singapore",
+  "engines": {
+    "mysql": {
+      "instances": [],
+      "custom": {
+        "vcpuPerHour": 0.0578,
+        "ramGbPerHour": 0.0098,
+        "haVcpuPerHour": 0.1156,
+        "haRamGbPerHour": 0.0196,
+        "commit": {
+          "1y": {
+            "vcpuPerHour": 0.04335,
+            "ramGbPerHour": 0.00735,
+            "haVcpuPerHour": 0.0867,
+            "haRamGbPerHour": 0.0147
+          },
+          "3y": {
+            "vcpuPerHour": 0.027744,
+            "ramGbPerHour": 0.004704,
+            "haVcpuPerHour": 0.055488,
+            "haRamGbPerHour": 0.009408
+          }
+        }
+      },
+      "storageGbMonth": 0.238,
+      "haStorageGbMonth": 0.476
+    },
+    "postgres": {
+      "instances": [],
+      "custom": {
+        "vcpuPerHour": 0.0578,
+        "ramGbPerHour": 0.0098,
+        "haVcpuPerHour": 0.1156,
+        "haRamGbPerHour": 0.0196,
+        "commit": {
+          "1y": {
+            "vcpuPerHour": 0.04335,
+            "ramGbPerHour": 0.00735,
+            "haVcpuPerHour": 0.0867,
+            "haRamGbPerHour": 0.0147
+          },
+          "3y": {
+            "vcpuPerHour": 0.027744,
+            "ramGbPerHour": 0.004704,
+            "haVcpuPerHour": 0.055488,
+            "haRamGbPerHour": 0.009408
+          }
+        }
+      },
+      "storageGbMonth": 0.238,
+      "haStorageGbMonth": 0.476
+    }
+  }
+}

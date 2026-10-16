@@ -1,0 +1,1116 @@
+[
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B1s",
+    "vcpu": 1,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.0118
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B1ms",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.0236
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B2s",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.0472
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B2ms",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.0944
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B4ms",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.189
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B8ms",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "b",
+    "pricePerHour": 0.378
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B2ts_v2",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.0118,
+    "commit": {
+      "1y": 0.006963,
+      "3y": 0.00449
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B2ls_v2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.0472,
+    "commit": {
+      "1y": 0.027854,
+      "3y": 0.017922
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B2s_v2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.0944,
+    "commit": {
+      "1y": 0.055708,
+      "3y": 0.035883
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B4ls_v2",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.167,
+    "commit": {
+      "1y": 0.09863,
+      "3y": 0.063546
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B4s_v2",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.189,
+    "commit": {
+      "1y": 0.111416,
+      "3y": 0.071728
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B8ls_v2",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.334,
+    "commit": {
+      "1y": 0.19726,
+      "3y": 0.127055
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B8s_v2",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.378,
+    "commit": {
+      "1y": 0.222831,
+      "3y": 0.143493
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B16ls_v2",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.669,
+    "commit": {
+      "1y": 0.394635,
+      "3y": 0.254148
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B16s_v2",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 0.755,
+    "commit": {
+      "1y": 0.445548,
+      "3y": 0.286986
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B32ls_v2",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 1.337,
+    "commit": {
+      "1y": 0.789155,
+      "3y": 0.508219
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_B32s_v2",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "bsv2",
+    "pricePerHour": 1.51,
+    "commit": {
+      "1y": 0.891096,
+      "3y": 0.573935
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D2s_v5",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 0.111,
+    "commit": {
+      "1y": 0.068493,
+      "3y": 0.043836
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D4s_v5",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 0.222,
+    "commit": {
+      "1y": 0.136986,
+      "3y": 0.087671
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D8s_v5",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 0.444,
+    "commit": {
+      "1y": 0.273973,
+      "3y": 0.175381
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D16s_v5",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 0.888,
+    "commit": {
+      "1y": 0.547945,
+      "3y": 0.350761
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D32s_v5",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 1.776,
+    "commit": {
+      "1y": 1.095776,
+      "3y": 0.701522
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D48s_v5",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 2.664,
+    "commit": {
+      "1y": 1.643721,
+      "3y": 1.052283
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D64s_v5",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 3.552,
+    "commit": {
+      "1y": 2.191553,
+      "3y": 1.403044
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D96s_v5",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv5",
+    "pricePerHour": 5.328,
+    "commit": {
+      "1y": 3.287329,
+      "3y": 2.104566
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D2s_v6",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 0.117,
+    "commit": {
+      "1y": 0.07226,
+      "3y": 0.045472
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D4s_v6",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 0.233,
+    "commit": {
+      "1y": 0.144521,
+      "3y": 0.090906
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D8s_v6",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 0.466,
+    "commit": {
+      "1y": 0.289041,
+      "3y": 0.181849
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D16s_v6",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 0.932,
+    "commit": {
+      "1y": 0.578082,
+      "3y": 0.363661
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D32s_v6",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 1.865,
+    "commit": {
+      "1y": 1.156279,
+      "3y": 0.727321
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D48s_v6",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 2.797,
+    "commit": {
+      "1y": 1.734361,
+      "3y": 1.09102
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D64s_v6",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 3.73,
+    "commit": {
+      "1y": 2.312557,
+      "3y": 1.45468
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D96s_v6",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 5.595,
+    "commit": {
+      "1y": 3.468836,
+      "3y": 2.182002
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D128s_v6",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 7.46,
+    "commit": {
+      "1y": 4.625114,
+      "3y": 2.909323
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D192s_v6",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "dsv6",
+    "pricePerHour": 11.19,
+    "commit": {
+      "1y": 6.937671,
+      "3y": 4.364003
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E2s_v5",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 0.148,
+    "commit": {
+      "1y": 0.091324,
+      "3y": 0.058447
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E4s_v5",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 0.296,
+    "commit": {
+      "1y": 0.182648,
+      "3y": 0.116933
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E8s_v5",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 0.592,
+    "commit": {
+      "1y": 0.365297,
+      "3y": 0.233828
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E16s_v5",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 1.184,
+    "commit": {
+      "1y": 0.730479,
+      "3y": 0.467694
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E20s_v5",
+    "vcpu": 20,
+    "ramGb": 160,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 1.48,
+    "commit": {
+      "1y": 0.913128,
+      "3y": 0.584589
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E32s_v5",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 2.368,
+    "commit": {
+      "1y": 1.461073,
+      "3y": 0.93535
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E48s_v5",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 3.552,
+    "commit": {
+      "1y": 2.191553,
+      "3y": 1.403044
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E64s_v5",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 4.736,
+    "commit": {
+      "1y": 2.922146,
+      "3y": 1.870738
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E96s_v5",
+    "vcpu": 96,
+    "ramGb": 672,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv5",
+    "pricePerHour": 7.104,
+    "commit": {
+      "1y": 4.383219,
+      "3y": 2.806088
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E2s_v6",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 0.155,
+    "commit": {
+      "1y": 0.096347,
+      "3y": 0.060616
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E4s_v6",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 0.311,
+    "commit": {
+      "1y": 0.192694,
+      "3y": 0.121195
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E8s_v6",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 0.622,
+    "commit": {
+      "1y": 0.385388,
+      "3y": 0.242428
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E16s_v6",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 1.243,
+    "commit": {
+      "1y": 0.770776,
+      "3y": 0.484855
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E20s_v6",
+    "vcpu": 20,
+    "ramGb": 160,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 1.554,
+    "commit": {
+      "1y": 0.96347,
+      "3y": 0.60605
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E32s_v6",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 2.486,
+    "commit": {
+      "1y": 1.541553,
+      "3y": 0.969711
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E48s_v6",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 3.73,
+    "commit": {
+      "1y": 2.312329,
+      "3y": 1.454528
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E64s_v6",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 4.973,
+    "commit": {
+      "1y": 3.083105,
+      "3y": 1.939384
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E96s_v6",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 7.459,
+    "commit": {
+      "1y": 4.624658,
+      "3y": 2.909094
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E128s_v6",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "esv6",
+    "pricePerHour": 9.946,
+    "commit": {
+      "1y": 6.166324,
+      "3y": 3.878767
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_F2s_v2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 0.101
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_F4s_v2",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 0.202
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_F8s_v2",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 0.404
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_F16s_v2",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 0.808
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_F32s_v2",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 1.616
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_F48s_v2",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 2.424
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_F64s_v2",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 3.232
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_F72s_v2",
+    "vcpu": 72,
+    "ramGb": 144,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "fsv2",
+    "pricePerHour": 3.636
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D2ps_v6",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.081,
+    "commit": {
+      "1y": 0.047831,
+      "3y": 0.030784
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D4ps_v6",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.162,
+    "commit": {
+      "1y": 0.095548,
+      "3y": 0.061568
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D8ps_v6",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.324,
+    "commit": {
+      "1y": 0.19121,
+      "3y": 0.123135
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D16ps_v6",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 0.648,
+    "commit": {
+      "1y": 0.382306,
+      "3y": 0.246233
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D32ps_v6",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 1.296,
+    "commit": {
+      "1y": 0.764612,
+      "3y": 0.492466
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D48ps_v6",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 1.944,
+    "commit": {
+      "1y": 1.146918,
+      "3y": 0.738737
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D64ps_v6",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 2.592,
+    "commit": {
+      "1y": 1.529224,
+      "3y": 0.98497
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_D96ps_v6",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "dpsv6",
+    "pricePerHour": 3.888,
+    "commit": {
+      "1y": 2.29395,
+      "3y": 1.477435
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E2ps_v6",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.106,
+    "commit": {
+      "1y": 0.062671,
+      "3y": 0.040373
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E4ps_v6",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.212,
+    "commit": {
+      "1y": 0.125342,
+      "3y": 0.080708
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E8ps_v6",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.425,
+    "commit": {
+      "1y": 0.250685,
+      "3y": 0.161416
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E16ps_v6",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 0.85,
+    "commit": {
+      "1y": 0.501256,
+      "3y": 0.322831
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E32ps_v6",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 1.699,
+    "commit": {
+      "1y": 1.002511,
+      "3y": 0.6457
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E48ps_v6",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 2.549,
+    "commit": {
+      "1y": 1.503767,
+      "3y": 0.968531
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E64ps_v6",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 3.398,
+    "commit": {
+      "1y": 2.005023,
+      "3y": 1.2914
+    }
+  },
+  {
+    "provider": "azure",
+    "region": "london",
+    "sku": "Standard_E96ps_v6",
+    "vcpu": 96,
+    "ramGb": 672,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "epsv6",
+    "pricePerHour": 5.098,
+    "commit": {
+      "1y": 3.007534,
+      "3y": 1.9371
+    }
+  }
+]

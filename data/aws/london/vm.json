@@ -1,0 +1,10309 @@
+[
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c4.2xlarge",
+    "vcpu": 8,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.476,
+    "commit": {
+      "3y": 0.251,
+      "1y": 0.328
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c4.4xlarge",
+    "vcpu": 16,
+    "ramGb": 30,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.95,
+    "commit": {
+      "3y": 0.501,
+      "1y": 0.655
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c4.8xlarge",
+    "vcpu": 36,
+    "ramGb": 60,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.902,
+    "commit": {
+      "3y": 1.002,
+      "1y": 1.31
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c4.large",
+    "vcpu": 2,
+    "ramGb": 3.75,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.119,
+    "commit": {
+      "3y": 0.063,
+      "1y": 0.082
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c4.xlarge",
+    "vcpu": 4,
+    "ramGb": 7.5,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.237,
+    "commit": {
+      "3y": 0.125,
+      "1y": 0.164
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5",
+    "pricePerHour": 2.424,
+    "commit": {
+      "3y": 1.047,
+      "1y": 1.527
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5.18xlarge",
+    "vcpu": 72,
+    "ramGb": 144,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5",
+    "pricePerHour": 3.636,
+    "commit": {
+      "3y": 1.571,
+      "1y": 2.291
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5",
+    "pricePerHour": 4.848,
+    "commit": {
+      "3y": 2.094,
+      "1y": 3.054
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5",
+    "pricePerHour": 0.404,
+    "commit": {
+      "3y": 0.175,
+      "1y": 0.255
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5",
+    "pricePerHour": 0.808,
+    "commit": {
+      "3y": 0.349,
+      "1y": 0.509
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5.9xlarge",
+    "vcpu": 36,
+    "ramGb": 72,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5",
+    "pricePerHour": 1.818,
+    "commit": {
+      "3y": 0.785,
+      "1y": 1.145
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5",
+    "pricePerHour": 0.101,
+    "commit": {
+      "3y": 0.044,
+      "1y": 0.064
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5",
+    "pricePerHour": 0.202,
+    "commit": {
+      "3y": 0.087,
+      "1y": 0.127
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5a",
+    "pricePerHour": 2.184,
+    "commit": {
+      "1y": 1.376,
+      "3y": 0.943
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5a",
+    "pricePerHour": 2.912,
+    "commit": {
+      "1y": 1.835,
+      "3y": 1.258
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5a",
+    "pricePerHour": 4.368,
+    "commit": {
+      "1y": 2.752,
+      "3y": 1.887
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5a",
+    "pricePerHour": 0.364,
+    "commit": {
+      "1y": 0.229,
+      "3y": 0.157
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5a",
+    "pricePerHour": 0.728,
+    "commit": {
+      "1y": 0.459,
+      "3y": 0.314
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5a",
+    "pricePerHour": 1.456,
+    "commit": {
+      "1y": 0.917,
+      "3y": 0.629
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5a.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5a",
+    "pricePerHour": 0.091,
+    "commit": {
+      "1y": 0.057,
+      "3y": 0.039
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5a.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5a",
+    "pricePerHour": 0.182,
+    "commit": {
+      "1y": 0.115,
+      "3y": 0.079
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5d.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5d",
+    "pricePerHour": 2.76,
+    "commit": {
+      "3y": 1.192,
+      "1y": 1.739
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5d.18xlarge",
+    "vcpu": 72,
+    "ramGb": 144,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5d",
+    "pricePerHour": 4.14,
+    "commit": {
+      "3y": 1.788,
+      "1y": 2.608
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5d.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5d",
+    "pricePerHour": 5.52,
+    "commit": {
+      "3y": 2.385,
+      "1y": 3.478
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5d.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5d",
+    "pricePerHour": 0.46,
+    "commit": {
+      "3y": 0.199,
+      "1y": 0.29
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5d.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5d",
+    "pricePerHour": 0.92,
+    "commit": {
+      "3y": 0.397,
+      "1y": 0.58
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5d.9xlarge",
+    "vcpu": 36,
+    "ramGb": 72,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5d",
+    "pricePerHour": 2.07,
+    "commit": {
+      "3y": 0.894,
+      "1y": 1.304
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5d.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5d",
+    "pricePerHour": 0.115,
+    "commit": {
+      "3y": 0.05,
+      "1y": 0.072
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5d.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5d",
+    "pricePerHour": 0.23,
+    "commit": {
+      "3y": 0.099,
+      "1y": 0.145
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5n.18xlarge",
+    "vcpu": 72,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5n",
+    "pricePerHour": 4.608,
+    "commit": {
+      "3y": 1.927,
+      "1y": 2.903
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5n.2xlarge",
+    "vcpu": 8,
+    "ramGb": 21,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5n",
+    "pricePerHour": 0.512,
+    "commit": {
+      "3y": 0.214,
+      "1y": 0.323
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5n.4xlarge",
+    "vcpu": 16,
+    "ramGb": 42,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5n",
+    "pricePerHour": 1.024,
+    "commit": {
+      "3y": 0.428,
+      "1y": 0.645
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5n.9xlarge",
+    "vcpu": 36,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5n",
+    "pricePerHour": 2.304,
+    "commit": {
+      "3y": 0.964,
+      "1y": 1.452
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5n.large",
+    "vcpu": 2,
+    "ramGb": 5.25,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5n",
+    "pricePerHour": 0.128,
+    "commit": {
+      "3y": 0.054,
+      "1y": 0.081
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c5n.xlarge",
+    "vcpu": 4,
+    "ramGb": 10.5,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c5n",
+    "pricePerHour": 0.256,
+    "commit": {
+      "3y": 0.107,
+      "1y": 0.161
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6a",
+    "pricePerHour": 2.1816,
+    "commit": {
+      "3y": 0.99144,
+      "1y": 1.44018
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6a",
+    "pricePerHour": 2.9088,
+    "commit": {
+      "3y": 1.32192,
+      "1y": 1.92024
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6a",
+    "pricePerHour": 4.3632,
+    "commit": {
+      "3y": 1.98288,
+      "1y": 2.88036
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6a",
+    "pricePerHour": 0.3636,
+    "commit": {
+      "3y": 0.16524,
+      "1y": 0.24003
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6a.32xlarge",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6a",
+    "pricePerHour": 5.8176,
+    "commit": {
+      "3y": 2.64384,
+      "1y": 3.84048
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6a.48xlarge",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6a",
+    "pricePerHour": 8.7264,
+    "commit": {
+      "3y": 3.96576,
+      "1y": 5.76072
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6a",
+    "pricePerHour": 0.7272,
+    "commit": {
+      "3y": 0.33048,
+      "1y": 0.48006
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6a",
+    "pricePerHour": 1.4544,
+    "commit": {
+      "3y": 0.66096,
+      "1y": 0.96012
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6a.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6a",
+    "pricePerHour": 0.0909,
+    "commit": {
+      "3y": 0.04131,
+      "1y": 0.06001
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6a.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6a",
+    "pricePerHour": 0.1818,
+    "commit": {
+      "3y": 0.08262,
+      "1y": 0.12002
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6g.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6g",
+    "pricePerHour": 1.9392,
+    "commit": {
+      "3y": 0.8377,
+      "1y": 1.2217
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6g.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6g",
+    "pricePerHour": 2.5856,
+    "commit": {
+      "3y": 1.117,
+      "1y": 1.6289
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6g",
+    "pricePerHour": 0.3232,
+    "commit": {
+      "3y": 0.1396,
+      "1y": 0.2036
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6g.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6g",
+    "pricePerHour": 0.6464,
+    "commit": {
+      "3y": 0.2792,
+      "1y": 0.4072
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6g.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6g",
+    "pricePerHour": 1.2928,
+    "commit": {
+      "3y": 0.5585,
+      "1y": 0.8145
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6g.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6g",
+    "pricePerHour": 0.0808,
+    "commit": {
+      "3y": 0.0349,
+      "1y": 0.0509
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6g.medium",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6g",
+    "pricePerHour": 0.0404,
+    "commit": {
+      "3y": 0.0175,
+      "1y": 0.0255
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6g.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6g",
+    "pricePerHour": 0.1616,
+    "commit": {
+      "3y": 0.0698,
+      "1y": 0.1018
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gd.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gd",
+    "pricePerHour": 2.208,
+    "commit": {
+      "1y": 1.391,
+      "3y": 0.9539
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gd.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gd",
+    "pricePerHour": 2.944,
+    "commit": {
+      "1y": 1.8547,
+      "3y": 1.2718
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gd.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gd",
+    "pricePerHour": 0.368,
+    "commit": {
+      "1y": 0.2318,
+      "3y": 0.159
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gd.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gd",
+    "pricePerHour": 0.736,
+    "commit": {
+      "1y": 0.4637,
+      "3y": 0.318
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gd.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gd",
+    "pricePerHour": 1.472,
+    "commit": {
+      "1y": 0.9274,
+      "3y": 0.6359
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gd.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gd",
+    "pricePerHour": 0.092,
+    "commit": {
+      "1y": 0.058,
+      "3y": 0.0397
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gd.medium",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gd",
+    "pricePerHour": 0.046,
+    "commit": {
+      "1y": 0.029,
+      "3y": 0.0199
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gd.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gd",
+    "pricePerHour": 0.184,
+    "commit": {
+      "1y": 0.1159,
+      "3y": 0.0795
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gn.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gn",
+    "pricePerHour": 2.46,
+    "commit": {
+      "3y": 1.2312,
+      "1y": 1.5498
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gn",
+    "pricePerHour": 3.28,
+    "commit": {
+      "3y": 1.6416,
+      "1y": 2.0664
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gn.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gn",
+    "pricePerHour": 0.41,
+    "commit": {
+      "3y": 0.2052,
+      "1y": 0.2583
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gn.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gn",
+    "pricePerHour": 0.82,
+    "commit": {
+      "3y": 0.4104,
+      "1y": 0.5166
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gn.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gn",
+    "pricePerHour": 1.64,
+    "commit": {
+      "3y": 0.8208,
+      "1y": 1.0332
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gn.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gn",
+    "pricePerHour": 0.1025,
+    "commit": {
+      "3y": 0.0513,
+      "1y": 0.06458
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gn.medium",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gn",
+    "pricePerHour": 0.05125,
+    "commit": {
+      "3y": 0.02565,
+      "1y": 0.03229
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6gn.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c6gn",
+    "pricePerHour": 0.205,
+    "commit": {
+      "3y": 0.1026,
+      "1y": 0.12915
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6i",
+    "pricePerHour": 2.424,
+    "commit": {
+      "3y": 1.1016,
+      "1y": 1.6002
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6i",
+    "pricePerHour": 3.232,
+    "commit": {
+      "3y": 1.4688,
+      "1y": 2.1336
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6i",
+    "pricePerHour": 4.848,
+    "commit": {
+      "3y": 2.2032,
+      "1y": 3.2004
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6i",
+    "pricePerHour": 0.404,
+    "commit": {
+      "3y": 0.1836,
+      "1y": 0.2667
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6i",
+    "pricePerHour": 6.464,
+    "commit": {
+      "3y": 2.9376,
+      "1y": 4.2672
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6i",
+    "pricePerHour": 0.808,
+    "commit": {
+      "3y": 0.3672,
+      "1y": 0.5334
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6i",
+    "pricePerHour": 1.616,
+    "commit": {
+      "3y": 0.7344,
+      "1y": 1.0668
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6i.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6i",
+    "pricePerHour": 0.101,
+    "commit": {
+      "3y": 0.0459,
+      "1y": 0.06668
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6i.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6i",
+    "pricePerHour": 0.202,
+    "commit": {
+      "3y": 0.0918,
+      "1y": 0.13335
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6id.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6id",
+    "pricePerHour": 2.898,
+    "commit": {
+      "3y": 1.25194,
+      "1y": 1.82574
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6id.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6id",
+    "pricePerHour": 3.864,
+    "commit": {
+      "3y": 1.66925,
+      "1y": 2.43432
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6id.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6id",
+    "pricePerHour": 5.796,
+    "commit": {
+      "3y": 2.50387,
+      "1y": 3.65148
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6id.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6id",
+    "pricePerHour": 0.483,
+    "commit": {
+      "3y": 0.20866,
+      "1y": 0.30429
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6id.32xlarge",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6id",
+    "pricePerHour": 7.728,
+    "commit": {
+      "3y": 3.3385,
+      "1y": 4.86864
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6id.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6id",
+    "pricePerHour": 0.966,
+    "commit": {
+      "3y": 0.41731,
+      "1y": 0.60858
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6id.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6id",
+    "pricePerHour": 1.932,
+    "commit": {
+      "3y": 0.83462,
+      "1y": 1.21716
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6id.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6id",
+    "pricePerHour": 0.12075,
+    "commit": {
+      "3y": 0.05216,
+      "1y": 0.07607
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6id.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6id",
+    "pricePerHour": 0.2415,
+    "commit": {
+      "3y": 0.10433,
+      "1y": 0.15215
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6in.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6in",
+    "pricePerHour": 3.2256,
+    "commit": {
+      "1y": 2.03213,
+      "3y": 1.34887
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6in.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6in",
+    "pricePerHour": 4.3008,
+    "commit": {
+      "1y": 2.7095,
+      "3y": 1.79849
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6in.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6in",
+    "pricePerHour": 6.4512,
+    "commit": {
+      "1y": 4.06426,
+      "3y": 2.69774
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6in.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6in",
+    "pricePerHour": 0.5376,
+    "commit": {
+      "1y": 0.33869,
+      "3y": 0.22481
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6in.32xlarge",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6in",
+    "pricePerHour": 8.6016,
+    "commit": {
+      "1y": 5.41901,
+      "3y": 3.59698
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6in.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6in",
+    "pricePerHour": 1.0752,
+    "commit": {
+      "1y": 0.67738,
+      "3y": 0.44962
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6in.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6in",
+    "pricePerHour": 2.1504,
+    "commit": {
+      "1y": 1.35475,
+      "3y": 0.89925
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6in.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6in",
+    "pricePerHour": 0.1344,
+    "commit": {
+      "1y": 0.08467,
+      "3y": 0.0562
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c6in.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c6in",
+    "pricePerHour": 0.2688,
+    "commit": {
+      "1y": 0.16934,
+      "3y": 0.11241
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 2.92704,
+    "commit": {
+      "1y": 1.93227,
+      "3y": 1.3302
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 3.90272,
+    "commit": {
+      "1y": 2.57636,
+      "3y": 1.7736
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 5.85408,
+    "commit": {
+      "1y": 3.86454,
+      "3y": 2.66041
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 0.48784,
+    "commit": {
+      "1y": 0.32205,
+      "3y": 0.2217
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.32xlarge",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 7.80544,
+    "commit": {
+      "1y": 5.15273,
+      "3y": 3.54721
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.48xlarge",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 11.70816,
+    "commit": {
+      "1y": 7.72909,
+      "3y": 5.32081
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 0.97568,
+    "commit": {
+      "1y": 0.64409,
+      "3y": 0.4434
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 1.95136,
+    "commit": {
+      "1y": 1.28818,
+      "3y": 0.8868
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 0.12196,
+    "commit": {
+      "1y": 0.08051,
+      "3y": 0.05543
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.medium",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 0.06098,
+    "commit": {
+      "1y": 0.04026,
+      "3y": 0.02771
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7a.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7a",
+    "pricePerHour": 0.24392,
+    "commit": {
+      "1y": 0.16102,
+      "3y": 0.11085
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7g.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7g",
+    "pricePerHour": 2.0606,
+    "commit": {
+      "3y": 0.9365,
+      "1y": 1.3603
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7g.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7g",
+    "pricePerHour": 2.7475,
+    "commit": {
+      "3y": 1.2486,
+      "1y": 1.8138
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7g",
+    "pricePerHour": 0.3434,
+    "commit": {
+      "3y": 0.1561,
+      "1y": 0.2267
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7g.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7g",
+    "pricePerHour": 0.6869,
+    "commit": {
+      "3y": 0.3122,
+      "1y": 0.4534
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7g.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7g",
+    "pricePerHour": 1.3738,
+    "commit": {
+      "3y": 0.6243,
+      "1y": 0.9069
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7g.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7g",
+    "pricePerHour": 0.0859,
+    "commit": {
+      "3y": 0.039,
+      "1y": 0.0567
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7g.medium",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7g",
+    "pricePerHour": 0.0429,
+    "commit": {
+      "3y": 0.0195,
+      "1y": 0.0283
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7g.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7g",
+    "pricePerHour": 0.1717,
+    "commit": {
+      "3y": 0.078,
+      "1y": 0.1134
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gd.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gd",
+    "pricePerHour": 2.6083,
+    "commit": {
+      "3y": 1.1268,
+      "1y": 1.6432
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gd.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gd",
+    "pricePerHour": 3.4778,
+    "commit": {
+      "3y": 1.5024,
+      "1y": 2.191
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gd.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gd",
+    "pricePerHour": 0.4347,
+    "commit": {
+      "3y": 0.1878,
+      "1y": 0.2739
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gd.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gd",
+    "pricePerHour": 0.8694,
+    "commit": {
+      "3y": 0.3756,
+      "1y": 0.5477
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gd.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gd",
+    "pricePerHour": 1.7389,
+    "commit": {
+      "3y": 0.7512,
+      "1y": 1.0955
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gd.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gd",
+    "pricePerHour": 0.1087,
+    "commit": {
+      "3y": 0.0469,
+      "1y": 0.0685
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gd.medium",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gd",
+    "pricePerHour": 0.0543,
+    "commit": {
+      "3y": 0.0235,
+      "1y": 0.0342
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gd.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gd",
+    "pricePerHour": 0.2174,
+    "commit": {
+      "3y": 0.0939,
+      "1y": 0.1369
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gn.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gn",
+    "pricePerHour": 3.552
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gn",
+    "pricePerHour": 4.736
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gn.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gn",
+    "pricePerHour": 0.592
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gn.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gn",
+    "pricePerHour": 1.184
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gn.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gn",
+    "pricePerHour": 2.368
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gn.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gn",
+    "pricePerHour": 0.148
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gn.medium",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gn",
+    "pricePerHour": 0.074
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7gn.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c7gn",
+    "pricePerHour": 0.296
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i-flex.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i-flex",
+    "pricePerHour": 2.41794,
+    "commit": {
+      "1y": 1.59607,
+      "3y": 1.09872
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i-flex.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i-flex",
+    "pricePerHour": 3.22392,
+    "commit": {
+      "1y": 2.12809,
+      "3y": 1.46496
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i-flex.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i-flex",
+    "pricePerHour": 0.40299,
+    "commit": {
+      "1y": 0.26601,
+      "3y": 0.18312
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i-flex.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i-flex",
+    "pricePerHour": 0.80598,
+    "commit": {
+      "1y": 0.53202,
+      "3y": 0.36624
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i-flex.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i-flex",
+    "pricePerHour": 1.61196,
+    "commit": {
+      "1y": 1.06404,
+      "3y": 0.73248
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i-flex.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i-flex",
+    "pricePerHour": 0.10075,
+    "commit": {
+      "1y": 0.0665,
+      "3y": 0.04578
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i-flex.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i-flex",
+    "pricePerHour": 0.2015,
+    "commit": {
+      "1y": 0.13301,
+      "3y": 0.09156
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i",
+    "pricePerHour": 2.5452,
+    "commit": {
+      "3y": 1.15667,
+      "1y": 1.6802
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i",
+    "pricePerHour": 3.3936,
+    "commit": {
+      "3y": 1.54223,
+      "1y": 2.24027
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i",
+    "pricePerHour": 5.0904,
+    "commit": {
+      "3y": 2.31335,
+      "1y": 3.3604
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i",
+    "pricePerHour": 0.4242,
+    "commit": {
+      "3y": 0.19278,
+      "1y": 0.28003
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i",
+    "pricePerHour": 10.1808,
+    "commit": {
+      "3y": 4.6267,
+      "1y": 6.72081
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i",
+    "pricePerHour": 0.8484,
+    "commit": {
+      "3y": 0.38556,
+      "1y": 0.56007
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i",
+    "pricePerHour": 1.6968,
+    "commit": {
+      "3y": 0.77112,
+      "1y": 1.12013
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i",
+    "pricePerHour": 0.10605,
+    "commit": {
+      "3y": 0.04819,
+      "1y": 0.07001
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c7i.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c7i",
+    "pricePerHour": 0.2121,
+    "commit": {
+      "3y": 0.09639,
+      "1y": 0.14002
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8g.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8g",
+    "pricePerHour": 2.26656,
+    "commit": {
+      "3y": 1.03005,
+      "1y": 1.49626
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8g.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8g",
+    "pricePerHour": 3.02208,
+    "commit": {
+      "3y": 1.37339,
+      "1y": 1.99501
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8g.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8g",
+    "pricePerHour": 4.53312,
+    "commit": {
+      "3y": 2.06009,
+      "1y": 2.99252
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8g",
+    "pricePerHour": 0.37776,
+    "commit": {
+      "3y": 0.17167,
+      "1y": 0.24938
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8g.48xlarge",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8g",
+    "pricePerHour": 9.06624,
+    "commit": {
+      "3y": 4.12018,
+      "1y": 5.98504
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8g.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8g",
+    "pricePerHour": 0.75552,
+    "commit": {
+      "3y": 0.34335,
+      "1y": 0.49875
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8g.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8g",
+    "pricePerHour": 1.51104,
+    "commit": {
+      "3y": 0.6867,
+      "1y": 0.99751
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8g.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8g",
+    "pricePerHour": 0.09444,
+    "commit": {
+      "3y": 0.04292,
+      "1y": 0.06234
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8g.medium",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8g",
+    "pricePerHour": 0.04722,
+    "commit": {
+      "3y": 0.02146,
+      "1y": 0.03117
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8g.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8g",
+    "pricePerHour": 0.18888,
+    "commit": {
+      "3y": 0.08584,
+      "1y": 0.12469
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gd.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gd",
+    "pricePerHour": 2.81664,
+    "commit": {
+      "3y": 1.21679,
+      "1y": 1.77448
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gd.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gd",
+    "pricePerHour": 3.75552,
+    "commit": {
+      "3y": 1.62238,
+      "1y": 2.36598
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gd.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gd",
+    "pricePerHour": 5.63328,
+    "commit": {
+      "3y": 2.43358,
+      "1y": 3.54897
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gd.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gd",
+    "pricePerHour": 0.46944,
+    "commit": {
+      "3y": 0.2028,
+      "1y": 0.29575
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gd.48xlarge",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gd",
+    "pricePerHour": 11.26656,
+    "commit": {
+      "3y": 4.86715,
+      "1y": 7.09793
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gd.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gd",
+    "pricePerHour": 0.93888,
+    "commit": {
+      "3y": 0.4056,
+      "1y": 0.59149
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gd.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gd",
+    "pricePerHour": 1.87776,
+    "commit": {
+      "3y": 0.81119,
+      "1y": 1.18299
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gd.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gd",
+    "pricePerHour": 0.11736,
+    "commit": {
+      "3y": 0.0507,
+      "1y": 0.07394
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gd.medium",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gd",
+    "pricePerHour": 0.05868,
+    "commit": {
+      "3y": 0.02535,
+      "1y": 0.03697
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gd.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gd",
+    "pricePerHour": 0.23472,
+    "commit": {
+      "3y": 0.1014,
+      "1y": 0.14787
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gn.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gn",
+    "pricePerHour": 3.3706,
+    "commit": {
+      "3y": 1.4095,
+      "1y": 2.1235
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gn",
+    "pricePerHour": 4.4941,
+    "commit": {
+      "3y": 1.8793,
+      "1y": 2.8313
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gn.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gn",
+    "pricePerHour": 6.7411,
+    "commit": {
+      "3y": 2.819,
+      "1y": 4.2469
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gn.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gn",
+    "pricePerHour": 0.5618,
+    "commit": {
+      "3y": 0.2349,
+      "1y": 0.3539
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gn.48xlarge",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gn",
+    "pricePerHour": 13.4822,
+    "commit": {
+      "3y": 5.6379,
+      "1y": 8.4938
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gn.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gn",
+    "pricePerHour": 1.1235,
+    "commit": {
+      "3y": 0.4698,
+      "1y": 0.7078
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gn.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gn",
+    "pricePerHour": 2.247,
+    "commit": {
+      "3y": 0.9397,
+      "1y": 1.4156
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gn.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gn",
+    "pricePerHour": 0.1404,
+    "commit": {
+      "3y": 0.0587,
+      "1y": 0.0885
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gn.medium",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gn",
+    "pricePerHour": 0.0702,
+    "commit": {
+      "3y": 0.0294,
+      "1y": 0.0442
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8gn.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c8gn",
+    "pricePerHour": 0.2809,
+    "commit": {
+      "3y": 0.1175,
+      "1y": 0.177
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i-flex.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i-flex",
+    "pricePerHour": 2.53872,
+    "commit": {
+      "1y": 1.67592,
+      "3y": 1.15373
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i-flex.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i-flex",
+    "pricePerHour": 3.38496,
+    "commit": {
+      "1y": 2.23457,
+      "3y": 1.53831
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i-flex.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i-flex",
+    "pricePerHour": 0.42312,
+    "commit": {
+      "1y": 0.27932,
+      "3y": 0.19229
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i-flex.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i-flex",
+    "pricePerHour": 0.84624,
+    "commit": {
+      "1y": 0.55864,
+      "3y": 0.38458
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i-flex.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i-flex",
+    "pricePerHour": 1.69248,
+    "commit": {
+      "1y": 1.11728,
+      "3y": 0.76915
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i-flex.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i-flex",
+    "pricePerHour": 0.10578,
+    "commit": {
+      "1y": 0.06983,
+      "3y": 0.04807
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i-flex.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i-flex",
+    "pricePerHour": 0.21156,
+    "commit": {
+      "1y": 0.13966,
+      "3y": 0.09614
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 2.6724,
+    "commit": {
+      "3y": 1.21448,
+      "1y": 1.76417
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 3.5632,
+    "commit": {
+      "3y": 1.61931,
+      "1y": 2.35223
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 5.3448,
+    "commit": {
+      "3y": 2.42896,
+      "1y": 3.52835
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 0.4454,
+    "commit": {
+      "3y": 0.20241,
+      "1y": 0.29403
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 7.1264,
+    "commit": {
+      "3y": 3.23862,
+      "1y": 4.70446
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 10.6896,
+    "commit": {
+      "3y": 4.85792,
+      "1y": 7.05669
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 0.8908,
+    "commit": {
+      "3y": 0.40483,
+      "1y": 0.58806
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 1.7816,
+    "commit": {
+      "3y": 0.80965,
+      "1y": 1.17612
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.96xlarge",
+    "vcpu": 384,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 21.3792,
+    "commit": {
+      "3y": 9.71585,
+      "1y": 14.11338
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.large",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 0.11135,
+    "commit": {
+      "3y": 0.0506,
+      "1y": 0.07351
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "c8i.xlarge",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c8i",
+    "pricePerHour": 0.2227,
+    "commit": {
+      "3y": 0.10121,
+      "1y": 0.14701
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "d3.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "d3",
+    "pricePerHour": 1.28,
+    "commit": {
+      "1y": 0.806,
+      "3y": 0.553
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "d3.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "d3",
+    "pricePerHour": 2.559,
+    "commit": {
+      "1y": 1.612,
+      "3y": 1.106
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "d3.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "d3",
+    "pricePerHour": 5.11824,
+    "commit": {
+      "1y": 3.22449,
+      "3y": 2.21108
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "d3.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "d3",
+    "pricePerHour": 0.64,
+    "commit": {
+      "1y": 0.403,
+      "3y": 0.276
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "f1.2xlarge",
+    "vcpu": 8,
+    "ramGb": 122,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "f1",
+    "pricePerHour": 1.906
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "f1.4xlarge",
+    "vcpu": 16,
+    "ramGb": 244,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "f1",
+    "pricePerHour": 3.812
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "f2.12xlarge",
+    "vcpu": 48,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "f2",
+    "pricePerHour": 5.148,
+    "commit": {
+      "1y": 3.24324,
+      "3y": 2.22394
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "f2.48xlarge",
+    "vcpu": 192,
+    "ramGb": 2048,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "f2",
+    "pricePerHour": 20.592,
+    "commit": {
+      "1y": 12.97296,
+      "3y": 8.89574
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "f2.6xlarge",
+    "vcpu": 24,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "f2",
+    "pricePerHour": 2.574,
+    "commit": {
+      "1y": 1.62162,
+      "3y": 1.11197
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3.16xlarge",
+    "vcpu": 64,
+    "ramGb": 488,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3",
+    "pricePerHour": 5.792,
+    "commit": {
+      "1y": 3.965,
+      "3y": 2.834
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3.2xlarge",
+    "vcpu": 8,
+    "ramGb": 61,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3",
+    "pricePerHour": 0.724,
+    "commit": {
+      "1y": 0.496,
+      "3y": 0.354
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3.4xlarge",
+    "vcpu": 16,
+    "ramGb": 122,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3",
+    "pricePerHour": 1.448,
+    "commit": {
+      "1y": 0.991,
+      "3y": 0.708
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3.8xlarge",
+    "vcpu": 32,
+    "ramGb": 244,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3",
+    "pricePerHour": 2.896,
+    "commit": {
+      "1y": 1.982,
+      "3y": 1.417
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3.large",
+    "vcpu": 2,
+    "ramGb": 15.25,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3",
+    "pricePerHour": 0.181,
+    "commit": {
+      "1y": 0.124,
+      "3y": 0.089
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3.xlarge",
+    "vcpu": 4,
+    "ramGb": 30.5,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3",
+    "pricePerHour": 0.362,
+    "commit": {
+      "1y": 0.248,
+      "3y": 0.177
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3en.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3en",
+    "pricePerHour": 6.312,
+    "commit": {
+      "3y": 2.743,
+      "1y": 4.315
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3en.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3en",
+    "pricePerHour": 12.624,
+    "commit": {
+      "3y": 5.486,
+      "1y": 8.63
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3en.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3en",
+    "pricePerHour": 1.052,
+    "commit": {
+      "3y": 0.457,
+      "1y": 0.719
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3en.3xlarge",
+    "vcpu": 12,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3en",
+    "pricePerHour": 1.578,
+    "commit": {
+      "3y": 0.686,
+      "1y": 1.079
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3en.6xlarge",
+    "vcpu": 24,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3en",
+    "pricePerHour": 3.156,
+    "commit": {
+      "3y": 1.372,
+      "1y": 2.158
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3en.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3en",
+    "pricePerHour": 0.263,
+    "commit": {
+      "3y": 0.114,
+      "1y": 0.18
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i3en.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i3en",
+    "pricePerHour": 0.526,
+    "commit": {
+      "3y": 0.229,
+      "1y": 0.36
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i4i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i4i",
+    "pricePerHour": 4.778,
+    "commit": {
+      "3y": 2.204,
+      "1y": 3.118
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i4i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i4i",
+    "pricePerHour": 6.371,
+    "commit": {
+      "3y": 2.939,
+      "1y": 4.158
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i4i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i4i",
+    "pricePerHour": 9.5568,
+    "commit": {
+      "3y": 4.40899,
+      "1y": 6.23662
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i4i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i4i",
+    "pricePerHour": 0.796,
+    "commit": {
+      "3y": 0.367,
+      "1y": 0.52
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i4i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i4i",
+    "pricePerHour": 12.7424,
+    "commit": {
+      "3y": 5.87866,
+      "1y": 8.3155
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i4i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i4i",
+    "pricePerHour": 1.593,
+    "commit": {
+      "3y": 0.735,
+      "1y": 1.039
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i4i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i4i",
+    "pricePerHour": 3.186,
+    "commit": {
+      "3y": 1.47,
+      "1y": 2.079
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i4i.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i4i",
+    "pricePerHour": 0.199,
+    "commit": {
+      "3y": 0.092,
+      "1y": 0.13
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i4i.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i4i",
+    "pricePerHour": 0.398,
+    "commit": {
+      "3y": 0.184,
+      "1y": 0.26
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7i",
+    "pricePerHour": 5.2562,
+    "commit": {
+      "1y": 3.4301,
+      "3y": 2.4249
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7i",
+    "pricePerHour": 7.0083,
+    "commit": {
+      "1y": 4.5735,
+      "3y": 3.2333
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7i",
+    "pricePerHour": 10.5125,
+    "commit": {
+      "1y": 6.8603,
+      "3y": 4.8499
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7i",
+    "pricePerHour": 0.876,
+    "commit": {
+      "1y": 0.5717,
+      "3y": 0.4042
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7i",
+    "pricePerHour": 21.025,
+    "commit": {
+      "1y": 13.7206,
+      "3y": 9.6998
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7i",
+    "pricePerHour": 1.7521,
+    "commit": {
+      "1y": 1.1434,
+      "3y": 0.8083
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7i",
+    "pricePerHour": 3.5042,
+    "commit": {
+      "1y": 2.2868,
+      "3y": 1.6166
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7i.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7i",
+    "pricePerHour": 0.219,
+    "commit": {
+      "1y": 0.1429,
+      "3y": 0.101
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7i.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7i",
+    "pricePerHour": 0.438,
+    "commit": {
+      "1y": 0.2858,
+      "3y": 0.2021
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7ie.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7ie",
+    "pricePerHour": 7.2588,
+    "commit": {
+      "3y": 3.1545,
+      "1y": 4.9624
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7ie.18xlarge",
+    "vcpu": 72,
+    "ramGb": 576,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7ie",
+    "pricePerHour": 10.8882,
+    "commit": {
+      "3y": 4.7317,
+      "1y": 7.4437
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7ie.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7ie",
+    "pricePerHour": 14.5176,
+    "commit": {
+      "3y": 6.3089,
+      "1y": 9.9249
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7ie.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7ie",
+    "pricePerHour": 1.2098,
+    "commit": {
+      "3y": 0.5257,
+      "1y": 0.8271
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7ie.3xlarge",
+    "vcpu": 12,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7ie",
+    "pricePerHour": 1.8147,
+    "commit": {
+      "3y": 0.7886,
+      "1y": 1.2406
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7ie.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7ie",
+    "pricePerHour": 29.0352,
+    "commit": {
+      "3y": 12.6178,
+      "1y": 19.8498
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7ie.6xlarge",
+    "vcpu": 24,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7ie",
+    "pricePerHour": 3.6294,
+    "commit": {
+      "3y": 1.5772,
+      "1y": 2.4812
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7ie.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7ie",
+    "pricePerHour": 0.3025,
+    "commit": {
+      "3y": 0.1314,
+      "1y": 0.2068
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i7ie.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "i7ie",
+    "pricePerHour": 0.6049,
+    "commit": {
+      "3y": 0.2629,
+      "1y": 0.4135
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8g.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8g",
+    "pricePerHour": 4.7784,
+    "commit": {
+      "3y": 2.20309,
+      "1y": 3.11525
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8g.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8g",
+    "pricePerHour": 6.3712,
+    "commit": {
+      "3y": 2.93745,
+      "1y": 4.15367
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8g.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8g",
+    "pricePerHour": 9.5568,
+    "commit": {
+      "3y": 4.40618,
+      "1y": 6.23051
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8g",
+    "pricePerHour": 0.7964,
+    "commit": {
+      "3y": 0.3672,
+      "1y": 0.5192
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8g.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8g",
+    "pricePerHour": 19.1136,
+    "commit": {
+      "3y": 8.81236,
+      "1y": 12.46102
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8g.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8g",
+    "pricePerHour": 1.5928,
+    "commit": {
+      "3y": 0.7344,
+      "1y": 1.0384
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8g.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8g",
+    "pricePerHour": 3.1856,
+    "commit": {
+      "3y": 1.4687,
+      "1y": 2.0768
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8g.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8g",
+    "pricePerHour": 0.1991,
+    "commit": {
+      "3y": 0.0918,
+      "1y": 0.1298
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8g.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8g",
+    "pricePerHour": 0.3982,
+    "commit": {
+      "3y": 0.1836,
+      "1y": 0.2596
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8ge.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8ge",
+    "pricePerHour": 6.6276,
+    "commit": {
+      "3y": 2.8849,
+      "1y": 4.5247
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8ge.18xlarge",
+    "vcpu": 72,
+    "ramGb": 576,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8ge",
+    "pricePerHour": 9.9414,
+    "commit": {
+      "3y": 4.3273,
+      "1y": 6.787
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8ge.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8ge",
+    "pricePerHour": 13.2552,
+    "commit": {
+      "3y": 5.7698,
+      "1y": 9.0493
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8ge.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8ge",
+    "pricePerHour": 1.1046,
+    "commit": {
+      "3y": 0.4808,
+      "1y": 0.7541
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8ge.3xlarge",
+    "vcpu": 12,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8ge",
+    "pricePerHour": 1.6569,
+    "commit": {
+      "3y": 0.7212,
+      "1y": 1.1312
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8ge.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8ge",
+    "pricePerHour": 26.5104,
+    "commit": {
+      "3y": 11.5395,
+      "1y": 18.0986
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8ge.6xlarge",
+    "vcpu": 24,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8ge",
+    "pricePerHour": 3.3138,
+    "commit": {
+      "3y": 1.4424,
+      "1y": 2.2623
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8ge.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8ge",
+    "pricePerHour": 0.2762,
+    "commit": {
+      "3y": 0.1202,
+      "1y": 0.1885
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "i8ge.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "i8ge",
+    "pricePerHour": 0.5523,
+    "commit": {
+      "3y": 0.2404,
+      "1y": 0.3771
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "im4gn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "im4gn",
+    "pricePerHour": 6.75347,
+    "commit": {
+      "3y": 3.0793,
+      "1y": 4.35574
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "im4gn.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "im4gn",
+    "pricePerHour": 0.84418,
+    "commit": {
+      "3y": 0.38491,
+      "1y": 0.54447
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "im4gn.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "im4gn",
+    "pricePerHour": 1.68837,
+    "commit": {
+      "3y": 0.76982,
+      "1y": 1.08893
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "im4gn.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "im4gn",
+    "pricePerHour": 3.37674,
+    "commit": {
+      "3y": 1.53965,
+      "1y": 2.17787
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "im4gn.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "im4gn",
+    "pricePerHour": 0.21105,
+    "commit": {
+      "3y": 0.09623,
+      "1y": 0.13612
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "im4gn.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "im4gn",
+    "pricePerHour": 0.42209,
+    "commit": {
+      "3y": 0.19246,
+      "1y": 0.27223
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "is4gen.2xlarge",
+    "vcpu": 8,
+    "ramGb": 48,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "is4gen",
+    "pricePerHour": 1.3413,
+    "commit": {
+      "1y": 0.91571,
+      "3y": 0.5833
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "is4gen.4xlarge",
+    "vcpu": 16,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "is4gen",
+    "pricePerHour": 2.68261,
+    "commit": {
+      "1y": 1.83142,
+      "3y": 1.1666
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "is4gen.8xlarge",
+    "vcpu": 32,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "is4gen",
+    "pricePerHour": 5.36522,
+    "commit": {
+      "1y": 3.66283,
+      "3y": 2.3332
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "is4gen.large",
+    "vcpu": 2,
+    "ramGb": 12,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "is4gen",
+    "pricePerHour": 0.33533,
+    "commit": {
+      "1y": 0.22893,
+      "3y": 0.14582
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "is4gen.medium",
+    "vcpu": 1,
+    "ramGb": 6,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "is4gen",
+    "pricePerHour": 0.16766,
+    "commit": {
+      "1y": 0.11446,
+      "3y": 0.07291
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "is4gen.xlarge",
+    "vcpu": 4,
+    "ramGb": 24,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "is4gen",
+    "pricePerHour": 0.67065,
+    "commit": {
+      "1y": 0.45785,
+      "3y": 0.29165
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m4.10xlarge",
+    "vcpu": 40,
+    "ramGb": 160,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m4",
+    "pricePerHour": 2.32,
+    "commit": {
+      "3y": 1.1448,
+      "1y": 1.575
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m4.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m4",
+    "pricePerHour": 3.712,
+    "commit": {
+      "3y": 1.8317,
+      "1y": 2.52
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m4.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m4",
+    "pricePerHour": 0.464,
+    "commit": {
+      "3y": 0.229,
+      "1y": 0.315
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m4.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m4",
+    "pricePerHour": 0.928,
+    "commit": {
+      "3y": 0.4579,
+      "1y": 0.63
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m4.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m4",
+    "pricePerHour": 0.116,
+    "commit": {
+      "3y": 0.0572,
+      "1y": 0.0787
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m4.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m4",
+    "pricePerHour": 0.232,
+    "commit": {
+      "3y": 0.1145,
+      "1y": 0.1575
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5",
+    "pricePerHour": 2.664,
+    "commit": {
+      "1y": 1.678,
+      "3y": 1.151
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5",
+    "pricePerHour": 3.552,
+    "commit": {
+      "1y": 2.238,
+      "3y": 1.534
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5",
+    "pricePerHour": 5.328,
+    "commit": {
+      "1y": 3.357,
+      "3y": 2.302
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5",
+    "pricePerHour": 0.444,
+    "commit": {
+      "1y": 0.28,
+      "3y": 0.192
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5",
+    "pricePerHour": 0.888,
+    "commit": {
+      "1y": 0.559,
+      "3y": 0.384
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5",
+    "pricePerHour": 1.776,
+    "commit": {
+      "1y": 1.119,
+      "3y": 0.767
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5",
+    "pricePerHour": 0.111,
+    "commit": {
+      "1y": 0.07,
+      "3y": 0.048
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5",
+    "pricePerHour": 0.222,
+    "commit": {
+      "1y": 0.14,
+      "3y": 0.096
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5a",
+    "pricePerHour": 2.4,
+    "commit": {
+      "3y": 1.037,
+      "1y": 1.512
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5a",
+    "pricePerHour": 3.2,
+    "commit": {
+      "3y": 1.382,
+      "1y": 2.016
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5a",
+    "pricePerHour": 4.8,
+    "commit": {
+      "3y": 2.074,
+      "1y": 3.024
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5a",
+    "pricePerHour": 0.4,
+    "commit": {
+      "3y": 0.173,
+      "1y": 0.252
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5a",
+    "pricePerHour": 0.8,
+    "commit": {
+      "3y": 0.346,
+      "1y": 0.504
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5a",
+    "pricePerHour": 1.6,
+    "commit": {
+      "3y": 0.691,
+      "1y": 1.008
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5a.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5a",
+    "pricePerHour": 0.1,
+    "commit": {
+      "3y": 0.043,
+      "1y": 0.063
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5a.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5a",
+    "pricePerHour": 0.2,
+    "commit": {
+      "3y": 0.086,
+      "1y": 0.126
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5ad.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5ad",
+    "pricePerHour": 2.88,
+    "commit": {
+      "1y": 1.814,
+      "3y": 1.244
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5ad.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5ad",
+    "pricePerHour": 3.84,
+    "commit": {
+      "1y": 2.419,
+      "3y": 1.659
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5ad.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5ad",
+    "pricePerHour": 5.76,
+    "commit": {
+      "1y": 3.629,
+      "3y": 2.488
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5ad.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5ad",
+    "pricePerHour": 0.48,
+    "commit": {
+      "1y": 0.302,
+      "3y": 0.207
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5ad.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5ad",
+    "pricePerHour": 0.96,
+    "commit": {
+      "1y": 0.605,
+      "3y": 0.415
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5ad.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5ad",
+    "pricePerHour": 1.92,
+    "commit": {
+      "1y": 1.21,
+      "3y": 0.829
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5ad.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5ad",
+    "pricePerHour": 0.12,
+    "commit": {
+      "1y": 0.076,
+      "3y": 0.052
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5ad.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5ad",
+    "pricePerHour": 0.24,
+    "commit": {
+      "1y": 0.151,
+      "3y": 0.104
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5d.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5d",
+    "pricePerHour": 3.144,
+    "commit": {
+      "3y": 1.358,
+      "1y": 1.981
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5d.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5d",
+    "pricePerHour": 4.192,
+    "commit": {
+      "3y": 1.811,
+      "1y": 2.641
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5d.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5d",
+    "pricePerHour": 6.288,
+    "commit": {
+      "3y": 2.716,
+      "1y": 3.961
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5d.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5d",
+    "pricePerHour": 0.524,
+    "commit": {
+      "3y": 0.226,
+      "1y": 0.33
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5d.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5d",
+    "pricePerHour": 1.048,
+    "commit": {
+      "3y": 0.453,
+      "1y": 0.66
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5d.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5d",
+    "pricePerHour": 2.096,
+    "commit": {
+      "3y": 0.905,
+      "1y": 1.32
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5d.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5d",
+    "pricePerHour": 0.131,
+    "commit": {
+      "3y": 0.057,
+      "1y": 0.083
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m5d.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m5d",
+    "pricePerHour": 0.262,
+    "commit": {
+      "3y": 0.113,
+      "1y": 0.165
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6a",
+    "pricePerHour": 2.3976,
+    "commit": {
+      "1y": 1.58363,
+      "3y": 1.09
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6a",
+    "pricePerHour": 3.1968,
+    "commit": {
+      "1y": 2.11151,
+      "3y": 1.45333
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6a",
+    "pricePerHour": 4.7952,
+    "commit": {
+      "1y": 3.16726,
+      "3y": 2.18
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6a",
+    "pricePerHour": 0.3996,
+    "commit": {
+      "1y": 0.26394,
+      "3y": 0.18167
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6a.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6a",
+    "pricePerHour": 6.3936,
+    "commit": {
+      "1y": 4.22302,
+      "3y": 2.90667
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6a.48xlarge",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6a",
+    "pricePerHour": 9.5904,
+    "commit": {
+      "1y": 6.33452,
+      "3y": 4.36
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6a",
+    "pricePerHour": 0.7992,
+    "commit": {
+      "1y": 0.52788,
+      "3y": 0.36333
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6a",
+    "pricePerHour": 1.5984,
+    "commit": {
+      "1y": 1.05575,
+      "3y": 0.72667
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6a.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6a",
+    "pricePerHour": 0.0999,
+    "commit": {
+      "1y": 0.06598,
+      "3y": 0.04542
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6a.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6a",
+    "pricePerHour": 0.1998,
+    "commit": {
+      "1y": 0.13197,
+      "3y": 0.09083
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6g.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6g",
+    "pricePerHour": 2.1312,
+    "commit": {
+      "3y": 0.9207,
+      "1y": 1.3427
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6g.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6g",
+    "pricePerHour": 2.8416,
+    "commit": {
+      "3y": 1.2276,
+      "1y": 1.7902
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6g",
+    "pricePerHour": 0.3552,
+    "commit": {
+      "3y": 0.1534,
+      "1y": 0.2238
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6g.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6g",
+    "pricePerHour": 0.7104,
+    "commit": {
+      "3y": 0.3069,
+      "1y": 0.4476
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6g.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6g",
+    "pricePerHour": 1.4208,
+    "commit": {
+      "3y": 0.6138,
+      "1y": 0.8951
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6g.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6g",
+    "pricePerHour": 0.0888,
+    "commit": {
+      "3y": 0.0384,
+      "1y": 0.0559
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6g.medium",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6g",
+    "pricePerHour": 0.0444,
+    "commit": {
+      "3y": 0.0192,
+      "1y": 0.028
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6g.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6g",
+    "pricePerHour": 0.1776,
+    "commit": {
+      "3y": 0.0767,
+      "1y": 0.1119
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6gd.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6gd",
+    "pricePerHour": 2.5152,
+    "commit": {
+      "1y": 1.5846,
+      "3y": 1.0866
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6gd.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6gd",
+    "pricePerHour": 3.3536,
+    "commit": {
+      "1y": 2.1128,
+      "3y": 1.4488
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6gd.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6gd",
+    "pricePerHour": 0.4192,
+    "commit": {
+      "1y": 0.2641,
+      "3y": 0.1811
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6gd.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6gd",
+    "pricePerHour": 0.8384,
+    "commit": {
+      "1y": 0.5282,
+      "3y": 0.3622
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6gd.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6gd",
+    "pricePerHour": 1.6768,
+    "commit": {
+      "1y": 1.0564,
+      "3y": 0.7244
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6gd.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6gd",
+    "pricePerHour": 0.1048,
+    "commit": {
+      "1y": 0.066,
+      "3y": 0.0453
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6gd.medium",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6gd",
+    "pricePerHour": 0.0524,
+    "commit": {
+      "1y": 0.033,
+      "3y": 0.0226
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6gd.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m6gd",
+    "pricePerHour": 0.2096,
+    "commit": {
+      "1y": 0.132,
+      "3y": 0.0905
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6i",
+    "pricePerHour": 2.664,
+    "commit": {
+      "1y": 1.75959,
+      "3y": 1.21111
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6i",
+    "pricePerHour": 3.552,
+    "commit": {
+      "1y": 2.34612,
+      "3y": 1.61482
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6i",
+    "pricePerHour": 5.328,
+    "commit": {
+      "1y": 3.51918,
+      "3y": 2.42222
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6i",
+    "pricePerHour": 0.444,
+    "commit": {
+      "1y": 0.29326,
+      "3y": 0.20185
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6i",
+    "pricePerHour": 7.104,
+    "commit": {
+      "1y": 4.69224,
+      "3y": 3.22963
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6i",
+    "pricePerHour": 0.888,
+    "commit": {
+      "1y": 0.58653,
+      "3y": 0.4037
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6i",
+    "pricePerHour": 1.776,
+    "commit": {
+      "1y": 1.17306,
+      "3y": 0.80741
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6i.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6i",
+    "pricePerHour": 0.111,
+    "commit": {
+      "1y": 0.07332,
+      "3y": 0.05046
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6i.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6i",
+    "pricePerHour": 0.222,
+    "commit": {
+      "1y": 0.14663,
+      "3y": 0.10093
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6id.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6id",
+    "pricePerHour": 3.3012,
+    "commit": {
+      "1y": 2.07976,
+      "3y": 1.42612
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6id.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6id",
+    "pricePerHour": 4.4016,
+    "commit": {
+      "1y": 2.77301,
+      "3y": 1.90149
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6id.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6id",
+    "pricePerHour": 6.6024,
+    "commit": {
+      "1y": 4.15951,
+      "3y": 2.85224
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6id.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6id",
+    "pricePerHour": 0.5502,
+    "commit": {
+      "1y": 0.34663,
+      "3y": 0.23769
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6id.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6id",
+    "pricePerHour": 8.8032,
+    "commit": {
+      "1y": 5.54602,
+      "3y": 3.80298
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6id.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6id",
+    "pricePerHour": 1.1004,
+    "commit": {
+      "1y": 0.69325,
+      "3y": 0.47537
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6id.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6id",
+    "pricePerHour": 2.2008,
+    "commit": {
+      "1y": 1.3865,
+      "3y": 0.95075
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6id.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6id",
+    "pricePerHour": 0.13755,
+    "commit": {
+      "1y": 0.08666,
+      "3y": 0.05942
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6id.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6id",
+    "pricePerHour": 0.2751,
+    "commit": {
+      "1y": 0.17331,
+      "3y": 0.11884
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6idn.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6idn",
+    "pricePerHour": 4.34352,
+    "commit": {
+      "1y": 2.73642,
+      "3y": 1.67422
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6idn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6idn",
+    "pricePerHour": 5.79136,
+    "commit": {
+      "1y": 3.64856,
+      "3y": 2.23229
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6idn.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6idn",
+    "pricePerHour": 8.68704,
+    "commit": {
+      "1y": 5.47284,
+      "3y": 3.34844
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6idn.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6idn",
+    "pricePerHour": 0.72392,
+    "commit": {
+      "1y": 0.45607,
+      "3y": 0.27904
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6idn.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6idn",
+    "pricePerHour": 11.58272,
+    "commit": {
+      "1y": 7.29711,
+      "3y": 4.46458
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6idn.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6idn",
+    "pricePerHour": 1.44784,
+    "commit": {
+      "1y": 0.91214,
+      "3y": 0.55807
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6idn.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6idn",
+    "pricePerHour": 2.89568,
+    "commit": {
+      "1y": 1.82428,
+      "3y": 1.11615
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6idn.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6idn",
+    "pricePerHour": 0.18098,
+    "commit": {
+      "1y": 0.11402,
+      "3y": 0.06976
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6idn.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6idn",
+    "pricePerHour": 0.36196,
+    "commit": {
+      "1y": 0.22803,
+      "3y": 0.13952
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6in.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6in",
+    "pricePerHour": 3.86352,
+    "commit": {
+      "3y": 1.4892,
+      "1y": 2.43402
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6in.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6in",
+    "pricePerHour": 5.15136,
+    "commit": {
+      "3y": 1.9856,
+      "1y": 3.24536
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6in.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6in",
+    "pricePerHour": 7.72704,
+    "commit": {
+      "3y": 2.9784,
+      "1y": 4.86804
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6in.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6in",
+    "pricePerHour": 0.64392,
+    "commit": {
+      "3y": 0.2482,
+      "1y": 0.40567
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6in.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6in",
+    "pricePerHour": 10.30272,
+    "commit": {
+      "3y": 3.9712,
+      "1y": 6.49071
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6in.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6in",
+    "pricePerHour": 1.28784,
+    "commit": {
+      "3y": 0.4964,
+      "1y": 0.81134
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6in.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6in",
+    "pricePerHour": 2.57568,
+    "commit": {
+      "3y": 0.9928,
+      "1y": 1.62268
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6in.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6in",
+    "pricePerHour": 0.16098,
+    "commit": {
+      "3y": 0.06205,
+      "1y": 0.10142
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m6in.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m6in",
+    "pricePerHour": 0.32196,
+    "commit": {
+      "3y": 0.1241,
+      "1y": 0.20283
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 3.21672,
+    "commit": {
+      "3y": 1.4624,
+      "1y": 2.12465
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 4.28896,
+    "commit": {
+      "3y": 1.94987,
+      "1y": 2.83287
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 6.43344,
+    "commit": {
+      "3y": 2.92481,
+      "1y": 4.2493
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 0.53612,
+    "commit": {
+      "3y": 0.24373,
+      "1y": 0.35411
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 8.57792,
+    "commit": {
+      "3y": 3.89975,
+      "1y": 5.66574
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.48xlarge",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 12.86688,
+    "commit": {
+      "3y": 5.84962,
+      "1y": 8.49861
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 1.07224,
+    "commit": {
+      "3y": 0.48747,
+      "1y": 0.70822
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 2.14448,
+    "commit": {
+      "3y": 0.97494,
+      "1y": 1.41643
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 0.13403,
+    "commit": {
+      "3y": 0.06093,
+      "1y": 0.08853
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.medium",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 0.06702,
+    "commit": {
+      "3y": 0.03047,
+      "1y": 0.04426
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7a.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7a",
+    "pricePerHour": 0.26806,
+    "commit": {
+      "3y": 0.12187,
+      "1y": 0.17705
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7g.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7g",
+    "pricePerHour": 2.2646,
+    "commit": {
+      "3y": 1.0297,
+      "1y": 1.4957
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7g.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7g",
+    "pricePerHour": 3.0195,
+    "commit": {
+      "3y": 1.3729,
+      "1y": 1.9942
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7g",
+    "pricePerHour": 0.3774,
+    "commit": {
+      "3y": 0.1716,
+      "1y": 0.2493
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7g.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7g",
+    "pricePerHour": 0.7549,
+    "commit": {
+      "3y": 0.3432,
+      "1y": 0.4986
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7g.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7g",
+    "pricePerHour": 1.5098,
+    "commit": {
+      "3y": 0.6865,
+      "1y": 0.9971
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7g.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7g",
+    "pricePerHour": 0.0944,
+    "commit": {
+      "3y": 0.0429,
+      "1y": 0.0623
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7g.medium",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7g",
+    "pricePerHour": 0.0472,
+    "commit": {
+      "3y": 0.0215,
+      "1y": 0.0312
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7g.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7g",
+    "pricePerHour": 0.1887,
+    "commit": {
+      "3y": 0.0858,
+      "1y": 0.1246
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7gd.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7gd",
+    "pricePerHour": 2.9712
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7gd.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7gd",
+    "pricePerHour": 3.9616
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7gd.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7gd",
+    "pricePerHour": 0.4952
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7gd.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7gd",
+    "pricePerHour": 0.9904
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7gd.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7gd",
+    "pricePerHour": 1.9808
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7gd.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7gd",
+    "pricePerHour": 0.1238
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7gd.medium",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7gd",
+    "pricePerHour": 0.0619
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7gd.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m7gd",
+    "pricePerHour": 0.2476
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i-flex.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i-flex",
+    "pricePerHour": 2.65728,
+    "commit": {
+      "3y": 1.20804,
+      "1y": 1.75525
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i-flex.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i-flex",
+    "pricePerHour": 3.54304,
+    "commit": {
+      "3y": 1.61072,
+      "1y": 2.34034
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i-flex.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i-flex",
+    "pricePerHour": 0.44288,
+    "commit": {
+      "3y": 0.20134,
+      "1y": 0.29254
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i-flex.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i-flex",
+    "pricePerHour": 0.88576,
+    "commit": {
+      "3y": 0.40268,
+      "1y": 0.58508
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i-flex.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i-flex",
+    "pricePerHour": 1.77152,
+    "commit": {
+      "3y": 0.80536,
+      "1y": 1.17017
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i-flex.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i-flex",
+    "pricePerHour": 0.11072,
+    "commit": {
+      "3y": 0.05033,
+      "1y": 0.07314
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i-flex.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i-flex",
+    "pricePerHour": 0.22144,
+    "commit": {
+      "3y": 0.10067,
+      "1y": 0.14627
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i",
+    "pricePerHour": 2.7972,
+    "commit": {
+      "1y": 1.84756,
+      "3y": 1.27168
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i",
+    "pricePerHour": 3.7296,
+    "commit": {
+      "1y": 2.46341,
+      "3y": 1.69557
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i",
+    "pricePerHour": 5.5944,
+    "commit": {
+      "1y": 3.69512,
+      "3y": 2.54336
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i",
+    "pricePerHour": 0.4662,
+    "commit": {
+      "1y": 0.30793,
+      "3y": 0.21195
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i",
+    "pricePerHour": 11.1888,
+    "commit": {
+      "1y": 7.39023,
+      "3y": 5.08672
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i",
+    "pricePerHour": 0.9324,
+    "commit": {
+      "1y": 0.61585,
+      "3y": 0.42389
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i",
+    "pricePerHour": 1.8648,
+    "commit": {
+      "1y": 1.23171,
+      "3y": 0.84779
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i",
+    "pricePerHour": 0.11655,
+    "commit": {
+      "1y": 0.07698,
+      "3y": 0.05299
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m7i.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m7i",
+    "pricePerHour": 0.2331,
+    "commit": {
+      "1y": 0.15396,
+      "3y": 0.10597
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8g.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8g",
+    "pricePerHour": 2.4912,
+    "commit": {
+      "1y": 1.64531,
+      "3y": 1.1327
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8g.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8g",
+    "pricePerHour": 3.3216,
+    "commit": {
+      "1y": 2.19375,
+      "3y": 1.51027
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8g.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8g",
+    "pricePerHour": 4.9824,
+    "commit": {
+      "1y": 3.29063,
+      "3y": 2.2654
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8g",
+    "pricePerHour": 0.4152,
+    "commit": {
+      "1y": 0.27422,
+      "3y": 0.18878
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8g.48xlarge",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8g",
+    "pricePerHour": 9.9648,
+    "commit": {
+      "1y": 6.58125,
+      "3y": 4.5308
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8g.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8g",
+    "pricePerHour": 0.8304,
+    "commit": {
+      "1y": 0.54844,
+      "3y": 0.37757
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8g.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8g",
+    "pricePerHour": 1.6608,
+    "commit": {
+      "1y": 1.09688,
+      "3y": 0.75513
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8g.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8g",
+    "pricePerHour": 0.1038,
+    "commit": {
+      "1y": 0.06855,
+      "3y": 0.0472
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8g.medium",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8g",
+    "pricePerHour": 0.0519,
+    "commit": {
+      "1y": 0.03428,
+      "3y": 0.0236
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8g.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8g",
+    "pricePerHour": 0.2076,
+    "commit": {
+      "1y": 0.13711,
+      "3y": 0.09439
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8gd.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8gd",
+    "pricePerHour": 3.2088,
+    "commit": {
+      "1y": 2.02154,
+      "3y": 1.3862
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8gd.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8gd",
+    "pricePerHour": 4.2784,
+    "commit": {
+      "1y": 2.69539,
+      "3y": 1.84827
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8gd.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8gd",
+    "pricePerHour": 6.4176,
+    "commit": {
+      "1y": 4.04309,
+      "3y": 2.7724
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8gd.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8gd",
+    "pricePerHour": 0.5348,
+    "commit": {
+      "1y": 0.33692,
+      "3y": 0.23103
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8gd.48xlarge",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8gd",
+    "pricePerHour": 12.8352,
+    "commit": {
+      "1y": 8.08618,
+      "3y": 5.54481
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8gd.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8gd",
+    "pricePerHour": 1.0696,
+    "commit": {
+      "1y": 0.67385,
+      "3y": 0.46207
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8gd.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8gd",
+    "pricePerHour": 2.1392,
+    "commit": {
+      "1y": 1.3477,
+      "3y": 0.92413
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8gd.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8gd",
+    "pricePerHour": 0.1337,
+    "commit": {
+      "1y": 0.08423,
+      "3y": 0.05776
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8gd.medium",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8gd",
+    "pricePerHour": 0.06685,
+    "commit": {
+      "1y": 0.04212,
+      "3y": 0.02888
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8gd.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "m8gd",
+    "pricePerHour": 0.2674,
+    "commit": {
+      "1y": 0.16846,
+      "3y": 0.11552
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i-flex.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i-flex",
+    "pricePerHour": 2.79024,
+    "commit": {
+      "3y": 1.26849,
+      "1y": 1.84308
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i-flex.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i-flex",
+    "pricePerHour": 3.72032,
+    "commit": {
+      "3y": 1.69131,
+      "1y": 2.45744
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i-flex.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i-flex",
+    "pricePerHour": 0.46504,
+    "commit": {
+      "3y": 0.21141,
+      "1y": 0.30718
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i-flex.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i-flex",
+    "pricePerHour": 0.93008,
+    "commit": {
+      "3y": 0.42283,
+      "1y": 0.61436
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i-flex.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i-flex",
+    "pricePerHour": 1.86016,
+    "commit": {
+      "3y": 0.84566,
+      "1y": 1.22872
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i-flex.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i-flex",
+    "pricePerHour": 0.11626,
+    "commit": {
+      "3y": 0.05285,
+      "1y": 0.07679
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i-flex.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i-flex",
+    "pricePerHour": 0.23252,
+    "commit": {
+      "3y": 0.10571,
+      "1y": 0.15359
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 2.93712,
+    "commit": {
+      "3y": 1.33529,
+      "1y": 1.93998
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 3.91616,
+    "commit": {
+      "3y": 1.78039,
+      "1y": 2.58663
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 5.87424,
+    "commit": {
+      "3y": 2.67058,
+      "1y": 3.87995
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 0.48952,
+    "commit": {
+      "3y": 0.22255,
+      "1y": 0.32333
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 7.83232,
+    "commit": {
+      "3y": 3.56078,
+      "1y": 5.17327
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 11.74848,
+    "commit": {
+      "3y": 5.34116,
+      "1y": 7.7599
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 0.97904,
+    "commit": {
+      "3y": 0.4451,
+      "1y": 0.64666
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 1.95808,
+    "commit": {
+      "3y": 0.89019,
+      "1y": 1.29332
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.96xlarge",
+    "vcpu": 384,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 23.49696,
+    "commit": {
+      "3y": 10.68233,
+      "1y": 15.5198
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 0.12238,
+    "commit": {
+      "3y": 0.05564,
+      "1y": 0.08083
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8i.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8i",
+    "pricePerHour": 0.24476,
+    "commit": {
+      "3y": 0.11127,
+      "1y": 0.16166
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.12xlarge",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 3.63144,
+    "commit": {
+      "3y": 1.56878,
+      "1y": 2.28781
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.16xlarge",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 4.84192,
+    "commit": {
+      "3y": 2.09171,
+      "1y": 3.05041
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.24xlarge",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 7.26288,
+    "commit": {
+      "3y": 3.13756,
+      "1y": 4.57561
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 0.60524,
+    "commit": {
+      "3y": 0.26146,
+      "1y": 0.3813
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.32xlarge",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 9.68384,
+    "commit": {
+      "3y": 4.18342,
+      "1y": 6.10082
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.48xlarge",
+    "vcpu": 192,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 14.52576,
+    "commit": {
+      "3y": 6.27513,
+      "1y": 9.15123
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.4xlarge",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 1.21048,
+    "commit": {
+      "3y": 0.52293,
+      "1y": 0.7626
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.8xlarge",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 2.42096,
+    "commit": {
+      "3y": 1.04585,
+      "1y": 1.5252
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.96xlarge",
+    "vcpu": 384,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 29.05152,
+    "commit": {
+      "3y": 12.55026,
+      "1y": 18.30246
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 0.15131,
+    "commit": {
+      "3y": 0.06537,
+      "1y": 0.09533
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "m8id.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m8id",
+    "pricePerHour": 0.30262,
+    "commit": {
+      "3y": 0.13073,
+      "1y": 0.19065
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r4.16xlarge",
+    "vcpu": 64,
+    "ramGb": 488,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r4",
+    "pricePerHour": 4.992,
+    "commit": {
+      "1y": 3.1584,
+      "3y": 2.1427
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r4.2xlarge",
+    "vcpu": 8,
+    "ramGb": 61,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r4",
+    "pricePerHour": 0.624,
+    "commit": {
+      "1y": 0.3948,
+      "3y": 0.2678
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r4.4xlarge",
+    "vcpu": 16,
+    "ramGb": 122,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r4",
+    "pricePerHour": 1.248,
+    "commit": {
+      "1y": 0.7896,
+      "3y": 0.5357
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r4.8xlarge",
+    "vcpu": 32,
+    "ramGb": 244,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r4",
+    "pricePerHour": 2.496,
+    "commit": {
+      "1y": 1.5792,
+      "3y": 1.0714
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r4.large",
+    "vcpu": 2,
+    "ramGb": 15.25,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r4",
+    "pricePerHour": 0.156,
+    "commit": {
+      "1y": 0.0987,
+      "3y": 0.067
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r4.xlarge",
+    "vcpu": 4,
+    "ramGb": 30.5,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r4",
+    "pricePerHour": 0.312,
+    "commit": {
+      "1y": 0.1974,
+      "3y": 0.1339
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5",
+    "pricePerHour": 3.552,
+    "commit": {
+      "1y": 2.238,
+      "3y": 1.534
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5",
+    "pricePerHour": 4.736,
+    "commit": {
+      "1y": 2.984,
+      "3y": 2.046
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5",
+    "pricePerHour": 7.104,
+    "commit": {
+      "1y": 4.476,
+      "3y": 3.069
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5",
+    "pricePerHour": 0.592,
+    "commit": {
+      "1y": 0.373,
+      "3y": 0.256
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5",
+    "pricePerHour": 1.184,
+    "commit": {
+      "1y": 0.746,
+      "3y": 0.511
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5",
+    "pricePerHour": 2.368,
+    "commit": {
+      "1y": 1.492,
+      "3y": 1.023
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5",
+    "pricePerHour": 0.148,
+    "commit": {
+      "1y": 0.093,
+      "3y": 0.064
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5",
+    "pricePerHour": 0.296,
+    "commit": {
+      "1y": 0.186,
+      "3y": 0.128
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5a",
+    "pricePerHour": 3.192,
+    "commit": {
+      "1y": 2.011,
+      "3y": 1.379
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5a",
+    "pricePerHour": 4.256,
+    "commit": {
+      "1y": 2.681,
+      "3y": 1.839
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5a",
+    "pricePerHour": 6.384,
+    "commit": {
+      "1y": 4.022,
+      "3y": 2.758
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5a",
+    "pricePerHour": 0.532,
+    "commit": {
+      "1y": 0.335,
+      "3y": 0.23
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5a",
+    "pricePerHour": 1.064,
+    "commit": {
+      "1y": 0.67,
+      "3y": 0.46
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5a",
+    "pricePerHour": 2.128,
+    "commit": {
+      "1y": 1.341,
+      "3y": 0.919
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5a.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5a",
+    "pricePerHour": 0.133,
+    "commit": {
+      "1y": 0.084,
+      "3y": 0.057
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5a.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5a",
+    "pricePerHour": 0.266,
+    "commit": {
+      "1y": 0.168,
+      "3y": 0.115
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5ad.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5ad",
+    "pricePerHour": 3.696,
+    "commit": {
+      "3y": 1.597,
+      "1y": 2.328
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5ad.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5ad",
+    "pricePerHour": 4.928,
+    "commit": {
+      "3y": 2.129,
+      "1y": 3.105
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5ad.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5ad",
+    "pricePerHour": 7.392,
+    "commit": {
+      "3y": 3.193,
+      "1y": 4.657
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5ad.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5ad",
+    "pricePerHour": 0.616,
+    "commit": {
+      "3y": 0.266,
+      "1y": 0.388
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5ad.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5ad",
+    "pricePerHour": 1.232,
+    "commit": {
+      "3y": 0.532,
+      "1y": 0.776
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5ad.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5ad",
+    "pricePerHour": 2.464,
+    "commit": {
+      "3y": 1.064,
+      "1y": 1.552
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5ad.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5ad",
+    "pricePerHour": 0.154,
+    "commit": {
+      "3y": 0.067,
+      "1y": 0.097
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5ad.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5ad",
+    "pricePerHour": 0.308,
+    "commit": {
+      "3y": 0.133,
+      "1y": 0.194
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5b.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5b",
+    "pricePerHour": 4.2,
+    "commit": {
+      "3y": 1.77539,
+      "1y": 2.658789
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5b.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5b",
+    "pricePerHour": 5.6,
+    "commit": {
+      "3y": 2.367187,
+      "1y": 3.545052
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5b.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5b",
+    "pricePerHour": 8.4,
+    "commit": {
+      "3y": 3.550781,
+      "1y": 5.317578
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5b.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5b",
+    "pricePerHour": 0.7,
+    "commit": {
+      "3y": 0.295898,
+      "1y": 0.443132
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5b.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5b",
+    "pricePerHour": 1.4,
+    "commit": {
+      "3y": 0.591797,
+      "1y": 0.886263
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5b.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5b",
+    "pricePerHour": 2.8,
+    "commit": {
+      "3y": 1.183594,
+      "1y": 1.772526
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5b.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5b",
+    "pricePerHour": 0.175,
+    "commit": {
+      "3y": 0.073975,
+      "1y": 0.110783
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5b.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5b",
+    "pricePerHour": 0.35,
+    "commit": {
+      "3y": 0.147949,
+      "1y": 0.221566
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5d.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5d",
+    "pricePerHour": 4.056,
+    "commit": {
+      "3y": 1.752,
+      "1y": 2.555
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5d.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5d",
+    "pricePerHour": 5.408,
+    "commit": {
+      "3y": 2.336,
+      "1y": 3.407
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5d.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5d",
+    "pricePerHour": 8.112,
+    "commit": {
+      "3y": 3.504,
+      "1y": 5.111
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5d.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5d",
+    "pricePerHour": 0.676,
+    "commit": {
+      "3y": 0.292,
+      "1y": 0.426
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5d.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5d",
+    "pricePerHour": 1.352,
+    "commit": {
+      "3y": 0.584,
+      "1y": 0.852
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5d.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5d",
+    "pricePerHour": 2.704,
+    "commit": {
+      "3y": 1.168,
+      "1y": 1.704
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5d.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5d",
+    "pricePerHour": 0.169,
+    "commit": {
+      "3y": 0.073,
+      "1y": 0.106
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5d.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5d",
+    "pricePerHour": 0.338,
+    "commit": {
+      "3y": 0.146,
+      "1y": 0.213
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5n.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5n",
+    "pricePerHour": 4.2,
+    "commit": {
+      "1y": 2.659,
+      "3y": 1.775
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5n.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5n",
+    "pricePerHour": 5.6,
+    "commit": {
+      "1y": 3.545,
+      "3y": 2.367
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5n.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5n",
+    "pricePerHour": 8.4,
+    "commit": {
+      "1y": 5.318,
+      "3y": 3.551
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5n.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5n",
+    "pricePerHour": 0.7,
+    "commit": {
+      "1y": 0.443,
+      "3y": 0.296
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5n.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5n",
+    "pricePerHour": 1.4,
+    "commit": {
+      "1y": 0.886,
+      "3y": 0.592
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5n.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5n",
+    "pricePerHour": 2.8,
+    "commit": {
+      "1y": 1.773,
+      "3y": 1.184
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5n.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5n",
+    "pricePerHour": 0.175,
+    "commit": {
+      "1y": 0.111,
+      "3y": 0.074
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r5n.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r5n",
+    "pricePerHour": 0.35,
+    "commit": {
+      "1y": 0.222,
+      "3y": 0.148
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6a.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6a",
+    "pricePerHour": 3.1968,
+    "commit": {
+      "3y": 1.44517,
+      "1y": 2.11945
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6a.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6a",
+    "pricePerHour": 4.2624,
+    "commit": {
+      "3y": 1.92689,
+      "1y": 2.82593
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6a.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6a",
+    "pricePerHour": 6.3936,
+    "commit": {
+      "3y": 2.89034,
+      "1y": 4.23889
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6a",
+    "pricePerHour": 0.5328,
+    "commit": {
+      "3y": 0.24086,
+      "1y": 0.35324
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6a.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6a",
+    "pricePerHour": 8.5248,
+    "commit": {
+      "3y": 3.85379,
+      "1y": 5.65186
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6a.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6a",
+    "pricePerHour": 12.7872,
+    "commit": {
+      "3y": 5.78068,
+      "1y": 8.47778
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6a.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6a",
+    "pricePerHour": 1.0656,
+    "commit": {
+      "3y": 0.48172,
+      "1y": 0.70648
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6a.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6a",
+    "pricePerHour": 2.1312,
+    "commit": {
+      "3y": 0.96345,
+      "1y": 1.41296
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6a.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6a",
+    "pricePerHour": 0.1332,
+    "commit": {
+      "3y": 0.06022,
+      "1y": 0.08831
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6a.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6a",
+    "pricePerHour": 0.2664,
+    "commit": {
+      "3y": 0.12043,
+      "1y": 0.17662
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6g.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6g",
+    "pricePerHour": 2.8416,
+    "commit": {
+      "3y": 1.2276,
+      "1y": 1.7902
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6g.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6g",
+    "pricePerHour": 3.7888,
+    "commit": {
+      "3y": 1.6368,
+      "1y": 2.3869
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6g",
+    "pricePerHour": 0.4736,
+    "commit": {
+      "3y": 0.2046,
+      "1y": 0.2984
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6g.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6g",
+    "pricePerHour": 0.9472,
+    "commit": {
+      "3y": 0.4092,
+      "1y": 0.5967
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6g.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6g",
+    "pricePerHour": 1.8944,
+    "commit": {
+      "3y": 0.8184,
+      "1y": 1.1935
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6g.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6g",
+    "pricePerHour": 0.1184,
+    "commit": {
+      "3y": 0.0511,
+      "1y": 0.0746
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6g.medium",
+    "vcpu": 1,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6g",
+    "pricePerHour": 0.0592,
+    "commit": {
+      "3y": 0.0256,
+      "1y": 0.0373
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6g.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6g",
+    "pricePerHour": 0.2368,
+    "commit": {
+      "3y": 0.1023,
+      "1y": 0.1492
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6gd.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6gd",
+    "pricePerHour": 3.2448,
+    "commit": {
+      "1y": 2.0442,
+      "3y": 1.4018
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6gd.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6gd",
+    "pricePerHour": 4.3264,
+    "commit": {
+      "1y": 2.7256,
+      "3y": 1.869
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6gd.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6gd",
+    "pricePerHour": 0.5408,
+    "commit": {
+      "1y": 0.3407,
+      "3y": 0.2336
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6gd.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6gd",
+    "pricePerHour": 1.0816,
+    "commit": {
+      "1y": 0.6814,
+      "3y": 0.4673
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6gd.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6gd",
+    "pricePerHour": 2.1632,
+    "commit": {
+      "1y": 1.3628,
+      "3y": 0.9345
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6gd.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6gd",
+    "pricePerHour": 0.1352,
+    "commit": {
+      "1y": 0.0852,
+      "3y": 0.0584
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6gd.medium",
+    "vcpu": 1,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6gd",
+    "pricePerHour": 0.0676,
+    "commit": {
+      "1y": 0.0426,
+      "3y": 0.0292
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6gd.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r6gd",
+    "pricePerHour": 0.2704,
+    "commit": {
+      "1y": 0.1704,
+      "3y": 0.1168
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6i",
+    "pricePerHour": 3.552,
+    "commit": {
+      "3y": 1.60574,
+      "1y": 2.35494
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6i",
+    "pricePerHour": 4.736,
+    "commit": {
+      "3y": 2.14099,
+      "1y": 3.13992
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6i",
+    "pricePerHour": 7.104,
+    "commit": {
+      "3y": 3.21149,
+      "1y": 4.70988
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6i",
+    "pricePerHour": 0.592,
+    "commit": {
+      "3y": 0.26762,
+      "1y": 0.39249
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6i",
+    "pricePerHour": 9.472,
+    "commit": {
+      "3y": 4.28198,
+      "1y": 6.27984
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6i",
+    "pricePerHour": 1.184,
+    "commit": {
+      "3y": 0.53525,
+      "1y": 0.78498
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6i",
+    "pricePerHour": 2.368,
+    "commit": {
+      "3y": 1.0705,
+      "1y": 1.56996
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6i.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6i",
+    "pricePerHour": 0.148,
+    "commit": {
+      "3y": 0.06691,
+      "1y": 0.09812
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6i.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6i",
+    "pricePerHour": 0.296,
+    "commit": {
+      "3y": 0.13381,
+      "1y": 0.19625
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6id.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6id",
+    "pricePerHour": 4.2588,
+    "commit": {
+      "1y": 2.68304,
+      "3y": 1.8398
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6id.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6id",
+    "pricePerHour": 5.6784,
+    "commit": {
+      "1y": 3.57739,
+      "3y": 2.45307
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6id.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6id",
+    "pricePerHour": 8.5176,
+    "commit": {
+      "1y": 5.36609,
+      "3y": 3.6796
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6id.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6id",
+    "pricePerHour": 0.7098,
+    "commit": {
+      "1y": 0.44717,
+      "3y": 0.30663
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6id.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6id",
+    "pricePerHour": 11.3568,
+    "commit": {
+      "1y": 7.15478,
+      "3y": 4.90614
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6id.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6id",
+    "pricePerHour": 1.4196,
+    "commit": {
+      "1y": 0.89435,
+      "3y": 0.61327
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6id.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6id",
+    "pricePerHour": 2.8392,
+    "commit": {
+      "1y": 1.7887,
+      "3y": 1.22653
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6id.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6id",
+    "pricePerHour": 0.17745,
+    "commit": {
+      "1y": 0.11179,
+      "3y": 0.07666
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r6id.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r6id",
+    "pricePerHour": 0.3549,
+    "commit": {
+      "1y": 0.22359,
+      "3y": 0.15332
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7g.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7g",
+    "pricePerHour": 3.0192,
+    "commit": {
+      "3y": 1.3649,
+      "1y": 2.0016
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7g.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7g",
+    "pricePerHour": 4.0256,
+    "commit": {
+      "3y": 1.8199,
+      "1y": 2.6689
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7g",
+    "pricePerHour": 0.5032,
+    "commit": {
+      "3y": 0.2275,
+      "1y": 0.3336
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7g.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7g",
+    "pricePerHour": 1.0064,
+    "commit": {
+      "3y": 0.455,
+      "1y": 0.6672
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7g.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7g",
+    "pricePerHour": 2.0128,
+    "commit": {
+      "3y": 0.91,
+      "1y": 1.3344
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7g.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7g",
+    "pricePerHour": 0.1258,
+    "commit": {
+      "3y": 0.0569,
+      "1y": 0.0834
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7g.medium",
+    "vcpu": 1,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7g",
+    "pricePerHour": 0.0629,
+    "commit": {
+      "3y": 0.0284,
+      "1y": 0.0417
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7g.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7g",
+    "pricePerHour": 0.2516,
+    "commit": {
+      "3y": 0.1137,
+      "1y": 0.1668
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7gd.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7gd",
+    "pricePerHour": 3.8328,
+    "commit": {
+      "1y": 2.4147,
+      "3y": 1.6558
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7gd.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7gd",
+    "pricePerHour": 5.1104,
+    "commit": {
+      "1y": 3.2196,
+      "3y": 2.2077
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7gd.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7gd",
+    "pricePerHour": 0.6388,
+    "commit": {
+      "1y": 0.4024,
+      "3y": 0.276
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7gd.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7gd",
+    "pricePerHour": 1.2776,
+    "commit": {
+      "1y": 0.8049,
+      "3y": 0.5519
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7gd.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7gd",
+    "pricePerHour": 2.5552,
+    "commit": {
+      "1y": 1.6098,
+      "3y": 1.1038
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7gd.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7gd",
+    "pricePerHour": 0.1597,
+    "commit": {
+      "1y": 0.1006,
+      "3y": 0.069
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7gd.medium",
+    "vcpu": 1,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7gd",
+    "pricePerHour": 0.0799,
+    "commit": {
+      "1y": 0.0503,
+      "3y": 0.0345
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7gd.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r7gd",
+    "pricePerHour": 0.3194,
+    "commit": {
+      "1y": 0.2012,
+      "3y": 0.138
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r7i",
+    "pricePerHour": 3.7296,
+    "commit": {
+      "1y": 2.47269,
+      "3y": 1.68603
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r7i",
+    "pricePerHour": 4.9728,
+    "commit": {
+      "1y": 3.29692,
+      "3y": 2.24804
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r7i",
+    "pricePerHour": 7.4592,
+    "commit": {
+      "1y": 4.94538,
+      "3y": 3.37205
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r7i",
+    "pricePerHour": 0.6216,
+    "commit": {
+      "1y": 0.41212,
+      "3y": 0.281
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r7i",
+    "pricePerHour": 14.9184,
+    "commit": {
+      "1y": 9.89076,
+      "3y": 6.74411
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r7i",
+    "pricePerHour": 1.2432,
+    "commit": {
+      "1y": 0.82423,
+      "3y": 0.56201
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r7i",
+    "pricePerHour": 2.4864,
+    "commit": {
+      "1y": 1.64846,
+      "3y": 1.12402
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7i.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r7i",
+    "pricePerHour": 0.1554,
+    "commit": {
+      "1y": 0.10303,
+      "3y": 0.07025
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r7i.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r7i",
+    "pricePerHour": 0.3108,
+    "commit": {
+      "1y": 0.20606,
+      "3y": 0.1405
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8g.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8g",
+    "pricePerHour": 3.32112,
+    "commit": {
+      "3y": 1.50144,
+      "1y": 2.2018
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8g.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8g",
+    "pricePerHour": 4.42816,
+    "commit": {
+      "3y": 2.00192,
+      "1y": 2.93574
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8g.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8g",
+    "pricePerHour": 6.64224,
+    "commit": {
+      "3y": 3.00288,
+      "1y": 4.40361
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8g",
+    "pricePerHour": 0.55352,
+    "commit": {
+      "3y": 0.25024,
+      "1y": 0.36697
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8g.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8g",
+    "pricePerHour": 13.28448,
+    "commit": {
+      "3y": 6.00575,
+      "1y": 8.80721
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8g.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8g",
+    "pricePerHour": 1.10704,
+    "commit": {
+      "3y": 0.50048,
+      "1y": 0.73393
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8g.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8g",
+    "pricePerHour": 2.21408,
+    "commit": {
+      "3y": 1.00096,
+      "1y": 1.46787
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8g.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8g",
+    "pricePerHour": 0.13838,
+    "commit": {
+      "3y": 0.06256,
+      "1y": 0.09174
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8g.medium",
+    "vcpu": 1,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8g",
+    "pricePerHour": 0.06919,
+    "commit": {
+      "3y": 0.03128,
+      "1y": 0.04587
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8g.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8g",
+    "pricePerHour": 0.27676,
+    "commit": {
+      "3y": 0.12512,
+      "1y": 0.18348
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8gd.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8gd",
+    "pricePerHour": 4.13952,
+    "commit": {
+      "3y": 1.78827,
+      "1y": 2.6079
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8gd.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8gd",
+    "pricePerHour": 5.51936,
+    "commit": {
+      "3y": 2.38436,
+      "1y": 3.4772
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8gd.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8gd",
+    "pricePerHour": 8.27904,
+    "commit": {
+      "3y": 3.57655,
+      "1y": 5.2158
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8gd.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8gd",
+    "pricePerHour": 0.68992,
+    "commit": {
+      "3y": 0.29805,
+      "1y": 0.43465
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8gd.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8gd",
+    "pricePerHour": 16.55808,
+    "commit": {
+      "3y": 7.15309,
+      "1y": 10.43159
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8gd.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8gd",
+    "pricePerHour": 1.37984,
+    "commit": {
+      "3y": 0.59609,
+      "1y": 0.8693
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8gd.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8gd",
+    "pricePerHour": 2.75968,
+    "commit": {
+      "3y": 1.19218,
+      "1y": 1.7386
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8gd.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8gd",
+    "pricePerHour": 0.17248,
+    "commit": {
+      "3y": 0.07451,
+      "1y": 0.10866
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8gd.medium",
+    "vcpu": 1,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8gd",
+    "pricePerHour": 0.08624,
+    "commit": {
+      "3y": 0.03726,
+      "1y": 0.05433
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8gd.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "r8gd",
+    "pricePerHour": 0.34496,
+    "commit": {
+      "3y": 0.14902,
+      "1y": 0.21732
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i-flex.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i-flex",
+    "pricePerHour": 3.72024,
+    "commit": {
+      "3y": 1.6818,
+      "1y": 2.46649
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i-flex.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i-flex",
+    "pricePerHour": 4.96032,
+    "commit": {
+      "3y": 2.24239,
+      "1y": 3.28865
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i-flex.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i-flex",
+    "pricePerHour": 0.62004,
+    "commit": {
+      "3y": 0.2803,
+      "1y": 0.41108
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i-flex.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i-flex",
+    "pricePerHour": 1.24008,
+    "commit": {
+      "3y": 0.5606,
+      "1y": 0.82216
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i-flex.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i-flex",
+    "pricePerHour": 2.48016,
+    "commit": {
+      "3y": 1.1212,
+      "1y": 1.64432
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i-flex.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i-flex",
+    "pricePerHour": 0.15501,
+    "commit": {
+      "3y": 0.07007,
+      "1y": 0.10277
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i-flex.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i-flex",
+    "pricePerHour": 0.31002,
+    "commit": {
+      "3y": 0.14015,
+      "1y": 0.20554
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 3.91608,
+    "commit": {
+      "3y": 1.77033,
+      "1y": 2.59633
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 5.22144,
+    "commit": {
+      "3y": 2.36044,
+      "1y": 3.46177
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 7.83216,
+    "commit": {
+      "3y": 3.54066,
+      "1y": 5.19265
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 0.65268,
+    "commit": {
+      "3y": 0.29505,
+      "1y": 0.43272
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 10.44288,
+    "commit": {
+      "3y": 4.72088,
+      "1y": 6.92354
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 15.66432,
+    "commit": {
+      "3y": 7.08131,
+      "1y": 10.3853
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 1.30536,
+    "commit": {
+      "3y": 0.59011,
+      "1y": 0.86544
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 2.61072,
+    "commit": {
+      "3y": 1.18022,
+      "1y": 1.73088
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.96xlarge",
+    "vcpu": 384,
+    "ramGb": 3072,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 31.32864,
+    "commit": {
+      "3y": 14.16263,
+      "1y": 20.77061
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 0.16317,
+    "commit": {
+      "3y": 0.07376,
+      "1y": 0.10818
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8i.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8i",
+    "pricePerHour": 0.32634,
+    "commit": {
+      "3y": 0.14753,
+      "1y": 0.21636
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 4.6848,
+    "commit": {
+      "3y": 2.02383,
+      "1y": 2.95142
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.16xlarge",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 6.2464,
+    "commit": {
+      "3y": 2.69844,
+      "1y": 3.93523
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.24xlarge",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 9.3696,
+    "commit": {
+      "3y": 4.04767,
+      "1y": 5.90285
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 0.7808,
+    "commit": {
+      "3y": 0.33731,
+      "1y": 0.4919
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 12.4928,
+    "commit": {
+      "3y": 5.39689,
+      "1y": 7.87046
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.48xlarge",
+    "vcpu": 192,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 18.7392,
+    "commit": {
+      "3y": 8.09533,
+      "1y": 11.8057
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.4xlarge",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 1.5616,
+    "commit": {
+      "3y": 0.67461,
+      "1y": 0.98381
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.8xlarge",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 3.1232,
+    "commit": {
+      "3y": 1.34922,
+      "1y": 1.96762
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.96xlarge",
+    "vcpu": 384,
+    "ramGb": 3072,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 37.4784,
+    "commit": {
+      "3y": 16.19067,
+      "1y": 23.61139
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 0.1952,
+    "commit": {
+      "3y": 0.08433,
+      "1y": 0.12298
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "r8id.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r8id",
+    "pricePerHour": 0.3904,
+    "commit": {
+      "3y": 0.16865,
+      "1y": 0.24595
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t2.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t2",
+    "pricePerHour": 0.4224,
+    "commit": {
+      "1y": 0.291,
+      "3y": 0.2144
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t2.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t2",
+    "pricePerHour": 0.1056,
+    "commit": {
+      "1y": 0.0727,
+      "3y": 0.0536
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t2.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t2",
+    "pricePerHour": 0.052,
+    "commit": {
+      "1y": 0.0363,
+      "3y": 0.0268
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t2.micro",
+    "vcpu": 1,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t2",
+    "pricePerHour": 0.0132,
+    "commit": {
+      "1y": 0.0091,
+      "3y": 0.0067
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t2.nano",
+    "vcpu": 1,
+    "ramGb": 0.5,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t2",
+    "pricePerHour": 0.0066,
+    "commit": {
+      "1y": 0.0045,
+      "3y": 0.0034
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t2.small",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t2",
+    "pricePerHour": 0.026,
+    "commit": {
+      "1y": 0.0182,
+      "3y": 0.0134
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t2.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t2",
+    "pricePerHour": 0.2112,
+    "commit": {
+      "1y": 0.1454,
+      "3y": 0.1072
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3",
+    "pricePerHour": 0.3776,
+    "commit": {
+      "3y": 0.1631,
+      "1y": 0.2379
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3",
+    "pricePerHour": 0.0944,
+    "commit": {
+      "3y": 0.0408,
+      "1y": 0.0595
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3",
+    "pricePerHour": 0.0472,
+    "commit": {
+      "3y": 0.0204,
+      "1y": 0.0297
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3",
+    "pricePerHour": 0.0118,
+    "commit": {
+      "3y": 0.0051,
+      "1y": 0.0074
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3",
+    "pricePerHour": 0.0059,
+    "commit": {
+      "3y": 0.0025,
+      "1y": 0.0037
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3",
+    "pricePerHour": 0.0236,
+    "commit": {
+      "3y": 0.0102,
+      "1y": 0.0149
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3",
+    "pricePerHour": 0.1888,
+    "commit": {
+      "3y": 0.0816,
+      "1y": 0.1189
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3a.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3a",
+    "pricePerHour": 0.3398,
+    "commit": {
+      "3y": 0.1468,
+      "1y": 0.2141
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3a.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3a",
+    "pricePerHour": 0.085,
+    "commit": {
+      "3y": 0.0367,
+      "1y": 0.0535
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3a.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3a",
+    "pricePerHour": 0.0425,
+    "commit": {
+      "3y": 0.0184,
+      "1y": 0.0268
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3a.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3a",
+    "pricePerHour": 0.0106,
+    "commit": {
+      "3y": 0.0046,
+      "1y": 0.0067
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3a.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3a",
+    "pricePerHour": 0.0053,
+    "commit": {
+      "3y": 0.0023,
+      "1y": 0.0033
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3a.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3a",
+    "pricePerHour": 0.0212,
+    "commit": {
+      "3y": 0.0092,
+      "1y": 0.0134
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t3a.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t3a",
+    "pricePerHour": 0.1699,
+    "commit": {
+      "3y": 0.0734,
+      "1y": 0.107
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t4g.2xlarge",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t4g",
+    "pricePerHour": 0.3008,
+    "commit": {
+      "3y": 0.1297,
+      "1y": 0.1898
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t4g.large",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t4g",
+    "pricePerHour": 0.0752,
+    "commit": {
+      "3y": 0.0324,
+      "1y": 0.0474
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t4g.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t4g",
+    "pricePerHour": 0.0376,
+    "commit": {
+      "3y": 0.0162,
+      "1y": 0.0237
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t4g.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t4g",
+    "pricePerHour": 0.0094,
+    "commit": {
+      "3y": 0.0041,
+      "1y": 0.0059
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t4g.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t4g",
+    "pricePerHour": 0.0047,
+    "commit": {
+      "3y": 0.002,
+      "1y": 0.003
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t4g.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t4g",
+    "pricePerHour": 0.0188,
+    "commit": {
+      "3y": 0.0081,
+      "1y": 0.0119
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t4g.xlarge",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t4g",
+    "pricePerHour": 0.1504,
+    "commit": {
+      "3y": 0.0648,
+      "1y": 0.0949
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t8i.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.05664
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t8i.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.01416
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t8i.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.00708
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "t8i.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "t8i",
+    "pricePerHour": 0.02832
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "u-6tb1.112xlarge",
+    "vcpu": 448,
+    "ramGb": 6144,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "u-6tb1",
+    "pricePerHour": 64.133,
+    "commit": {
+      "1y": 39.52164,
+      "3y": 20.60593
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "u-6tb1.56xlarge",
+    "vcpu": 224,
+    "ramGb": 6144,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "u-6tb1",
+    "pricePerHour": 54.50589,
+    "commit": {
+      "1y": 33.58898,
+      "3y": 17.51274
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "u7i-6tb.112xlarge",
+    "vcpu": 448,
+    "ramGb": 6144,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "u7i-6tb",
+    "pricePerHour": 73.75295,
+    "commit": {
+      "1y": 45.44989,
+      "3y": 23.69682
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "u7i-8tb.112xlarge",
+    "vcpu": 448,
+    "ramGb": 8192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "u7i-8tb",
+    "pricePerHour": 98.33778,
+    "commit": {
+      "1y": 60.61049,
+      "3y": 31.64903
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "u7in-16tb.224xlarge",
+    "vcpu": 896,
+    "ramGb": 16384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "u7in-16tb",
+    "pricePerHour": 211.98719,
+    "commit": {
+      "1y": 130.63605,
+      "3y": 68.11148
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x1.16xlarge",
+    "vcpu": 64,
+    "ramGb": 976,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x1",
+    "pricePerHour": 8.403,
+    "commit": {
+      "3y": 2.701,
+      "1y": 5.179
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x1.32xlarge",
+    "vcpu": 128,
+    "ramGb": 1952,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x1",
+    "pricePerHour": 16.806,
+    "commit": {
+      "3y": 5.402,
+      "1y": 10.357
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x2idn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x2idn",
+    "pricePerHour": 8.403,
+    "commit": {
+      "1y": 5.17037,
+      "3y": 2.69535
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x2idn.24xlarge",
+    "vcpu": 96,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x2idn",
+    "pricePerHour": 12.6045,
+    "commit": {
+      "1y": 7.75555,
+      "3y": 4.04302
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x2idn.32xlarge",
+    "vcpu": 128,
+    "ramGb": 2048,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x2idn",
+    "pricePerHour": 16.806,
+    "commit": {
+      "1y": 10.34073,
+      "3y": 5.39069
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x2iedn.16xlarge",
+    "vcpu": 64,
+    "ramGb": 2048,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x2iedn",
+    "pricePerHour": 16.806,
+    "commit": {
+      "1y": 10.34073,
+      "3y": 5.39069
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x2iedn.24xlarge",
+    "vcpu": 96,
+    "ramGb": 3072,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x2iedn",
+    "pricePerHour": 25.209,
+    "commit": {
+      "1y": 15.5111,
+      "3y": 8.08604
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x2iedn.2xlarge",
+    "vcpu": 8,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x2iedn",
+    "pricePerHour": 2.10075,
+    "commit": {
+      "1y": 1.29259,
+      "3y": 0.67384
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x2iedn.32xlarge",
+    "vcpu": 128,
+    "ramGb": 4096,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x2iedn",
+    "pricePerHour": 33.612,
+    "commit": {
+      "1y": 20.68146,
+      "3y": 10.78139
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x2iedn.4xlarge",
+    "vcpu": 16,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x2iedn",
+    "pricePerHour": 4.2015,
+    "commit": {
+      "1y": 2.58518,
+      "3y": 1.34767
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x2iedn.8xlarge",
+    "vcpu": 32,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x2iedn",
+    "pricePerHour": 8.403,
+    "commit": {
+      "1y": 5.17037,
+      "3y": 2.69535
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "x2iedn.xlarge",
+    "vcpu": 4,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x2iedn",
+    "pricePerHour": 1.05038,
+    "commit": {
+      "1y": 0.6463,
+      "3y": 0.33692
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "z1d.12xlarge",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "z1d",
+    "pricePerHour": 5.273,
+    "commit": {
+      "1y": 3.322,
+      "3y": 2.216
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "z1d.2xlarge",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "z1d",
+    "pricePerHour": 0.879,
+    "commit": {
+      "1y": 0.554,
+      "3y": 0.369
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "z1d.3xlarge",
+    "vcpu": 12,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "z1d",
+    "pricePerHour": 1.318,
+    "commit": {
+      "1y": 0.83,
+      "3y": 0.554
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "z1d.6xlarge",
+    "vcpu": 24,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "z1d",
+    "pricePerHour": 2.636,
+    "commit": {
+      "1y": 1.661,
+      "3y": 1.108
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "z1d.large",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "z1d",
+    "pricePerHour": 0.22,
+    "commit": {
+      "1y": 0.138,
+      "3y": 0.092
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "sku": "z1d.xlarge",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "z1d",
+    "pricePerHour": 0.439,
+    "commit": {
+      "1y": 0.277,
+      "3y": 0.185
+    }
+  }
+]

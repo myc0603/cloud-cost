@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.12
+  },
+  {
+    "provider": "gcp",
+    "region": "frankfurt",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.023
+  }
+]

@@ -1,0 +1,3874 @@
+[
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.010333,
+    "commit": {
+      "1y": 0.00651,
+      "3y": 0.00465
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.020667,
+    "commit": {
+      "1y": 0.01302,
+      "3y": 0.0093
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.041333,
+    "commit": {
+      "1y": 0.02604,
+      "3y": 0.0186
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.082666,
+    "commit": {
+      "1y": 0.05208,
+      "3y": 0.0372
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.165332,
+    "commit": {
+      "1y": 0.104159,
+      "3y": 0.0744
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.330665,
+    "commit": {
+      "1y": 0.208319,
+      "3y": 0.148799
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.661329,
+    "commit": {
+      "1y": 0.416637,
+      "3y": 0.297598
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 1.322658,
+    "commit": {
+      "1y": 0.833275,
+      "3y": 0.595196
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.111514,
+    "commit": {
+      "1y": 0.070254,
+      "3y": 0.050181
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.223027,
+    "commit": {
+      "1y": 0.140507,
+      "3y": 0.100362
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.446055,
+    "commit": {
+      "1y": 0.281014,
+      "3y": 0.200725
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.892109,
+    "commit": {
+      "1y": 0.562029,
+      "3y": 0.401449
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.061031,
+    "commit": {
+      "1y": 0.038449,
+      "3y": 0.027464
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.122061,
+    "commit": {
+      "1y": 0.076898,
+      "3y": 0.054927
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.244122,
+    "commit": {
+      "1y": 0.153797,
+      "3y": 0.109855
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.488244,
+    "commit": {
+      "1y": 0.307594,
+      "3y": 0.21971
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "e2-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "e2",
+    "pricePerHour": 0.976488,
+    "commit": {
+      "1y": 0.615187,
+      "3y": 0.43942
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.119806,
+    "commit": {
+      "1y": 0.07547,
+      "3y": 0.053912
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.239612,
+    "commit": {
+      "1y": 0.15094,
+      "3y": 0.107824
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.479224,
+    "commit": {
+      "1y": 0.30188,
+      "3y": 0.215648
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.958448,
+    "commit": {
+      "1y": 0.60376,
+      "3y": 0.431296
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 1.916896,
+    "commit": {
+      "1y": 1.20752,
+      "3y": 0.862592
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 2.875344,
+    "commit": {
+      "1y": 1.81128,
+      "3y": 1.293888
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-standard-64",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 3.833792,
+    "commit": {
+      "1y": 2.41504,
+      "3y": 1.725184
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-standard-80",
+    "vcpu": 80,
+    "ramGb": 320,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 4.79224,
+    "commit": {
+      "1y": 3.0188,
+      "3y": 2.15648
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-standard-96",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 5.750688,
+    "commit": {
+      "1y": 3.62256,
+      "3y": 2.587776
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-standard-128",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 7.667584,
+    "commit": {
+      "1y": 4.83008,
+      "3y": 3.450368
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.161614,
+    "commit": {
+      "1y": 0.101806,
+      "3y": 0.072728
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.323228,
+    "commit": {
+      "1y": 0.203612,
+      "3y": 0.145456
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.646456,
+    "commit": {
+      "1y": 0.407224,
+      "3y": 0.290912
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 1.292912,
+    "commit": {
+      "1y": 0.814448,
+      "3y": 0.581824
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highmem-32",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 2.585824,
+    "commit": {
+      "1y": 1.628896,
+      "3y": 1.163648
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highmem-48",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 3.878736,
+    "commit": {
+      "1y": 2.443344,
+      "3y": 1.745472
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highmem-64",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 5.171648,
+    "commit": {
+      "1y": 3.257792,
+      "3y": 2.327296
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highmem-80",
+    "vcpu": 80,
+    "ramGb": 640,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 6.46456,
+    "commit": {
+      "1y": 4.07224,
+      "3y": 2.90912
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highmem-96",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 7.757472,
+    "commit": {
+      "1y": 4.886688,
+      "3y": 3.490944
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highmem-128",
+    "vcpu": 128,
+    "ramGb": 864,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 9.507136,
+    "commit": {
+      "1y": 5.988864,
+      "3y": 4.278272
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.08845,
+    "commit": {
+      "1y": 0.055718,
+      "3y": 0.0398
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.1769,
+    "commit": {
+      "1y": 0.111436,
+      "3y": 0.0796
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.3538,
+    "commit": {
+      "1y": 0.222872,
+      "3y": 0.1592
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 0.7076,
+    "commit": {
+      "1y": 0.445744,
+      "3y": 0.3184
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 1.4152,
+    "commit": {
+      "1y": 0.891488,
+      "3y": 0.6368
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 48,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 2.1228,
+    "commit": {
+      "1y": 1.337232,
+      "3y": 0.9552
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highcpu-64",
+    "vcpu": 64,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 2.8304,
+    "commit": {
+      "1y": 1.782976,
+      "3y": 1.2736
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highcpu-80",
+    "vcpu": 80,
+    "ramGb": 80,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 3.538,
+    "commit": {
+      "1y": 2.22872,
+      "3y": 1.592
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2-highcpu-96",
+    "vcpu": 96,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2",
+    "pricePerHour": 4.2456,
+    "commit": {
+      "1y": 2.674464,
+      "3y": 1.9104
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 0.104234,
+    "commit": {
+      "1y": 0.065658,
+      "3y": 0.046902
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 0.208468,
+    "commit": {
+      "1y": 0.131316,
+      "3y": 0.093804
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 0.416936,
+    "commit": {
+      "1y": 0.262632,
+      "3y": 0.187608
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 0.833872,
+    "commit": {
+      "1y": 0.525264,
+      "3y": 0.375216
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 1.667744,
+    "commit": {
+      "1y": 1.050528,
+      "3y": 0.750432
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 2.501616,
+    "commit": {
+      "1y": 1.575792,
+      "3y": 1.125648
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-64",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 3.335488,
+    "commit": {
+      "1y": 2.101056,
+      "3y": 1.500864
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-80",
+    "vcpu": 80,
+    "ramGb": 320,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 4.16936,
+    "commit": {
+      "1y": 2.62632,
+      "3y": 1.87608
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-96",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 5.003232,
+    "commit": {
+      "1y": 3.151584,
+      "3y": 2.251296
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-128",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 6.670976,
+    "commit": {
+      "1y": 4.202112,
+      "3y": 3.001728
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n2d-standard-224",
+    "vcpu": 224,
+    "ramGb": 896,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n2d",
+    "pricePerHour": 11.674208,
+    "commit": {
+      "1y": 7.353696,
+      "3y": 5.253024
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.111897,
+    "commit": {
+      "1y": 0.070494,
+      "3y": 0.050355
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.223793,
+    "commit": {
+      "1y": 0.140987,
+      "3y": 0.100709
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.447586,
+    "commit": {
+      "1y": 0.281975,
+      "3y": 0.201419
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.895173,
+    "commit": {
+      "1y": 0.563949,
+      "3y": 0.402838
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 1.790345,
+    "commit": {
+      "1y": 1.127898,
+      "3y": 0.805675
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 2.685518,
+    "commit": {
+      "1y": 1.691847,
+      "3y": 1.208513
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-standard-64",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 3.580691,
+    "commit": {
+      "1y": 2.255796,
+      "3y": 1.61135
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-standard-80",
+    "vcpu": 80,
+    "ramGb": 320,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 4.475863,
+    "commit": {
+      "1y": 2.819745,
+      "3y": 2.014188
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.146835,
+    "commit": {
+      "1y": 0.092503,
+      "3y": 0.066077
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.29367,
+    "commit": {
+      "1y": 0.185006,
+      "3y": 0.132154
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.58734,
+    "commit": {
+      "1y": 0.370011,
+      "3y": 0.264308
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 1.17468,
+    "commit": {
+      "1y": 0.740023,
+      "3y": 0.528616
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highmem-32",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 2.349359,
+    "commit": {
+      "1y": 1.480045,
+      "3y": 1.057231
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highmem-48",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 3.524039,
+    "commit": {
+      "1y": 2.220068,
+      "3y": 1.585847
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highmem-64",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 4.698719,
+    "commit": {
+      "1y": 2.960091,
+      "3y": 2.114463
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highmem-80",
+    "vcpu": 80,
+    "ramGb": 640,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 5.873399,
+    "commit": {
+      "1y": 3.700113,
+      "3y": 2.643079
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.094427,
+    "commit": {
+      "1y": 0.059489,
+      "3y": 0.042494
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.188855,
+    "commit": {
+      "1y": 0.118978,
+      "3y": 0.084987
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.37771,
+    "commit": {
+      "1y": 0.237956,
+      "3y": 0.169974
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 0.755419,
+    "commit": {
+      "1y": 0.475912,
+      "3y": 0.339948
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 1.510838,
+    "commit": {
+      "1y": 0.951824,
+      "3y": 0.679897
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 2.266257,
+    "commit": {
+      "1y": 1.427737,
+      "3y": 1.019845
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highcpu-64",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 3.021677,
+    "commit": {
+      "1y": 1.903649,
+      "3y": 1.359794
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4-highcpu-80",
+    "vcpu": 80,
+    "ramGb": 160,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4",
+    "pricePerHour": 3.777096,
+    "commit": {
+      "1y": 2.379561,
+      "3y": 1.699742
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.104466,
+    "commit": {
+      "1y": 0.065826,
+      "3y": 0.047043
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.208932,
+    "commit": {
+      "1y": 0.131651,
+      "3y": 0.094086
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.417864,
+    "commit": {
+      "1y": 0.263302,
+      "3y": 0.188172
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.835728,
+    "commit": {
+      "1y": 0.526605,
+      "3y": 0.376344
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 1.671456,
+    "commit": {
+      "1y": 1.05321,
+      "3y": 0.752688
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 2.507184,
+    "commit": {
+      "1y": 1.579814,
+      "3y": 1.129032
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-standard-64",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 3.342912,
+    "commit": {
+      "1y": 2.106419,
+      "3y": 1.505376
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-standard-80",
+    "vcpu": 80,
+    "ramGb": 320,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 4.17864,
+    "commit": {
+      "1y": 2.633024,
+      "3y": 1.88172
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-standard-96",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 5.014368,
+    "commit": {
+      "1y": 3.159629,
+      "3y": 2.258064
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.137106,
+    "commit": {
+      "1y": 0.086402,
+      "3y": 0.061763
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.274212,
+    "commit": {
+      "1y": 0.172803,
+      "3y": 0.123526
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.548424,
+    "commit": {
+      "1y": 0.345606,
+      "3y": 0.247052
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 1.096848,
+    "commit": {
+      "1y": 0.691213,
+      "3y": 0.494104
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highmem-32",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 2.193696,
+    "commit": {
+      "1y": 1.382426,
+      "3y": 0.988208
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highmem-48",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 3.290544,
+    "commit": {
+      "1y": 2.073638,
+      "3y": 1.482312
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highmem-64",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 4.387392,
+    "commit": {
+      "1y": 2.764851,
+      "3y": 1.976416
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highmem-80",
+    "vcpu": 80,
+    "ramGb": 640,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 5.48424,
+    "commit": {
+      "1y": 3.456064,
+      "3y": 2.47052
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highmem-96",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 6.581088,
+    "commit": {
+      "1y": 4.147277,
+      "3y": 2.964624
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.088146,
+    "commit": {
+      "1y": 0.055538,
+      "3y": 0.039683
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.176292,
+    "commit": {
+      "1y": 0.111075,
+      "3y": 0.079366
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.352584,
+    "commit": {
+      "1y": 0.22215,
+      "3y": 0.158732
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 0.705168,
+    "commit": {
+      "1y": 0.444301,
+      "3y": 0.317464
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 1.410336,
+    "commit": {
+      "1y": 0.888602,
+      "3y": 0.634928
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 2.115504,
+    "commit": {
+      "1y": 1.332902,
+      "3y": 0.952392
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highcpu-64",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 2.820672,
+    "commit": {
+      "1y": 1.777203,
+      "3y": 1.269856
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highcpu-80",
+    "vcpu": 80,
+    "ramGb": 160,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 3.52584,
+    "commit": {
+      "1y": 2.221504,
+      "3y": 1.58732
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n4d-highcpu-96",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n4d",
+    "pricePerHour": 4.231008,
+    "commit": {
+      "1y": 2.665805,
+      "3y": 1.904784
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n1-standard-1",
+    "vcpu": 1,
+    "ramGb": 3.75,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n1",
+    "pricePerHour": 0.058596,
+    "commit": {
+      "1y": 0.036912,
+      "3y": 0.026368
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n1-standard-2",
+    "vcpu": 2,
+    "ramGb": 7.5,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n1",
+    "pricePerHour": 0.117193,
+    "commit": {
+      "1y": 0.073824,
+      "3y": 0.052736
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n1-standard-4",
+    "vcpu": 4,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n1",
+    "pricePerHour": 0.234386,
+    "commit": {
+      "1y": 0.147648,
+      "3y": 0.105472
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n1-standard-8",
+    "vcpu": 8,
+    "ramGb": 30,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n1",
+    "pricePerHour": 0.468772,
+    "commit": {
+      "1y": 0.295296,
+      "3y": 0.210944
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "n1-standard-16",
+    "vcpu": 16,
+    "ramGb": 60,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "n1",
+    "pricePerHour": 0.937544,
+    "commit": {
+      "1y": 0.590592,
+      "3y": 0.421888
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 0.257584,
+    "commit": {
+      "1y": 0.162264,
+      "3y": 0.103032
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 0.515168,
+    "commit": {
+      "1y": 0.324528,
+      "3y": 0.206064
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 1.030336,
+    "commit": {
+      "1y": 0.649056,
+      "3y": 0.412128
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2-standard-30",
+    "vcpu": 30,
+    "ramGb": 120,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 1.93188,
+    "commit": {
+      "1y": 1.21698,
+      "3y": 0.77274
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2-standard-60",
+    "vcpu": 60,
+    "ramGb": 240,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 3.86376,
+    "commit": {
+      "1y": 2.43396,
+      "3y": 1.54548
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 0.112014,
+    "commit": {
+      "1y": 0.07057,
+      "3y": 0.050408
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 0.224028,
+    "commit": {
+      "1y": 0.14114,
+      "3y": 0.100816
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 0.448056,
+    "commit": {
+      "1y": 0.28228,
+      "3y": 0.201632
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 0.896112,
+    "commit": {
+      "1y": 0.56456,
+      "3y": 0.403264
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 1.792224,
+    "commit": {
+      "1y": 1.12912,
+      "3y": 0.806528
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2d-standard-56",
+    "vcpu": 56,
+    "ramGb": 224,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 3.136392,
+    "commit": {
+      "1y": 1.97596,
+      "3y": 1.411424
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c2d-standard-112",
+    "vcpu": 112,
+    "ramGb": 448,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2d",
+    "pricePerHour": 6.272784,
+    "commit": {
+      "1y": 3.95192,
+      "3y": 2.822848
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 0.248724,
+    "commit": {
+      "1y": 0.1567,
+      "3y": 0.111926
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 0.497448,
+    "commit": {
+      "1y": 0.313399,
+      "3y": 0.223852
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3-standard-22",
+    "vcpu": 22,
+    "ramGb": 88,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 1.367981,
+    "commit": {
+      "1y": 0.861848,
+      "3y": 0.615594
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3-standard-44",
+    "vcpu": 44,
+    "ramGb": 176,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 2.735962,
+    "commit": {
+      "1y": 1.723696,
+      "3y": 1.231189
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3-standard-88",
+    "vcpu": 88,
+    "ramGb": 352,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 5.471924,
+    "commit": {
+      "1y": 3.447392,
+      "3y": 2.462377
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3-standard-176",
+    "vcpu": 176,
+    "ramGb": 704,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3",
+    "pricePerHour": 10.943847,
+    "commit": {
+      "1y": 6.894784,
+      "3y": 4.924755
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.224035,
+    "commit": {
+      "1y": 0.141135,
+      "3y": 0.100803
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.44807,
+    "commit": {
+      "1y": 0.282271,
+      "3y": 0.201606
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.89614,
+    "commit": {
+      "1y": 0.564541,
+      "3y": 0.403213
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-standard-30",
+    "vcpu": 30,
+    "ramGb": 120,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 1.680262,
+    "commit": {
+      "1y": 1.058515,
+      "3y": 0.756024
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-standard-60",
+    "vcpu": 60,
+    "ramGb": 240,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 3.360525,
+    "commit": {
+      "1y": 2.117029,
+      "3y": 1.512047
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-standard-90",
+    "vcpu": 90,
+    "ramGb": 360,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 5.040787,
+    "commit": {
+      "1y": 3.175544,
+      "3y": 2.268071
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-standard-180",
+    "vcpu": 180,
+    "ramGb": 720,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 10.081574,
+    "commit": {
+      "1y": 6.351088,
+      "3y": 4.536142
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-standard-360",
+    "vcpu": 360,
+    "ramGb": 1440,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 20.163147,
+    "commit": {
+      "1y": 12.702176,
+      "3y": 9.072284
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.302182,
+    "commit": {
+      "1y": 0.190365,
+      "3y": 0.135959
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.604365,
+    "commit": {
+      "1y": 0.38073,
+      "3y": 0.271917
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 1.20873,
+    "commit": {
+      "1y": 0.761459,
+      "3y": 0.543835
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highmem-30",
+    "vcpu": 30,
+    "ramGb": 240,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 2.266368,
+    "commit": {
+      "1y": 1.427736,
+      "3y": 1.01969
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highmem-60",
+    "vcpu": 60,
+    "ramGb": 480,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 4.532737,
+    "commit": {
+      "1y": 2.855473,
+      "3y": 2.03938
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highmem-90",
+    "vcpu": 90,
+    "ramGb": 720,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 6.799105,
+    "commit": {
+      "1y": 4.283209,
+      "3y": 3.05907
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highmem-180",
+    "vcpu": 180,
+    "ramGb": 1440,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 13.598211,
+    "commit": {
+      "1y": 8.566419,
+      "3y": 6.118141
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highmem-360",
+    "vcpu": 360,
+    "ramGb": 2880,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 27.196421,
+    "commit": {
+      "1y": 17.132837,
+      "3y": 12.236281
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.184961,
+    "commit": {
+      "1y": 0.116521,
+      "3y": 0.083225
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.369922,
+    "commit": {
+      "1y": 0.233041,
+      "3y": 0.166451
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 0.739845,
+    "commit": {
+      "1y": 0.466082,
+      "3y": 0.332902
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highcpu-30",
+    "vcpu": 30,
+    "ramGb": 59,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 1.382325,
+    "commit": {
+      "1y": 0.870827,
+      "3y": 0.621993
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highcpu-60",
+    "vcpu": 60,
+    "ramGb": 118,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 2.76465,
+    "commit": {
+      "1y": 1.741654,
+      "3y": 1.243987
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highcpu-90",
+    "vcpu": 90,
+    "ramGb": 177,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 4.146975,
+    "commit": {
+      "1y": 2.612481,
+      "3y": 1.86598
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highcpu-180",
+    "vcpu": 180,
+    "ramGb": 354,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 8.29395,
+    "commit": {
+      "1y": 5.224962,
+      "3y": 3.73196
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c3d-highcpu-360",
+    "vcpu": 360,
+    "ramGb": 708,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c3d",
+    "pricePerHour": 16.5879,
+    "commit": {
+      "1y": 10.449923,
+      "3y": 7.463919
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-2",
+    "vcpu": 2,
+    "ramGb": 7,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.119504,
+    "commit": {
+      "1y": 0.075289,
+      "3y": 0.053777
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-4",
+    "vcpu": 4,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.243866,
+    "commit": {
+      "1y": 0.153639,
+      "3y": 0.10974
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-8",
+    "vcpu": 8,
+    "ramGb": 30,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.487731,
+    "commit": {
+      "1y": 0.307278,
+      "3y": 0.21948
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-16",
+    "vcpu": 16,
+    "ramGb": 60,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.975462,
+    "commit": {
+      "1y": 0.614555,
+      "3y": 0.43896
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-24",
+    "vcpu": 24,
+    "ramGb": 90,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.463193,
+    "commit": {
+      "1y": 0.921833,
+      "3y": 0.65844
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-32",
+    "vcpu": 32,
+    "ramGb": 120,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.950924,
+    "commit": {
+      "1y": 1.229111,
+      "3y": 0.87792
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-48",
+    "vcpu": 48,
+    "ramGb": 180,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 2.926386,
+    "commit": {
+      "1y": 1.843666,
+      "3y": 1.316881
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-96",
+    "vcpu": 96,
+    "ramGb": 360,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 5.852772,
+    "commit": {
+      "1y": 3.687332,
+      "3y": 2.633761
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-144",
+    "vcpu": 144,
+    "ramGb": 540,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 8.779158,
+    "commit": {
+      "1y": 5.530998,
+      "3y": 3.950642
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-192",
+    "vcpu": 192,
+    "ramGb": 720,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 11.705544,
+    "commit": {
+      "1y": 7.374664,
+      "3y": 5.267523
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-standard-288",
+    "vcpu": 288,
+    "ramGb": 1080,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 17.558316,
+    "commit": {
+      "1y": 11.061996,
+      "3y": 7.901284
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-2",
+    "vcpu": 2,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.15837,
+    "commit": {
+      "1y": 0.099775,
+      "3y": 0.071266
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-4",
+    "vcpu": 4,
+    "ramGb": 31,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.321598,
+    "commit": {
+      "1y": 0.202612,
+      "3y": 0.144718
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-8",
+    "vcpu": 8,
+    "ramGb": 62,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.643197,
+    "commit": {
+      "1y": 0.405224,
+      "3y": 0.289436
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-16",
+    "vcpu": 16,
+    "ramGb": 124,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.286394,
+    "commit": {
+      "1y": 0.810447,
+      "3y": 0.578872
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-24",
+    "vcpu": 24,
+    "ramGb": 186,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.929591,
+    "commit": {
+      "1y": 1.215671,
+      "3y": 0.868307
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-32",
+    "vcpu": 32,
+    "ramGb": 248,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 2.572788,
+    "commit": {
+      "1y": 1.620894,
+      "3y": 1.157743
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-48",
+    "vcpu": 48,
+    "ramGb": 372,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 3.859182,
+    "commit": {
+      "1y": 2.431341,
+      "3y": 1.736615
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-96",
+    "vcpu": 96,
+    "ramGb": 744,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 7.718364,
+    "commit": {
+      "1y": 4.862683,
+      "3y": 3.47323
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-144",
+    "vcpu": 144,
+    "ramGb": 1116,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 11.577545,
+    "commit": {
+      "1y": 7.294024,
+      "3y": 5.209845
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-192",
+    "vcpu": 192,
+    "ramGb": 1488,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 15.436727,
+    "commit": {
+      "1y": 9.725366,
+      "3y": 6.94646
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highmem-288",
+    "vcpu": 288,
+    "ramGb": 2232,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 23.155091,
+    "commit": {
+      "1y": 14.588049,
+      "3y": 10.41969
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.104929,
+    "commit": {
+      "1y": 0.066107,
+      "3y": 0.047219
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.209857,
+    "commit": {
+      "1y": 0.132213,
+      "3y": 0.094437
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.419715,
+    "commit": {
+      "1y": 0.264426,
+      "3y": 0.188874
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 0.839429,
+    "commit": {
+      "1y": 0.528853,
+      "3y": 0.377749
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-24",
+    "vcpu": 24,
+    "ramGb": 48,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.259144,
+    "commit": {
+      "1y": 0.793279,
+      "3y": 0.566623
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 1.678859,
+    "commit": {
+      "1y": 1.057705,
+      "3y": 0.755498
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 2.518288,
+    "commit": {
+      "1y": 1.586558,
+      "3y": 1.133247
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-96",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 5.036576,
+    "commit": {
+      "1y": 3.173116,
+      "3y": 2.266494
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-144",
+    "vcpu": 144,
+    "ramGb": 288,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 7.554864,
+    "commit": {
+      "1y": 4.759674,
+      "3y": 3.399741
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-192",
+    "vcpu": 192,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 10.073152,
+    "commit": {
+      "1y": 6.346232,
+      "3y": 4.532988
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4-highcpu-288",
+    "vcpu": 288,
+    "ramGb": 576,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4",
+    "pricePerHour": 15.109728,
+    "commit": {
+      "1y": 9.519348,
+      "3y": 6.799482
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-standard-2",
+    "vcpu": 2,
+    "ramGb": 7,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.11088,
+    "commit": {
+      "1y": 0.069855,
+      "3y": 0.049896
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-standard-4",
+    "vcpu": 4,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.226073,
+    "commit": {
+      "1y": 0.142426,
+      "3y": 0.101733
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-standard-8",
+    "vcpu": 8,
+    "ramGb": 31,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.456458,
+    "commit": {
+      "1y": 0.287569,
+      "3y": 0.205406
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-standard-16",
+    "vcpu": 16,
+    "ramGb": 62,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.912915,
+    "commit": {
+      "1y": 0.575139,
+      "3y": 0.410812
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-standard-32",
+    "vcpu": 32,
+    "ramGb": 124,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 1.825831,
+    "commit": {
+      "1y": 1.150277,
+      "3y": 0.821624
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-standard-48",
+    "vcpu": 48,
+    "ramGb": 186,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 2.738746,
+    "commit": {
+      "1y": 1.725416,
+      "3y": 1.232436
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-standard-64",
+    "vcpu": 64,
+    "ramGb": 248,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 3.651662,
+    "commit": {
+      "1y": 2.300555,
+      "3y": 1.643248
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-standard-96",
+    "vcpu": 96,
+    "ramGb": 372,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 5.477493,
+    "commit": {
+      "1y": 3.450832,
+      "3y": 2.464871
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-standard-192",
+    "vcpu": 192,
+    "ramGb": 744,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 10.954986,
+    "commit": {
+      "1y": 6.901664,
+      "3y": 4.929743
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-standard-384",
+    "vcpu": 384,
+    "ramGb": 1488,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 21.909972,
+    "commit": {
+      "1y": 13.803327,
+      "3y": 9.859486
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highmem-2",
+    "vcpu": 2,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.14538,
+    "commit": {
+      "1y": 0.09159,
+      "3y": 0.065421
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highmem-4",
+    "vcpu": 4,
+    "ramGb": 31,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.295073,
+    "commit": {
+      "1y": 0.185897,
+      "3y": 0.132782
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highmem-8",
+    "vcpu": 8,
+    "ramGb": 63,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.594458,
+    "commit": {
+      "1y": 0.37451,
+      "3y": 0.267505
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highmem-16",
+    "vcpu": 16,
+    "ramGb": 126,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 1.188915,
+    "commit": {
+      "1y": 0.74902,
+      "3y": 0.535011
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highmem-32",
+    "vcpu": 32,
+    "ramGb": 252,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 2.37783,
+    "commit": {
+      "1y": 1.49804,
+      "3y": 1.070021
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highmem-48",
+    "vcpu": 48,
+    "ramGb": 378,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 3.566746,
+    "commit": {
+      "1y": 2.24706,
+      "3y": 1.605032
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highmem-64",
+    "vcpu": 64,
+    "ramGb": 504,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 4.755661,
+    "commit": {
+      "1y": 2.996079,
+      "3y": 2.140043
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highmem-96",
+    "vcpu": 96,
+    "ramGb": 756,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 7.133491,
+    "commit": {
+      "1y": 4.494119,
+      "3y": 3.210064
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highmem-192",
+    "vcpu": 192,
+    "ramGb": 1512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 14.266982,
+    "commit": {
+      "1y": 8.988238,
+      "3y": 6.420128
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highmem-384",
+    "vcpu": 384,
+    "ramGb": 3024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 28.533964,
+    "commit": {
+      "1y": 17.976476,
+      "3y": 12.840255
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 3,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.09363,
+    "commit": {
+      "1y": 0.058987,
+      "3y": 0.042134
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 7,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.191573,
+    "commit": {
+      "1y": 0.120691,
+      "3y": 0.086208
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 15,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.387458,
+    "commit": {
+      "1y": 0.244099,
+      "3y": 0.174356
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 30,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 0.774916,
+    "commit": {
+      "1y": 0.488198,
+      "3y": 0.348713
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 60,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 1.549831,
+    "commit": {
+      "1y": 0.976396,
+      "3y": 0.697425
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 90,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 2.324747,
+    "commit": {
+      "1y": 1.464594,
+      "3y": 1.046138
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highcpu-64",
+    "vcpu": 64,
+    "ramGb": 120,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 3.099663,
+    "commit": {
+      "1y": 1.952792,
+      "3y": 1.39485
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highcpu-96",
+    "vcpu": 96,
+    "ramGb": 180,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 4.649494,
+    "commit": {
+      "1y": 2.929188,
+      "3y": 2.092275
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highcpu-192",
+    "vcpu": 192,
+    "ramGb": 360,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 9.298988,
+    "commit": {
+      "1y": 5.858376,
+      "3y": 4.184551
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4d-highcpu-384",
+    "vcpu": 384,
+    "ramGb": 720,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c4d",
+    "pricePerHour": 18.597976,
+    "commit": {
+      "1y": 11.716752,
+      "3y": 8.369101
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2d-standard-1",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 0.052117,
+    "commit": {
+      "1y": 0.032829,
+      "3y": 0.023451
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2d-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 0.104234,
+    "commit": {
+      "1y": 0.065658,
+      "3y": 0.046902
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2d-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 0.208468,
+    "commit": {
+      "1y": 0.131316,
+      "3y": 0.093804
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2d-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 0.416936,
+    "commit": {
+      "1y": 0.262632,
+      "3y": 0.187608
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2d-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 0.833872,
+    "commit": {
+      "1y": 0.525264,
+      "3y": 0.375216
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2d-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 1.667744,
+    "commit": {
+      "1y": 1.050528,
+      "3y": 0.750432
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2d-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 2.501616,
+    "commit": {
+      "1y": 1.575792,
+      "3y": 1.125648
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2d-standard-60",
+    "vcpu": 60,
+    "ramGb": 240,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2d",
+    "pricePerHour": 3.12702,
+    "commit": {
+      "1y": 1.96974,
+      "3y": 1.40706
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2a-standard-1",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 0.04748
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2a-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 0.09496
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2a-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 0.18992
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2a-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 0.37984
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2a-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 0.75968
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2a-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 1.51936
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "t2a-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "t2a",
+    "pricePerHour": 2.27904
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-standard-1",
+    "vcpu": 1,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.055393,
+    "commit": {
+      "1y": 0.03653,
+      "3y": 0.024933
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-standard-2",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.110786,
+    "commit": {
+      "1y": 0.07306,
+      "3y": 0.049866
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-standard-4",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.221573,
+    "commit": {
+      "1y": 0.146119,
+      "3y": 0.099732
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-standard-8",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.443145,
+    "commit": {
+      "1y": 0.292239,
+      "3y": 0.199465
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-standard-16",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.88629,
+    "commit": {
+      "1y": 0.584478,
+      "3y": 0.398929
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-standard-32",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 1.77258,
+    "commit": {
+      "1y": 1.168956,
+      "3y": 0.797859
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-standard-48",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 2.658871,
+    "commit": {
+      "1y": 1.753434,
+      "3y": 1.196788
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-standard-64",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 3.545161,
+    "commit": {
+      "1y": 2.337912,
+      "3y": 1.595718
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-standard-72",
+    "vcpu": 72,
+    "ramGb": 288,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 3.988306,
+    "commit": {
+      "1y": 2.630151,
+      "3y": 1.795182
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highmem-1",
+    "vcpu": 1,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.072714,
+    "commit": {
+      "1y": 0.047929,
+      "3y": 0.03273
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highmem-2",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.145429,
+    "commit": {
+      "1y": 0.095859,
+      "3y": 0.06546
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highmem-4",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.290857,
+    "commit": {
+      "1y": 0.191717,
+      "3y": 0.13092
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highmem-8",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.581714,
+    "commit": {
+      "1y": 0.383434,
+      "3y": 0.261841
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highmem-16",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 1.163429,
+    "commit": {
+      "1y": 0.766868,
+      "3y": 0.523681
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highmem-32",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 2.326858,
+    "commit": {
+      "1y": 1.533737,
+      "3y": 1.047363
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highmem-48",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 3.490286,
+    "commit": {
+      "1y": 2.300605,
+      "3y": 1.571044
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highmem-64",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 4.653715,
+    "commit": {
+      "1y": 3.067473,
+      "3y": 2.094726
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highmem-72",
+    "vcpu": 72,
+    "ramGb": 576,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 5.23543,
+    "commit": {
+      "1y": 3.450907,
+      "3y": 2.356566
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highcpu-1",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.046733,
+    "commit": {
+      "1y": 0.03083,
+      "3y": 0.021035
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highcpu-2",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.093465,
+    "commit": {
+      "1y": 0.06166,
+      "3y": 0.042069
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highcpu-4",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.18693,
+    "commit": {
+      "1y": 0.123321,
+      "3y": 0.084138
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highcpu-8",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.37386,
+    "commit": {
+      "1y": 0.246641,
+      "3y": 0.168277
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highcpu-16",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 0.747721,
+    "commit": {
+      "1y": 0.493283,
+      "3y": 0.336553
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highcpu-32",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 1.495442,
+    "commit": {
+      "1y": 0.986565,
+      "3y": 0.673107
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highcpu-48",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 2.243163,
+    "commit": {
+      "1y": 1.479848,
+      "3y": 1.00966
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highcpu-64",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 2.990884,
+    "commit": {
+      "1y": 1.973131,
+      "3y": 1.346214
+    }
+  },
+  {
+    "provider": "gcp",
+    "region": "singapore",
+    "sku": "c4a-highcpu-72",
+    "vcpu": 72,
+    "ramGb": 144,
+    "burstable": false,
+    "arch": "arm",
+    "generation": "c4a",
+    "pricePerHour": 3.364744,
+    "commit": {
+      "1y": 2.219772,
+      "3y": 1.51449
+    }
+  }
+]

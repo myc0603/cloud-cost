@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.0949
+  },
+  {
+    "provider": "azure",
+    "region": "frankfurt",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.0196
+  }
+]

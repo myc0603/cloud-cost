@@ -1,0 +1,20 @@
+{
+  "provider": "azure",
+  "region": "us-west",
+  "rates": {
+    "x86": {
+      "vcpuPerHour": 0.1224,
+      "gbPerHour": 0.0144,
+      "commit": {
+        "1y": {
+          "vcpuPerHour": 0.10404,
+          "gbPerHour": 0.01224
+        },
+        "3y": {
+          "vcpuPerHour": 0.101592,
+          "gbPerHour": 0.011952
+        }
+      }
+    }
+  }
+}

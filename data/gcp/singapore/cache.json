@@ -1,0 +1,73 @@
+{
+  "provider": "gcp",
+  "region": "singapore",
+  "engine": "Redis",
+  "nodes": [],
+  "gbTiers": [
+    {
+      "upToGb": 4,
+      "perGbHour": 0.065,
+      "haPerGbHour": 0.114
+    },
+    {
+      "upToGb": 10,
+      "perGbHour": 0.04,
+      "haPerGbHour": 0.075,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.032,
+          "haPerGbHour": 0.06
+        },
+        "3y": {
+          "perGbHour": 0.024,
+          "haPerGbHour": 0.045
+        }
+      }
+    },
+    {
+      "upToGb": 35,
+      "perGbHour": 0.032,
+      "haPerGbHour": 0.063,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0256,
+          "haPerGbHour": 0.0504
+        },
+        "3y": {
+          "perGbHour": 0.0192,
+          "haPerGbHour": 0.0378
+        }
+      }
+    },
+    {
+      "upToGb": 100,
+      "perGbHour": 0.024,
+      "haPerGbHour": 0.047,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0192,
+          "haPerGbHour": 0.0376
+        },
+        "3y": {
+          "perGbHour": 0.0144,
+          "haPerGbHour": 0.0282
+        }
+      }
+    },
+    {
+      "upToGb": null,
+      "perGbHour": 0.019,
+      "haPerGbHour": 0.037,
+      "commit": {
+        "1y": {
+          "perGbHour": 0.0152,
+          "haPerGbHour": 0.0296
+        },
+        "3y": {
+          "perGbHour": 0.0114,
+          "haPerGbHour": 0.0222
+        }
+      }
+    }
+  ]
+}

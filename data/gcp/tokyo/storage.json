@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "gcp",
+    "region": "tokyo",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.13
+  },
+  {
+    "provider": "gcp",
+    "region": "tokyo",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.023
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "aws",
+    "region": "london",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.0928
+  },
+  {
+    "provider": "aws",
+    "region": "london",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.024
+  }
+]

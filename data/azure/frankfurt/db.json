@@ -1,0 +1,760 @@
+{
+  "provider": "azure",
+  "region": "frankfurt",
+  "engines": {
+    "mysql": {
+      "instances": [
+        {
+          "sku": "Standard_B1ms",
+          "vcpu": 1,
+          "ramGb": 2,
+          "burstable": true,
+          "perHour": 0.0199,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B2s",
+          "vcpu": 2,
+          "ramGb": 4,
+          "burstable": true,
+          "perHour": 0.0796,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B2ms",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": true,
+          "perHour": 0.159,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B4ms",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": true,
+          "perHour": 0.318,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B8ms",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": true,
+          "perHour": 0.637,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B12ms",
+          "vcpu": 12,
+          "ramGb": 48,
+          "burstable": true,
+          "perHour": 0.955,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B16ms",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": true,
+          "perHour": 1.274,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B20ms",
+          "vcpu": 20,
+          "ramGb": 80,
+          "burstable": true,
+          "perHour": 1.592,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_D2ads_v5",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.203,
+          "haPerHour": 0.406,
+          "commit": {
+            "1y": {
+              "perHour": 0.122146,
+              "haPerHour": 0.244292
+            },
+            "3y": {
+              "perHour": 0.081431,
+              "haPerHour": 0.162862
+            }
+          }
+        },
+        {
+          "sku": "Standard_D4ads_v5",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.406,
+          "haPerHour": 0.812,
+          "commit": {
+            "1y": {
+              "perHour": 0.244292,
+              "haPerHour": 0.488584
+            },
+            "3y": {
+              "perHour": 0.162861,
+              "haPerHour": 0.325722
+            }
+          }
+        },
+        {
+          "sku": "Standard_D8ads_v5",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.812,
+          "haPerHour": 1.624,
+          "commit": {
+            "1y": {
+              "perHour": 0.488584,
+              "haPerHour": 0.977168
+            },
+            "3y": {
+              "perHour": 0.325723,
+              "haPerHour": 0.651446
+            }
+          }
+        },
+        {
+          "sku": "Standard_D16ads_v5",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.624,
+          "haPerHour": 3.248,
+          "commit": {
+            "1y": {
+              "perHour": 0.977169,
+              "haPerHour": 1.954338
+            },
+            "3y": {
+              "perHour": 0.651446,
+              "haPerHour": 1.302892
+            }
+          }
+        },
+        {
+          "sku": "Standard_D32ads_v5",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.248,
+          "haPerHour": 6.496,
+          "commit": {
+            "1y": {
+              "perHour": 1.954338,
+              "haPerHour": 3.908676
+            },
+            "3y": {
+              "perHour": 1.302892,
+              "haPerHour": 2.605784
+            }
+          }
+        },
+        {
+          "sku": "Standard_D48ads_v5",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 4.872,
+          "haPerHour": 9.744,
+          "commit": {
+            "1y": {
+              "perHour": 2.931507,
+              "haPerHour": 5.863014
+            },
+            "3y": {
+              "perHour": 1.954338,
+              "haPerHour": 3.908676
+            }
+          }
+        },
+        {
+          "sku": "Standard_D64ads_v5",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 6.496,
+          "haPerHour": 12.992,
+          "commit": {
+            "1y": {
+              "perHour": 3.908676,
+              "haPerHour": 7.817352
+            },
+            "3y": {
+              "perHour": 2.605784,
+              "haPerHour": 5.211568
+            }
+          }
+        },
+        {
+          "sku": "Standard_D96ads_v5",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 9.744,
+          "haPerHour": 19.488,
+          "commit": {
+            "1y": {
+              "perHour": 5.863014,
+              "haPerHour": 11.726028
+            },
+            "3y": {
+              "perHour": 3.908676,
+              "haPerHour": 7.817352
+            }
+          }
+        },
+        {
+          "sku": "Standard_E2ads_v5",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.2858,
+          "haPerHour": 0.5716,
+          "commit": {
+            "1y": {
+              "perHour": 0.171461,
+              "haPerHour": 0.342922
+            },
+            "3y": {
+              "perHour": 0.114307,
+              "haPerHour": 0.228614
+            }
+          }
+        },
+        {
+          "sku": "Standard_E4ads_v5",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.5716,
+          "haPerHour": 1.1432,
+          "commit": {
+            "1y": {
+              "perHour": 0.342922,
+              "haPerHour": 0.685844
+            },
+            "3y": {
+              "perHour": 0.228615,
+              "haPerHour": 0.45723
+            }
+          }
+        },
+        {
+          "sku": "Standard_E8ads_v5",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.1432,
+          "haPerHour": 2.2864,
+          "commit": {
+            "1y": {
+              "perHour": 0.685845,
+              "haPerHour": 1.37169
+            },
+            "3y": {
+              "perHour": 0.45723,
+              "haPerHour": 0.91446
+            }
+          }
+        },
+        {
+          "sku": "Standard_E16ads_v5",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.2864,
+          "haPerHour": 4.5728,
+          "commit": {
+            "1y": {
+              "perHour": 1.371689,
+              "haPerHour": 2.743378
+            },
+            "3y": {
+              "perHour": 0.91446,
+              "haPerHour": 1.82892
+            }
+          }
+        },
+        {
+          "sku": "Standard_E20ads_v5",
+          "vcpu": 20,
+          "ramGb": 160,
+          "burstable": false,
+          "perHour": 2.858,
+          "haPerHour": 5.716,
+          "commit": {
+            "1y": {
+              "perHour": 1.714612,
+              "haPerHour": 3.429224
+            },
+            "3y": {
+              "perHour": 1.143075,
+              "haPerHour": 2.28615
+            }
+          }
+        },
+        {
+          "sku": "Standard_E32ads_v5",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.5728,
+          "haPerHour": 9.1456,
+          "commit": {
+            "1y": {
+              "perHour": 2.743379,
+              "haPerHour": 5.486758
+            },
+            "3y": {
+              "perHour": 1.828919,
+              "haPerHour": 3.657838
+            }
+          }
+        },
+        {
+          "sku": "Standard_E48ads_v5",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 6.8592,
+          "haPerHour": 13.7184,
+          "commit": {
+            "1y": {
+              "perHour": 4.115068,
+              "haPerHour": 8.230136
+            },
+            "3y": {
+              "perHour": 2.743379,
+              "haPerHour": 5.486758
+            }
+          }
+        },
+        {
+          "sku": "Standard_E64ads_v5",
+          "vcpu": 64,
+          "ramGb": 504,
+          "burstable": false,
+          "perHour": 9.1456,
+          "haPerHour": 18.2912,
+          "commit": {
+            "1y": {
+              "perHour": 5.486758,
+              "haPerHour": 10.973516
+            },
+            "3y": {
+              "perHour": 3.657839,
+              "haPerHour": 7.315678
+            }
+          }
+        },
+        {
+          "sku": "Standard_E96ads_v5",
+          "vcpu": 96,
+          "ramGb": 672,
+          "burstable": false,
+          "perHour": 13.7184,
+          "haPerHour": 27.4368,
+          "commit": {
+            "1y": {
+              "perHour": 8.230137,
+              "haPerHour": 16.460274
+            },
+            "3y": {
+              "perHour": 5.486758,
+              "haPerHour": 10.973516
+            }
+          }
+        }
+      ],
+      "custom": null,
+      "storageGbMonth": 0.137,
+      "haStorageGbMonth": 0.274
+    },
+    "postgres": {
+      "instances": [
+        {
+          "sku": "Standard_B1ms",
+          "vcpu": 1,
+          "ramGb": 2,
+          "burstable": true,
+          "perHour": 0.0199,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B2s",
+          "vcpu": 2,
+          "ramGb": 4,
+          "burstable": true,
+          "perHour": 0.0796,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B2ms",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": true,
+          "perHour": 0.1592,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B4ms",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": true,
+          "perHour": 0.3184,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B8ms",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": true,
+          "perHour": 0.6368,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B12ms",
+          "vcpu": 12,
+          "ramGb": 48,
+          "burstable": true,
+          "perHour": 0.9552,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B16ms",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": true,
+          "perHour": 1.2736,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_B20ms",
+          "vcpu": 20,
+          "ramGb": 80,
+          "burstable": true,
+          "perHour": 1.592,
+          "haPerHour": null
+        },
+        {
+          "sku": "Standard_D2ads_v5",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.212,
+          "haPerHour": 0.424,
+          "commit": {
+            "1y": {
+              "perHour": 0.127169,
+              "haPerHour": 0.254338
+            },
+            "3y": {
+              "perHour": 0.084703,
+              "haPerHour": 0.169406
+            }
+          }
+        },
+        {
+          "sku": "Standard_D4ads_v5",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.424,
+          "haPerHour": 0.848,
+          "commit": {
+            "1y": {
+              "perHour": 0.254338,
+              "haPerHour": 0.508676
+            },
+            "3y": {
+              "perHour": 0.169406,
+              "haPerHour": 0.338812
+            }
+          }
+        },
+        {
+          "sku": "Standard_D8ads_v5",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.848,
+          "haPerHour": 1.696,
+          "commit": {
+            "1y": {
+              "perHour": 0.508676,
+              "haPerHour": 1.017352
+            },
+            "3y": {
+              "perHour": 0.338813,
+              "haPerHour": 0.677626
+            }
+          }
+        },
+        {
+          "sku": "Standard_D16ads_v5",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.696,
+          "haPerHour": 3.392,
+          "commit": {
+            "1y": {
+              "perHour": 1.017352,
+              "haPerHour": 2.034704
+            },
+            "3y": {
+              "perHour": 0.677626,
+              "haPerHour": 1.355252
+            }
+          }
+        },
+        {
+          "sku": "Standard_D32ads_v5",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 3.392,
+          "haPerHour": 6.784,
+          "commit": {
+            "1y": {
+              "perHour": 2.034703,
+              "haPerHour": 4.069406
+            },
+            "3y": {
+              "perHour": 1.355251,
+              "haPerHour": 2.710502
+            }
+          }
+        },
+        {
+          "sku": "Standard_D48ads_v5",
+          "vcpu": 48,
+          "ramGb": 192,
+          "burstable": false,
+          "perHour": 5.088,
+          "haPerHour": 10.176,
+          "commit": {
+            "1y": {
+              "perHour": 3.052055,
+              "haPerHour": 6.10411
+            },
+            "3y": {
+              "perHour": 2.032877,
+              "haPerHour": 4.065754
+            }
+          }
+        },
+        {
+          "sku": "Standard_D64ads_v5",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 6.784,
+          "haPerHour": 13.568,
+          "commit": {
+            "1y": {
+              "perHour": 4.069406,
+              "haPerHour": 8.138812
+            },
+            "3y": {
+              "perHour": 2.710502,
+              "haPerHour": 5.421004
+            }
+          }
+        },
+        {
+          "sku": "Standard_D96ads_v5",
+          "vcpu": 96,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 10.176,
+          "haPerHour": 20.352,
+          "commit": {
+            "1y": {
+              "perHour": 6.10411,
+              "haPerHour": 12.20822
+            },
+            "3y": {
+              "perHour": 4.065753,
+              "haPerHour": 8.131506
+            }
+          }
+        },
+        {
+          "sku": "Standard_E2ads_v5",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.302,
+          "haPerHour": 0.604,
+          "commit": {
+            "1y": {
+              "perHour": 0.181507,
+              "haPerHour": 0.363014
+            },
+            "3y": {
+              "perHour": 0.121005,
+              "haPerHour": 0.24201
+            }
+          }
+        },
+        {
+          "sku": "Standard_E4ads_v5",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.604,
+          "haPerHour": 1.208,
+          "commit": {
+            "1y": {
+              "perHour": 0.363014,
+              "haPerHour": 0.726028
+            },
+            "3y": {
+              "perHour": 0.242009,
+              "haPerHour": 0.484018
+            }
+          }
+        },
+        {
+          "sku": "Standard_E8ads_v5",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.208,
+          "haPerHour": 2.416,
+          "commit": {
+            "1y": {
+              "perHour": 0.726027,
+              "haPerHour": 1.452054
+            },
+            "3y": {
+              "perHour": 0.484018,
+              "haPerHour": 0.968036
+            }
+          }
+        },
+        {
+          "sku": "Standard_E16ads_v5",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.416,
+          "haPerHour": 4.832,
+          "commit": {
+            "1y": {
+              "perHour": 1.452055,
+              "haPerHour": 2.90411
+            },
+            "3y": {
+              "perHour": 0.968037,
+              "haPerHour": 1.936074
+            }
+          }
+        },
+        {
+          "sku": "Standard_E20ads_v5",
+          "vcpu": 20,
+          "ramGb": 160,
+          "burstable": false,
+          "perHour": 3.02,
+          "haPerHour": 6.04,
+          "commit": {
+            "1y": {
+              "perHour": 1.815068,
+              "haPerHour": 3.630136
+            },
+            "3y": {
+              "perHour": 1.210046,
+              "haPerHour": 2.420092
+            }
+          }
+        },
+        {
+          "sku": "Standard_E32ads_v5",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.832,
+          "haPerHour": 9.664,
+          "commit": {
+            "1y": {
+              "perHour": 2.90411,
+              "haPerHour": 5.80822
+            },
+            "3y": {
+              "perHour": 1.936073,
+              "haPerHour": 3.872146
+            }
+          }
+        },
+        {
+          "sku": "Standard_E48ads_v5",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 7.248,
+          "haPerHour": 14.496,
+          "commit": {
+            "1y": {
+              "perHour": 4.356164,
+              "haPerHour": 8.712328
+            },
+            "3y": {
+              "perHour": 2.90411,
+              "haPerHour": 5.80822
+            }
+          }
+        },
+        {
+          "sku": "Standard_E64ads_v5",
+          "vcpu": 64,
+          "ramGb": 504,
+          "burstable": false,
+          "perHour": 9.664,
+          "haPerHour": 19.328,
+          "commit": {
+            "1y": {
+              "perHour": 5.808219,
+              "haPerHour": 11.616438
+            },
+            "3y": {
+              "perHour": 3.872146,
+              "haPerHour": 7.744292
+            }
+          }
+        },
+        {
+          "sku": "Standard_E96ads_v5",
+          "vcpu": 96,
+          "ramGb": 672,
+          "burstable": false,
+          "perHour": 14.496,
+          "haPerHour": 28.992,
+          "commit": {
+            "1y": {
+              "perHour": 8.712329,
+              "haPerHour": 17.424658
+            },
+            "3y": {
+              "perHour": 5.808219,
+              "haPerHour": 11.616438
+            }
+          }
+        }
+      ],
+      "custom": null,
+      "storageGbMonth": 0.137,
+      "haStorageGbMonth": 0.274
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "provider": "ncp",
+  "region": "tokyo",
+  "engine": "Redis",
+  "nodes": [
+    {
+      "sku": "Redis 1.5GB",
+      "memoryGb": 1.5,
+      "burstable": false,
+      "perHour": 0.059181,
+      "haPerHour": 0.118362
+    },
+    {
+      "sku": "Redis 3GB",
+      "memoryGb": 3,
+      "burstable": false,
+      "perHour": 0.080906,
+      "haPerHour": 0.161812
+    },
+    {
+      "sku": "Redis 6.4GB",
+      "memoryGb": 6.4,
+      "burstable": false,
+      "perHour": 0.152822,
+      "haPerHour": 0.305644
+    },
+    {
+      "sku": "Redis 12.8GB",
+      "memoryGb": 12.8,
+      "burstable": false,
+      "perHour": 0.287664,
+      "haPerHour": 0.575328
+    },
+    {
+      "sku": "Redis 25.6GB",
+      "memoryGb": 25.6,
+      "burstable": false,
+      "perHour": 0.383552,
+      "haPerHour": 0.767104
+    },
+    {
+      "sku": "Redis 51.2GB",
+      "memoryGb": 51.2,
+      "burstable": false,
+      "perHour": 0.767104,
+      "haPerHour": 1.534208
+    },
+    {
+      "sku": "Redis 102.4GB",
+      "memoryGb": 102.4,
+      "burstable": false,
+      "perHour": 1.534209,
+      "haPerHour": 3.068418
+    },
+    {
+      "sku": "Redis 153.6GB",
+      "memoryGb": 153.6,
+      "burstable": false,
+      "perHour": 2.301313,
+      "haPerHour": 4.602626
+    },
+    {
+      "sku": "Redis 204.8GB",
+      "memoryGb": 204.8,
+      "burstable": false,
+      "perHour": 3.068418,
+      "haPerHour": 6.136836
+    }
+  ],
+  "gbTiers": null
+}

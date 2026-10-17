@@ -1,0 +1,26 @@
+{
+  "provider": "ncp",
+  "region": "seoul",
+  "includedDays": 0,
+  "storedRatio": 1,
+  "commitmentTiers": [],
+  "plan": "Standard",
+  "ingestPerGb": 0,
+  "storagePerGbMonth": 0.5993,
+  "maxGbPerDay": 20,
+  "maxStoredGb": 100,
+  "alternatives": [
+    {
+      "provider": "ncp",
+      "region": "seoul",
+      "includedDays": 0,
+      "storedRatio": 1,
+      "commitmentTiers": [],
+      "plan": "Premium",
+      "ingestPerGb": 0.374563,
+      "storagePerGbMonth": 0,
+      "maxGbPerDay": 100,
+      "maxStoredGb": 1024
+    }
+  ]
+}

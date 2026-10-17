@@ -1,0 +1,222 @@
+[
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HICPU.C002.M004.G003",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "hicpu",
+    "pricePerHour": 0.07167
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HICPU.C004.M008.G003",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "hicpu",
+    "pricePerHour": 0.14925
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HICPU.C008.M016.G003",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "hicpu",
+    "pricePerHour": 0.304412
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HICPU.C016.M032.G003",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "hicpu",
+    "pricePerHour": 0.614734
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HICPU.C032.M064.G003",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "hicpu",
+    "pricePerHour": 1.23538
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HICPU.C048.M096.G003",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "hicpu",
+    "pricePerHour": 1.856025
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HICPU.C064.M128.G003",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "hicpu",
+    "pricePerHour": 2.47667
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HIMEM.C002.M016.G003",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "himem",
+    "pricePerHour": 0.117233
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HIMEM.C004.M032.G003",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "himem",
+    "pricePerHour": 0.240377
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HIMEM.C008.M064.G003",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "himem",
+    "pricePerHour": 0.486665
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HIMEM.C016.M128.G003",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "himem",
+    "pricePerHour": 0.97924
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HIMEM.C032.M256.G003",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "himem",
+    "pricePerHour": 1.964392
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "HIMEM.C048.M384.G003",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "himem",
+    "pricePerHour": 2.949543
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "STAND.C002.M008.G003",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "stand",
+    "pricePerHour": 0.089402
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "STAND.C004.M016.G003",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "stand",
+    "pricePerHour": 0.183977
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "STAND.C008.M032.G003",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "stand",
+    "pricePerHour": 0.373126
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "STAND.C016.M064.G003",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "stand",
+    "pricePerHour": 0.752902
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "STAND.C032.M128.G003",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "stand",
+    "pricePerHour": 1.511715
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "STAND.C048.M192.G003",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "stand",
+    "pricePerHour": 2.270527
+  },
+  {
+    "provider": "ncp",
+    "region": "singapore",
+    "sku": "STAND.C064.M256.G003",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "stand",
+    "pricePerHour": 3.02934
+  }
+]

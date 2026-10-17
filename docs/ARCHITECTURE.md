@@ -310,7 +310,7 @@ flowchart TD
   - 다른 카드를 참조해야 하는 리소스는 `estimate` 컨텍스트의 `scenario`를 쓴다 (NAT: GCP 과금 VM 수 = VM 카드 대수 + K8s 노드 수)
 - 구성 요소 미제공: `providers.ts`의 `NOT_OFFERED`(예: OCI CDN·NCP 컨테이너), 리전별 `NOT_OFFERED_IN`(NHN 도쿄 NKS·NAT 등), DB 요금은 있는데 엔진만 없는 경우(NHN 도쿄 PostgreSQL)나 리소스 모듈의 옵션 한도(OCI 로그 보관 180일, NCP 로그 요금제 용량)면 `not-offered` 줄(`limit`에 이유).
 - 로그 요금제가 여러 개면(`LogPrice.alternatives`, NCP Standard·Premium) 한도(`maxRetentionDays`·`maxGbPerDay`·`maxStoredGb`) 안에서 가장 싼 쪽. 총액은 미제공 줄을 뺀 합계(`partial: true`), `cheapestTotal()`은 `partial`이 아닌 플랫폼끼리만 비교
-- 새 플랫폼 추가 = `Provider` 유니온 + `providers.ts`(목록·라벨·`NOT_OFFERED`) + `regions.ts` 리전 코드 + 수집기(`collector/providers/*.ts` + main.ts 대상) + 컴파일러가 알려주는 플랫폼별 맵(컨테이너 허용 조합 `MAX`, `EstimateResult` 상품명) + 문구·methodology + 테스트
+- 새 플랫폼 추가 = `Provider` 유니온 + `providers.ts`(목록·라벨·`NOT_OFFERED`, 리전별이면 `NOT_OFFERED_IN`) + `regions.ts` 리전 코드 + 수집기(`collector/providers/*.ts` + main.ts `COLLECTORS` 한 줄 + `package.json` `collect:*`·테스트 목록) + 컴파일러가 알려주는 플랫폼별 맵(컨테이너 허용 조합 `MAX`, `EstimateResult` 상품명, 테스트 픽스처) + 문구(ko/en 플랫폼 나열·약정 안내)·methodology 섹션 + `docs/PLATFORMS.md`·§7 기준 행 + 테스트. 원화 가격이면 수집 시점 환율(`usdKrw`)로 USD 환산, 수집 실패는 COLLECTORS가 그 플랫폼만 건너뛴다
 - 월 환산: 시간당 가격 × **730시간** 고정
 - 매칭 옵션: 버스트 포함(기본 포함), 아키텍처 `both`(기본) / `x86` / `arm`, 약정 기간 `term`(생략 = 정가 / `1y` / `3y`). 현세대 한정은 수집 단계에서 걸러짐(엔진에 세대 필터 없음)
 - 약정 기간이 있으면 VM·K8s 노드·DB·캐시 후보의 가격을 약정가로 바꿔(`priceAt`) 그 기준으로 최저가를 찾는다. 약정가 없는 후보는 정가로 남고 매칭 결과에 `committed: false` — 화면은 "약정가 없음" 배지. 매칭 결과의 `perHour`가 선택한 기준 가격(VM은 `pricePerHour`에 정가 보존)

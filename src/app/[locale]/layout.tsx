@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -64,6 +65,8 @@ export default async function RootLayout({
         </NextIntlClientProvider>
         {/* 방문·유입 경로·국가 집계 (쿠키 없음). Vercel 대시보드에서 Analytics를 켜야 수집됨 */}
         <Analytics />
+        {/* 실사용자 성능(Core Web Vitals) 집계 (쿠키 없음). Hobby는 종합 점수(RES)만, 최근 30일 1만 이벤트 — 넘으면 수집만 멈춤 */}
+        <SpeedInsights />
       </body>
     </html>
   );

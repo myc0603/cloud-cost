@@ -1,0 +1,1037 @@
+[
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v1m2",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.041202,
+    "commit": {
+      "1y": 0.026784,
+      "3y": 0.024731
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v2m4",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.081655,
+    "commit": {
+      "1y": 0.053054,
+      "3y": 0.04895
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v2m8",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.089895,
+    "commit": {
+      "1y": 0.058391,
+      "3y": 0.053978
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v2m16",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.106376,
+    "commit": {
+      "1y": 0.069166,
+      "3y": 0.06383
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v2m24",
+    "vcpu": 2,
+    "ramGb": 24,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.122857,
+    "commit": {
+      "1y": 0.079838,
+      "3y": 0.073681
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v2m32",
+    "vcpu": 2,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.139337,
+    "commit": {
+      "1y": 0.090613,
+      "3y": 0.083635
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v4m8",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.176794,
+    "commit": {
+      "1y": 0.114934,
+      "3y": 0.106109
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v4m16",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.193274,
+    "commit": {
+      "1y": 0.125607,
+      "3y": 0.115961
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v4m32",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.225487,
+    "commit": {
+      "1y": 0.146541,
+      "3y": 0.135253
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v4m48",
+    "vcpu": 4,
+    "ramGb": 48,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.258448,
+    "commit": {
+      "1y": 0.167989,
+      "3y": 0.155059
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v4m64",
+    "vcpu": 4,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.29141,
+    "commit": {
+      "1y": 0.189436,
+      "3y": 0.174864
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v6m12",
+    "vcpu": 6,
+    "ramGb": 12,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.271183,
+    "commit": {
+      "1y": 0.176301,
+      "3y": 0.162755
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v6m24",
+    "vcpu": 6,
+    "ramGb": 24,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.295905,
+    "commit": {
+      "1y": 0.19231,
+      "3y": 0.177532
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v6m48",
+    "vcpu": 6,
+    "ramGb": 48,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.344598,
+    "commit": {
+      "1y": 0.224019,
+      "3y": 0.206779
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v6m72",
+    "vcpu": 6,
+    "ramGb": 72,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.39404,
+    "commit": {
+      "1y": 0.256139,
+      "3y": 0.236436
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v6m96",
+    "vcpu": 6,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.443482,
+    "commit": {
+      "1y": 0.288259,
+      "3y": 0.266093
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v8m16",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.366322,
+    "commit": {
+      "1y": 0.238078,
+      "3y": 0.219812
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v8m32",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.399284,
+    "commit": {
+      "1y": 0.259526,
+      "3y": 0.239618
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v8m64",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.464458,
+    "commit": {
+      "1y": 0.301908,
+      "3y": 0.278716
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v8m96",
+    "vcpu": 8,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.530381,
+    "commit": {
+      "1y": 0.3447,
+      "3y": 0.318224
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v8m128",
+    "vcpu": 8,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.596304,
+    "commit": {
+      "1y": 0.387595,
+      "3y": 0.357733
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v10m20",
+    "vcpu": 10,
+    "ramGb": 20,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.427751,
+    "commit": {
+      "1y": 0.277997,
+      "3y": 0.256652
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v10m40",
+    "vcpu": 10,
+    "ramGb": 40,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.468952,
+    "commit": {
+      "1y": 0.304781,
+      "3y": 0.281384
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v10m80",
+    "vcpu": 10,
+    "ramGb": 80,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.550607,
+    "commit": {
+      "1y": 0.357938,
+      "3y": 0.330334
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v10m120",
+    "vcpu": 10,
+    "ramGb": 120,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.633011,
+    "commit": {
+      "1y": 0.411506,
+      "3y": 0.379796
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v10m160",
+    "vcpu": 10,
+    "ramGb": 160,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.715415,
+    "commit": {
+      "1y": 0.464971,
+      "3y": 0.429259
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v12m24",
+    "vcpu": 12,
+    "ramGb": 24,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.489179,
+    "commit": {
+      "1y": 0.317917,
+      "3y": 0.293493
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v12m48",
+    "vcpu": 12,
+    "ramGb": 48,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.538621,
+    "commit": {
+      "1y": 0.350139,
+      "3y": 0.32315
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v12m96",
+    "vcpu": 12,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.637506,
+    "commit": {
+      "1y": 0.414379,
+      "3y": 0.382464
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v12m144",
+    "vcpu": 12,
+    "ramGb": 144,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.735641,
+    "commit": {
+      "1y": 0.478209,
+      "3y": 0.441368
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v12m192",
+    "vcpu": 12,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.834526,
+    "commit": {
+      "1y": 0.542449,
+      "3y": 0.500683
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v14m28",
+    "vcpu": 14,
+    "ramGb": 28,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.551356,
+    "commit": {
+      "1y": 0.358349,
+      "3y": 0.330847
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v14m56",
+    "vcpu": 14,
+    "ramGb": 56,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.60829,
+    "commit": {
+      "1y": 0.395395,
+      "3y": 0.365019
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v14m112",
+    "vcpu": 14,
+    "ramGb": 112,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.723655,
+    "commit": {
+      "1y": 0.47041,
+      "3y": 0.434185
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v14m168",
+    "vcpu": 14,
+    "ramGb": 168,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.838271,
+    "commit": {
+      "1y": 0.544912,
+      "3y": 0.50294
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v14m224",
+    "vcpu": 14,
+    "ramGb": 224,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.952888,
+    "commit": {
+      "1y": 0.619414,
+      "3y": 0.571696
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v16m32",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.612785,
+    "commit": {
+      "1y": 0.398268,
+      "3y": 0.367687
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v16m64",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.677958,
+    "commit": {
+      "1y": 0.44065,
+      "3y": 0.406785
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v16m128",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.809805,
+    "commit": {
+      "1y": 0.526338,
+      "3y": 0.485905
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v16m192",
+    "vcpu": 16,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 0.940901,
+    "commit": {
+      "1y": 0.611615,
+      "3y": 0.564512
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "s3v16m256",
+    "vcpu": 16,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "general-g3",
+    "pricePerHour": 1.071998,
+    "commit": {
+      "1y": 0.696789,
+      "3y": 0.643222
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v24m48",
+    "vcpu": 24,
+    "ramGb": 48,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 0.761111,
+    "commit": {
+      "1y": 0.494731,
+      "3y": 0.418587
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v24m96",
+    "vcpu": 24,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 0.859247,
+    "commit": {
+      "1y": 0.55856,
+      "3y": 0.472565
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v24m192",
+    "vcpu": 24,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.03679,
+    "commit": {
+      "1y": 0.673905,
+      "3y": 0.570259
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v24m288",
+    "vcpu": 24,
+    "ramGb": 288,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.214332,
+    "commit": {
+      "1y": 0.789352,
+      "3y": 0.66785
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v32m64",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.015065,
+    "commit": {
+      "1y": 0.659743,
+      "3y": 0.558252
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v32m128",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.146162,
+    "commit": {
+      "1y": 0.745021,
+      "3y": 0.630394
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v32m256",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.382136,
+    "commit": {
+      "1y": 0.898437,
+      "3y": 0.760208
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v32m384",
+    "vcpu": 32,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.61886,
+    "commit": {
+      "1y": 1.052265,
+      "3y": 0.89033
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v48m96",
+    "vcpu": 48,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.37914,
+    "commit": {
+      "1y": 0.896488,
+      "3y": 0.758566
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v48m192",
+    "vcpu": 48,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.57616,
+    "commit": {
+      "1y": 1.024455,
+      "3y": 0.866933
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v48m384",
+    "vcpu": 48,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.930496,
+    "commit": {
+      "1y": 1.254836,
+      "3y": 1.061808
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v48m576",
+    "vcpu": 48,
+    "ramGb": 576,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 2.284832,
+    "commit": {
+      "1y": 1.485115,
+      "3y": 1.256684
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v64m128",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.743215,
+    "commit": {
+      "1y": 1.133129,
+      "3y": 0.958778
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v64m256",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 2.005409,
+    "commit": {
+      "1y": 1.303478,
+      "3y": 1.102959
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v64m512",
+    "vcpu": 64,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 2.478107,
+    "commit": {
+      "1y": 1.610722,
+      "3y": 1.362998
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v64m768",
+    "vcpu": 64,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 2.951554,
+    "commit": {
+      "1y": 1.918479,
+      "3y": 1.623344
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v72m144",
+    "vcpu": 72,
+    "ramGb": 144,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 1.925252,
+    "commit": {
+      "1y": 1.25145,
+      "3y": 1.058935
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v72m288",
+    "vcpu": 72,
+    "ramGb": 288,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 2.220408,
+    "commit": {
+      "1y": 1.443247,
+      "3y": 1.221177
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v72m576",
+    "vcpu": 72,
+    "ramGb": 576,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 2.752287,
+    "commit": {
+      "1y": 1.788973,
+      "3y": 1.513746
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v72m864",
+    "vcpu": 72,
+    "ramGb": 864,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 3.284166,
+    "commit": {
+      "1y": 2.1347,
+      "3y": 1.806316
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v96m192",
+    "vcpu": 96,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 2.471365,
+    "commit": {
+      "1y": 1.606412,
+      "3y": 1.359201
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v96m384",
+    "vcpu": 96,
+    "ramGb": 384,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 2.865405,
+    "commit": {
+      "1y": 1.862551,
+      "3y": 1.575934
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v96m768",
+    "vcpu": 96,
+    "ramGb": 768,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 3.449722,
+    "commit": {
+      "1y": 2.242348,
+      "3y": 1.89734
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v96m1152",
+    "vcpu": 96,
+    "ramGb": 1152,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 4.283499,
+    "commit": {
+      "1y": 2.784284,
+      "3y": 2.355948
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v128m256",
+    "vcpu": 128,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 3.199515,
+    "commit": {
+      "1y": 2.079695,
+      "3y": 1.759726
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v128m512",
+    "vcpu": 128,
+    "ramGb": 512,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 3.724651,
+    "commit": {
+      "1y": 2.421009,
+      "3y": 2.048601
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v128m1024",
+    "vcpu": 128,
+    "ramGb": 1024,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 4.670797,
+    "commit": {
+      "1y": 3.03601,
+      "3y": 2.568987
+    }
+  },
+  {
+    "provider": "scp",
+    "region": "seoul",
+    "sku": "h3v128m1536",
+    "vcpu": 128,
+    "ramGb": 1536,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "large-g3",
+    "pricePerHour": 5.616193,
+    "commit": {
+      "1y": 3.650498,
+      "3y": 3.08886
+    }
+  }
+]

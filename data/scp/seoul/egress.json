@@ -1,0 +1,27 @@
+{
+  "provider": "scp",
+  "region": "seoul",
+  "freeGb": 20,
+  "tiers": [
+    {
+      "upToGb": 20,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": 5120,
+      "pricePerGb": 0.074913
+    },
+    {
+      "upToGb": 10240,
+      "pricePerGb": 0.067421
+    },
+    {
+      "upToGb": 30720,
+      "pricePerGb": 0.05993
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.052439
+    }
+  ]
+}

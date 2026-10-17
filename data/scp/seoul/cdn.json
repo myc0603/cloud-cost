@@ -1,0 +1,39 @@
+{
+  "provider": "scp",
+  "region": "seoul",
+  "gbTiers": [
+    {
+      "upTo": 200,
+      "price": 0.057683
+    },
+    {
+      "upTo": 10240,
+      "price": 0.048693
+    },
+    {
+      "upTo": 51200,
+      "price": 0.0427
+    },
+    {
+      "upTo": 153600,
+      "price": 0.038955
+    },
+    {
+      "upTo": 512000,
+      "price": 0.029965
+    },
+    {
+      "upTo": null,
+      "price": 0.022474
+    }
+  ],
+  "requestTiers": [
+    {
+      "upTo": null,
+      "price": 0
+    }
+  ],
+  "monthlyBase": 0,
+  "fillPerGb": 0,
+  "plans": []
+}

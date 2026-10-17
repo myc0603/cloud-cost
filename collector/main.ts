@@ -1,6 +1,6 @@
 /**
  * 수집기 진입점 — 플랫폼별 수집을 오케스트레이션한다.
- * 실행: tsx collector/main.ts [all|gcp|aws|azure|oci|ncp] [--force]
+ * 실행: tsx collector/main.ts [all|gcp|aws|azure|oci|ncp|scp] [--force]
  *   - gcp: GCP_API_KEY 환경변수 또는 .env 필요
  *   - --force: 검증 실패를 무시하고 기록 (실제 대규모 가격 개편일 때만)
  * 산출: data/{provider}/{region}/vm.json · storage.json · egress.json · k8s.json · lb.json · nat.json · db.json · cache.json · container.json · cdn.json · logs.json + data/meta.json
@@ -52,6 +52,7 @@ import {
 } from './providers/gcp';
 import { buildNcpSnapshot, fetchNcpPriceList, NCP_REGION } from './providers/ncp';
 import { buildOciSnapshot, fetchOciPriceList } from './providers/oci';
+import { buildScpSnapshot, fetchScpPriceFiles } from './providers/scp';
 import { validateSnapshot, type Snapshot } from './validate';
 
 // 최소 .env 로더 (의존성 없이)
@@ -238,11 +239,24 @@ async function collectNcpJobs(usdKrw: Meta['usdKrw']): Promise<Job[]> {
   return jobs;
 }
 
+/** 삼성 SCP — 요금 페이지의 정적 데이터 파일(원화) → 수집 시점 환율로 USD 환산 */
+async function collectScpJobs(usdKrw: Meta['usdKrw']): Promise<Job[]> {
+  if (!usdKrw) throw new Error('환율이 없어 SCP 원화 요금을 환산할 수 없음');
+  console.log(`[scp] 요금 데이터 파일 수집 중... (원화 → USD, $1 = ₩${usdKrw.rate})`);
+  const files = await fetchScpPriceFiles();
+  return regionsOf('scp').map((region) => ({
+    provider: 'scp',
+    region,
+    snap: buildScpSnapshot(files, region, usdKrw.rate),
+    vmSamples: ['s3v2m8', 's3v4m16', 'h3v24m96'],
+  }));
+}
+
 const args = process.argv.slice(2);
 const force = args.includes('--force');
 const target = args.find((a) => !a.startsWith('--')) ?? 'all';
-if (!['gcp', 'aws', 'azure', 'oci', 'ncp', 'all'].includes(target)) {
-  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure | oci | ncp)`);
+if (!['gcp', 'aws', 'azure', 'oci', 'ncp', 'scp', 'all'].includes(target)) {
+  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure | oci | ncp | scp)`);
   process.exit(1);
 }
 
@@ -254,6 +268,7 @@ if (target === 'aws' || target === 'all') jobs.push(...(await collectAwsJobs()))
 if (target === 'azure' || target === 'all') jobs.push(...(await collectAzureJobs()));
 if (target === 'oci' || target === 'all') jobs.push(...(await collectOciJobs()));
 if (target === 'ncp' || target === 'all') jobs.push(...(await collectNcpJobs(usdKrw)));
+if (target === 'scp' || target === 'all') jobs.push(...(await collectScpJobs(usdKrw)));
 
 // 2) 검증 — 하나라도 이상하면 아무것도 쓰지 않는다
 const allErrors = jobs.flatMap((j) => validateSnapshot(`${j.provider}/${j.region}`, readOldSnapshot(j.provider, j.region), j.snap));

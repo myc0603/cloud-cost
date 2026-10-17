@@ -19,6 +19,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>GCP — Cloud Billing Catalog API</li>
         <li className={LI}>OCI — 가격 목록 API (전 품목, 리전과 무관한 단일가)</li>
         <li className={LI}>NCP(네이버 클라우드) — 공식 요금 계산기가 쓰는 요금 API (원화, 리전별)</li>
+        <li className={LI}>삼성 SCP — 공식 요금 페이지가 쓰는 요금 데이터 파일 (원화)</li>
         <li className={LI}>환율(USD→KRW) — 표시 참고용, 일 1회 갱신{meta?.usdKrw ? ` (현재 $1 = ₩${meta.usdKrw.rate.toLocaleString()})` : ''}</li>
       </ul>
 
@@ -198,6 +199,30 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>서버리스 컨테이너는 NCP에 해당 상품이 없어 미제공입니다(Cloud Functions는 함수형이라 다른 종류). 약정 상품도 공개돼 있지 않아 1·3년 기준에서도 정가입니다.</li>
       </ul>
 
+      <h2 className={H2}>삼성 SCP(Samsung Cloud Platform) 비교 기준</h2>
+      <ul className="mt-2 list-disc pl-5">
+        <li className={LI}>
+          가격은 공식 요금 페이지가 쓰는 요금 데이터 파일에서 받습니다. 원화 요금을 수집 시점 환율로 달러로 바꿔 저장합니다 — SCP가 함께
+          공개하는 달러 요금은 고정 환율(약 1,150원)로 계산돼 있어, 그대로 쓰면 원화로 볼 때 실제보다 비싸게 나오기 때문입니다.
+        </li>
+        <li className={LI}>제공 리전은 서울(KR-WEST)입니다. 요금 데이터가 한국 리전만 있어 다른 리전은 &ldquo;이 리전 미제공&rdquo;으로 표시합니다.</li>
+        <li className={LI}>VM은 3세대 일반·대용량 Virtual Server(Intel Granite Rapids), 오픈소스 OS 요금입니다. ARM·버스트 서버는 없습니다.</li>
+        <li className={LI}>
+          <b>약정</b>은 Planned Compute(인스턴스 타입을 1·3년 약정, 월 요금)를 씁니다 — 3사 고정형 예약과 같은 성격입니다. 시간당 금액을
+          약정하는 Cost Savings는 유연형이라 쓰지 않습니다. VM·DB·캐시에 적용됩니다.
+        </li>
+        <li className={LI}>블록 스토리지는 SSD(GB·월 120원), 오브젝트는 Object Storage(GB·월 28원). 트래픽은 월 20GB 무료이고 이후 구간 요금입니다. 대용량(5만GB 초과) 스토리지 할인은 반영하지 않습니다.</li>
+        <li className={LI}>Kubernetes Engine은 클러스터당 시간 요금, 로드밸런서는 LB당 시간 요금 + 인입 트래픽 GB당, NAT Gateway는 시간 요금만 있습니다(처리 GB 요금 없음).</li>
+        <li className={LI}>
+          관리형 DB는 MySQL·PostgreSQL(DBaaS) 3세대 서버 요금입니다. 이중화는 Active-Standby 2대가 각자 스토리지를 갖는 구조라 컴퓨트·스토리지
+          2배입니다. DB 데이터 스토리지 요금은 DB 요금표에 없어 Block Storage SSD 요금으로 <b>추정</b>했습니다.
+        </li>
+        <li className={LI}>캐시는 CacheStore(Redis 호환) 서버 요금이고, 서버 메모리를 캐시 메모리로 봅니다(실제로 쓸 수 있는 양은 조금 작음). 이중화는 복제 노드 1대(2배).</li>
+        <li className={LI}>CDN은 Global CDN 전송 구간 요금입니다(요청 요금 없음).</li>
+        <li className={LI}>로그는 ServiceWatch 로그(GB당 요금)입니다. 보관 요금은 공개된 요금표에 없어 수집 요금만 계산합니다.</li>
+        <li className={LI}>서버리스 컨테이너는 해당 상품이 없어 미제공입니다(Cloud Functions는 함수형).</li>
+      </ul>
+
       <h2 className={H2}>한계 — 이 견적이 말해주지 않는 것</h2>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}>
@@ -235,6 +260,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         <li className={LI}>GCP — Cloud Billing Catalog API</li>
         <li className={LI}>OCI — price list API (every product; one price for all regions)</li>
         <li className={LI}>NCP (NAVER Cloud) — the pricing API behind the official cost calculator (KRW, per region)</li>
+        <li className={LI}>Samsung SCP — the price data files behind the official pricing page (KRW)</li>
         <li className={LI}>Exchange rate (USD→KRW) — for display only, refreshed daily{meta?.usdKrw ? ` (currently $1 = ₩${meta.usdKrw.rate.toLocaleString()})` : ''}</li>
       </ul>
 
@@ -428,6 +454,33 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           logs are marked not offered.
         </li>
         <li className={LI}>NCP has no serverless container service (Cloud Functions is functions-as-a-service), so containers are not offered. No commitment products are published, so 1- and 3-year terms stay at on-demand prices.</li>
+      </ul>
+
+      <h2 className={H2}>Samsung SCP (Samsung Cloud Platform) comparison basis</h2>
+      <ul className="mt-2 list-disc pl-5">
+        <li className={LI}>
+          Prices come from the price data files behind the official pricing page. KRW prices are converted to USD at the collection-day
+          exchange rate — SCP also publishes USD prices, but they use a fixed rate (about KRW 1,150), which would overstate costs when
+          viewed in KRW.
+        </li>
+        <li className={LI}>SCP is offered in Seoul (KR-WEST). The price data only covers Korean regions, so other regions show &ldquo;not offered in this region&rdquo;.</li>
+        <li className={LI}>VMs are 3rd-generation general and large Virtual Servers (Intel Granite Rapids) with open-source OS pricing. SCP has no Arm or burstable servers.</li>
+        <li className={LI}>
+          <b>Commitments</b> use Planned Compute (1- or 3-year instance-type commitments, monthly price) — the same kind as the big three&rsquo;s
+          reserved instances. Cost Savings (an hourly spend commitment) is the flexible kind and is not used. They apply to VMs, databases and
+          caches.
+        </li>
+        <li className={LI}>Block storage is SSD (KRW 120 per GB-month); object storage is Object Storage (KRW 28 per GB-month). The first 20 GB of internet traffic per month is free, then tiered rates apply. Volume discounts above 50,000 GB are not included.</li>
+        <li className={LI}>Kubernetes Engine is billed per cluster-hour, load balancers per LB-hour plus inbound GB, and the NAT Gateway per hour only (no per-GB charge).</li>
+        <li className={LI}>
+          Managed databases use 3rd-generation MySQL / PostgreSQL (DBaaS) server prices. High availability is Active-Standby with two servers,
+          each with its own storage, so compute and storage double. The DB data storage price is not in the DB price table, so we{' '}
+          <b>assume</b> the Block Storage SSD rate.
+        </li>
+        <li className={LI}>Caches use CacheStore (Redis-compatible) server prices, treating server memory as cache memory (usable memory is a little lower). High availability adds one replica (2×).</li>
+        <li className={LI}>CDN uses Global CDN tiered transfer rates (no request fee).</li>
+        <li className={LI}>Logs use ServiceWatch logs (per GB). No storage price is published, so only the ingestion fee is counted.</li>
+        <li className={LI}>SCP has no serverless container service (Cloud Functions is functions-as-a-service), so containers are not offered.</li>
       </ul>
 
       <h2 className={H2}>Limitations — what this estimate does not tell you</h2>

@@ -42,6 +42,7 @@ const PRICING: Record<Provider, ProviderPricing> = {
   azure: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   oci: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   ncp: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
+  scp: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   gcp: {
     vm: FIXTURE,
     storage: [

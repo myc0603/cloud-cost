@@ -77,7 +77,8 @@ cloud-cost/
 │   │   ├── gcp.ts           # VM은 패밀리별 vCPU·RAM 단가 → 머신 타입 카탈로그와 조합
 │   │   ├── gcp-machine-types.ts # GCP 머신타입 카탈로그 (SKU는 코어·RAM 단가라 조합 필요)
 │   │   ├── oci.ts           # 가격 목록 API 1회 → 전 리전(단일가). Flex 셰이프·DB·캐시는 대표 사이즈 격자로 펼침
-│   │   └── ncp.ts           # 요금 계산기 API(리전별, 원화) → 수집 시점 환율로 USD 환산
+│   │   ├── ncp.ts           # 요금 계산기 API(리전별, 원화) → 수집 시점 환율로 USD 환산
+│   │   └── scp.ts           # 요금 페이지 정적 데이터 파일(JS 모듈) → 배열 리터럴만 파싱(코드 실행 없음), 원화 → USD
 │   ├── validate.ts          # 급변·누락 감지
 │   └── main.ts
 ├── data/                    # 봇이 갱신하는 요금 스냅샷 (사람이 편집 금지)
@@ -109,7 +110,7 @@ cloud-cost/
 └── docs/
 ```
 
-- **collector 실행 구조**: 워크플로우는 `npm run collect`(= `collector/main.ts`) 하나만 실행. main.ts가 환율을 먼저 받고 플랫폼 순서대로(GCP → AWS → Azure → OCI → NCP, 플랫폼 안에서는 API 요청 병렬) 수집 → validate → `data/` 기록. 리전 목록은 `src/lib/regions.ts`. 커밋은 워크플로우의 다음 스텝. 로컬에서도 같은 명령으로 실행 가능(그냥 Node 스크립트).
+- **collector 실행 구조**: 워크플로우는 `npm run collect`(= `collector/main.ts`) 하나만 실행. main.ts가 환율을 먼저 받고 플랫폼 순서대로(GCP → AWS → Azure → OCI → NCP → SCP, 플랫폼 안에서는 API 요청 병렬) 수집 → validate → `data/` 기록. 리전 목록은 `src/lib/regions.ts`. 커밋은 워크플로우의 다음 스텝. 로컬에서도 같은 명령으로 실행 가능(그냥 Node 스크립트).
 - **모듈 관계**: `data/*.json` → `pricing.ts`(경로·타입을 아는 유일한 로더) → `estimator/`(순수 함수 계산) → `components/`(표시).
 - **요금 데이터 전달**: 페이지에는 기본 리전(서울)만 넣고, 다른 리전은 빌드 시 정적 생성되는 `/pricing/{region}.json`(`app/pricing/[file]/route.ts`, 역시 `loadPricing`)을 고를 때 받는다(`use-region-pricing.ts`, 모듈 캐시). 전 리전을 페이지에 넣으면 리전 수만큼 첫 로딩이 커진다 — 2리전 기준 홈 gzip 91KB → 41KB.
 
@@ -171,7 +172,7 @@ src/
 > **SKU**(Stock Keeping Unit): 과금되는 상품 단위 하나. "서울 리전의 t3.medium, Linux, 온디맨드"가 SKU 1개다. 3사 가격 API가 모두 쓰는 표준 용어.
 
 ```ts
-type Provider = 'aws' | 'azure' | 'gcp' | 'oci' | 'ncp';
+type Provider = 'aws' | 'azure' | 'gcp' | 'oci' | 'ncp' | 'scp';
 type Region = 'seoul' | 'tokyo' | 'singapore' | 'us-east' | 'us-west' | 'frankfurt' | 'london'; // 정규화 리전 키 (아래 매핑표)
 type Arch = 'x86' | 'arm';                  // arm = Graviton(AWS)·Ampere(Azure/GCP)
 
@@ -274,15 +275,15 @@ interface Meta {
 
 **리전 매핑표** (출처: `src/lib/regions.ts`, null = 미제공)
 
-| 정규화 키 | AWS | Azure | GCP | OCI | NCP |
-|---|---|---|---|---|---|
-| `seoul` | ap-northeast-2 | koreacentral | asia-northeast3 | ap-seoul-1 | KR |
-| `tokyo` | ap-northeast-1 | japaneast | asia-northeast1 | ap-tokyo-1 | JPN |
-| `singapore` | ap-southeast-1 | southeastasia | asia-southeast1 | ap-singapore-1 | SGN |
-| `us-east` | us-east-1 | eastus | us-east1 | us-ashburn-1 | — |
-| `us-west` | us-west-2 | westus2 | us-west1 | us-sanjose-1 | — |
-| `frankfurt` | eu-central-1 | germanywestcentral | europe-west3 | eu-frankfurt-1 | — |
-| `london` | eu-west-2 | uksouth | europe-west2 | uk-london-1 | — |
+| 정규화 키 | AWS | Azure | GCP | OCI | NCP | SCP |
+|---|---|---|---|---|---|---|
+| `seoul` | ap-northeast-2 | koreacentral | asia-northeast3 | ap-seoul-1 | KR | KR_WEST |
+| `tokyo` | ap-northeast-1 | japaneast | asia-northeast1 | ap-tokyo-1 | JPN | — |
+| `singapore` | ap-southeast-1 | southeastasia | asia-southeast1 | ap-singapore-1 | SGN | — |
+| `us-east` | us-east-1 | eastus | us-east1 | us-ashburn-1 | — | — |
+| `us-west` | us-west-2 | westus2 | us-west1 | us-sanjose-1 | — | — |
+| `frankfurt` | eu-central-1 | germanywestcentral | europe-west3 | eu-frankfurt-1 | — | — |
+| `london` | eu-west-2 | uksouth | europe-west2 | uk-london-1 | — | — |
 
 ## 5. 견적 엔진 (`src/lib/estimator/`)
 
@@ -361,4 +362,5 @@ flowchart TD
 | 플랫폼 배치 (2026-10-17) | 견적 카드는 AWS·Azure·GCP를 위에 고정하고, 추가 플랫폼은 그 아래 "다른 플랫폼" 구분선 밑에 배치 (`PRIMARY_PROVIDERS`) | 대표 3사와 나머지를 구분. 2~3개 추가까지 유지, 더 늘면 재검토 |
 | OCI 비교 기준 (2026-10-17) | 공개 가격 목록 API(인증 없음, partNumber로 단가 추출). VM = Flex 셰이프 E4·E5·Standard3·A1을 대표 격자(vCPU 1~128 × GB/vCPU 1·2·4·8·16)로 펼침, x86 1 OCPU = 2 vCPU·A1 1 vCPU. 블록 Balanced 10 VPU, 트래픽 10TB 무료(아시아 $0.025 / 북미·유럽 $0.0085), OKE Enhanced, Flexible LB(최소 10Mbps + 처리 GB → 평균 Mbps 환산), NAT 0원, MySQL HeatWave ECPU 셰이프(이중화 3배), PostgreSQL = E5 컴퓨트 + OCPU 요금(이중화 컴퓨트 2배), OCI Cache 노드(10GB 이하/초과 단가, 이중화 2배), Container Instances = E4·A1 요금, Logging 수집 무료·보관 최대 180일. CDN 미제공. 약정 없음 → 정가 + "약정가 없음" | 리전 무관 단일가라 리전별 파일은 트래픽만 다름. E6·A2·A4는 리전 가용성 미확인으로 제외. 버스트 셰이프(기준 사용률 할인)는 CPU 크레딧 방식과 구조가 달라 미수록 — methodology 고지. NAT 0원 근거 = 과금 품목 전체 목록에 NAT 없음(문서 언급 없음). Container Instances는 오토스케일·인그레스가 없지만 OCI의 유일한 서버리스 컨테이너라 사용(고지) |
 | NCP 비교 기준 (2026-10-17) | 공식 요금 계산기가 쓰는 요금 API `ncloud.com/api-usage/charge/price/{리전 번호}`(인증 없음, 미문서화 — 막히면 공식 List Price API + Access Key로 전환). 리전 서울·도쿄·싱가포르(API 번호 1·8·7, 서버 요금으로 대조 확정). 원화 → 수집 시점 환율로 USD(같은 날 meta.json 환율과 같아 원화 표시는 NCP 금액 그대로). VM = 3세대 일반 서버(Standard·High CPU·High Memory·CPU, Intel·AMD), **월 요금 ÷ 730**. 블록 SSD 0.16원/GB·시간, 트래픽 20GB 무료, NKS 100원/h, 애플리케이션 LB Small + 처리 GB, NAT 56원/h + 60원/GB, Cloud DB MySQL·PostgreSQL(이중화 2대 2배, 데이터 스토리지 = 블록 SSD·이중화 2배 추정), Redis 노드(1.5~204.8GB, 이중화 2배), Global CDN, Cloud Log Analytics Standard/Premium 중 싼 쪽(한도 문서값). 컨테이너 미제공, 약정 없음 | 단가 단위가 상품마다 달라(원/시간·원/GB·원/GB·월) 리전별 요금 페이지와 대조해 확정. 2세대 VM은 디스크 50GB 묶음이라 제외, Micro(계정당 1대) 제외. 도쿄·싱가포르는 DB·캐시가 2세대만 있어 리전 최신 세대 사용. CDN+는 요금 페이지에 Deprecated 표시라 Global CDN. 미국 서부·독일은 VPC 서버 요금이 공개돼 있지 않아 미제공. 한 플랫폼만 수집하면 meta.json 환율이 바뀌어 NCP 원화 표시가 환율 차이만큼 어긋날 수 있음(매일 전체 수집에선 같은 값) |
+| 삼성 SCP 비교 기준 (2026-10-17) | 요금 페이지가 import하는 정적 데이터 파일 `serviceportal/assets/js/data/price/{서비스}Price.js`(인증 없음) — 원격 코드는 실행하지 않고 리전·표·원화 배열만 파싱. 리전 서울(KR_WEST)만. 원화 → 수집 시점 환율로 USD(공개 USD 표는 고정 환율 약 1,150원이라 미사용). VM = 3세대 일반·대용량, 오픈소스 OS. **약정 = Planned Compute**(인스턴스 타입 1·3년 약정, 월 요금 ÷ 730) — VM·DB·캐시. 블록 SSD 120원/GB·월, 트래픽 20GB 무료, K8s Engine 클러스터 시간, LB 시간 + 인입 GB, NAT 시간만, MySQL·PostgreSQL 3세대(이중화 Active-Standby 2대 → 컴퓨트·스토리지 2배, 데이터 스토리지 = 블록 SSD 추정), CacheStore(서버 메모리 = 캐시 메모리), Global CDN(요청 요금 없음), ServiceWatch 로그(GB당, 보관 요금 미공개). 컨테이너 미제공 | Cost Savings(시간당 금액 약정)는 유연형이라 미사용 — 3사 원칙(고정형)과 맞춤. 단위는 요금 페이지 문구 파일(i18nPricing.js)로 확인. 트래픽·CDN 구간 경계는 데이터 파일에 숫자가 없어 문구값 상수 |
 | 무료 사용량 원칙 (2026-10-17) | 계정당 상시 무료분은 **미반영**, 요금표에 내장된 트래픽 무료 구간과 배포별 정식 요금제(CloudFront Free)는 반영 | 무료분은 계정 전체에서 한 번 — 다른 서비스가 이미 쓰는 실제 계정에선 구성 하나만 빼면 과소 추정. methodology에 명시 |

@@ -298,6 +298,7 @@ function LineLabel({
       <span>
         {t('natLine', { count: line.count, gb: line.gb })}
         {line.billedVms !== null && <span className="ml-1 text-slate-400">{t('natBilledVms', { vms: line.billedVms })}</span>}
+        {line.monthlyUsd === 0 && <span className="ml-1 text-slate-400">{t('natFree', { provider: PROVIDER_LABEL[provider] })}</span>}
         {line.monthlyUsd === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
       </span>
     );
@@ -396,7 +397,11 @@ export default function EstimateResult({
                 <span className="min-w-0">
                   <LineLabel line={line} provider={e.provider} term={term} money={money} onSelect={onSelectInstance} />
                 </span>
-                {line.monthlyUsd !== null && <span className="shrink-0 tabular-nums">{money(line.monthlyUsd)}</span>}
+                {line.monthlyUsd !== null && (
+                  <span className="shrink-0 tabular-nums">
+                    {line.kind === 'nat' && line.monthlyUsd === 0 ? t('free') : money(line.monthlyUsd)}
+                  </span>
+                )}
               </li>
             ))}
           </ul>

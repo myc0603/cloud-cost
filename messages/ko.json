@@ -125,6 +125,7 @@
     "lbLine": "로드밸런서 ×{count} · 처리 {gb}GB",
     "natLine": "NAT 게이트웨이 ×{count} · 처리 {gb}GB",
     "natBilledVms": "(VM {vms}대 기준)",
+    "natFree": "({provider}는 NAT 요금 없음)",
     "dbLine": "DB {engine}",
     "dbEngine": {
       "mysql": "MySQL",
@@ -147,7 +148,8 @@
     "notOfferedLine": "{provider} 미제공",
     "notOfferedRetention": "{provider}는 보관 최대 {days}일",
     "partialTotal": "미제공 항목 제외",
-    "otherPlatforms": "다른 플랫폼"
+    "otherPlatforms": "다른 플랫폼",
+    "free": "무료"
   },
   "display": {
     "currency": "통화",

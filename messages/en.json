@@ -125,6 +125,7 @@
     "lbLine": "Load balancer ×{count} · {gb}GB processed",
     "natLine": "NAT gateway ×{count} · {gb}GB processed",
     "natBilledVms": "(billed for {vms} VMs)",
+    "natFree": "({provider} doesn't charge for NAT)",
     "dbLine": "DB {engine}",
     "dbEngine": {
       "mysql": "MySQL",
@@ -147,7 +148,8 @@
     "notOfferedLine": "not offered by {provider}",
     "notOfferedRetention": "{provider} keeps logs for at most {days} days",
     "partialTotal": "excludes items not offered",
-    "otherPlatforms": "Other platforms"
+    "otherPlatforms": "Other platforms",
+    "free": "Free"
   },
   "display": {
     "currency": "Currency",

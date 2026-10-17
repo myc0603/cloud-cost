@@ -1,0 +1,24 @@
+{
+  "provider": "kt",
+  "region": "seoul",
+  "freeGb": 0,
+  "tiers": [
+    {
+      "upToGb": 10240,
+      "pricePerGb": 0.067421
+    },
+    {
+      "upToGb": 20480,
+      "pricePerGb": 0.05993
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.052439
+    }
+  ],
+  "perServerFree": {
+    "gb": 512,
+    "largeGb": 1024,
+    "largeFromRamGb": 16
+  }
+}

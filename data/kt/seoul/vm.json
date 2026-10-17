@@ -1,0 +1,437 @@
+[
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.1c1g",
+    "vcpu": 1,
+    "ramGb": 1,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.023089,
+    "commit": {
+      "1y": 0.019626,
+      "3y": 0.017317
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.1c2g",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.039611,
+    "commit": {
+      "1y": 0.03367,
+      "3y": 0.029708
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.2c2g",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.047924,
+    "commit": {
+      "1y": 0.040735,
+      "3y": 0.035943
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.2c4g",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.079325,
+    "commit": {
+      "1y": 0.067426,
+      "3y": 0.059494
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.2c8g",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 0.101388,
+    "commit": {
+      "1y": 0.08618,
+      "3y": 0.076041
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.2c16g",
+    "vcpu": 2,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 0.123554,
+    "commit": {
+      "1y": 0.105021,
+      "3y": 0.092666
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.4c4g",
+    "vcpu": 4,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.09595,
+    "commit": {
+      "1y": 0.081557,
+      "3y": 0.071962
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.4c8g",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.15865,
+    "commit": {
+      "1y": 0.134853,
+      "3y": 0.118988
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.4c16g",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 0.20288,
+    "commit": {
+      "1y": 0.172448,
+      "3y": 0.15216
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.4c32g",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 0.247109,
+    "commit": {
+      "1y": 0.210042,
+      "3y": 0.185332
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.8c8g",
+    "vcpu": 8,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.192002,
+    "commit": {
+      "1y": 0.163202,
+      "3y": 0.144001
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.8c16g",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.317403,
+    "commit": {
+      "1y": 0.269793,
+      "3y": 0.238053
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.8c32g",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 0.405862,
+    "commit": {
+      "1y": 0.344983,
+      "3y": 0.304396
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.8c64g",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 0.494218,
+    "commit": {
+      "1y": 0.420085,
+      "3y": 0.370663
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.16c16g",
+    "vcpu": 16,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.384106,
+    "commit": {
+      "1y": 0.32649,
+      "3y": 0.28808
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.16c32g",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.634807,
+    "commit": {
+      "1y": 0.539586,
+      "3y": 0.476105
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.16c64g",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 0.811724,
+    "commit": {
+      "1y": 0.689965,
+      "3y": 0.608793
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.16c128g",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 0.988435,
+    "commit": {
+      "1y": 0.84017,
+      "3y": 0.741326
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.24c24g",
+    "vcpu": 24,
+    "ramGb": 24,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.576006,
+    "commit": {
+      "1y": 0.489605,
+      "3y": 0.432004
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.24c48g",
+    "vcpu": 24,
+    "ramGb": 48,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.95221,
+    "commit": {
+      "1y": 0.809379,
+      "3y": 0.714158
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.24c96g",
+    "vcpu": 24,
+    "ramGb": 96,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 1.217585,
+    "commit": {
+      "1y": 1.034948,
+      "3y": 0.913189
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.24c192g",
+    "vcpu": 24,
+    "ramGb": 192,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 1.482653,
+    "commit": {
+      "1y": 1.260255,
+      "3y": 1.111989
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.32c32g",
+    "vcpu": 32,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 0.768315,
+    "commit": {
+      "1y": 0.653068,
+      "3y": 0.576236
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.32c64g",
+    "vcpu": 32,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 1.269614,
+    "commit": {
+      "1y": 1.079172,
+      "3y": 0.95221
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.32c128g",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 1.623447,
+    "commit": {
+      "1y": 1.37993,
+      "3y": 1.217585
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.32c256g",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 1.97687,
+    "commit": {
+      "1y": 1.68034,
+      "3y": 1.482653
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.64c64g",
+    "vcpu": 64,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 1.536631,
+    "commit": {
+      "1y": 1.306136,
+      "3y": 1.152473
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.std.64c128g",
+    "vcpu": 64,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "standard",
+    "pricePerHour": 2.539227,
+    "commit": {
+      "1y": 2.158343,
+      "3y": 1.90442
+    }
+  },
+  {
+    "provider": "kt",
+    "region": "seoul",
+    "sku": "d1.hm.64c256g",
+    "vcpu": 64,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "high-memory",
+    "pricePerHour": 3.246894,
+    "commit": {
+      "1y": 2.75986,
+      "3y": 2.435171
+    }
+  }
+]

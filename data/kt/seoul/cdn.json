@@ -1,0 +1,39 @@
+{
+  "provider": "kt",
+  "region": "seoul",
+  "gbTiers": [
+    {
+      "upTo": 200,
+      "price": 0.056184
+    },
+    {
+      "upTo": 10240,
+      "price": 0.041202
+    },
+    {
+      "upTo": 51200,
+      "price": 0.036707
+    },
+    {
+      "upTo": 153600,
+      "price": 0.031463
+    },
+    {
+      "upTo": 512000,
+      "price": 0.026219
+    },
+    {
+      "upTo": null,
+      "price": 0.021725
+    }
+  ],
+  "requestTiers": [
+    {
+      "upTo": null,
+      "price": 0.007491
+    }
+  ],
+  "monthlyBase": 0,
+  "fillPerGb": 0,
+  "plans": []
+}

@@ -142,7 +142,7 @@ function LineLabel({
             onChange={(e) =>
               onSelect(provider, line.resourceIndex, e.target.value, e.target.value === line.candidates[0].sku)
             }
-            className="ml-1 rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
+            className="ml-1 max-w-full rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
           >
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
@@ -179,7 +179,7 @@ function LineLabel({
             onChange={(e) =>
               onSelect(provider, line.resourceIndex, e.target.value, e.target.value === line.candidates[0].sku)
             }
-            className="ml-1 rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
+            className="ml-1 max-w-full rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
           >
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
@@ -209,7 +209,7 @@ function LineLabel({
             onChange={(e) =>
               onSelect(provider, line.resourceIndex, e.target.value, e.target.value === line.candidates[0].sku)
             }
-            className="ml-1 rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
+            className="ml-1 max-w-full rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
           >
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
@@ -393,8 +393,10 @@ export default function EstimateResult({
           <ul className="mt-3 space-y-1 border-t border-slate-100 pt-3">
             {e.lines.map((line, i) => (
               <li key={i} className="flex justify-between gap-2 text-xs text-slate-600">
-                <LineLabel line={line} provider={e.provider} term={term} money={money} onSelect={onSelectInstance} />
-                {line.monthlyUsd !== null && <span className="tabular-nums">{money(line.monthlyUsd)}</span>}
+                <span className="min-w-0">
+                  <LineLabel line={line} provider={e.provider} term={term} money={money} onSelect={onSelectInstance} />
+                </span>
+                {line.monthlyUsd !== null && <span className="shrink-0 tabular-nums">{money(line.monthlyUsd)}</span>}
               </li>
             ))}
           </ul>

@@ -6,9 +6,11 @@ import { useTranslations } from 'next-intl';
 import { estimate, RESOURCES, type ArchFilter, type Overrides, type Resource, type ResourceType, type Scenario } from '@/lib/estimator';
 import type { Provider, ProviderPricing, Region, Term } from '@/lib/schema';
 import {
+  decodeHidden,
   decodeMatchOptions,
   decodeOverrides,
   decodeScenario,
+  encodeHidden,
   encodeMatchOptions,
   encodeOverrides,
   encodeScenario,
@@ -65,6 +67,9 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
   );
   const [overrides, setOverrides] = useState<Overrides>(() => decodeOverrides(searchParams));
   const [{ arch, includeBurstable, term }, setMatchOpts] = useState(() => decodeMatchOptions(searchParams));
+  // 화면에서 숨긴 플랫폼 ("다른 플랫폼"만, 대표 3사는 고정) — 공유 링크에 저장
+  const [hidden, setHidden] = useState<Provider[]>(() => decodeHidden(searchParams));
+  const toggleProvider = (p: Provider) => setHidden((h) => (h.includes(p) ? h.filter((x) => x !== p) : [...h, p]));
   const [copied, setCopied] = useState(false);
 
   const setArch = (next: ArchFilter) => setMatchOpts((o) => ({ ...o, arch: next }));
@@ -77,8 +82,10 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
     const pick = encodeOverrides(overrides);
     if (pick) params.set('pick', pick);
     for (const [k, v] of new URLSearchParams(encodeMatchOptions({ arch, includeBurstable, term }))) params.set(k, v);
+    const hide = encodeHidden(hidden);
+    if (hide) params.set('hide', hide);
     window.history.replaceState(null, '', `?${params}`);
-  }, [scenario, overrides, arch, includeBurstable, term]);
+  }, [scenario, overrides, arch, includeBurstable, term, hidden]);
 
   const { pricing, error: pricingError } = useRegionPricing(scenario.region, initialPricing);
   const estimates = useMemo(
@@ -237,7 +244,15 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
 
       <section>
         {estimates ? (
-          <EstimateResult estimates={estimates} region={scenario.region} rate={usdKrwRate} term={term} onSelectInstance={selectInstance} />
+          <EstimateResult
+            estimates={estimates}
+            region={scenario.region}
+            rate={usdKrwRate}
+            term={term}
+            hidden={hidden}
+            onToggleProvider={toggleProvider}
+            onSelectInstance={selectInstance}
+          />
         ) : (
           <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-400">
             {t(pricingError ? 'pricingLoadError' : 'pricingLoading')}

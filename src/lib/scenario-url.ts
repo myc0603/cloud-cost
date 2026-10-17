@@ -7,7 +7,7 @@
  */
 
 import { RESOURCES, resourceDef, type ArchFilter, type Overrides, type Resource, type Scenario } from './estimator';
-import { PROVIDERS as PROVIDER_LIST } from './providers';
+import { PRIMARY_PROVIDERS, PROVIDERS as PROVIDER_LIST } from './providers';
 import { REGIONS } from './regions';
 import type { Provider, Term } from './schema';
 
@@ -100,4 +100,18 @@ export function decodeOverrides(query: string | URLSearchParams): Overrides {
     (out[provider as Provider] ??= {})[idx] = sku;
   }
   return out;
+}
+
+/**
+ * 화면에서 숨긴 플랫폼 ↔ hide 파라미터. 형식: hide=oci,kt. 대표 3사(PRIMARY_PROVIDERS)는 숨길 수 없어 버린다.
+ * 최저가 표시가 달라지는 설정이라 공유 링크에 함께 저장한다. 모두 보이면 생략
+ */
+export function encodeHidden(hidden: Provider[]): string {
+  return PROVIDER_LIST.filter((p) => hidden.includes(p)).join(',');
+}
+
+export function decodeHidden(query: string | URLSearchParams): Provider[] {
+  const params = typeof query === 'string' ? new URLSearchParams(query) : query;
+  const raw = (params.get('hide') ?? '').split(',');
+  return PROVIDER_LIST.filter((p) => raw.includes(p) && !PRIMARY_PROVIDERS.includes(p));
 }

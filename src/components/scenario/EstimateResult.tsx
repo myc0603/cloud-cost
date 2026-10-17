@@ -336,6 +336,8 @@ export default function EstimateResult({
   region,
   rate,
   term,
+  hidden,
+  onToggleProvider,
   onSelectInstance,
 }: {
   estimates: ProviderEstimate[];
@@ -343,6 +345,9 @@ export default function EstimateResult({
   rate: number | null;
   /** 약정 기간 — 생략 = 정가 */
   term?: Term;
+  /** 화면에서 숨긴 플랫폼 ("다른 플랫폼"만) — 카드와 최저가 비교에서 빠진다 */
+  hidden: Provider[];
+  onToggleProvider: (provider: Provider) => void;
   onSelectInstance: SelectInstance;
 }) {
   const t = useTranslations('estimate');
@@ -355,22 +360,28 @@ export default function EstimateResult({
   const canKrw = rate !== null;
   const money = (x: number) => formatMoney(x, currency, period, rate ?? 1);
 
-  // 최저가는 구성 요소를 전부 제공하는 플랫폼 중에서만 (미제공 줄을 뺀 합계끼리 비교하면 오해)
-  const cheapest = cheapestTotal(estimates);
+  const visible = estimates.filter((e) => !hidden.includes(e.provider));
+  // 최저가는 화면에 보이는 플랫폼 중 구성 요소를 전부 제공하는 것끼리만 (미제공 줄을 뺀 합계끼리 비교하면 오해)
+  const cheapest = cheapestTotal(visible);
+  const comparable = visible.filter((e) => !e.partial && e.totalMonthlyUsd !== null);
+  const winner = comparable.find((e) => e.totalMonthlyUsd === cheapest) ?? null;
   // 매칭된 인스턴스 중 ARM이 하나라도 있으면 호환성 고지
-  const hasArm = estimates.some((e) =>
+  const hasArm = visible.some((e) =>
     e.lines.some((l) => l.kind === 'vm' && l.matched?.arch === 'arm'),
   );
 
-  const primary = estimates.filter((e) => PRIMARY_PROVIDERS.includes(e.provider));
-  const others = estimates.filter((e) => !PRIMARY_PROVIDERS.includes(e.provider));
+  const primary = visible.filter((e) => PRIMARY_PROVIDERS.includes(e.provider));
+  const otherProviders = estimates.filter((e) => !PRIMARY_PROVIDERS.includes(e.provider)).map((e) => e.provider);
+  const others = visible.filter((e) => !PRIMARY_PROVIDERS.includes(e.provider));
+  const cardId = (p: Provider) => `estimate-${p}`;
 
   const card = (e: ProviderEstimate) => {
     const isCheapest = !e.partial && e.totalMonthlyUsd !== null && e.totalMonthlyUsd === cheapest;
     return (
       <div
         key={e.provider}
-        className={`rounded-lg border bg-white p-4 shadow-sm ${
+        id={cardId(e.provider)}
+        className={`scroll-mt-4 rounded-lg border bg-white p-4 shadow-sm ${
           isCheapest ? 'border-emerald-500 ring-1 ring-emerald-500' : 'border-slate-200'
         }`}
       >
@@ -440,13 +451,41 @@ export default function EstimateResult({
         />
       </div>
 
-      {primary.map(card)}
-      {others.length > 0 && (
-        <>
-          <h3 className="mt-2 border-t border-slate-200 pt-4 text-xs font-semibold text-slate-500">{t('otherPlatforms')}</h3>
-          {others.map(card)}
-        </>
+      {winner && winner.totalMonthlyUsd !== null && (
+        <button
+          type="button"
+          onClick={() => document.getElementById(cardId(winner.provider))?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          className="flex items-center justify-between gap-3 rounded-lg border-2 border-emerald-500 bg-emerald-50 p-4 text-left shadow-sm transition hover:bg-emerald-100"
+        >
+          <span className="min-w-0">
+            <span className="block text-xs font-medium text-emerald-700">{t('cheapestSummary', { count: comparable.length })}</span>
+            <span className="block text-lg font-bold text-slate-900">{PROVIDER_LABEL[winner.provider]}</span>
+          </span>
+          <span className="shrink-0 text-right">
+            <span className="block text-xl font-bold tabular-nums text-slate-900">
+              {money(winner.totalMonthlyUsd)}
+              <span className="text-xs font-normal text-slate-500">{td(PERIOD_SUFFIX[period])}</span>
+            </span>
+            <span className="block text-xs font-medium text-emerald-700">{t('cheapestJump')} ↓</span>
+          </span>
+        </button>
       )}
+
+      {primary.map(card)}
+      {otherProviders.length > 0 && (
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-200 pt-4">
+          <h3 className="text-xs font-semibold text-slate-500">{t('otherPlatforms')}</h3>
+          <div role="group" aria-label={t('platformFilter')} className="flex flex-wrap gap-x-3 gap-y-1">
+            {otherProviders.map((p) => (
+              <label key={p} className="flex items-center gap-1 text-xs text-slate-600">
+                <input type="checkbox" checked={!hidden.includes(p)} onChange={() => onToggleProvider(p)} />
+                {PROVIDER_LABEL[p]}
+              </label>
+            ))}
+          </div>
+        </div>
+      )}
+      {others.map(card)}
       {term && (
         <p className="rounded-md bg-sky-50 px-3 py-2 text-xs text-sky-800">{t('commitNotice', { years: term === '1y' ? 1 : 3 })}</p>
       )}

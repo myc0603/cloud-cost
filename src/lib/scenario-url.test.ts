@@ -1,9 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  decodeHidden,
   decodeMatchOptions,
   decodeOverrides,
   decodeScenario,
+  encodeHidden,
   encodeMatchOptions,
   encodeOverrides,
   encodeScenario,
@@ -150,4 +152,11 @@ test('템플릿: 전부 URL 왕복 보존 (토큰 형식·singleton 규칙에 �
     const scenario: Scenario = { region: 'seoul', resources: tpl.resources };
     assert.deepEqual(decodeScenario(encodeScenario(scenario)), scenario, tpl.id);
   }
+});
+
+test('hide: 다른 플랫폼만 숨길 수 있고 대표 3사·모르는 값은 버린다, 순서는 플랫폼 순서', () => {
+  assert.deepEqual(decodeHidden('hide=kt,aws,oci,foo'), ['oci', 'kt']);
+  assert.deepEqual(decodeHidden(''), []);
+  assert.equal(encodeHidden(['kt', 'oci']), 'oci,kt');
+  assert.equal(encodeHidden([]), '');
 });

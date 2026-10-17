@@ -28,12 +28,15 @@ jobs:
 
       - run: npm ci
 
-      - name: 3사 가격 수집 + 검증
+      - name: 가격 수집 + 검증
         run: npm run collect
         env:
           GCP_API_KEY: ${{ secrets.GCP_API_KEY }}
 
+      # always: 일부 플랫폼 수집이 실패해도(수집기가 그 플랫폼만 건너뛰고 나머지를 기록) 성공한 데이터는 커밋한다.
+      # 검증 실패 때는 아무 파일도 쓰지 않으므로 커밋할 것이 없다. 잡은 실패로 남아 알림이 간다
       - name: 변경분 커밋 & push
+        if: always()
         run: |
           git config user.name "price-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"

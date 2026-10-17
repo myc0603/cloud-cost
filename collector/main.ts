@@ -7,6 +7,7 @@
  *
  * 흐름: 전부 수집 → 기존 스냅샷과 검증 → 하나라도 이상하면 아무것도 쓰지 않고
  * 실패 종료(exit 1) → CI가 실패하면 커밋이 없고 GitHub이 알림을 보낸다.
+ * 수집 자체가 실패한 플랫폼(응답 오류·페이지 개편)은 건너뛰고 나머지를 기록한 뒤 실패 종료한다.
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -274,16 +275,30 @@ if (!['gcp', 'aws', 'azure', 'oci', 'ncp', 'scp', 'nhn', 'all'].includes(target)
   process.exit(1);
 }
 
-// 1) 수집 (메모리) — 환율을 먼저 받는다 (NCP 원화 환산 + meta.json 기록에 같은 값)
+// 1) 수집 (메모리) — 환율을 먼저 받는다 (원화 플랫폼 환산 + meta.json 기록에 같은 값)
+//    플랫폼 하나의 수집 실패(응답 오류·페이지 개편)는 그 플랫폼만 건너뛴다 — 기존 데이터를 유지하고 나머지는 갱신,
+//    끝에 실패로 종료해 CI 알림은 그대로 간다 (워크플로우의 커밋 단계는 always라 성공한 플랫폼 데이터는 커밋된다)
 const usdKrw = await fetchUsdKrw();
+const COLLECTORS: [name: string, run: () => Promise<Job[]>][] = [
+  ['gcp', collectGcpJobs],
+  ['aws', collectAwsJobs],
+  ['azure', collectAzureJobs],
+  ['oci', collectOciJobs],
+  ['ncp', () => collectNcpJobs(usdKrw)],
+  ['scp', () => collectScpJobs(usdKrw)],
+  ['nhn', () => collectNhnJobs(usdKrw)],
+];
 const jobs: Job[] = [];
-if (target === 'gcp' || target === 'all') jobs.push(...(await collectGcpJobs()));
-if (target === 'aws' || target === 'all') jobs.push(...(await collectAwsJobs()));
-if (target === 'azure' || target === 'all') jobs.push(...(await collectAzureJobs()));
-if (target === 'oci' || target === 'all') jobs.push(...(await collectOciJobs()));
-if (target === 'ncp' || target === 'all') jobs.push(...(await collectNcpJobs(usdKrw)));
-if (target === 'scp' || target === 'all') jobs.push(...(await collectScpJobs(usdKrw)));
-if (target === 'nhn' || target === 'all') jobs.push(...(await collectNhnJobs(usdKrw)));
+const failed: string[] = [];
+for (const [name, run] of COLLECTORS) {
+  if (target !== name && target !== 'all') continue;
+  try {
+    jobs.push(...(await run()));
+  } catch (e) {
+    failed.push(name);
+    console.error(`\n✖ ${name} 수집 실패 — 이 플랫폼은 기존 데이터를 유지합니다: ${e instanceof Error ? e.message : e}`);
+  }
+}
 
 // 2) 검증 — 하나라도 이상하면 아무것도 쓰지 않는다
 const allErrors = jobs.flatMap((j) => validateSnapshot(`${j.provider}/${j.region}`, readOldSnapshot(j.provider, j.region), j.snap));
@@ -302,3 +317,7 @@ for (const job of jobs) writeSnapshot(job);
 const meta: Meta = { collectedAt: new Date().toISOString(), usdKrw };
 writeFileSync('data/meta.json', JSON.stringify(meta, null, 2) + '\n');
 console.log(`\nmeta.json 갱신 — 수집 시각 ${meta.collectedAt}, USD/KRW ${meta.usdKrw?.rate ?? '없음'}`);
+if (failed.length > 0) {
+  console.error(`\n✖ 수집 실패 플랫폼: ${failed.join(', ')} — 나머지는 기록했습니다.`);
+  process.exit(1);
+}

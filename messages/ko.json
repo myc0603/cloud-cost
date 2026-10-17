@@ -152,6 +152,10 @@
     "notOfferedRetention": "{provider}는 보관 최대 {days}일",
     "notOfferedVolume": "{provider} 요금제 용량 한도 초과",
     "notOfferedEngine": "{provider}는 {engine} 미제공",
+    "matchRule": "→ 자동 매칭: 입력한 스펙(vCPU·RAM, 캐시는 메모리) 이상인 인스턴스 중 최저가 · {burst} · {arch}. 드롭다운으로 직접 바꿀 수 있어요.",
+    "matchBurst": { "in": "버스트 포함(K8s 노드 제외)", "out": "버스트 제외" },
+    "matchArch": { "both": "x86·ARM 모두", "x86": "x86만", "arm": "ARM만" },
+    "matchRuleLink": "산정 방식",
     "partialTotal": "미제공 항목 제외",
     "otherPlatforms": "다른 플랫폼",
     "free": "무료"

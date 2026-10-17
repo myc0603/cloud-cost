@@ -152,6 +152,10 @@
     "notOfferedRetention": "{provider} keeps logs for at most {days} days",
     "notOfferedVolume": "over {provider}'s plan volume limits",
     "notOfferedEngine": "{engine} not offered by {provider}",
+    "matchRule": "→ Auto-matched: the cheapest instance at or above your specs (vCPU·RAM; memory for caches) · {burst} · {arch}. You can change it from the dropdown.",
+    "matchBurst": { "in": "burstable included (except K8s nodes)", "out": "burstable excluded" },
+    "matchArch": { "both": "x86 and ARM", "x86": "x86 only", "arm": "ARM only" },
+    "matchRuleLink": "Methodology",
     "partialTotal": "excludes items not offered",
     "otherPlatforms": "Other platforms",
     "free": "Free"

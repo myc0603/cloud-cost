@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { cheapestTotal, gcpSustainedUseMax, HOURS_PER_MONTH, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
+import { Link } from '@/i18n/navigation';
+import { cheapestTotal, gcpSustainedUseMax, HOURS_PER_MONTH, type ArchFilter, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
 import { formatMoney, type Currency, type Period } from '@/lib/display';
 import { PRIMARY_PROVIDERS, PROVIDER_LABEL } from '@/lib/providers';
 import { offeredIn } from '@/lib/regions';
@@ -336,6 +337,8 @@ export default function EstimateResult({
   region,
   rate,
   term,
+  includeBurstable,
+  arch,
   hidden,
   onToggleProvider,
   onSelectInstance,
@@ -345,6 +348,9 @@ export default function EstimateResult({
   rate: number | null;
   /** 약정 기간 — 생략 = 정가 */
   term?: Term;
+  /** 매칭 옵션 — 매칭 규칙 안내 문구용 */
+  includeBurstable: boolean;
+  arch: ArchFilter;
   /** 화면에서 숨긴 플랫폼 ("다른 플랫폼"만) — 카드와 최저가 비교에서 빠진다 */
   hidden: Provider[];
   onToggleProvider: (provider: Provider) => void;
@@ -368,6 +374,10 @@ export default function EstimateResult({
   // 매칭된 인스턴스 중 ARM이 하나라도 있으면 호환성 고지
   const hasArm = visible.some((e) =>
     e.lines.some((l) => l.kind === 'vm' && l.matched?.arch === 'arm'),
+  );
+  // 자동 매칭되는 줄(VM·K8s 노드·DB·캐시·컨테이너)이 있으면 매칭 규칙 안내
+  const hasMatching = visible.some((e) =>
+    e.lines.some((l) => l.kind === 'vm' || l.kind === 'db' || l.kind === 'cache' || l.kind === 'container'),
   );
 
   const primary = visible.filter((e) => PRIMARY_PROVIDERS.includes(e.provider));
@@ -469,6 +479,12 @@ export default function EstimateResult({
             <span className="block text-xs font-medium text-emerald-700">{t('cheapestJump')} ↓</span>
           </span>
         </button>
+      )}
+      {hasMatching && (
+        <p className="text-xs text-slate-500">
+          {t('matchRule', { burst: t(`matchBurst.${includeBurstable ? 'in' : 'out'}`), arch: t(`matchArch.${arch}`) })}{' '}
+          <Link href="/methodology" className="underline hover:text-slate-700">{t('matchRuleLink')}</Link>
+        </p>
       )}
 
       {primary.map(card)}

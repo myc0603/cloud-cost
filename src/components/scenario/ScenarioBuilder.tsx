@@ -255,6 +255,8 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
             region={scenario.region}
             rate={usdKrwRate}
             term={term}
+            includeBurstable={includeBurstable}
+            arch={arch}
             hidden={hidden}
             onToggleProvider={toggleProvider}
             onSelectInstance={selectInstance}

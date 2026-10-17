@@ -1,0 +1,211 @@
+[
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "t2.c1m1",
+    "vcpu": 1,
+    "ramGb": 1,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "t2",
+    "pricePerHour": 0.017979
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "m2.c1m2",
+    "vcpu": 1,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m2",
+    "pricePerHour": 0.036258
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "m2.c2m4",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m2",
+    "pricePerHour": 0.072515
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "m2.c4m8",
+    "vcpu": 4,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m2",
+    "pricePerHour": 0.145031
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "m2.c8m16",
+    "vcpu": 8,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m2",
+    "pricePerHour": 0.290061
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "m2.c16m32",
+    "vcpu": 16,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "m2",
+    "pricePerHour": 0.580123
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "c2.c2m2",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 0.065923
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "c2.c4m4",
+    "vcpu": 4,
+    "ramGb": 4,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 0.131846
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "c2.c8m8",
+    "vcpu": 8,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 0.263692
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "c2.c16m16",
+    "vcpu": 16,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "c2",
+    "pricePerHour": 0.527384
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "r2.c2m8",
+    "vcpu": 2,
+    "ramGb": 8,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r2",
+    "pricePerHour": 0.08173
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "r2.c4m16",
+    "vcpu": 4,
+    "ramGb": 16,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r2",
+    "pricePerHour": 0.163459
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "r2.c4m32",
+    "vcpu": 4,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r2",
+    "pricePerHour": 0.208107
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "r2.c8m32",
+    "vcpu": 8,
+    "ramGb": 32,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r2",
+    "pricePerHour": 0.326993
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "r2.c8m64",
+    "vcpu": 8,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "r2",
+    "pricePerHour": 0.400782
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "x1.c16m64",
+    "vcpu": 16,
+    "ramGb": 64,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x1",
+    "pricePerHour": 0.735716
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "x1.c16m128",
+    "vcpu": 16,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x1",
+    "pricePerHour": 0.901797
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "x1.c32m128",
+    "vcpu": 32,
+    "ramGb": 128,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x1",
+    "pricePerHour": 1.471432
+  },
+  {
+    "provider": "nhn",
+    "region": "tokyo",
+    "sku": "x1.c32m256",
+    "vcpu": 32,
+    "ramGb": 256,
+    "burstable": false,
+    "arch": "x86",
+    "generation": "x1",
+    "pricePerHour": 1.803669
+  }
+]

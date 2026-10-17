@@ -1,0 +1,150 @@
+{
+  "provider": "nhn",
+  "region": "tokyo",
+  "engines": {
+    "mysql": {
+      "instances": [
+        {
+          "sku": "m2.c1m2",
+          "vcpu": 1,
+          "ramGb": 2,
+          "burstable": false,
+          "perHour": 0.069219,
+          "haPerHour": 0.138438
+        },
+        {
+          "sku": "m2.c2m4",
+          "vcpu": 2,
+          "ramGb": 4,
+          "burstable": false,
+          "perHour": 0.138438,
+          "haPerHour": 0.276876
+        },
+        {
+          "sku": "m2.c4m8",
+          "vcpu": 4,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.276877,
+          "haPerHour": 0.553754
+        },
+        {
+          "sku": "m2.c8m16",
+          "vcpu": 8,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.553753,
+          "haPerHour": 1.107506
+        },
+        {
+          "sku": "m2.c16m32",
+          "vcpu": 16,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 1.107507,
+          "haPerHour": 2.215014
+        },
+        {
+          "sku": "c2.c2m2",
+          "vcpu": 2,
+          "ramGb": 2,
+          "burstable": false,
+          "perHour": 0.130198,
+          "haPerHour": 0.260396
+        },
+        {
+          "sku": "c2.c4m4",
+          "vcpu": 4,
+          "ramGb": 4,
+          "burstable": false,
+          "perHour": 0.260396,
+          "haPerHour": 0.520792
+        },
+        {
+          "sku": "c2.c8m8",
+          "vcpu": 8,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.520792,
+          "haPerHour": 1.041584
+        },
+        {
+          "sku": "c2.c16m16",
+          "vcpu": 16,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 1.041584,
+          "haPerHour": 2.083168
+        },
+        {
+          "sku": "r2.c2m8",
+          "vcpu": 2,
+          "ramGb": 8,
+          "burstable": false,
+          "perHour": 0.174321,
+          "haPerHour": 0.348642
+        },
+        {
+          "sku": "r2.c4m16",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.348568,
+          "haPerHour": 0.697136
+        },
+        {
+          "sku": "r2.c8m32",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.697136,
+          "haPerHour": 1.394272
+        },
+        {
+          "sku": "r2.c8m64",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 0.845463,
+          "haPerHour": 1.690926
+        },
+        {
+          "sku": "x1.c16m64",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.394272,
+          "haPerHour": 2.788544
+        },
+        {
+          "sku": "x1.c16m128",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 1.690926,
+          "haPerHour": 3.381852
+        },
+        {
+          "sku": "x1.c32m128",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.788544,
+          "haPerHour": 5.577088
+        },
+        {
+          "sku": "x1.c32m256",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 3.381852,
+          "haPerHour": 6.763704
+        }
+      ],
+      "custom": null,
+      "storageGbMonth": 0.076561,
+      "haStorageGbMonth": 0.153122
+    },
+    "postgres": null
+  }
+}

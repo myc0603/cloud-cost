@@ -1,0 +1,15 @@
+{
+  "provider": "nhn",
+  "region": "tokyo",
+  "freeGb": 1,
+  "tiers": [
+    {
+      "upToGb": 1,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.074913
+    }
+  ]
+}

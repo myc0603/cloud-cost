@@ -1,0 +1,24 @@
+{
+  "provider": "nhn",
+  "region": "tokyo",
+  "ingestPerGb": 0,
+  "includedDays": 0,
+  "storedRatio": 1,
+  "commitmentTiers": [],
+  "plan": "Basic",
+  "storagePerGbMonth": 0.5993,
+  "maxRetentionDays": 30,
+  "alternatives": [
+    {
+      "provider": "nhn",
+      "region": "tokyo",
+      "ingestPerGb": 0,
+      "includedDays": 0,
+      "storedRatio": 1,
+      "commitmentTiers": [],
+      "plan": "Premium",
+      "storagePerGbMonth": 1.198601,
+      "maxRetentionDays": 120
+    }
+  ]
+}

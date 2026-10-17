@@ -1,0 +1,43 @@
+{
+  "provider": "nhn",
+  "region": "tokyo",
+  "gbTiers": [
+    {
+      "upTo": 10240,
+      "price": 0.062927
+    },
+    {
+      "upTo": 30720,
+      "price": 0.058432
+    },
+    {
+      "upTo": 51200,
+      "price": 0.055435
+    },
+    {
+      "upTo": 102400,
+      "price": 0.053188
+    },
+    {
+      "upTo": 307200,
+      "price": 0.041202
+    },
+    {
+      "upTo": 512000,
+      "price": 0.032212
+    },
+    {
+      "upTo": null,
+      "price": 0.026219
+    }
+  ],
+  "requestTiers": [
+    {
+      "upTo": null,
+      "price": 0
+    }
+  ],
+  "monthlyBase": 0,
+  "fillPerGb": 0,
+  "plans": []
+}

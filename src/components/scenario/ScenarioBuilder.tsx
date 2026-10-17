@@ -148,6 +148,25 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
   return (
     <div className="grid gap-8 lg:grid-cols-2">
       <section className="flex flex-col gap-4">
+        {/* 빈 화면 대신 바로 고를 수 있는 출발점 — 구성 요소를 보여줘 무엇이 들어있는지 알 수 있게 */}
+        <div className="flex flex-col gap-2">
+          <span className="text-sm text-slate-500">{t('templateStart')}</span>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-2">
+            {TEMPLATES.map(({ id, resources }) => (
+              <button
+                key={id}
+                onClick={() => applyTemplate(id)}
+                className="rounded-lg border border-slate-300 bg-white p-3 text-left hover:border-slate-500"
+              >
+                <span className="block text-sm font-semibold text-slate-900">{t(`templateName.${id}`)}</span>
+                <span className="mt-1 line-clamp-2 text-xs text-slate-500">
+                  {resources.map((r) => t(`resourceTitle.${r.type}`)).join(' · ')}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="flex flex-wrap items-center gap-4">
           <label className="flex items-center gap-2 text-sm">
             {t('region')}
@@ -193,19 +212,6 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
               ))}
             </select>
           </label>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2 text-sm">
-          <span className="text-slate-500">{t('templateStart')}</span>
-          {TEMPLATES.map(({ id }) => (
-            <button
-              key={id}
-              onClick={() => applyTemplate(id)}
-              className="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs text-slate-600 hover:border-slate-400 hover:text-slate-900"
-            >
-              {t(`templateName.${id}`)}
-            </button>
-          ))}
         </div>
 
         {scenario.resources.map((r, i) => {

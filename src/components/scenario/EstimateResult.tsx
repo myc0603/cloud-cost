@@ -9,10 +9,10 @@ import { offeredIn } from '@/lib/regions';
 import type { Arch, Provider, Region, Term } from '@/lib/schema';
 
 /** 로그 수집 상품명 — 비교 대상 고정 (estimator/logs.ts) */
-const LOGS_PRODUCT: Record<Provider, string> = { aws: 'CloudWatch Logs', azure: 'Log Analytics', gcp: 'Cloud Logging', oci: 'OCI Logging', ncp: 'Cloud Log Analytics', scp: 'ServiceWatch', nhn: 'Log & Crash Search' };
+const LOGS_PRODUCT: Partial<Record<Provider, string>> = { aws: 'CloudWatch Logs', azure: 'Log Analytics', gcp: 'Cloud Logging', oci: 'OCI Logging', ncp: 'Cloud Log Analytics', scp: 'ServiceWatch', nhn: 'Log & Crash Search' };
 
 /** CDN 상품명 — 비교 대상 고정 (estimator/cdn.ts). 미제공 플랫폼은 없음 (providers.ts NOT_OFFERED) */
-const CDN_PRODUCT: Partial<Record<Provider, string>> = { aws: 'CloudFront', azure: 'Front Door Standard', gcp: 'Cloud CDN', ncp: 'Global CDN', scp: 'Global CDN', nhn: 'CDN' };
+const CDN_PRODUCT: Partial<Record<Provider, string>> = { aws: 'CloudFront', azure: 'Front Door Standard', gcp: 'Cloud CDN', ncp: 'Global CDN', scp: 'Global CDN', nhn: 'CDN', kt: 'CDN Standard' };
 
 /** 서버리스 컨테이너 상품명 — 비교 대상 고정 (estimator/container.ts). 미제공 플랫폼은 없음 */
 const CONTAINER_PRODUCT: Partial<Record<Provider, string>> = { aws: 'Fargate', azure: 'Container Apps', gcp: 'Cloud Run', oci: 'Container Instances', nhn: 'NCS' };

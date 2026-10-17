@@ -4,7 +4,7 @@
  */
 
 /** 플랫폼 목록·라벨·미제공 구성 요소는 providers.ts */
-export type Provider = 'aws' | 'azure' | 'gcp' | 'oci' | 'ncp' | 'scp' | 'nhn';
+export type Provider = 'aws' | 'azure' | 'gcp' | 'oci' | 'ncp' | 'scp' | 'nhn' | 'kt';
 
 /** CPU 아키텍처. arm = Graviton(AWS)·Ampere(Azure/GCP) 계열 */
 export type Arch = 'x86' | 'arm';
@@ -56,6 +56,11 @@ export interface EgressTier {
   region: Region;
   freeGb: number;
   tiers: { upToGb: number | null; pricePerGb: number }[];
+  /**
+   * 서버 1대마다 붙는 무료 전송량 (KT) — 시나리오의 서버(VM 카드 대수 + K8s 노드 수)별 무료량을 합친 만큼을 tiers 앞에 무료로 둔다.
+   * 메모리가 largeFromRamGb 이상인 서버는 largeGb, 그 외 gb. 있으면 tiers는 무료 구간 없는 유료 구간(누적 사용량 기준)
+   */
+  perServerFree?: { gb: number; largeGb: number; largeFromRamGb: number };
 }
 
 /**

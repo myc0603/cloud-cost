@@ -21,6 +21,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>NCP(네이버 클라우드) — 공식 요금 계산기가 쓰는 요금 API (원화, 리전별)</li>
         <li className={LI}>삼성 SCP — 공식 요금 페이지가 쓰는 요금 데이터 파일 (원화)</li>
         <li className={LI}>NHN Cloud — 공식 요금 페이지가 서비스별로 불러오는 요금표 (원화, 리전별)</li>
+        <li className={LI}>KT Cloud — 공식 상품 페이지가 불러오는 상품별 요금 문서 (원화)</li>
         <li className={LI}>환율(USD→KRW) — 표시 참고용, 일 1회 갱신{meta?.usdKrw ? ` (현재 $1 = ₩${meta.usdKrw.rate.toLocaleString()})` : ''}</li>
       </ul>
 
@@ -251,6 +252,32 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>공개된 약정 상품이 없어(고객센터 문의) 1·3년 기준에서도 정가입니다.</li>
       </ul>
 
+      <h2 className={H2}>KT Cloud 비교 기준</h2>
+      <ul className="mt-2 list-disc pl-5">
+        <li className={LI}>
+          가격은 공식 상품 페이지가 불러오는 상품별 요금 문서(표)에서 받고, 원화를 수집 시점 환율로 달러로 바꿔 저장합니다. 요금 문서는 사람이
+          작성한 표라 형식이 바뀌면 수집이 멈추고 기존 데이터가 유지됩니다.
+        </li>
+        <li className={LI}>
+          서울만 제공하며, Managed KS 워커 노드와 DBaaS가 D1 플랫폼(DX-M1 존) 기준이라 VM도 D1 요금으로 맞췄습니다. VM은 표준·High Memory
+          서버이고, 한 달 내내 쓰는 기준이라 월 요금으로 계산합니다. ARM·버스트 서버는 없습니다.
+        </li>
+        <li className={LI}><b>약정</b>은 온라인 VM 약정 할인율(1년 15%·3년 25%)을 VM과 K8s 노드에 적용합니다. DB는 약정 대상이 아니라 정가입니다.</li>
+        <li className={LI}>블록 스토리지는 서버용 SSD DISK(10GB당 월 1,400원), 오브젝트는 Standard(GB·월 30원)입니다.</li>
+        <li className={LI}>
+          트래픽은 <b>서버 1대마다 무료량</b>이 붙습니다(메모리 16GB 미만 512GB, 이상 1TB, 계정 합산). 시나리오의 VM 대수와 K8s 노드 수(요구 메모리
+          기준)로 무료량을 합산하고, 넘는 양은 90·80·70원/GB 구간 요금입니다. 같은 페이지의 예시 문장은 무료량을 다르게 적고 있어 요금표 값을 따랐습니다.
+        </li>
+        <li className={LI}>Kubernetes는 Managed KS 클러스터(월 70,000원), 로드밸런서는 시간당 42원 + 처리 GB당 20원입니다.</li>
+        <li className={LI}>
+          관리형 DB는 DBaaS for MySQL·PostgreSQL(D 플랫폼) 요금입니다. 데이터 볼륨(SSD)마다 2배 크기의 백업용 볼륨이 함께 과금돼 스토리지는 데이터의
+          3배입니다. 이중화는 PostgreSQL이 DB 2대 + Monitor 1대(문서 명시), MySQL이 Cluster로 DB 3대 + Router 2대입니다 — MySQL Cluster의 최소
+          노드 수는 공개돼 있지 않아 3대로 <b>추정</b>했습니다.
+        </li>
+        <li className={LI}>CDN은 CDN Standard(전송 구간 + 요청 1만 건당 10원)입니다.</li>
+        <li className={LI}>NAT·로그 수집은 공개 요금이 없고, 캐시(DBaaS for Cache)는 오픈 베타 무료 기간이라 정식 요금이 없으며, 서버리스 컨테이너는 상품이 없어 모두 미제공으로 표시합니다.</li>
+      </ul>
+
       <h2 className={H2}>한계 — 이 견적이 말해주지 않는 것</h2>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}>
@@ -290,6 +317,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         <li className={LI}>NCP (NAVER Cloud) — the pricing API behind the official cost calculator (KRW, per region)</li>
         <li className={LI}>Samsung SCP — the price data files behind the official pricing page (KRW)</li>
         <li className={LI}>NHN Cloud — the per-service price tables loaded by the official pricing page (KRW, per region)</li>
+        <li className={LI}>KT Cloud — the per-product price documents loaded by the official product pages (KRW)</li>
         <li className={LI}>Exchange rate (USD→KRW) — for display only, refreshed daily{meta?.usdKrw ? ` (currently $1 = ₩${meta.usdKrw.rate.toLocaleString()})` : ''}</li>
       </ul>
 
@@ -537,6 +565,34 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           GB-month, Premium 60–120 days at KRW 1,600). 180 days or more is not offered. API calls above 1 million are not included.
         </li>
         <li className={LI}>No commitment products are published (contact sales only), so 1- and 3-year terms stay at on-demand prices.</li>
+      </ul>
+
+      <h2 className={H2}>KT Cloud comparison basis</h2>
+      <ul className="mt-2 list-disc pl-5">
+        <li className={LI}>
+          Prices come from the per-product price documents (tables) loaded by the official product pages; KRW is converted to USD at the
+          collection-day rate. The documents are hand-written tables, so a format change stops collection and keeps the previous data.
+        </li>
+        <li className={LI}>
+          KT Cloud is offered in Seoul only. Managed KS worker nodes and DBaaS run on the D1 platform (DX-M1 zone), so VMs use D1 prices too.
+          VMs are standard and High Memory servers, priced at the monthly rate because we assume a full month. There are no Arm or burstable
+          servers.
+        </li>
+        <li className={LI}><b>Commitments</b> apply the online VM commitment discount (15% for 1 year, 25% for 3 years) to VMs and K8s nodes. Databases are not eligible and stay at on-demand prices.</li>
+        <li className={LI}>Block storage is the server SSD DISK (KRW 1,400 per 10 GB-month); object storage is Standard (KRW 30 per GB-month).</li>
+        <li className={LI}>
+          Internet traffic comes with a <b>free allowance per server</b> (512 GB under 16 GB of memory, 1 TB at 16 GB or more, pooled per account).
+          We add up the allowance for the scenario&rsquo;s VMs and K8s nodes (by requested memory) and bill the rest at KRW 90/80/70 per GB tiers.
+          An example on the same page states a different allowance; we follow the price table.
+        </li>
+        <li className={LI}>Kubernetes uses the Managed KS cluster fee (KRW 70,000/month); load balancers are KRW 42/hour + KRW 20 per GB processed.</li>
+        <li className={LI}>
+          Managed databases use DBaaS for MySQL / PostgreSQL (D platform). Each data volume (SSD) comes with a billed backup volume twice its size,
+          so storage is three times the data size. High availability is two DB VMs + one monitor VM for PostgreSQL (documented) and a cluster of
+          three DB VMs + two router VMs for MySQL — the minimum MySQL cluster size isn&rsquo;t published, so three is an <b>assumption</b>.
+        </li>
+        <li className={LI}>CDN uses CDN Standard (tiered transfer + KRW 10 per 10,000 requests).</li>
+        <li className={LI}>NAT and log ingestion have no published prices, the cache (DBaaS for Cache) is in a free open beta without regular pricing, and there is no serverless container service — all are shown as not offered.</li>
       </ul>
 
       <h2 className={H2}>Limitations — what this estimate does not tell you</h2>

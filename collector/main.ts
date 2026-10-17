@@ -1,6 +1,6 @@
 /**
  * 수집기 진입점 — 플랫폼별 수집을 오케스트레이션한다.
- * 실행: tsx collector/main.ts [all|gcp|aws|azure|oci|ncp|scp|nhn] [--force]
+ * 실행: tsx collector/main.ts [all|gcp|aws|azure|oci|ncp|scp|nhn|kt] [--force]
  *   - gcp: GCP_API_KEY 환경변수 또는 .env 필요
  *   - --force: 검증 실패를 무시하고 기록 (실제 대규모 가격 개편일 때만)
  * 산출: data/{provider}/{region}/vm.json · storage.json · egress.json · k8s.json · lb.json · nat.json · db.json · cache.json · container.json · cdn.json · logs.json + data/meta.json
@@ -52,6 +52,7 @@ import {
   parseUnitPrices,
 } from './providers/gcp';
 import { buildNcpSnapshot, fetchNcpPriceList, NCP_REGION } from './providers/ncp';
+import { buildKtSnapshot, fetchKtDocs } from './providers/kt';
 import { buildNhnSnapshot, fetchNhnContentIds, fetchNhnPages, NHN_REGION } from './providers/nhn';
 import { buildOciSnapshot, fetchOciPriceList } from './providers/oci';
 import { buildScpSnapshot, fetchScpPriceFiles } from './providers/scp';
@@ -267,11 +268,19 @@ async function collectNhnJobs(usdKrw: Meta['usdKrw']): Promise<Job[]> {
   return jobs;
 }
 
+/** KT Cloud — 상품 페이지 API의 요금 문서(HTML 표, 원화) → 수집 시점 환율로 USD. 서울(D1 플랫폼)만 */
+async function collectKtJobs(usdKrw: Meta['usdKrw']): Promise<Job[]> {
+  if (!usdKrw) throw new Error('환율이 없어 KT 원화 요금을 환산할 수 없음');
+  console.log(`[kt] 상품 요금 문서 수집 중... (원화 → USD, $1 = ₩${usdKrw.rate})`);
+  const docs = await fetchKtDocs();
+  return regionsOf('kt').map((region) => ({ provider: 'kt', region, snap: buildKtSnapshot(docs, region, usdKrw.rate), vmSamples: ['d1.std.2c4g', 'd1.std.4c8g', 'd1.hm.2c8g'] }));
+}
+
 const args = process.argv.slice(2);
 const force = args.includes('--force');
 const target = args.find((a) => !a.startsWith('--')) ?? 'all';
-if (!['gcp', 'aws', 'azure', 'oci', 'ncp', 'scp', 'nhn', 'all'].includes(target)) {
-  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure | oci | ncp | scp | nhn)`);
+if (!['gcp', 'aws', 'azure', 'oci', 'ncp', 'scp', 'nhn', 'kt', 'all'].includes(target)) {
+  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure | oci | ncp | scp | nhn | kt)`);
   process.exit(1);
 }
 
@@ -287,6 +296,7 @@ const COLLECTORS: [name: string, run: () => Promise<Job[]>][] = [
   ['ncp', () => collectNcpJobs(usdKrw)],
   ['scp', () => collectScpJobs(usdKrw)],
   ['nhn', () => collectNhnJobs(usdKrw)],
+  ['kt', () => collectKtJobs(usdKrw)],
 ];
 const jobs: Job[] = [];
 const failed: string[] = [];

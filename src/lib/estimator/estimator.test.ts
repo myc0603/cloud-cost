@@ -44,6 +44,7 @@ const PRICING: Record<Provider, ProviderPricing> = {
   ncp: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   scp: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   nhn: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
+  kt: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   gcp: {
     vm: FIXTURE,
     storage: [
@@ -648,4 +649,23 @@ test('컨테이너: NHN NCS는 요구 스펙 그대로(올림 없음), 16 vCPU·
   const price: ContainerPrice = { provider: 'nhn', region: 'seoul', rates: { x86: { vcpuPerHour: 0.0576, gbPerHour: 0.00648 } } };
   assert.deepEqual(fitContainer(price, { vcpu: 0.25, ramGb: 1 }, { includeBurstable: true }), { vcpu: 0.25, ramGb: 1, arch: 'x86', perHour: 0.02088, committed: false });
   assert.deepEqual(fitContainer(price, { vcpu: 32, ramGb: 64 }, { includeBurstable: true }), { reason: 'size', maxVcpu: 16, maxRamGb: 225 });
+});
+
+test('트래픽: 서버당 무료량(KT) — VM 대수·K8s 노드별 무료량(16GB 이상 1TB, 미만 512GB)을 합쳐 앞 구간 무료', () => {
+  const egress: EgressTier = {
+    provider: 'kt',
+    region: 'seoul',
+    freeGb: 0,
+    tiers: [{ upToGb: 10240, pricePerGb: 0.09 }, { upToGb: 20480, pricePerGb: 0.08 }, { upToGb: null, pricePerGb: 0.07 }],
+    perServerFree: { gb: 512, largeGb: 1024, largeFromRamGb: 16 },
+  };
+  const line = (resources: Resource[]) =>
+    estimate(scenario(resources), { ...PRICING, gcp: { ...PRICING.gcp, egress } }, { includeBurstable: true }).find((e) => e.provider === 'gcp')!.lines.find((l) => l.kind === 'egress')!;
+  // VM 2대(4GB) 512 × 2 + K8s 노드 1 × 3대(16GB) 1024 × 3 = 4096GB 무료 → 5000GB면 904GB × 0.09
+  const l = line([vmRes(2, 4, 2), { type: 'k8s', clusters: 1, node: { vcpu: 4, ramGb: 16, count: 3 } }, { type: 'egress', gb: 5000 }]);
+  assert.ok(l.kind === 'egress' && l.freeGb === 4096);
+  assert.equal(l.monthlyUsd, +(904 * 0.09).toFixed(2));
+  // 무료량이 첫 유료 구간 경계를 넘어도 구간이 뒤집히지 않는다 (VM 12대 × 1TB = 12288GB 무료)
+  const big = line([vmRes(4, 16, 12), { type: 'egress', gb: 15000 }]);
+  assert.equal(big.monthlyUsd, +((15000 - 12288) * 0.08).toFixed(2));
 });

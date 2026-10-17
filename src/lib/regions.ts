@@ -7,13 +7,13 @@
 import type { Provider, Region } from './schema';
 
 export const REGION_CODES: Record<Region, Record<Provider, string | null>> = {
-  seoul: { aws: 'ap-northeast-2', azure: 'koreacentral', gcp: 'asia-northeast3', oci: 'ap-seoul-1', ncp: 'KR', scp: 'KR_WEST', nhn: 'KR1' },
-  tokyo: { aws: 'ap-northeast-1', azure: 'japaneast', gcp: 'asia-northeast1', oci: 'ap-tokyo-1', ncp: 'JPN', scp: null, nhn: 'JP1' },
-  singapore: { aws: 'ap-southeast-1', azure: 'southeastasia', gcp: 'asia-southeast1', oci: 'ap-singapore-1', ncp: 'SGN', scp: null, nhn: null },
-  'us-east': { aws: 'us-east-1', azure: 'eastus', gcp: 'us-east1', oci: 'us-ashburn-1', ncp: null, scp: null, nhn: null },
-  'us-west': { aws: 'us-west-2', azure: 'westus2', gcp: 'us-west1', oci: 'us-sanjose-1', ncp: null, scp: null, nhn: null },
-  frankfurt: { aws: 'eu-central-1', azure: 'germanywestcentral', gcp: 'europe-west3', oci: 'eu-frankfurt-1', ncp: null, scp: null, nhn: null },
-  london: { aws: 'eu-west-2', azure: 'uksouth', gcp: 'europe-west2', oci: 'uk-london-1', ncp: null, scp: null, nhn: null },
+  seoul: { aws: 'ap-northeast-2', azure: 'koreacentral', gcp: 'asia-northeast3', oci: 'ap-seoul-1', ncp: 'KR', scp: 'KR_WEST', nhn: 'KR1', kt: 'DX-M1' },
+  tokyo: { aws: 'ap-northeast-1', azure: 'japaneast', gcp: 'asia-northeast1', oci: 'ap-tokyo-1', ncp: 'JPN', scp: null, nhn: 'JP1', kt: null },
+  singapore: { aws: 'ap-southeast-1', azure: 'southeastasia', gcp: 'asia-southeast1', oci: 'ap-singapore-1', ncp: 'SGN', scp: null, nhn: null, kt: null },
+  'us-east': { aws: 'us-east-1', azure: 'eastus', gcp: 'us-east1', oci: 'us-ashburn-1', ncp: null, scp: null, nhn: null, kt: null },
+  'us-west': { aws: 'us-west-2', azure: 'westus2', gcp: 'us-west1', oci: 'us-sanjose-1', ncp: null, scp: null, nhn: null, kt: null },
+  frankfurt: { aws: 'eu-central-1', azure: 'germanywestcentral', gcp: 'europe-west3', oci: 'eu-frankfurt-1', ncp: null, scp: null, nhn: null, kt: null },
+  london: { aws: 'eu-west-2', azure: 'uksouth', gcp: 'europe-west2', oci: 'uk-london-1', ncp: null, scp: null, nhn: null, kt: null },
 };
 
 export const REGIONS = Object.keys(REGION_CODES) as Region[];

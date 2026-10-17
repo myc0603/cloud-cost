@@ -1,13 +1,13 @@
 {
   "meta": {
     "siteTitle": "클라우드 비용 비교",
-    "siteDescription": "필요한 스펙을 입력하면 AWS · Azure · GCP · OCI · NCP · 삼성 SCP · NHN Cloud의 월 예상 비용을 나란히 비교합니다. 서울·도쿄·싱가포르·미국·유럽 7개 리전, 온디맨드와 1·3년 약정 요금 기준.",
-    "instancesTitle": "AWS·Azure·GCP·OCI·NCP·SCP·NHN 인스턴스 가격 비교표 | 클라우드 비용 비교",
-    "instancesDescription": "AWS EC2, Azure VM, GCP Compute Engine, OCI Compute, 네이버 클라우드(NCP) Server, 삼성 SCP Virtual Server, NHN Cloud Instance 인스턴스의 vCPU/RAM 스펙과 시간당·월 가격을 한 표에서 비교합니다. Linux 온디맨드 정가, 서울·도쿄·싱가포르·미국·유럽 7개 리전.",
+    "siteDescription": "필요한 스펙을 입력하면 AWS · Azure · GCP · OCI · NCP · 삼성 SCP · NHN Cloud · KT Cloud의 월 예상 비용을 나란히 비교합니다. 서울·도쿄·싱가포르·미국·유럽 7개 리전, 온디맨드와 1·3년 약정 요금 기준.",
+    "instancesTitle": "AWS·Azure·GCP·OCI·NCP·SCP·NHN·KT 인스턴스 가격 비교표 | 클라우드 비용 비교",
+    "instancesDescription": "AWS EC2, Azure VM, GCP Compute Engine, OCI Compute, 네이버 클라우드(NCP) Server, 삼성 SCP Virtual Server, NHN Cloud Instance, KT Cloud Server 인스턴스의 vCPU/RAM 스펙과 시간당·월 가격을 한 표에서 비교합니다. Linux 온디맨드 정가, 서울·도쿄·싱가포르·미국·유럽 7개 리전.",
     "methodologyTitle": "데이터 출처와 산정 방식 | 클라우드 비용 비교",
     "methodologyDescription": "가격 데이터의 출처(각 사 공식 가격 API), 수집 주기, 견적 계산 방식, 비교 기준과 한계를 투명하게 공개합니다.",
     "ogHeadline": "같은 스펙,\n클라우드별 월 비용",
-    "ogSubtitle": "AWS · Azure · GCP · OCI · NCP · SCP · NHN 나란히 비교"
+    "ogSubtitle": "AWS · Azure · GCP · OCI · NCP · SCP · NHN · KT 나란히 비교"
   },
   "nav": {
     "brand": "클라우드 비용 비교",
@@ -17,7 +17,7 @@
   },
   "home": {
     "title": "클라우드 비용 비교",
-    "subtitle": "원하는 스펙을 입력하면 AWS · Azure · GCP · OCI · NCP · 삼성 SCP · NHN Cloud의 월 예상 비용을 나란히 비교합니다."
+    "subtitle": "원하는 스펙을 입력하면 AWS · Azure · GCP · OCI · NCP · 삼성 SCP · NHN Cloud · KT Cloud의 월 예상 비용을 나란히 비교합니다."
   },
   "freshness": {
     "collected": "가격 기준: {date} 수집",
@@ -85,7 +85,7 @@
     "dbEngine": "엔진",
     "dbStorageGb": "스토리지 (GB)",
     "dbHa": "이중화",
-    "dbHaHint": "대기 서버를 둔 고가용성 구성 (AWS Multi-AZ · Azure HA · GCP Regional · OCI 다중 노드 · NCP·SCP·NHN 2대) — 컴퓨트·스토리지가 약 2배 (OCI MySQL은 3노드라 3배)",
+    "dbHaHint": "대기 서버를 둔 고가용성 구성 (AWS Multi-AZ · Azure HA · GCP Regional · OCI 다중 노드 · NCP·SCP·NHN 2대 · KT MySQL 3노드) — 컴퓨트·스토리지가 약 2배 (OCI MySQL은 3노드라 3배)",
     "cacheMemoryGb": "메모리 (GB)",
     "cacheHaHint": "복제 노드를 둔 고가용성 구성 (AWS 복제 노드 · Azure 2노드 · GCP Standard 등급 · OCI·NCP·SCP·NHN 복제 노드)",
     "remove": "삭제",
@@ -116,7 +116,7 @@
     "noCommit": "약정가 없음",
     "onDemandShort": "정가",
     "sudNote": "(지속 사용 할인 미반영 — 한 달 내내 쓰면 최대 {pct}% 자동 할인)",
-    "commitNotice": "{years}년 약정가(선결제 없음) 기준 — AWS EC2 Instance Savings Plans·RDS/ElastiCache 예약, Azure 예약, GCP 약정 사용 할인(CUD), 삼성 SCP Planned Compute(인스턴스 타입 약정). OCI·NCP·NHN은 공개된 리소스별 약정 상품이 없어 정가입니다. 약정은 VM·K8s 노드·DB·캐시·컨테이너 컴퓨트에만 적용되고, 스토리지·트래픽·CDN·로그·LB·NAT·K8s 컨트롤 플레인은 정가입니다. 약정 요금은 실제 사용 여부와 관계없이 기간 내내 청구됩니다.",
+    "commitNotice": "{years}년 약정가(선결제 없음) 기준 — AWS EC2 Instance Savings Plans·RDS/ElastiCache 예약, Azure 예약, GCP 약정 사용 할인(CUD), 삼성 SCP Planned Compute(인스턴스 타입 약정), KT 온라인 VM 약정(VM만, 할인율). OCI·NCP·NHN은 공개된 리소스별 약정 상품이 없어 정가입니다. 약정은 VM·K8s 노드·DB·캐시·컨테이너 컴퓨트에만 적용되고, 스토리지·트래픽·CDN·로그·LB·NAT·K8s 컨트롤 플레인은 정가입니다. 약정 요금은 실제 사용 여부와 관계없이 기간 내내 청구됩니다.",
     "noData": "데이터 없음",
     "egressLine": "아웃바운드 트래픽 {gb}GB",
     "freeApplied": "(무료 {gb}GB 반영)",
@@ -144,7 +144,7 @@
     "dataPending": "데이터 준비 중",
     "notOffered": "이 리전 미제공",
     "unavailable": "견적 불가",
-    "footnote": "Linux 정가(온디맨드) 또는 선택한 약정가 × 월 730시간 기준. 계정당 무료 사용량 미반영. 화살표(→)는 스펙을 만족하는 최저가 인스턴스로 자동 매칭된 결과입니다. 스토리지는 범용 SSD(gp3 · Premium SSD v2 · Balanced PD · OCI Balanced · NCP·SCP·NHN SSD)와 표준 오브젝트 티어, 트래픽은 인터넷 라우팅 기준 구간 요금입니다.",
+    "footnote": "Linux 정가(온디맨드) 또는 선택한 약정가 × 월 730시간 기준. 계정당 무료 사용량 미반영. 화살표(→)는 스펙을 만족하는 최저가 인스턴스로 자동 매칭된 결과입니다. 스토리지는 범용 SSD(gp3 · Premium SSD v2 · Balanced PD · OCI Balanced · NCP·SCP·NHN·KT SSD)와 표준 오브젝트 티어, 트래픽은 인터넷 라우팅 기준 구간 요금입니다.",
     "notOfferedLine": "{provider} 미제공",
     "notOfferedRetention": "{provider}는 보관 최대 {days}일",
     "notOfferedVolume": "{provider} 요금제 용량 한도 초과",
@@ -170,7 +170,7 @@
   },
   "instances": {
     "title": "인스턴스 가격 비교표",
-    "subtitle": "AWS · Azure · GCP · OCI · NCP · SCP · NHN 인스턴스 {count, number}종 — Linux 온디맨드 정가(USD) 기준.",
+    "subtitle": "AWS · Azure · GCP · OCI · NCP · SCP · NHN · KT 인스턴스 {count, number}종 — Linux 온디맨드 정가(USD) 기준.",
     "region": "리전",
     "regionLabel": {
       "seoul": "서울",

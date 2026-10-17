@@ -18,6 +18,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>Azure — Retail Prices API</li>
         <li className={LI}>GCP — Cloud Billing Catalog API</li>
         <li className={LI}>OCI — 가격 목록 API (전 품목, 리전과 무관한 단일가)</li>
+        <li className={LI}>NCP(네이버 클라우드) — 공식 요금 계산기가 쓰는 요금 API (원화, 리전별)</li>
         <li className={LI}>환율(USD→KRW) — 표시 참고용, 일 1회 갱신{meta?.usdKrw ? ` (현재 $1 = ₩${meta.usdKrw.rate.toLocaleString()})` : ''}</li>
       </ul>
 
@@ -170,6 +171,33 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>CDN은 OCI 자체 상품이 없어 미제공입니다. 로그는 OCI Logging(수집 무료, 저장 GB·월)이며 보관은 최대 180일이라 365·730일은 미제공입니다.</li>
       </ul>
 
+      <h2 className={H2}>NCP(네이버 클라우드) 비교 기준</h2>
+      <ul className="mt-2 list-disc pl-5">
+        <li className={LI}>
+          가격은 NCP 공식 요금 계산기가 쓰는 요금 API에서 받습니다(문서화되지 않은 경로라 막히면 공식 List Price API로 옮길 예정). 원화
+          요금을 수집 시점 환율로 달러로 바꿔 저장하고, 원화로 볼 때는 같은 환율로 되돌리므로 NCP 원화 금액 그대로 표시됩니다.
+        </li>
+        <li className={LI}>제공 리전은 서울·도쿄·싱가포르입니다. 미국·유럽 리전은 VPC 서버 요금이 공개돼 있지 않아 &ldquo;이 리전 미제공&rdquo;으로 표시합니다.</li>
+        <li className={LI}>
+          VM은 3세대 일반 서버(Standard·High CPU·High Memory·CPU 타입, Intel·AMD)입니다. 한 달 내내 쓰는 기준이라, 시간 요금 × 730보다
+          약 2% 싼 <b>월 요금</b>으로 계산합니다. 2세대는 기본 디스크 50GB가 서버 요금에 포함돼 있어, Micro는 계정당 1대라 뺐습니다. ARM·버스트
+          서버는 없습니다.
+        </li>
+        <li className={LI}>블록 스토리지는 SSD(GB당 시간 0.16원), 오브젝트는 Object Storage(GB·월 28원, 서울 기준). 트래픽은 월 20GB 무료이고 이후 구간 요금입니다.</li>
+        <li className={LI}>Kubernetes는 NKS 클러스터 요금(시간당 100원), 로드밸런서는 애플리케이션 로드밸런서 Small(시간당 26원 + 처리 GB당 9원, 규칙 5개까지 무료), NAT는 시간당 56원 + 처리 GB당 60원입니다.</li>
+        <li className={LI}>
+          관리형 DB는 Cloud DB for MySQL·PostgreSQL 서버 요금이고, 이중화는 2대 구성이라 2배입니다. 데이터 스토리지는 Block Storage SSD
+          요금이며, 이중화 때는 서버마다 저장한다고 보고 2배로 <b>추정</b>했습니다. 도쿄·싱가포르는 DB·캐시가 2세대만 있어 2세대 요금입니다.
+        </li>
+        <li className={LI}>캐시는 Cloud DB for Redis 노드(1.5~204.8GB) 요금이고, 이중화는 복제 노드 1대를 더해 2배입니다.</li>
+        <li className={LI}>CDN은 Global CDN(전송 GB 구간 + 요청 1만 건당 10원)입니다. 기존 CDN+는 NCP가 Deprecated로 표시해 쓰지 않습니다.</li>
+        <li className={LI}>
+          로그는 Cloud Log Analytics의 Standard(수집 무료, 보관 GB·월 800원)와 Premium(수집 GB당 500원, 보관 무료) 중 싼 쪽입니다. 요금제마다
+          하루 수집량(20GB/100GB)과 보관량(100GB/1TB) 한도가 있어, 둘 다 넘으면 미제공으로 표시합니다.
+        </li>
+        <li className={LI}>서버리스 컨테이너는 NCP에 해당 상품이 없어 미제공입니다(Cloud Functions는 함수형이라 다른 종류). 약정 상품도 공개돼 있지 않아 1·3년 기준에서도 정가입니다.</li>
+      </ul>
+
       <h2 className={H2}>한계 — 이 견적이 말해주지 않는 것</h2>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}>
@@ -206,6 +234,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         <li className={LI}>Azure — Retail Prices API</li>
         <li className={LI}>GCP — Cloud Billing Catalog API</li>
         <li className={LI}>OCI — price list API (every product; one price for all regions)</li>
+        <li className={LI}>NCP (NAVER Cloud) — the pricing API behind the official cost calculator (KRW, per region)</li>
         <li className={LI}>Exchange rate (USD→KRW) — for display only, refreshed daily{meta?.usdKrw ? ` (currently $1 = ₩${meta.usdKrw.rate.toLocaleString()})` : ''}</li>
       </ul>
 
@@ -369,6 +398,36 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           container service.
         </li>
         <li className={LI}>OCI has no CDN of its own, so CDN is not offered. Logs use OCI Logging (ingestion free, storage per GB-month); retention tops out at 180 days, so 365 and 730 days are not offered.</li>
+      </ul>
+
+      <h2 className={H2}>NCP (NAVER Cloud) comparison basis</h2>
+      <ul className="mt-2 list-disc pl-5">
+        <li className={LI}>
+          Prices come from the pricing API behind NCP&rsquo;s official cost calculator (an undocumented path; if it stops working we will
+          move to the official List Price API). KRW prices are converted to USD at the exchange rate of the collection day, and the same
+          rate converts them back, so KRW figures match NCP&rsquo;s own prices.
+        </li>
+        <li className={LI}>NCP is offered in Seoul, Tokyo and Singapore. The US and Europe regions have no published VPC server prices, so they show &ldquo;not offered in this region&rdquo;.</li>
+        <li className={LI}>
+          VMs are 3rd-generation general servers (Standard, High CPU, High Memory, CPU types; Intel and AMD). Because we assume a full
+          month, we use the <b>monthly rate</b>, about 2% cheaper than the hourly rate × 730. 2nd-generation servers (which bundle a 50 GB
+          disk) and Micro servers (one per account) are left out. NCP has no Arm or burstable servers.
+        </li>
+        <li className={LI}>Block storage is SSD (KRW 0.16 per GB-hour); object storage is Object Storage (KRW 28 per GB-month in Seoul). The first 20 GB of internet traffic per month is free, then tiered rates apply.</li>
+        <li className={LI}>Kubernetes uses the NKS cluster fee (KRW 100/hour); load balancers use the Application Load Balancer Small (KRW 26/hour + KRW 9 per GB processed, first 5 rules free); NAT is KRW 56/hour + KRW 60 per GB processed.</li>
+        <li className={LI}>
+          Managed databases use Cloud DB for MySQL / PostgreSQL server prices; high availability runs two servers (2×). Data storage is
+          billed at the Block Storage SSD rate, and for high availability we <b>assume</b> each server stores its own copy (2×). Tokyo and
+          Singapore only have 2nd-generation DB and cache servers, so those prices are used there.
+        </li>
+        <li className={LI}>Caches use Cloud DB for Redis nodes (1.5–204.8 GB); high availability adds one replica (2×).</li>
+        <li className={LI}>CDN uses Global CDN (tiered per-GB rates + KRW 10 per 10,000 requests). The older CDN+ is marked deprecated by NCP and is not used.</li>
+        <li className={LI}>
+          Logs use the cheaper of Cloud Log Analytics Standard (free ingestion, KRW 800 per GB-month stored) and Premium (KRW 500 per GB
+          ingested, free storage). Each plan caps daily ingestion (20 GB / 100 GB) and stored volume (100 GB / 1 TB); if both are exceeded,
+          logs are marked not offered.
+        </li>
+        <li className={LI}>NCP has no serverless container service (Cloud Functions is functions-as-a-service), so containers are not offered. No commitment products are published, so 1- and 3-year terms stay at on-demand prices.</li>
       </ul>
 
       <h2 className={H2}>Limitations — what this estimate does not tell you</h2>

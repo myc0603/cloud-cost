@@ -1,6 +1,6 @@
 /**
  * 수집기 진입점 — 플랫폼별 수집을 오케스트레이션한다.
- * 실행: tsx collector/main.ts [all|gcp|aws|azure|oci] [--force]
+ * 실행: tsx collector/main.ts [all|gcp|aws|azure|oci|ncp] [--force]
  *   - gcp: GCP_API_KEY 환경변수 또는 .env 필요
  *   - --force: 검증 실패를 무시하고 기록 (실제 대규모 가격 개편일 때만)
  * 산출: data/{provider}/{region}/vm.json · storage.json · egress.json · k8s.json · lb.json · nat.json · db.json · cache.json · container.json · cdn.json · logs.json + data/meta.json
@@ -50,6 +50,7 @@ import {
   parseCommitUnitPrices,
   parseUnitPrices,
 } from './providers/gcp';
+import { buildNcpSnapshot, fetchNcpPriceList, NCP_REGION } from './providers/ncp';
 import { buildOciSnapshot, fetchOciPriceList } from './providers/oci';
 import { validateSnapshot, type Snapshot } from './validate';
 
@@ -225,20 +226,34 @@ async function collectOciJobs(): Promise<Job[]> {
   }));
 }
 
+/** NCP는 원화 요금이라 수집 시점 환율로 USD 환산 (화면은 같은 환율로 되돌린다) */
+async function collectNcpJobs(usdKrw: Meta['usdKrw']): Promise<Job[]> {
+  if (!usdKrw) throw new Error('환율이 없어 NCP 원화 요금을 환산할 수 없음');
+  const jobs: Job[] = [];
+  for (const region of regionsOf('ncp')) {
+    console.log(`[ncp/${region}] 요금 계산기 API 수집 중... (원화 → USD, $1 = ₩${usdKrw.rate})`);
+    const list = await fetchNcpPriceList(NCP_REGION[region]);
+    jobs.push({ provider: 'ncp', region, snap: buildNcpSnapshot(list, region, usdKrw.rate), vmSamples: ['STAND.C002.M008.G003', 'HICPU.C004.M008.G003', 'HIMEM.C002.M016.G003'] });
+  }
+  return jobs;
+}
+
 const args = process.argv.slice(2);
 const force = args.includes('--force');
 const target = args.find((a) => !a.startsWith('--')) ?? 'all';
-if (!['gcp', 'aws', 'azure', 'oci', 'all'].includes(target)) {
-  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure | oci)`);
+if (!['gcp', 'aws', 'azure', 'oci', 'ncp', 'all'].includes(target)) {
+  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure | oci | ncp)`);
   process.exit(1);
 }
 
-// 1) 수집 (메모리)
+// 1) 수집 (메모리) — 환율을 먼저 받는다 (NCP 원화 환산 + meta.json 기록에 같은 값)
+const usdKrw = await fetchUsdKrw();
 const jobs: Job[] = [];
 if (target === 'gcp' || target === 'all') jobs.push(...(await collectGcpJobs()));
 if (target === 'aws' || target === 'all') jobs.push(...(await collectAwsJobs()));
 if (target === 'azure' || target === 'all') jobs.push(...(await collectAzureJobs()));
 if (target === 'oci' || target === 'all') jobs.push(...(await collectOciJobs()));
+if (target === 'ncp' || target === 'all') jobs.push(...(await collectNcpJobs(usdKrw)));
 
 // 2) 검증 — 하나라도 이상하면 아무것도 쓰지 않는다
 const allErrors = jobs.flatMap((j) => validateSnapshot(`${j.provider}/${j.region}`, readOldSnapshot(j.provider, j.region), j.snap));
@@ -254,6 +269,6 @@ if (allErrors.length > 0) {
 
 // 3) 기록
 for (const job of jobs) writeSnapshot(job);
-const meta: Meta = { collectedAt: new Date().toISOString(), usdKrw: await fetchUsdKrw() };
+const meta: Meta = { collectedAt: new Date().toISOString(), usdKrw };
 writeFileSync('data/meta.json', JSON.stringify(meta, null, 2) + '\n');
 console.log(`\nmeta.json 갱신 — 수집 시각 ${meta.collectedAt}, USD/KRW ${meta.usdKrw?.rate ?? '없음'}`);

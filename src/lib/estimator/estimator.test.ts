@@ -41,6 +41,7 @@ const PRICING: Record<Provider, ProviderPricing> = {
   aws: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   azure: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   oci: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
+  ncp: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   gcp: {
     vm: FIXTURE,
     storage: [
@@ -544,7 +545,7 @@ test('로그: 수집 + 포함 기간 넘는 보관(쌓인 양 × 배율), Commit
   assert.equal(big.usd.toFixed(6), (250 * D + 100 * D * 2.5).toFixed(6));
   const line = estimate(scenario([{ type: 'logs', gb: 100, retentionDays: 30 }]), { ...PRICING, gcp: { ...PRICING.gcp, logs: azure } }, { includeBurstable: true })
     .find((e) => e.provider === 'gcp')!.lines[0];
-  assert.deepEqual(line, { resourceIndex: 0, kind: 'logs', gb: 100, retentionDays: 30, commitmentGbPerDay: null, monthlyUsd: 300 });
+  assert.deepEqual(line, { resourceIndex: 0, kind: 'logs', gb: 100, retentionDays: 30, commitmentGbPerDay: null, plan: null, monthlyUsd: 300 });
 });
 
 test('실데이터 스모크: 전 플랫폼 스냅샷에서 통합 시나리오 견적', () => {
@@ -565,7 +566,7 @@ test('미제공: NOT_OFFERED 구성 요소는 미제공 줄 — 총액은 나머
   const results = estimate(scenario([vmRes(2, 4), { type: 'cdn', gb: 100, requestsM: 1 }]), pricing, { includeBurstable: true });
   const gcp = results.find((e) => e.provider === 'gcp')!;
   const oci = results.find((e) => e.provider === 'oci')!;
-  assert.deepEqual(oci.lines[1], { resourceIndex: 1, kind: 'not-offered', resourceType: 'cdn', maxRetentionDays: null, monthlyUsd: null });
+  assert.deepEqual(oci.lines[1], { resourceIndex: 1, kind: 'not-offered', resourceType: 'cdn', limit: null, monthlyUsd: null });
   assert.equal(oci.partial, true);
   assert.equal(oci.totalMonthlyUsd, oci.lines[0].monthlyUsd); // VM만의 합계
   assert.equal(gcp.partial, false);
@@ -583,7 +584,7 @@ test('로그: 최대 보관 기간(OCI 180일)을 넘으면 미제공 줄', () =
     estimate(scenario([{ type: 'logs', gb: 100, retentionDays: days }]), { ...PRICING, gcp: { ...PRICING.gcp, logs: oci } }, { includeBurstable: true })
       .find((e) => e.provider === 'gcp')!.lines[0];
   assert.ok(line(180).kind === 'logs' && line(180).monthlyUsd !== null);
-  assert.deepEqual(line(365), { resourceIndex: 0, kind: 'not-offered', resourceType: 'logs', maxRetentionDays: 180, monthlyUsd: null });
+  assert.deepEqual(line(365), { resourceIndex: 0, kind: 'not-offered', resourceType: 'logs', limit: { kind: 'retention', maxDays: 180 }, monthlyUsd: null });
 });
 
 test('컨테이너: OCI는 OCPU 단위 — x86은 vCPU 2개씩(E4), ARM은 1개씩(A1), 메모리 1GB 단위·최소 OCPU 수', () => {
@@ -594,4 +595,20 @@ test('컨테이너: OCI는 OCPU 단위 — x86은 vCPU 2개씩(E4), ARM은 1개�
   assert.deepEqual(arm, { vcpu: 1, ramGb: 2, arch: 'arm', perHour: 0.013, committed: false });
   // 3 vCPU x86 → 2 OCPU = 4 vCPU, 메모리는 OCPU 수 이상
   assert.deepEqual(fitContainer(price, { vcpu: 3, ramGb: 1 }, { includeBurstable: true, arch: 'x86' }), { vcpu: 4, ramGb: 2, arch: 'x86', perHour: 0.053, committed: false });
+});
+
+test('로그: 요금제가 여러 개면 한도(하루 수집량·보관량) 안에서 가장 싼 쪽, 모두 넘으면 용량 미제공', () => {
+  const premium: LogPrice = { provider: 'ncp', region: 'seoul', ingestPerGb: 0.4, storagePerGbMonth: 0, includedDays: 0, storedRatio: 1, commitmentTiers: [], plan: 'Premium', maxGbPerDay: 100, maxStoredGb: 1024 };
+  const standard: LogPrice = { ...premium, ingestPerGb: 0, storagePerGbMonth: 0.6, plan: 'Standard', maxGbPerDay: 20, maxStoredGb: 100, alternatives: [premium] };
+  const line = (gb: number, days: number) =>
+    estimate(scenario([{ type: 'logs', gb, retentionDays: days }]), { ...PRICING, gcp: { ...PRICING.gcp, logs: standard } }, { includeBurstable: true })
+      .find((e) => e.provider === 'gcp')!.lines[0];
+  // 월 30GB·30일 보관(보관량 ≈ 29.6GB, Standard 한도 안): Standard ≈ 29.6 × 0.6 = 17.75 > Premium 30 × 0.4 = 12 → Premium
+  const small = line(30, 30);
+  assert.ok(small.kind === 'logs' && small.plan === 'Premium' && small.monthlyUsd === 12);
+  // 하루 20GB 초과(월 900GB) → Standard 불가, Premium 가능
+  const mid = line(900, 30);
+  assert.ok(mid.kind === 'logs' && mid.plan === 'Premium');
+  // 보관량 1TB 초과(월 900GB × 365일) → 둘 다 불가
+  assert.deepEqual(line(900, 365), { resourceIndex: 0, kind: 'not-offered', resourceType: 'logs', limit: { kind: 'volume' }, monthlyUsd: null });
 });

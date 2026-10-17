@@ -79,7 +79,7 @@ function shapes(provider: Provider, arch: Arch, spec: Shape): Shape[] {
 }
 
 /** 플랫폼별 최대 사이즈 — 사이즈 초과 안내용 */
-const MAX: Record<Provider, Shape> = {
+const MAX: Partial<Record<Provider, Shape>> = {
   aws: { vcpu: 16, ramGb: 120 },
   azure: { vcpu: 4, ramGb: 8 },
   gcp: { vcpu: 8, ramGb: 32 },
@@ -101,7 +101,7 @@ export function fitContainer(price: ContainerPrice, spec: Shape, opts: MatchOpti
     }
   }
   if (best) return best;
-  const max = MAX[price.provider];
+  const max = MAX[price.provider]!; // 컨테이너 미제공 플랫폼(NOT_OFFERED)은 여기 오지 않는다
   return { reason: 'size', maxVcpu: max.vcpu, maxRamGb: max.ramGb };
 }
 

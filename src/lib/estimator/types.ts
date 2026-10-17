@@ -92,6 +92,9 @@ export type NoMatchReason =
   | { reason: 'size'; maxVcpu: number; maxRamGb: number }
   | { reason: 'memory'; maxGb: number };
 
+/** 옵션 한도 때문에 미제공인 이유 — retention: 최대 보관 일수 초과(OCI 180일), volume: 수집·보관 용량 한도 초과(NCP) */
+export type NotOfferedLimit = { kind: 'retention'; maxDays: number } | { kind: 'volume' };
+
 /** 견적 한 줄. resourceIndex = 이 줄을 만든 카드의 인덱스 (카드 하나가 여러 줄을 낼 수 있다) */
 export type EstimateLine = { resourceIndex: number } & (
   | {
@@ -142,13 +145,16 @@ export type EstimateLine = { resourceIndex: number } & (
   | { kind: 'container'; spec: VmSpec; matched: ContainerMatch | null; noMatch: NoMatchReason | null; monthlyUsd: number | null }
   /** CDN. plan = 정액 요금제로 계산했으면 그 이름(CloudFront), 종량제면 null */
   | { kind: 'cdn'; gb: number; requestsM: number; plan: string | null; monthlyUsd: number | null }
-  /** 로그 수집. commitmentGbPerDay = Azure Commitment Tier로 계산했으면 그 등급(GB/일), 종량제면 null */
-  | { kind: 'logs'; gb: number; retentionDays: number; commitmentGbPerDay: number | null; monthlyUsd: number | null }
+  /**
+   * 로그 수집. commitmentGbPerDay = Azure Commitment Tier로 계산했으면 그 등급(GB/일), 종량제면 null.
+   * plan = 요금제가 여러 개인 플랫폼에서 고른 요금제 이름(NCP), 그 외 null
+   */
+  | { kind: 'logs'; gb: number; retentionDays: number; commitmentGbPerDay: number | null; plan: string | null; monthlyUsd: number | null }
   /**
    * 플랫폼이 제공하지 않는 구성 요소(providers.ts NOT_OFFERED) 또는 옵션(로그 최대 보관 기간 초과).
-   * 총액에서 빠지고 최저가 비교 대상에서 제외된다. maxRetentionDays = 보관 기간 초과로 미제공이면 그 상한
+   * 총액에서 빠지고 최저가 비교 대상에서 제외된다. limit = 옵션 한도 때문에 미제공이면 그 이유(보관 기간·로그 용량), 상품 자체가 없으면 null
    */
-  | { kind: 'not-offered'; resourceType: ResourceType; maxRetentionDays: number | null; monthlyUsd: null }
+  | { kind: 'not-offered'; resourceType: ResourceType; limit: NotOfferedLimit | null; monthlyUsd: null }
 );
 
 /** 컨테이너 매칭 결과 — 플랫폼 허용 조합으로 올린 사이즈, perHour = 컨테이너 1개 시간당(요금 기준 반영) */

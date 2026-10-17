@@ -71,7 +71,7 @@ export function estimate(
 
     const lines: EstimateLine[] = scenario.resources.flatMap((r, index): EstimateLine[] =>
       NOT_OFFERED[provider].includes(r.type)
-        ? [{ resourceIndex: index, kind: 'not-offered', resourceType: r.type, maxRetentionDays: null, monthlyUsd: null }]
+        ? [{ resourceIndex: index, kind: 'not-offered', resourceType: r.type, limit: null, monthlyUsd: null }]
         : resourceDef(r).estimate(r, { index, pricing: p, opts, pick: overrides[provider]?.[index], scenario }),
     );
 

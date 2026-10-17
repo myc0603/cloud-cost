@@ -7,13 +7,13 @@
 import type { Provider, Region } from './schema';
 
 export const REGION_CODES: Record<Region, Record<Provider, string | null>> = {
-  seoul: { aws: 'ap-northeast-2', azure: 'koreacentral', gcp: 'asia-northeast3', oci: 'ap-seoul-1' },
-  tokyo: { aws: 'ap-northeast-1', azure: 'japaneast', gcp: 'asia-northeast1', oci: 'ap-tokyo-1' },
-  singapore: { aws: 'ap-southeast-1', azure: 'southeastasia', gcp: 'asia-southeast1', oci: 'ap-singapore-1' },
-  'us-east': { aws: 'us-east-1', azure: 'eastus', gcp: 'us-east1', oci: 'us-ashburn-1' },
-  'us-west': { aws: 'us-west-2', azure: 'westus2', gcp: 'us-west1', oci: 'us-sanjose-1' },
-  frankfurt: { aws: 'eu-central-1', azure: 'germanywestcentral', gcp: 'europe-west3', oci: 'eu-frankfurt-1' },
-  london: { aws: 'eu-west-2', azure: 'uksouth', gcp: 'europe-west2', oci: 'uk-london-1' },
+  seoul: { aws: 'ap-northeast-2', azure: 'koreacentral', gcp: 'asia-northeast3', oci: 'ap-seoul-1', ncp: 'KR' },
+  tokyo: { aws: 'ap-northeast-1', azure: 'japaneast', gcp: 'asia-northeast1', oci: 'ap-tokyo-1', ncp: 'JPN' },
+  singapore: { aws: 'ap-southeast-1', azure: 'southeastasia', gcp: 'asia-southeast1', oci: 'ap-singapore-1', ncp: 'SGN' },
+  'us-east': { aws: 'us-east-1', azure: 'eastus', gcp: 'us-east1', oci: 'us-ashburn-1', ncp: null },
+  'us-west': { aws: 'us-west-2', azure: 'westus2', gcp: 'us-west1', oci: 'us-sanjose-1', ncp: null },
+  frankfurt: { aws: 'eu-central-1', azure: 'germanywestcentral', gcp: 'europe-west3', oci: 'eu-frankfurt-1', ncp: null },
+  london: { aws: 'eu-west-2', azure: 'uksouth', gcp: 'europe-west2', oci: 'uk-london-1', ncp: null },
 };
 
 export const REGIONS = Object.keys(REGION_CODES) as Region[];

@@ -1,13 +1,13 @@
 {
   "meta": {
     "siteTitle": "How Much Cloud — Cloud Cost Comparison",
-    "siteDescription": "Compare estimated monthly costs for your workload across AWS, Azure, GCP, and OCI — side by side.",
-    "instancesTitle": "AWS vs Azure vs GCP vs OCI Instance Price Comparison | How Much Cloud",
-    "instancesDescription": "Compare vCPU/RAM specs and hourly/monthly prices of AWS EC2, Azure VM, GCP Compute Engine, and OCI Compute instances in one table. Linux on-demand list prices across 7 regions in Asia, the US and Europe.",
+    "siteDescription": "Compare estimated monthly costs for your workload across AWS, Azure, GCP, OCI, and NAVER Cloud (NCP) — side by side.",
+    "instancesTitle": "AWS vs Azure vs GCP vs OCI vs NCP Instance Price Comparison | How Much Cloud",
+    "instancesDescription": "Compare vCPU/RAM specs and hourly/monthly prices of AWS EC2, Azure VM, GCP Compute Engine, OCI Compute, and NAVER Cloud (NCP) Server instances in one table. Linux on-demand list prices across 7 regions in Asia, the US and Europe.",
     "methodologyTitle": "Data Sources & Methodology | How Much Cloud",
     "methodologyDescription": "How we collect prices from the official cloud pricing APIs, validate them daily, and compute estimates — including comparison rules and limitations.",
     "ogHeadline": "Cloud costs,\nside by side",
-    "ogSubtitle": "AWS · Azure · GCP · OCI monthly cost"
+    "ogSubtitle": "AWS · Azure · GCP · OCI · NCP monthly cost"
   },
   "nav": {
     "brand": "How Much Cloud",
@@ -17,7 +17,7 @@
   },
   "home": {
     "title": "Cloud cost comparison",
-    "subtitle": "Enter the specs you need and compare estimated monthly costs across AWS · Azure · GCP · OCI side by side."
+    "subtitle": "Enter the specs you need and compare estimated monthly costs across AWS · Azure · GCP · OCI · NCP side by side."
   },
   "freshness": {
     "collected": "Prices collected {date}",
@@ -85,9 +85,9 @@
     "dbEngine": "Engine",
     "dbStorageGb": "Storage (GB)",
     "dbHa": "High availability",
-    "dbHaHint": "Standby replica for high availability (AWS Multi-AZ · Azure HA · GCP Regional · OCI multi-node) — roughly doubles compute and storage (triples for OCI MySQL, which runs 3 instances)",
+    "dbHaHint": "Standby replica for high availability (AWS Multi-AZ · Azure HA · GCP Regional · OCI multi-node · NCP two servers) — roughly doubles compute and storage (triples for OCI MySQL, which runs 3 instances)",
     "cacheMemoryGb": "Memory (GB)",
-    "cacheHaHint": "High availability with a replica (AWS replica node · Azure two-node · GCP Standard tier · OCI replica node)",
+    "cacheHaHint": "High availability with a replica (AWS replica node · Azure two-node · GCP Standard tier · OCI/NCP replica node)",
     "remove": "Remove",
     "removeAria": "Remove this resource",
     "vcpu": "vCPU",
@@ -116,7 +116,7 @@
     "noCommit": "no commitment price",
     "onDemandShort": "on-demand",
     "sudNote": "(sustained use discount not applied — up to {pct}% off automatically if run all month)",
-    "commitNotice": "{years}-year commitment prices (no upfront) — AWS EC2 Instance Savings Plans and RDS/ElastiCache reservations, Azure reservations, GCP committed use discounts (CUDs). OCI has no per-resource commitments, so it stays at on-demand prices. Commitments apply only to VM, K8s node, DB, cache and container compute; storage, traffic, CDN, logs, load balancers, NAT and K8s control planes stay at on-demand prices. Committed charges are billed for the whole term whether or not you use them.",
+    "commitNotice": "{years}-year commitment prices (no upfront) — AWS EC2 Instance Savings Plans and RDS/ElastiCache reservations, Azure reservations, GCP committed use discounts (CUDs). OCI and NCP have no per-resource commitments, so they stay at on-demand prices. Commitments apply only to VM, K8s node, DB, cache and container compute; storage, traffic, CDN, logs, load balancers, NAT and K8s control planes stay at on-demand prices. Committed charges are billed for the whole term whether or not you use them.",
     "noData": "No data",
     "egressLine": "Outbound traffic {gb}GB",
     "freeApplied": "({gb}GB free tier applied)",
@@ -144,9 +144,10 @@
     "dataPending": "Data coming soon",
     "notOffered": "Not offered in this region",
     "unavailable": "Not available",
-    "footnote": "Linux on-demand list prices (or the selected commitment prices) × 730 hours/month. Per-account free allowances not included. The arrow (→) marks the cheapest instance that satisfies your specs, matched automatically. Storage compares general-purpose SSDs (gp3 · Premium SSD v2 · Balanced PD · OCI Balanced) and standard object tiers; traffic uses tiered internet-routing rates.",
+    "footnote": "Linux on-demand list prices (or the selected commitment prices) × 730 hours/month. Per-account free allowances not included. The arrow (→) marks the cheapest instance that satisfies your specs, matched automatically. Storage compares general-purpose SSDs (gp3 · Premium SSD v2 · Balanced PD · OCI Balanced · NCP SSD) and standard object tiers; traffic uses tiered internet-routing rates.",
     "notOfferedLine": "not offered by {provider}",
     "notOfferedRetention": "{provider} keeps logs for at most {days} days",
+    "notOfferedVolume": "over {provider}'s plan volume limits",
     "partialTotal": "excludes items not offered",
     "otherPlatforms": "Other platforms",
     "free": "Free"
@@ -168,7 +169,7 @@
   },
   "instances": {
     "title": "Instance price comparison",
-    "subtitle": "{count, number} AWS · Azure · GCP · OCI instances — Linux on-demand list prices (USD).",
+    "subtitle": "{count, number} AWS · Azure · GCP · OCI · NCP instances — Linux on-demand list prices (USD).",
     "region": "Region",
     "regionLabel": {
       "seoul": "Seoul",

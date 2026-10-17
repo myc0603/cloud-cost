@@ -9,13 +9,13 @@ import { offeredIn } from '@/lib/regions';
 import type { Arch, Provider, Region, Term } from '@/lib/schema';
 
 /** 로그 수집 상품명 — 비교 대상 고정 (estimator/logs.ts) */
-const LOGS_PRODUCT: Record<Provider, string> = { aws: 'CloudWatch Logs', azure: 'Log Analytics', gcp: 'Cloud Logging', oci: 'OCI Logging' };
+const LOGS_PRODUCT: Record<Provider, string> = { aws: 'CloudWatch Logs', azure: 'Log Analytics', gcp: 'Cloud Logging', oci: 'OCI Logging', ncp: 'Cloud Log Analytics' };
 
 /** CDN 상품명 — 비교 대상 고정 (estimator/cdn.ts). 미제공 플랫폼은 없음 (providers.ts NOT_OFFERED) */
-const CDN_PRODUCT: Partial<Record<Provider, string>> = { aws: 'CloudFront', azure: 'Front Door Standard', gcp: 'Cloud CDN' };
+const CDN_PRODUCT: Partial<Record<Provider, string>> = { aws: 'CloudFront', azure: 'Front Door Standard', gcp: 'Cloud CDN', ncp: 'Global CDN' };
 
-/** 서버리스 컨테이너 상품명 — 비교 대상 고정 (estimator/container.ts) */
-const CONTAINER_PRODUCT: Record<Provider, string> = { aws: 'Fargate', azure: 'Container Apps', gcp: 'Cloud Run', oci: 'Container Instances' };
+/** 서버리스 컨테이너 상품명 — 비교 대상 고정 (estimator/container.ts). 미제공 플랫폼은 없음 */
+const CONTAINER_PRODUCT: Partial<Record<Provider, string>> = { aws: 'Fargate', azure: 'Container Apps', gcp: 'Cloud Run', oci: 'Container Instances' };
 
 /** (provider, 카드 인덱스)의 인스턴스 선택 변경. isDefault(=최저가)면 override 해제 */
 type SelectInstance = (provider: Provider, resourceIndex: number, sku: string, isDefault: boolean) => void;
@@ -86,7 +86,7 @@ function NoMatchNote({ noMatch, provider }: { noMatch: NoMatchReason | null; pro
           (
           {noMatch.reason === 'arch'
             ? noMatch.scope === 'platform'
-              ? t('noMatchArchPlatform', { product: CONTAINER_PRODUCT[provider], arch: archLabel(noMatch.arch) })
+              ? t('noMatchArchPlatform', { product: CONTAINER_PRODUCT[provider] ?? PROVIDER_LABEL[provider], arch: archLabel(noMatch.arch) })
               : t('noMatchArch', { provider: PROVIDER_LABEL[provider], arch: archLabel(noMatch.arch) })
             : noMatch.reason === 'memory'
               ? t('noMatchMemory', { gb: noMatch.maxGb })
@@ -120,7 +120,12 @@ function LineLabel({
       <span>
         {ts(`resourceTitle.${line.resourceType}`)}
         <span className="ml-1 text-slate-400">
-          — {line.maxRetentionDays !== null ? t('notOfferedRetention', { provider: PROVIDER_LABEL[provider], days: line.maxRetentionDays }) : t('notOfferedLine', { provider: PROVIDER_LABEL[provider] })}
+          —{' '}
+          {line.limit?.kind === 'retention'
+            ? t('notOfferedRetention', { provider: PROVIDER_LABEL[provider], days: line.limit.maxDays })
+            : line.limit?.kind === 'volume'
+              ? t('notOfferedVolume', { provider: PROVIDER_LABEL[provider] })
+              : t('notOfferedLine', { provider: PROVIDER_LABEL[provider] })}
         </span>
       </span>
     );
@@ -248,6 +253,7 @@ function LineLabel({
         ) : (
           <span className="ml-1 text-slate-400">
             → {LOGS_PRODUCT[provider]}
+            {line.plan !== null && ` ${line.plan}`}
             {line.commitmentGbPerDay !== null && ` ${t('logsCommitment', { gb: line.commitmentGbPerDay })}`}
           </span>
         )}

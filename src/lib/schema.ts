@@ -4,7 +4,7 @@
  */
 
 /** 플랫폼 목록·라벨·미제공 구성 요소는 providers.ts */
-export type Provider = 'aws' | 'azure' | 'gcp' | 'oci';
+export type Provider = 'aws' | 'azure' | 'gcp' | 'oci' | 'ncp';
 
 /** CPU 아키텍처. arm = Graviton(AWS)·Ampere(Azure/GCP) 계열 */
 export type Arch = 'x86' | 'arm';
@@ -246,6 +246,14 @@ export interface LogPrice {
   commitmentTiers: LogCommitmentTier[];
   /** 설정 가능한 최대 보관 일수 (OCI 180일). 없으면 제한 없음 — 넘는 보관 기간은 "미제공" */
   maxRetentionDays?: number;
+  /** 요금제 이름 — 요금제가 여러 개인 플랫폼(NCP Standard·Premium)의 표시용 */
+  plan?: string;
+  /** 하루 최대 수집 GB (NCP). 없으면 제한 없음 */
+  maxGbPerDay?: number;
+  /** 최대 보관량 GB — 정상 상태 누적량 기준 (NCP). 없으면 제한 없음 */
+  maxStoredGb?: number;
+  /** 다른 요금제 — 한도 안에 드는 요금제 중 가장 싼 쪽으로 계산 (NCP Premium) */
+  alternatives?: LogPrice[];
 }
 
 /** 한 플랫폼의 리전별 요금 데이터 묶음 — pricing 로더가 반환하는 단위 */

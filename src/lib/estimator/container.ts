@@ -1,5 +1,5 @@
 /**
- * 서버리스 컨테이너 리소스 — AWS ECS Fargate / Azure Container Apps(Consumption) / GCP Cloud Run(인스턴스 기반 과금).
+ * 서버리스 컨테이너 리소스 — AWS ECS Fargate / Azure Container Apps(Consumption) / GCP Cloud Run(인스턴스 기반 과금) / OCI Container Instances.
  * 상시 실행 기준: 컨테이너 수 × (vCPU 단가 × vCPU + GB 단가 × 메모리) × 730시간.
  * 플랫폼마다 허용되는 vCPU·메모리 조합이 달라 요구 스펙 이상인 가장 싼 허용 조합으로 올린다 (규칙은 아래 상수, 공식 문서값).
  * 아키텍처 토글을 따른다 (ARM은 Fargate만). 버스트 옵션은 해당 없음.
@@ -52,17 +52,39 @@ const CLOUD_RUN_MEMORY: [vcpu: number, minGb: number, maxGb: number][] = [
   [8, 4, 32],
 ];
 
-function shapes(provider: Provider, ramGb: number): Shape[] {
+/**
+ * OCI Container Instances — CI.Standard.E4.Flex(x86, 1 OCPU = 2 vCPU, 최대 64 OCPU·1024GB) / CI.Standard.A1.Flex(ARM, 1 OCPU = 1 vCPU,
+ * 최대 76 OCPU·488GB). 메모리는 1GB 단위, OCPU당 1~64GB (docs.oracle.com/iaas/Content/container-instances/container-instance-shapes.htm, 2026-10-17 확인)
+ */
+const OCI_CI: Record<Arch, { vcpuPerOcpu: number; maxOcpu: number; maxGb: number }> = {
+  x86: { vcpuPerOcpu: 2, maxOcpu: 64, maxGb: 1024 },
+  arm: { vcpuPerOcpu: 1, maxOcpu: 76, maxGb: 488 },
+};
+
+function ociShape(arch: Arch, spec: Shape): Shape[] {
+  const ci = OCI_CI[arch];
+  const ocpu = Math.max(1, Math.ceil(spec.vcpu / ci.vcpuPerOcpu));
+  const ramGb = Math.max(Math.ceil(spec.ramGb), ocpu);
+  return ocpu <= ci.maxOcpu && ramGb <= Math.min(ocpu * 64, ci.maxGb) ? [{ vcpu: ocpu * ci.vcpuPerOcpu, ramGb }] : [];
+}
+
+function shapes(provider: Provider, arch: Arch, spec: Shape): Shape[] {
   if (provider === 'aws') return FARGATE_SHAPES;
   if (provider === 'azure') return CONTAINER_APPS_SHAPES;
+  if (provider === 'oci') return ociShape(arch, spec);
   return CLOUD_RUN_MEMORY.flatMap(([vcpu, min, max]) => {
-    const ram = Math.max(ramGb, min);
+    const ram = Math.max(spec.ramGb, min);
     return ram <= max ? [{ vcpu, ramGb: ram }] : [];
   });
 }
 
 /** 플랫폼별 최대 사이즈 — 사이즈 초과 안내용 */
-const MAX: Record<Provider, Shape> = { aws: { vcpu: 16, ramGb: 120 }, azure: { vcpu: 4, ramGb: 8 }, gcp: { vcpu: 8, ramGb: 32 } };
+const MAX: Record<Provider, Shape> = {
+  aws: { vcpu: 16, ramGb: 120 },
+  azure: { vcpu: 4, ramGb: 8 },
+  gcp: { vcpu: 8, ramGb: 32 },
+  oci: { vcpu: 128, ramGb: 1024 },
+};
 
 /** 요구 스펙 이상인 허용 조합 × 아키텍처 중 최저가. 동가면 작은 조합 */
 export function fitContainer(price: ContainerPrice, spec: Shape, opts: MatchOptions): ContainerMatch | NoMatchReason {
@@ -72,7 +94,7 @@ export function fitContainer(price: ContainerPrice, spec: Shape, opts: MatchOpti
   for (const arch of arches) {
     const r = price.rates[arch]!;
     const { price: rate, committed } = priceAt(r, r.commit, opts.term);
-    for (const s of shapes(price.provider, spec.ramGb)) {
+    for (const s of shapes(price.provider, arch, spec)) {
       if (s.vcpu < spec.vcpu || s.ramGb < spec.ramGb) continue;
       const perHour = +(s.vcpu * rate.vcpuPerHour + s.ramGb * rate.gbPerHour).toFixed(6);
       if (!best || perHour < best.perHour || (perHour === best.perHour && s.vcpu < best.vcpu)) best = { ...s, arch, perHour, committed };

@@ -7,10 +7,11 @@
  */
 
 import { RESOURCES, resourceDef, type ArchFilter, type Overrides, type Resource, type Scenario } from './estimator';
+import { PROVIDERS as PROVIDER_LIST } from './providers';
 import { REGIONS } from './regions';
 import type { Provider, Term } from './schema';
 
-const PROVIDERS = new Set<string>(['aws', 'azure', 'gcp']);
+const PROVIDERS = new Set<string>(PROVIDER_LIST);
 
 const DEF_BY_TOKEN = new Map(Object.values(RESOURCES).map((d) => [d.token, d]));
 

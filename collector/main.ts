@@ -1,6 +1,6 @@
 /**
  * 수집기 진입점 — 플랫폼별 수집을 오케스트레이션한다.
- * 실행: tsx collector/main.ts [all|gcp|aws|azure] [--force]
+ * 실행: tsx collector/main.ts [all|gcp|aws|azure|oci] [--force]
  *   - gcp: GCP_API_KEY 환경변수 또는 .env 필요
  *   - --force: 검증 실패를 무시하고 기록 (실제 대규모 가격 개편일 때만)
  * 산출: data/{provider}/{region}/vm.json · storage.json · egress.json · k8s.json · lb.json · nat.json · db.json · cache.json · container.json · cdn.json · logs.json + data/meta.json
@@ -50,6 +50,7 @@ import {
   parseCommitUnitPrices,
   parseUnitPrices,
 } from './providers/gcp';
+import { buildOciSnapshot, fetchOciPriceList } from './providers/oci';
 import { validateSnapshot, type Snapshot } from './validate';
 
 // 최소 .env 로더 (의존성 없이)
@@ -212,11 +213,23 @@ async function collectAzureJobs(): Promise<Job[]> {
   return jobs;
 }
 
+async function collectOciJobs(): Promise<Job[]> {
+  console.log('[oci] 가격 목록 API 수집 중...');
+  const items = await fetchOciPriceList();
+  console.log(`[oci] 품목 ${items.length.toLocaleString()}건 수신 — 리전 무관 단일가, 트래픽만 지역별`);
+  return regionsOf('oci').map((region) => ({
+    provider: 'oci',
+    region,
+    snap: buildOciSnapshot(items, region),
+    vmSamples: ['VM.Standard.E4.Flex.1OCPU.8GB', 'VM.Standard.E5.Flex.2OCPU.16GB', 'VM.Standard.A1.Flex.2OCPU.8GB'],
+  }));
+}
+
 const args = process.argv.slice(2);
 const force = args.includes('--force');
 const target = args.find((a) => !a.startsWith('--')) ?? 'all';
-if (!['gcp', 'aws', 'azure', 'all'].includes(target)) {
-  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure)`);
+if (!['gcp', 'aws', 'azure', 'oci', 'all'].includes(target)) {
+  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure | oci)`);
   process.exit(1);
 }
 
@@ -225,6 +238,7 @@ const jobs: Job[] = [];
 if (target === 'gcp' || target === 'all') jobs.push(...(await collectGcpJobs()));
 if (target === 'aws' || target === 'all') jobs.push(...(await collectAwsJobs()));
 if (target === 'azure' || target === 'all') jobs.push(...(await collectAzureJobs()));
+if (target === 'oci' || target === 'all') jobs.push(...(await collectOciJobs()));
 
 // 2) 검증 — 하나라도 이상하면 아무것도 쓰지 않는다
 const allErrors = jobs.flatMap((j) => validateSnapshot(`${j.provider}/${j.region}`, readOldSnapshot(j.provider, j.region), j.snap));

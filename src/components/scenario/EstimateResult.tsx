@@ -2,21 +2,20 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { gcpSustainedUseMax, HOURS_PER_MONTH, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
+import { cheapestTotal, gcpSustainedUseMax, HOURS_PER_MONTH, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
 import { formatMoney, type Currency, type Period } from '@/lib/display';
+import { PRIMARY_PROVIDERS, PROVIDER_LABEL } from '@/lib/providers';
 import { offeredIn } from '@/lib/regions';
 import type { Arch, Provider, Region, Term } from '@/lib/schema';
 
-const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
-
 /** 로그 수집 상품명 — 비교 대상 고정 (estimator/logs.ts) */
-const LOGS_PRODUCT: Record<Provider, string> = { aws: 'CloudWatch Logs', azure: 'Log Analytics', gcp: 'Cloud Logging' };
+const LOGS_PRODUCT: Record<Provider, string> = { aws: 'CloudWatch Logs', azure: 'Log Analytics', gcp: 'Cloud Logging', oci: 'OCI Logging' };
 
-/** CDN 상품명 — 비교 대상 고정 (estimator/cdn.ts) */
-const CDN_PRODUCT: Record<Provider, string> = { aws: 'CloudFront', azure: 'Front Door Standard', gcp: 'Cloud CDN' };
+/** CDN 상품명 — 비교 대상 고정 (estimator/cdn.ts). 미제공 플랫폼은 없음 (providers.ts NOT_OFFERED) */
+const CDN_PRODUCT: Partial<Record<Provider, string>> = { aws: 'CloudFront', azure: 'Front Door Standard', gcp: 'Cloud CDN' };
 
 /** 서버리스 컨테이너 상품명 — 비교 대상 고정 (estimator/container.ts) */
-const CONTAINER_PRODUCT: Record<Provider, string> = { aws: 'Fargate', azure: 'Container Apps', gcp: 'Cloud Run' };
+const CONTAINER_PRODUCT: Record<Provider, string> = { aws: 'Fargate', azure: 'Container Apps', gcp: 'Cloud Run', oci: 'Container Instances' };
 
 /** (provider, 카드 인덱스)의 인스턴스 선택 변경. isDefault(=최저가)면 override 해제 */
 type SelectInstance = (provider: Provider, resourceIndex: number, sku: string, isDefault: boolean) => void;
@@ -113,8 +112,19 @@ function LineLabel({
   onSelect: SelectInstance;
 }) {
   const t = useTranslations('estimate');
+  const ts = useTranslations('scenario');
   /** 드롭다운 후보 라벨 접미사 — 약정 기준에서 약정가 없는 후보 */
   const odSuffix = (c: { committed: boolean }) => (term && !c.committed ? ` · ${t('onDemandShort')}` : '');
+  if (line.kind === 'not-offered') {
+    return (
+      <span>
+        {ts(`resourceTitle.${line.resourceType}`)}
+        <span className="ml-1 text-slate-400">
+          — {line.maxRetentionDays !== null ? t('notOfferedRetention', { provider: PROVIDER_LABEL[provider], days: line.maxRetentionDays }) : t('notOfferedLine', { provider: PROVIDER_LABEL[provider] })}
+        </span>
+      </span>
+    );
+  }
   if (line.kind === 'vm') {
     return (
       <span>
@@ -336,12 +346,62 @@ export default function EstimateResult({
   const canKrw = rate !== null;
   const money = (x: number) => formatMoney(x, currency, period, rate ?? 1);
 
-  const totals = estimates.map((e) => e.totalMonthlyUsd).filter((x): x is number => x !== null);
-  const cheapest = totals.length > 0 ? Math.min(...totals) : null;
+  // 최저가는 구성 요소를 전부 제공하는 플랫폼 중에서만 (미제공 줄을 뺀 합계끼리 비교하면 오해)
+  const cheapest = cheapestTotal(estimates);
   // 매칭된 인스턴스 중 ARM이 하나라도 있으면 호환성 고지
   const hasArm = estimates.some((e) =>
     e.lines.some((l) => l.kind === 'vm' && l.matched?.arch === 'arm'),
   );
+
+  const primary = estimates.filter((e) => PRIMARY_PROVIDERS.includes(e.provider));
+  const others = estimates.filter((e) => !PRIMARY_PROVIDERS.includes(e.provider));
+
+  const card = (e: ProviderEstimate) => {
+    const isCheapest = !e.partial && e.totalMonthlyUsd !== null && e.totalMonthlyUsd === cheapest;
+    return (
+      <div
+        key={e.provider}
+        className={`rounded-lg border bg-white p-4 shadow-sm ${
+          isCheapest ? 'border-emerald-500 ring-1 ring-emerald-500' : 'border-slate-200'
+        }`}
+      >
+        <div className="flex items-baseline justify-between">
+          <span className="text-sm font-bold">
+            {PROVIDER_LABEL[e.provider]}
+            {isCheapest && (
+              <span className="ml-2 rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-700">
+                {t('cheapest')}
+              </span>
+            )}
+          </span>
+          <span className="text-right text-lg font-bold tabular-nums">
+            {!e.available ? (
+              <span className="text-sm font-normal text-slate-400">{t(offeredIn(region, e.provider) ? 'dataPending' : 'notOffered')}</span>
+            ) : e.totalMonthlyUsd === null ? (
+              <span className="text-sm font-normal text-slate-400">{t('unavailable')}</span>
+            ) : (
+              <>
+                {money(e.totalMonthlyUsd)}
+                <span className="text-xs font-normal text-slate-500">{td(PERIOD_SUFFIX[period])}</span>
+                {e.partial && <span className="block text-xs font-normal text-amber-700">{t('partialTotal')}</span>}
+              </>
+            )}
+          </span>
+        </div>
+
+        {e.available && e.lines.length > 0 && (
+          <ul className="mt-3 space-y-1 border-t border-slate-100 pt-3">
+            {e.lines.map((line, i) => (
+              <li key={i} className="flex justify-between gap-2 text-xs text-slate-600">
+                <LineLabel line={line} provider={e.provider} term={term} money={money} onSelect={onSelectInstance} />
+                {line.monthlyUsd !== null && <span className="tabular-nums">{money(line.monthlyUsd)}</span>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -365,48 +425,13 @@ export default function EstimateResult({
         />
       </div>
 
-      {estimates.map((e) => {
-        const isCheapest = e.totalMonthlyUsd !== null && e.totalMonthlyUsd === cheapest;
-        return (
-          <div
-            key={e.provider}
-            className={`rounded-lg border bg-white p-4 shadow-sm ${
-              isCheapest ? 'border-emerald-500 ring-1 ring-emerald-500' : 'border-slate-200'
-            }`}
-          >
-            <div className="flex items-baseline justify-between">
-              <span className="text-sm font-bold">
-                {PROVIDER_LABEL[e.provider]}
-                {isCheapest && (
-                  <span className="ml-2 rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-700">
-                    {t('cheapest')}
-                  </span>
-                )}
-              </span>
-              <span className="text-lg font-bold tabular-nums">
-                {!e.available ? (
-                  <span className="text-sm font-normal text-slate-400">{t(offeredIn(region, e.provider) ? 'dataPending' : 'notOffered')}</span>
-                ) : e.totalMonthlyUsd === null ? (
-                  <span className="text-sm font-normal text-slate-400">{t('unavailable')}</span>
-                ) : (
-                  <>{money(e.totalMonthlyUsd)}<span className="text-xs font-normal text-slate-500">{td(PERIOD_SUFFIX[period])}</span></>
-                )}
-              </span>
-            </div>
-
-            {e.available && e.lines.length > 0 && (
-              <ul className="mt-3 space-y-1 border-t border-slate-100 pt-3">
-                {e.lines.map((line, i) => (
-                  <li key={i} className="flex justify-between gap-2 text-xs text-slate-600">
-                    <LineLabel line={line} provider={e.provider} term={term} money={money} onSelect={onSelectInstance} />
-                    {line.monthlyUsd !== null && <span className="tabular-nums">{money(line.monthlyUsd)}</span>}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        );
-      })}
+      {primary.map(card)}
+      {others.length > 0 && (
+        <>
+          <h3 className="mt-2 border-t border-slate-200 pt-4 text-xs font-semibold text-slate-500">{t('otherPlatforms')}</h3>
+          {others.map(card)}
+        </>
+      )}
       {term && (
         <p className="rounded-md bg-sky-50 px-3 py-2 text-xs text-sky-800">{t('commitNotice', { years: term === '1y' ? 1 : 3 })}</p>
       )}

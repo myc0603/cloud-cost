@@ -38,6 +38,9 @@ export const LOGS: ResourceDef<Extract<Resource, { type: 'logs' }>> = {
     return gb && LOG_RETENTION_DAYS.includes(retentionDays) ? { type: 'logs', gb, retentionDays } : null;
   },
   estimate: (r, { index, pricing: { logs } }) => {
+    if (logs?.maxRetentionDays !== undefined && r.retentionDays > logs.maxRetentionDays) {
+      return [{ resourceIndex: index, kind: 'not-offered', resourceType: 'logs', maxRetentionDays: logs.maxRetentionDays, monthlyUsd: null }];
+    }
     const m = logs ? logsMonthly(logs, r.gb, r.retentionDays) : null;
     return [
       {

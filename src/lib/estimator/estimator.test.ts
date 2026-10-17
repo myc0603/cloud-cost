@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
-import { calcEgressUsd, cdnMonthly, logsMonthly, cheapestPerSize, estimate, fitContainer, gcpSustainedUseMax, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
+import { loadPricing } from '../pricing';
+import { calcEgressUsd, cheapestTotal, cdnMonthly, logsMonthly, cheapestPerSize, estimate, fitContainer, gcpSustainedUseMax, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
 import { fitCloudSqlShape } from './db';
 import type { CdnPrice, LogPrice, ContainerPrice, DbInstance, EgressTier, Provider, ProviderPricing, VmSku } from '../schema';
 import type { MatchOptions, Resource } from './types';
@@ -40,6 +40,7 @@ const EGRESS: EgressTier = {
 const PRICING: Record<Provider, ProviderPricing> = {
   aws: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   azure: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
+  oci: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   gcp: {
     vm: FIXTURE,
     storage: [
@@ -546,19 +547,51 @@ test('로그: 수집 + 포함 기간 넘는 보관(쌓인 양 × 배율), Commit
   assert.deepEqual(line, { resourceIndex: 0, kind: 'logs', gb: 100, retentionDays: 30, commitmentGbPerDay: null, monthlyUsd: 300 });
 });
 
-test('실데이터 스모크: 3사 스냅샷에서 통합 시나리오 견적', () => {
-  const load = (p: string, f: string) => JSON.parse(readFileSync(`data/${p}/seoul/${f}`, 'utf8'));
-  const pricing: Record<Provider, ProviderPricing> = {
-    aws: { vm: load('aws', 'vm.json'), storage: load('aws', 'storage.json'), egress: load('aws', 'egress.json'), k8s: load('aws', 'k8s.json'), lb: load('aws', 'lb.json'), nat: load('aws', 'nat.json'), db: load('aws', 'db.json'), cache: load('aws', 'cache.json'), container: load('aws', 'container.json'), cdn: load('aws', 'cdn.json'), logs: load('aws', 'logs.json') },
-    azure: { vm: load('azure', 'vm.json'), storage: load('azure', 'storage.json'), egress: load('azure', 'egress.json'), k8s: load('azure', 'k8s.json'), lb: load('azure', 'lb.json'), nat: load('azure', 'nat.json'), db: load('azure', 'db.json'), cache: load('azure', 'cache.json'), container: load('azure', 'container.json'), cdn: load('azure', 'cdn.json'), logs: load('azure', 'logs.json') },
-    gcp: { vm: load('gcp', 'vm.json'), storage: load('gcp', 'storage.json'), egress: load('gcp', 'egress.json'), k8s: load('gcp', 'k8s.json'), lb: load('gcp', 'lb.json'), nat: load('gcp', 'nat.json'), db: load('gcp', 'db.json'), cache: load('gcp', 'cache.json'), container: load('gcp', 'container.json'), cdn: load('gcp', 'cdn.json'), logs: load('gcp', 'logs.json') },
-  };
+test('실데이터 스모크: 전 플랫폼 스냅샷에서 통합 시나리오 견적', () => {
   const s = scenario([vmRes(2, 4, 2), { type: 'block', gb: 100 }, { type: 'object', gb: 500 }, { type: 'egress', gb: 1024 }]);
-  const results = estimate(s, pricing, { includeBurstable: true });
+  const results = estimate(s, loadPricing('seoul'), { includeBurstable: true });
 
   for (const r of results) {
     assert.equal(r.available, true, `${r.provider} 데이터가 있어야 함`);
     assert.equal(r.lines.length, 4);
     assert.ok(r.totalMonthlyUsd !== null && r.totalMonthlyUsd > 0, `${r.provider} 총액이 계산되어야 함`);
   }
+});
+
+test('미제공: NOT_OFFERED 구성 요소는 미제공 줄 — 총액은 나머지 합계(partial), 최저가 비교에서 제외', () => {
+  const cdn: CdnPrice = { provider: 'gcp', region: 'seoul', gbTiers: [{ upTo: null, price: 0.08 }], requestTiers: [{ upTo: null, price: 0.0075 }], monthlyBase: 0, fillPerGb: 0, plans: [] };
+  // OCI는 CDN 미제공(providers.ts). OCI에 GCP와 같은 VM 데이터를 주면 VM 줄은 같고 CDN만 빠진다
+  const pricing = { ...PRICING, gcp: { ...PRICING.gcp, cdn }, oci: { ...PRICING.gcp, cdn: null } };
+  const results = estimate(scenario([vmRes(2, 4), { type: 'cdn', gb: 100, requestsM: 1 }]), pricing, { includeBurstable: true });
+  const gcp = results.find((e) => e.provider === 'gcp')!;
+  const oci = results.find((e) => e.provider === 'oci')!;
+  assert.deepEqual(oci.lines[1], { resourceIndex: 1, kind: 'not-offered', resourceType: 'cdn', maxRetentionDays: null, monthlyUsd: null });
+  assert.equal(oci.partial, true);
+  assert.equal(oci.totalMonthlyUsd, oci.lines[0].monthlyUsd); // VM만의 합계
+  assert.equal(gcp.partial, false);
+  // OCI 총액(VM만)이 더 싸도 최저가는 전부 제공하는 GCP
+  assert.ok(oci.totalMonthlyUsd! < gcp.totalMonthlyUsd!);
+  assert.equal(cheapestTotal(results), gcp.totalMonthlyUsd);
+  // 미제공 카드가 없으면 OCI도 일반 견적
+  const vmOnly = estimate(scenario([vmRes(2, 4)]), pricing, { includeBurstable: true }).find((e) => e.provider === 'oci')!;
+  assert.equal(vmOnly.partial, false);
+});
+
+test('로그: 최대 보관 기간(OCI 180일)을 넘으면 미제공 줄', () => {
+  const oci: LogPrice = { provider: 'oci', region: 'seoul', ingestPerGb: 0, storagePerGbMonth: 0.05, includedDays: 0, storedRatio: 1, commitmentTiers: [], maxRetentionDays: 180 };
+  const line = (days: number) =>
+    estimate(scenario([{ type: 'logs', gb: 100, retentionDays: days }]), { ...PRICING, gcp: { ...PRICING.gcp, logs: oci } }, { includeBurstable: true })
+      .find((e) => e.provider === 'gcp')!.lines[0];
+  assert.ok(line(180).kind === 'logs' && line(180).monthlyUsd !== null);
+  assert.deepEqual(line(365), { resourceIndex: 0, kind: 'not-offered', resourceType: 'logs', maxRetentionDays: 180, monthlyUsd: null });
+});
+
+test('컨테이너: OCI는 OCPU 단위 — x86은 vCPU 2개씩(E4), ARM은 1개씩(A1), 메모리 1GB 단위·최소 OCPU 수', () => {
+  const price: ContainerPrice = { provider: 'oci', region: 'seoul', rates: { x86: { vcpuPerHour: 0.0125, gbPerHour: 0.0015 }, arm: { vcpuPerHour: 0.01, gbPerHour: 0.0015 } } };
+  const x86 = fitContainer(price, { vcpu: 0.25, ramGb: 0.5 }, { includeBurstable: true, arch: 'x86' });
+  assert.deepEqual(x86, { vcpu: 2, ramGb: 1, arch: 'x86', perHour: 0.0265, committed: false });
+  const arm = fitContainer(price, { vcpu: 1, ramGb: 2 }, { includeBurstable: true, arch: 'arm' });
+  assert.deepEqual(arm, { vcpu: 1, ramGb: 2, arch: 'arm', perHour: 0.013, committed: false });
+  // 3 vCPU x86 → 2 OCPU = 4 vCPU, 메모리는 OCPU 수 이상
+  assert.deepEqual(fitContainer(price, { vcpu: 3, ramGb: 1 }, { includeBurstable: true, arch: 'x86' }), { vcpu: 4, ramGb: 2, arch: 'x86', perHour: 0.053, committed: false });
 });

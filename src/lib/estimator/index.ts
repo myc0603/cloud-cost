@@ -6,6 +6,7 @@
  * 리소스 타입별 계산·URL 토큰은 각 모듈(vm·storage·egress·k8s·lb·nat·db·cache·container·cdn·logs)에 있고, 여기는 레지스트리와 합산만 한다.
  */
 
+import { NOT_OFFERED } from '../providers';
 import type { Provider, ProviderPricing } from '../schema';
 import { CACHE } from './cache';
 import { CDN } from './cdn';
@@ -65,19 +66,29 @@ export function estimate(
   return (Object.keys(pricing) as Provider[]).map((provider) => {
     const p = pricing[provider];
     if (p.vm.length === 0) {
-      return { provider, available: false, lines: [], totalMonthlyUsd: null };
+      return { provider, available: false, lines: [], totalMonthlyUsd: null, partial: false };
     }
 
-    const lines: EstimateLine[] = scenario.resources.flatMap((r, index) =>
-      resourceDef(r).estimate(r, { index, pricing: p, opts, pick: overrides[provider]?.[index], scenario }),
+    const lines: EstimateLine[] = scenario.resources.flatMap((r, index): EstimateLine[] =>
+      NOT_OFFERED[provider].includes(r.type)
+        ? [{ resourceIndex: index, kind: 'not-offered', resourceType: r.type, maxRetentionDays: null, monthlyUsd: null }]
+        : resourceDef(r).estimate(r, { index, pricing: p, opts, pick: overrides[provider]?.[index], scenario }),
     );
 
-    const complete = lines.length > 0 && lines.every((l) => l.monthlyUsd !== null);
+    const priced = lines.filter((l) => l.kind !== 'not-offered');
+    const complete = priced.length > 0 && priced.every((l) => l.monthlyUsd !== null);
     return {
       provider,
       available: true,
       lines,
-      totalMonthlyUsd: complete ? round2(lines.reduce((sum, l) => sum + l.monthlyUsd!, 0)) : null,
+      totalMonthlyUsd: complete ? round2(priced.reduce((sum, l) => sum + l.monthlyUsd!, 0)) : null,
+      partial: priced.length < lines.length,
     };
   });
+}
+
+/** 최저가 총액 — 구성 요소를 전부 제공하는(partial 아님) 플랫폼 중에서만. 없으면 null */
+export function cheapestTotal(estimates: ProviderEstimate[]): number | null {
+  const totals = estimates.filter((e) => !e.partial && e.totalMonthlyUsd !== null).map((e) => e.totalMonthlyUsd!);
+  return totals.length > 0 ? Math.min(...totals) : null;
 }

@@ -3,7 +3,8 @@
  * 상세: docs/ARCHITECTURE.md §4
  */
 
-export type Provider = 'aws' | 'azure' | 'gcp';
+/** 플랫폼 목록·라벨·미제공 구성 요소는 providers.ts */
+export type Provider = 'aws' | 'azure' | 'gcp' | 'oci';
 
 /** CPU 아키텍처. arm = Graviton(AWS)·Ampere(Azure/GCP) 계열 */
 export type Arch = 'x86' | 'arm';
@@ -243,6 +244,8 @@ export interface LogPrice {
   storedRatio: number;
   /** 볼륨 약정 등급 (Azure). 없으면 빈 배열 */
   commitmentTiers: LogCommitmentTier[];
+  /** 설정 가능한 최대 보관 일수 (OCI 180일). 없으면 제한 없음 — 넘는 보관 기간은 "미제공" */
+  maxRetentionDays?: number;
 }
 
 /** 한 플랫폼의 리전별 요금 데이터 묶음 — pricing 로더가 반환하는 단위 */

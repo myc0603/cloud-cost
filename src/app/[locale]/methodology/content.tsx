@@ -17,6 +17,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>AWS — Price List Bulk API (리전별 오퍼 파일)</li>
         <li className={LI}>Azure — Retail Prices API</li>
         <li className={LI}>GCP — Cloud Billing Catalog API</li>
+        <li className={LI}>OCI — 가격 목록 API (전 품목, 리전과 무관한 단일가)</li>
         <li className={LI}>환율(USD→KRW) — 표시 참고용, 일 1회 갱신{meta?.usdKrw ? ` (현재 $1 = ₩${meta.usdKrw.rate.toLocaleString()})` : ''}</li>
       </ul>
 
@@ -126,6 +127,49 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         </li>
       </ul>
 
+      <h2 className={H2}>OCI 비교 기준</h2>
+      <p className={P}>
+        OCI는 대표 3사 아래에 따로 보여줍니다. OCI가 제공하지 않는 구성 요소는 견적 줄에 <b>미제공</b>으로 표시하고 총액은 나머지 항목의
+        합계로 보여주며, 이 경우 <b>최저가 비교에서 제외</b>합니다 — 빠진 항목 때문에 싸 보이는 것을 막기 위해서입니다.
+      </p>
+      <ul className="mt-2 list-disc pl-5">
+        <li className={LI}>
+          VM은 크기를 자유롭게 고르는 <b>Flex 셰이프</b>(E4·E5·Standard3, ARM은 A1)를 대표 사이즈(vCPU × vCPU당 메모리 1·2·4·8·16GB)로
+          펼쳐 비교합니다. OCI 단위인 OCPU는 x86에서 vCPU 2개, A1에서 vCPU 1개로 환산합니다. 신형 E6·A2·A4는 리전별 제공 여부를 공개
+          자료로 확인할 수 없어 뺐습니다. OCI 요금은 리전과 무관하게 같고, 리전별 차이는 트래픽 요금뿐입니다.
+        </li>
+        <li className={LI}>
+          <b>버스트 셰이프 미수록</b>: OCI에도 기준 사용률(12.5%·50%)을 정해 그만큼 싸게 쓰는 버스트 옵션이 있지만, AWS·Azure·GCP의 CPU
+          크레딧 방식과 구조가 달라 지금 비교 방식에 넣지 않았습니다. &ldquo;버스트 인스턴스 포함&rdquo; 옵션은 OCI 결과에 영향이 없고, CPU를
+          가끔만 쓰는 서버라면 OCI에서 실제로는 더 싸게 쓸 수 있습니다.
+        </li>
+        <li className={LI}>
+          <b>약정 없음</b>: OCI는 리소스별 약정 상품이 없어(계정 단위 연간 크레딧만 있음) 1·3년 약정 기준에서도 정가로 계산하고
+          &ldquo;약정가 없음&rdquo;으로 표시합니다.
+        </li>
+        <li className={LI}>블록 스토리지는 Balanced 성능(GB당 10 VPU), 오브젝트는 Standard. 트래픽은 월 10TB까지 무료이고 이후 아시아 $0.025·북미/유럽 $0.0085/GB입니다.</li>
+        <li className={LI}>Kubernetes는 SLA가 있는 OKE Enhanced 클러스터(시간당 $0.10). 무료인 Basic 클러스터는 SLA가 없어 쓰지 않습니다.</li>
+        <li className={LI}>
+          로드밸런서는 Flexible Load Balancer(시간당 기본료 + 대역폭 Mbps당). 최소 대역폭 10Mbps를 시간당에 넣고, 처리 GB를 한 달 평균
+          대역폭으로 환산합니다. 실제로는 설정한 최대 대역폭으로 과금되므로 트래픽이 몰리는 시간이 있으면 실제보다 낮게 나옵니다.
+        </li>
+        <li className={LI}>
+          NAT 게이트웨이는 <b>0원</b>으로 계산합니다. 근거는 과금 품목 전체가 담긴 공식 가격 목록에 NAT 품목이 없다는 것입니다(공식 문서에
+          요금 언급 없음).
+        </li>
+        <li className={LI}>
+          관리형 DB: MySQL은 MySQL HeatWave의 ECPU 셰이프(ECPU를 vCPU로 간주, ECPU당 메모리 8GB), 이중화는 인스턴스 3개 구성이라
+          컴퓨트·스토리지 3배입니다. PostgreSQL은 E5 Flex 컴퓨트 요금에 OCPU당 PostgreSQL 요금을 더한 값(가격 페이지 설명 기준)이고,
+          이중화는 노드 2개라 컴퓨트 2배·스토리지는 노드 공유라 그대로입니다.
+        </li>
+        <li className={LI}>캐시는 OCI Cache(Valkey·Redis 호환) 노드 메모리 GB당 요금이며, 노드가 10GB를 넘으면 더 낮은 단가가 노드 전체에 적용됩니다. 이중화는 복제 노드 1개(2배).</li>
+        <li className={LI}>
+          서버리스 컨테이너는 Container Instances(같은 셰이프의 Compute 요금 그대로, OCPU 단위로 올림)입니다. 오토스케일·HTTPS 인그레스가
+          없어 다른 3사 상품보다 기능이 적지만 OCI의 유일한 서버리스 컨테이너라 비교 대상으로 씁니다.
+        </li>
+        <li className={LI}>CDN은 OCI 자체 상품이 없어 미제공입니다. 로그는 OCI Logging(수집 무료, 저장 GB·월)이며 보관은 최대 180일이라 365·730일은 미제공입니다.</li>
+      </ul>
+
       <h2 className={H2}>한계 — 이 견적이 말해주지 않는 것</h2>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}>
@@ -161,6 +205,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         <li className={LI}>AWS — Price List Bulk API (per-region offer files)</li>
         <li className={LI}>Azure — Retail Prices API</li>
         <li className={LI}>GCP — Cloud Billing Catalog API</li>
+        <li className={LI}>OCI — price list API (every product; one price for all regions)</li>
         <li className={LI}>Exchange rate (USD→KRW) — for display only, refreshed daily{meta?.usdKrw ? ` (currently $1 = ₩${meta.usdKrw.rate.toLocaleString()})` : ''}</li>
       </ul>
 
@@ -276,6 +321,54 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
           tier, Azure Routing Preference: Internet, AWS default. (GCP&rsquo;s Premium tier prices depend
           on the destination, so a single comparison is not possible.)
         </li>
+      </ul>
+
+      <h2 className={H2}>OCI comparison basis</h2>
+      <p className={P}>
+        OCI is shown separately below the three main clouds. Components OCI doesn&rsquo;t offer are marked <b>not offered</b> on their
+        line, the total sums the remaining items, and the platform is then <b>left out of the cheapest comparison</b> — so missing items
+        can&rsquo;t make it look cheaper.
+      </p>
+      <ul className="mt-2 list-disc pl-5">
+        <li className={LI}>
+          VMs use OCI&rsquo;s <b>Flex shapes</b> (E4, E5, Standard3, and A1 for Arm), whose size you choose freely, expanded into
+          representative sizes (vCPU × 1/2/4/8/16 GB per vCPU). OCI bills in OCPUs: 1 OCPU = 2 vCPUs on x86 and 1 vCPU on A1. The newer E6,
+          A2 and A4 are left out because their regional availability can&rsquo;t be confirmed from public sources. OCI prices are the same
+          in every region; only traffic rates differ.
+        </li>
+        <li className={LI}>
+          <b>Burstable shapes are not included</b>: OCI offers a burstable option priced by a baseline utilization (12.5% or 50%), but it
+          works differently from the CPU-credit model of AWS, Azure and GCP, so it doesn&rsquo;t fit the current comparison. The
+          &ldquo;include burstable&rdquo; option has no effect on OCI, and a server that only uses CPU occasionally may cost less on OCI
+          than shown.
+        </li>
+        <li className={LI}>
+          <b>No commitments</b>: OCI has no per-resource commitment products (only account-level annual credits), so it stays at on-demand
+          prices under 1- and 3-year terms and is marked &ldquo;no commitment price&rdquo;.
+        </li>
+        <li className={LI}>Block storage uses Balanced performance (10 VPUs per GB); object storage uses Standard. The first 10 TB of internet traffic per month is free, then $0.025/GB in Asia and $0.0085/GB in North America/Europe.</li>
+        <li className={LI}>Kubernetes uses OKE Enhanced clusters ($0.10/hour), which carry an SLA. Free Basic clusters have no SLA and are not used.</li>
+        <li className={LI}>
+          Load balancers use the Flexible Load Balancer (hourly base + bandwidth per Mbps). The minimum 10 Mbps is included in the hourly
+          price, and processed GB are converted to an average monthly bandwidth. OCI actually bills the maximum bandwidth you configure, so
+          spiky traffic will cost more than shown.
+        </li>
+        <li className={LI}>
+          NAT gateways are counted as <b>$0</b>. The basis: OCI&rsquo;s official price list, which contains every billable product, has
+          no NAT item (the docs don&rsquo;t mention a price).
+        </li>
+        <li className={LI}>
+          Managed databases: MySQL uses MySQL HeatWave ECPU shapes (an ECPU is treated as a vCPU, 8 GB per ECPU); high availability runs
+          three instances, tripling compute and storage. PostgreSQL is E5 Flex compute plus a per-OCPU PostgreSQL fee (per the pricing
+          page); high availability uses two nodes, doubling compute, while storage is shared and stays the same.
+        </li>
+        <li className={LI}>Caches use OCI Cache (Valkey/Redis-compatible), priced per GB of node memory; nodes over 10 GB get a lower rate for the whole node. High availability adds one replica (2×).</li>
+        <li className={LI}>
+          Serverless containers use Container Instances (the same price as the matching Compute shape, rounded up to whole OCPUs). They
+          lack autoscaling and HTTPS ingress, so they do less than the other three products, but they are OCI&rsquo;s only serverless
+          container service.
+        </li>
+        <li className={LI}>OCI has no CDN of its own, so CDN is not offered. Logs use OCI Logging (ingestion free, storage per GB-month); retention tops out at 180 days, so 365 and 730 days are not offered.</li>
       </ul>
 
       <h2 className={H2}>Limitations — what this estimate does not tell you</h2>

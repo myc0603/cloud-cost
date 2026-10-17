@@ -75,7 +75,8 @@ cloud-cost/
 │   │   ├── azure-db-sizes.ts    # Azure Database Flexible Server 사이즈 카탈로그 (같은 사정)
 │   │   ├── azure-cache-sizes.ts # Azure Managed Redis SKU 용량 카탈로그 (같은 사정)
 │   │   ├── gcp.ts           # VM은 패밀리별 vCPU·RAM 단가 → 머신 타입 카탈로그와 조합
-│   │   └── gcp-machine-types.ts # GCP 머신타입 카탈로그 (SKU는 코어·RAM 단가라 조합 필요)
+│   │   ├── gcp-machine-types.ts # GCP 머신타입 카탈로그 (SKU는 코어·RAM 단가라 조합 필요)
+│   │   └── oci.ts           # 가격 목록 API 1회 → 전 리전(단일가). Flex 셰이프·DB·캐시는 대표 사이즈 격자로 펼침
 │   ├── validate.ts          # 급변·누락 감지
 │   └── main.ts
 ├── data/                    # 봇이 갱신하는 요금 스냅샷 (사람이 편집 금지)
@@ -101,12 +102,13 @@ cloud-cost/
 │   └── lib/
 │       ├── schema.ts        # 공통 타입 — collector와 웹이 공유 (§4)
 │       ├── pricing.ts       # data/ 로더
+│       ├── providers.ts     # 플랫폼 카탈로그 — 목록·표시 이름·대표 3사·구성 요소 미제공(NOT_OFFERED)
 │       ├── regions.ts       # 리전 카탈로그 — 리전 목록 + 플랫폼별 리전 코드(null = 미제공), 수집기·화면 공용
 │       └── estimator/       # 견적 엔진 — 순수 함수, UI 무관 (§5)
 └── docs/
 ```
 
-- **collector 실행 구조**: 워크플로우는 `npm run collect`(= `collector/main.ts`) 하나만 실행. main.ts가 플랫폼 순서대로(GCP → AWS → Azure, 플랫폼 안에서는 API 요청 병렬) 수집 → validate → `data/` 기록. 리전 목록은 `src/lib/regions.ts`. 커밋은 워크플로우의 다음 스텝. 로컬에서도 같은 명령으로 실행 가능(그냥 Node 스크립트).
+- **collector 실행 구조**: 워크플로우는 `npm run collect`(= `collector/main.ts`) 하나만 실행. main.ts가 플랫폼 순서대로(GCP → AWS → Azure → OCI, 플랫폼 안에서는 API 요청 병렬) 수집 → validate → `data/` 기록. 리전 목록은 `src/lib/regions.ts`. 커밋은 워크플로우의 다음 스텝. 로컬에서도 같은 명령으로 실행 가능(그냥 Node 스크립트).
 - **모듈 관계**: `data/*.json` → `pricing.ts`(경로·타입을 아는 유일한 로더) → `estimator/`(순수 함수 계산) → `components/`(표시).
 - **요금 데이터 전달**: 페이지에는 기본 리전(서울)만 넣고, 다른 리전은 빌드 시 정적 생성되는 `/pricing/{region}.json`(`app/pricing/[file]/route.ts`, 역시 `loadPricing`)을 고를 때 받는다(`use-region-pricing.ts`, 모듈 캐시). 전 리전을 페이지에 넣으면 리전 수만큼 첫 로딩이 커진다 — 2리전 기준 홈 gzip 91KB → 41KB.
 
@@ -127,7 +129,7 @@ src/
 │   │   ├── ScenarioBuilder.tsx   # 'use client' — 시나리오 상태 + URL 동기화
 │   │   ├── ResourceCard.tsx      # 리소스 카드 (공통 틀 + 타입별 입력 필드)
 │   │   ├── NumberField.tsx
-│   │   └── EstimateResult.tsx    # 3사 견적 카드 + 비용 분해 + 인스턴스 드롭다운
+│   │   └── EstimateResult.tsx    # 플랫폼별 견적 카드(대표 3사 → "다른 플랫폼") + 비용 분해 + 인스턴스 드롭다운
 │   ├── instances/
 │   │   └── InstanceTable.tsx     # 필터 가능한 단품 비교표
 │   ├── DataFreshness.tsx         # 수집 시각 배지
@@ -136,6 +138,7 @@ src/
 └── lib/
     ├── schema.ts
     ├── pricing.ts
+    ├── providers.ts              # 플랫폼 카탈로그
     ├── regions.ts                # 리전 카탈로그
     ├── use-region-pricing.ts     # 'use client' — 리전 요금 지연 로딩 훅
     ├── scenario-url.ts           # 시나리오·매칭 옵션·커스텀 선택 ↔ URL 코덱
@@ -167,7 +170,7 @@ src/
 > **SKU**(Stock Keeping Unit): 과금되는 상품 단위 하나. "서울 리전의 t3.medium, Linux, 온디맨드"가 SKU 1개다. 3사 가격 API가 모두 쓰는 표준 용어.
 
 ```ts
-type Provider = 'aws' | 'azure' | 'gcp';
+type Provider = 'aws' | 'azure' | 'gcp' | 'oci';
 type Region = 'seoul' | 'tokyo' | 'singapore' | 'us-east' | 'us-west' | 'frankfurt' | 'london'; // 정규화 리전 키 (아래 매핑표)
 type Arch = 'x86' | 'arm';                  // arm = Graviton(AWS)·Ampere(Azure/GCP)
 
@@ -270,15 +273,15 @@ interface Meta {
 
 **리전 매핑표** (출처: `src/lib/regions.ts`, null = 미제공)
 
-| 정규화 키 | AWS | Azure | GCP |
-|---|---|---|---|
-| `seoul` | ap-northeast-2 | koreacentral | asia-northeast3 |
-| `tokyo` | ap-northeast-1 | japaneast | asia-northeast1 |
-| `singapore` | ap-southeast-1 | southeastasia | asia-southeast1 |
-| `us-east` | us-east-1 | eastus | us-east1 |
-| `us-west` | us-west-2 | westus2 | us-west1 |
-| `frankfurt` | eu-central-1 | germanywestcentral | europe-west3 |
-| `london` | eu-west-2 | uksouth | europe-west2 |
+| 정규화 키 | AWS | Azure | GCP | OCI |
+|---|---|---|---|---|
+| `seoul` | ap-northeast-2 | koreacentral | asia-northeast3 | ap-seoul-1 |
+| `tokyo` | ap-northeast-1 | japaneast | asia-northeast1 | ap-tokyo-1 |
+| `singapore` | ap-southeast-1 | southeastasia | asia-southeast1 | ap-singapore-1 |
+| `us-east` | us-east-1 | eastus | us-east1 | us-ashburn-1 |
+| `us-west` | us-west-2 | westus2 | us-west1 | us-sanjose-1 |
+| `frankfurt` | eu-central-1 | germanywestcentral | europe-west3 | eu-frankfurt-1 |
+| `london` | eu-west-2 | uksouth | europe-west2 | uk-london-1 |
 
 ## 5. 견적 엔진 (`src/lib/estimator/`)
 
@@ -301,6 +304,8 @@ flowchart TD
   - `singleton` 타입은 시나리오에 하나만: 트래픽은 구간 요금이 전체 전송량 기준이라 카드를 나누면 무료 구간이 중복 적용됨
   - 리소스 모듈은 `types.ts`만 import (`index.ts`를 import하면 순환 참조)
   - 다른 카드를 참조해야 하는 리소스는 `estimate` 컨텍스트의 `scenario`를 쓴다 (NAT: GCP 과금 VM 수 = VM 카드 대수 + K8s 노드 수)
+- 구성 요소 미제공: `providers.ts`의 `NOT_OFFERED`(예: OCI CDN)나 리소스 모듈의 옵션 한도(OCI 로그 보관 180일 초과)면 `not-offered` 줄. 총액은 미제공 줄을 뺀 합계(`partial: true`), `cheapestTotal()`은 `partial`이 아닌 플랫폼끼리만 비교
+- 새 플랫폼 추가 = `Provider` 유니온 + `providers.ts`(목록·라벨·`NOT_OFFERED`) + `regions.ts` 리전 코드 + 수집기(`collector/providers/*.ts` + main.ts 대상) + 컴파일러가 알려주는 플랫폼별 맵(컨테이너 허용 조합 `MAX`, `EstimateResult` 상품명) + 문구·methodology + 테스트
 - 월 환산: 시간당 가격 × **730시간** 고정
 - 매칭 옵션: 버스트 포함(기본 포함), 아키텍처 `both`(기본) / `x86` / `arm`, 약정 기간 `term`(생략 = 정가 / `1y` / `3y`). 현세대 한정은 수집 단계에서 걸러짐(엔진에 세대 필터 없음)
 - 약정 기간이 있으면 VM·K8s 노드·DB·캐시 후보의 가격을 약정가로 바꿔(`priceAt`) 그 기준으로 최저가를 찾는다. 약정가 없는 후보는 정가로 남고 매칭 결과에 `committed: false` — 화면은 "약정가 없음" 배지. 매칭 결과의 `perHour`가 선택한 기준 가격(VM은 `pricePerHour`에 정가 보존)
@@ -349,4 +354,8 @@ flowchart TD
 | 서버리스 컨테이너 지표 (2026-10-17) | AWS **ECS Fargate** / Azure **Container Apps**(Consumption, 활성 요금) / GCP **Cloud Run**(인스턴스 기반 과금 = CPU 상시 할당). 입력 = 컨테이너당 vCPU(0.25~16 선택) · 메모리 GB · 컨테이너 수, 24시간 실행 | 시장에서 실제로 비교되는 조합. Azure Container Instances는 Fargate와 단가가 같지만 오토스케일·인그레스·롤링 배포가 없어 운영용으론 덜 쓰여 제외. 허용 vCPU·메모리 조합(Fargate 표 / CA 1:2·최대 4 vCPU / Cloud Run 정수 vCPU·vCPU별 메모리 범위)은 문서값 상수, 요구 이상 최저가 조합으로 올림. Fargate만 인그레스 미포함(ALB 별도) — 고지. 유휴 할인·요청 요금·무료 사용량 제외. 약정: 고정형이 없어 각 사 유일한 약정(Compute SP / Azure SP / Cloud Run 유연 CUD 28·46% 문서값) |
 | CDN 지표 (2026-10-17) | AWS **CloudFront** / Azure **Front Door Standard** / GCP **Cloud CDN**. 입력 = 월 전송 GB · 월 요청(백만 건), singleton. 시청자 = 리전과 같은 지역(서울 → CF AP·AFD Zone 8 Korea·GCP Asia, 미국 동부 → 북미). 종량제 = 기본료(AFD $35) + 전송 구간 + 요청 구간 + 캐시 채움(GCP, 적중률 90% 가정, 문서값). CloudFront는 한도 안 최저 정액 요금제(Free·Pro·Business·Premium, 문서값)와 종량제 중 싼 쪽 | CDN 경유 트래픽은 egress 카드와 별개(카드 안내) — AWS·Azure 오리진 → CDN 무료. 정액제는 소·중규모에서 종량제의 1/9 수준이라 미반영 시 오해 → 반영. 약정 없음(AWS만 Security Savings Bundle이 있어 불공정) → 정가. Cloud CDN의 L7 LB는 LB 카드로. Front Door 엣지 → 오리진 요청 바이트는 미미해 제외 |
 | 로그 수집 지표 (2026-10-17) | 표준 등급: AWS **CloudWatch Logs Standard** / Azure **Log Analytics Analytics Logs** / GCP **Cloud Logging**. 입력 = 월 수집 GB · 보관 일수(30·90·180·365·730), singleton. 수집 GB당 + 정상 상태 누적량 중 포함 기간(Azure 31일·GCP 30일·AWS 0) 초과분 보관, AWS는 압축 0.15(문서값). Azure Commitment Tier(Azure Monitor 미터, 일 요금, 초과분 실효 단가)는 더 싸면 적용 | 저가 등급(IA·Basic·Auxiliary)은 쿼리 제한·별도 과금이라 조건이 달라 제외. 쿼리 요금·벤더 로그·무료분 제외. Azure가 3~6배 비싼 건 실제 요금 구조 |
+| 플랫폼 추가 (2026-10-17) | OCI → NCP 순서로 추가, 이후 KT·NHN·삼성 SCP 등은 다시 논의. API가 없으면 공개 가격 페이지 크롤링도 허용. 조사표는 [PLATFORMS.md](PLATFORMS.md) | 3사 대안으로 가장 많이 비교되는 OCI로 구조를 먼저 검증하고, 다음으로 국내 사용자 가치가 큰 NCP |
+| 구성 요소 미제공 (2026-10-17) | 해당 견적 줄은 "미제공"으로 표시하고 나머지 합계를 총액으로 보여줌. **최저가 표시는 구성 요소를 전부 제공하는 플랫폼 중에서만** | 총액을 숨기면 나머지 정보까지 잃음. 빠진 항목이 있는 플랫폼이 싸 보여 최저가로 뽑히는 오해 방지 |
+| 플랫폼 배치 (2026-10-17) | 견적 카드는 AWS·Azure·GCP를 위에 고정하고, 추가 플랫폼은 그 아래 "다른 플랫폼" 구분선 밑에 배치 (`PRIMARY_PROVIDERS`) | 대표 3사와 나머지를 구분. 2~3개 추가까지 유지, 더 늘면 재검토 |
+| OCI 비교 기준 (2026-10-17) | 공개 가격 목록 API(인증 없음, partNumber로 단가 추출). VM = Flex 셰이프 E4·E5·Standard3·A1을 대표 격자(vCPU 1~128 × GB/vCPU 1·2·4·8·16)로 펼침, x86 1 OCPU = 2 vCPU·A1 1 vCPU. 블록 Balanced 10 VPU, 트래픽 10TB 무료(아시아 $0.025 / 북미·유럽 $0.0085), OKE Enhanced, Flexible LB(최소 10Mbps + 처리 GB → 평균 Mbps 환산), NAT 0원, MySQL HeatWave ECPU 셰이프(이중화 3배), PostgreSQL = E5 컴퓨트 + OCPU 요금(이중화 컴퓨트 2배), OCI Cache 노드(10GB 이하/초과 단가, 이중화 2배), Container Instances = E4·A1 요금, Logging 수집 무료·보관 최대 180일. CDN 미제공. 약정 없음 → 정가 + "약정가 없음" | 리전 무관 단일가라 리전별 파일은 트래픽만 다름. E6·A2·A4는 리전 가용성 미확인으로 제외. 버스트 셰이프(기준 사용률 할인)는 CPU 크레딧 방식과 구조가 달라 미수록 — methodology 고지. NAT 0원 근거 = 과금 품목 전체 목록에 NAT 없음(문서 언급 없음). Container Instances는 오토스케일·인그레스가 없지만 OCI의 유일한 서버리스 컨테이너라 사용(고지) |
 | 무료 사용량 원칙 (2026-10-17) | 계정당 상시 무료분은 **미반영**, 요금표에 내장된 트래픽 무료 구간과 배포별 정식 요금제(CloudFront Free)는 반영 | 무료분은 계정 전체에서 한 번 — 다른 서비스가 이미 쓰는 실제 계정에선 구성 하나만 빼면 과소 추정. methodology에 명시 |

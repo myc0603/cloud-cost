@@ -144,6 +144,11 @@ export type EstimateLine = { resourceIndex: number } & (
   | { kind: 'cdn'; gb: number; requestsM: number; plan: string | null; monthlyUsd: number | null }
   /** 로그 수집. commitmentGbPerDay = Azure Commitment Tier로 계산했으면 그 등급(GB/일), 종량제면 null */
   | { kind: 'logs'; gb: number; retentionDays: number; commitmentGbPerDay: number | null; monthlyUsd: number | null }
+  /**
+   * 플랫폼이 제공하지 않는 구성 요소(providers.ts NOT_OFFERED) 또는 옵션(로그 최대 보관 기간 초과).
+   * 총액에서 빠지고 최저가 비교 대상에서 제외된다. maxRetentionDays = 보관 기간 초과로 미제공이면 그 상한
+   */
+  | { kind: 'not-offered'; resourceType: ResourceType; maxRetentionDays: number | null; monthlyUsd: null }
 );
 
 /** 컨테이너 매칭 결과 — 플랫폼 허용 조합으로 올린 사이즈, perHour = 컨테이너 1개 시간당(요금 기준 반영) */
@@ -184,8 +189,13 @@ export interface ProviderEstimate {
   /** VM 요금 데이터 존재 여부 — false면 "데이터 준비 중" */
   available: boolean;
   lines: EstimateLine[];
-  /** 모든 항목이 계산됐을 때만 총액. 불완전 견적에 총액을 보여주면 오해를 부른다 */
+  /**
+   * 미제공 줄을 뺀 모든 항목이 계산됐을 때만 총액. 매칭 실패·데이터 없음이 섞인 견적에 총액을 보여주면 오해를 부른다.
+   * 미제공 줄은 원래 없는 상품이라 빼고 합산한다 (partial로 표시)
+   */
   totalMonthlyUsd: number | null;
+  /** 미제공 줄이 있어 총액이 일부 구성 요소만의 합계 — 최저가 비교에서 빠진다 */
+  partial: boolean;
 }
 
 /** 리소스 타입 하나의 정의 — 새 리소스는 이걸 구현한 모듈 + 레지스트리 등록 + 입력 카드로 추가한다 */

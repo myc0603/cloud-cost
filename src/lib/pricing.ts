@@ -5,9 +5,8 @@
 
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { PROVIDERS } from './providers';
 import type { CachePrice, CdnPrice, ContainerPrice, DbPrice, EgressTier, K8sClusterPrice, LbPrice, LogPrice, Meta, NatPrice, Provider, ProviderPricing, Region, StorageSku, VmSku } from './schema';
-
-export const PROVIDERS: Provider[] = ['aws', 'azure', 'gcp'];
 
 function readJson<T>(provider: Provider, region: Region, file: string, fallback: T): T {
   const p = path.join(process.cwd(), 'data', provider, region, file);

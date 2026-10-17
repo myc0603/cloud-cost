@@ -5,11 +5,10 @@ import { useLocale, useTranslations } from 'next-intl';
 import { ArchBadge } from '@/components/scenario/EstimateResult';
 import { HOURS_PER_MONTH, type ArchFilter } from '@/lib/estimator';
 import { formatMoney, type Currency } from '@/lib/display';
+import { PROVIDER_LABEL, PROVIDERS } from '@/lib/providers';
 import { REGIONS } from '@/lib/regions';
 import type { Provider, Region, VmSku } from '@/lib/schema';
 import { useRegionPricing } from '@/lib/use-region-pricing';
-
-const PROVIDER_LABEL: Record<Provider, string> = { aws: 'AWS', azure: 'Azure', gcp: 'GCP' };
 
 type SortKey = 'provider' | 'sku' | 'vcpu' | 'ramGb' | 'pricePerHour';
 
@@ -28,7 +27,7 @@ export default function InstanceTable({ initial, usdKrwRate }: { initial: { regi
     () => (region === initial.region ? initial.skus : pricing ? Object.values(pricing).flatMap((p) => p.vm) : null),
     [region, initial, pricing],
   );
-  const [providers, setProviders] = useState<Set<Provider>>(new Set(['aws', 'azure', 'gcp']));
+  const [providers, setProviders] = useState<Set<Provider>>(new Set(PROVIDERS));
   // 입력 칸 글자 그대로 보관 — 빈칸 허용(= 필터 없음 0), 숫자는 파생값
   const [minVcpuText, setMinVcpuText] = useState('0');
   const [minRamText, setMinRamText] = useState('0');
@@ -106,7 +105,7 @@ export default function InstanceTable({ initial, usdKrwRate }: { initial: { regi
             ))}
           </select>
         </label>
-        {(Object.keys(PROVIDER_LABEL) as Provider[]).map((p) => (
+        {PROVIDERS.map((p) => (
           <label key={p} className="flex items-center gap-1.5">
             <input type="checkbox" checked={providers.has(p)} onChange={() => toggleProvider(p)} />
             {PROVIDER_LABEL[p]}

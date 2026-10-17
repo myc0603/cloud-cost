@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { estimate, RESOURCES, type ArchFilter, type Overrides, type Resource, type ResourceType, type Scenario } from '@/lib/estimator';
+import { estimate, findVmSku, RESOURCES, type ArchFilter, type Overrides, type Resource, type ResourceType, type Scenario } from '@/lib/estimator';
 import type { Provider, ProviderPricing, Region, Term } from '@/lib/schema';
 import {
   decodeHidden,
@@ -15,6 +15,7 @@ import {
   encodeOverrides,
   encodeScenario,
 } from '@/lib/scenario-url';
+import { PROVIDER_LABEL, PROVIDERS } from '@/lib/providers';
 import { REGIONS } from '@/lib/regions';
 import { TEMPLATES, type TemplateId } from '@/lib/templates';
 import { useRegionPricing } from '@/lib/use-region-pricing';
@@ -110,6 +111,23 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
       setOverrides((o) => clearIndex(o, i));
     }
     setScenario((s) => ({ ...s, resources: s.resources.map((r, j) => (j === i ? next : r)) }));
+  };
+  /**
+   * VM 카드를 인스턴스 이름으로 채운다 — 스펙(vCPU·RAM, 1 미만은 1로 올림)을 넣고 그 플랫폼은 그 타입으로 고정.
+   * 다른 플랫폼은 같은 스펙 최저가로 매칭된다
+   */
+  const fillVmFromSku = (i: number, name: string) => {
+    const sku = pricing ? findVmSku(pricing, name) : null;
+    const prev = scenario.resources[i];
+    if (!sku || prev?.type !== 'vm') return false;
+    const vcpu = Math.max(1, Math.ceil(sku.vcpu));
+    const ramGb = Math.max(1, Math.ceil(sku.ramGb));
+    setScenario((s) => ({ ...s, resources: s.resources.map((r, j) => (j === i ? { ...prev, vcpu, ramGb } : r)) }));
+    setOverrides((o) => {
+      const cleared = prev.vcpu === vcpu && prev.ramGb === ramGb ? o : clearIndex(o, i);
+      return { ...cleared, [sku.provider]: { ...(cleared[sku.provider] ?? {}), [i]: sku.sku } };
+    });
+    return true;
   };
   const removeResource = (i: number) => {
     setScenario((s) => ({ ...s, resources: s.resources.filter((_, j) => j !== i) }));
@@ -224,9 +242,24 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
               numbered={r.type === 'vm' || sameType.length > 1}
               onChange={(next) => updateResource(i, next)}
               onRemove={() => removeResource(i)}
+              {...(r.type === 'vm' && {
+                onFillSku: (name: string) => fillVmFromSku(i, name),
+                skuListId: 'vm-sku-names',
+                pinned: PROVIDERS.filter((p) => overrides[p]?.[i]).map((p) => `${PROVIDER_LABEL[p]} ${overrides[p]![i]}`),
+              })}
             />
           );
         })}
+
+        {/* VM 카드 인스턴스 이름 자동완성 — 이 리전 8개 플랫폼 VM 전체 */}
+        <datalist id="vm-sku-names">
+          {pricing &&
+            PROVIDERS.flatMap((p) =>
+              pricing[p].vm.map((s) => (
+                <option key={s.sku} value={s.sku}>{`${PROVIDER_LABEL[p]} · ${s.vcpu}vCPU/${s.ramGb}GB`}</option>
+              )),
+            )}
+        </datalist>
 
         <div className="flex flex-wrap gap-2">
           {(Object.keys(RESOURCES) as ResourceType[]).map((type) => (

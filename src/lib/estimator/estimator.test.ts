@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { loadPricing } from '../pricing';
-import { calcEgressUsd, cheapestTotal, cdnMonthly, logsMonthly, cheapestPerSize, estimate, fitContainer, gcpSustainedUseMax, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
+import { calcEgressUsd, cheapestTotal, cdnMonthly, logsMonthly, cheapestPerSize, estimate, findVmSku, fitContainer, gcpSustainedUseMax, matchVm, qualifyingVms, HOURS_PER_MONTH, type ArchFilter, type Scenario } from './index';
 import { fitCloudSqlShape } from './db';
 import type { CdnPrice, LogPrice, ContainerPrice, DbInstance, EgressTier, Provider, ProviderPricing, VmSku } from '../schema';
 import type { MatchOptions, Resource } from './types';
@@ -147,6 +147,28 @@ test('estimate: 존재하지 않는 override는 최저가로 self-heal', () => {
   const s = scenario([vmRes(2, 4)]);
   const gcp = estimate(s, PRICING, { includeBurstable: true }, { gcp: { 0: 'no-such-sku' } }).find((e) => e.provider === 'gcp')!;
   assert.ok(gcp.lines[0].kind === 'vm' && gcp.lines[0].matched?.sku === 'cheap-burst');
+});
+
+test('estimate: 같은 사이즈에 더 싼 게 있는 override도 그대로 쓰고 후보에 끼워 넣는다', () => {
+  const pricing = { ...PRICING, gcp: { ...PRICING.gcp, vm: [...FIXTURE, sku({ sku: 'fit-pricey', vcpu: 2, ramGb: 8, pricePerHour: 0.09 })] } };
+  const vm = estimate(scenario([vmRes(2, 4)]), pricing, { includeBurstable: true }, { gcp: { 0: 'fit-pricey' } }).find((e) => e.provider === 'gcp')!.lines[0];
+  assert.ok(vm.kind === 'vm' && vm.matched?.sku === 'fit-pricey');
+  assert.deepEqual(vm.candidates.map((c) => c.sku), ['cheap-burst', 'fit', 'same-price-bigger', 'fit-pricey', 'big']);
+});
+
+test('estimate: 버스트 제외여도 버스트 override는 그대로 — 자동 선택(후보 맨 앞)은 조건 안 최저가 유지', () => {
+  const vm = estimate(scenario([vmRes(2, 4)]), PRICING, { includeBurstable: false }, { gcp: { 0: 'cheap-burst' } }).find((e) => e.provider === 'gcp')!.lines[0];
+  assert.ok(vm.kind === 'vm' && vm.matched?.sku === 'cheap-burst');
+  assert.deepEqual(vm.candidates.map((c) => c.sku), ['fit', 'cheap-burst', 'same-price-bigger', 'big']);
+});
+
+test('findVmSku: 대소문자 무시, Azure는 Standard_ 생략 허용, 없으면 null', () => {
+  const pricing = { ...PRICING, azure: { ...PRICING.azure, vm: [sku({ provider: 'azure', sku: 'Standard_B2s' })] } };
+  assert.equal(findVmSku(pricing, ' FIT ')?.sku, 'fit');
+  assert.equal(findVmSku(pricing, 'b2s')?.provider, 'azure');
+  assert.equal(findVmSku(pricing, 'Standard_B2s')?.sku, 'Standard_B2s');
+  assert.equal(findVmSku(pricing, 'm5.large'), null);
+  assert.equal(findVmSku(pricing, ''), null);
 });
 
 test('estimate: vm 라인에 resourceIndex와 후보 목록이 실린다 (드롭다운용)', () => {

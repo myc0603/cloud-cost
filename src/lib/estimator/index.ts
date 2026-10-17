@@ -36,7 +36,7 @@ export { calcEgressUsd } from './egress';
 export { CONTAINER_VCPUS, fitContainer } from './container';
 export { cdnMonthly } from './cdn';
 export { LOG_RETENTION_DAYS, logsMonthly } from './logs';
-export { cheapestPerSize, gcpSustainedUseMax, matchVm, noMatchReason, qualifyingVms } from './vm';
+export { cheapestPerSize, findVmSku, gcpSustainedUseMax, matchVm, noMatchReason, qualifyingVms } from './vm';
 
 /** 리소스 타입 레지스트리 — 키 순서가 "+ 추가" 버튼 순서 */
 export const RESOURCES: { [K in ResourceType]: ResourceDef<Extract<Resource, { type: K }>> } = {

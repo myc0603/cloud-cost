@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { CONTAINER_VCPUS, LOG_RETENTION_DAYS, type Resource } from '@/lib/estimator';
 import type { DbEngine } from '@/lib/schema';
@@ -13,15 +14,29 @@ interface Props {
   numbered: boolean;
   onChange: (next: Resource) => void;
   onRemove: () => void;
+  /** VM 카드: 인스턴스 이름으로 채우기 — 찾으면 스펙을 채우고 true. 자동완성 목록은 datalist id */
+  onFillSku?: (name: string) => boolean;
+  skuListId?: string;
+  /** VM 카드: 이 카드에 고정된 인스턴스 ("AWS t3.medium") */
+  pinned?: string[];
 }
 
 /** 리소스 카드 — 공통 틀(제목·삭제) + 타입별 입력 필드 */
-export default function ResourceCard({ resource: r, ordinal, numbered, onChange, onRemove }: Props) {
+export default function ResourceCard({ resource: r, ordinal, numbered, onChange, onRemove, onFillSku, skuListId, pinned }: Props) {
   const t = useTranslations('scenario');
+  const [skuName, setSkuName] = useState('');
+  const [skuNotFound, setSkuNotFound] = useState(false);
+  /** 찾으면 입력란을 비운다 — 결과는 카드 스펙과 고정 안내로 보인다 */
+  const fillSku = (name: string) => {
+    if (!onFillSku || !name.trim()) return;
+    const found = onFillSku(name);
+    setSkuNotFound(!found);
+    if (found) setSkuName('');
+  };
   const title = t(`resourceTitle.${r.type}`) + (numbered ? ` #${ordinal}` : '');
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-      <div className="mb-3 flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <span className="text-sm font-semibold">{title}</span>
         <button
           onClick={onRemove}
@@ -31,12 +46,40 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
           {t('remove')}
         </button>
       </div>
+      {/* 용어를 처음 보는 사용자를 위한 한 줄 설명 */}
+      <p className="mb-3 mt-0.5 text-xs text-slate-500">{t(`resourceHint.${r.type}`)}</p>
       <div className="flex flex-wrap gap-4">
         {r.type === 'vm' ? (
           <>
             <NumberField label={t('vcpu')} value={r.vcpu} min={1} onChange={(vcpu) => onChange({ ...r, vcpu })} />
             <NumberField label={t('ram')} value={r.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, ramGb })} />
             <NumberField label={t('count')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
+            {onFillSku && (
+              <label className="flex basis-full flex-col gap-1 text-xs text-slate-500">
+                {t('vmSkuLabel')}
+                <input
+                  type="text"
+                  list={skuListId}
+                  value={skuName}
+                  placeholder={t('vmSkuPlaceholder')}
+                  onChange={(e) => {
+                    setSkuName(e.target.value);
+                    setSkuNotFound(false);
+                    // 자동완성 목록에서 고르면 바로 적용 (직접 타이핑은 Enter·포커스 이동 때)
+                    const ne = e.nativeEvent as InputEvent;
+                    if (!(ne instanceof InputEvent) || ne.inputType === 'insertReplacementText') fillSku(e.target.value);
+                  }}
+                  onKeyDown={(e) => e.key === 'Enter' && fillSku(skuName)}
+                  onBlur={() => fillSku(skuName)}
+                  className="w-full max-w-xs rounded border border-slate-300 bg-white px-2 py-1 font-mono text-sm text-slate-900"
+                />
+                {skuNotFound ? (
+                  <span className="text-amber-700">{t('vmSkuNotFound')}</span>
+                ) : pinned && pinned.length > 0 ? (
+                  <span className="text-slate-600">{t('vmSkuPinned', { list: pinned.join(', ') })}</span>
+                ) : null}
+              </label>
+            )}
           </>
         ) : r.type === 'k8s' ? (
           <>

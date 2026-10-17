@@ -3,7 +3,7 @@
  * 매칭 함수는 K8s 노드처럼 VM을 쓰는 다른 리소스에서도 재사용한다.
  */
 
-import type { VmSku } from '../schema';
+import type { Provider, ProviderPricing, VmSku } from '../schema';
 import {
   HOURS_PER_MONTH,
   parsePositiveInt,
@@ -81,7 +81,12 @@ export function cheapestPerSize<T extends { vcpu: number; ramGb: number }>(sorte
   });
 }
 
-/** VM 스펙 하나의 견적 줄 — 고른 SKU가 조건 충족 후보에 있으면 그걸, 아니면 최저가로 self-heal */
+/**
+ * VM 스펙 하나의 견적 줄 — 고른 SKU를 쓰고, 없는 SKU면 최저가로 self-heal.
+ * 고른 SKU는 사용자가 명시한 선택(드롭다운·인스턴스 이름 입력)이라 같은 사이즈에 더 싼 게 있거나
+ * 버스트·아키텍처 조건 밖이어도 그대로 쓴다 — 후보 목록에 끼워 넣되 맨 앞(자동 선택 = 최저가)은 유지.
+ * 스펙이 바뀌면 화면이 선택을 지운다.
+ */
 export function vmLine(
   index: number,
   spec: VmSpec,
@@ -91,6 +96,12 @@ export function vmLine(
   role: 'vm' | 'k8s-node' = 'vm',
 ): EstimateLine {
   const candidates = cheapestPerSize(qualifyingVms(skus, spec, opts));
+  const picked = pick === undefined || candidates.some((c) => c.sku === pick) ? undefined : skus.find((s) => s.sku === pick);
+  if (picked) {
+    const { price, committed } = priceAt(picked.pricePerHour, picked.commit, opts.term);
+    const at = candidates.findIndex((c, i) => i > 0 && c.perHour > price);
+    candidates.splice(at === -1 ? candidates.length : at, 0, { ...picked, perHour: price, committed });
+  }
   const matched = candidates.find((c) => c.sku === pick) ?? candidates[0] ?? null;
   return {
     resourceIndex: index,
@@ -102,6 +113,23 @@ export function vmLine(
     noMatch: matched ? null : noMatchReason(skus, opts),
     monthlyUsd: matched ? round2(matched.perHour * HOURS_PER_MONTH * spec.count) : null,
   };
+}
+
+/**
+ * 인스턴스 이름 → 그 SKU (대소문자 무시, Azure는 "Standard_" 생략 허용).
+ * 플랫폼 간 SKU 이름이 겹치지 않아 이름만으로 플랫폼이 정해진다. 이 리전 목록에 없으면 null
+ */
+export function findVmSku(pricing: Record<Provider, ProviderPricing>, name: string): VmSku | null {
+  const key = name.trim().toLowerCase();
+  if (!key) return null;
+  for (const { vm } of Object.values(pricing)) {
+    const hit = vm.find((s) => {
+      const sku = s.sku.toLowerCase();
+      return sku === key || (s.provider === 'azure' && sku === `standard_${key}`);
+    });
+    if (hit) return hit;
+  }
+  return null;
 }
 
 type VmResource = Extract<Resource, { type: 'vm' }>;

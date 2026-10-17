@@ -92,8 +92,11 @@ export type NoMatchReason =
   | { reason: 'size'; maxVcpu: number; maxRamGb: number }
   | { reason: 'memory'; maxGb: number };
 
-/** 옵션 한도 때문에 미제공인 이유 — retention: 최대 보관 일수 초과(OCI 180일), volume: 수집·보관 용량 한도 초과(NCP) */
-export type NotOfferedLimit = { kind: 'retention'; maxDays: number } | { kind: 'volume' };
+/**
+ * 옵션 때문에 미제공인 이유 — retention: 최대 보관 일수 초과(OCI 180일), volume: 수집·보관 용량 한도 초과(NCP),
+ * engine: 그 DB 엔진만 미제공(NHN 도쿄 PostgreSQL)
+ */
+export type NotOfferedLimit = { kind: 'retention'; maxDays: number } | { kind: 'volume' } | { kind: 'engine'; engine: DbEngine };
 
 /** 견적 한 줄. resourceIndex = 이 줄을 만든 카드의 인덱스 (카드 하나가 여러 줄을 낼 수 있다) */
 export type EstimateLine = { resourceIndex: number } & (

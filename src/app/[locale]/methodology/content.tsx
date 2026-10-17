@@ -20,6 +20,7 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>OCI — 가격 목록 API (전 품목, 리전과 무관한 단일가)</li>
         <li className={LI}>NCP(네이버 클라우드) — 공식 요금 계산기가 쓰는 요금 API (원화, 리전별)</li>
         <li className={LI}>삼성 SCP — 공식 요금 페이지가 쓰는 요금 데이터 파일 (원화)</li>
+        <li className={LI}>NHN Cloud — 공식 요금 페이지가 서비스별로 불러오는 요금표 (원화, 리전별)</li>
         <li className={LI}>환율(USD→KRW) — 표시 참고용, 일 1회 갱신{meta?.usdKrw ? ` (현재 $1 = ₩${meta.usdKrw.rate.toLocaleString()})` : ''}</li>
       </ul>
 
@@ -223,6 +224,33 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         <li className={LI}>서버리스 컨테이너는 해당 상품이 없어 미제공입니다(Cloud Functions는 함수형).</li>
       </ul>
 
+      <h2 className={H2}>NHN Cloud 비교 기준</h2>
+      <ul className="mt-2 list-disc pl-5">
+        <li className={LI}>가격은 공식 요금 페이지가 서비스별로 불러오는 요금표에서 받고, 원화를 수집 시점 환율로 달러로 바꿔 저장합니다(원화 표시는 NHN 금액 그대로).</li>
+        <li className={LI}>
+          제공 리전은 서울(판교 KR1)·도쿄(JP1)입니다. 도쿄는 NKS·NAT Gateway·EasyCache·NCS·RDS for PostgreSQL 요금표가 비어 있어 해당
+          구성 요소를 &ldquo;미제공&rdquo;으로 표시합니다.
+        </li>
+        <li className={LI}>
+          VM은 Instance 일반 타입(t2·m2·c2·r2·x1, Linux)입니다. 도쿄의 u2(Basic)는 전용 로컬 스토리지가 서버 요금에 묶여 있어 뺐습니다. ARM은
+          없고, t2가 버스트형이라는 공개 자료가 없어 버스트로 구분하지 않습니다.
+        </li>
+        <li className={LI}>블록 스토리지는 SSD(10GB당 시간 1.6원, 서울), 오브젝트는 Standard(10GB당 시간 0.4원). 트래픽은 월 1GB 무료이고 이후 GB당 100원입니다.</li>
+        <li className={LI}>Kubernetes는 NKS 클러스터 요금(시간당 100원), 로드밸런서는 일반 Load Balancer(시간당 20원, 처리 요금 없음), NAT Gateway는 시간당 50원(처리 요금 없음)입니다.</li>
+        <li className={LI}>
+          관리형 DB는 RDS for MySQL·PostgreSQL 인스턴스 요금이고, 이중화는 같은 인스턴스를 하나 더 쓰는 구조라 2배입니다. 데이터 스토리지는 SSD
+          요금, 이중화 때는 인스턴스마다 저장해 2배로 봤습니다. 루트·백업 볼륨은 포함하지 않습니다.
+        </li>
+        <li className={LI}>캐시는 EasyCache(Redis 호환) 인스턴스 요금이고, 이중화는 노드를 하나 더 둬 2배입니다. 메모리에 비례해 붙는 데이터 스토리지(HDD)는 비율이 공개돼 있지 않아 뺐습니다.</li>
+        <li className={LI}>서버리스 컨테이너는 NCS(vCPU·메모리 초 단위 과금)이며, 허용 단위가 공개돼 있지 않아 요구 스펙 그대로 계산합니다(컨테이너당 최대 16 vCPU·225GB).</li>
+        <li className={LI}>CDN은 국내외 구분 없는 전송 구간 요금(요청 요금 없음)입니다.</li>
+        <li className={LI}>
+          로그는 Log &amp; Crash Search의 Log Search입니다. 수집은 무료이고 보관 기간에 따라 요금제가 정해집니다(Basic 30일 GB·월 800원, Premium
+          60~120일 1,600원). 180일 이상은 미제공입니다. API 호출 100만 건 초과 요금은 반영하지 않습니다.
+        </li>
+        <li className={LI}>공개된 약정 상품이 없어(고객센터 문의) 1·3년 기준에서도 정가입니다.</li>
+      </ul>
+
       <h2 className={H2}>한계 — 이 견적이 말해주지 않는 것</h2>
       <ul className="mt-2 list-disc pl-5">
         <li className={LI}>
@@ -261,6 +289,7 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         <li className={LI}>OCI — price list API (every product; one price for all regions)</li>
         <li className={LI}>NCP (NAVER Cloud) — the pricing API behind the official cost calculator (KRW, per region)</li>
         <li className={LI}>Samsung SCP — the price data files behind the official pricing page (KRW)</li>
+        <li className={LI}>NHN Cloud — the per-service price tables loaded by the official pricing page (KRW, per region)</li>
         <li className={LI}>Exchange rate (USD→KRW) — for display only, refreshed daily{meta?.usdKrw ? ` (currently $1 = ₩${meta.usdKrw.rate.toLocaleString()})` : ''}</li>
       </ul>
 
@@ -481,6 +510,33 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         <li className={LI}>CDN uses Global CDN tiered transfer rates (no request fee).</li>
         <li className={LI}>Logs use ServiceWatch logs (per GB). No storage price is published, so only the ingestion fee is counted.</li>
         <li className={LI}>SCP has no serverless container service (Cloud Functions is functions-as-a-service), so containers are not offered.</li>
+      </ul>
+
+      <h2 className={H2}>NHN Cloud comparison basis</h2>
+      <ul className="mt-2 list-disc pl-5">
+        <li className={LI}>Prices come from the per-service price tables loaded by the official pricing page; KRW is converted to USD at the collection-day rate (KRW figures match NHN&rsquo;s own).</li>
+        <li className={LI}>
+          NHN Cloud is offered in Seoul (Pangyo, KR1) and Tokyo (JP1). Tokyo has empty price tables for NKS, NAT Gateway, EasyCache, NCS and
+          RDS for PostgreSQL, so those components are shown as &ldquo;not offered&rdquo; there.
+        </li>
+        <li className={LI}>
+          VMs are general Instance types (t2, m2, c2, r2, x1; Linux). Tokyo&rsquo;s u2 (Basic) bundles dedicated local storage into the server
+          price, so it is left out. There is no Arm, and no public source says t2 is burstable, so it is not treated as burstable.
+        </li>
+        <li className={LI}>Block storage is SSD (KRW 1.6 per 10 GB-hour in Seoul); object storage is Standard (KRW 0.4 per 10 GB-hour). The first 1 GB of internet traffic per month is free, then KRW 100 per GB.</li>
+        <li className={LI}>Kubernetes uses the NKS cluster fee (KRW 100/hour); load balancers use the general Load Balancer (KRW 20/hour, no processing fee); the NAT Gateway is KRW 50/hour (no processing fee).</li>
+        <li className={LI}>
+          Managed databases use RDS for MySQL / PostgreSQL instance prices; high availability adds an identical instance (2×). Data storage uses
+          the SSD rate, doubled for high availability since each instance stores its own copy. Root and backup volumes are not included.
+        </li>
+        <li className={LI}>Caches use EasyCache (Redis-compatible) instance prices; high availability adds a node (2×). The HDD data storage that scales with memory is left out because the ratio isn&rsquo;t published.</li>
+        <li className={LI}>Serverless containers use NCS (vCPU and memory billed per second); allowed increments aren&rsquo;t published, so the requested spec is used as-is (up to 16 vCPU and 225 GB per container).</li>
+        <li className={LI}>CDN uses one tiered transfer price for all viewers (no request fee).</li>
+        <li className={LI}>
+          Logs use Log Search from Log &amp; Crash Search: ingestion is free and the plan follows retention (Basic 30 days at KRW 800 per
+          GB-month, Premium 60–120 days at KRW 1,600). 180 days or more is not offered. API calls above 1 million are not included.
+        </li>
+        <li className={LI}>No commitment products are published (contact sales only), so 1- and 3-year terms stay at on-demand prices.</li>
       </ul>
 
       <h2 className={H2}>Limitations — what this estimate does not tell you</h2>

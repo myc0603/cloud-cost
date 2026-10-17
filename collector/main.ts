@@ -1,6 +1,6 @@
 /**
  * 수집기 진입점 — 플랫폼별 수집을 오케스트레이션한다.
- * 실행: tsx collector/main.ts [all|gcp|aws|azure|oci|ncp|scp] [--force]
+ * 실행: tsx collector/main.ts [all|gcp|aws|azure|oci|ncp|scp|nhn] [--force]
  *   - gcp: GCP_API_KEY 환경변수 또는 .env 필요
  *   - --force: 검증 실패를 무시하고 기록 (실제 대규모 가격 개편일 때만)
  * 산출: data/{provider}/{region}/vm.json · storage.json · egress.json · k8s.json · lb.json · nat.json · db.json · cache.json · container.json · cdn.json · logs.json + data/meta.json
@@ -51,6 +51,7 @@ import {
   parseUnitPrices,
 } from './providers/gcp';
 import { buildNcpSnapshot, fetchNcpPriceList, NCP_REGION } from './providers/ncp';
+import { buildNhnSnapshot, fetchNhnContentIds, fetchNhnPages, NHN_REGION } from './providers/nhn';
 import { buildOciSnapshot, fetchOciPriceList } from './providers/oci';
 import { buildScpSnapshot, fetchScpPriceFiles } from './providers/scp';
 import { validateSnapshot, type Snapshot } from './validate';
@@ -252,11 +253,24 @@ async function collectScpJobs(usdKrw: Meta['usdKrw']): Promise<Job[]> {
   }));
 }
 
+/** NHN Cloud — 요금 페이지의 서비스별 요금표 HTML(원화) → 수집 시점 환율로 USD 환산 */
+async function collectNhnJobs(usdKrw: Meta['usdKrw']): Promise<Job[]> {
+  if (!usdKrw) throw new Error('환율이 없어 NHN 원화 요금을 환산할 수 없음');
+  const ids = await fetchNhnContentIds();
+  const jobs: Job[] = [];
+  for (const region of regionsOf('nhn')) {
+    console.log(`[nhn/${region}] 요금표 HTML 수집 중... (원화 → USD, $1 = ₩${usdKrw.rate})`);
+    const pages = await fetchNhnPages(ids, NHN_REGION[region]);
+    jobs.push({ provider: 'nhn', region, snap: buildNhnSnapshot(pages, region, usdKrw.rate), vmSamples: ['m2.c2m4', 'c2.c4m4', 'r2.c2m8'] });
+  }
+  return jobs;
+}
+
 const args = process.argv.slice(2);
 const force = args.includes('--force');
 const target = args.find((a) => !a.startsWith('--')) ?? 'all';
-if (!['gcp', 'aws', 'azure', 'oci', 'ncp', 'scp', 'all'].includes(target)) {
-  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure | oci | ncp | scp)`);
+if (!['gcp', 'aws', 'azure', 'oci', 'ncp', 'scp', 'nhn', 'all'].includes(target)) {
+  console.error(`알 수 없는 대상: ${target} (all | gcp | aws | azure | oci | ncp | scp | nhn)`);
   process.exit(1);
 }
 
@@ -269,6 +283,7 @@ if (target === 'azure' || target === 'all') jobs.push(...(await collectAzureJobs
 if (target === 'oci' || target === 'all') jobs.push(...(await collectOciJobs()));
 if (target === 'ncp' || target === 'all') jobs.push(...(await collectNcpJobs(usdKrw)));
 if (target === 'scp' || target === 'all') jobs.push(...(await collectScpJobs(usdKrw)));
+if (target === 'nhn' || target === 'all') jobs.push(...(await collectNhnJobs(usdKrw)));
 
 // 2) 검증 — 하나라도 이상하면 아무것도 쓰지 않는다
 const allErrors = jobs.flatMap((j) => validateSnapshot(`${j.provider}/${j.region}`, readOldSnapshot(j.provider, j.region), j.snap));

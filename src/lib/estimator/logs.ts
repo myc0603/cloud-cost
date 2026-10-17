@@ -54,8 +54,9 @@ export const LOGS: ResourceDef<Extract<Resource, { type: 'logs' }>> = {
     const plans = logs ? [logs, ...(logs.alternatives ?? [])] : [];
     const fitting = plans.filter((p) => fits(p, r.gb, r.retentionDays));
     if (plans.length > 0 && fitting.length === 0) {
-      // 보관 기간 한도에 걸린 요금제가 있으면 그 이유로, 아니면 용량 한도
-      const maxDays = plans.find((p) => p.maxRetentionDays !== undefined && r.retentionDays > p.maxRetentionDays)?.maxRetentionDays;
+      // 모든 요금제가 보관 기간 한도에 걸리면 그 이유(가장 긴 한도)로, 아니면 용량 한도
+      const byRetention = plans.every((p) => p.maxRetentionDays !== undefined && r.retentionDays > p.maxRetentionDays);
+      const maxDays = byRetention ? Math.max(...plans.map((p) => p.maxRetentionDays!)) : undefined;
       return [
         {
           resourceIndex: index,

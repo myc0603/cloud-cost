@@ -13,7 +13,8 @@
     "collect:oci": "tsx collector/main.ts oci",
     "collect:ncp": "tsx collector/main.ts ncp",
     "collect:scp": "tsx collector/main.ts scp",
-    "test": "node --import tsx --test src/lib/estimator/estimator.test.ts src/lib/scenario-url.test.ts src/lib/display.test.ts collector/providers/aws.test.ts collector/providers/azure.test.ts collector/providers/oci.test.ts collector/providers/ncp.test.ts collector/providers/scp.test.ts collector/validate.test.ts && npm run test:collector",
+    "collect:nhn": "tsx collector/main.ts nhn",
+    "test": "node --import tsx --test src/lib/estimator/estimator.test.ts src/lib/scenario-url.test.ts src/lib/display.test.ts collector/providers/aws.test.ts collector/providers/azure.test.ts collector/providers/oci.test.ts collector/providers/ncp.test.ts collector/providers/scp.test.ts collector/providers/nhn.test.ts collector/validate.test.ts && npm run test:collector",
     "test:collector": "tsx collector/providers/gcp.test.ts",
     "typecheck": "tsc --noEmit"
   },

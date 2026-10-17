@@ -6,7 +6,7 @@
  * 리소스 타입별 계산·URL 토큰은 각 모듈(vm·storage·egress·k8s·lb·nat·db·cache·container·cdn·logs)에 있고, 여기는 레지스트리와 합산만 한다.
  */
 
-import { NOT_OFFERED } from '../providers';
+import { notOffered } from '../providers';
 import type { Provider, ProviderPricing } from '../schema';
 import { CACHE } from './cache';
 import { CDN } from './cdn';
@@ -70,7 +70,7 @@ export function estimate(
     }
 
     const lines: EstimateLine[] = scenario.resources.flatMap((r, index): EstimateLine[] =>
-      NOT_OFFERED[provider].includes(r.type)
+      notOffered(provider, scenario.region, r.type)
         ? [{ resourceIndex: index, kind: 'not-offered', resourceType: r.type, limit: null, monthlyUsd: null }]
         : resourceDef(r).estimate(r, { index, pricing: p, opts, pick: overrides[provider]?.[index], scenario }),
     );

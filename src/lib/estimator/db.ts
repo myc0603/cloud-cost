@@ -82,6 +82,10 @@ export const DB: ResourceDef<Extract<Resource, { type: 'db' }>> = {
     return { type: 'db', engine: m[1] === 'pg' ? 'postgres' : 'mysql', vcpu, ramGb, storageGb, ha: m[5] === '1', count };
   },
   estimate: (r, { index, pricing, opts, pick }) => {
+    // DB 요금은 있는데 이 엔진만 없으면 플랫폼이 그 엔진을 제공하지 않는 것 (NHN 도쿄 PostgreSQL). DB 요금 자체가 없으면 데이터 없음
+    if (pricing.db && !pricing.db.engines[r.engine]) {
+      return [{ resourceIndex: index, kind: 'not-offered', resourceType: 'db', limit: { kind: 'engine', engine: r.engine }, monthlyUsd: null }];
+    }
     const p = pricing.db?.engines[r.engine] ?? null;
     const spec: VmSpec = { vcpu: r.vcpu, ramGb: r.ramGb, count: r.count };
 

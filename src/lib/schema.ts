@@ -4,7 +4,7 @@
  */
 
 /** 플랫폼 목록·라벨·미제공 구성 요소는 providers.ts */
-export type Provider = 'aws' | 'azure' | 'gcp' | 'oci' | 'ncp' | 'scp';
+export type Provider = 'aws' | 'azure' | 'gcp' | 'oci' | 'ncp' | 'scp' | 'nhn';
 
 /** CPU 아키텍처. arm = Graviton(AWS)·Ampere(Azure/GCP) 계열 */
 export type Arch = 'x86' | 'arm';

@@ -43,6 +43,7 @@ const PRICING: Record<Provider, ProviderPricing> = {
   oci: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   ncp: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   scp: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
+  nhn: { vm: [], storage: [], egress: null, k8s: null, lb: null, nat: null, db: null, cache: null, container: null, cdn: null, logs: null },
   gcp: {
     vm: FIXTURE,
     storage: [
@@ -321,12 +322,12 @@ test('estimate: DB(GCP 커스텀) = 컴퓨트 + 스토리지 두 줄, 인스턴�
   assert.equal(storage.monthlyUsd, +(0.4 * 100 * 2).toFixed(2));
 });
 
-test('estimate: DB 엔진 요금이 없으면 데이터 없음(matched·noMatch null) → 총액 null', () => {
+test('estimate: DB 요금은 있는데 엔진 요금만 없으면 그 엔진 미제공 (수집 누락은 validate가 막는다)', () => {
   const s = scenario([{ type: 'db', engine: 'mysql', vcpu: 2, ramGb: 8, storageGb: 100, ha: false, count: 1 }]);
   const gcp = estimate(s, PRICING, { includeBurstable: true }).find((e) => e.provider === 'gcp')!;
-  const [compute] = gcp.lines;
-  assert.ok(compute.kind === 'db' && compute.matched === null && compute.noMatch === null);
-  assert.equal(gcp.totalMonthlyUsd, null);
+  assert.deepEqual(gcp.lines, [{ resourceIndex: 0, kind: 'not-offered', resourceType: 'db', limit: { kind: 'engine', engine: 'mysql' }, monthlyUsd: null }]);
+  assert.equal(gcp.partial, true);
+  assert.equal(gcp.totalMonthlyUsd, null); // 미제공 줄뿐이면 합산할 항목이 없다
 });
 
 test('estimate: DB(정해진 사이즈) — 버스트 옵션·이중화 미지원 제외·카드 인덱스 선택·사이즈 초과 이유', () => {
@@ -612,4 +613,39 @@ test('로그: 요금제가 여러 개면 한도(하루 수집량·보관량) 안
   assert.ok(mid.kind === 'logs' && mid.plan === 'Premium');
   // 보관량 1TB 초과(월 900GB × 365일) → 둘 다 불가
   assert.deepEqual(line(900, 365), { resourceIndex: 0, kind: 'not-offered', resourceType: 'logs', limit: { kind: 'volume' }, monthlyUsd: null });
+});
+
+test('미제공: 리전별 미제공(NHN 도쿄 NAT)과 DB 엔진 미제공(엔진 요금만 없음)은 미제공 줄, DB 요금 자체가 없으면 데이터 없음', () => {
+  const nat = { provider: 'nhn' as const, region: 'tokyo' as const, hourly: { per: 'gateway' as const, usd: 0.05 }, perGb: 0 };
+  const db = { provider: 'nhn' as const, region: 'tokyo' as const, engines: { mysql: PRICING.gcp.db!.engines.postgres, postgres: null } };
+  const pricing = { ...PRICING, nhn: { ...PRICING.gcp, nat, db } };
+  const run = (region: 'seoul' | 'tokyo', resources: Resource[]) =>
+    estimate({ region, resources }, pricing, { includeBurstable: true }).find((e) => e.provider === 'nhn')!;
+  // 도쿄 NAT는 providers.ts NOT_OFFERED_IN — 요금 데이터가 있어도 미제공
+  assert.equal(run('tokyo', [vmRes(2, 4), { type: 'nat', count: 1, gb: 10 }]).lines[1].kind, 'not-offered');
+  assert.equal(run('seoul', [vmRes(2, 4), { type: 'nat', count: 1, gb: 10 }]).lines[1].kind, 'nat');
+  const pg = run('tokyo', [vmRes(2, 4), { type: 'db', engine: 'postgres', vcpu: 2, ramGb: 8, storageGb: 10, ha: false, count: 1 }]);
+  assert.deepEqual(pg.lines[1], { resourceIndex: 1, kind: 'not-offered', resourceType: 'db', limit: { kind: 'engine', engine: 'postgres' }, monthlyUsd: null });
+  assert.equal(pg.partial, true);
+  // DB 요금이 아예 없으면(수집 누락) 미제공이 아니라 데이터 없음 → 총액 null
+  const missing = estimate(scenario([{ type: 'db', engine: 'postgres', vcpu: 2, ramGb: 8, storageGb: 10, ha: false, count: 1 }]), { ...PRICING, nhn: { ...PRICING.gcp, db: null } }, { includeBurstable: true }).find((e) => e.provider === 'nhn')!;
+  assert.equal(missing.lines[0].kind, 'db');
+  assert.equal(missing.totalMonthlyUsd, null);
+});
+
+test('로그: 모든 요금제가 보관 기간 한도를 넘으면 가장 긴 한도로 안내 (NHN Basic 30일·Premium 120일)', () => {
+  const premium: LogPrice = { provider: 'nhn', region: 'seoul', ingestPerGb: 0, storagePerGbMonth: 1.6, includedDays: 0, storedRatio: 1, commitmentTiers: [], plan: 'Premium', maxRetentionDays: 120 };
+  const basic: LogPrice = { ...premium, storagePerGbMonth: 0.8, plan: 'Basic', maxRetentionDays: 30, alternatives: [premium] };
+  const line = (days: number) =>
+    estimate(scenario([{ type: 'logs', gb: 100, retentionDays: days }]), { ...PRICING, gcp: { ...PRICING.gcp, logs: basic } }, { includeBurstable: true })
+      .find((e) => e.provider === 'gcp')!.lines[0];
+  assert.ok(line(30).kind === 'logs' && (line(30) as { plan: string }).plan === 'Basic');
+  assert.ok(line(90).kind === 'logs' && (line(90) as { plan: string }).plan === 'Premium');
+  assert.deepEqual(line(180), { resourceIndex: 0, kind: 'not-offered', resourceType: 'logs', limit: { kind: 'retention', maxDays: 120 }, monthlyUsd: null });
+});
+
+test('컨테이너: NHN NCS는 요구 스펙 그대로(올림 없음), 16 vCPU·225GB 초과는 사이즈 초과', () => {
+  const price: ContainerPrice = { provider: 'nhn', region: 'seoul', rates: { x86: { vcpuPerHour: 0.0576, gbPerHour: 0.00648 } } };
+  assert.deepEqual(fitContainer(price, { vcpu: 0.25, ramGb: 1 }, { includeBurstable: true }), { vcpu: 0.25, ramGb: 1, arch: 'x86', perHour: 0.02088, committed: false });
+  assert.deepEqual(fitContainer(price, { vcpu: 32, ramGb: 64 }, { includeBurstable: true }), { reason: 'size', maxVcpu: 16, maxRamGb: 225 });
 });

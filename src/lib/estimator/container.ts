@@ -1,5 +1,5 @@
 /**
- * 서버리스 컨테이너 리소스 — AWS ECS Fargate / Azure Container Apps(Consumption) / GCP Cloud Run(인스턴스 기반 과금) / OCI Container Instances.
+ * 서버리스 컨테이너 리소스 — AWS ECS Fargate / Azure Container Apps(Consumption) / GCP Cloud Run(인스턴스 기반 과금) / OCI Container Instances / NHN NCS.
  * 상시 실행 기준: 컨테이너 수 × (vCPU 단가 × vCPU + GB 단가 × 메모리) × 730시간.
  * 플랫폼마다 허용되는 vCPU·메모리 조합이 달라 요구 스펙 이상인 가장 싼 허용 조합으로 올린다 (규칙은 아래 상수, 공식 문서값).
  * 아키텍처 토글을 따른다 (ARM은 Fargate만). 버스트 옵션은 해당 없음.
@@ -68,10 +68,17 @@ function ociShape(arch: Arch, spec: Shape): Shape[] {
   return ocpu <= ci.maxOcpu && ramGb <= Math.min(ocpu * 64, ci.maxGb) ? [{ vcpu: ocpu * ci.vcpuPerOcpu, ramGb }] : [];
 }
 
+/**
+ * NHN NCS — vCPU·메모리 초 단위 과금, 허용 단위·최솟값이 문서에 없어 요구 스펙 그대로. 컨테이너당 최대 16 vCore · 230,400MiB(225GB)
+ * (docs.nhncloud.com/en/nhncloud/en/resource-policy, 2026-10-17 확인)
+ */
+const NHN_NCS = { maxVcpu: 16, maxGb: 225 };
+
 function shapes(provider: Provider, arch: Arch, spec: Shape): Shape[] {
   if (provider === 'aws') return FARGATE_SHAPES;
   if (provider === 'azure') return CONTAINER_APPS_SHAPES;
   if (provider === 'oci') return ociShape(arch, spec);
+  if (provider === 'nhn') return spec.vcpu <= NHN_NCS.maxVcpu && spec.ramGb <= NHN_NCS.maxGb ? [{ ...spec }] : [];
   return CLOUD_RUN_MEMORY.flatMap(([vcpu, min, max]) => {
     const ram = Math.max(spec.ramGb, min);
     return ram <= max ? [{ vcpu, ramGb: ram }] : [];
@@ -84,6 +91,7 @@ const MAX: Partial<Record<Provider, Shape>> = {
   azure: { vcpu: 4, ramGb: 8 },
   gcp: { vcpu: 8, ramGb: 32 },
   oci: { vcpu: 128, ramGb: 1024 },
+  nhn: { vcpu: NHN_NCS.maxVcpu, ramGb: NHN_NCS.maxGb },
 };
 
 /** 요구 스펙 이상인 허용 조합 × 아키텍처 중 최저가. 동가면 작은 조합 */

@@ -15,7 +15,7 @@ AWS·Azure·GCP 외 플랫폼을 넣기 위한 조사 기록. 결정은 [ARCHITE
 | Vultr | `api.vultr.com/v2/plans`·`regions` 공개, DB·LB는 401 | 무료 계정 API 키 | |
 | Hetzner | `api.hetzner.cloud/v1/pricing` | 토큰 | |
 | DigitalOcean | `/v2/sizes` | 토큰 | Droplet 가격만 있음. LB·NAT·DB 가격은 API에 없음 |
-| NCP | List Price API `billingapi.apigw.ntruss.com/billing/v1/product/getProductPriceList?regionCode=` | Access/Secret 키 + HMAC 서명 | KRW·USD·JPY |
+| NCP | ① 공식: List Price API `billingapi.apigw.ntruss.com/billing/v1/product/getProductPriceList?regionCode=` ② **사용 중**: 요금 계산기 API `www.ncloud.com/api-usage/charge/price/{1 KR·7 SGN·8 JPN}` | ① Access/Secret 키 + HMAC 서명 ② 없음 | ②는 미문서화 내부 경로, 원화. 막히면 ①로 전환 |
 | NHN Cloud | ① 공식: 프레임워크 API "종량제 서비스 가격 조회"(User Access Key) ② **크롤링**: 가격 페이지가 부르는 `www.nhncloud.com/xcms-api/v1/contents/{id}?languageCode=KO&countryCode=KR&templateContext={"isPricingPage":true,"tab":"pricing","pricingRegionCode":"KR1"}` | ② 없음 | ②는 서비스별 HTML 표 조각(예: m2.c2m4 93원/시간). 리전 KR1·JP1·US1. robots.txt 전체 허용 |
 | 삼성 SCP | **크롤링**: 가격 페이지가 import하는 정적 JS `cloud.samsungsds.com/serviceportal/assets/js/data/price/{서비스}Price.js` | 없음 | `[리전][표][통화] = [[사이즈, vCPU, GB, 원/시간…]]` 배열이라 파싱이 가장 쉬움. KRW·USD, 약정형(`*CostSavings`·`*PlannedCompute`) 별도 파일. 리전 KR_WEST·KR_SOUTH·US_WEST |
 | KT Cloud | 공개 API 없음(요금 조회는 파트너 전용 Reseller API). 웹 상품 페이지(`cloud.kt.com/product/computing/server/`)에 요금표가 있다는 검색 결과는 있음 | — | **미확인**: 첫 요청 뒤 연결 차단(curl 타임아웃, WebFetch ECONNREFUSED). 해외·봇 차단이면 GitHub Actions 수집 불가 → 로컬 수집이나 수동 갱신 필요 |
@@ -30,20 +30,20 @@ AWS·Azure·GCP 외 플랫폼을 넣기 위한 조사 기록. 결정은 [ARCHITE
 | Vultr | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Linode | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | DigitalOcean | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| NCP | ✓ | ✓ | ✓ | ? | ✓ | ✓ | ✗ |
+| NCP | ✓ | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
 | NHN | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ | ✗ |
 | 삼성 SCP | ✓ | ✗ | ✗ | ✗ | ✓ | ✗ | ✗ |
 | KT | ✓ | ? | ? | ? | ? | ? | ? |
 | Hetzner | ✗ | ✗ | ✓ | ✓ | ✓ | △ 뉘른베르크 | ✗ |
 
-NCP는 `getRegionList`로 확정 필요.
+NCP 미국 서부·독일·홍콩은 리전별 요금 페이지에 VPC 서버 요금표가 없어 미제공으로 봤다 (2026-10-17).
 
 ## 3. 구성 요소 커버리지 · 약정
 
 | 후보 | 없는 구성 요소 | 약정 |
 |---|---|---|
 | OCI | CDN | 리소스별 약정 없음(계정 단위 크레딧뿐) |
-| NCP | 서버리스 컨테이너? | ? (`promiseList` 필드 있음) |
+| NCP | 서버리스 컨테이너 (Cloud Functions는 FaaS) | 공개 상품 없음 (요금 API의 약정 필드 비어 있음) |
 | NHN | — (NCS·EasyCache·Log & Crash Search) | 고객센터 문의 |
 | 삼성 SCP | 서버리스 컨테이너?, 로그 등가물? | 있음(Cost Savings·Planned Compute) |
 | DigitalOcean | 로그 | 없음 |

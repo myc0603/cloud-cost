@@ -1,0 +1,14 @@
+{
+  "provider": "oci",
+  "region": "frankfurt",
+  "rates": {
+    "x86": {
+      "vcpuPerHour": 0.0125,
+      "gbPerHour": 0.0015
+    },
+    "arm": {
+      "vcpuPerHour": 0.01,
+      "gbPerHour": 0.0015
+    }
+  }
+}

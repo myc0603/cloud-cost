@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "oci",
+    "region": "us-west",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.0425
+  },
+  {
+    "provider": "oci",
+    "region": "us-west",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.0255
+  }
+]

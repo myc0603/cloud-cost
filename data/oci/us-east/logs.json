@@ -1,0 +1,10 @@
+{
+  "provider": "oci",
+  "region": "us-east",
+  "ingestPerGb": 0,
+  "storagePerGbMonth": 0.05,
+  "includedDays": 0,
+  "storedRatio": 1,
+  "commitmentTiers": [],
+  "maxRetentionDays": 180
+}

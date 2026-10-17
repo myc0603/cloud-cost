@@ -1,0 +1,127 @@
+{
+  "provider": "oci",
+  "region": "seoul",
+  "engine": "Valkey",
+  "nodes": [
+    {
+      "sku": "OCI Cache 2GB",
+      "memoryGb": 2,
+      "burstable": false,
+      "perHour": 0.0388,
+      "haPerHour": 0.0776
+    },
+    {
+      "sku": "OCI Cache 4GB",
+      "memoryGb": 4,
+      "burstable": false,
+      "perHour": 0.0776,
+      "haPerHour": 0.1552
+    },
+    {
+      "sku": "OCI Cache 6GB",
+      "memoryGb": 6,
+      "burstable": false,
+      "perHour": 0.1164,
+      "haPerHour": 0.2328
+    },
+    {
+      "sku": "OCI Cache 8GB",
+      "memoryGb": 8,
+      "burstable": false,
+      "perHour": 0.1552,
+      "haPerHour": 0.3104
+    },
+    {
+      "sku": "OCI Cache 10GB",
+      "memoryGb": 10,
+      "burstable": false,
+      "perHour": 0.194,
+      "haPerHour": 0.388
+    },
+    {
+      "sku": "OCI Cache 12GB",
+      "memoryGb": 12,
+      "burstable": false,
+      "perHour": 0.1632,
+      "haPerHour": 0.3264
+    },
+    {
+      "sku": "OCI Cache 16GB",
+      "memoryGb": 16,
+      "burstable": false,
+      "perHour": 0.2176,
+      "haPerHour": 0.4352
+    },
+    {
+      "sku": "OCI Cache 24GB",
+      "memoryGb": 24,
+      "burstable": false,
+      "perHour": 0.3264,
+      "haPerHour": 0.6528
+    },
+    {
+      "sku": "OCI Cache 32GB",
+      "memoryGb": 32,
+      "burstable": false,
+      "perHour": 0.4352,
+      "haPerHour": 0.8704
+    },
+    {
+      "sku": "OCI Cache 48GB",
+      "memoryGb": 48,
+      "burstable": false,
+      "perHour": 0.6528,
+      "haPerHour": 1.3056
+    },
+    {
+      "sku": "OCI Cache 64GB",
+      "memoryGb": 64,
+      "burstable": false,
+      "perHour": 0.8704,
+      "haPerHour": 1.7408
+    },
+    {
+      "sku": "OCI Cache 96GB",
+      "memoryGb": 96,
+      "burstable": false,
+      "perHour": 1.3056,
+      "haPerHour": 2.6112
+    },
+    {
+      "sku": "OCI Cache 128GB",
+      "memoryGb": 128,
+      "burstable": false,
+      "perHour": 1.7408,
+      "haPerHour": 3.4816
+    },
+    {
+      "sku": "OCI Cache 192GB",
+      "memoryGb": 192,
+      "burstable": false,
+      "perHour": 2.6112,
+      "haPerHour": 5.2224
+    },
+    {
+      "sku": "OCI Cache 256GB",
+      "memoryGb": 256,
+      "burstable": false,
+      "perHour": 3.4816,
+      "haPerHour": 6.9632
+    },
+    {
+      "sku": "OCI Cache 384GB",
+      "memoryGb": 384,
+      "burstable": false,
+      "perHour": 5.2224,
+      "haPerHour": 10.4448
+    },
+    {
+      "sku": "OCI Cache 500GB",
+      "memoryGb": 500,
+      "burstable": false,
+      "perHour": 6.8,
+      "haPerHour": 13.6
+    }
+  ],
+  "gbTiers": null
+}

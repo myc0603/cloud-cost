@@ -1,0 +1,15 @@
+{
+  "provider": "oci",
+  "region": "singapore",
+  "freeGb": 10240,
+  "tiers": [
+    {
+      "upToGb": 10240,
+      "pricePerGb": 0
+    },
+    {
+      "upToGb": null,
+      "pricePerGb": 0.025
+    }
+  ]
+}

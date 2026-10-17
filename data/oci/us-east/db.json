@@ -1,0 +1,276 @@
+{
+  "provider": "oci",
+  "region": "us-east",
+  "engines": {
+    "mysql": {
+      "instances": [
+        {
+          "sku": "MySQL.2",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.0732,
+          "haPerHour": 0.2196
+        },
+        {
+          "sku": "MySQL.4",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.1464,
+          "haPerHour": 0.4392
+        },
+        {
+          "sku": "MySQL.8",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 0.2928,
+          "haPerHour": 0.8784
+        },
+        {
+          "sku": "MySQL.16",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 0.5856,
+          "haPerHour": 1.7568
+        },
+        {
+          "sku": "MySQL.32",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 1.1712,
+          "haPerHour": 3.5136
+        },
+        {
+          "sku": "MySQL.48",
+          "vcpu": 48,
+          "ramGb": 384,
+          "burstable": false,
+          "perHour": 1.7568,
+          "haPerHour": 5.2704
+        },
+        {
+          "sku": "MySQL.64",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 2.3424,
+          "haPerHour": 7.0272
+        },
+        {
+          "sku": "MySQL.96",
+          "vcpu": 96,
+          "ramGb": 768,
+          "burstable": false,
+          "perHour": 3.5136,
+          "haPerHour": 10.5408
+        }
+      ],
+      "custom": null,
+      "storageGbMonth": 0.04,
+      "haStorageGbMonth": 0.12
+    },
+    "postgres": {
+      "instances": [
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.1OCPU.16GB",
+          "vcpu": 2,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.16,
+          "haPerHour": 0.32
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.1OCPU.32GB",
+          "vcpu": 2,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.192,
+          "haPerHour": 0.384
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.1OCPU.64GB",
+          "vcpu": 2,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 0.256,
+          "haPerHour": 0.512
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.2OCPU.16GB",
+          "vcpu": 4,
+          "ramGb": 16,
+          "burstable": false,
+          "perHour": 0.288,
+          "haPerHour": 0.576
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.2OCPU.32GB",
+          "vcpu": 4,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.32,
+          "haPerHour": 0.64
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.2OCPU.64GB",
+          "vcpu": 4,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 0.384,
+          "haPerHour": 0.768
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.2OCPU.128GB",
+          "vcpu": 4,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 0.512,
+          "haPerHour": 1.024
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.4OCPU.32GB",
+          "vcpu": 8,
+          "ramGb": 32,
+          "burstable": false,
+          "perHour": 0.576,
+          "haPerHour": 1.152
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.4OCPU.64GB",
+          "vcpu": 8,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 0.64,
+          "haPerHour": 1.28
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.4OCPU.128GB",
+          "vcpu": 8,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 0.768,
+          "haPerHour": 1.536
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.4OCPU.256GB",
+          "vcpu": 8,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 1.024,
+          "haPerHour": 2.048
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.8OCPU.64GB",
+          "vcpu": 16,
+          "ramGb": 64,
+          "burstable": false,
+          "perHour": 1.152,
+          "haPerHour": 2.304
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.8OCPU.128GB",
+          "vcpu": 16,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 1.28,
+          "haPerHour": 2.56
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.8OCPU.256GB",
+          "vcpu": 16,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 1.536,
+          "haPerHour": 3.072
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.8OCPU.512GB",
+          "vcpu": 16,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 2.048,
+          "haPerHour": 4.096
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.16OCPU.128GB",
+          "vcpu": 32,
+          "ramGb": 128,
+          "burstable": false,
+          "perHour": 2.304,
+          "haPerHour": 4.608
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.16OCPU.256GB",
+          "vcpu": 32,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 2.56,
+          "haPerHour": 5.12
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.16OCPU.512GB",
+          "vcpu": 32,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 3.072,
+          "haPerHour": 6.144
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.16OCPU.1024GB",
+          "vcpu": 32,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 4.096,
+          "haPerHour": 8.192
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.32OCPU.256GB",
+          "vcpu": 64,
+          "ramGb": 256,
+          "burstable": false,
+          "perHour": 4.608,
+          "haPerHour": 9.216
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.32OCPU.512GB",
+          "vcpu": 64,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 5.12,
+          "haPerHour": 10.24
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.32OCPU.1024GB",
+          "vcpu": 64,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 6.144,
+          "haPerHour": 12.288
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.64OCPU.512GB",
+          "vcpu": 128,
+          "ramGb": 512,
+          "burstable": false,
+          "perHour": 9.216,
+          "haPerHour": 18.432
+        },
+        {
+          "sku": "PostgreSQL.VM.Standard.E5.Flex.64OCPU.1024GB",
+          "vcpu": 128,
+          "ramGb": 1024,
+          "burstable": false,
+          "perHour": 10.24,
+          "haPerHour": 20.48
+        }
+      ],
+      "custom": null,
+      "storageGbMonth": 0.072,
+      "haStorageGbMonth": 0.072
+    }
+  }
+}

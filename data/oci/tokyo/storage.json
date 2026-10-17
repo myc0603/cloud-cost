@@ -1,0 +1,14 @@
+[
+  {
+    "provider": "oci",
+    "region": "tokyo",
+    "kind": "block-ssd",
+    "pricePerGbMonth": 0.0425
+  },
+  {
+    "provider": "oci",
+    "region": "tokyo",
+    "kind": "object-standard",
+    "pricePerGbMonth": 0.0255
+  }
+]

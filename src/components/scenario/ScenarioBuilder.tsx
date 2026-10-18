@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { ChevronDown, SlidersHorizontal } from 'lucide-react';
+import Collapse from '@/components/Collapse';
 import { estimate, findVmSku, RESOURCES, type ArchFilter, type Overrides, type Resource, type ResourceType, type Scenario } from '@/lib/estimator';
 import type { Provider, ProviderPricing, Region, Term } from '@/lib/schema';
 import {
@@ -225,37 +226,30 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
             </button>
           </div>
           {/* 대부분 안 건드리는 고급 옵션이라 접어둔다 — 결과 위 매칭 규칙 안내가 현재 값을 계속 보여준다 */}
-          <div
-            inert={!matchOpen}
-            className={`grid transition-[grid-template-rows,opacity] duration-200 ease-out motion-reduce:transition-none ${
-              matchOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-            }`}
-          >
-            <div className="overflow-hidden">
-              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-md bg-slate-100 px-3 py-2">
-                <label className="flex items-center gap-1.5 text-sm">
-                  <input
-                    type="checkbox"
-                    checked={includeBurstable}
-                    onChange={(e) => setIncludeBurstable(e.target.checked)}
-                  />
-                  {t('includeBurstable')}
-                </label>
-                <label className="flex items-center gap-2 text-sm">
-                  {t('arch')}
-                  <select
-                    value={arch}
-                    onChange={(e) => setArch(e.target.value as ArchFilter)}
-                    className="rounded border border-slate-300 bg-white px-2 py-1"
-                  >
-                    {(['both', 'x86', 'arm'] as ArchFilter[]).map((a) => (
-                      <option key={a} value={a}>{t(`archLabel.${a}`)}</option>
-                    ))}
-                  </select>
-                </label>
-              </div>
+          <Collapse open={matchOpen}>
+            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-md bg-slate-100 px-3 py-2">
+              <label className="flex items-center gap-1.5 text-sm">
+                <input
+                  type="checkbox"
+                  checked={includeBurstable}
+                  onChange={(e) => setIncludeBurstable(e.target.checked)}
+                />
+                {t('includeBurstable')}
+              </label>
+              <label className="flex items-center gap-2 text-sm">
+                {t('arch')}
+                <select
+                  value={arch}
+                  onChange={(e) => setArch(e.target.value as ArchFilter)}
+                  className="rounded border border-slate-300 bg-white px-2 py-1"
+                >
+                  {(['both', 'x86', 'arm'] as ArchFilter[]).map((a) => (
+                    <option key={a} value={a}>{t(`archLabel.${a}`)}</option>
+                  ))}
+                </select>
+              </label>
             </div>
-          </div>
+          </Collapse>
         </div>
 
         {scenario.resources.map((r, i) => {

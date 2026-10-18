@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Check, Link2 } from 'lucide-react';
+import { Check, ChevronDown, Info, Link2 } from 'lucide-react';
+import Collapse from '@/components/Collapse';
 import { Link } from '@/i18n/navigation';
 import { cheapestTotal, gcpSustainedUseMax, HOURS_PER_MONTH, type ArchFilter, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
 import { formatMoney, type Currency, type Period } from '@/lib/display';
@@ -366,6 +367,7 @@ export default function EstimateResult({
   // 주소에 현재 시나리오가 들어 있으므로 주소 복사가 곧 공유 (ScenarioBuilder가 주소를 갱신)
   const ts = useTranslations('scenario');
   const [copied, setCopied] = useState(false);
+  const [basisOpen, setBasisOpen] = useState(false);
   const copyShareLink = async () => {
     await navigator.clipboard.writeText(window.location.href);
     setCopied(true);
@@ -431,7 +433,7 @@ export default function EstimateResult({
           aria-expanded={expandable ? open : undefined}
           className="flex w-full flex-wrap items-center gap-x-3 gap-y-2 rounded-lg px-4 py-3 text-left sm:flex-nowrap hover:bg-slate-50 disabled:cursor-default disabled:hover:bg-transparent"
         >
-          <span className="w-24 shrink-0 text-sm font-bold sm:w-32">
+          <span className="w-28 shrink-0 text-sm font-bold sm:w-32">
             {PROVIDER_LABEL[e.provider]}
             {isCheapest && (
               <span className="mt-0.5 block w-fit rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-700">
@@ -573,12 +575,28 @@ export default function EstimateResult({
       {hasArm && (
         <p className="rounded-md bg-violet-50 px-3 py-2 text-xs text-violet-700">{t('armNotice')}</p>
       )}
-      {currency === 'krw' && rate !== null && (
-        <p className="text-xs text-slate-400">
-          {td('fxNote', { rate: rate.toLocaleString('ko-KR', { maximumFractionDigits: 2 }) })}
-        </p>
-      )}
-      <p className="text-xs text-slate-400">{t('footnote')}</p>
+      {/* 항상 같은 계산 전제는 접어둔다 — 결과에 직접 영향 주는 경고(약정·ARM)는 위에 그대로 */}
+      <div>
+        <button
+          type="button"
+          onClick={() => setBasisOpen((o) => !o)}
+          aria-expanded={basisOpen}
+          className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-900"
+        >
+          <Info aria-hidden className="size-3.5" />
+          {t('calcBasis')}
+          <ChevronDown aria-hidden className={`size-3.5 text-slate-400 transition-transform duration-200 ${basisOpen ? 'rotate-180' : ''}`} />
+        </button>
+        <Collapse open={basisOpen}>
+          <div className="mt-2 space-y-1.5 text-xs text-slate-500">
+            <p>{t('footnote')}</p>
+            {currency === 'krw' && rate !== null && (
+              <p>{td('fxNote', { rate: rate.toLocaleString('ko-KR', { maximumFractionDigits: 2 }) })}</p>
+            )}
+            <Link href="/methodology" className="inline-block underline hover:text-slate-700">{t('matchRuleLink')}</Link>
+          </div>
+        </Collapse>
+      </div>
     </div>
   );
 }

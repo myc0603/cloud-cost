@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { ChevronDown, SlidersHorizontal } from 'lucide-react';
 import { estimate, findVmSku, RESOURCES, type ArchFilter, type Overrides, type Resource, type ResourceType, type Scenario } from '@/lib/estimator';
 import type { Provider, ProviderPricing, Region, Term } from '@/lib/schema';
 import {
@@ -72,6 +73,10 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
   // 화면에서 숨긴 플랫폼 ("다른 플랫폼"만, 대표 3사는 고정) — 공유 링크에 저장
   const [hidden, setHidden] = useState<Provider[]>(() => decodeHidden(searchParams));
   const toggleProvider = (p: Provider) => setHidden((h) => (h.includes(p) ? h.filter((x) => x !== p) : [...h, p]));
+
+  // 매칭 옵션이 기본값(버스트 포함·x86/ARM 모두)이 아니면 — 공유 링크로 들어온 경우 등 — 처음부터 펼쳐 보인다
+  const matchCustomized = !includeBurstable || arch !== 'both';
+  const [matchOpen, setMatchOpen] = useState(matchCustomized);
 
   const setArch = (next: ArchFilter) => setMatchOpts((o) => ({ ...o, arch: next }));
   const setIncludeBurstable = (next: boolean) => setMatchOpts((o) => ({ ...o, includeBurstable: next }));
@@ -179,51 +184,78 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4">
-          <label className="flex items-center gap-2 text-sm">
-            {t('region')}
-            <select
-              value={scenario.region}
-              onChange={(e) => setScenario((s) => ({ ...s, region: e.target.value as Region }))}
-              className="rounded border border-slate-300 bg-white px-2 py-1"
+        <div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <label className="flex items-center gap-2 text-sm">
+              {t('region')}
+              <select
+                value={scenario.region}
+                onChange={(e) => setScenario((s) => ({ ...s, region: e.target.value as Region }))}
+                className="rounded border border-slate-300 bg-white px-2 py-1"
+              >
+                {REGIONS.map((r) => (
+                  <option key={r} value={r}>{t(`regionLabel.${r}`)}</option>
+                ))}
+              </select>
+            </label>
+            <label className="flex items-center gap-2 text-sm">
+              {t('term')}
+              <select
+                value={term ?? 'od'}
+                onChange={(e) => setTerm(e.target.value === 'od' ? undefined : (e.target.value as Term))}
+                className="rounded border border-slate-300 bg-white px-2 py-1"
+              >
+                {(['od', '1y', '3y'] as const).map((v) => (
+                  <option key={v} value={v}>{t(`termLabel.${v}`)}</option>
+                ))}
+              </select>
+            </label>
+            <button
+              type="button"
+              onClick={() => setMatchOpen((o) => !o)}
+              aria-expanded={matchOpen}
+              className="flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900"
             >
-              {REGIONS.map((r) => (
-                <option key={r} value={r}>{t(`regionLabel.${r}`)}</option>
-              ))}
-            </select>
-          </label>
-          <label className="flex items-center gap-1.5 text-sm">
-            <input
-              type="checkbox"
-              checked={includeBurstable}
-              onChange={(e) => setIncludeBurstable(e.target.checked)}
-            />
-            {t('includeBurstable')}
-          </label>
-          <label className="flex items-center gap-2 text-sm">
-            {t('arch')}
-            <select
-              value={arch}
-              onChange={(e) => setArch(e.target.value as ArchFilter)}
-              className="rounded border border-slate-300 bg-white px-2 py-1"
-            >
-              {(['both', 'x86', 'arm'] as ArchFilter[]).map((a) => (
-                <option key={a} value={a}>{t(`archLabel.${a}`)}</option>
-              ))}
-            </select>
-          </label>
-          <label className="flex items-center gap-2 text-sm">
-            {t('term')}
-            <select
-              value={term ?? 'od'}
-              onChange={(e) => setTerm(e.target.value === 'od' ? undefined : (e.target.value as Term))}
-              className="rounded border border-slate-300 bg-white px-2 py-1"
-            >
-              {(['od', '1y', '3y'] as const).map((v) => (
-                <option key={v} value={v}>{t(`termLabel.${v}`)}</option>
-              ))}
-            </select>
-          </label>
+              <SlidersHorizontal aria-hidden className="size-4" />
+              {t('matchOptions')}
+              {matchCustomized && !matchOpen && (
+                <span role="img" aria-label={t('matchOptionsChanged')} className="size-1.5 rounded-full bg-sky-500" />
+              )}
+              <ChevronDown aria-hidden className={`size-4 text-slate-400 transition-transform duration-200 ${matchOpen ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
+          {/* 대부분 안 건드리는 고급 옵션이라 접어둔다 — 결과 위 매칭 규칙 안내가 현재 값을 계속 보여준다 */}
+          <div
+            inert={!matchOpen}
+            className={`grid transition-[grid-template-rows,opacity] duration-200 ease-out motion-reduce:transition-none ${
+              matchOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+            }`}
+          >
+            <div className="overflow-hidden">
+              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-md bg-slate-100 px-3 py-2">
+                <label className="flex items-center gap-1.5 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={includeBurstable}
+                    onChange={(e) => setIncludeBurstable(e.target.checked)}
+                  />
+                  {t('includeBurstable')}
+                </label>
+                <label className="flex items-center gap-2 text-sm">
+                  {t('arch')}
+                  <select
+                    value={arch}
+                    onChange={(e) => setArch(e.target.value as ArchFilter)}
+                    className="rounded border border-slate-300 bg-white px-2 py-1"
+                  >
+                    {(['both', 'x86', 'arm'] as ArchFilter[]).map((a) => (
+                      <option key={a} value={a}>{t(`archLabel.${a}`)}</option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
 
         {scenario.resources.map((r, i) => {

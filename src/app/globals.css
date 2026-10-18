@@ -12,3 +12,27 @@
     cursor: pointer;
   }
 }
+
+/* 마우스를 올렸을 때만 보이는 스크롤바 — 자리는 그대로 둬서 나타날 때 내용이 밀리지 않게 */
+@utility scrollbar-hover {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  &:hover,
+  &:focus-within {
+    scrollbar-color: var(--color-slate-300) transparent;
+  }
+  /* scrollbar-color 미지원 브라우저(Safari 등) 대체 */
+  @supports not (scrollbar-color: auto) {
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background: transparent;
+    }
+    &:hover::-webkit-scrollbar-thumb,
+    &:focus-within::-webkit-scrollbar-thumb {
+      background: var(--color-slate-300);
+    }
+  }
+}

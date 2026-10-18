@@ -313,7 +313,7 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
 
       {/* 데스크톱: 입력을 스크롤하며 고치는 동안 결과가 화면에 붙어 있게. 화면보다 길면 결과 칸 안에서 스크롤
           (-m-1 p-1 = 스크롤 영역이 카드 테두리·그림자를 자르지 않게) */}
-      <section className="lg:sticky lg:top-4 lg:-m-1 lg:max-h-[calc(100vh-2rem)] lg:self-start lg:overflow-y-auto lg:p-1">
+      <section className="lg:sticky lg:top-4 lg:-m-1 lg:max-h-[calc(100vh-2rem)] lg:self-start lg:overflow-y-auto lg:p-1 lg:scrollbar-hover">
         {estimates ? (
           <EstimateResult
             estimates={estimates}

@@ -590,6 +590,7 @@ export default function EstimateResult({
         <Collapse open={basisOpen}>
           <div className="mt-2 space-y-1.5 text-xs text-slate-500">
             <p>{t('footnote')}</p>
+            {term && <p>{t('commitDetail')}</p>}
             {currency === 'krw' && rate !== null && (
               <p>{td('fxNote', { rate: rate.toLocaleString('ko-KR', { maximumFractionDigits: 2 }) })}</p>
             )}

@@ -146,9 +146,11 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
     !RESOURCES[type].singleton || !scenario.resources.some((r) => r.type === type);
 
   /** 템플릿 적용 — 사용자가 편집한 구성(기본값·템플릿 그대로가 아닌 것)을 덮을 때만 확인 */
+  const sameResources = (resources: Resource[]) => JSON.stringify(resources) === JSON.stringify(scenario.resources);
+  const isStartScreen = sameResources(DEFAULT_SCENARIO.resources);
+
   const applyTemplate = (id: TemplateId) => {
-    const same = (resources: Resource[]) => JSON.stringify(resources) === JSON.stringify(scenario.resources);
-    const untouched = same(DEFAULT_SCENARIO.resources) || TEMPLATES.some((tpl) => same(tpl.resources));
+    const untouched = isStartScreen || TEMPLATES.some((tpl) => sameResources(tpl.resources));
     if (!untouched && !window.confirm(t('templateConfirm'))) return;
     const tpl = TEMPLATES.find((x) => x.id === id)!;
     setScenario((s) => ({ ...s, resources: structuredClone(tpl.resources) }));
@@ -166,24 +168,49 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
       <section className="flex flex-col gap-4">
-        {/* 빈 화면 대신 바로 고를 수 있는 출발점 — 구성 요소를 보여줘 무엇이 들어있는지 알 수 있게 */}
-        <div className="flex flex-col gap-2">
-          <span className="text-sm text-slate-500">{t('templateStart')}</span>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-2">
-            {TEMPLATES.map(({ id, resources }) => (
-              <button
-                key={id}
-                onClick={() => applyTemplate(id)}
-                className="rounded-lg border border-slate-300 bg-white p-3 text-left hover:border-slate-500"
-              >
-                <span className="block text-sm font-semibold text-slate-900">{t(`templateName.${id}`)}</span>
-                <span className="mt-1 line-clamp-2 text-xs text-slate-500">
-                  {resources.map((r) => t(`resourceTitle.${r.type}`)).join(' · ')}
-                </span>
-              </button>
-            ))}
+        {/* 빈 화면 대신 바로 고를 수 있는 출발점 — 구성 요소를 보여줘 무엇이 들어있는지 알 수 있게.
+            기본 화면을 벗어나면(템플릿 적용·편집·공유 링크) 이름만 있는 칩으로 줄인다 */}
+        {isStartScreen ? (
+          <div className="flex flex-col gap-2">
+            <span className="text-sm text-slate-500">{t('templateStart')}</span>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-2">
+              {TEMPLATES.map(({ id, resources }) => (
+                <button
+                  key={id}
+                  onClick={() => applyTemplate(id)}
+                  className="rounded-lg border border-slate-300 bg-white p-3 text-left hover:border-slate-500"
+                >
+                  <span className="block text-sm font-semibold text-slate-900">{t(`templateName.${id}`)}</span>
+                  <span className="mt-1 line-clamp-2 text-xs text-slate-500">
+                    {resources.map((r) => t(`resourceTitle.${r.type}`)).join(' · ')}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-sm text-slate-500">{t('templateShort')}</span>
+            {TEMPLATES.map(({ id, resources }) => {
+              const active = sameResources(resources);
+              return (
+                <button
+                  key={id}
+                  onClick={() => applyTemplate(id)}
+                  aria-pressed={active}
+                  title={resources.map((r) => t(`resourceTitle.${r.type}`)).join(' · ')}
+                  className={`rounded-full border px-3 py-1 text-xs font-medium ${
+                    active
+                      ? 'border-slate-900 bg-slate-900 text-white'
+                      : 'border-slate-300 bg-white text-slate-700 hover:border-slate-500'
+                  }`}
+                >
+                  {t(`templateName.${id}`)}
+                </button>
+              );
+            })}
+          </div>
+        )}
 
         <div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -284,7 +311,9 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
         <AddResourceMenu onAdd={addResource} canAdd={canAdd} />
       </section>
 
-      <section>
+      {/* 데스크톱: 입력을 스크롤하며 고치는 동안 결과가 화면에 붙어 있게. 화면보다 길면 결과 칸 안에서 스크롤
+          (-m-1 p-1 = 스크롤 영역이 카드 테두리·그림자를 자르지 않게) */}
+      <section className="lg:sticky lg:top-4 lg:-m-1 lg:max-h-[calc(100vh-2rem)] lg:self-start lg:overflow-y-auto lg:p-1">
         {estimates ? (
           <EstimateResult
             estimates={estimates}

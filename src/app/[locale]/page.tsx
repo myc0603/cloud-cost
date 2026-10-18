@@ -16,8 +16,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <main className="mx-auto max-w-6xl px-6 py-10">
       <header className="mb-8">
-        <h1 className="text-2xl font-bold">{t('title')}</h1>
-        <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{t('subtitle')}</p>
+        <h1 className="font-serif text-4xl font-extrabold tracking-tight">{t('title')}</h1>
+        <p className="mt-2 text-base text-slate-600 dark:text-slate-300">{t('subtitle')}</p>
         <DataFreshness meta={meta} />
       </header>
       <Suspense>

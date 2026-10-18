@@ -25,6 +25,8 @@ type SelectInstance = (provider: Provider, resourceIndex: number, sku: string, i
 
 const PERIODS: Period[] = ['hour', 'day', 'week', 'month'];
 const PERIOD_SUFFIX: Record<Period, string> = { hour: 'perHour', day: 'perDay', week: 'perWeek', month: 'perMonth' };
+// 플랫폼 줄들을 카드마다 따로 두지 않고 구분선 있는 목록 하나로
+const LIST_BOX = 'divide-y divide-slate-200 dark:divide-slate-800 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900';
 
 /** 아키텍처 식별 배지 — ARM은 보라, x86은 중립색 */
 export function ArchBadge({ arch }: { arch: Arch }) {
@@ -422,16 +424,14 @@ export default function EstimateResult({
       <div
         key={e.provider}
         id={cardId(e.provider)}
-        className={`scroll-mt-4 rounded-lg border bg-white dark:bg-slate-900 shadow-sm ${
-          isCheapest ? 'border-emerald-500 ring-1 ring-emerald-500' : 'border-slate-200 dark:border-slate-800'
-        }`}
+        className={`scroll-mt-4 ${isCheapest ? 'bg-emerald-50/60 dark:bg-emerald-950/30' : ''}`}
       >
         <button
           type="button"
           onClick={() => toggleOpen(e.provider)}
           disabled={!expandable}
           aria-expanded={expandable ? open : undefined}
-          className="flex w-full flex-wrap items-center gap-x-3 gap-y-2 rounded-lg px-4 py-3 text-left sm:flex-nowrap hover:bg-slate-50 dark:hover:bg-slate-800/60 disabled:cursor-default disabled:hover:bg-transparent"
+          className="flex w-full flex-wrap items-center gap-x-3 gap-y-2 px-4 py-3 text-left sm:flex-nowrap hover:bg-slate-50 dark:hover:bg-slate-800/60 disabled:cursor-default disabled:hover:bg-transparent"
         >
           <span className="w-28 shrink-0 text-sm font-bold sm:w-32">
             {PROVIDER_LABEL[e.provider]}
@@ -532,14 +532,14 @@ export default function EstimateResult({
             if (!openList.includes(winner.provider)) setExpanded([...openList, winner.provider]);
             document.getElementById(cardId(winner.provider))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }}
-          className="flex items-center justify-between gap-3 rounded-lg border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 p-4 text-left shadow-sm transition hover:bg-emerald-100 dark:hover:bg-emerald-900/50"
+          className="group flex items-end justify-between gap-3 py-2 text-left"
         >
           <span className="min-w-0">
             <span className="block text-xs font-medium text-emerald-700 dark:text-emerald-400">{t('cheapestSummary', { count: comparable.length })}</span>
-            <span className="block text-lg font-bold text-slate-900 dark:text-slate-100">{PROVIDER_LABEL[winner.provider]}</span>
+            <span className="block font-serif text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">{PROVIDER_LABEL[winner.provider]}</span>
           </span>
           <span className="shrink-0 text-right">
-            <span className="block text-xl font-bold tabular-nums text-slate-900 dark:text-slate-100">
+            <span className="block font-serif text-4xl font-bold tracking-tight tabular-nums text-slate-900 dark:text-slate-100 group-hover:underline">
               {money(winner.totalMonthlyUsd)}
               <span className="text-xs font-normal text-slate-500 dark:text-slate-400">{td(PERIOD_SUFFIX[period])}</span>
             </span>
@@ -554,7 +554,7 @@ export default function EstimateResult({
         </p>
       )}
 
-      <div className="flex flex-col gap-2">{primary.map(card)}</div>
+      <div className={LIST_BOX}>{primary.map(card)}</div>
       {otherProviders.length > 0 && (
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-200 dark:border-slate-800 pt-4">
           <h3 className="text-xs font-semibold text-slate-500 dark:text-slate-400">{t('otherPlatforms')}</h3>
@@ -568,7 +568,7 @@ export default function EstimateResult({
           </div>
         </div>
       )}
-      {others.length > 0 && <div className="flex flex-col gap-2">{others.map(card)}</div>}
+      {others.length > 0 && <div className={LIST_BOX}>{others.map(card)}</div>}
       {term && (
         <p className="rounded-md bg-sky-50 dark:bg-sky-950/50 px-3 py-2 text-xs text-sky-800 dark:text-sky-200">{t('commitNotice', { years: term === '1y' ? 1 : 3 })}</p>
       )}

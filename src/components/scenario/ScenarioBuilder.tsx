@@ -178,7 +178,7 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
                 <button
                   key={id}
                   onClick={() => applyTemplate(id)}
-                  className="rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 p-3 text-left hover:border-slate-500 dark:hover:border-slate-400"
+                  className="rounded-lg bg-slate-200/50 dark:bg-slate-800/60 p-3 text-left hover:bg-slate-200 dark:hover:bg-slate-800"
                 >
                   <span className="block text-sm font-semibold text-slate-900 dark:text-slate-100">{t(`templateName.${id}`)}</span>
                   <span className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">
@@ -279,36 +279,38 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
           </Collapse>
         </div>
 
-        {scenario.resources.map((r, i) => {
-          const sameType = scenario.resources.filter((x) => x.type === r.type);
-          return (
-            <ResourceCard
-              key={i}
-              resource={r}
-              ordinal={scenario.resources.slice(0, i + 1).filter((x) => x.type === r.type).length}
-              numbered={r.type === 'vm' || sameType.length > 1}
-              onChange={(next) => updateResource(i, next)}
-              onRemove={() => removeResource(i)}
-              {...(r.type === 'vm' && {
-                onFillSku: (name: string) => fillVmFromSku(i, name),
-                skuListId: 'vm-sku-names',
-                pinned: PROVIDERS.filter((p) => overrides[p]?.[i]).map((p) => `${PROVIDER_LABEL[p]} ${overrides[p]![i]}`),
-              })}
-            />
-          );
-        })}
+        <div className="divide-y divide-slate-200 dark:divide-slate-800 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+          {scenario.resources.map((r, i) => {
+            const sameType = scenario.resources.filter((x) => x.type === r.type);
+            return (
+              <ResourceCard
+                key={i}
+                resource={r}
+                ordinal={scenario.resources.slice(0, i + 1).filter((x) => x.type === r.type).length}
+                numbered={r.type === 'vm' || sameType.length > 1}
+                onChange={(next) => updateResource(i, next)}
+                onRemove={() => removeResource(i)}
+                {...(r.type === 'vm' && {
+                  onFillSku: (name: string) => fillVmFromSku(i, name),
+                  skuListId: 'vm-sku-names',
+                  pinned: PROVIDERS.filter((p) => overrides[p]?.[i]).map((p) => `${PROVIDER_LABEL[p]} ${overrides[p]![i]}`),
+                })}
+              />
+            );
+          })}
 
-        {/* VM 카드 인스턴스 이름 자동완성 — 이 리전 8개 플랫폼 VM 전체 */}
-        <datalist id="vm-sku-names">
-          {pricing &&
-            PROVIDERS.flatMap((p) =>
-              pricing[p].vm.map((s) => (
-                <option key={s.sku} value={s.sku}>{`${PROVIDER_LABEL[p]} · ${s.vcpu}vCPU/${s.ramGb}GB`}</option>
-              )),
-            )}
-        </datalist>
+          {/* VM 카드 인스턴스 이름 자동완성 — 이 리전 8개 플랫폼 VM 전체 */}
+          <datalist id="vm-sku-names">
+            {pricing &&
+              PROVIDERS.flatMap((p) =>
+                pricing[p].vm.map((s) => (
+                  <option key={s.sku} value={s.sku}>{`${PROVIDER_LABEL[p]} · ${s.vcpu}vCPU/${s.ramGb}GB`}</option>
+                )),
+              )}
+          </datalist>
 
-        <AddResourceMenu onAdd={addResource} canAdd={canAdd} />
+          <AddResourceMenu onAdd={addResource} canAdd={canAdd} />
+        </div>
       </section>
 
       {/* 데스크톱: 입력을 스크롤하며 고치는 동안 결과가 화면에 붙어 있게. 화면보다 길면 결과 칸 안에서 스크롤

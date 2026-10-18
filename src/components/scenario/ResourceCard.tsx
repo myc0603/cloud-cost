@@ -37,7 +37,7 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
   const title = t(`resourceTitle.${r.type}`) + (numbered ? ` #${ordinal}` : '');
   const Icon = RESOURCE_ICON[r.type];
   return (
-    <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+    <div className="p-4">
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-2 text-sm font-semibold">
           <Icon aria-hidden className="size-4 text-slate-500 dark:text-slate-400" />

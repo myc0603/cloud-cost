@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Noto_Serif_KR } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { notFound } from 'next/navigation';
@@ -6,12 +7,16 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import FeedbackWidget from '@/components/FeedbackWidget';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
+import NavLinks from '@/components/NavLinks';
 import ThemeToggle from '@/components/ThemeToggle';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import { pageAlternates, pageOpenGraph, SITE_URL } from '@/lib/seo';
 import { THEME_INIT_SCRIPT } from '@/lib/theme';
 import '../globals.css';
+
+// 페이지 제목·최저가 숫자용 명조 (font-serif). 한글 글리프가 커서 미리 받지 않고 쓰일 때 받는다
+const serif = Noto_Serif_KR({ weight: ['700', '800'], subsets: ['latin'], display: 'swap', preload: false, variable: '--font-noto-serif-kr' });
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -49,21 +54,25 @@ export default async function RootLayout({
 
   return (
     // html.dark는 THEME_INIT_SCRIPT가 하이드레이션 전에 붙이므로 서버 HTML과 다를 수 있다
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} className={serif.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        {/* 본문 Pretendard — Google Fonts에 없고 로컬 파일은 2MB라, 쓰인 글자 조각만 받는 CDN 동적 서브셋 */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
       </head>
       <body className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
         <NextIntlClientProvider>
           <nav className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
             {/* 좁은 화면: 1줄 = 브랜드 + 피드백·언어, 2줄 = 메뉴 링크 */}
             <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-6 py-3 text-sm">
-              <span className="whitespace-nowrap font-bold">{t('brand')}</span>
-              <div className="order-last flex w-full gap-5 whitespace-nowrap sm:order-none sm:w-auto sm:gap-6">
-                <Link href="/" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100">{t('scenario')}</Link>
-                <Link href="/instances" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100">{t('instances')}</Link>
-                <Link href="/methodology" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100">{t('methodology')}</Link>
-              </div>
+              <Link href="/" className="flex items-center gap-2 whitespace-nowrap text-base font-bold">
+                <img src="/icon.svg" alt="" className="size-6" />
+                {t('brand')}
+              </Link>
+              <NavLinks />
               <div className="ml-auto flex items-center gap-4">
                 <FeedbackWidget />
                 <ThemeToggle />

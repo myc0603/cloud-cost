@@ -29,7 +29,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
   return (
     <main className="mx-auto max-w-3xl px-6 py-10">
       <header>
-        <h1 className="text-2xl font-bold">{t('title')}</h1>
+        <h1 className="font-serif text-4xl font-extrabold tracking-tight">{t('title')}</h1>
         <DataFreshness meta={meta} />
       </header>
       {locale === 'ko' ? <MethodologyKo meta={meta} /> : <MethodologyEn meta={meta} />}

@@ -1,5 +1,10 @@
 @import 'tailwindcss';
 
+@theme inline {
+  --font-sans: 'Pretendard Variable', Pretendard, ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-noto-serif-kr), ui-serif, serif;
+}
+
 /* 다크모드는 html.dark 클래스로 — 시스템 설정 반영과 토글은 lib/theme.ts·ThemeToggle */
 @custom-variant dark (&:where(.dark, .dark *));
 

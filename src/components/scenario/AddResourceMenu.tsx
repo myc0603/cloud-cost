@@ -27,7 +27,7 @@ export default function AddResourceMenu({ onAdd, canAdd }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-lg border border-dashed border-slate-300 dark:border-slate-700">
+    <div>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -39,7 +39,7 @@ export default function AddResourceMenu({ onAdd, canAdd }: Props) {
         <ChevronDown aria-hidden className={`size-4 text-slate-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
       <Collapse open={open}>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-dashed border-slate-300 dark:border-slate-700 p-3 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-slate-100 dark:border-slate-800 p-3 sm:grid-cols-3">
           {GROUPS.map((g) => (
             <div key={g.id} className="flex flex-col items-start gap-0.5">
               <span className="text-xs font-semibold text-slate-400">{t(`addGroup.${g.id}`)}</span>

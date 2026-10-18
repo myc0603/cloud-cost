@@ -1,5 +1,18 @@
 @import 'tailwindcss';
 
+/* 다크모드는 html.dark 클래스로 — 시스템 설정 반영과 토글은 lib/theme.ts·ThemeToggle */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 네이티브 컨트롤(select 목록·체크박스·스크롤바)도 테마에 맞춘다 */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  :root.dark {
+    color-scheme: dark;
+  }
+}
+
 /* Tailwind v4는 버튼 기본 커서를 default로 둔다 — 누를 수 있는 요소는 손가락 커서로 */
 @layer base {
   button:not(:disabled),
@@ -21,6 +34,10 @@
   &:focus-within {
     scrollbar-color: var(--color-slate-300) transparent;
   }
+  :where(.dark) &:hover,
+  :where(.dark) &:focus-within {
+    scrollbar-color: var(--color-slate-600) transparent;
+  }
   /* scrollbar-color 미지원 브라우저(Safari 등) 대체 */
   @supports not (scrollbar-color: auto) {
     &::-webkit-scrollbar {
@@ -33,6 +50,10 @@
     &:hover::-webkit-scrollbar-thumb,
     &:focus-within::-webkit-scrollbar-thumb {
       background: var(--color-slate-300);
+    }
+    :where(.dark) &:hover::-webkit-scrollbar-thumb,
+    :where(.dark) &:focus-within::-webkit-scrollbar-thumb {
+      background: var(--color-slate-600);
     }
   }
 }

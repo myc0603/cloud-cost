@@ -43,26 +43,26 @@ export default function FeedbackWidget() {
     <div className="relative">
       <button
         onClick={toggle}
-        className="whitespace-nowrap rounded border border-slate-300 px-2.5 py-1 text-xs text-slate-600 hover:border-slate-400 hover:text-slate-900"
+        className="whitespace-nowrap rounded border border-slate-300 dark:border-slate-700 px-2.5 py-1 text-xs text-slate-600 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-100"
       >
         {t('button')}
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-80 rounded-lg border border-slate-200 bg-white p-4 shadow-lg">
+        <div className="absolute right-0 top-full z-50 mt-2 w-80 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-lg">
           <div className="mb-2 flex items-start justify-between">
             <span className="text-sm font-semibold">{t('title')}</span>
-            <button onClick={() => setOpen(false)} aria-label={t('close')} className="text-slate-400 hover:text-slate-900">
+            <button onClick={() => setOpen(false)} aria-label={t('close')} className="text-slate-400 hover:text-slate-900 dark:hover:text-slate-100">
               ✕
             </button>
           </div>
 
           {status === 'sent' ? (
-            <p className="py-4 text-center text-sm text-emerald-700">{t('sent')}</p>
+            <p className="py-4 text-center text-sm text-emerald-700 dark:text-emerald-400">{t('sent')}</p>
           ) : (
             <form onSubmit={submit} className="flex flex-col gap-2">
-              <p className="text-xs text-slate-500">{t('description')}</p>
-              <label className="flex flex-col gap-1 text-xs text-slate-500">
+              <p className="text-xs text-slate-500 dark:text-slate-400">{t('description')}</p>
+              <label className="flex flex-col gap-1 text-xs text-slate-500 dark:text-slate-400">
                 {t('messageLabel')}
                 <textarea
                   required
@@ -71,7 +71,7 @@ export default function FeedbackWidget() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder={t('placeholder')}
-                  className="rounded border border-slate-300 px-2 py-1.5 text-sm text-slate-900"
+                  className="rounded border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-sm text-slate-900 dark:text-slate-100"
                 />
               </label>
               {/* 허니팟: 화면에 안 보이는 필드 — 봇이 채우면 서버가 조용히 버린다 */}
@@ -85,24 +85,24 @@ export default function FeedbackWidget() {
                 aria-hidden="true"
                 className="hidden"
               />
-              <label className="flex flex-col gap-1 text-xs text-slate-500">
+              <label className="flex flex-col gap-1 text-xs text-slate-500 dark:text-slate-400">
                 {t('emailLabel')}
                 <input
                   type="email"
                   maxLength={200}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="rounded border border-slate-300 px-2 py-1.5 text-sm text-slate-900"
+                  className="rounded border border-slate-300 dark:border-slate-700 px-2 py-1.5 text-sm text-slate-900 dark:text-slate-100"
                 />
               </label>
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="mt-1 rounded bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-50"
+                className="mt-1 rounded bg-slate-900 dark:bg-slate-100 px-3 py-1.5 text-sm font-medium text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-300 disabled:opacity-50"
               >
                 {status === 'sending' ? t('sending') : t('submit')}
               </button>
-              {status === 'error' && <p className="text-xs text-red-600">{t('error')}</p>}
+              {status === 'error' && <p className="text-xs text-red-600 dark:text-red-400">{t('error')}</p>}
             </form>
           )}
         </div>

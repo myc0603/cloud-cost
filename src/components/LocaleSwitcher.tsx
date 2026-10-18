@@ -19,7 +19,7 @@ function SwitcherInner() {
     <div className="flex items-center gap-2 whitespace-nowrap text-xs">
       {routing.locales.map((l) =>
         l === locale ? (
-          <span key={l} className="font-semibold text-slate-900">{LOCALE_LABEL[l]}</span>
+          <span key={l} className="font-semibold text-slate-900 dark:text-slate-100">{LOCALE_LABEL[l]}</span>
         ) : (
           // 일부러 클라이언트 라우팅(Link) 대신 일반 앵커를 쓴다:
           // 기본 언어(/)로의 전환은 프리페치가 언어 감지 리다이렉트(/→/ko)를
@@ -27,7 +27,7 @@ function SwitcherInner() {
           <a
             key={l}
             href={getPathname({ href: { pathname, query }, locale: l })}
-            className="text-slate-400 hover:text-slate-900"
+            className="text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
             onClick={() => {
               document.cookie = `NEXT_LOCALE=${l}; path=/; max-age=31536000; samesite=lax`;
             }}

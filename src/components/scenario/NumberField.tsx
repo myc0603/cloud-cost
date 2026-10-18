@@ -25,7 +25,7 @@ export default function NumberField({
   }, [value]);
 
   return (
-    <label className="flex flex-col gap-1 text-xs text-slate-500">
+    <label className="flex flex-col gap-1 text-xs text-slate-500 dark:text-slate-400">
       {label}
       <input
         type="number"
@@ -40,7 +40,7 @@ export default function NumberField({
           const n = parseInt(text, 10);
           if (Number.isNaN(n) || n < min) setText(String(value));
         }}
-        className="w-24 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900"
+        className="w-24 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1 text-sm text-slate-900 dark:text-slate-100"
       />
     </label>
   );

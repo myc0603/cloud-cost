@@ -36,7 +36,7 @@ export default async function InstancesPage({ params }: { params: Promise<{ loca
     <main className="mx-auto max-w-6xl px-6 py-10">
       <header className="mb-8">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
-        <p className="mt-1 text-sm text-slate-600">{t('subtitle', { count: total })}</p>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{t('subtitle', { count: total })}</p>
         <DataFreshness meta={meta} />
       </header>
       <InstanceTable initial={initial} usdKrwRate={meta?.usdKrw?.rate ?? null} />

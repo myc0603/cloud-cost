@@ -14,7 +14,7 @@ export default function DataFreshness({ meta }: { meta: Meta | null }) {
   return (
     <p className="mt-2 text-xs text-slate-400">
       {t('collected', { date })} ·{' '}
-      <Link href="/methodology" className="underline hover:text-slate-600">{t('methodology')}</Link>
+      <Link href="/methodology" className="underline hover:text-slate-600 dark:hover:text-slate-300">{t('methodology')}</Link>
     </p>
   );
 }

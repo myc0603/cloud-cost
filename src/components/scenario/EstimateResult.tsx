@@ -32,7 +32,7 @@ export function ArchBadge({ arch }: { arch: Arch }) {
   return (
     <span
       className={`ml-1 rounded px-1 py-0.5 align-middle text-[10px] font-medium ${
-        arm ? 'bg-violet-100 text-violet-700' : 'bg-slate-100 text-slate-600'
+        arm ? 'bg-violet-100 dark:bg-violet-900/50 text-violet-700 dark:text-violet-300' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
       }`}
     >
       {arm ? 'ARM' : 'x86'}
@@ -52,7 +52,7 @@ function Segmented<T extends string>({
   ariaLabel: string;
 }) {
   return (
-    <div role="group" aria-label={ariaLabel} className="inline-flex rounded-md border border-slate-200 p-0.5">
+    <div role="group" aria-label={ariaLabel} className="inline-flex rounded-md border border-slate-200 dark:border-slate-800 p-0.5">
       {options.map((o) => (
         <button
           key={o.value}
@@ -60,7 +60,7 @@ function Segmented<T extends string>({
           onClick={() => onChange(o.value)}
           aria-pressed={o.value === value}
           className={`rounded px-2.5 py-1 text-xs font-medium transition ${
-            o.value === value ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+            o.value === value ? 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
           }`}
         >
           {o.label}
@@ -74,7 +74,7 @@ function Segmented<T extends string>({
 function NoCommitBadge({ term, matched }: { term?: Term; matched: { committed: boolean } | null }) {
   const t = useTranslations('estimate');
   if (!term || !matched || matched.committed) return null;
-  return <span className="ml-1 rounded bg-amber-100 px-1 py-0.5 align-middle text-[10px] font-medium text-amber-700">{t('noCommit')}</span>;
+  return <span className="ml-1 rounded bg-amber-100 dark:bg-amber-900/50 px-1 py-0.5 align-middle text-[10px] font-medium text-amber-700 dark:text-amber-400">{t('noCommit')}</span>;
 }
 
 /** 매칭 실패 표시 + 이유 (VM·K8s 노드·DB·캐시·컨테이너 공통). 아키텍처 실패는 플랫폼 이름과 해결 방법까지 */
@@ -82,7 +82,7 @@ function NoMatchNote({ noMatch, provider }: { noMatch: NoMatchReason | null; pro
   const t = useTranslations('estimate');
   const archLabel = (arch: Arch) => (arch === 'arm' ? 'ARM' : 'x86');
   return (
-    <span className="ml-1 text-red-500">
+    <span className="ml-1 text-red-500 dark:text-red-400">
       {t('noMatch')}
       {noMatch && (
         <span className="ml-1 text-slate-400">
@@ -142,7 +142,7 @@ function LineLabel({
         {!line.matched ? (
           <NoMatchNote noMatch={line.noMatch} provider={provider} />
         ) : line.candidates.length < 2 ? (
-          <span className="ml-1 font-mono text-slate-900">
+          <span className="ml-1 font-mono text-slate-900 dark:text-slate-100">
             → {line.matched.sku} ({line.matched.vcpu}vCPU/{line.matched.ramGb}GB)
           </span>
         ) : (
@@ -152,7 +152,7 @@ function LineLabel({
             onChange={(e) =>
               onSelect(provider, line.resourceIndex, e.target.value, e.target.value === line.candidates[0].sku)
             }
-            className="ml-1 max-w-full rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
+            className="ml-1 max-w-full rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-1 py-0.5 font-mono text-xs text-slate-900 dark:text-slate-100"
           >
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
@@ -177,9 +177,9 @@ function LineLabel({
       <span>
         {label} {line.spec.vcpu}vCPU/{line.spec.ramGb}GB ×{line.spec.count}
         {!line.matched ? (
-          line.noMatch ? <NoMatchNote noMatch={line.noMatch} provider={provider} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
+          line.noMatch ? <NoMatchNote noMatch={line.noMatch} provider={provider} /> : <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>
         ) : line.candidates.length < 2 ? (
-          <span className="ml-1 font-mono text-slate-900">
+          <span className="ml-1 font-mono text-slate-900 dark:text-slate-100">
             → {line.matched.sku} ({line.matched.vcpu}vCPU/{line.matched.ramGb}GB)
           </span>
         ) : (
@@ -189,7 +189,7 @@ function LineLabel({
             onChange={(e) =>
               onSelect(provider, line.resourceIndex, e.target.value, e.target.value === line.candidates[0].sku)
             }
-            className="ml-1 max-w-full rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
+            className="ml-1 max-w-full rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-1 py-0.5 font-mono text-xs text-slate-900 dark:text-slate-100"
           >
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
@@ -209,9 +209,9 @@ function LineLabel({
         {t('cacheLine', { engine: line.engine ?? '', gb: line.memoryGb, count: line.count })}
         {line.ha && <span className="ml-1 text-slate-400">({t('dbHa')})</span>}
         {!line.matched ? (
-          line.noMatch ? <NoMatchNote noMatch={line.noMatch} provider={provider} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
+          line.noMatch ? <NoMatchNote noMatch={line.noMatch} provider={provider} /> : <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>
         ) : line.candidates.length < 2 ? (
-          <span className="ml-1 font-mono text-slate-900">→ {line.matched.sku} ({line.matched.memoryGb}GB)</span>
+          <span className="ml-1 font-mono text-slate-900 dark:text-slate-100">→ {line.matched.sku} ({line.matched.memoryGb}GB)</span>
         ) : (
           <select
             aria-label={t('instanceSelect')}
@@ -219,7 +219,7 @@ function LineLabel({
             onChange={(e) =>
               onSelect(provider, line.resourceIndex, e.target.value, e.target.value === line.candidates[0].sku)
             }
-            className="ml-1 max-w-full rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-xs text-slate-900"
+            className="ml-1 max-w-full rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-1 py-0.5 font-mono text-xs text-slate-900 dark:text-slate-100"
           >
             {line.candidates.map((c) => (
               <option key={c.sku} value={c.sku}>
@@ -238,9 +238,9 @@ function LineLabel({
       <span>
         {t('containerLine', { vcpu: line.spec.vcpu, gb: line.spec.ramGb, count: line.spec.count })}
         {!line.matched ? (
-          line.noMatch ? <NoMatchNote noMatch={line.noMatch} provider={provider} /> : <span className="ml-1 text-red-500">{t('noData')}</span>
+          line.noMatch ? <NoMatchNote noMatch={line.noMatch} provider={provider} /> : <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>
         ) : (
-          <span className="ml-1 font-mono text-slate-900">
+          <span className="ml-1 font-mono text-slate-900 dark:text-slate-100">
             → {CONTAINER_PRODUCT[provider]} {line.matched.vcpu}vCPU/{line.matched.ramGb}GB
           </span>
         )}
@@ -254,7 +254,7 @@ function LineLabel({
       <span>
         {t('logsLine', { gb: line.gb, days: line.retentionDays })}
         {line.monthlyUsd === null ? (
-          <span className="ml-1 text-red-500">{t('noData')}</span>
+          <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>
         ) : (
           <span className="ml-1 text-slate-400">
             → {LOGS_PRODUCT[provider]}
@@ -270,7 +270,7 @@ function LineLabel({
       <span>
         {t('cdnLine', { gb: line.gb, requests: line.requestsM, man: (line.requestsM * 100).toLocaleString('ko-KR') })}
         {line.monthlyUsd === null ? (
-          <span className="ml-1 text-red-500">{t('noData')}</span>
+          <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>
         ) : (
           <span className="ml-1 text-slate-400">
             → {CDN_PRODUCT[provider]} {line.plan ? t('cdnPlan', { plan: line.plan }) : t('cdnPayg')}
@@ -284,7 +284,7 @@ function LineLabel({
       <span>
         {t('dbStorageLine', { gb: line.storageGb, count: line.count })}
         {line.ha && <span className="ml-1 text-slate-400">({t('dbHa')})</span>}
-        {line.perGbMonth === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
+        {line.perGbMonth === null && <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>}
       </span>
     );
   }
@@ -292,7 +292,7 @@ function LineLabel({
     return (
       <span>
         {t(`storageLabel.${line.storageKind}`)} {line.sizeGb}GB
-        {line.pricePerGbMonth === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
+        {line.pricePerGbMonth === null && <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>}
       </span>
     );
   }
@@ -300,7 +300,7 @@ function LineLabel({
     return (
       <span>
         {t('lbLine', { count: line.count, gb: line.gb })}
-        {line.monthlyUsd === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
+        {line.monthlyUsd === null && <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>}
       </span>
     );
   }
@@ -310,7 +310,7 @@ function LineLabel({
         {t('natLine', { count: line.count, gb: line.gb })}
         {line.billedVms !== null && <span className="ml-1 text-slate-400">{t('natBilledVms', { vms: line.billedVms })}</span>}
         {line.monthlyUsd === 0 && <span className="ml-1 text-slate-400">{t('natFree', { provider: PROVIDER_LABEL[provider] })}</span>}
-        {line.monthlyUsd === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
+        {line.monthlyUsd === null && <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>}
       </span>
     );
   }
@@ -318,7 +318,7 @@ function LineLabel({
     return (
       <span>
         {t('k8sControl', { clusters: line.clusters })}
-        {line.clusterPerHour === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
+        {line.clusterPerHour === null && <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>}
       </span>
     );
   }
@@ -328,7 +328,7 @@ function LineLabel({
       {line.freeGb !== null && line.freeGb > 0 && (
         <span className="ml-1 text-slate-400">{t('freeApplied', { gb: line.freeGb })}</span>
       )}
-      {line.monthlyUsd === null && <span className="ml-1 text-red-500">{t('noData')}</span>}
+      {line.monthlyUsd === null && <span className="ml-1 text-red-500 dark:text-red-400">{t('noData')}</span>}
     </span>
   );
 }
@@ -422,8 +422,8 @@ export default function EstimateResult({
       <div
         key={e.provider}
         id={cardId(e.provider)}
-        className={`scroll-mt-4 rounded-lg border bg-white shadow-sm ${
-          isCheapest ? 'border-emerald-500 ring-1 ring-emerald-500' : 'border-slate-200'
+        className={`scroll-mt-4 rounded-lg border bg-white dark:bg-slate-900 shadow-sm ${
+          isCheapest ? 'border-emerald-500 ring-1 ring-emerald-500' : 'border-slate-200 dark:border-slate-800'
         }`}
       >
         <button
@@ -431,12 +431,12 @@ export default function EstimateResult({
           onClick={() => toggleOpen(e.provider)}
           disabled={!expandable}
           aria-expanded={expandable ? open : undefined}
-          className="flex w-full flex-wrap items-center gap-x-3 gap-y-2 rounded-lg px-4 py-3 text-left sm:flex-nowrap hover:bg-slate-50 disabled:cursor-default disabled:hover:bg-transparent"
+          className="flex w-full flex-wrap items-center gap-x-3 gap-y-2 rounded-lg px-4 py-3 text-left sm:flex-nowrap hover:bg-slate-50 dark:hover:bg-slate-800/60 disabled:cursor-default disabled:hover:bg-transparent"
         >
           <span className="w-28 shrink-0 text-sm font-bold sm:w-32">
             {PROVIDER_LABEL[e.provider]}
             {isCheapest && (
-              <span className="mt-0.5 block w-fit rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-700">
+              <span className="mt-0.5 block w-fit rounded bg-emerald-100 dark:bg-emerald-900/50 px-1.5 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-400">
                 {t('cheapest')}
               </span>
             )}
@@ -445,13 +445,13 @@ export default function EstimateResult({
           <span className="order-last flex min-w-0 basis-full items-center gap-2 sm:order-none sm:flex-1 sm:basis-auto">
             {total !== null && maxTotal > 0 && (
               <>
-                <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100">
+                <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
                   <span
-                    className={`block h-full rounded-full ${isCheapest ? 'bg-emerald-500' : e.partial ? 'bg-amber-300' : 'bg-slate-300'}`}
+                    className={`block h-full rounded-full ${isCheapest ? 'bg-emerald-500' : e.partial ? 'bg-amber-300 dark:bg-amber-600' : 'bg-slate-300 dark:bg-slate-600'}`}
                     style={{ width: `${(total / maxTotal) * 100}%` }}
                   />
                 </span>
-                <span className="w-11 shrink-0 text-right text-xs tabular-nums text-slate-500">{diffPct !== null && `+${diffPct}%`}</span>
+                <span className="w-11 shrink-0 text-right text-xs tabular-nums text-slate-500 dark:text-slate-400">{diffPct !== null && `+${diffPct}%`}</span>
               </>
             )}
           </span>
@@ -463,8 +463,8 @@ export default function EstimateResult({
             ) : (
               <>
                 {money(e.totalMonthlyUsd)}
-                <span className="text-xs font-normal text-slate-500">{td(PERIOD_SUFFIX[period])}</span>
-                {e.partial && <span className="block text-xs font-normal text-amber-700">{t('partialTotal')}</span>}
+                <span className="text-xs font-normal text-slate-500 dark:text-slate-400">{td(PERIOD_SUFFIX[period])}</span>
+                {e.partial && <span className="block text-xs font-normal text-amber-700 dark:text-amber-400">{t('partialTotal')}</span>}
               </>
             )}
           </span>
@@ -474,9 +474,9 @@ export default function EstimateResult({
         </button>
 
         {open && (
-          <ul className="mx-4 mb-4 space-y-1 border-t border-slate-100 pt-3">
+          <ul className="mx-4 mb-4 space-y-1 border-t border-slate-100 dark:border-slate-800 pt-3">
             {e.lines.map((line, i) => (
-              <li key={i} className="flex justify-between gap-2 text-xs text-slate-600">
+              <li key={i} className="flex justify-between gap-2 text-xs text-slate-600 dark:text-slate-300">
                 <span className="min-w-0">
                   <LineLabel line={line} provider={e.provider} term={term} money={money} onSelect={onSelectInstance} />
                 </span>
@@ -517,7 +517,7 @@ export default function EstimateResult({
           type="button"
           onClick={copyShareLink}
           className={`ml-auto flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs font-medium ${
-            copied ? 'border-emerald-300 text-emerald-700' : 'border-slate-200 text-slate-600 hover:border-slate-400 hover:text-slate-900'
+            copied ? 'border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-400' : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-100'
           }`}
         >
           {copied ? <Check aria-hidden className="size-3.5" /> : <Link2 aria-hidden className="size-3.5" />}
@@ -532,35 +532,35 @@ export default function EstimateResult({
             if (!openList.includes(winner.provider)) setExpanded([...openList, winner.provider]);
             document.getElementById(cardId(winner.provider))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }}
-          className="flex items-center justify-between gap-3 rounded-lg border-2 border-emerald-500 bg-emerald-50 p-4 text-left shadow-sm transition hover:bg-emerald-100"
+          className="flex items-center justify-between gap-3 rounded-lg border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 p-4 text-left shadow-sm transition hover:bg-emerald-100 dark:hover:bg-emerald-900/50"
         >
           <span className="min-w-0">
-            <span className="block text-xs font-medium text-emerald-700">{t('cheapestSummary', { count: comparable.length })}</span>
-            <span className="block text-lg font-bold text-slate-900">{PROVIDER_LABEL[winner.provider]}</span>
+            <span className="block text-xs font-medium text-emerald-700 dark:text-emerald-400">{t('cheapestSummary', { count: comparable.length })}</span>
+            <span className="block text-lg font-bold text-slate-900 dark:text-slate-100">{PROVIDER_LABEL[winner.provider]}</span>
           </span>
           <span className="shrink-0 text-right">
-            <span className="block text-xl font-bold tabular-nums text-slate-900">
+            <span className="block text-xl font-bold tabular-nums text-slate-900 dark:text-slate-100">
               {money(winner.totalMonthlyUsd)}
-              <span className="text-xs font-normal text-slate-500">{td(PERIOD_SUFFIX[period])}</span>
+              <span className="text-xs font-normal text-slate-500 dark:text-slate-400">{td(PERIOD_SUFFIX[period])}</span>
             </span>
-            <span className="block text-xs font-medium text-emerald-700">{t('cheapestJump')} ↓</span>
+            <span className="block text-xs font-medium text-emerald-700 dark:text-emerald-400">{t('cheapestJump')} ↓</span>
           </span>
         </button>
       )}
       {hasMatching && (
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-slate-500 dark:text-slate-400">
           {t('matchRule', { burst: t(`matchBurst.${includeBurstable ? 'in' : 'out'}`), arch: t(`matchArch.${arch}`) })}{' '}
-          <Link href="/methodology" className="underline hover:text-slate-700">{t('matchRuleLink')}</Link>
+          <Link href="/methodology" className="underline hover:text-slate-700 dark:hover:text-slate-200">{t('matchRuleLink')}</Link>
         </p>
       )}
 
       <div className="flex flex-col gap-2">{primary.map(card)}</div>
       {otherProviders.length > 0 && (
-        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-200 pt-4">
-          <h3 className="text-xs font-semibold text-slate-500">{t('otherPlatforms')}</h3>
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-200 dark:border-slate-800 pt-4">
+          <h3 className="text-xs font-semibold text-slate-500 dark:text-slate-400">{t('otherPlatforms')}</h3>
           <div role="group" aria-label={t('platformFilter')} className="flex flex-wrap gap-x-3 gap-y-1">
             {otherProviders.map((p) => (
-              <label key={p} className="flex items-center gap-1 text-xs text-slate-600">
+              <label key={p} className="flex items-center gap-1 text-xs text-slate-600 dark:text-slate-300">
                 <input type="checkbox" checked={!hidden.includes(p)} onChange={() => onToggleProvider(p)} />
                 {PROVIDER_LABEL[p]}
               </label>
@@ -570,10 +570,10 @@ export default function EstimateResult({
       )}
       {others.length > 0 && <div className="flex flex-col gap-2">{others.map(card)}</div>}
       {term && (
-        <p className="rounded-md bg-sky-50 px-3 py-2 text-xs text-sky-800">{t('commitNotice', { years: term === '1y' ? 1 : 3 })}</p>
+        <p className="rounded-md bg-sky-50 dark:bg-sky-950/50 px-3 py-2 text-xs text-sky-800 dark:text-sky-200">{t('commitNotice', { years: term === '1y' ? 1 : 3 })}</p>
       )}
       {hasArm && (
-        <p className="rounded-md bg-violet-50 px-3 py-2 text-xs text-violet-700">{t('armNotice')}</p>
+        <p className="rounded-md bg-violet-50 dark:bg-violet-950/50 px-3 py-2 text-xs text-violet-700 dark:text-violet-300">{t('armNotice')}</p>
       )}
       {/* 항상 같은 계산 전제는 접어둔다 — 결과에 직접 영향 주는 경고(약정·ARM)는 위에 그대로 */}
       <div>
@@ -581,20 +581,20 @@ export default function EstimateResult({
           type="button"
           onClick={() => setBasisOpen((o) => !o)}
           aria-expanded={basisOpen}
-          className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-900"
+          className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
         >
           <Info aria-hidden className="size-3.5" />
           {t('calcBasis')}
           <ChevronDown aria-hidden className={`size-3.5 text-slate-400 transition-transform duration-200 ${basisOpen ? 'rotate-180' : ''}`} />
         </button>
         <Collapse open={basisOpen}>
-          <div className="mt-2 space-y-1.5 text-xs text-slate-500">
+          <div className="mt-2 space-y-1.5 text-xs text-slate-500 dark:text-slate-400">
             <p>{t('footnote')}</p>
             {term && <p>{t('commitDetail')}</p>}
             {currency === 'krw' && rate !== null && (
               <p>{td('fxNote', { rate: rate.toLocaleString('ko-KR', { maximumFractionDigits: 2 }) })}</p>
             )}
-            <Link href="/methodology" className="inline-block underline hover:text-slate-700">{t('matchRuleLink')}</Link>
+            <Link href="/methodology" className="inline-block underline hover:text-slate-700 dark:hover:text-slate-200">{t('matchRuleLink')}</Link>
           </div>
         </Collapse>
       </div>

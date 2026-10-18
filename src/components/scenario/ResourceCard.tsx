@@ -37,22 +37,22 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
   const title = t(`resourceTitle.${r.type}`) + (numbered ? ` #${ordinal}` : '');
   const Icon = RESOURCE_ICON[r.type];
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-2 text-sm font-semibold">
-          <Icon aria-hidden className="size-4 text-slate-500" />
+          <Icon aria-hidden className="size-4 text-slate-500 dark:text-slate-400" />
           {title}
         </span>
         <button
           onClick={onRemove}
-          className="text-xs text-slate-400 hover:text-red-600"
+          className="text-xs text-slate-400 hover:text-red-600 dark:hover:text-red-400"
           aria-label={t('removeAria')}
         >
           {t('remove')}
         </button>
       </div>
       {/* 용어를 처음 보는 사용자를 위한 한 줄 설명 */}
-      <p className="mb-3 mt-0.5 text-xs text-slate-500">{t(`resourceHint.${r.type}`)}</p>
+      <p className="mb-3 mt-0.5 text-xs text-slate-500 dark:text-slate-400">{t(`resourceHint.${r.type}`)}</p>
       <div className="flex flex-wrap gap-4">
         {r.type === 'vm' ? (
           <>
@@ -60,7 +60,7 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
             <NumberField label={t('ram')} value={r.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, ramGb })} />
             <NumberField label={t('count')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
             {onFillSku && (
-              <label className="flex basis-full flex-col gap-1 text-xs text-slate-500">
+              <label className="flex basis-full flex-col gap-1 text-xs text-slate-500 dark:text-slate-400">
                 {t('vmSkuLabel')}
                 <input
                   type="text"
@@ -76,12 +76,12 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
                   }}
                   onKeyDown={(e) => e.key === 'Enter' && fillSku(skuName)}
                   onBlur={() => fillSku(skuName)}
-                  className="w-full max-w-xs rounded border border-slate-300 bg-white px-2 py-1 font-mono text-sm text-slate-900"
+                  className="w-full max-w-xs rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1 font-mono text-sm text-slate-900 dark:text-slate-100"
                 />
                 {skuNotFound ? (
-                  <span className="text-amber-700">{t('vmSkuNotFound')}</span>
+                  <span className="text-amber-700 dark:text-amber-400">{t('vmSkuNotFound')}</span>
                 ) : pinned && pinned.length > 0 ? (
-                  <span className="text-slate-600">{t('vmSkuPinned', { list: pinned.join(', ') })}</span>
+                  <span className="text-slate-600 dark:text-slate-300">{t('vmSkuPinned', { list: pinned.join(', ') })}</span>
                 ) : null}
               </label>
             )}
@@ -95,12 +95,12 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
           </>
         ) : r.type === 'db' ? (
           <>
-            <label className="flex flex-col gap-1 text-xs text-slate-500">
+            <label className="flex flex-col gap-1 text-xs text-slate-500 dark:text-slate-400">
               {t('dbEngine')}
               <select
                 value={r.engine}
                 onChange={(e) => onChange({ ...r, engine: e.target.value as DbEngine })}
-                className="rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900"
+                className="rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1 text-sm text-slate-900 dark:text-slate-100"
               >
                 <option value="postgres">PostgreSQL</option>
                 <option value="mysql">MySQL</option>
@@ -110,7 +110,7 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
             <NumberField label={t('ram')} value={r.ramGb} min={1} onChange={(ramGb) => onChange({ ...r, ramGb })} />
             <NumberField label={t('dbStorageGb')} value={r.storageGb} min={1} onChange={(storageGb) => onChange({ ...r, storageGb })} />
             <NumberField label={t('count')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
-            <label className="flex items-center gap-1.5 self-end pb-1.5 text-xs text-slate-600" title={t('dbHaHint')}>
+            <label className="flex items-center gap-1.5 self-end pb-1.5 text-xs text-slate-600 dark:text-slate-300" title={t('dbHaHint')}>
               <input type="checkbox" checked={r.ha} onChange={(e) => onChange({ ...r, ha: e.target.checked })} />
               {t('dbHa')}
             </label>
@@ -119,19 +119,19 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
           <>
             <NumberField label={t('cacheMemoryGb')} value={r.memoryGb} min={1} onChange={(memoryGb) => onChange({ ...r, memoryGb })} />
             <NumberField label={t('count')} value={r.count} min={1} onChange={(count) => onChange({ ...r, count })} />
-            <label className="flex items-center gap-1.5 self-end pb-1.5 text-xs text-slate-600" title={t('cacheHaHint')}>
+            <label className="flex items-center gap-1.5 self-end pb-1.5 text-xs text-slate-600 dark:text-slate-300" title={t('cacheHaHint')}>
               <input type="checkbox" checked={r.ha} onChange={(e) => onChange({ ...r, ha: e.target.checked })} />
               {t('dbHa')}
             </label>
           </>
         ) : r.type === 'container' ? (
           <>
-            <label className="flex flex-col gap-1 text-xs text-slate-500">
+            <label className="flex flex-col gap-1 text-xs text-slate-500 dark:text-slate-400">
               {t('vcpu')}
               <select
                 value={r.vcpu}
                 onChange={(e) => onChange({ ...r, vcpu: Number(e.target.value) })}
-                className="w-24 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900"
+                className="w-24 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1 text-sm text-slate-900 dark:text-slate-100"
               >
                 {CONTAINER_VCPUS.map((v) => (
                   <option key={v} value={v}>{v}</option>
@@ -144,12 +144,12 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
         ) : r.type === 'logs' ? (
           <>
             <NumberField label={t('logsGb')} value={r.gb} min={1} onChange={(gb) => onChange({ ...r, gb })} />
-            <label className="flex flex-col gap-1 text-xs text-slate-500">
+            <label className="flex flex-col gap-1 text-xs text-slate-500 dark:text-slate-400">
               {t('logsRetention')}
               <select
                 value={r.retentionDays}
                 onChange={(e) => onChange({ ...r, retentionDays: Number(e.target.value) })}
-                className="w-24 rounded border border-slate-300 bg-white px-2 py-1 text-sm text-slate-900"
+                className="w-24 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1 text-sm text-slate-900 dark:text-slate-100"
               >
                 {LOG_RETENTION_DAYS.map((d) => (
                   <option key={d} value={d}>{t('logsDays', { days: d })}</option>

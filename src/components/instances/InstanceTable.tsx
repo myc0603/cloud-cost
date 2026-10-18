@@ -88,7 +88,7 @@ export default function InstanceTable({ initial, usdKrwRate }: { initial: { regi
 
   const arrow = (key: SortKey) => (sortKey === key ? (sortAsc ? ' ▲' : ' ▼') : '');
 
-  const th = 'cursor-pointer select-none px-3 py-2 text-left font-semibold hover:text-slate-900';
+  const th = 'cursor-pointer select-none px-3 py-2 text-left font-semibold hover:text-slate-900 dark:hover:text-slate-100';
 
   return (
     <div className="flex flex-col gap-4">
@@ -98,7 +98,7 @@ export default function InstanceTable({ initial, usdKrwRate }: { initial: { regi
           <select
             value={region}
             onChange={(e) => setRegion(e.target.value as Region)}
-            className="rounded border border-slate-300 bg-white px-2 py-1"
+            className="rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1"
           >
             {REGIONS.map((r) => (
               <option key={r} value={r}>{t(`regionLabel.${r}`)}</option>
@@ -118,7 +118,7 @@ export default function InstanceTable({ initial, usdKrwRate }: { initial: { regi
             min={0}
             value={minVcpuText}
             onChange={(e) => setMinVcpuText(e.target.value)}
-            className="w-16 rounded border border-slate-300 bg-white px-2 py-1"
+            className="w-16 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1"
           />
         </label>
         <label className="flex items-center gap-2">
@@ -128,7 +128,7 @@ export default function InstanceTable({ initial, usdKrwRate }: { initial: { regi
             min={0}
             value={minRamText}
             onChange={(e) => setMinRamText(e.target.value)}
-            className="w-16 rounded border border-slate-300 bg-white px-2 py-1"
+            className="w-16 rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1"
           />
         </label>
         <label className="flex items-center gap-1.5">
@@ -140,7 +140,7 @@ export default function InstanceTable({ initial, usdKrwRate }: { initial: { regi
           <select
             value={arch}
             onChange={(e) => setArch(e.target.value as ArchFilter)}
-            className="rounded border border-slate-300 bg-white px-2 py-1"
+            className="rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1"
           >
             {(['both', 'x86', 'arm'] as ArchFilter[]).map((a) => (
               <option key={a} value={a}>{t(`archLabel.${a}`)}</option>
@@ -153,7 +153,7 @@ export default function InstanceTable({ initial, usdKrwRate }: { initial: { regi
             <select
               value={currency}
               onChange={(e) => setCurrency(e.target.value as Currency)}
-              className="rounded border border-slate-300 bg-white px-2 py-1"
+              className="rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1"
             >
               <option value="usd">USD</option>
               <option value="krw">{t('krw')}</option>
@@ -163,9 +163,9 @@ export default function InstanceTable({ initial, usdKrwRate }: { initial: { regi
         <span className="text-xs text-slate-400">{t('shown', { count: rows.length })}</span>
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
         <table className="w-full text-sm">
-          <thead className="border-b border-slate-200 text-xs text-slate-500">
+          <thead className="border-b border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
             <tr>
               <th className={th} onClick={() => sortBy('provider')}>{t('colProvider')}{arrow('provider')}</th>
               <th className={th} onClick={() => sortBy('sku')}>{t('colSku')}{arrow('sku')}</th>
@@ -184,7 +184,7 @@ export default function InstanceTable({ initial, usdKrwRate }: { initial: { regi
               </tr>
             )}
             {rows.map((s) => (
-              <tr key={`${s.provider}-${s.region}-${s.sku}`} className="border-b border-slate-50 hover:bg-slate-50">
+              <tr key={`${s.provider}-${s.region}-${s.sku}`} className="border-b border-slate-50 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/60">
                 <td className="px-3 py-1.5">{PROVIDER_LABEL[s.provider]}</td>
                 <td className="px-3 py-1.5 font-mono text-xs">{s.sku}</td>
                 <td className="px-3 py-1.5 tabular-nums">{s.vcpu}</td>

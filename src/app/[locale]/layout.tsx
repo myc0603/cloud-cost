@@ -6,9 +6,11 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import FeedbackWidget from '@/components/FeedbackWidget';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
+import ThemeToggle from '@/components/ThemeToggle';
 import { Link } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import { pageAlternates, pageOpenGraph, SITE_URL } from '@/lib/seo';
+import { THEME_INIT_SCRIPT } from '@/lib/theme';
 import '../globals.css';
 
 export function generateStaticParams() {
@@ -46,20 +48,25 @@ export default async function RootLayout({
   const t = await getTranslations('nav');
 
   return (
-    <html lang={locale}>
-      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
+    // html.dark는 THEME_INIT_SCRIPT가 하이드레이션 전에 붙이므로 서버 HTML과 다를 수 있다
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
+      <body className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
         <NextIntlClientProvider>
-          <nav className="border-b border-slate-200 bg-white">
+          <nav className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
             {/* 좁은 화면: 1줄 = 브랜드 + 피드백·언어, 2줄 = 메뉴 링크 */}
             <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-6 py-3 text-sm">
               <span className="whitespace-nowrap font-bold">{t('brand')}</span>
               <div className="order-last flex w-full gap-5 whitespace-nowrap sm:order-none sm:w-auto sm:gap-6">
-                <Link href="/" className="text-slate-600 hover:text-slate-900">{t('scenario')}</Link>
-                <Link href="/instances" className="text-slate-600 hover:text-slate-900">{t('instances')}</Link>
-                <Link href="/methodology" className="text-slate-600 hover:text-slate-900">{t('methodology')}</Link>
+                <Link href="/" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100">{t('scenario')}</Link>
+                <Link href="/instances" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100">{t('instances')}</Link>
+                <Link href="/methodology" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100">{t('methodology')}</Link>
               </div>
               <div className="ml-auto flex items-center gap-4">
                 <FeedbackWidget />
+                <ThemeToggle />
                 <LocaleSwitcher />
               </div>
             </div>

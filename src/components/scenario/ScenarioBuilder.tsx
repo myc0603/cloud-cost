@@ -172,16 +172,16 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
             기본 화면을 벗어나면(템플릿 적용·편집·공유 링크) 이름만 있는 칩으로 줄인다 */}
         {isStartScreen ? (
           <div className="flex flex-col gap-2">
-            <span className="text-sm text-slate-500">{t('templateStart')}</span>
+            <span className="text-sm text-slate-500 dark:text-slate-400">{t('templateStart')}</span>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-2">
               {TEMPLATES.map(({ id, resources }) => (
                 <button
                   key={id}
                   onClick={() => applyTemplate(id)}
-                  className="rounded-lg border border-slate-300 bg-white p-3 text-left hover:border-slate-500"
+                  className="rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 p-3 text-left hover:border-slate-500 dark:hover:border-slate-400"
                 >
-                  <span className="block text-sm font-semibold text-slate-900">{t(`templateName.${id}`)}</span>
-                  <span className="mt-1 line-clamp-2 text-xs text-slate-500">
+                  <span className="block text-sm font-semibold text-slate-900 dark:text-slate-100">{t(`templateName.${id}`)}</span>
+                  <span className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">
                     {resources.map((r) => t(`resourceTitle.${r.type}`)).join(' · ')}
                   </span>
                 </button>
@@ -190,7 +190,7 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
           </div>
         ) : (
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-sm text-slate-500">{t('templateShort')}</span>
+            <span className="text-sm text-slate-500 dark:text-slate-400">{t('templateShort')}</span>
             {TEMPLATES.map(({ id, resources }) => {
               const active = sameResources(resources);
               return (
@@ -201,8 +201,8 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
                   title={resources.map((r) => t(`resourceTitle.${r.type}`)).join(' · ')}
                   className={`rounded-full border px-3 py-1 text-xs font-medium ${
                     active
-                      ? 'border-slate-900 bg-slate-900 text-white'
-                      : 'border-slate-300 bg-white text-slate-700 hover:border-slate-500'
+                      ? 'border-slate-900 dark:border-slate-100 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900'
+                      : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:border-slate-500 dark:hover:border-slate-400'
                   }`}
                 >
                   {t(`templateName.${id}`)}
@@ -219,7 +219,7 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
               <select
                 value={scenario.region}
                 onChange={(e) => setScenario((s) => ({ ...s, region: e.target.value as Region }))}
-                className="rounded border border-slate-300 bg-white px-2 py-1"
+                className="rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1"
               >
                 {REGIONS.map((r) => (
                   <option key={r} value={r}>{t(`regionLabel.${r}`)}</option>
@@ -231,7 +231,7 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
               <select
                 value={term ?? 'od'}
                 onChange={(e) => setTerm(e.target.value === 'od' ? undefined : (e.target.value as Term))}
-                className="rounded border border-slate-300 bg-white px-2 py-1"
+                className="rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1"
               >
                 {(['od', '1y', '3y'] as const).map((v) => (
                   <option key={v} value={v}>{t(`termLabel.${v}`)}</option>
@@ -242,7 +242,7 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
               type="button"
               onClick={() => setMatchOpen((o) => !o)}
               aria-expanded={matchOpen}
-              className="flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900"
+              className="flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
             >
               <SlidersHorizontal aria-hidden className="size-4" />
               {t('matchOptions')}
@@ -254,7 +254,7 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
           </div>
           {/* 대부분 안 건드리는 고급 옵션이라 접어둔다 — 결과 위 매칭 규칙 안내가 현재 값을 계속 보여준다 */}
           <Collapse open={matchOpen}>
-            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-md bg-slate-100 px-3 py-2">
+            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-md bg-slate-100 dark:bg-slate-800 px-3 py-2">
               <label className="flex items-center gap-1.5 text-sm">
                 <input
                   type="checkbox"
@@ -268,7 +268,7 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
                 <select
                   value={arch}
                   onChange={(e) => setArch(e.target.value as ArchFilter)}
-                  className="rounded border border-slate-300 bg-white px-2 py-1"
+                  className="rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 py-1"
                 >
                   {(['both', 'x86', 'arm'] as ArchFilter[]).map((a) => (
                     <option key={a} value={a}>{t(`archLabel.${a}`)}</option>
@@ -327,7 +327,7 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
             onSelectInstance={selectInstance}
           />
         ) : (
-          <p className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-400">
+          <p className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 text-sm text-slate-400">
             {t(pricingError ? 'pricingLoadError' : 'pricingLoading')}
           </p>
         )}

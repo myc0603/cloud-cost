@@ -2,8 +2,8 @@ import type { Meta } from '@/lib/schema';
 
 // 장문 문서라 메시지 키 대신 로케일별 JSX로 관리한다 (마크업 유지가 쉬움)
 const H2 = 'mt-8 mb-2 text-lg font-bold';
-const P = 'break-words text-sm leading-6 text-slate-700';
-const LI = 'break-words text-sm leading-6 text-slate-700';
+const P = 'break-words text-sm leading-6 text-slate-700 dark:text-slate-200';
+const LI = 'break-words text-sm leading-6 text-slate-700 dark:text-slate-200';
 
 export function MethodologyKo({ meta }: { meta: Meta | null }) {
   return (

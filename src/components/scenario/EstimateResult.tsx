@@ -380,31 +380,71 @@ export default function EstimateResult({
     e.lines.some((l) => l.kind === 'vm' || l.kind === 'db' || l.kind === 'cache' || l.kind === 'container'),
   );
 
-  const primary = visible.filter((e) => PRIMARY_PROVIDERS.includes(e.provider));
+  // 그룹 안에서 가격순 — 전부 제공 → 일부 미제공(합계 비교 불가) → 금액 없음 순
+  const rank = (e: ProviderEstimate) => (!e.available || e.totalMonthlyUsd === null ? 2 : e.partial ? 1 : 0);
+  const byPrice = (a: ProviderEstimate, b: ProviderEstimate) =>
+    rank(a) - rank(b) || (a.totalMonthlyUsd ?? 0) - (b.totalMonthlyUsd ?? 0);
+  const primary = visible.filter((e) => PRIMARY_PROVIDERS.includes(e.provider)).sort(byPrice);
   const otherProviders = estimates.filter((e) => !PRIMARY_PROVIDERS.includes(e.provider)).map((e) => e.provider);
-  const others = visible.filter((e) => !PRIMARY_PROVIDERS.includes(e.provider));
+  const others = visible.filter((e) => !PRIMARY_PROVIDERS.includes(e.provider)).sort(byPrice);
   const cardId = (p: Provider) => `estimate-${p}`;
+  // 막대 길이 기준 = 보이는 플랫폼 중 최고 합계
+  const maxTotal = Math.max(0, ...visible.map((e) => (e.available ? (e.totalMonthlyUsd ?? 0) : 0)));
+
+  // 펼친 카드 — null이면 기본값(최저가만). 사용자가 한 번 접거나 펼치면 그때부터 직접 관리
+  const [expanded, setExpanded] = useState<Provider[] | null>(null);
+  const openList = expanded ?? (winner ? [winner.provider] : []);
+  const toggleOpen = (p: Provider) =>
+    setExpanded(openList.includes(p) ? openList.filter((x) => x !== p) : [...openList, p]);
 
   const card = (e: ProviderEstimate) => {
     const isCheapest = !e.partial && e.totalMonthlyUsd !== null && e.totalMonthlyUsd === cheapest;
+    const expandable = e.available && e.lines.length > 0;
+    const open = expandable && openList.includes(e.provider);
+    const total = e.available ? e.totalMonthlyUsd : null;
+    // 최저가 대비 % — 합계 비교가 가능한 플랫폼끼리만
+    const diffPct =
+      !isCheapest && !e.partial && total !== null && cheapest !== null && cheapest > 0
+        ? Math.round((total / cheapest - 1) * 100)
+        : null;
     return (
       <div
         key={e.provider}
         id={cardId(e.provider)}
-        className={`scroll-mt-4 rounded-lg border bg-white p-4 shadow-sm ${
+        className={`scroll-mt-4 rounded-lg border bg-white shadow-sm ${
           isCheapest ? 'border-emerald-500 ring-1 ring-emerald-500' : 'border-slate-200'
         }`}
       >
-        <div className="flex items-baseline justify-between">
-          <span className="text-sm font-bold">
+        <button
+          type="button"
+          onClick={() => toggleOpen(e.provider)}
+          disabled={!expandable}
+          aria-expanded={expandable ? open : undefined}
+          className="flex w-full flex-wrap items-center gap-x-3 gap-y-2 rounded-lg px-4 py-3 text-left sm:flex-nowrap hover:bg-slate-50 disabled:cursor-default disabled:hover:bg-transparent"
+        >
+          <span className="w-24 shrink-0 text-sm font-bold sm:w-32">
             {PROVIDER_LABEL[e.provider]}
             {isCheapest && (
-              <span className="ml-2 rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-700">
+              <span className="mt-0.5 block w-fit rounded bg-emerald-100 px-1.5 py-0.5 text-xs font-medium text-emerald-700">
                 {t('cheapest')}
               </span>
             )}
           </span>
-          <span className="text-right text-lg font-bold tabular-nums">
+          {/* 좁은 화면에선 막대를 둘째 줄로 내려 폭을 확보 */}
+          <span className="order-last flex min-w-0 basis-full items-center gap-2 sm:order-none sm:flex-1 sm:basis-auto">
+            {total !== null && maxTotal > 0 && (
+              <>
+                <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100">
+                  <span
+                    className={`block h-full rounded-full ${isCheapest ? 'bg-emerald-500' : e.partial ? 'bg-amber-300' : 'bg-slate-300'}`}
+                    style={{ width: `${(total / maxTotal) * 100}%` }}
+                  />
+                </span>
+                <span className="w-11 shrink-0 text-right text-xs tabular-nums text-slate-500">{diffPct !== null && `+${diffPct}%`}</span>
+              </>
+            )}
+          </span>
+          <span className="ml-auto shrink-0 text-right text-base font-bold tabular-nums sm:text-lg">
             {!e.available ? (
               <span className="text-sm font-normal text-slate-400">{t(offeredIn(region, e.provider) ? 'dataPending' : 'notOffered')}</span>
             ) : e.totalMonthlyUsd === null ? (
@@ -417,10 +457,13 @@ export default function EstimateResult({
               </>
             )}
           </span>
-        </div>
+          <span aria-hidden className={`w-3 shrink-0 text-slate-400 transition-transform ${open ? 'rotate-90' : ''} ${expandable ? '' : 'invisible'}`}>
+            ›
+          </span>
+        </button>
 
-        {e.available && e.lines.length > 0 && (
-          <ul className="mt-3 space-y-1 border-t border-slate-100 pt-3">
+        {open && (
+          <ul className="mx-4 mb-4 space-y-1 border-t border-slate-100 pt-3">
             {e.lines.map((line, i) => (
               <li key={i} className="flex justify-between gap-2 text-xs text-slate-600">
                 <span className="min-w-0">
@@ -464,7 +507,10 @@ export default function EstimateResult({
       {winner && winner.totalMonthlyUsd !== null && (
         <button
           type="button"
-          onClick={() => document.getElementById(cardId(winner.provider))?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          onClick={() => {
+            if (!openList.includes(winner.provider)) setExpanded([...openList, winner.provider]);
+            document.getElementById(cardId(winner.provider))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
           className="flex items-center justify-between gap-3 rounded-lg border-2 border-emerald-500 bg-emerald-50 p-4 text-left shadow-sm transition hover:bg-emerald-100"
         >
           <span className="min-w-0">
@@ -487,7 +533,7 @@ export default function EstimateResult({
         </p>
       )}
 
-      {primary.map(card)}
+      <div className="flex flex-col gap-2">{primary.map(card)}</div>
       {otherProviders.length > 0 && (
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-slate-200 pt-4">
           <h3 className="text-xs font-semibold text-slate-500">{t('otherPlatforms')}</h3>
@@ -501,7 +547,7 @@ export default function EstimateResult({
           </div>
         </div>
       )}
-      {others.map(card)}
+      {others.length > 0 && <div className="flex flex-col gap-2">{others.map(card)}</div>}
       {term && (
         <p className="rounded-md bg-sky-50 px-3 py-2 text-xs text-sky-800">{t('commitNotice', { years: term === '1y' ? 1 : 3 })}</p>
       )}

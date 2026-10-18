@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { CONTAINER_VCPUS, LOG_RETENTION_DAYS, type Resource } from '@/lib/estimator';
 import type { DbEngine } from '@/lib/schema';
 import NumberField from './NumberField';
+import { RESOURCE_ICON } from './resource-icons';
 
 interface Props {
   resource: Resource;
@@ -34,10 +35,14 @@ export default function ResourceCard({ resource: r, ordinal, numbered, onChange,
     if (found) setSkuName('');
   };
   const title = t(`resourceTitle.${r.type}`) + (numbered ? ` #${ordinal}` : '');
+  const Icon = RESOURCE_ICON[r.type];
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex items-center justify-between">
-        <span className="text-sm font-semibold">{title}</span>
+        <span className="flex items-center gap-2 text-sm font-semibold">
+          <Icon aria-hidden className="size-4 text-slate-500" />
+          {title}
+        </span>
         <button
           onClick={onRemove}
           className="text-xs text-slate-400 hover:text-red-600"

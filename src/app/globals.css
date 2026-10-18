@@ -1,1 +1,14 @@
 @import 'tailwindcss';
+
+/* Tailwind v4는 버튼 기본 커서를 default로 둔다 — 누를 수 있는 요소는 손가락 커서로 */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled),
+  select:not(:disabled),
+  summary,
+  input[type='checkbox']:not(:disabled),
+  input[type='radio']:not(:disabled),
+  label:has(> input[type='checkbox']:not(:disabled), > input[type='radio']:not(:disabled)) {
+    cursor: pointer;
+  }
+}

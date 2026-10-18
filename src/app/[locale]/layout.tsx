@@ -50,11 +50,14 @@ export default async function RootLayout({
       <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
         <NextIntlClientProvider>
           <nav className="border-b border-slate-200 bg-white">
-            <div className="mx-auto flex max-w-6xl items-center gap-6 px-6 py-3 text-sm">
-              <span className="font-bold">{t('brand')}</span>
-              <Link href="/" className="text-slate-600 hover:text-slate-900">{t('scenario')}</Link>
-              <Link href="/instances" className="text-slate-600 hover:text-slate-900">{t('instances')}</Link>
-              <Link href="/methodology" className="text-slate-600 hover:text-slate-900">{t('methodology')}</Link>
+            {/* 좁은 화면: 1줄 = 브랜드 + 피드백·언어, 2줄 = 메뉴 링크 */}
+            <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-6 py-3 text-sm">
+              <span className="whitespace-nowrap font-bold">{t('brand')}</span>
+              <div className="order-last flex w-full gap-5 whitespace-nowrap sm:order-none sm:w-auto sm:gap-6">
+                <Link href="/" className="text-slate-600 hover:text-slate-900">{t('scenario')}</Link>
+                <Link href="/instances" className="text-slate-600 hover:text-slate-900">{t('instances')}</Link>
+                <Link href="/methodology" className="text-slate-600 hover:text-slate-900">{t('methodology')}</Link>
+              </div>
               <div className="ml-auto flex items-center gap-4">
                 <FeedbackWidget />
                 <LocaleSwitcher />

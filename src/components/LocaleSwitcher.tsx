@@ -16,7 +16,7 @@ function SwitcherInner() {
   const query = Object.fromEntries(searchParams.entries());
 
   return (
-    <div className="flex items-center gap-2 text-xs">
+    <div className="flex items-center gap-2 whitespace-nowrap text-xs">
       {routing.locales.map((l) =>
         l === locale ? (
           <span key={l} className="font-semibold text-slate-900">{LOCALE_LABEL[l]}</span>

@@ -43,7 +43,7 @@ export default function FeedbackWidget() {
     <div className="relative">
       <button
         onClick={toggle}
-        className="rounded border border-slate-300 px-2.5 py-1 text-xs text-slate-600 hover:border-slate-400 hover:text-slate-900"
+        className="whitespace-nowrap rounded border border-slate-300 px-2.5 py-1 text-xs text-slate-600 hover:border-slate-400 hover:text-slate-900"
       >
         {t('button')}
       </button>

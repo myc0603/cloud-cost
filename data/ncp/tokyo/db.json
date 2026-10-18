@@ -9,125 +9,125 @@
           "vcpu": 2,
           "ramGb": 4,
           "burstable": false,
-          "perHour": 0.11986,
-          "haPerHour": 0.23972
+          "perHour": 0.119871,
+          "haPerHour": 0.239742
         },
         {
           "sku": "VDBAS.STAND.C002.M008.NET.HDD.B050.G002",
           "vcpu": 2,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.185783,
-          "haPerHour": 0.371566
+          "perHour": 0.1858,
+          "haPerHour": 0.3716
         },
         {
           "sku": "VDBAS.HIMEM.C002.M016.NET.HDD.B050.G002",
           "vcpu": 2,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.225487,
-          "haPerHour": 0.450974
+          "perHour": 0.225507,
+          "haPerHour": 0.451014
         },
         {
           "sku": "VDBAS.HICPU.C004.M008.NET.HDD.B050.G002",
           "vcpu": 4,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.23972,
-          "haPerHour": 0.47944
+          "perHour": 0.239742,
+          "haPerHour": 0.479484
         },
         {
           "sku": "VDBAS.STAND.C004.M016.NET.HDD.B050.G002",
           "vcpu": 4,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.370817,
-          "haPerHour": 0.741634
+          "perHour": 0.37085,
+          "haPerHour": 0.7417
         },
         {
           "sku": "VDBAS.HIMEM.C004.M032.NET.HDD.B050.G002",
           "vcpu": 4,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.450224,
-          "haPerHour": 0.900448
+          "perHour": 0.450265,
+          "haPerHour": 0.90053
         },
         {
           "sku": "VDBAS.HICPU.C008.M016.NET.HDD.B050.G002",
           "vcpu": 8,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.47944,
-          "haPerHour": 0.95888
+          "perHour": 0.479483,
+          "haPerHour": 0.958966
         },
         {
           "sku": "VDBAS.STAND.C008.M032.NET.HDD.B050.G002",
           "vcpu": 8,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.740136,
-          "haPerHour": 1.480272
+          "perHour": 0.740202,
+          "haPerHour": 1.480404
         },
         {
           "sku": "VDBAS.HIMEM.C008.M064.NET.HDD.B050.G002",
           "vcpu": 8,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 0.8997,
-          "haPerHour": 1.7994
+          "perHour": 0.89978,
+          "haPerHour": 1.79956
         },
         {
           "sku": "VDBAS.HICPU.C016.M032.NET.HDD.B050.G002",
           "vcpu": 16,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.958881,
-          "haPerHour": 1.917762
+          "perHour": 0.958967,
+          "haPerHour": 1.917934
         },
         {
           "sku": "VDBAS.STAND.C016.M064.NET.HDD.B050.G002",
           "vcpu": 16,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.480272,
-          "haPerHour": 2.960544
+          "perHour": 1.480405,
+          "haPerHour": 2.96081
         },
         {
           "sku": "VDBAS.HIMEM.C016.M128.NET.HDD.B050.G002",
           "vcpu": 16,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 1.79865,
-          "haPerHour": 3.5973
+          "perHour": 1.798812,
+          "haPerHour": 3.597624
         },
         {
           "sku": "VDBAS.HICPU.C032.M064.NET.HDD.B050.G002",
           "vcpu": 32,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.917761,
-          "haPerHour": 3.835522
+          "perHour": 1.917933,
+          "haPerHour": 3.835866
         },
         {
           "sku": "VDBAS.STAND.C032.M128.NET.HDD.B050.G002",
           "vcpu": 32,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 2.959794,
-          "haPerHour": 5.919588
+          "perHour": 2.960061,
+          "haPerHour": 5.920122
         },
         {
           "sku": "VDBAS.HIMEM.C032.M256.NET.HDD.B050.G002",
           "vcpu": 32,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 3.596551,
-          "haPerHour": 7.193102
+          "perHour": 3.596874,
+          "haPerHour": 7.193748
         }
       ],
       "custom": null,
-      "storageGbMonth": 0.087498,
-      "haStorageGbMonth": 0.174996
+      "storageGbMonth": 0.087506,
+      "haStorageGbMonth": 0.175012
     },
     "postgres": {
       "instances": [
@@ -136,125 +136,125 @@
           "vcpu": 2,
           "ramGb": 4,
           "burstable": false,
-          "perHour": 0.118362,
-          "haPerHour": 0.236724
+          "perHour": 0.118372,
+          "haPerHour": 0.236744
         },
         {
           "sku": "VPGSL.DBSVR.STAND.C002.M008.NET.SSD.B050.G002",
           "vcpu": 2,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.187281,
-          "haPerHour": 0.374562
+          "perHour": 0.187298,
+          "haPerHour": 0.374596
         },
         {
           "sku": "VPGSL.DBSVR.HIMEM.C002.M016.NET.SSD.B050.G002",
           "vcpu": 2,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.226236,
-          "haPerHour": 0.452472
+          "perHour": 0.226256,
+          "haPerHour": 0.452512
         },
         {
           "sku": "VPGSL.DBSVR.HICPU.C004.M008.NET.SSD.B050.G002",
           "vcpu": 4,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.241968,
-          "haPerHour": 0.483936
+          "perHour": 0.241989,
+          "haPerHour": 0.483978
         },
         {
           "sku": "VPGSL.DBSVR.STAND.C004.M016.NET.SSD.B050.G002",
           "vcpu": 4,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.379057,
-          "haPerHour": 0.758114
+          "perHour": 0.379092,
+          "haPerHour": 0.758184
         },
         {
           "sku": "VPGSL.DBSVR.HIMEM.C004.M032.NET.SSD.B050.G002",
           "vcpu": 4,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.457716,
-          "haPerHour": 0.915432
+          "perHour": 0.457757,
+          "haPerHour": 0.915514
         },
         {
           "sku": "VPGSL.DBSVR.HICPU.C008.M016.NET.SSD.B050.G002",
           "vcpu": 8,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.489179,
-          "haPerHour": 0.978358
+          "perHour": 0.489223,
+          "haPerHour": 0.978446
         },
         {
           "sku": "VPGSL.DBSVR.STAND.C008.M032.NET.SSD.B050.G002",
           "vcpu": 8,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.763359,
-          "haPerHour": 1.526718
+          "perHour": 0.763427,
+          "haPerHour": 1.526854
         },
         {
           "sku": "VPGSL.DBSVR.HIMEM.C008.M064.NET.SSD.B050.G002",
           "vcpu": 8,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 0.919177,
-          "haPerHour": 1.838354
+          "perHour": 0.919259,
+          "haPerHour": 1.838518
         },
         {
           "sku": "VPGSL.DBSVR.HICPU.C016.M032.NET.SSD.B050.G002",
           "vcpu": 16,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.983602,
-          "haPerHour": 1.967204
+          "perHour": 0.98369,
+          "haPerHour": 1.96738
         },
         {
           "sku": "VPGSL.DBSVR.STAND.C016.M064.NET.SSD.B050.G002",
           "vcpu": 16,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.531961,
-          "haPerHour": 3.063922
+          "perHour": 1.532099,
+          "haPerHour": 3.064198
         },
         {
           "sku": "VPGSL.DBSVR.HIMEM.C016.M128.NET.SSD.B050.G002",
           "vcpu": 16,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 1.843598,
-          "haPerHour": 3.687196
+          "perHour": 1.843763,
+          "haPerHour": 3.687526
         },
         {
           "sku": "VPGSL.DBSVR.HICPU.C032.M064.NET.SSD.B050.G002",
           "vcpu": 32,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.972447,
-          "haPerHour": 3.944894
+          "perHour": 1.972624,
+          "haPerHour": 3.945248
         },
         {
           "sku": "VPGSL.DBSVR.STAND.C032.M128.NET.SSD.B050.G002",
           "vcpu": 32,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 3.070665,
-          "haPerHour": 6.14133
+          "perHour": 3.070941,
+          "haPerHour": 6.141882
         },
         {
           "sku": "VPGSL.DBSVR.HIMEM.C032.M256.NET.SSD.B050.G002",
           "vcpu": 32,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 3.690941,
-          "haPerHour": 7.381882
+          "perHour": 3.691273,
+          "haPerHour": 7.382546
         }
       ],
       "custom": null,
-      "storageGbMonth": 0.087498,
-      "haStorageGbMonth": 0.174996
+      "storageGbMonth": 0.087506,
+      "haStorageGbMonth": 0.175012
     }
   }
 }

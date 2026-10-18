@@ -18,7 +18,7 @@ interface Props {
   canAdd: (type: ResourceType) => boolean;
 }
 
-/** "+ 리소스 추가" 하나로 접어둔 분류별 추가 메뉴 — 제자리에서 펼쳐진다 */
+/** "+ 리소스 추가" 하나로 접어둔 분류별 추가 메뉴 — 제자리에서 펼쳐지고, 여러 개를 연달아 추가할 수 있게 추가해도 열린 채로 둔다 */
 export default function AddResourceMenu({ onAdd, canAdd }: Props) {
   const t = useTranslations('scenario');
   const [open, setOpen] = useState(false);
@@ -42,10 +42,7 @@ export default function AddResourceMenu({ onAdd, canAdd }: Props) {
                 <button
                   key={type}
                   type="button"
-                  onClick={() => {
-                    onAdd(type);
-                    setOpen(false);
-                  }}
+                  onClick={() => onAdd(type)}
                   disabled={!canAdd(type)}
                   title={t(`resourceHint.${type}`)}
                   className="text-left text-sm text-slate-700 hover:text-slate-950 hover:underline disabled:cursor-not-allowed disabled:text-slate-300 disabled:no-underline"

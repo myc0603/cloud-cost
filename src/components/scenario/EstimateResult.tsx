@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
+import { Check, Link2 } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { cheapestTotal, gcpSustainedUseMax, HOURS_PER_MONTH, type ArchFilter, type EstimateLine, type NoMatchReason, type ProviderEstimate } from '@/lib/estimator';
 import { formatMoney, type Currency, type Period } from '@/lib/display';
@@ -513,8 +514,11 @@ export default function EstimateResult({
         <button
           type="button"
           onClick={copyShareLink}
-          className="ml-auto rounded-md border border-slate-200 px-2.5 py-1 text-xs font-medium text-slate-600 hover:border-slate-400 hover:text-slate-900"
+          className={`ml-auto flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs font-medium ${
+            copied ? 'border-emerald-300 text-emerald-700' : 'border-slate-200 text-slate-600 hover:border-slate-400 hover:text-slate-900'
+          }`}
         >
+          {copied ? <Check aria-hidden className="size-3.5" /> : <Link2 aria-hidden className="size-3.5" />}
           {copied ? ts('copied') : ts('copyShareLink')}
         </button>
       </div>

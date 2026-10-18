@@ -362,6 +362,14 @@ export default function EstimateResult({
   const locale = useLocale();
   const [currency, setCurrency] = useState<Currency>(locale === 'ko' && rate !== null ? 'krw' : 'usd');
   const [period, setPeriod] = useState<Period>('month');
+  // 주소에 현재 시나리오가 들어 있으므로 주소 복사가 곧 공유 (ScenarioBuilder가 주소를 갱신)
+  const ts = useTranslations('scenario');
+  const [copied, setCopied] = useState(false);
+  const copyShareLink = async () => {
+    await navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
 
   const canKrw = rate !== null;
   const money = (x: number) => formatMoney(x, currency, period, rate ?? 1);
@@ -502,6 +510,13 @@ export default function EstimateResult({
           onChange={setPeriod}
           options={PERIODS.map((p) => ({ value: p, label: td(p) }))}
         />
+        <button
+          type="button"
+          onClick={copyShareLink}
+          className="ml-auto rounded-md border border-slate-200 px-2.5 py-1 text-xs font-medium text-slate-600 hover:border-slate-400 hover:text-slate-900"
+        >
+          {copied ? ts('copied') : ts('copyShareLink')}
+        </button>
       </div>
 
       {winner && winner.totalMonthlyUsd !== null && (

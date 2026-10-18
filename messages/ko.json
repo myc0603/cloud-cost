@@ -59,6 +59,14 @@
     "templateConfirm": "현재 구성이 템플릿으로 바뀝니다. 계속할까요?",
     "copyShareLink": "공유 링크 복사",
     "copied": "복사됨 ✓",
+    "addResource": "리소스 추가",
+    "addGroup": {
+      "compute": "컴퓨팅",
+      "data": "DB·캐시",
+      "network": "네트워크",
+      "storage": "스토리지",
+      "ops": "운영"
+    },
     "resourceTitle": {
       "vm": "가상 머신",
       "block": "블록 스토리지",

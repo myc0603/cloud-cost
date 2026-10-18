@@ -19,6 +19,7 @@ import { PROVIDER_LABEL, PROVIDERS } from '@/lib/providers';
 import { REGIONS } from '@/lib/regions';
 import { TEMPLATES, type TemplateId } from '@/lib/templates';
 import { useRegionPricing } from '@/lib/use-region-pricing';
+import AddResourceMenu from './AddResourceMenu';
 import EstimateResult from './EstimateResult';
 import ResourceCard from './ResourceCard';
 
@@ -71,7 +72,6 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
   // 화면에서 숨긴 플랫폼 ("다른 플랫폼"만, 대표 3사는 고정) — 공유 링크에 저장
   const [hidden, setHidden] = useState<Provider[]>(() => decodeHidden(searchParams));
   const toggleProvider = (p: Provider) => setHidden((h) => (h.includes(p) ? h.filter((x) => x !== p) : [...h, p]));
-  const [copied, setCopied] = useState(false);
 
   const setArch = (next: ArchFilter) => setMatchOpts((o) => ({ ...o, arch: next }));
   const setIncludeBurstable = (next: boolean) => setMatchOpts((o) => ({ ...o, includeBurstable: next }));
@@ -156,12 +156,6 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
       else perResource[resourceIndex] = sku;
       return { ...o, [provider]: perResource };
     });
-
-  const copyShareLink = async () => {
-    await navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
 
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -261,24 +255,7 @@ export default function ScenarioBuilder({ initialPricing, usdKrwRate }: Props) {
             )}
         </datalist>
 
-        <div className="flex flex-wrap gap-2">
-          {(Object.keys(RESOURCES) as ResourceType[]).map((type) => (
-            <button
-              key={type}
-              onClick={() => addResource(type)}
-              disabled={!canAdd(type)}
-              className="rounded-lg border border-dashed border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              + {t(`resourceTitle.${type}`)}
-            </button>
-          ))}
-          <button
-            onClick={copyShareLink}
-            className="rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-600 hover:border-slate-400 hover:text-slate-900"
-          >
-            {copied ? t('copied') : t('copyShareLink')}
-          </button>
-        </div>
+        <AddResourceMenu onAdd={addResource} canAdd={canAdd} />
       </section>
 
       <section>

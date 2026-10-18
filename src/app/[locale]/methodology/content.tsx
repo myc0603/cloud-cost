@@ -163,7 +163,8 @@ export function MethodologyKo({ meta }: { meta: Meta | null }) {
         </li>
         <li className={LI}>
           관리형 DB: MySQL은 MySQL HeatWave의 ECPU 셰이프(ECPU를 vCPU로 간주, ECPU당 메모리 8GB), 이중화는 인스턴스 3개 구성이라
-          컴퓨트·스토리지 3배입니다. PostgreSQL은 E5 Flex 컴퓨트 요금에 OCPU당 PostgreSQL 요금을 더한 값(가격 페이지 설명 기준)이고,
+          컴퓨트·스토리지 3배입니다. PostgreSQL은 E5 Flex 컴퓨트 요금에 OCPU당 PostgreSQL 요금을 더한 값이고, 스토리지는 Optimized Storage
+          요금에 가장 낮은 성능 등급(75,000 IOPS = 블록 성능 단위 30 VPU)의 성능 요금을 더한 값입니다(공식 비용 계산기와 같은 방식).
           이중화는 노드 2개라 컴퓨트 2배·스토리지는 노드 공유라 그대로입니다.
         </li>
         <li className={LI}>캐시는 OCI Cache(Valkey·Redis 호환) 노드 메모리 GB당 요금이며, 노드가 10GB를 넘으면 더 낮은 단가가 노드 전체에 적용됩니다. 이중화는 복제 노드 1개(2배).</li>
@@ -471,8 +472,10 @@ export function MethodologyEn({ meta }: { meta: Meta | null }) {
         </li>
         <li className={LI}>
           Managed databases: MySQL uses MySQL HeatWave ECPU shapes (an ECPU is treated as a vCPU, 8 GB per ECPU); high availability runs
-          three instances, tripling compute and storage. PostgreSQL is E5 Flex compute plus a per-OCPU PostgreSQL fee (per the pricing
-          page); high availability uses two nodes, doubling compute, while storage is shared and stays the same.
+          three instances, tripling compute and storage. PostgreSQL is E5 Flex compute plus a per-OCPU PostgreSQL fee, and storage is
+          Optimized Storage plus the performance charge of the lowest tier (75,000 IOPS = 30 block volume performance units), the same
+          way OCI&rsquo;s official cost estimator calculates it; high availability uses two nodes, doubling compute, while storage is
+          shared and stays the same.
         </li>
         <li className={LI}>Caches use OCI Cache (Valkey/Redis-compatible), priced per GB of node memory; nodes over 10 GB get a lower rate for the whole node. High availability adds one replica (2×).</li>
         <li className={LI}>

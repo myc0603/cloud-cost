@@ -187,11 +187,13 @@ const MYSQL_HA_INSTANCES = 3;
 /**
  * Database with PostgreSQL — 기반 컴퓨트(E5 Flex OCPU·메모리) 요금 + OCPU당 PostgreSQL 요금 (oracle.com/cloud/postgresql/pricing:
  * "adding a fee on top of your standard compute", 2026-10-17 확인). 셰이프 PostgreSQL.VM.Standard.E5.Flex: 1~64 OCPU,
- * 메모리 16GB 이상·OCPU당 64GB 이하·최대 1024GB. 고가용성 = 노드 2개(문서 권장 최소) → 컴퓨트 2배, 스토리지는 노드 공유라 1배
+ * 메모리 16GB 이상·OCPU당 64GB 이하·최대 1024GB. 고가용성 = 노드 2개(문서 권장 최소) → 컴퓨트 2배, 스토리지는 노드 공유라 1배.
+ * 스토리지 = Optimized Storage GB + 블록 성능 단위(VPU) GB × 성능 등급 VPU — 공식 비용 계산기(oracle.com/cloud/costestimator.html)가
+ * 이렇게 계산하고 블록 용량 품목은 0으로 둔다(2026-10-18 확인). 성능 등급은 최저(75,000 IOPS = 30 VPU)
  */
 const PG_OCPUS = [1, 2, 4, 8, 16, 32, 64];
 const PG_GB_PER_OCPU = [8, 16, 32, 64];
-const PG = { minGb: 16, maxGb: 1024, haNodes: 2 };
+const PG = { minGb: 16, maxGb: 1024, haNodes: 2, storageVpu: 30 };
 
 export function buildOciDb(items: OciItem[], region: Region): DbPrice {
   const ecpu = unitPrice(items, PART.mysqlEcpu);
@@ -214,7 +216,7 @@ export function buildOciDb(items: OciItem[], region: Region): DbPrice {
       pgInstances.set(sku, { sku, vcpu: ocpu * 2, ramGb, burstable: false, perHour, haPerHour: r6(perHour * PG.haNodes) });
     }
   }
-  const pgStorage = unitPrice(items, PART.pgStorage);
+  const pgStorage = r6(unitPrice(items, PART.pgStorage) + PG.storageVpu * unitPrice(items, PART.blockVpu));
   const postgres: DbEnginePricing = { instances: [...pgInstances.values()], custom: null, storageGbMonth: pgStorage, haStorageGbMonth: pgStorage };
 
   return { provider: 'oci', region, engines: { mysql, postgres } };

@@ -58,7 +58,7 @@ test('OCI 스토리지·트래픽·LB·NAT·K8s: Balanced 10 VPU, 리전별 트�
   assert.equal(seoul.cdn, null);
 });
 
-test('OCI DB: MySQL ECPU 셰이프(이중화 3배), PostgreSQL = E5 컴퓨트 + OCPU 요금(이중화 2배, 스토리지 공유)', () => {
+test('OCI DB: MySQL ECPU 셰이프(이중화 3배), PostgreSQL = E5 컴퓨트 + OCPU 요금(이중화 2배), 스토리지 = Optimized Storage + 30 VPU(노드 공유)', () => {
   const db = buildOciSnapshot(ITEMS, 'seoul').db!;
   const mysql2 = db.engines.mysql!.instances.find((i) => i.sku === 'MySQL.2')!;
   assert.deepEqual([mysql2.vcpu, mysql2.ramGb, mysql2.perHour, mysql2.haPerHour], [2, 16, 0.0732, 0.2196]);
@@ -66,6 +66,7 @@ test('OCI DB: MySQL ECPU 셰이프(이중화 3배), PostgreSQL = E5 컴퓨트 + 
   const pg = db.engines.postgres!.instances.find((i) => i.sku === 'PostgreSQL.VM.Standard.E5.Flex.1OCPU.16GB')!;
   assert.deepEqual([pg.vcpu, pg.ramGb, pg.perHour, pg.haPerHour], [2, 16, 0.16, 0.32]); // 1 × (0.03 + 0.098) + 16 × 0.002
   assert.equal(db.engines.postgres!.instances.filter((i) => i.ramGb < 16).length, 0); // 최소 16GB
+  assert.equal(db.engines.postgres!.storageGbMonth, 0.123); // Optimized Storage 0.072 + 최저 성능 등급 30 VPU × 0.0017
   assert.equal(db.engines.postgres!.haStorageGbMonth, db.engines.postgres!.storageGbMonth);
 });
 

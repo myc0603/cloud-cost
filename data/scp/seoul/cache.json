@@ -7,16 +7,16 @@
       "sku": "redis3v1m2",
       "memoryGb": 2,
       "burstable": false,
-      "perHour": 0.06862,
-      "haPerHour": 0.13724,
+      "perHour": 0.068682,
+      "haPerHour": 0.137364,
       "commit": {
         "1y": {
-          "perHour": 0.047827,
-          "haPerHour": 0.095654
+          "perHour": 0.047869,
+          "haPerHour": 0.095738
         },
         "3y": {
-          "perHour": 0.044314,
-          "haPerHour": 0.088628
+          "perHour": 0.044354,
+          "haPerHour": 0.088708
         }
       }
     },
@@ -24,16 +24,16 @@
       "sku": "redis3v2m4",
       "memoryGb": 4,
       "burstable": false,
-      "perHour": 0.136486,
-      "haPerHour": 0.272972,
+      "perHour": 0.136609,
+      "haPerHour": 0.273218,
       "commit": {
         "1y": {
-          "perHour": 0.095653,
-          "haPerHour": 0.191306
+          "perHour": 0.095739,
+          "haPerHour": 0.191478
         },
         "3y": {
-          "perHour": 0.088835,
-          "haPerHour": 0.17767
+          "perHour": 0.088915,
+          "haPerHour": 0.17783
         }
       }
     },
@@ -41,16 +41,16 @@
       "sku": "redis3v2m8",
       "memoryGb": 8,
       "burstable": false,
-      "perHour": 0.144027,
-      "haPerHour": 0.288054,
+      "perHour": 0.144156,
+      "haPerHour": 0.288312,
       "commit": {
         "1y": {
-          "perHour": 0.101231,
-          "haPerHour": 0.202462
+          "perHour": 0.101322,
+          "haPerHour": 0.202644
         },
         "3y": {
-          "perHour": 0.093897,
-          "haPerHour": 0.187794
+          "perHour": 0.093981,
+          "haPerHour": 0.187962
         }
       }
     },
@@ -58,16 +58,16 @@
       "sku": "redis3v2m16",
       "memoryGb": 16,
       "burstable": false,
-      "perHour": 0.159108,
-      "haPerHour": 0.318216,
+      "perHour": 0.159251,
+      "haPerHour": 0.318502,
       "commit": {
         "1y": {
-          "perHour": 0.111457,
-          "haPerHour": 0.222914
+          "perHour": 0.111558,
+          "haPerHour": 0.223116
         },
         "3y": {
-          "perHour": 0.103504,
-          "haPerHour": 0.207008
+          "perHour": 0.103597,
+          "haPerHour": 0.207194
         }
       }
     },
@@ -75,16 +75,16 @@
       "sku": "redis3v2m24",
       "memoryGb": 24,
       "burstable": false,
-      "perHour": 0.179468,
-      "haPerHour": 0.358936,
+      "perHour": 0.179629,
+      "haPerHour": 0.359258,
       "commit": {
         "1y": {
-          "perHour": 0.126229,
-          "haPerHour": 0.252458
+          "perHour": 0.126342,
+          "haPerHour": 0.252684
         },
         "3y": {
-          "perHour": 0.117242,
-          "haPerHour": 0.234484
+          "perHour": 0.117347,
+          "haPerHour": 0.234694
         }
       }
     },
@@ -92,16 +92,16 @@
       "sku": "redis3v4m32",
       "memoryGb": 32,
       "burstable": false,
-      "perHour": 0.333298,
-      "haPerHour": 0.666596,
+      "perHour": 0.333597,
+      "haPerHour": 0.667194,
       "commit": {
         "1y": {
-          "perHour": 0.233658,
-          "haPerHour": 0.467316
+          "perHour": 0.233868,
+          "haPerHour": 0.467736
         },
         "3y": {
-          "perHour": 0.217027,
-          "haPerHour": 0.434054
+          "perHour": 0.217222,
+          "haPerHour": 0.434444
         }
       }
     },
@@ -109,16 +109,16 @@
       "sku": "redis3v4m48",
       "memoryGb": 48,
       "burstable": false,
-      "perHour": 0.402672,
-      "haPerHour": 0.805344,
+      "perHour": 0.403034,
+      "haPerHour": 0.806068,
       "commit": {
         "1y": {
-          "perHour": 0.282001,
-          "haPerHour": 0.564002
+          "perHour": 0.282254,
+          "haPerHour": 0.564508
         },
         "3y": {
-          "perHour": 0.261858,
-          "haPerHour": 0.523716
+          "perHour": 0.262093,
+          "haPerHour": 0.524186
         }
       }
     },
@@ -126,16 +126,16 @@
       "sku": "redis3v4m64",
       "memoryGb": 64,
       "burstable": false,
-      "perHour": 0.446408,
-      "haPerHour": 0.892816,
+      "perHour": 0.446809,
+      "haPerHour": 0.893618,
       "commit": {
         "1y": {
-          "perHour": 0.312267,
-          "haPerHour": 0.624534
+          "perHour": 0.312547,
+          "haPerHour": 0.625094
         },
         "3y": {
-          "perHour": 0.289851,
-          "haPerHour": 0.579702
+          "perHour": 0.290112,
+          "haPerHour": 0.580224
         }
       }
     },
@@ -143,16 +143,16 @@
       "sku": "redis3v6m72",
       "memoryGb": 72,
       "burstable": false,
-      "perHour": 0.612303,
-      "haPerHour": 1.224606,
+      "perHour": 0.612853,
+      "haPerHour": 1.225706,
       "commit": {
         "1y": {
-          "perHour": 0.428889,
-          "haPerHour": 0.857778
+          "perHour": 0.429274,
+          "haPerHour": 0.858548
         },
         "3y": {
-          "perHour": 0.398313,
-          "haPerHour": 0.796626
+          "perHour": 0.398671,
+          "haPerHour": 0.797342
         }
       }
     },
@@ -160,16 +160,16 @@
       "sku": "redis3v6m96",
       "memoryGb": 96,
       "burstable": false,
-      "perHour": 0.677907,
-      "haPerHour": 1.355814,
+      "perHour": 0.678516,
+      "haPerHour": 1.357032,
       "commit": {
         "1y": {
-          "perHour": 0.474237,
-          "haPerHour": 0.948474
+          "perHour": 0.474663,
+          "haPerHour": 0.949326
         },
         "3y": {
-          "perHour": 0.440355,
-          "haPerHour": 0.88071
+          "perHour": 0.440751,
+          "haPerHour": 0.881502
         }
       }
     },
@@ -177,16 +177,16 @@
       "sku": "redis3v8m128",
       "memoryGb": 128,
       "burstable": false,
-      "perHour": 0.91016,
-      "haPerHour": 1.82032,
+      "perHour": 0.910978,
+      "haPerHour": 1.821956,
       "commit": {
         "1y": {
-          "perHour": 0.636826,
-          "haPerHour": 1.273652
+          "perHour": 0.637398,
+          "haPerHour": 1.274796
         },
         "3y": {
-          "perHour": 0.591272,
-          "haPerHour": 1.182544
+          "perHour": 0.591803,
+          "haPerHour": 1.183606
         }
       }
     },
@@ -194,16 +194,16 @@
       "sku": "redis3v10m160",
       "memoryGb": 160,
       "burstable": false,
-      "perHour": 1.097169,
-      "haPerHour": 2.194338,
+      "perHour": 1.098155,
+      "haPerHour": 2.19631,
       "commit": {
         "1y": {
-          "perHour": 0.76791,
-          "haPerHour": 1.53582
+          "perHour": 0.7686,
+          "haPerHour": 1.5372
         },
         "3y": {
-          "perHour": 0.713163,
-          "haPerHour": 1.426326
+          "perHour": 0.713803,
+          "haPerHour": 1.427606
         }
       }
     },
@@ -211,16 +211,16 @@
       "sku": "redis3v12m192",
       "memoryGb": 192,
       "burstable": false,
-      "perHour": 1.284932,
-      "haPerHour": 2.569864,
+      "perHour": 1.286086,
+      "haPerHour": 2.572172,
       "commit": {
         "1y": {
-          "perHour": 0.899614,
-          "haPerHour": 1.799228
+          "perHour": 0.900422,
+          "haPerHour": 1.800844
         },
         "3y": {
-          "perHour": 0.835363,
-          "haPerHour": 1.670726
+          "perHour": 0.836113,
+          "haPerHour": 1.672226
         }
       }
     },
@@ -228,16 +228,16 @@
       "sku": "redis3v14m224",
       "memoryGb": 224,
       "burstable": false,
-      "perHour": 1.472695,
-      "haPerHour": 2.94539,
+      "perHour": 1.474018,
+      "haPerHour": 2.948036,
       "commit": {
         "1y": {
-          "perHour": 1.030594,
-          "haPerHour": 2.061188
+          "perHour": 1.03152,
+          "haPerHour": 2.06304
         },
         "3y": {
-          "perHour": 0.957047,
-          "haPerHour": 1.914094
+          "perHour": 0.957906,
+          "haPerHour": 1.915812
         }
       }
     },
@@ -245,16 +245,16 @@
       "sku": "redis3v16m256",
       "memoryGb": 256,
       "burstable": false,
-      "perHour": 1.660458,
-      "haPerHour": 3.320916,
+      "perHour": 1.66195,
+      "haPerHour": 3.3239,
       "commit": {
         "1y": {
-          "perHour": 1.162298,
-          "haPerHour": 2.324596
+          "perHour": 1.163342,
+          "haPerHour": 2.326684
         },
         "3y": {
-          "perHour": 1.079454,
-          "haPerHour": 2.158908
+          "perHour": 1.080423,
+          "haPerHour": 2.160846
         }
       }
     }

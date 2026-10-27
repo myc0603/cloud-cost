@@ -9,16 +9,16 @@
           "vcpu": 2,
           "ramGb": 4,
           "burstable": false,
-          "perHour": 0.157112,
-          "haPerHour": 0.314224,
+          "perHour": 0.156959,
+          "haPerHour": 0.313918,
           "commit": {
             "1y": {
-              "perHour": 0.110611,
-              "haPerHour": 0.221222
+              "perHour": 0.110504,
+              "haPerHour": 0.221008
             },
             "3y": {
-              "perHour": 0.102644,
-              "haPerHour": 0.205288
+              "perHour": 0.102544,
+              "haPerHour": 0.205088
             }
           }
         },
@@ -27,16 +27,16 @@
           "vcpu": 2,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.172218,
-          "haPerHour": 0.344436,
+          "perHour": 0.172051,
+          "haPerHour": 0.344102,
           "commit": {
             "1y": {
-              "perHour": 0.120648,
-              "haPerHour": 0.241296
+              "perHour": 0.120531,
+              "haPerHour": 0.241062
             },
             "3y": {
-              "perHour": 0.111956,
-              "haPerHour": 0.223912
+              "perHour": 0.111847,
+              "haPerHour": 0.223694
             }
           }
         },
@@ -45,16 +45,16 @@
           "vcpu": 2,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.199411,
-          "haPerHour": 0.398822,
+          "perHour": 0.199217,
+          "haPerHour": 0.398434,
           "commit": {
             "1y": {
-              "perHour": 0.13948,
-              "haPerHour": 0.27896
+              "perHour": 0.139344,
+              "haPerHour": 0.278688
             },
             "3y": {
-              "perHour": 0.12965,
-              "haPerHour": 0.2593
+              "perHour": 0.129524,
+              "haPerHour": 0.259048
             }
           }
         },
@@ -63,16 +63,16 @@
           "vcpu": 2,
           "ramGb": 24,
           "burstable": false,
-          "perHour": 0.225848,
-          "haPerHour": 0.451696,
+          "perHour": 0.225628,
+          "haPerHour": 0.451256,
           "commit": {
             "1y": {
-              "perHour": 0.158105,
-              "haPerHour": 0.31621
+              "perHour": 0.157951,
+              "haPerHour": 0.315902
             },
             "3y": {
-              "perHour": 0.146723,
-              "haPerHour": 0.293446
+              "perHour": 0.14658,
+              "haPerHour": 0.29316
             }
           }
         },
@@ -81,16 +81,16 @@
           "vcpu": 2,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.284009,
-          "haPerHour": 0.568018,
+          "perHour": 0.283733,
+          "haPerHour": 0.567466,
           "commit": {
             "1y": {
-              "perHour": 0.19908,
-              "haPerHour": 0.39816
+              "perHour": 0.198886,
+              "haPerHour": 0.397772
             },
             "3y": {
-              "perHour": 0.184904,
-              "haPerHour": 0.369808
+              "perHour": 0.184724,
+              "haPerHour": 0.369448
             }
           }
         },
@@ -99,16 +99,16 @@
           "vcpu": 4,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.336128,
-          "haPerHour": 0.672256,
+          "perHour": 0.335801,
+          "haPerHour": 0.671602,
           "commit": {
             "1y": {
-              "perHour": 0.234881,
-              "haPerHour": 0.469762
+              "perHour": 0.234652,
+              "haPerHour": 0.469304
             },
             "3y": {
-              "perHour": 0.218015,
-              "haPerHour": 0.43603
+              "perHour": 0.217803,
+              "haPerHour": 0.435606
             }
           }
         },
@@ -117,16 +117,16 @@
           "vcpu": 4,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.364831,
-          "haPerHour": 0.729662,
+          "perHour": 0.364476,
+          "haPerHour": 0.728952,
           "commit": {
             "1y": {
-              "perHour": 0.255265,
-              "haPerHour": 0.51053
+              "perHour": 0.255016,
+              "haPerHour": 0.510032
             },
             "3y": {
-              "perHour": 0.236847,
-              "haPerHour": 0.473694
+              "perHour": 0.236616,
+              "haPerHour": 0.473232
             }
           }
         },
@@ -135,16 +135,16 @@
           "vcpu": 4,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.417705,
-          "haPerHour": 0.83541,
+          "perHour": 0.417299,
+          "haPerHour": 0.834598,
           "commit": {
             "1y": {
-              "perHour": 0.292618,
-              "haPerHour": 0.585236
+              "perHour": 0.292333,
+              "haPerHour": 0.584666
             },
             "3y": {
-              "perHour": 0.27182,
-              "haPerHour": 0.54364
+              "perHour": 0.271556,
+              "haPerHour": 0.543112
             }
           }
         },
@@ -153,16 +153,16 @@
           "vcpu": 4,
           "ramGb": 48,
           "burstable": false,
-          "perHour": 0.470579,
-          "haPerHour": 0.941158,
+          "perHour": 0.470121,
+          "haPerHour": 0.940242,
           "commit": {
             "1y": {
-              "perHour": 0.329661,
-              "haPerHour": 0.659322
+              "perHour": 0.32934,
+              "haPerHour": 0.65868
             },
             "3y": {
-              "perHour": 0.30607,
-              "haPerHour": 0.61214
+              "perHour": 0.305772,
+              "haPerHour": 0.611544
             }
           }
         },
@@ -171,16 +171,16 @@
           "vcpu": 4,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 0.562731,
-          "haPerHour": 1.125462,
+          "perHour": 0.562184,
+          "haPerHour": 1.124368,
           "commit": {
             "1y": {
-              "perHour": 0.393917,
-              "haPerHour": 0.787834
+              "perHour": 0.393534,
+              "haPerHour": 0.787068
             },
             "3y": {
-              "perHour": 0.365773,
-              "haPerHour": 0.731546
+              "perHour": 0.365417,
+              "haPerHour": 0.730834
             }
           }
         },
@@ -189,16 +189,16 @@
           "vcpu": 6,
           "ramGb": 12,
           "burstable": false,
-          "perHour": 0.513634,
-          "haPerHour": 1.027268,
+          "perHour": 0.513134,
+          "haPerHour": 1.026268,
           "commit": {
             "1y": {
-              "perHour": 0.359978,
-              "haPerHour": 0.719956
+              "perHour": 0.359628,
+              "haPerHour": 0.719256
             },
             "3y": {
-              "perHour": 0.33411,
-              "haPerHour": 0.66822
+              "perHour": 0.333785,
+              "haPerHour": 0.66757
             }
           }
         },
@@ -207,16 +207,16 @@
           "vcpu": 6,
           "ramGb": 24,
           "burstable": false,
-          "perHour": 0.555178,
-          "haPerHour": 1.110356,
+          "perHour": 0.554637,
+          "haPerHour": 1.109274,
           "commit": {
             "1y": {
-              "perHour": 0.388433,
-              "haPerHour": 0.776866
+              "perHour": 0.388055,
+              "haPerHour": 0.77611
             },
             "3y": {
-              "perHour": 0.360703,
-              "haPerHour": 0.721406
+              "perHour": 0.360352,
+              "haPerHour": 0.720704
             }
           }
         },
@@ -225,16 +225,16 @@
           "vcpu": 6,
           "ramGb": 48,
           "burstable": false,
-          "perHour": 0.633734,
-          "haPerHour": 1.267468,
+          "perHour": 0.633117,
+          "haPerHour": 1.266234,
           "commit": {
             "1y": {
-              "perHour": 0.443273,
-              "haPerHour": 0.886546
+              "perHour": 0.442842,
+              "haPerHour": 0.885684
             },
             "3y": {
-              "perHour": 0.411611,
-              "haPerHour": 0.823222
+              "perHour": 0.41121,
+              "haPerHour": 0.82242
             }
           }
         },
@@ -243,16 +243,16 @@
           "vcpu": 6,
           "ramGb": 72,
           "burstable": false,
-          "perHour": 0.713045,
-          "haPerHour": 1.42609,
+          "perHour": 0.712351,
+          "haPerHour": 1.424702,
           "commit": {
             "1y": {
-              "perHour": 0.499458,
-              "haPerHour": 0.998916
+              "perHour": 0.498972,
+              "haPerHour": 0.997944
             },
             "3y": {
-              "perHour": 0.463968,
-              "haPerHour": 0.927936
+              "perHour": 0.463516,
+              "haPerHour": 0.927032
             }
           }
         },
@@ -261,16 +261,16 @@
           "vcpu": 6,
           "ramGb": 96,
           "burstable": false,
-          "perHour": 0.898104,
-          "haPerHour": 1.796208,
+          "perHour": 0.89723,
+          "haPerHour": 1.79446,
           "commit": {
             "1y": {
-              "perHour": 0.628488,
-              "haPerHour": 1.256976
+              "perHour": 0.627876,
+              "haPerHour": 1.255752
             },
             "3y": {
-              "perHour": 0.583581,
-              "haPerHour": 1.167162
+              "perHour": 0.583013,
+              "haPerHour": 1.166026
             }
           }
         },
@@ -279,16 +279,16 @@
           "vcpu": 8,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.689629,
-          "haPerHour": 1.379258,
+          "perHour": 0.688958,
+          "haPerHour": 1.377916,
           "commit": {
             "1y": {
-              "perHour": 0.482799,
-              "haPerHour": 0.965598
+              "perHour": 0.482329,
+              "haPerHour": 0.964658
             },
             "3y": {
-              "perHour": 0.448447,
-              "haPerHour": 0.896894
+              "perHour": 0.44801,
+              "haPerHour": 0.89602
             }
           }
         },
@@ -297,16 +297,16 @@
           "vcpu": 8,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.747791,
-          "haPerHour": 1.495582,
+          "perHour": 0.747063,
+          "haPerHour": 1.494126,
           "commit": {
             "1y": {
-              "perHour": 0.523878,
-              "haPerHour": 1.047756
+              "perHour": 0.523368,
+              "haPerHour": 1.046736
             },
             "3y": {
-              "perHour": 0.486524,
-              "haPerHour": 0.973048
+              "perHour": 0.486051,
+              "haPerHour": 0.972102
             }
           }
         },
@@ -315,16 +315,16 @@
           "vcpu": 8,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 0.857316,
-          "haPerHour": 1.714632,
+          "perHour": 0.856481,
+          "haPerHour": 1.712962,
           "commit": {
             "1y": {
-              "perHour": 0.599826,
-              "haPerHour": 1.199652
+              "perHour": 0.599242,
+              "haPerHour": 1.198484
             },
             "3y": {
-              "perHour": 0.556782,
-              "haPerHour": 1.113564
+              "perHour": 0.55624,
+              "haPerHour": 1.11248
             }
           }
         },
@@ -333,16 +333,16 @@
           "vcpu": 8,
           "ramGb": 96,
           "burstable": false,
-          "perHour": 0.963064,
-          "haPerHour": 1.926128,
+          "perHour": 0.962126,
+          "haPerHour": 1.924252,
           "commit": {
             "1y": {
-              "perHour": 0.673498,
-              "haPerHour": 1.346996
+              "perHour": 0.672842,
+              "haPerHour": 1.345684
             },
             "3y": {
-              "perHour": 0.62559,
-              "haPerHour": 1.25118
+              "perHour": 0.624981,
+              "haPerHour": 1.249962
             }
           }
         },
@@ -351,16 +351,16 @@
           "vcpu": 8,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 1.147368,
-          "haPerHour": 2.294736,
+          "perHour": 1.146251,
+          "haPerHour": 2.292502,
           "commit": {
             "1y": {
-              "perHour": 0.803458,
-              "haPerHour": 1.606916
+              "perHour": 0.802676,
+              "haPerHour": 1.605352
             },
             "3y": {
-              "perHour": 0.745928,
-              "haPerHour": 1.491856
+              "perHour": 0.745202,
+              "haPerHour": 1.490404
             }
           }
         },
@@ -369,16 +369,16 @@
           "vcpu": 10,
           "ramGb": 20,
           "burstable": false,
-          "perHour": 0.819548,
-          "haPerHour": 1.639096,
+          "perHour": 0.818751,
+          "haPerHour": 1.637502,
           "commit": {
             "1y": {
-              "perHour": 0.573544,
-              "haPerHour": 1.147088
+              "perHour": 0.572986,
+              "haPerHour": 1.145972
             },
             "3y": {
-              "perHour": 0.532466,
-              "haPerHour": 1.064932
+              "perHour": 0.531947,
+              "haPerHour": 1.063894
             }
           }
         },
@@ -387,16 +387,16 @@
           "vcpu": 10,
           "ramGb": 40,
           "burstable": false,
-          "perHour": 0.888285,
-          "haPerHour": 1.77657,
+          "perHour": 0.88742,
+          "haPerHour": 1.77484,
           "commit": {
             "1y": {
-              "perHour": 0.621969,
-              "haPerHour": 1.243938
+              "perHour": 0.621363,
+              "haPerHour": 1.242726
             },
             "3y": {
-              "perHour": 0.577683,
-              "haPerHour": 1.155366
+              "perHour": 0.577121,
+              "haPerHour": 1.154242
             }
           }
         },
@@ -405,16 +405,16 @@
           "vcpu": 10,
           "ramGb": 80,
           "burstable": false,
-          "perHour": 1.018959,
-          "haPerHour": 2.037918,
+          "perHour": 1.017967,
+          "haPerHour": 2.035934,
           "commit": {
             "1y": {
-              "perHour": 0.713128,
-              "haPerHour": 1.426256
+              "perHour": 0.712433,
+              "haPerHour": 1.424866
             },
             "3y": {
-              "perHour": 0.662013,
-              "haPerHour": 1.324026
+              "perHour": 0.661368,
+              "haPerHour": 1.322736
             }
           }
         },
@@ -423,16 +423,16 @@
           "vcpu": 10,
           "ramGb": 120,
           "burstable": false,
-          "perHour": 1.1519,
-          "haPerHour": 2.3038,
+          "perHour": 1.150778,
+          "haPerHour": 2.301556,
           "commit": {
             "1y": {
-              "perHour": 0.806666,
-              "haPerHour": 1.613332
+              "perHour": 0.805881,
+              "haPerHour": 1.611762
             },
             "3y": {
-              "perHour": 0.749032,
-              "haPerHour": 1.498064
+              "perHour": 0.748303,
+              "haPerHour": 1.496606
             }
           }
         },
@@ -441,16 +441,16 @@
           "vcpu": 10,
           "ramGb": 160,
           "burstable": false,
-          "perHour": 1.384546,
-          "haPerHour": 2.769092,
+          "perHour": 1.383198,
+          "haPerHour": 2.766396,
           "commit": {
             "1y": {
-              "perHour": 0.970255,
-              "haPerHour": 1.94051
+              "perHour": 0.96931,
+              "haPerHour": 1.93862
             },
             "3y": {
-              "perHour": 0.900929,
-              "haPerHour": 1.801858
+              "perHour": 0.900052,
+              "haPerHour": 1.800104
             }
           }
         },
@@ -459,16 +459,16 @@
           "vcpu": 12,
           "ramGb": 24,
           "burstable": false,
-          "perHour": 0.946446,
-          "haPerHour": 1.892892,
+          "perHour": 0.945525,
+          "haPerHour": 1.89105,
           "commit": {
             "1y": {
-              "perHour": 0.663047,
-              "haPerHour": 1.326094
+              "perHour": 0.662402,
+              "haPerHour": 1.324804
             },
             "3y": {
-              "perHour": 0.61545,
-              "haPerHour": 1.2309
+              "perHour": 0.614851,
+              "haPerHour": 1.229702
             }
           }
         },
@@ -477,16 +477,16 @@
           "vcpu": 12,
           "ramGb": 48,
           "burstable": false,
-          "perHour": 1.030289,
-          "haPerHour": 2.060578,
+          "perHour": 1.029286,
+          "haPerHour": 2.058572,
           "commit": {
             "1y": {
-              "perHour": 0.721509,
-              "haPerHour": 1.443018
+              "perHour": 0.720806,
+              "haPerHour": 1.441612
             },
             "3y": {
-              "perHour": 0.669773,
-              "haPerHour": 1.339546
+              "perHour": 0.669121,
+              "haPerHour": 1.338242
             }
           }
         },
@@ -495,16 +495,16 @@
           "vcpu": 12,
           "ramGb": 96,
           "burstable": false,
-          "perHour": 1.189667,
-          "haPerHour": 2.379334,
+          "perHour": 1.188509,
+          "haPerHour": 2.377018,
           "commit": {
             "1y": {
-              "perHour": 0.832948,
-              "haPerHour": 1.665896
+              "perHour": 0.832137,
+              "haPerHour": 1.664274
             },
             "3y": {
-              "perHour": 0.773659,
-              "haPerHour": 1.547318
+              "perHour": 0.772905,
+              "haPerHour": 1.54581
             }
           }
         },
@@ -513,16 +513,16 @@
           "vcpu": 12,
           "ramGb": 144,
           "burstable": false,
-          "perHour": 1.348289,
-          "haPerHour": 2.696578,
+          "perHour": 1.346977,
+          "haPerHour": 2.693954,
           "commit": {
             "1y": {
-              "perHour": 0.944077,
-              "haPerHour": 1.888154
+              "perHour": 0.943158,
+              "haPerHour": 1.886316
             },
             "3y": {
-              "perHour": 0.876406,
-              "haPerHour": 1.752812
+              "perHour": 0.875553,
+              "haPerHour": 1.751106
             }
           }
         },
@@ -531,16 +531,16 @@
           "vcpu": 12,
           "ramGb": 192,
           "burstable": false,
-          "perHour": 1.562807,
-          "haPerHour": 3.125614,
+          "perHour": 1.561286,
+          "haPerHour": 3.122572,
           "commit": {
             "1y": {
-              "perHour": 1.092973,
-              "haPerHour": 2.185946
+              "perHour": 1.091909,
+              "haPerHour": 2.183818
             },
             "3y": {
-              "perHour": 1.015058,
-              "haPerHour": 2.030116
+              "perHour": 1.01407,
+              "haPerHour": 2.02814
             }
           }
         },
@@ -549,16 +549,16 @@
           "vcpu": 14,
           "ramGb": 28,
           "burstable": false,
-          "perHour": 1.07561,
-          "haPerHour": 2.15122,
+          "perHour": 1.074563,
+          "haPerHour": 2.149126,
           "commit": {
             "1y": {
-              "perHour": 0.75255,
-              "haPerHour": 1.5051
+              "perHour": 0.751818,
+              "haPerHour": 1.503636
             },
             "3y": {
-              "perHour": 0.698848,
-              "haPerHour": 1.397696
+              "perHour": 0.698168,
+              "haPerHour": 1.396336
             }
           }
         },
@@ -567,16 +567,16 @@
           "vcpu": 14,
           "ramGb": 56,
           "burstable": false,
-          "perHour": 1.170783,
-          "haPerHour": 2.341566,
+          "perHour": 1.169644,
+          "haPerHour": 2.339288,
           "commit": {
             "1y": {
-              "perHour": 0.820117,
-              "haPerHour": 1.640234
+              "perHour": 0.819319,
+              "haPerHour": 1.638638
             },
             "3y": {
-              "perHour": 0.761449,
-              "haPerHour": 1.522898
+              "perHour": 0.760708,
+              "haPerHour": 1.521416
             }
           }
         },
@@ -585,16 +585,16 @@
           "vcpu": 14,
           "ramGb": 112,
           "burstable": false,
-          "perHour": 1.358109,
-          "haPerHour": 2.716218,
+          "perHour": 1.356787,
+          "haPerHour": 2.713574,
           "commit": {
             "1y": {
-              "perHour": 0.950802,
-              "haPerHour": 1.901604
+              "perHour": 0.949877,
+              "haPerHour": 1.899754
             },
             "3y": {
-              "perHour": 0.882718,
-              "haPerHour": 1.765436
+              "perHour": 0.881859,
+              "haPerHour": 1.763718
             }
           }
         },
@@ -603,16 +603,16 @@
           "vcpu": 14,
           "ramGb": 168,
           "burstable": false,
-          "perHour": 1.543923,
-          "haPerHour": 3.087846,
+          "perHour": 1.54242,
+          "haPerHour": 3.08484,
           "commit": {
             "1y": {
-              "perHour": 1.080659,
-              "haPerHour": 2.161318
+              "perHour": 1.079607,
+              "haPerHour": 2.159214
             },
             "3y": {
-              "perHour": 1.003573,
-              "haPerHour": 2.007146
+              "perHour": 1.002596,
+              "haPerHour": 2.005192
             }
           }
         },
@@ -621,16 +621,16 @@
           "vcpu": 14,
           "ramGb": 224,
           "burstable": false,
-          "perHour": 1.694992,
-          "haPerHour": 3.389984,
+          "perHour": 1.693342,
+          "haPerHour": 3.386684,
           "commit": {
             "1y": {
-              "perHour": 1.186097,
-              "haPerHour": 2.372194
+              "perHour": 1.184943,
+              "haPerHour": 2.369886
             },
             "3y": {
-              "perHour": 1.10125,
-              "haPerHour": 2.2025
+              "perHour": 1.100178,
+              "haPerHour": 2.200356
             }
           }
         },
@@ -639,16 +639,16 @@
           "vcpu": 16,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 1.201752,
-          "haPerHour": 2.403504,
+          "perHour": 1.200583,
+          "haPerHour": 2.401166,
           "commit": {
             "1y": {
-              "perHour": 0.841122,
-              "haPerHour": 1.682244
+              "perHour": 0.840303,
+              "haPerHour": 1.680606
             },
             "3y": {
-              "perHour": 0.781109,
-              "haPerHour": 1.562218
+              "perHour": 0.780348,
+              "haPerHour": 1.560696
             }
           }
         },
@@ -657,16 +657,16 @@
           "vcpu": 16,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.314299,
-          "haPerHour": 2.628598,
+          "perHour": 1.313019,
+          "haPerHour": 2.626038,
           "commit": {
             "1y": {
-              "perHour": 0.919554,
-              "haPerHour": 1.839108
+              "perHour": 0.918659,
+              "haPerHour": 1.837318
             },
             "3y": {
-              "perHour": 0.854056,
-              "haPerHour": 1.708112
+              "perHour": 0.853225,
+              "haPerHour": 1.70645
             }
           }
         },
@@ -675,16 +675,16 @@
           "vcpu": 16,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 1.528061,
-          "haPerHour": 3.056122,
+          "perHour": 1.526574,
+          "haPerHour": 3.053148,
           "commit": {
             "1y": {
-              "perHour": 1.069484,
-              "haPerHour": 2.138968
+              "perHour": 1.068443,
+              "haPerHour": 2.136886
             },
             "3y": {
-              "perHour": 0.992915,
-              "haPerHour": 1.98583
+              "perHour": 0.991949,
+              "haPerHour": 1.983898
             }
           }
         },
@@ -693,16 +693,16 @@
           "vcpu": 16,
           "ramGb": 192,
           "burstable": false,
-          "perHour": 1.741823,
-          "haPerHour": 3.483646,
+          "perHour": 1.740128,
+          "haPerHour": 3.480256,
           "commit": {
             "1y": {
-              "perHour": 1.219312,
-              "haPerHour": 2.438624
+              "perHour": 1.218125,
+              "haPerHour": 2.43625
             },
             "3y": {
-              "perHour": 1.132085,
-              "haPerHour": 2.26417
+              "perHour": 1.130983,
+              "haPerHour": 2.261966
             }
           }
         },
@@ -711,16 +711,16 @@
           "vcpu": 16,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 2.001662,
-          "haPerHour": 4.003324,
+          "perHour": 1.999713,
+          "haPerHour": 3.999426,
           "commit": {
             "1y": {
-              "perHour": 1.400491,
-              "haPerHour": 2.800982
+              "perHour": 1.399127,
+              "haPerHour": 2.798254
             },
             "3y": {
-              "perHour": 1.300744,
-              "haPerHour": 2.601488
+              "perHour": 1.299478,
+              "haPerHour": 2.598956
             }
           }
         },
@@ -729,16 +729,16 @@
           "vcpu": 24,
           "ramGb": 48,
           "burstable": false,
-          "perHour": 1.337714,
-          "haPerHour": 2.675428,
+          "perHour": 1.336412,
+          "haPerHour": 2.672824,
           "commit": {
             "1y": {
-              "perHour": 0.935385,
-              "haPerHour": 1.87077
+              "perHour": 0.934474,
+              "haPerHour": 1.868948
             },
             "3y": {
-              "perHour": 0.801699,
-              "haPerHour": 1.603398
+              "perHour": 0.800919,
+              "haPerHour": 1.601838
             }
           }
         },
@@ -747,16 +747,16 @@
           "vcpu": 24,
           "ramGb": 96,
           "burstable": false,
-          "perHour": 1.485762,
-          "haPerHour": 2.971524,
+          "perHour": 1.484315,
+          "haPerHour": 2.96863,
           "commit": {
             "1y": {
-              "perHour": 1.039581,
-              "haPerHour": 2.079162
+              "perHour": 1.038569,
+              "haPerHour": 2.077138
             },
             "3y": {
-              "perHour": 0.891099,
-              "haPerHour": 1.782198
+              "perHour": 0.890232,
+              "haPerHour": 1.780464
             }
           }
         },
@@ -765,16 +765,16 @@
           "vcpu": 24,
           "ramGb": 192,
           "burstable": false,
-          "perHour": 1.754664,
-          "haPerHour": 3.509328,
+          "perHour": 1.752956,
+          "haPerHour": 3.505912,
           "commit": {
             "1y": {
-              "perHour": 1.226968,
-              "haPerHour": 2.453936
+              "perHour": 1.225774,
+              "haPerHour": 2.451548
             },
             "3y": {
-              "perHour": 1.05148,
-              "haPerHour": 2.10296
+              "perHour": 1.050457,
+              "haPerHour": 2.100914
             }
           }
         },
@@ -783,16 +783,16 @@
           "vcpu": 24,
           "ramGb": 288,
           "burstable": false,
-          "perHour": 2.022811,
-          "haPerHour": 4.045622,
+          "perHour": 2.020842,
+          "haPerHour": 4.041684,
           "commit": {
             "1y": {
-              "perHour": 1.415804,
-              "haPerHour": 2.831608
+              "perHour": 1.414426,
+              "haPerHour": 2.828852
             },
             "3y": {
-              "perHour": 1.213517,
-              "haPerHour": 2.427034
+              "perHour": 1.212336,
+              "haPerHour": 2.424672
             }
           }
         },
@@ -801,16 +801,16 @@
           "vcpu": 32,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.783367,
-          "haPerHour": 3.566734,
+          "perHour": 1.781631,
+          "haPerHour": 3.563262,
           "commit": {
             "1y": {
-              "perHour": 1.247766,
-              "haPerHour": 2.495532
+              "perHour": 1.246552,
+              "haPerHour": 2.493104
             },
             "3y": {
-              "perHour": 1.069691,
-              "haPerHour": 2.139382
+              "perHour": 1.06865,
+              "haPerHour": 2.1373
             }
           }
         },
@@ -819,16 +819,16 @@
           "vcpu": 32,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 1.980512,
-          "haPerHour": 3.961024,
+          "perHour": 1.978584,
+          "haPerHour": 3.957168,
           "commit": {
             "1y": {
-              "perHour": 1.387453,
-              "haPerHour": 2.774906
+              "perHour": 1.386103,
+              "haPerHour": 2.772206
             },
             "3y": {
-              "perHour": 1.189201,
-              "haPerHour": 2.378402
+              "perHour": 1.188044,
+              "haPerHour": 2.376088
             }
           }
         },
@@ -837,16 +837,16 @@
           "vcpu": 32,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 2.339301,
-          "haPerHour": 4.678602,
+          "perHour": 2.337023,
+          "haPerHour": 4.674046,
           "commit": {
             "1y": {
-              "perHour": 1.636613,
-              "haPerHour": 3.273226
+              "perHour": 1.63502,
+              "haPerHour": 3.27004
             },
             "3y": {
-              "perHour": 1.402974,
-              "haPerHour": 2.805948
+              "perHour": 1.401608,
+              "haPerHour": 2.803216
             }
           }
         },
@@ -855,16 +855,16 @@
           "vcpu": 32,
           "ramGb": 384,
           "burstable": false,
-          "perHour": 2.697334,
-          "haPerHour": 5.394668,
+          "perHour": 2.694708,
+          "haPerHour": 5.389416,
           "commit": {
             "1y": {
-              "perHour": 1.887636,
-              "haPerHour": 3.775272
+              "perHour": 1.885798,
+              "haPerHour": 3.771596
             },
             "3y": {
-              "perHour": 1.617885,
-              "haPerHour": 3.23577
+              "perHour": 1.61631,
+              "haPerHour": 3.23262
             }
           }
         },
@@ -873,16 +873,16 @@
           "vcpu": 48,
           "ramGb": 192,
           "burstable": false,
-          "perHour": 2.757006,
-          "haPerHour": 5.514012,
+          "perHour": 2.754322,
+          "haPerHour": 5.508644,
           "commit": {
             "1y": {
-              "perHour": 1.929749,
-              "haPerHour": 3.859498
+              "perHour": 1.92787,
+              "haPerHour": 3.85574
             },
             "3y": {
-              "perHour": 1.6541,
-              "haPerHour": 3.3082
+              "perHour": 1.65249,
+              "haPerHour": 3.30498
             }
           }
         },
@@ -891,16 +891,16 @@
           "vcpu": 48,
           "ramGb": 576,
           "burstable": false,
-          "perHour": 3.828839,
-          "haPerHour": 7.657678,
+          "perHour": 3.825112,
+          "haPerHour": 7.650224,
           "commit": {
             "1y": {
-              "perHour": 2.680023,
-              "haPerHour": 5.360046
+              "perHour": 2.677414,
+              "haPerHour": 5.354828
             },
             "3y": {
-              "perHour": 2.297074,
-              "haPerHour": 4.594148
+              "perHour": 2.294838,
+              "haPerHour": 4.589676
             }
           }
         },
@@ -909,16 +909,16 @@
           "vcpu": 64,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 3.528967,
-          "haPerHour": 7.057934,
+          "perHour": 3.525532,
+          "haPerHour": 7.051064,
           "commit": {
             "1y": {
-              "perHour": 2.470596,
-              "haPerHour": 4.941192
+              "perHour": 2.468191,
+              "haPerHour": 4.936382
             },
             "3y": {
-              "perHour": 2.117654,
-              "haPerHour": 4.235308
+              "perHour": 2.115592,
+              "haPerHour": 4.231184
             }
           }
         },
@@ -927,16 +927,16 @@
           "vcpu": 64,
           "ramGb": 768,
           "burstable": false,
-          "perHour": 4.9611,
-          "haPerHour": 9.9222,
+          "perHour": 4.95627,
+          "haPerHour": 9.91254,
           "commit": {
             "1y": {
-              "perHour": 3.472306,
-              "haPerHour": 6.944612
+              "perHour": 3.468926,
+              "haPerHour": 6.937852
             },
             "3y": {
-              "perHour": 2.976263,
-              "haPerHour": 5.952526
+              "perHour": 2.973365,
+              "haPerHour": 5.94673
             }
           }
         },
@@ -945,16 +945,16 @@
           "vcpu": 72,
           "ramGb": 288,
           "burstable": false,
-          "perHour": 3.917214,
-          "haPerHour": 7.834428,
+          "perHour": 3.913401,
+          "haPerHour": 7.826802,
           "commit": {
             "1y": {
-              "perHour": 2.741795,
-              "haPerHour": 5.48359
+              "perHour": 2.739126,
+              "haPerHour": 5.478252
             },
             "3y": {
-              "perHour": 2.350155,
-              "haPerHour": 4.70031
+              "perHour": 2.347867,
+              "haPerHour": 4.695734
             }
           }
         },
@@ -963,16 +963,16 @@
           "vcpu": 72,
           "ramGb": 864,
           "burstable": false,
-          "perHour": 5.526852,
-          "haPerHour": 11.053704,
+          "perHour": 5.521472,
+          "haPerHour": 11.042944,
           "commit": {
             "1y": {
-              "perHour": 3.867982,
-              "haPerHour": 7.735964
+              "perHour": 3.864217,
+              "haPerHour": 7.728434
             },
             "3y": {
-              "perHour": 3.315443,
-              "haPerHour": 6.630886
+              "perHour": 3.312216,
+              "haPerHour": 6.624432
             }
           }
         },
@@ -981,16 +981,16 @@
           "vcpu": 96,
           "ramGb": 384,
           "burstable": false,
-          "perHour": 5.078933,
-          "haPerHour": 10.157866,
+          "perHour": 5.073989,
+          "haPerHour": 10.147978,
           "commit": {
             "1y": {
-              "perHour": 3.555498,
-              "haPerHour": 7.110996
+              "perHour": 3.552037,
+              "haPerHour": 7.104074
             },
             "3y": {
-              "perHour": 3.047658,
-              "haPerHour": 6.095316
+              "perHour": 3.044691,
+              "haPerHour": 6.089382
             }
           }
         },
@@ -999,16 +999,16 @@
           "vcpu": 96,
           "ramGb": 1152,
           "burstable": false,
-          "perHour": 7.224866,
-          "haPerHour": 14.449732,
+          "perHour": 7.217833,
+          "haPerHour": 14.435666,
           "commit": {
             "1y": {
-              "perHour": 5.056873,
-              "haPerHour": 10.113746
+              "perHour": 5.051951,
+              "haPerHour": 10.103902
             },
             "3y": {
-              "perHour": 4.334537,
-              "haPerHour": 8.669074
+              "perHour": 4.330317,
+              "haPerHour": 8.660634
             }
           }
         },
@@ -1017,16 +1017,16 @@
           "vcpu": 128,
           "ramGb": 512,
           "burstable": false,
-          "perHour": 6.627389,
-          "haPerHour": 13.254778,
+          "perHour": 6.620937,
+          "haPerHour": 13.241874,
           "commit": {
             "1y": {
-              "perHour": 4.638847,
-              "haPerHour": 9.277694
+              "perHour": 4.634332,
+              "haPerHour": 9.268664
             },
             "3y": {
-              "perHour": 3.976317,
-              "haPerHour": 7.952634
+              "perHour": 3.972447,
+              "haPerHour": 7.944894
             }
           }
         },
@@ -1035,23 +1035,23 @@
           "vcpu": 128,
           "ramGb": 1536,
           "burstable": false,
-          "perHour": 9.487877,
-          "haPerHour": 18.975754,
+          "perHour": 9.478641,
+          "haPerHour": 18.957282,
           "commit": {
             "1y": {
-              "perHour": 6.641544,
-              "haPerHour": 13.283088
+              "perHour": 6.635079,
+              "haPerHour": 13.270158
             },
             "3y": {
-              "perHour": 5.692707,
-              "haPerHour": 11.385414
+              "perHour": 5.687166,
+              "haPerHour": 11.374332
             }
           }
         }
       ],
       "custom": null,
-      "storageGbMonth": 0.090641,
-      "haStorageGbMonth": 0.181282
+      "storageGbMonth": 0.090553,
+      "haStorageGbMonth": 0.181106
     },
     "postgres": {
       "instances": [
@@ -1060,16 +1060,16 @@
           "vcpu": 2,
           "ramGb": 4,
           "burstable": false,
-          "perHour": 0.157112,
-          "haPerHour": 0.314224,
+          "perHour": 0.156959,
+          "haPerHour": 0.313918,
           "commit": {
             "1y": {
-              "perHour": 0.110611,
-              "haPerHour": 0.221222
+              "perHour": 0.110504,
+              "haPerHour": 0.221008
             },
             "3y": {
-              "perHour": 0.102644,
-              "haPerHour": 0.205288
+              "perHour": 0.102544,
+              "haPerHour": 0.205088
             }
           }
         },
@@ -1078,16 +1078,16 @@
           "vcpu": 2,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.172218,
-          "haPerHour": 0.344436,
+          "perHour": 0.172051,
+          "haPerHour": 0.344102,
           "commit": {
             "1y": {
-              "perHour": 0.120648,
-              "haPerHour": 0.241296
+              "perHour": 0.120531,
+              "haPerHour": 0.241062
             },
             "3y": {
-              "perHour": 0.111956,
-              "haPerHour": 0.223912
+              "perHour": 0.111847,
+              "haPerHour": 0.223694
             }
           }
         },
@@ -1096,16 +1096,16 @@
           "vcpu": 2,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.199411,
-          "haPerHour": 0.398822,
+          "perHour": 0.199217,
+          "haPerHour": 0.398434,
           "commit": {
             "1y": {
-              "perHour": 0.13948,
-              "haPerHour": 0.27896
+              "perHour": 0.139344,
+              "haPerHour": 0.278688
             },
             "3y": {
-              "perHour": 0.12965,
-              "haPerHour": 0.2593
+              "perHour": 0.129524,
+              "haPerHour": 0.259048
             }
           }
         },
@@ -1114,16 +1114,16 @@
           "vcpu": 2,
           "ramGb": 24,
           "burstable": false,
-          "perHour": 0.225848,
-          "haPerHour": 0.451696,
+          "perHour": 0.225628,
+          "haPerHour": 0.451256,
           "commit": {
             "1y": {
-              "perHour": 0.158105,
-              "haPerHour": 0.31621
+              "perHour": 0.157951,
+              "haPerHour": 0.315902
             },
             "3y": {
-              "perHour": 0.146723,
-              "haPerHour": 0.293446
+              "perHour": 0.14658,
+              "haPerHour": 0.29316
             }
           }
         },
@@ -1132,16 +1132,16 @@
           "vcpu": 2,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.284009,
-          "haPerHour": 0.568018,
+          "perHour": 0.283733,
+          "haPerHour": 0.567466,
           "commit": {
             "1y": {
-              "perHour": 0.19908,
-              "haPerHour": 0.39816
+              "perHour": 0.198886,
+              "haPerHour": 0.397772
             },
             "3y": {
-              "perHour": 0.184904,
-              "haPerHour": 0.369808
+              "perHour": 0.184724,
+              "haPerHour": 0.369448
             }
           }
         },
@@ -1150,16 +1150,16 @@
           "vcpu": 4,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.336128,
-          "haPerHour": 0.672256,
+          "perHour": 0.335801,
+          "haPerHour": 0.671602,
           "commit": {
             "1y": {
-              "perHour": 0.234881,
-              "haPerHour": 0.469762
+              "perHour": 0.234652,
+              "haPerHour": 0.469304
             },
             "3y": {
-              "perHour": 0.218015,
-              "haPerHour": 0.43603
+              "perHour": 0.217803,
+              "haPerHour": 0.435606
             }
           }
         },
@@ -1168,16 +1168,16 @@
           "vcpu": 4,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.364831,
-          "haPerHour": 0.729662,
+          "perHour": 0.364476,
+          "haPerHour": 0.728952,
           "commit": {
             "1y": {
-              "perHour": 0.255265,
-              "haPerHour": 0.51053
+              "perHour": 0.255016,
+              "haPerHour": 0.510032
             },
             "3y": {
-              "perHour": 0.236847,
-              "haPerHour": 0.473694
+              "perHour": 0.236616,
+              "haPerHour": 0.473232
             }
           }
         },
@@ -1186,16 +1186,16 @@
           "vcpu": 4,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.417705,
-          "haPerHour": 0.83541,
+          "perHour": 0.417299,
+          "haPerHour": 0.834598,
           "commit": {
             "1y": {
-              "perHour": 0.292618,
-              "haPerHour": 0.585236
+              "perHour": 0.292333,
+              "haPerHour": 0.584666
             },
             "3y": {
-              "perHour": 0.27182,
-              "haPerHour": 0.54364
+              "perHour": 0.271556,
+              "haPerHour": 0.543112
             }
           }
         },
@@ -1204,16 +1204,16 @@
           "vcpu": 4,
           "ramGb": 48,
           "burstable": false,
-          "perHour": 0.470579,
-          "haPerHour": 0.941158,
+          "perHour": 0.470121,
+          "haPerHour": 0.940242,
           "commit": {
             "1y": {
-              "perHour": 0.329661,
-              "haPerHour": 0.659322
+              "perHour": 0.32934,
+              "haPerHour": 0.65868
             },
             "3y": {
-              "perHour": 0.30607,
-              "haPerHour": 0.61214
+              "perHour": 0.305772,
+              "haPerHour": 0.611544
             }
           }
         },
@@ -1222,16 +1222,16 @@
           "vcpu": 4,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 0.562731,
-          "haPerHour": 1.125462,
+          "perHour": 0.562184,
+          "haPerHour": 1.124368,
           "commit": {
             "1y": {
-              "perHour": 0.393917,
-              "haPerHour": 0.787834
+              "perHour": 0.393534,
+              "haPerHour": 0.787068
             },
             "3y": {
-              "perHour": 0.365773,
-              "haPerHour": 0.731546
+              "perHour": 0.365417,
+              "haPerHour": 0.730834
             }
           }
         },
@@ -1240,16 +1240,16 @@
           "vcpu": 6,
           "ramGb": 12,
           "burstable": false,
-          "perHour": 0.513634,
-          "haPerHour": 1.027268,
+          "perHour": 0.513134,
+          "haPerHour": 1.026268,
           "commit": {
             "1y": {
-              "perHour": 0.359978,
-              "haPerHour": 0.719956
+              "perHour": 0.359628,
+              "haPerHour": 0.719256
             },
             "3y": {
-              "perHour": 0.33411,
-              "haPerHour": 0.66822
+              "perHour": 0.333785,
+              "haPerHour": 0.66757
             }
           }
         },
@@ -1258,16 +1258,16 @@
           "vcpu": 6,
           "ramGb": 24,
           "burstable": false,
-          "perHour": 0.555178,
-          "haPerHour": 1.110356,
+          "perHour": 0.554637,
+          "haPerHour": 1.109274,
           "commit": {
             "1y": {
-              "perHour": 0.388433,
-              "haPerHour": 0.776866
+              "perHour": 0.388055,
+              "haPerHour": 0.77611
             },
             "3y": {
-              "perHour": 0.360703,
-              "haPerHour": 0.721406
+              "perHour": 0.360352,
+              "haPerHour": 0.720704
             }
           }
         },
@@ -1276,16 +1276,16 @@
           "vcpu": 6,
           "ramGb": 48,
           "burstable": false,
-          "perHour": 0.633734,
-          "haPerHour": 1.267468,
+          "perHour": 0.633117,
+          "haPerHour": 1.266234,
           "commit": {
             "1y": {
-              "perHour": 0.443273,
-              "haPerHour": 0.886546
+              "perHour": 0.442842,
+              "haPerHour": 0.885684
             },
             "3y": {
-              "perHour": 0.411611,
-              "haPerHour": 0.823222
+              "perHour": 0.41121,
+              "haPerHour": 0.82242
             }
           }
         },
@@ -1294,16 +1294,16 @@
           "vcpu": 6,
           "ramGb": 72,
           "burstable": false,
-          "perHour": 0.713045,
-          "haPerHour": 1.42609,
+          "perHour": 0.712351,
+          "haPerHour": 1.424702,
           "commit": {
             "1y": {
-              "perHour": 0.499458,
-              "haPerHour": 0.998916
+              "perHour": 0.498972,
+              "haPerHour": 0.997944
             },
             "3y": {
-              "perHour": 0.463968,
-              "haPerHour": 0.927936
+              "perHour": 0.463516,
+              "haPerHour": 0.927032
             }
           }
         },
@@ -1312,16 +1312,16 @@
           "vcpu": 6,
           "ramGb": 96,
           "burstable": false,
-          "perHour": 0.898104,
-          "haPerHour": 1.796208,
+          "perHour": 0.89723,
+          "haPerHour": 1.79446,
           "commit": {
             "1y": {
-              "perHour": 0.628488,
-              "haPerHour": 1.256976
+              "perHour": 0.627876,
+              "haPerHour": 1.255752
             },
             "3y": {
-              "perHour": 0.583581,
-              "haPerHour": 1.167162
+              "perHour": 0.583013,
+              "haPerHour": 1.166026
             }
           }
         },
@@ -1330,16 +1330,16 @@
           "vcpu": 8,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.689629,
-          "haPerHour": 1.379258,
+          "perHour": 0.688958,
+          "haPerHour": 1.377916,
           "commit": {
             "1y": {
-              "perHour": 0.482799,
-              "haPerHour": 0.965598
+              "perHour": 0.482329,
+              "haPerHour": 0.964658
             },
             "3y": {
-              "perHour": 0.448447,
-              "haPerHour": 0.896894
+              "perHour": 0.44801,
+              "haPerHour": 0.89602
             }
           }
         },
@@ -1348,16 +1348,16 @@
           "vcpu": 8,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.747791,
-          "haPerHour": 1.495582,
+          "perHour": 0.747063,
+          "haPerHour": 1.494126,
           "commit": {
             "1y": {
-              "perHour": 0.523878,
-              "haPerHour": 1.047756
+              "perHour": 0.523368,
+              "haPerHour": 1.046736
             },
             "3y": {
-              "perHour": 0.486524,
-              "haPerHour": 0.973048
+              "perHour": 0.486051,
+              "haPerHour": 0.972102
             }
           }
         },
@@ -1366,16 +1366,16 @@
           "vcpu": 8,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 0.857316,
-          "haPerHour": 1.714632,
+          "perHour": 0.856481,
+          "haPerHour": 1.712962,
           "commit": {
             "1y": {
-              "perHour": 0.599826,
-              "haPerHour": 1.199652
+              "perHour": 0.599242,
+              "haPerHour": 1.198484
             },
             "3y": {
-              "perHour": 0.556782,
-              "haPerHour": 1.113564
+              "perHour": 0.55624,
+              "haPerHour": 1.11248
             }
           }
         },
@@ -1384,16 +1384,16 @@
           "vcpu": 8,
           "ramGb": 96,
           "burstable": false,
-          "perHour": 0.963064,
-          "haPerHour": 1.926128,
+          "perHour": 0.962126,
+          "haPerHour": 1.924252,
           "commit": {
             "1y": {
-              "perHour": 0.673498,
-              "haPerHour": 1.346996
+              "perHour": 0.672842,
+              "haPerHour": 1.345684
             },
             "3y": {
-              "perHour": 0.62559,
-              "haPerHour": 1.25118
+              "perHour": 0.624981,
+              "haPerHour": 1.249962
             }
           }
         },
@@ -1402,16 +1402,16 @@
           "vcpu": 8,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 1.147368,
-          "haPerHour": 2.294736,
+          "perHour": 1.146251,
+          "haPerHour": 2.292502,
           "commit": {
             "1y": {
-              "perHour": 0.803458,
-              "haPerHour": 1.606916
+              "perHour": 0.802676,
+              "haPerHour": 1.605352
             },
             "3y": {
-              "perHour": 0.745928,
-              "haPerHour": 1.491856
+              "perHour": 0.745202,
+              "haPerHour": 1.490404
             }
           }
         },
@@ -1420,16 +1420,16 @@
           "vcpu": 10,
           "ramGb": 20,
           "burstable": false,
-          "perHour": 0.819548,
-          "haPerHour": 1.639096,
+          "perHour": 0.818751,
+          "haPerHour": 1.637502,
           "commit": {
             "1y": {
-              "perHour": 0.573544,
-              "haPerHour": 1.147088
+              "perHour": 0.572986,
+              "haPerHour": 1.145972
             },
             "3y": {
-              "perHour": 0.532466,
-              "haPerHour": 1.064932
+              "perHour": 0.531947,
+              "haPerHour": 1.063894
             }
           }
         },
@@ -1438,16 +1438,16 @@
           "vcpu": 10,
           "ramGb": 40,
           "burstable": false,
-          "perHour": 0.888285,
-          "haPerHour": 1.77657,
+          "perHour": 0.88742,
+          "haPerHour": 1.77484,
           "commit": {
             "1y": {
-              "perHour": 0.621969,
-              "haPerHour": 1.243938
+              "perHour": 0.621363,
+              "haPerHour": 1.242726
             },
             "3y": {
-              "perHour": 0.577683,
-              "haPerHour": 1.155366
+              "perHour": 0.577121,
+              "haPerHour": 1.154242
             }
           }
         },
@@ -1456,16 +1456,16 @@
           "vcpu": 10,
           "ramGb": 80,
           "burstable": false,
-          "perHour": 1.018959,
-          "haPerHour": 2.037918,
+          "perHour": 1.017967,
+          "haPerHour": 2.035934,
           "commit": {
             "1y": {
-              "perHour": 0.713128,
-              "haPerHour": 1.426256
+              "perHour": 0.712433,
+              "haPerHour": 1.424866
             },
             "3y": {
-              "perHour": 0.662013,
-              "haPerHour": 1.324026
+              "perHour": 0.661368,
+              "haPerHour": 1.322736
             }
           }
         },
@@ -1474,16 +1474,16 @@
           "vcpu": 10,
           "ramGb": 120,
           "burstable": false,
-          "perHour": 1.1519,
-          "haPerHour": 2.3038,
+          "perHour": 1.150778,
+          "haPerHour": 2.301556,
           "commit": {
             "1y": {
-              "perHour": 0.806666,
-              "haPerHour": 1.613332
+              "perHour": 0.805881,
+              "haPerHour": 1.611762
             },
             "3y": {
-              "perHour": 0.749032,
-              "haPerHour": 1.498064
+              "perHour": 0.748303,
+              "haPerHour": 1.496606
             }
           }
         },
@@ -1492,16 +1492,16 @@
           "vcpu": 10,
           "ramGb": 160,
           "burstable": false,
-          "perHour": 1.384546,
-          "haPerHour": 2.769092,
+          "perHour": 1.383198,
+          "haPerHour": 2.766396,
           "commit": {
             "1y": {
-              "perHour": 0.970255,
-              "haPerHour": 1.94051
+              "perHour": 0.96931,
+              "haPerHour": 1.93862
             },
             "3y": {
-              "perHour": 0.900929,
-              "haPerHour": 1.801858
+              "perHour": 0.900052,
+              "haPerHour": 1.800104
             }
           }
         },
@@ -1510,16 +1510,16 @@
           "vcpu": 12,
           "ramGb": 24,
           "burstable": false,
-          "perHour": 0.946446,
-          "haPerHour": 1.892892,
+          "perHour": 0.945525,
+          "haPerHour": 1.89105,
           "commit": {
             "1y": {
-              "perHour": 0.663047,
-              "haPerHour": 1.326094
+              "perHour": 0.662402,
+              "haPerHour": 1.324804
             },
             "3y": {
-              "perHour": 0.61545,
-              "haPerHour": 1.2309
+              "perHour": 0.614851,
+              "haPerHour": 1.229702
             }
           }
         },
@@ -1528,16 +1528,16 @@
           "vcpu": 12,
           "ramGb": 48,
           "burstable": false,
-          "perHour": 1.030289,
-          "haPerHour": 2.060578,
+          "perHour": 1.029286,
+          "haPerHour": 2.058572,
           "commit": {
             "1y": {
-              "perHour": 0.721509,
-              "haPerHour": 1.443018
+              "perHour": 0.720806,
+              "haPerHour": 1.441612
             },
             "3y": {
-              "perHour": 0.669773,
-              "haPerHour": 1.339546
+              "perHour": 0.669121,
+              "haPerHour": 1.338242
             }
           }
         },
@@ -1546,16 +1546,16 @@
           "vcpu": 12,
           "ramGb": 96,
           "burstable": false,
-          "perHour": 1.189667,
-          "haPerHour": 2.379334,
+          "perHour": 1.188509,
+          "haPerHour": 2.377018,
           "commit": {
             "1y": {
-              "perHour": 0.832948,
-              "haPerHour": 1.665896
+              "perHour": 0.832137,
+              "haPerHour": 1.664274
             },
             "3y": {
-              "perHour": 0.773659,
-              "haPerHour": 1.547318
+              "perHour": 0.772905,
+              "haPerHour": 1.54581
             }
           }
         },
@@ -1564,16 +1564,16 @@
           "vcpu": 12,
           "ramGb": 144,
           "burstable": false,
-          "perHour": 1.348289,
-          "haPerHour": 2.696578,
+          "perHour": 1.346977,
+          "haPerHour": 2.693954,
           "commit": {
             "1y": {
-              "perHour": 0.944077,
-              "haPerHour": 1.888154
+              "perHour": 0.943158,
+              "haPerHour": 1.886316
             },
             "3y": {
-              "perHour": 0.876406,
-              "haPerHour": 1.752812
+              "perHour": 0.875553,
+              "haPerHour": 1.751106
             }
           }
         },
@@ -1582,16 +1582,16 @@
           "vcpu": 12,
           "ramGb": 192,
           "burstable": false,
-          "perHour": 1.562807,
-          "haPerHour": 3.125614,
+          "perHour": 1.561286,
+          "haPerHour": 3.122572,
           "commit": {
             "1y": {
-              "perHour": 1.092973,
-              "haPerHour": 2.185946
+              "perHour": 1.091909,
+              "haPerHour": 2.183818
             },
             "3y": {
-              "perHour": 1.015058,
-              "haPerHour": 2.030116
+              "perHour": 1.01407,
+              "haPerHour": 2.02814
             }
           }
         },
@@ -1600,16 +1600,16 @@
           "vcpu": 14,
           "ramGb": 28,
           "burstable": false,
-          "perHour": 1.07561,
-          "haPerHour": 2.15122,
+          "perHour": 1.074563,
+          "haPerHour": 2.149126,
           "commit": {
             "1y": {
-              "perHour": 0.75255,
-              "haPerHour": 1.5051
+              "perHour": 0.751818,
+              "haPerHour": 1.503636
             },
             "3y": {
-              "perHour": 0.698848,
-              "haPerHour": 1.397696
+              "perHour": 0.698168,
+              "haPerHour": 1.396336
             }
           }
         },
@@ -1618,16 +1618,16 @@
           "vcpu": 14,
           "ramGb": 56,
           "burstable": false,
-          "perHour": 1.170783,
-          "haPerHour": 2.341566,
+          "perHour": 1.169644,
+          "haPerHour": 2.339288,
           "commit": {
             "1y": {
-              "perHour": 0.820117,
-              "haPerHour": 1.640234
+              "perHour": 0.819319,
+              "haPerHour": 1.638638
             },
             "3y": {
-              "perHour": 0.761449,
-              "haPerHour": 1.522898
+              "perHour": 0.760708,
+              "haPerHour": 1.521416
             }
           }
         },
@@ -1636,16 +1636,16 @@
           "vcpu": 14,
           "ramGb": 112,
           "burstable": false,
-          "perHour": 1.358109,
-          "haPerHour": 2.716218,
+          "perHour": 1.356787,
+          "haPerHour": 2.713574,
           "commit": {
             "1y": {
-              "perHour": 0.950802,
-              "haPerHour": 1.901604
+              "perHour": 0.949877,
+              "haPerHour": 1.899754
             },
             "3y": {
-              "perHour": 0.882718,
-              "haPerHour": 1.765436
+              "perHour": 0.881859,
+              "haPerHour": 1.763718
             }
           }
         },
@@ -1654,16 +1654,16 @@
           "vcpu": 14,
           "ramGb": 168,
           "burstable": false,
-          "perHour": 1.543923,
-          "haPerHour": 3.087846,
+          "perHour": 1.54242,
+          "haPerHour": 3.08484,
           "commit": {
             "1y": {
-              "perHour": 1.080659,
-              "haPerHour": 2.161318
+              "perHour": 1.079607,
+              "haPerHour": 2.159214
             },
             "3y": {
-              "perHour": 1.003573,
-              "haPerHour": 2.007146
+              "perHour": 1.002596,
+              "haPerHour": 2.005192
             }
           }
         },
@@ -1672,16 +1672,16 @@
           "vcpu": 14,
           "ramGb": 224,
           "burstable": false,
-          "perHour": 1.694992,
-          "haPerHour": 3.389984,
+          "perHour": 1.693342,
+          "haPerHour": 3.386684,
           "commit": {
             "1y": {
-              "perHour": 1.186097,
-              "haPerHour": 2.372194
+              "perHour": 1.184943,
+              "haPerHour": 2.369886
             },
             "3y": {
-              "perHour": 1.10125,
-              "haPerHour": 2.2025
+              "perHour": 1.100178,
+              "haPerHour": 2.200356
             }
           }
         },
@@ -1690,16 +1690,16 @@
           "vcpu": 16,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 1.201752,
-          "haPerHour": 2.403504,
+          "perHour": 1.200583,
+          "haPerHour": 2.401166,
           "commit": {
             "1y": {
-              "perHour": 0.841122,
-              "haPerHour": 1.682244
+              "perHour": 0.840303,
+              "haPerHour": 1.680606
             },
             "3y": {
-              "perHour": 0.781109,
-              "haPerHour": 1.562218
+              "perHour": 0.780348,
+              "haPerHour": 1.560696
             }
           }
         },
@@ -1708,16 +1708,16 @@
           "vcpu": 16,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.314299,
-          "haPerHour": 2.628598,
+          "perHour": 1.313019,
+          "haPerHour": 2.626038,
           "commit": {
             "1y": {
-              "perHour": 0.919554,
-              "haPerHour": 1.839108
+              "perHour": 0.918659,
+              "haPerHour": 1.837318
             },
             "3y": {
-              "perHour": 0.854056,
-              "haPerHour": 1.708112
+              "perHour": 0.853225,
+              "haPerHour": 1.70645
             }
           }
         },
@@ -1726,16 +1726,16 @@
           "vcpu": 16,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 1.528061,
-          "haPerHour": 3.056122,
+          "perHour": 1.526574,
+          "haPerHour": 3.053148,
           "commit": {
             "1y": {
-              "perHour": 1.069484,
-              "haPerHour": 2.138968
+              "perHour": 1.068443,
+              "haPerHour": 2.136886
             },
             "3y": {
-              "perHour": 0.992915,
-              "haPerHour": 1.98583
+              "perHour": 0.991949,
+              "haPerHour": 1.983898
             }
           }
         },
@@ -1744,16 +1744,16 @@
           "vcpu": 16,
           "ramGb": 192,
           "burstable": false,
-          "perHour": 1.741823,
-          "haPerHour": 3.483646,
+          "perHour": 1.740128,
+          "haPerHour": 3.480256,
           "commit": {
             "1y": {
-              "perHour": 1.219312,
-              "haPerHour": 2.438624
+              "perHour": 1.218125,
+              "haPerHour": 2.43625
             },
             "3y": {
-              "perHour": 1.132085,
-              "haPerHour": 2.26417
+              "perHour": 1.130983,
+              "haPerHour": 2.261966
             }
           }
         },
@@ -1762,16 +1762,16 @@
           "vcpu": 16,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 2.001662,
-          "haPerHour": 4.003324,
+          "perHour": 1.999713,
+          "haPerHour": 3.999426,
           "commit": {
             "1y": {
-              "perHour": 1.400491,
-              "haPerHour": 2.800982
+              "perHour": 1.399127,
+              "haPerHour": 2.798254
             },
             "3y": {
-              "perHour": 1.300744,
-              "haPerHour": 2.601488
+              "perHour": 1.299478,
+              "haPerHour": 2.598956
             }
           }
         },
@@ -1780,16 +1780,16 @@
           "vcpu": 24,
           "ramGb": 48,
           "burstable": false,
-          "perHour": 1.337714,
-          "haPerHour": 2.675428,
+          "perHour": 1.336412,
+          "haPerHour": 2.672824,
           "commit": {
             "1y": {
-              "perHour": 0.935385,
-              "haPerHour": 1.87077
+              "perHour": 0.934474,
+              "haPerHour": 1.868948
             },
             "3y": {
-              "perHour": 0.801699,
-              "haPerHour": 1.603398
+              "perHour": 0.800919,
+              "haPerHour": 1.601838
             }
           }
         },
@@ -1798,16 +1798,16 @@
           "vcpu": 24,
           "ramGb": 96,
           "burstable": false,
-          "perHour": 1.485762,
-          "haPerHour": 2.971524,
+          "perHour": 1.484315,
+          "haPerHour": 2.96863,
           "commit": {
             "1y": {
-              "perHour": 1.039581,
-              "haPerHour": 2.079162
+              "perHour": 1.038569,
+              "haPerHour": 2.077138
             },
             "3y": {
-              "perHour": 0.891099,
-              "haPerHour": 1.782198
+              "perHour": 0.890232,
+              "haPerHour": 1.780464
             }
           }
         },
@@ -1816,16 +1816,16 @@
           "vcpu": 24,
           "ramGb": 192,
           "burstable": false,
-          "perHour": 1.754664,
-          "haPerHour": 3.509328,
+          "perHour": 1.752956,
+          "haPerHour": 3.505912,
           "commit": {
             "1y": {
-              "perHour": 1.226968,
-              "haPerHour": 2.453936
+              "perHour": 1.225774,
+              "haPerHour": 2.451548
             },
             "3y": {
-              "perHour": 1.05148,
-              "haPerHour": 2.10296
+              "perHour": 1.050457,
+              "haPerHour": 2.100914
             }
           }
         },
@@ -1834,16 +1834,16 @@
           "vcpu": 24,
           "ramGb": 288,
           "burstable": false,
-          "perHour": 2.022811,
-          "haPerHour": 4.045622,
+          "perHour": 2.020842,
+          "haPerHour": 4.041684,
           "commit": {
             "1y": {
-              "perHour": 1.415804,
-              "haPerHour": 2.831608
+              "perHour": 1.414426,
+              "haPerHour": 2.828852
             },
             "3y": {
-              "perHour": 1.213517,
-              "haPerHour": 2.427034
+              "perHour": 1.212336,
+              "haPerHour": 2.424672
             }
           }
         },
@@ -1852,16 +1852,16 @@
           "vcpu": 32,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.783367,
-          "haPerHour": 3.566734,
+          "perHour": 1.781631,
+          "haPerHour": 3.563262,
           "commit": {
             "1y": {
-              "perHour": 1.247766,
-              "haPerHour": 2.495532
+              "perHour": 1.246552,
+              "haPerHour": 2.493104
             },
             "3y": {
-              "perHour": 1.069691,
-              "haPerHour": 2.139382
+              "perHour": 1.06865,
+              "haPerHour": 2.1373
             }
           }
         },
@@ -1870,16 +1870,16 @@
           "vcpu": 32,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 1.980512,
-          "haPerHour": 3.961024,
+          "perHour": 1.978584,
+          "haPerHour": 3.957168,
           "commit": {
             "1y": {
-              "perHour": 1.387453,
-              "haPerHour": 2.774906
+              "perHour": 1.386103,
+              "haPerHour": 2.772206
             },
             "3y": {
-              "perHour": 1.189201,
-              "haPerHour": 2.378402
+              "perHour": 1.188044,
+              "haPerHour": 2.376088
             }
           }
         },
@@ -1888,16 +1888,16 @@
           "vcpu": 32,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 2.339301,
-          "haPerHour": 4.678602,
+          "perHour": 2.337023,
+          "haPerHour": 4.674046,
           "commit": {
             "1y": {
-              "perHour": 1.636613,
-              "haPerHour": 3.273226
+              "perHour": 1.63502,
+              "haPerHour": 3.27004
             },
             "3y": {
-              "perHour": 1.402974,
-              "haPerHour": 2.805948
+              "perHour": 1.401608,
+              "haPerHour": 2.803216
             }
           }
         },
@@ -1906,16 +1906,16 @@
           "vcpu": 32,
           "ramGb": 384,
           "burstable": false,
-          "perHour": 2.697334,
-          "haPerHour": 5.394668,
+          "perHour": 2.694708,
+          "haPerHour": 5.389416,
           "commit": {
             "1y": {
-              "perHour": 1.887636,
-              "haPerHour": 3.775272
+              "perHour": 1.885798,
+              "haPerHour": 3.771596
             },
             "3y": {
-              "perHour": 1.617885,
-              "haPerHour": 3.23577
+              "perHour": 1.61631,
+              "haPerHour": 3.23262
             }
           }
         },
@@ -1924,16 +1924,16 @@
           "vcpu": 48,
           "ramGb": 192,
           "burstable": false,
-          "perHour": 2.757006,
-          "haPerHour": 5.514012,
+          "perHour": 2.754322,
+          "haPerHour": 5.508644,
           "commit": {
             "1y": {
-              "perHour": 1.929749,
-              "haPerHour": 3.859498
+              "perHour": 1.92787,
+              "haPerHour": 3.85574
             },
             "3y": {
-              "perHour": 1.6541,
-              "haPerHour": 3.3082
+              "perHour": 1.65249,
+              "haPerHour": 3.30498
             }
           }
         },
@@ -1942,16 +1942,16 @@
           "vcpu": 48,
           "ramGb": 576,
           "burstable": false,
-          "perHour": 3.828839,
-          "haPerHour": 7.657678,
+          "perHour": 3.825112,
+          "haPerHour": 7.650224,
           "commit": {
             "1y": {
-              "perHour": 2.680023,
-              "haPerHour": 5.360046
+              "perHour": 2.677414,
+              "haPerHour": 5.354828
             },
             "3y": {
-              "perHour": 2.297074,
-              "haPerHour": 4.594148
+              "perHour": 2.294838,
+              "haPerHour": 4.589676
             }
           }
         },
@@ -1960,16 +1960,16 @@
           "vcpu": 64,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 3.528967,
-          "haPerHour": 7.057934,
+          "perHour": 3.525532,
+          "haPerHour": 7.051064,
           "commit": {
             "1y": {
-              "perHour": 2.470596,
-              "haPerHour": 4.941192
+              "perHour": 2.468191,
+              "haPerHour": 4.936382
             },
             "3y": {
-              "perHour": 2.117654,
-              "haPerHour": 4.235308
+              "perHour": 2.115592,
+              "haPerHour": 4.231184
             }
           }
         },
@@ -1978,16 +1978,16 @@
           "vcpu": 64,
           "ramGb": 768,
           "burstable": false,
-          "perHour": 4.9611,
-          "haPerHour": 9.9222,
+          "perHour": 4.95627,
+          "haPerHour": 9.91254,
           "commit": {
             "1y": {
-              "perHour": 3.472306,
-              "haPerHour": 6.944612
+              "perHour": 3.468926,
+              "haPerHour": 6.937852
             },
             "3y": {
-              "perHour": 2.976263,
-              "haPerHour": 5.952526
+              "perHour": 2.973365,
+              "haPerHour": 5.94673
             }
           }
         },
@@ -1996,16 +1996,16 @@
           "vcpu": 72,
           "ramGb": 288,
           "burstable": false,
-          "perHour": 3.917214,
-          "haPerHour": 7.834428,
+          "perHour": 3.913401,
+          "haPerHour": 7.826802,
           "commit": {
             "1y": {
-              "perHour": 2.741795,
-              "haPerHour": 5.48359
+              "perHour": 2.739126,
+              "haPerHour": 5.478252
             },
             "3y": {
-              "perHour": 2.350155,
-              "haPerHour": 4.70031
+              "perHour": 2.347867,
+              "haPerHour": 4.695734
             }
           }
         },
@@ -2014,16 +2014,16 @@
           "vcpu": 72,
           "ramGb": 864,
           "burstable": false,
-          "perHour": 5.526852,
-          "haPerHour": 11.053704,
+          "perHour": 5.521472,
+          "haPerHour": 11.042944,
           "commit": {
             "1y": {
-              "perHour": 3.867982,
-              "haPerHour": 7.735964
+              "perHour": 3.864217,
+              "haPerHour": 7.728434
             },
             "3y": {
-              "perHour": 3.315443,
-              "haPerHour": 6.630886
+              "perHour": 3.312216,
+              "haPerHour": 6.624432
             }
           }
         },
@@ -2032,16 +2032,16 @@
           "vcpu": 96,
           "ramGb": 384,
           "burstable": false,
-          "perHour": 5.078933,
-          "haPerHour": 10.157866,
+          "perHour": 5.073989,
+          "haPerHour": 10.147978,
           "commit": {
             "1y": {
-              "perHour": 3.555498,
-              "haPerHour": 7.110996
+              "perHour": 3.552037,
+              "haPerHour": 7.104074
             },
             "3y": {
-              "perHour": 3.047658,
-              "haPerHour": 6.095316
+              "perHour": 3.044691,
+              "haPerHour": 6.089382
             }
           }
         },
@@ -2050,16 +2050,16 @@
           "vcpu": 96,
           "ramGb": 1152,
           "burstable": false,
-          "perHour": 7.224866,
-          "haPerHour": 14.449732,
+          "perHour": 7.217833,
+          "haPerHour": 14.435666,
           "commit": {
             "1y": {
-              "perHour": 5.056873,
-              "haPerHour": 10.113746
+              "perHour": 5.051951,
+              "haPerHour": 10.103902
             },
             "3y": {
-              "perHour": 4.334537,
-              "haPerHour": 8.669074
+              "perHour": 4.330317,
+              "haPerHour": 8.660634
             }
           }
         },
@@ -2068,16 +2068,16 @@
           "vcpu": 128,
           "ramGb": 512,
           "burstable": false,
-          "perHour": 6.627389,
-          "haPerHour": 13.254778,
+          "perHour": 6.620937,
+          "haPerHour": 13.241874,
           "commit": {
             "1y": {
-              "perHour": 4.638847,
-              "haPerHour": 9.277694
+              "perHour": 4.634332,
+              "haPerHour": 9.268664
             },
             "3y": {
-              "perHour": 3.976317,
-              "haPerHour": 7.952634
+              "perHour": 3.972447,
+              "haPerHour": 7.944894
             }
           }
         },
@@ -2086,23 +2086,23 @@
           "vcpu": 128,
           "ramGb": 1536,
           "burstable": false,
-          "perHour": 9.487877,
-          "haPerHour": 18.975754,
+          "perHour": 9.478641,
+          "haPerHour": 18.957282,
           "commit": {
             "1y": {
-              "perHour": 6.641544,
-              "haPerHour": 13.283088
+              "perHour": 6.635079,
+              "haPerHour": 13.270158
             },
             "3y": {
-              "perHour": 5.692707,
-              "haPerHour": 11.385414
+              "perHour": 5.687166,
+              "haPerHour": 11.374332
             }
           }
         }
       ],
       "custom": null,
-      "storageGbMonth": 0.090641,
-      "haStorageGbMonth": 0.181282
+      "storageGbMonth": 0.090553,
+      "haStorageGbMonth": 0.181106
     }
   }
 }

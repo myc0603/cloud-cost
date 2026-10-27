@@ -7,64 +7,64 @@
       "sku": "Redis 1.5GB",
       "memoryGb": 1.5,
       "burstable": false,
-      "perHour": 0.061183,
-      "haPerHour": 0.122366
+      "perHour": 0.061123,
+      "haPerHour": 0.122246
     },
     {
       "sku": "Redis 3GB",
       "memoryGb": 3,
       "burstable": false,
-      "perHour": 0.083088,
-      "haPerHour": 0.166176
+      "perHour": 0.083007,
+      "haPerHour": 0.166014
     },
     {
       "sku": "Redis 6.4GB",
       "memoryGb": 6.4,
       "burstable": false,
-      "perHour": 0.157112,
-      "haPerHour": 0.314224
+      "perHour": 0.156959,
+      "haPerHour": 0.313918
     },
     {
       "sku": "Redis 12.8GB",
       "memoryGb": 12.8,
       "burstable": false,
-      "perHour": 0.296095,
-      "haPerHour": 0.59219
+      "perHour": 0.295807,
+      "haPerHour": 0.591614
     },
     {
       "sku": "Redis 25.6GB",
       "memoryGb": 25.6,
       "burstable": false,
-      "perHour": 0.39429,
-      "haPerHour": 0.78858
+      "perHour": 0.393906,
+      "haPerHour": 0.787812
     },
     {
       "sku": "Redis 51.2GB",
       "memoryGb": 51.2,
       "burstable": false,
-      "perHour": 0.773472,
-      "haPerHour": 1.546944
+      "perHour": 0.772719,
+      "haPerHour": 1.545438
     },
     {
       "sku": "Redis 102.4GB",
       "memoryGb": 102.4,
       "burstable": false,
-      "perHour": 1.546945,
-      "haPerHour": 3.09389
+      "perHour": 1.545439,
+      "haPerHour": 3.090878
     },
     {
       "sku": "Redis 153.6GB",
       "memoryGb": 153.6,
       "burstable": false,
-      "perHour": 2.320417,
-      "haPerHour": 4.640834
+      "perHour": 2.318158,
+      "haPerHour": 4.636316
     },
     {
       "sku": "Redis 204.8GB",
       "memoryGb": 204.8,
       "burstable": false,
-      "perHour": 3.093889,
-      "haPerHour": 6.187778
+      "perHour": 3.090878,
+      "haPerHour": 6.181756
     }
   ],
   "gbTiers": null

@@ -203,21 +203,6 @@
   {
     "provider": "azure",
     "region": "frankfurt",
-    "sku": "Standard_B32ls_v2",
-    "vcpu": 32,
-    "ramGb": 64,
-    "burstable": true,
-    "arch": "x86",
-    "generation": "bsv2",
-    "pricePerHour": 1.36,
-    "commit": {
-      "1y": 0.802511,
-      "3y": 0.516857
-    }
-  },
-  {
-    "provider": "azure",
-    "region": "frankfurt",
     "sku": "Standard_B32s_v2",
     "vcpu": 32,
     "ramGb": 128,

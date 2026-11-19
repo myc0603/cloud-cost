@@ -123,6 +123,23 @@
       }
     },
     {
+      "sku": "cache.i8ge.48xlarge",
+      "memoryGb": 1138,
+      "burstable": false,
+      "perHour": 38.5167,
+      "haPerHour": 77.0334,
+      "commit": {
+        "1y": {
+          "perHour": 26.1914,
+          "haPerHour": 52.3828
+        },
+        "3y": {
+          "perHour": 20.0287,
+          "haPerHour": 40.0574
+        }
+      }
+    },
+    {
       "sku": "cache.m4.10xlarge",
       "memoryGb": 154.64,
       "burstable": false,

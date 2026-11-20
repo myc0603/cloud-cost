@@ -9158,7 +9158,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.0624
+    "pricePerHour": 0.0624,
+    "commit": {
+      "3y": 0.02853,
+      "1y": 0.04021
+    }
   },
   {
     "provider": "aws",
@@ -9169,7 +9173,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.0156
+    "pricePerHour": 0.0156,
+    "commit": {
+      "3y": 0.00713,
+      "1y": 0.01005
+    }
   },
   {
     "provider": "aws",
@@ -9180,7 +9188,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.0078
+    "pricePerHour": 0.0078,
+    "commit": {
+      "3y": 0.00357,
+      "1y": 0.00503
+    }
   },
   {
     "provider": "aws",
@@ -9191,7 +9203,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.0312
+    "pricePerHour": 0.0312,
+    "commit": {
+      "3y": 0.01426,
+      "1y": 0.0201
+    }
   },
   {
     "provider": "aws",

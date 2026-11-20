@@ -15626,7 +15626,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.04992
+    "pricePerHour": 0.04992,
+    "commit": {
+      "3y": 0.02282,
+      "1y": 0.03333
+    }
   },
   {
     "provider": "aws",
@@ -15637,7 +15641,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.01248
+    "pricePerHour": 0.01248,
+    "commit": {
+      "3y": 0.00571,
+      "1y": 0.00833
+    }
   },
   {
     "provider": "aws",
@@ -15648,7 +15656,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.00624
+    "pricePerHour": 0.00624,
+    "commit": {
+      "3y": 0.00285,
+      "1y": 0.00417
+    }
   },
   {
     "provider": "aws",
@@ -15659,7 +15671,71 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.02496
+    "pricePerHour": 0.02496,
+    "commit": {
+      "3y": 0.01141,
+      "1y": 0.01667
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "us-east",
+    "sku": "t9g.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.04166,
+    "commit": {
+      "1y": 0.02825,
+      "3y": 0.01945
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "us-east",
+    "sku": "t9g.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.01042,
+    "commit": {
+      "1y": 0.00706,
+      "3y": 0.00486
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "us-east",
+    "sku": "t9g.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.00521,
+    "commit": {
+      "1y": 0.00353,
+      "3y": 0.00243
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "us-east",
+    "sku": "t9g.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.02083,
+    "commit": {
+      "1y": 0.01413,
+      "3y": 0.00973
+    }
   },
   {
     "provider": "aws",

@@ -14018,7 +14018,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.06528
+    "pricePerHour": 0.06528,
+    "commit": {
+      "3y": 0.02984,
+      "1y": 0.04387
+    }
   },
   {
     "provider": "aws",
@@ -14029,7 +14033,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.01632
+    "pricePerHour": 0.01632,
+    "commit": {
+      "3y": 0.00746,
+      "1y": 0.01097
+    }
   },
   {
     "provider": "aws",
@@ -14040,7 +14048,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.00816
+    "pricePerHour": 0.00816,
+    "commit": {
+      "3y": 0.00373,
+      "1y": 0.00548
+    }
   },
   {
     "provider": "aws",
@@ -14051,7 +14063,71 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.03264
+    "pricePerHour": 0.03264,
+    "commit": {
+      "3y": 0.01492,
+      "1y": 0.02193
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "tokyo",
+    "sku": "t9g.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.05357,
+    "commit": {
+      "3y": 0.02501,
+      "1y": 0.03647
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "tokyo",
+    "sku": "t9g.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.01339,
+    "commit": {
+      "3y": 0.00625,
+      "1y": 0.00912
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "tokyo",
+    "sku": "t9g.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.0067,
+    "commit": {
+      "3y": 0.00313,
+      "1y": 0.00456
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "tokyo",
+    "sku": "t9g.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.02678,
+    "commit": {
+      "3y": 0.0125,
+      "1y": 0.01823
+    }
   },
   {
     "provider": "aws",

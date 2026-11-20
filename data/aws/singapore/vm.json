@@ -11123,7 +11123,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.06336
+    "pricePerHour": 0.06336,
+    "commit": {
+      "1y": 0.04247,
+      "3y": 0.02842
+    }
   },
   {
     "provider": "aws",
@@ -11134,7 +11138,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.01584
+    "pricePerHour": 0.01584,
+    "commit": {
+      "1y": 0.01062,
+      "3y": 0.0071
+    }
   },
   {
     "provider": "aws",
@@ -11145,7 +11153,11 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.00792
+    "pricePerHour": 0.00792,
+    "commit": {
+      "1y": 0.00531,
+      "3y": 0.00355
+    }
   },
   {
     "provider": "aws",
@@ -11156,7 +11168,71 @@
     "burstable": true,
     "arch": "x86",
     "generation": "t8i",
-    "pricePerHour": 0.03168
+    "pricePerHour": 0.03168,
+    "commit": {
+      "1y": 0.02124,
+      "3y": 0.01421
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "singapore",
+    "sku": "t9g.medium",
+    "vcpu": 2,
+    "ramGb": 4,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.05258,
+    "commit": {
+      "3y": 0.02408,
+      "1y": 0.03579
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "singapore",
+    "sku": "t9g.micro",
+    "vcpu": 2,
+    "ramGb": 1,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.01314,
+    "commit": {
+      "3y": 0.00602,
+      "1y": 0.00895
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "singapore",
+    "sku": "t9g.nano",
+    "vcpu": 2,
+    "ramGb": 0.5,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.00657,
+    "commit": {
+      "3y": 0.00301,
+      "1y": 0.00447
+    }
+  },
+  {
+    "provider": "aws",
+    "region": "singapore",
+    "sku": "t9g.small",
+    "vcpu": 2,
+    "ramGb": 2,
+    "burstable": true,
+    "arch": "arm",
+    "generation": "t9g",
+    "pricePerHour": 0.02629,
+    "commit": {
+      "3y": 0.01204,
+      "1y": 0.0179
+    }
   },
   {
     "provider": "aws",

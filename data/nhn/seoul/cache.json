@@ -7,57 +7,57 @@
       "sku": "m2.c1m2",
       "memoryGb": 2,
       "burstable": false,
-      "perHour": 0.040193,
-      "haPerHour": 0.080386
+      "perHour": 0.040207,
+      "haPerHour": 0.080414
     },
     {
       "sku": "m2.c2m4",
       "memoryGb": 4,
       "burstable": false,
-      "perHour": 0.081131,
-      "haPerHour": 0.162262
+      "perHour": 0.081159,
+      "haPerHour": 0.162318
     },
     {
       "sku": "r2.c2m8",
       "memoryGb": 8,
       "burstable": false,
-      "perHour": 0.135466,
-      "haPerHour": 0.270932
+      "perHour": 0.135513,
+      "haPerHour": 0.271026
     },
     {
       "sku": "r2.c4m16",
       "memoryGb": 16,
       "burstable": false,
-      "perHour": 0.259767,
-      "haPerHour": 0.519534
+      "perHour": 0.259858,
+      "haPerHour": 0.519716
     },
     {
       "sku": "r2.c8m32",
       "memoryGb": 32,
       "burstable": false,
-      "perHour": 0.627461,
-      "haPerHour": 1.254922
+      "perHour": 0.62768,
+      "haPerHour": 1.25536
     },
     {
       "sku": "r2.c8m64",
       "memoryGb": 64,
       "burstable": false,
-      "perHour": 0.803865,
-      "haPerHour": 1.60773
+      "perHour": 0.804146,
+      "haPerHour": 1.608292
     },
     {
       "sku": "x1.c16m128",
       "memoryGb": 128,
       "burstable": false,
-      "perHour": 1.697047,
-      "haPerHour": 3.394094
+      "perHour": 1.697641,
+      "haPerHour": 3.395282
     },
     {
       "sku": "x1.c32m256",
       "memoryGb": 256,
       "burstable": false,
-      "perHour": 3.582407,
-      "haPerHour": 7.164814
+      "perHour": 3.583661,
+      "haPerHour": 7.167322
     }
   ],
   "gbTiers": null

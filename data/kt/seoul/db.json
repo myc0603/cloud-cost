@@ -9,189 +9,189 @@
           "vcpu": 1,
           "ramGb": 2,
           "burstable": false,
-          "perHour": 0.051764,
-          "haPerHour": 0.212664
+          "perHour": 0.051733,
+          "haPerHour": 0.212538
         },
         {
           "sku": "2c2g",
           "vcpu": 2,
           "ramGb": 2,
           "burstable": false,
-          "perHour": 0.062091,
-          "haPerHour": 0.243646
+          "perHour": 0.062054,
+          "haPerHour": 0.243501
         },
         {
           "sku": "2c4g",
           "vcpu": 2,
           "ramGb": 4,
           "burstable": false,
-          "perHour": 0.101105,
-          "haPerHour": 0.360688
+          "perHour": 0.101045,
+          "haPerHour": 0.360473
         },
         {
           "sku": "2c8g",
           "vcpu": 2,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.128516,
-          "haPerHour": 0.442923
+          "perHour": 0.12844,
+          "haPerHour": 0.442659
         },
         {
           "sku": "2c16g",
           "vcpu": 2,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.156056,
-          "haPerHour": 0.525541
+          "perHour": 0.155963,
+          "haPerHour": 0.525228
         },
         {
           "sku": "4c4g",
           "vcpu": 4,
           "ramGb": 4,
           "burstable": false,
-          "perHour": 0.121759,
-          "haPerHour": 0.422651
+          "perHour": 0.121687,
+          "haPerHour": 0.422399
         },
         {
           "sku": "4c8g",
           "vcpu": 4,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.199659,
-          "haPerHour": 0.656352
+          "perHour": 0.199541,
+          "haPerHour": 0.655961
         },
         {
           "sku": "4c16g",
           "vcpu": 4,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.25461,
-          "haPerHour": 0.821205
+          "perHour": 0.254459,
+          "haPerHour": 0.820716
         },
         {
           "sku": "4c32g",
           "vcpu": 4,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.309561,
-          "haPerHour": 0.986058
+          "perHour": 0.309377,
+          "haPerHour": 0.985471
         },
         {
           "sku": "8c8g",
           "vcpu": 8,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.241096,
-          "haPerHour": 0.780661
+          "perHour": 0.240952,
+          "haPerHour": 0.780196
         },
         {
           "sku": "8c16g",
           "vcpu": 8,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.396897,
-          "haPerHour": 1.248063
+          "perHour": 0.39666,
+          "haPerHour": 1.24732
         },
         {
           "sku": "8c32g",
           "vcpu": 8,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.506799,
-          "haPerHour": 1.577769
+          "perHour": 0.506497,
+          "haPerHour": 1.57683
         },
         {
           "sku": "8c64g",
           "vcpu": 8,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 0.616573,
-          "haPerHour": 1.907092
+          "perHour": 0.616206,
+          "haPerHour": 1.905957
         },
         {
           "sku": "16c32g",
           "vcpu": 16,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.791243,
-          "haPerHour": 2.431103
+          "perHour": 0.790772,
+          "haPerHour": 2.429656
         },
         {
           "sku": "16c64g",
           "vcpu": 16,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.011047,
-          "haPerHour": 3.090515
+          "perHour": 1.010445,
+          "haPerHour": 3.088675
         },
         {
           "sku": "16c128g",
           "vcpu": 16,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 1.230596,
-          "haPerHour": 3.749162
+          "perHour": 1.229863,
+          "haPerHour": 3.74693
         },
         {
           "sku": "24c96g",
           "vcpu": 24,
           "ramGb": 96,
           "burstable": false,
-          "perHour": 1.515296,
-          "haPerHour": 4.603261
+          "perHour": 1.514394,
+          "haPerHour": 4.60052
         },
         {
           "sku": "24c192g",
           "vcpu": 24,
           "ramGb": 192,
           "burstable": false,
-          "perHour": 1.844619,
-          "haPerHour": 5.591231
+          "perHour": 1.843521,
+          "haPerHour": 5.587902
         },
         {
           "sku": "32c64g",
           "vcpu": 32,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.579936,
-          "haPerHour": 4.797183
+          "perHour": 1.578996,
+          "haPerHour": 4.794327
         },
         {
           "sku": "32c128g",
           "vcpu": 32,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 2.019544,
-          "haPerHour": 6.116006
+          "perHour": 2.018342,
+          "haPerHour": 6.112365
         },
         {
           "sku": "32c256g",
           "vcpu": 32,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 2.458642,
-          "haPerHour": 7.4333
+          "perHour": 2.457179,
+          "haPerHour": 7.428875
         },
         {
           "sku": "64c128g",
           "vcpu": 64,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 3.157323,
-          "haPerHour": 9.529342
+          "perHour": 3.155443,
+          "haPerHour": 9.523669
         },
         {
           "sku": "64c256g",
           "vcpu": 64,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 4.036539,
-          "haPerHour": 12.166989
+          "perHour": 4.034136,
+          "haPerHour": 12.159746
         }
       ],
       "custom": null,
-      "storageGbMonth": 0.312723,
-      "haStorageGbMonth": 0.521206
+      "storageGbMonth": 0.312537,
+      "haStorageGbMonth": 0.520895
     },
     "postgres": {
       "instances": [
@@ -200,189 +200,189 @@
           "vcpu": 1,
           "ramGb": 2,
           "burstable": false,
-          "perHour": 0.051764,
-          "haPerHour": 0.132214
+          "perHour": 0.051733,
+          "haPerHour": 0.132135
         },
         {
           "sku": "2c2g",
           "vcpu": 2,
           "ramGb": 2,
           "burstable": false,
-          "perHour": 0.062091,
-          "haPerHour": 0.152868
+          "perHour": 0.062054,
+          "haPerHour": 0.152777
         },
         {
           "sku": "2c4g",
           "vcpu": 2,
           "ramGb": 4,
           "burstable": false,
-          "perHour": 0.101105,
-          "haPerHour": 0.230896
+          "perHour": 0.101045,
+          "haPerHour": 0.230759
         },
         {
           "sku": "2c8g",
           "vcpu": 2,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.128516,
-          "haPerHour": 0.28572
+          "perHour": 0.12844,
+          "haPerHour": 0.28555
         },
         {
           "sku": "2c16g",
           "vcpu": 2,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.156056,
-          "haPerHour": 0.340798
+          "perHour": 0.155963,
+          "haPerHour": 0.340595
         },
         {
           "sku": "4c4g",
           "vcpu": 4,
           "ramGb": 4,
           "burstable": false,
-          "perHour": 0.121759,
-          "haPerHour": 0.272205
+          "perHour": 0.121687,
+          "haPerHour": 0.272043
         },
         {
           "sku": "4c8g",
           "vcpu": 4,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.199659,
-          "haPerHour": 0.428006
+          "perHour": 0.199541,
+          "haPerHour": 0.427751
         },
         {
           "sku": "4c16g",
           "vcpu": 4,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.25461,
-          "haPerHour": 0.537908
+          "perHour": 0.254459,
+          "haPerHour": 0.537587
         },
         {
           "sku": "4c32g",
           "vcpu": 4,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.309561,
-          "haPerHour": 0.64781
+          "perHour": 0.309377,
+          "haPerHour": 0.647424
         },
         {
           "sku": "8c8g",
           "vcpu": 8,
           "ramGb": 8,
           "burstable": false,
-          "perHour": 0.241096,
-          "haPerHour": 0.510878
+          "perHour": 0.240952,
+          "haPerHour": 0.510574
         },
         {
           "sku": "8c16g",
           "vcpu": 8,
           "ramGb": 16,
           "burstable": false,
-          "perHour": 0.396897,
-          "haPerHour": 0.82248
+          "perHour": 0.39666,
+          "haPerHour": 0.82199
         },
         {
           "sku": "8c32g",
           "vcpu": 8,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.506799,
-          "haPerHour": 1.042284
+          "perHour": 0.506497,
+          "haPerHour": 1.041663
         },
         {
           "sku": "8c64g",
           "vcpu": 8,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 0.616573,
-          "haPerHour": 1.261833
+          "perHour": 0.616206,
+          "haPerHour": 1.261082
         },
         {
           "sku": "16c32g",
           "vcpu": 16,
           "ramGb": 32,
           "burstable": false,
-          "perHour": 0.791243,
-          "haPerHour": 1.611173
+          "perHour": 0.790772,
+          "haPerHour": 1.610214
         },
         {
           "sku": "16c64g",
           "vcpu": 16,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.011047,
-          "haPerHour": 2.050781
+          "perHour": 1.010445,
+          "haPerHour": 2.04956
         },
         {
           "sku": "16c128g",
           "vcpu": 16,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 1.230596,
-          "haPerHour": 2.489879
+          "perHour": 1.229863,
+          "haPerHour": 2.488397
         },
         {
           "sku": "24c96g",
           "vcpu": 24,
           "ramGb": 96,
           "burstable": false,
-          "perHour": 1.515296,
-          "haPerHour": 3.059278
+          "perHour": 1.514394,
+          "haPerHour": 3.057457
         },
         {
           "sku": "24c192g",
           "vcpu": 24,
           "ramGb": 192,
           "burstable": false,
-          "perHour": 1.844619,
-          "haPerHour": 3.717925
+          "perHour": 1.843521,
+          "haPerHour": 3.715712
         },
         {
           "sku": "32c64g",
           "vcpu": 32,
           "ramGb": 64,
           "burstable": false,
-          "perHour": 1.579936,
-          "haPerHour": 3.18856
+          "perHour": 1.578996,
+          "haPerHour": 3.186661
         },
         {
           "sku": "32c128g",
           "vcpu": 32,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 2.019544,
-          "haPerHour": 4.067775
+          "perHour": 2.018342,
+          "haPerHour": 4.065354
         },
         {
           "sku": "32c256g",
           "vcpu": 32,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 2.458642,
-          "haPerHour": 4.945971
+          "perHour": 2.457179,
+          "haPerHour": 4.943027
         },
         {
           "sku": "64c128g",
           "vcpu": 64,
           "ramGb": 128,
           "burstable": false,
-          "perHour": 3.157323,
-          "haPerHour": 6.343333
+          "perHour": 3.155443,
+          "haPerHour": 6.339556
         },
         {
           "sku": "64c256g",
           "vcpu": 64,
           "ramGb": 256,
           "burstable": false,
-          "perHour": 4.036539,
-          "haPerHour": 8.101764
+          "perHour": 4.034136,
+          "haPerHour": 8.096941
         }
       ],
       "custom": null,
-      "storageGbMonth": 0.312723,
-      "haStorageGbMonth": 0.416964
+      "storageGbMonth": 0.312537,
+      "haStorageGbMonth": 0.416716
     }
   }
 }
